@@ -1,0 +1,158 @@
+/*css for home page html page*/
+body {
+  background-image: url("../../assets/image/pattern.jpg");
+}
+.jumbotron {
+  background-image: url("http://4.bp.blogspot.com/-XN4ZxI4VWKU/UDIMbL8-5QI/AAAAAAAACRA/zgO9RoMN7Ow/s1600/black_metal_grid-seamless_background_pattern.jpg");
+  height: 350px;
+}
+h1 {
+  color: white;
+  font-family: Helvetica, Verdana, sans-serif;
+  font-style: oblique;
+  font-size: 70px;
+  text-align: center;
+}
+p {
+  color: white;
+  font-family: Helvetica, Verdana, sans-serif;
+  font-style: oblique;
+  font-size: 30px;
+  text-align: center;
+}
+/*text content in jumbotron*/
+.lead {
+  justify-content: center;
+}
+/*css on buttons*/
+.orange-circle-button {
+  box-shadow: 2px 4px 0 2px rgba(0, 0, 0, 0.1);
+  border: .5em solid lightgrey;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  color: #ffffff;
+  background: linear-gradient(to right, #232526, #414345);
+  margin: auto;
+  border-radius: 30%;
+  height: 12em;
+  width: 12em;
+  position: relative;
+  margin-bottom: 140px;
+}
+/*css on hover the button*/
+.orange-circle-button:hover {
+  color: #ffffff;
+  background: linear-gradient(to top, #e6dada, #274046);
+  text-decoration: none;
+  border-color: lightgrey;
+}
+.orange-circle-button:visited {
+  color: #ffffff;
+  background-color: #e84d0e;
+  text-decoration: none;
+}
+.btn-circle:hover {
+  color: white;
+  opacity: 1;
+}
+img {
+  width: 4em;
+  height: 4em;
+}
+.modaltext {
+  font-size: 18px;
+  font-family: "Times New Roman", Georgia, Serif;
+  color: black;
+  text-align: justify;
+}
+/*css on modal*/
+.modal-body {
+  background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/itCjTBE/grey-light-smooth-moving-waves-background-video-animation-hd-1920x1080_vjkea4zve__F0000.png");
+}
+h4 {
+  color: white;
+}
+.modal-header {
+  background-image: url("../../assets/image/modal.jpg");
+}
+.modaltext {
+  justify-content: center;
+}
+/*media queries*/
+@media screen and (max-width: 375px) {
+  .jumbotron {
+    height: 150px;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  p {
+    font-size: 15px;
+  }
+  .orange-circle-button {
+    font-size: 1em;
+    height: 12em;
+    width: 12em;
+    margin-bottom: 100px;
+    border-radius: 30%;
+    line-height: 1.5em;
+    margin-left: 60px;
+  }
+  img {
+    width: 3em;
+    height: 3em;
+  }
+  h5 {
+    font-size: 0.7em;
+  }
+}
+@media screen and (max-width: 425px) and (min-width: 376px) {
+  .jumbotron {
+    height: 200px;
+  }
+  h1 {
+    font-size: 50px;
+  }
+  p {
+    font-size: 20px;
+  }
+  .orange-circle-button {
+    font-size: 1em;
+    height: 14em;
+    width: 14em;
+    margin-bottom: 100px;
+    border-radius: 30%;
+    line-height: 1.5em;
+    margin-left: 60px;
+  }
+  img {
+    width: 3.5em;
+    height: 3.5em;
+  }
+  h5 {
+    font-size: 0.7em;
+  }
+}
+@media screen and (max-width: 768px) and (min-width: 426px) {
+  .orange-circle-button {
+    font-size: 0.8em;
+    height: 12em;
+    width: 12em;
+    margin-bottom: 100px;
+    border-radius: 30%;
+    line-height: 1.5em;
+    margin-left: 20px;
+  }
+  img {
+    width: 3.5em;
+    height: 3.5em;
+  }
+  h5 {
+    font-size: 0.7em;
+  }
+}
+@media screen and (width: 320px) {
+  .orange-circle-button {
+    margin-left: 25px;
+  }
+}

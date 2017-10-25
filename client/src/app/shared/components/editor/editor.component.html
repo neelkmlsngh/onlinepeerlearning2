@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <app-navbar></app-navbar>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">Profile Picture
+    </div>
+    <div class="col-md-9">Welcome Message
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="dropdown">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Select Language
+                </button>
+                <!-- select language -->
+                <div class="dropdown-menu" aria-labelledby="about-us">
+                <a class="dropdown-item" (click)="clear()">Clear</a>
+                  <a class="dropdown-item" (click)="mode('html')">HTML</a>
+                  <a class="dropdown-item" (click)="mode('css')">CSS</a>
+                  <a class="dropdown-item" (click)="mode('javascript')">Java Script</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <app-repo-sidebar></app-repo-sidebar>
+        </div>
+        <div class="col-md-8">
+          <div class="row mt-3">
+            <div class="col-md-12 mt-3">
+            <div id="my-element">{{text}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   <app-chat-sidebar></app-chat-sidebar>
+  </div>
+</div>
