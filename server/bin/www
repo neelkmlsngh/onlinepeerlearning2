@@ -1,5 +1,8 @@
-const http = require('http');
+const https = require('https');
+var fs = require('fs');
+var path = require('path');
 const debug = require('debug')('dataDisplayApp:server');
+var ExpressPeerServer = require('peer').ExpressPeerServer;
 
 const logger = require('../services/app.logger');
 const config = require('../config');
@@ -12,8 +15,20 @@ let app = require('../app/app')(appName);
 // Get port from environment and store in Express.
 let port = normalizePort(appConstants.PORT);
 
-// Create HTTP server.
-let server = http.createServer(app);
+// Create HTTPS server.
+
+var options = {
+  key: fs.readFileSync(path.resolve(__dirname,'../resources/key.pem')),
+  cert: fs.readFileSync(path.resolve(__dirname,'../resources/cert.pem'))
+};
+var options1 = {
+    debug: true
+}
+
+
+var server = https.createServer(options, app);
+app.use('/peerjs', ExpressPeerServer(server, options1));
+// let server = https.createServer(app);
 
 //Listen on provided port, on all network interfaces.
 server.listen(port);

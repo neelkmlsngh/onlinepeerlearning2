@@ -1,5 +1,6 @@
 const path = require('path');
 
+
 const apiRoutes = require('../api');
 
 // All routes used in application
