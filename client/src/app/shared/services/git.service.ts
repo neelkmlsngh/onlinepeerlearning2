@@ -18,7 +18,7 @@ export class GitService {
   //method to get github username
   getUser() {
     if (this.userName) {
-      return this._http.get('http://api.github.com/users/' + this.userName +
+      return this._http.get('https://api.github.com/users/' + this.userName +
           '?client_id=' + this.clientId +
           '&client_secret=' + this.clientSecret)
         .map(res => res.json())
@@ -28,7 +28,7 @@ export class GitService {
   //method to get all the repositories of the user
   getRepos() {
     if (this.userName) {
-      return this._http.get('http://api.github.com/users/' + this.userName +
+      return this._http.get('https://api.github.com/users/' + this.userName +
           '/repos?client_id=' + this.clientId +
           '&client_secret=' + this.clientSecret)
         .map(res => res.json())
@@ -37,7 +37,7 @@ export class GitService {
   }
   getTree(repo) {
     if (this.userName) {
-      return this._http.get('http://api.github.com/repos/' + this.userName + "/" +
+      return this._http.get('https://api.github.com/repos/' + this.userName + "/" +
           repo + '/contents?client_id=' + this.clientId +
           '&client_secret=' + this.clientSecret)
         .map(res => res.json())
