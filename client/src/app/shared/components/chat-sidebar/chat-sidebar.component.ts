@@ -21,19 +21,19 @@ export class ChatSidebarComponent implements OnInit, OnDestroy {
   }
 
   screenShare(call) {
-   this.windowRef= window;
-   if (this.windowRef.TogetherJS) {
-     this.windowRef.TogetherJS();
+     this.windowRef= window;
+     if (this.windowRef.TogetherJS) {
+         this.windowRef.TogetherJS();
 
-     setTimeout(function(){
-        $('.togetherjs-dock-right').remove();
-        this.screenSharingLink=$('.togetherjs-share-link').val();
-        console.log("=======11111",this.screenSharingLink);
-        $('#togetherjs-share').remove();
-        $('#togetherjs-window-pointer-right').remove();
-      },1000)
-   }
- }
+         setTimeout(function(){
+                $('.togetherjs-dock-right').remove();
+                this.screenSharingLink=$('.togetherjs-share-link').val();
+                console.log("=======11111",this.screenSharingLink);
+                $('#togetherjs-share').remove();
+                $('#togetherjs-window-pointer-right').remove();
+            },100)
+     }
+}
 
   ngOnDestroy() {
     this.connection.unsubscribe();
