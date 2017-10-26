@@ -5,15 +5,47 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const compression = require('compression');
+var passport = require('passport');
+var methodOverride = require('method-override');
+var GitHubStrategy = require('passport-github2').Strategy;
+var partials = require('express-partials');
+var util = require('util');
+var session = require('express-session');
 
 const appRoutes = require('./app.router');
 const logger = require('../services/app.logger');
 const config = require('../config');
-
+const User =require('../api/login/login.entity')
 const loggerConfig = config.loggerConstant;
 const db = config.db;
 
+function loginviagit(){
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
 
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+
+passport.use(new GitHubStrategy({
+    clientID:'7328322e0495591f5a69',
+    clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
+    callbackURL: "https://localhost:8080/auth/github/callback"
+  },
+
+
+ function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
+    User.findOrCreate({userid: profile.id}, 
+      {name: profile._json.login,userid: profile.id,avatar_url:profile._json.avatar_url, 
+        public_repos: profile._json.public_repos, repos_url: profile._json.repos_url}, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
+}
 // Create express app
 function createApp() {
   const app = express();
@@ -53,10 +85,15 @@ function setupMiddlewares(app) {
   app.use(bodyParser.urlencoded({
       extended: false
     })
-  );
-  
-  app.use(compression());
+);
 
+app.use(compression());
+
+app.use(methodOverride());
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));  
+app.use(passport.initialize()); 
+app.use(passport.session());
+app.use(partials());
   return app;
 }
 
@@ -89,5 +126,6 @@ module.exports = {
   createApp : createApp,
   setupRestRoutes : setupRestRoutes,
   setupMiddlewares : setupMiddlewares,
-  setupMongooseConnections : setupMongooseConnections
+  setupMongooseConnections : setupMongooseConnections,
+  loginviagit:loginviagit
 };

@@ -16,7 +16,7 @@ import { GitService } from './shared/services/git.service'
 import { EditorService } from './shared/services/editor.service';
 import { ChatService } from './shared/services/chat.service';
 import { DisplayComponent } from './display/display.component';
-
+import {LoginService} from './home/service/login.service'
 
 @NgModule({
   declarations: [
@@ -61,7 +61,7 @@ import { DisplayComponent } from './display/display.component';
     }*/
    ],  { useHash: true })
   ],
-  providers: [GitService,EditorService,ChatService],
+  providers: [LoginService,GitService,EditorService,ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
