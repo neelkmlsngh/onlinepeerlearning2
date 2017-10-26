@@ -5,24 +5,8 @@ const debug = require('debug')('dataDisplayApp:server');
 var ExpressPeerServer = require('peer').ExpressPeerServer;
 
 const logger = require('../services/app.logger');
+const socketApp = require('../app/app.service')
 const config = require('../config');
-
-let people = [{
-        name: "Douglas  Pace"
-    },
-    {
-        name: "Mcleod  Mueller"
-    },
-    {
-        name: "Day  Meyers"
-    },
-    {
-        name: "Aguirre  Ellis"
-    },
-    {
-        name: "Cook  Tyson"
-    }
-];
 
 const appConstants = config.app;
 const loggerConfig = config.loggerConstant;
@@ -43,23 +27,8 @@ var options1 = {
 // Create HTTPS server.
 var server = https.createServer(options, app);
 
-var io = require('socket.io')(server);
-
-io.on('connection', (socket) => {
-
-    console.log('user connected');
-
-    socket.on('disconnect', function() {
-        console.log('user disconnected');
-    });
-
-    socket.on('add-message', (message) => {
-        io.emit('message', { type: 'new-message', text: message });
-    });
-
-    /*console.log(this.onlineUser)*/
-    io.emit('users', people);
-});
+//this is for socket that is used for getting online users and messages
+socketApp.socketConnection(server);
 
 app.use('/peerjs', ExpressPeerServer(server, options1));
 // let server = https.createServer(app);
