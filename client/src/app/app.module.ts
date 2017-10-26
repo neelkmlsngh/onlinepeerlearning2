@@ -16,11 +16,18 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { GitService } from './shared/services/git.service'
 import { EditorService } from './shared/services/editor.service';
 import { ChatService } from './shared/services/chat.service';
-import { DisplayComponent } from './display/display.component';
+import { MainComponent } from './main/main.component';
+import { ForumComponent } from './shared/components/forum/forum.component';
+import { ViewpostComponent } from './shared/components/forum/viewpost/viewpost.component';
+import { DetailpostComponent } from './shared/components/forum/detailpost/detailpost.component';
+import { NewpostComponent } from './shared/components/forum/newpost/newpost.component';
+import {  ForumService } from './shared/services/forum.service';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 import {LoginService} from './home/service/login.service'
 
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
+import { ProfileComponent } from './shared/components/profile/profile.component';
 
 
 
@@ -33,49 +40,65 @@ import { WebeditorComponent } from './shared/components/webeditor/webeditor.comp
     RepoSidebarComponent,
     ChatSidebarComponent,
     FooterComponent,
-    DisplayComponent,
+    WebeditorComponent,
+    ProfileComponent,
+    MainComponent,
+    ViewpostComponent,
+    DetailpostComponent,
+    NewpostComponent,
+    ForumComponent,
     WebeditorComponent
+
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
+    CKEditorModule,
     AceEditorModule,
+
     ModalModule.forRoot(),
     RouterModule.forRoot([
 
+   
+    {
+       path:'home',
+       component:HomeComponent
+     },
+
       {
-        path: 'home',
-        component: HomeComponent
+        path: 'main',
+        component: MainComponent
+      },
+        {
+        path: 'questions',
+        component: ViewpostComponent
       },
       {
-        path: 'onlinepeerlearning',
-        component: DisplayComponent
+        path: 'addquestion',
+        component: NewpostComponent
       },
-      {
-        path: 'onlineUsers',
-        component: ChatSidebarComponent
+        {
+        path: 'questiondetail',
+        component: DetailpostComponent
       },
-      {
-        path: '',
-        component: DisplayComponent
-      },
-      {
+     {
         path: 'webeditor',
         component: WebeditorComponent
+      },
+       {
+        path: 'editProfile',
+        component: ProfileComponent
       }
+      ,     
+     {
+      path:'**',
+      component: HomeComponent
+    }
 
-      // {
-      //   path: 'onlinepeerlearning/:id',
-      //   component: DisplayComponent
-      // },
-      /*  {
-        path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
-      }*/
-    ], { useHash: true })
+   ],  { useHash: true })
   ],
-
-  providers: [LoginService,GitService,EditorService,ChatService],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService],
 
   bootstrap: [AppComponent]
 })
