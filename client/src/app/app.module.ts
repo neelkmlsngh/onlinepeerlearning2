@@ -78,19 +78,10 @@ import { WebeditorComponent } from './shared/components/webeditor/webeditor.comp
         path: 'questiondetail',
         component: DetailpostComponent
       },
-      {
-       path:'',
-       component:MainComponent
-     },
-         {
+     {
         path: 'webeditor',
         component: WebeditorComponent
-      }
-     ,
-  /*        {
-      path:'',redirectTo:'/home',pathMatch:'full'
-    },*/
-     
+      },     
      {
       path:'**',
       component: HomeComponent

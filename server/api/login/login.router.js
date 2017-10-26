@@ -22,7 +22,7 @@ router.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
 
-   res.redirect('https://localhost:8080/#');
+   res.redirect('https://localhost:8080/#/main');
   });
 
 
