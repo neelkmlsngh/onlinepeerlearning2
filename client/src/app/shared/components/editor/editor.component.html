@@ -17,18 +17,14 @@
           <div class="row mt-3">
             <div class="col-md-12">
               <div class="dropdown">
-                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Select Language
-                </button>
+              
                 <button (click)="changeContent()">Change code</button>
                 <input type="text" name="">
                 <!-- select language -->
-                <div class="dropdown-menu" aria-labelledby="about-us">
-                <a class="dropdown-item" (click)="clear()">Clear</a>
-                  <a class="dropdown-item" (click)="mode('html')">HTML</a>
-                  <a class="dropdown-item" (click)="mode('css')">CSS</a>
-                  <a class="dropdown-item" (click)="mode('javascript')">Java Script</a>
-                </div>
+           
+               <select name="languages" >
+                 <option [value]='lng' *ngFor="let lng of languages">{{lng}}</option>
+               </select>
               </div>
             </div>
           </div>
