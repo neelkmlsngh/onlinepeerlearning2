@@ -1,12 +1,14 @@
 export const config: any = {
 
    connect: {
-       "url": "http://localhost:",
-       "port": "3002"
-   },
-   language: [
+   	 language: [
 "HTML",
 "CSS",
 "JAVASCRIPT"
-]
+],
+
+       "url": "https://localhost:",
+       "port": "8080"
+   }
+
    };

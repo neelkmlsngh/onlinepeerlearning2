@@ -1,0 +1,31 @@
+<div id="wrap">
+  <!-- Code Editors -->
+  <section id="code_editors">
+    <!--   <div id="html" class="code_box">
+      <h3>HTML</h3>
+      <textarea name="html" [(ngModel)]="htmlValue" (change)="render()"></textarea>
+    </div>
+    <div id="css" class="code_box">
+      <h3>CSS</h3>
+      <textarea name="css" [(ngModel)]="cssValue" (change)="render()"></textarea>
+    </div>
+    <div id="javascript" class="code_box">
+      <h3>JAVASCRIPT</h3>
+      <textarea name="js" [(ngModel)]="jsValue" (change)="render()"></textarea>
+    </div> -->
+    HTML
+    <div ace-editor [(text)]="htmlValue" [mode]="'html'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="html">
+    </div>
+    CSS
+    <div ace-editor [(text)]="cssValue" [mode]="'css'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="css">
+    </div>
+    JAVASCRIPT
+    <div ace-editor [(text)]="jsValue" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="javascript">
+    </div>
+  </section>
+  <!-- Sandboxing -->
+  <section id="output">
+    <h3>OUTPUT</h3>
+    <iframe></iframe>
+  </section>
+</div>

@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap';
+import { AceEditorModule } from 'ng2-ace-editor'
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -23,6 +24,11 @@ import { NewpostComponent } from './shared/components/forum/newpost/newpost.comp
 import {  ForumService } from './shared/services/forum.service';
 import { CKEditorModule } from 'ng2-ckeditor';
 
+import {LoginService} from './home/service/login.service'
+
+import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
+
+
 
 @NgModule({
   declarations: [
@@ -37,13 +43,16 @@ import { CKEditorModule } from 'ng2-ckeditor';
     ViewpostComponent,
     DetailpostComponent,
     NewpostComponent,
-    ForumComponent
+    ForumComponent,
+    WebeditorComponent
   ],
   imports: [
     BrowserModule,
-     HttpModule,
+    HttpModule,
     FormsModule,
     CKEditorModule,
+    AceEditorModule,
+
     ModalModule.forRoot(),
     RouterModule.forRoot([
 
@@ -52,6 +61,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
        path:'home',
        component:HomeComponent
      },
+
       {
         path: 'main',
         component: MainComponent
@@ -72,7 +82,11 @@ import { CKEditorModule } from 'ng2-ckeditor';
        path:'',
        component:MainComponent
      },
-     
+         {
+        path: 'webeditor',
+        component: WebeditorComponent
+      }
+     ,
   /*        {
       path:'',redirectTo:'/home',pathMatch:'full'
     },*/
@@ -84,7 +98,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
 
    ],  { useHash: true })
   ],
-  providers: [GitService,EditorService,ChatService, ForumService],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService],
+
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

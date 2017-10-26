@@ -22,9 +22,16 @@
     "cors": "^2.8.4",
     "debug": "^3.1.0",
     "express": "^4.16.2",
+    "express-partials": "^0.3.0",
+    "express-session": "^1.15.6",
+    "find-or-create": "^1.1.0",
     "log4js": "^2.3.9",
+    "method-override": "^2.3.10",
     "mongoose": "^4.12.4",
     "morgan": "^1.9.0",
-    "peer": "^0.2.8"
+    "passport": "^0.4.0",
+    "passport-github2": "^0.1.11",
+    "peer": "^0.2.8",
+    "socket.io": "^1.4.6"
   }
 }

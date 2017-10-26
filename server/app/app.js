@@ -20,6 +20,7 @@ module.exports = function(appName) {
   app = service.setupMiddlewares(app);
   app = service.setupRestRoutes(app);
   service.setupMongooseConnections();
+  service.loginviagit();
 
     
   return app;
