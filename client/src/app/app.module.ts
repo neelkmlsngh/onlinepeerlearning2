@@ -21,6 +21,7 @@ import { DisplayComponent } from './display/display.component';
 import {LoginService} from './home/service/login.service'
 
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
+import { ProfileComponent } from './shared/components/profile/profile.component';
 
 
 
@@ -34,7 +35,8 @@ import { WebeditorComponent } from './shared/components/webeditor/webeditor.comp
     ChatSidebarComponent,
     FooterComponent,
     DisplayComponent,
-    WebeditorComponent
+    WebeditorComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +65,10 @@ import { WebeditorComponent } from './shared/components/webeditor/webeditor.comp
       {
         path: 'webeditor',
         component: WebeditorComponent
+      },
+       {
+        path: 'editProfile',
+        component: ProfileComponent
       }
 
       // {
