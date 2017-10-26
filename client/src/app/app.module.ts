@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap';
+import { AceEditorModule } from 'ng2-ace-editor'
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +17,7 @@ import { GitService } from './shared/services/git.service'
 import { EditorService } from './shared/services/editor.service';
 import { ChatService } from './shared/services/chat.service';
 import { DisplayComponent } from './display/display.component';
+import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 
 
 @NgModule({
@@ -27,19 +29,21 @@ import { DisplayComponent } from './display/display.component';
     RepoSidebarComponent,
     ChatSidebarComponent,
     FooterComponent,
-    DisplayComponent
+    DisplayComponent,
+    WebeditorComponent
   ],
   imports: [
     BrowserModule,
-     HttpModule,
+    HttpModule,
     FormsModule,
+    AceEditorModule,
     ModalModule.forRoot(),
     RouterModule.forRoot([
-   
-    {
-       path:'home',
-       component:HomeComponent
-     },
+
+      {
+        path: 'home',
+        component: HomeComponent
+      },
       {
         path: 'onlinepeerlearning',
         component: DisplayComponent
@@ -49,19 +53,24 @@ import { DisplayComponent } from './display/display.component';
         component: ChatSidebarComponent
       },
       {
-       path:'',
-       component:DisplayComponent
-     }
+        path: '',
+        component: DisplayComponent
+      },
+      {
+        path: 'webeditor',
+        component: WebeditorComponent
+      }
+
       // {
       //   path: 'onlinepeerlearning/:id',
       //   component: DisplayComponent
       // },
-    /*  {
-      path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
-    }*/
-   ],  { useHash: true })
+      /*  {
+        path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
+      }*/
+    ], { useHash: true })
   ],
-  providers: [GitService,EditorService,ChatService],
+  providers: [GitService, EditorService, ChatService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
