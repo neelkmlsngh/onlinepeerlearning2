@@ -35,9 +35,7 @@ import { DisplayComponent } from './display/display.component';
     FormsModule,
     ModalModule.forRoot(),
     RouterModule.forRoot([
-   {
-      path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
-    },
+   
     {
        path:'home',
        component:HomeComponent
@@ -49,8 +47,19 @@ import { DisplayComponent } from './display/display.component';
       {
         path: 'onlineUsers',
         component: ChatSidebarComponent
-      }
-   ])
+      },
+      {
+       path:'',
+       component:DisplayComponent
+     }
+      // {
+      //   path: 'onlinepeerlearning/:id',
+      //   component: DisplayComponent
+      // },
+    /*  {
+      path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
+    }*/
+   ],  { useHash: true })
   ],
   providers: [GitService,EditorService,ChatService],
   bootstrap: [AppComponent]

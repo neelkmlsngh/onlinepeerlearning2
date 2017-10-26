@@ -19,97 +19,77 @@ import { GitService } from '../../services/git.service'
 })
 
 export class EditorComponent implements OnInit {
+  notebook:any;
+  content:any="Please enter your code here";
 
-  @ViewChild('embed') embed
-  @Input() source: string
-  @Input() readOnly: boolean
-  @Input() model: string
-  @Input() nodeVersion: string
-  @Input() env: string[]
-  @Input() title: string
-  @Input() minHeight: string
-  @Input() packageTimestamp: string
-  @Input() preamble: string
-  @Output() onLoad: EventEmitter<{}> = new EventEmitter
-  @Output() onURLChanged: EventEmitter<{}> = new EventEmitter
-  @Output() onEvaluate: EventEmitter<{}> = new EventEmitter
-  notebook: any
+  constructor(private editorService: EditorService, private gitService: GitService) {}
+
   ngAfterViewInit() {
     this.notebook = window['RunKit'].createNotebook({
-      element: this.embed.nativeElement,
-      source: this.source,
-      readOnly: this.readOnly,
-      model: this.model,
-      nodeVersion: this.nodeVersion,
-      env: this.env,
-      title: this.title,
-      minHeight: this.minHeight,
-      packageTimestamp: this.packageTimestamp,
-      preamble: this.preamble,
-      onLoad: this.onLoad.emit.bind(this.onLoad),
-      onURLChanged: this.onURLChanged.emit.bind(this.onURLChanged),
-      onEvaluate: this.onEvaluate.emit.bind(this.onEvaluate)
+      element: document.getElementById("my-element"),
+      source: this.content
     })
   }
-  evaluate() {
-    this.notebook.evaluate()
-  }
 
+  changeContent(){
+    this.content="Content changed";
+    this.notebook.setSource(this.content);
+  }
+  
   //declaring variables
 
-  enter:string;
-  lang: any;
-  url: any = "";
+ //  enter:string;
+ //  lang: any;
+ //  url: any = "";
 
-  text: string ="enter code here";
+ //  text: string ="enter code here";
   
 
-  output:any;
-  value:{};
-  	windowRef:any;
-	screenSharingLink:any;
+ //  output:any;
+ //  value:{};
+ //    windowRef:any;
+  // screenSharingLink:any;
 
-  options: any = {
-  	maxLines: 1000, 
-  	printMargin: false,
-  };
+ //  options: any = {
+ //    maxLines: 1000, 
+ //    printMargin: false,
+ //  };
   
-  val:any
+ //  val:any
 
 
   //creating the instances of services
-  constructor(private editorService: EditorService, private gitService: GitService) {}
 
 
 
   //method to execute the code 
-  run(text) {
-    this.enter = "output"
-    this.value = {
-      run: text
+  // run(text) {
+  //   this.enter = "output"
+  //   this.value = {
+  //     run: text
 
-    }
-    this.editorService.runCode(this.value).subscribe(data => {
-      this.output = data.result;
-      console.log(this.output)
-    }, err => this.output = err)
-  }
+  //   }
+  //   this.editorService.runCode(this.value).subscribe(data => {
+  //     this.output = data.result;
+  //     console.log(this.output)
+  //   }, err => this.output = err)
+  // }
 
   //method to clear the terminal
   clear() {
-    console.log(this.text)
-    this.text = null;
-    console.log(this.text)
+  //   console.log(this.text)
+  //   this.text = null;
+  //   console.log(this.text)
   }
 
   //method to get github repositories
   ngOnInit() {
-    this.lang = "javascript";
+    // this.lang = "javascript";
     
   }
 
 
   mode(language) {
-    this.lang = language;
+    // this.lang = language;
   }
 }
