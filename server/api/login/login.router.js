@@ -10,9 +10,7 @@ const appConfig = require('../../config').app;
  */
 router.get('/auth/github',
     passport.authenticate('github', { scope: ['user:email'] }),
-    function(req, res) {
-
-    });
+    function(req, res) {});
 
 // GET /auth/github/callback
 //   Use passport.authenticate() as route middleware to authenticate the

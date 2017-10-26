@@ -57,7 +57,6 @@ function loginviagit() {
         function(accessToken, refreshToken, profile, done) {
             /*console.log(profile);*/
             var token = jwt.sign(profile._json.login, secretKey.SECRET_KEY);
-            console.log(token)
             User.findOrCreate({ userid: profile.id }, {
                 name: profile._json.login,
                 userid: profile.id,
