@@ -1,6 +1,7 @@
 import {  OnInit } from '@angular/core';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core'
 import { FormsModule } from '@angular/forms';
+import { config } from './../../config/config';
 
 /*import 'brace';
 import 'brace/ext/language_tools';
@@ -21,8 +22,10 @@ import { GitService } from '../../services/git.service'
 export class EditorComponent implements OnInit {
   notebook:any;
   content:any="Please enter your code here";
+  languages:any=[];
 
   constructor(private editorService: EditorService, private gitService: GitService) {}
+
 
   ngAfterViewInit() {
     this.notebook = window['RunKit'].createNotebook({
@@ -84,12 +87,13 @@ export class EditorComponent implements OnInit {
 
   //method to get github repositories
   ngOnInit() {
+    this.languages=config.language;
     // this.lang = "javascript";
     
   }
 
 
-  mode(language) {
+  mode() {
     // this.lang = language;
   }
 }

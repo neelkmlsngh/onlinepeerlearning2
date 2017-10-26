@@ -15,7 +15,13 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { GitService } from './shared/services/git.service'
 import { EditorService } from './shared/services/editor.service';
 import { ChatService } from './shared/services/chat.service';
-import { DisplayComponent } from './display/display.component';
+import { MainComponent } from './main/main.component';
+import { ForumComponent } from './shared/components/forum/forum.component';
+import { ViewpostComponent } from './shared/components/forum/viewpost/viewpost.component';
+import { DetailpostComponent } from './shared/components/forum/detailpost/detailpost.component';
+import { NewpostComponent } from './shared/components/forum/newpost/newpost.component';
+import {  ForumService } from './shared/services/forum.service';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 
 @NgModule({
@@ -27,41 +33,58 @@ import { DisplayComponent } from './display/display.component';
     RepoSidebarComponent,
     ChatSidebarComponent,
     FooterComponent,
-    DisplayComponent
+    MainComponent,
+    ViewpostComponent,
+    DetailpostComponent,
+    NewpostComponent,
+    ForumComponent
   ],
   imports: [
     BrowserModule,
      HttpModule,
     FormsModule,
+    CKEditorModule,
     ModalModule.forRoot(),
     RouterModule.forRoot([
+
    
     {
        path:'home',
        component:HomeComponent
      },
       {
-        path: 'onlinepeerlearning',
-        component: DisplayComponent
+        path: 'main',
+        component: MainComponent
+      },
+        {
+        path: 'questions',
+        component: ViewpostComponent
       },
       {
-        path: 'onlineUsers',
-        component: ChatSidebarComponent
+        path: 'addquestion',
+        component: NewpostComponent
+      },
+        {
+        path: 'questiondetail',
+        component: DetailpostComponent
       },
       {
        path:'',
-       component:DisplayComponent
-     }
-      // {
-      //   path: 'onlinepeerlearning/:id',
-      //   component: DisplayComponent
-      // },
-    /*  {
-      path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
-    }*/
+       component:MainComponent
+     },
+     
+  /*        {
+      path:'',redirectTo:'/home',pathMatch:'full'
+    },*/
+     
+     {
+      path:'**',
+      component: HomeComponent
+    }
+
    ],  { useHash: true })
   ],
-  providers: [GitService,EditorService,ChatService],
+  providers: [GitService,EditorService,ChatService, ForumService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
