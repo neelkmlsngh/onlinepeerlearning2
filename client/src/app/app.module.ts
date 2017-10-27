@@ -27,6 +27,8 @@ import {LoginService} from './home/service/login.service'
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/audio-chat.component';
+import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     NewpostComponent,
     ForumComponent,
     WebeditorComponent,
-    AuthenticateComponent
+    AuthenticateComponent,
+    AudioChatComponent,
+    VideoChatComponent
 
   ],
   imports: [
@@ -76,6 +80,15 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
 
        path:'chat-window',
        component:ChatWindowComponent
+     },
+     {
+        path: 'video',
+        component: VideoChatComponent
+      },
+      {
+
+       path:'audio',
+       component:AudioChatComponent
      },
       
       // {
