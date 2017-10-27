@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap';
@@ -26,7 +26,12 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import {LoginService} from './home/service/login.service'
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
+import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/audio-chat.component';
+import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
+
+import {AuthenticationService} from './shared/services/authentication.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,14 +49,20 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
     DetailpostComponent,
     NewpostComponent,
     ForumComponent,
-    WebeditorComponent
-],
+    WebeditorComponent,
+    AuthenticateComponent,
+    AudioChatComponent,
+    VideoChatComponent
+
+  ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     CKEditorModule,
     AceEditorModule,
+    ReactiveFormsModule,
+
     ModalModule.forRoot(),
     RouterModule.forRoot([
 
@@ -72,6 +83,16 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
        path:'chat-window',
        component:ChatWindowComponent
      },
+
+     {
+        path: 'video',
+        component: VideoChatComponent
+      },
+      {
+
+       path:'audio',
+       component:AudioChatComponent
+     },
       
       // {
       //   path: 'onlinepeerlearning/:id',
@@ -80,6 +101,7 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
     /*  {
       path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
     }*/
+
      {
         path: 'addquestion',
         component: NewpostComponent
@@ -95,16 +117,19 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
        {
         path: 'editProfile',
         component: ProfileComponent
-      }
-      ,     
+      } ,     
+     {
+      path:'auth/:userId/:token',
+      component: AuthenticateComponent
+    }
+    ,     
      {
       path:'**',
       component: HomeComponent
     }
-
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService],
 
   bootstrap: [AppComponent]
 })

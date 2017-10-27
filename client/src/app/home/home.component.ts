@@ -3,7 +3,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { Router } from '@angular/router';
-import {LoginService} from './service/login.service'
+import {AuthenticationService} from '../shared/services/authentication.service'
 //component decorator
 @Component({
 	selector: 'app-home',
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 	 ignoreBackdropClick: false
 	 };
 	//constructor having modal service
-	constructor(private modalService: BsModalService,private router: Router,private loginservice: LoginService) {
+	constructor(private modalService: BsModalService,private router: Router,private authenticationservice: AuthenticationService) {
 	}
 	//ngOnInit 
 	ngOnInit() {
@@ -32,8 +32,9 @@ export class HomeComponent implements OnInit {
 	}
 
 	loginByGit() {
-		this.loginservice.git()
+		this.authenticationservice.git()
 			.subscribe((res) => {
+
 				if (res)
 					this.router.navigate(["/"]).then(result => { window.location.href = res.url; });
 				else

@@ -11,6 +11,12 @@ var UserSchema = new mongoose.Schema({
   avatar_url:String,
   public_repos: String,
   repos_url: String,
+  html_url: String,
+  company: String,
+  location: String,
+  email: String,
+  bio: String,
+  created_at: String,
 });
 UserSchema.statics.findOrCreate = require("find-or-create");
 module.exports = mongoose.model("login", UserSchema);

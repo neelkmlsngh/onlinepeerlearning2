@@ -18,7 +18,7 @@ const logger = require('../services/app.logger');
 const config = require('../config');
 const User = require('../api/login/login.entity')
 const loggerConfig = config.loggerConstant;
-const secretKey = config.token;
+
 const db = config.db;
 
 let people = [{
@@ -55,14 +55,19 @@ function loginviagit() {
         },
 
         function(accessToken, refreshToken, profile, done) {
-            /*console.log(profile);*/
-            var token = jwt.sign(profile._json.login, secretKey.SECRET_KEY);
+
             User.findOrCreate({ userid: profile.id }, {
                 name: profile._json.login,
                 userid: profile.id,
                 avatar_url: profile._json.avatar_url,
                 public_repos: profile._json.public_repos,
-                repos_url: profile._json.repos_url
+                repos_url: profile._json.repos_url,
+                html_url: profile._json.html_url,
+               company: profile._json.company,
+               location: profile._json.location,
+               email: profile._json.email,
+               bio: profile._json.bio,
+               created_at: profile._json.created_at,
             }, function(err, user) {
                 return done(err, user);
             });
