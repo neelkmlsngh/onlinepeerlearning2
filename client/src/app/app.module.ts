@@ -16,6 +16,7 @@ import { GitService } from './shared/services/git.service'
 import { EditorService } from './shared/services/editor.service';
 import { ChatService } from './shared/services/chat.service';
 import { DisplayComponent } from './display/display.component';
+import { ChatWindowComponent } from './shared/components/chat-sidebar/chat-window/chat-window.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { DisplayComponent } from './display/display.component';
     RepoSidebarComponent,
     ChatSidebarComponent,
     FooterComponent,
-    DisplayComponent
+    DisplayComponent,
+    ChatWindowComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,10 @@ import { DisplayComponent } from './display/display.component';
         path: 'onlineUsers',
         component: ChatSidebarComponent
       },
+      {
+       path:'chat-window',
+       component:ChatWindowComponent
+     },
       {
        path:'',
        component:DisplayComponent
