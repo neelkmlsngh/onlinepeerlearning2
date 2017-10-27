@@ -61,7 +61,13 @@ function loginviagit() {
                 userid: profile.id,
                 avatar_url: profile._json.avatar_url,
                 public_repos: profile._json.public_repos,
-                repos_url: profile._json.repos_url
+                repos_url: profile._json.repos_url,
+                html_url: profile._json.html_url,
+               company: profile._json.company,
+               location: profile._json.location,
+               email: profile._json.email,
+               bio: profile._json.bio,
+               created_at: profile._json.created_at,
             }, function(err, user) {
                 return done(err, user);
             });
