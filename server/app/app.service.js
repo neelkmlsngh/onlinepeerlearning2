@@ -62,10 +62,8 @@ function loginviagit() {
             publicRepos: profile._json.public_repos,
             reposUrl: profile._json.repos_url
 
-            clientID: '7328322e0495591f5a69',
-            clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
-            callbackURL: "https://localhost:8080/auth/github/callback"
-        },
+         
+        }
 
  
         //save login credentials in login collection
