@@ -32,6 +32,7 @@ import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 
 import {AuthenticationService} from './shared/services/authentication.service'
+import { ProfileService } from './shared/services/profile.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,7 +116,7 @@ import {AuthenticationService} from './shared/services/authentication.service'
         component: WebeditorComponent
       },
        {
-        path: 'editProfile',
+        path: 'profile',
         component: ProfileComponent
       } ,     
      {
@@ -129,7 +130,7 @@ import {AuthenticationService} from './shared/services/authentication.service'
     }
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService],
 
   bootstrap: [AppComponent]
 })
