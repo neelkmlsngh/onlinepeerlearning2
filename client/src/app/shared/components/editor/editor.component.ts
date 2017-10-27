@@ -46,15 +46,12 @@ export class EditorComponent implements OnInit {
     this.notebook.setSource(this.content)
   }
 
-
-
   //method to get github repositories
   ngOnInit() {
 
     // this.lang = "javascript";
 
   }
-
 
   mode() {
   }
