@@ -27,7 +27,7 @@ import {LoginService} from './home/service/login.service'
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
-
+import {AuthenticationService} from './shared/services/authentication.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,14 +77,6 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
        path:'chat-window',
        component:ChatWindowComponent
      },
-      
-      // {
-      //   path: 'onlinepeerlearning/:id',
-      //   component: DisplayComponent
-      // },
-    /*  {
-      path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
-    }*/
      {
         path: 'addquestion',
         component: NewpostComponent
@@ -112,7 +104,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     }
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService],
 
   bootstrap: [AppComponent]
 })
