@@ -1,5 +1,4 @@
-import {  OnInit } from '@angular/core';
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core'
+import { Component, EventEmitter, Output, ViewChild ,  OnInit,Input } from '@angular/core'
 import { FormsModule } from '@angular/forms';
 import { config } from './../../config/config';
 
@@ -15,8 +14,9 @@ import { GitService } from '../../services/git.service'
 })
 
 export class EditorComponent implements OnInit {
+
+  @Input() content :any;
   notebook:any;
-  content:any="Please enter your code here";
 
   constructor(private editorService: EditorService, private gitService: GitService) {}
 
@@ -25,6 +25,7 @@ export class EditorComponent implements OnInit {
     this.notebook = window['RunKit'].createNotebook({
       element: document.getElementById("my-element"),
       source: this.content
+
     })
   }
 

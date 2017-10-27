@@ -17,17 +17,19 @@
           <div class="row mt-3">
             <div class="col-md-12">
               <!-- select language -->
-              <select name="languages">
+              <select name="languages2" (change)="mode($event)">
                 <option [value]='lng' *ngFor="let lng of languages">{{lng}}</option>
               </select>
             </div>
           </div>
-          <app-repo-sidebar></app-repo-sidebar>
+          <app-repo-sidebar (content)="getcontent($event)"></app-repo-sidebar>
         </div>
         <div class="col-md-8">
           <div class="row mt-3">
             <div class="col-md-12 mt-3">
-              <app-editor></app-editor>
+            <div *ngIf="mod=='JAVASCRIPT'"><app-editor [content]="content"></app-editor></div>
+           <div *ngIf="mod=='HTML/CSS'"><app-webeditor></app-webeditor></div>
+        
             </div>
           </div>
         </div>
