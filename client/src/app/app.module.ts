@@ -28,6 +28,7 @@ import { WebeditorComponent } from './shared/components/webeditor/webeditor.comp
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import {AuthenticationService} from './shared/services/authentication.service'
+import { ProfileService } from './shared/services/profile.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,7 +91,7 @@ import {AuthenticationService} from './shared/services/authentication.service'
         component: WebeditorComponent
       },
        {
-        path: 'editProfile',
+        path: 'profile',
         component: ProfileComponent
       } ,     
      {
@@ -104,7 +105,7 @@ import {AuthenticationService} from './shared/services/authentication.service'
     }
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService],
 
   bootstrap: [AppComponent]
 })
