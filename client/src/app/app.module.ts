@@ -27,9 +27,11 @@ import {LoginService} from './home/service/login.service'
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+
 import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/audio-chat.component';
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 
+import {AuthenticationService} from './shared/services/authentication.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,6 +83,7 @@ import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/
        path:'chat-window',
        component:ChatWindowComponent
      },
+
      {
         path: 'video',
         component: VideoChatComponent
@@ -98,6 +101,7 @@ import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/
     /*  {
       path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
     }*/
+
      {
         path: 'addquestion',
         component: NewpostComponent
@@ -125,7 +129,7 @@ import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/
     }
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService],
 
   bootstrap: [AppComponent]
 })

@@ -1,14 +1,13 @@
 const router = require('express').Router();
 const passport = require('passport')
 const jwt = require('jsonwebtoken');
-const secretKey = " config.token";
 const logger = require('../../services/app.logger');
 const usrCtrl = require('./login.controller');
 const appConfig = require('../../config').app;
 const User = require('./login.entity')
-
+const expiresIn = require
 /*
- * Actual URI will be HTTP POST /users/
+ * it calls when hit on log via git hub button on client side
  */
 router.get('/auth/github',
     passport.authenticate('github', { scope: ['user:email'] }),
@@ -26,14 +25,20 @@ router.get('/auth/github',
 router.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function(req, res) {
-        //console.log("JSON.stringify(req.user)");
-       var token = jwt.sign("req.user",secretKey);
-       let auth={
-       	token: token,
-       	userId:req.user.doc.userid
-       }
-       //console.log(token);
-       res.redirect('https://localhost:8080/#/auth/'+req.user.doc.userid+"/"+token)
-        // res.status(200).send({ success: true, userid: req.user.doc.userid, token: token });
+        userdetails = {
+            userid: req.user.doc.userid,
+            name: req.user.doc.name
+        }
+        console.log(appConfig.SECRET + " " + req.user.doc.userid + " " + appConfig.EXPIRETIME)
+        let userToken = jwt.sign({ userdetails }, appConfig.SECRET, {
+            expiresIn: appConfig.EXPIRETIME
+        });;
+        let auth = {
+            token: userToken,
+            userId: req.user.doc.userid
+        }
+
+        res.redirect(appConfig.REDIRECT + req.user.doc.userid + "/" + userToken)
+
     });
 module.exports = router;
