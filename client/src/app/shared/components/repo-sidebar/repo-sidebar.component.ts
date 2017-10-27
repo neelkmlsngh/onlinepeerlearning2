@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { EditorService } from '../../services/editor.service';
 import { GitService } from '../../services/git.service'
+
 @Component({
   selector: 'app-repo-sidebar',
   templateUrl: './repo-sidebar.component.html',
@@ -15,7 +16,9 @@ githubUser: any;
   fileData: any;
   selectedfile: any;
   url: any = "";
-  text: string ="enter code here";
+  text: any ="enter code here";
+
+@Output() content  = new EventEmitter<any>();
 
   constructor(private editorService: EditorService, private gitService: GitService) { }
 
@@ -25,6 +28,7 @@ ngOnInit() {
         this.githubUser = repos;
 
       })
+             this.content.emit(this.text);
   }
 
 
@@ -58,6 +62,7 @@ reposearch()
       .subscribe(data => {
         this.fileData = data;
         this.text = this.fileData._body;
+        this.content.emit(this.text);
       })
   }
   

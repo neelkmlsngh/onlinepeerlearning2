@@ -3,8 +3,6 @@
     <div class="col-md-12">
       <button id="togetherjs-share-button" class="togetherjs-button btn btn-outline-info" title="Add a friend" (click)="screenShare(this)">screen sharing</button>
       <div id="togetherjs-dock-participants"></div>
-      <!-- <button id="togetherjs-share-button" class="togetherjs-button btn btn-outline-info" title="Add a friend" (click)="screenShare(this)">screen sharing</button>
-          <div id="togetherjs-dock-participants"></div>Online Users -->
     </div>
   </div>
 </div>
@@ -19,11 +17,22 @@
                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
                 <div class="status online"></div>
               </div>
-              <a class="userName" href=" "> {{ user.name }}</a>
-            </div>
+              <a class="userName"  (click)="username(user.name)"> {{ user.name }}</a>
+               </div>
           </li>
         </ul>
       </div>
     </div>
   </div>
 </div>
+
+
+
+  <div *ngIf="chat!=null">
+<app-chat-window></app-chat-window>
+</div>  
+
+
+<textarea id="textbox">Type something here</textarea>
+<button id="create">Create file</button> <a download="info.txt" id="downloadlink" style="display: none">Download</a>
+

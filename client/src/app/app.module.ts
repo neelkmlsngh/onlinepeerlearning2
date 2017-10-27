@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap';
 import { AceEditorModule } from 'ng2-ace-editor'
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
@@ -16,6 +15,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { GitService } from './shared/services/git.service'
 import { EditorService } from './shared/services/editor.service';
 import { ChatService } from './shared/services/chat.service';
+import { ChatWindowComponent } from './shared/components/chat-sidebar/chat-window/chat-window.component';
 import { MainComponent } from './main/main.component';
 import { ForumComponent } from './shared/components/forum/forum.component';
 import { ViewpostComponent } from './shared/components/forum/viewpost/viewpost.component';
@@ -23,13 +23,10 @@ import { DetailpostComponent } from './shared/components/forum/detailpost/detail
 import { NewpostComponent } from './shared/components/forum/newpost/newpost.component';
 import {  ForumService } from './shared/services/forum.service';
 import { CKEditorModule } from 'ng2-ckeditor';
-
 import {LoginService} from './home/service/login.service'
-
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
-
-
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +37,7 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
     RepoSidebarComponent,
     ChatSidebarComponent,
     FooterComponent,
+   ChatWindowComponent,
     WebeditorComponent,
     ProfileComponent,
     MainComponent,
@@ -47,7 +45,8 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
     DetailpostComponent,
     NewpostComponent,
     ForumComponent,
-    WebeditorComponent
+    WebeditorComponent,
+    AuthenticateComponent
 
   ],
   imports: [
@@ -57,16 +56,15 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
     CKEditorModule,
     AceEditorModule,
     ReactiveFormsModule,
+
     ModalModule.forRoot(),
     RouterModule.forRoot([
 
-   
     {
        path:'home',
        component:HomeComponent
      },
-
-      {
+     {
         path: 'main',
         component: MainComponent
       },
@@ -75,6 +73,19 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
         component: ViewpostComponent
       },
       {
+
+       path:'chat-window',
+       component:ChatWindowComponent
+     },
+      
+      // {
+      //   path: 'onlinepeerlearning/:id',
+      //   component: DisplayComponent
+      // },
+    /*  {
+      path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
+    }*/
+     {
         path: 'addquestion',
         component: NewpostComponent
       },
@@ -89,17 +100,21 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
        {
         path: 'editProfile',
         component: ProfileComponent
-      }
-      ,     
+      } ,     
+     {
+      path:'auth/:userId/:token',
+      component: AuthenticateComponent
+    }
+    ,     
      {
       path:'**',
       component: HomeComponent
     }
-
    ],  { useHash: true })
   ],
   providers: [LoginService,GitService,EditorService,ChatService, ForumService],
 
   bootstrap: [AppComponent]
 })
+
 export class AppModule {}
