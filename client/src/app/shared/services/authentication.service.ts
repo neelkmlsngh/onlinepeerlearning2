@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http'
 import { config } from '../config/config';
 import { Router, ActivatedRoute } from '@angular/router';
+import { RequestOptions, Request, RequestMethod,Headers } from '@angular/http';
 
 @Injectable()
 export class AuthenticationService {
