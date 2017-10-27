@@ -12,16 +12,11 @@ const User = require('./login.entity')
  */
 router.get('/auth/github',
     passport.authenticate('github', { scope: ['user:email'] }),
-<<<<<<< HEAD
     // var token = jwt.sign(req.user.doc,secretKey);
     function(req, res) {
 
 
     });
-=======
-    function(req, res) {});
->>>>>>> 4c923e905378ee5dd213f86abdbf3a3aa9b5e62f
-
 // GET /auth/github/callback
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  If authentication fails, the user will be redirected back to the
@@ -37,7 +32,7 @@ router.get('/auth/github/callback',
        	userId:req.user.doc.userid
        }
        //console.log(token);
-       res.redirect('https://localhost:8080/#/auth/'+req.user.doc.userid+"/"+token)
+       res.redirect('https://localhost:8081/#/auth/'+req.user.doc.userid+"/"+token)
         // res.status(200).send({ success: true, userid: req.user.doc.userid, token: token });
     });
 module.exports = router;
