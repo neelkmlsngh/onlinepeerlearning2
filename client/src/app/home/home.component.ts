@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
 	loginByGit() {
 		this.loginservice.git()
 			.subscribe((res) => {
+
 				if (res)
 					this.router.navigate(["/"]).then(result => { window.location.href = res.url; });
 				else

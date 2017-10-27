@@ -96,4 +96,8 @@ export class EditorComponent implements OnInit {
   mode() {
     // this.lang = language;
   }
+
+
+
+
 }

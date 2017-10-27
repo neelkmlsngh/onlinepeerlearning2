@@ -28,6 +28,7 @@ import {LoginService} from './home/service/login.service'
 
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 
 
@@ -47,7 +48,8 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
     DetailpostComponent,
     NewpostComponent,
     ForumComponent,
-    WebeditorComponent
+    WebeditorComponent,
+    AuthenticateComponent
 
   ],
   imports: [
@@ -89,13 +91,16 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
        {
         path: 'editProfile',
         component: ProfileComponent
-      }
-      ,     
+      } ,     
+     {
+      path:'auth/:userId/:token',
+      component: AuthenticateComponent
+    }
+    ,     
      {
       path:'**',
       component: HomeComponent
     }
-
    ],  { useHash: true })
   ],
   providers: [LoginService,GitService,EditorService,ChatService, ForumService],
