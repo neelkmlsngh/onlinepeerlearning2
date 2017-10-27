@@ -45,15 +45,10 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     DetailpostComponent,
     NewpostComponent,
     ForumComponent,
-<<<<<<< HEAD
     WebeditorComponent,
     AuthenticateComponent
 
   ],
-=======
-    WebeditorComponent
-],
->>>>>>> 4c923e905378ee5dd213f86abdbf3a3aa9b5e62f
   imports: [
     BrowserModule,
     HttpModule,
