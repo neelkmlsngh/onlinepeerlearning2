@@ -28,4 +28,5 @@ export class MainComponent implements OnInit {
        console.log("Main Component Data--> "+this.content)
      }
 
+
 }

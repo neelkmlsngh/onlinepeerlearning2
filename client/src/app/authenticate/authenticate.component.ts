@@ -20,6 +20,7 @@ export class AuthenticateComponent implements OnInit {
     this.setUserInfo(userId,token);
   }
   setUserInfo(userId,token) {
+    
   //console.log(dataObj.userId);
     localStorage.setItem('currentUser', JSON.stringify({ token: token, userId: userId }));
     if(token){
