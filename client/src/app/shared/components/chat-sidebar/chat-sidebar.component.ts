@@ -11,12 +11,14 @@ import { ChatService } from '../../services/chat.service';
 export class ChatSidebarComponent implements OnInit, OnDestroy {
   connection;
   users:any;
+  chat: any = null;
   windowRef:any;
-  constructor(private chatService: ChatService) {}
+
+constructor(private chatService: ChatService) {}
+  
   ngOnInit() {
     this.connection = this.chatService.getOnlineUsers().subscribe(user => {
       this.users=user;
-      
     })
   }
 
@@ -38,4 +40,16 @@ export class ChatSidebarComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.connection.unsubscribe();
   }
+ username(name){
+ this.chat=name;
+ 
+ var $chatbox = $('.chatbox');
+
+  $chatbox.toggleClass('chatbox--tray');
+   $chatbox.removeClass('chatbox--tray')
+ setTimeout(()=>{
+$('.chatbox').removeClass('chatbox--tray')
+ },500);
+ 
+   }
 }
