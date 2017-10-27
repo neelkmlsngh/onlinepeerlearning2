@@ -10,7 +10,7 @@ export class MainComponent implements OnInit {
   
   content:any;
   languages:any=[];
-  mod:any;
+  mod:any='JAVASCRIPT'
   constructor() { }
 
   ngOnInit() {
@@ -18,14 +18,12 @@ export class MainComponent implements OnInit {
   }
 
   mode(event) {
-       alert(event.target.value);
+     
     this.mod = event.target.value;
-    console.log(this.mod);
      }
 
      getcontent(text){
        this.content=text;
-       console.log("dsdfs"+this.content)
      }
 
 }

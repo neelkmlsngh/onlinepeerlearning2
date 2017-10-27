@@ -28,6 +28,7 @@ ngOnInit() {
         this.githubUser = repos;
 
       })
+             this.content.emit(this.text);
   }
 
 
