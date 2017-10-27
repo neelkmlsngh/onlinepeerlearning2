@@ -16,7 +16,7 @@ const jwt = require('jsonwebtoken');
 const appRoutes = require('./app.router');
 const logger = require('../services/app.logger');
 const config = require('../config');
-const User = require('../api/login/login.entity')
+const loginController = require('./../api/login/login.controller')
 const loggerConfig = config.loggerConstant;
 
 const db = config.db;
@@ -38,6 +38,7 @@ let people = [{
     }
 ];
 
+//login function of git called by app.js
 function loginviagit() {
     passport.serializeUser(function(user, done) {
         done(null, user);
@@ -49,30 +50,28 @@ function loginviagit() {
 
 
     passport.use(new GitHubStrategy({
-            clientID: '7328322e0495591f5a69',
-            clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
-            callbackURL: "https://localhost:8080/auth/github/callback"
-        },
 
-        function(accessToken, refreshToken, profile, done) {
+        clientID: '7328322e0495591f5a69',
+        clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
+        callbackURL: "https://localhost:8080/auth/github/callback"
+    }, function(accessToken, refreshToken, profile, done) {
+        let userInfo = {
+            name: profile._json.login,
+            userid: profile.id,
+            avatar_url: profile._json.avatar_url,
+            publicRepos: profile._json.public_repos,
+            reposUrl: profile._json.repos_url
 
-            User.findOrCreate({ userid: profile.id }, {
-                name: profile._json.login,
-                userid: profile.id,
-                avatar_url: profile._json.avatar_url,
-                public_repos: profile._json.public_repos,
-                repos_url: profile._json.repos_url,
-                html_url: profile._json.html_url,
-               company: profile._json.company,
-               location: profile._json.location,
-               email: profile._json.email,
-               bio: profile._json.bio,
-               created_at: profile._json.created_at,
-            }, function(err, user) {
-                return done(err, user);
-            });
+         
         }
-    ));
+
+ 
+        //save login credentials in login collection
+        //function called by login controller
+        loginController.saveLoginCredentials(userInfo, done);
+
+
+    }));
 }
 // Create express app
 function createApp() {
