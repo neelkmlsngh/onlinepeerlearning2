@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { config } from '../shared/config/config';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
+  languages:any=[];
   constructor() { }
 
   ngOnInit() {
+  	this.languages=config.language;
   }
 
 }
