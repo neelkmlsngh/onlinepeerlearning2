@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap';
+import { AceEditorModule } from 'ng2-ace-editor'
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -15,7 +16,19 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { GitService } from './shared/services/git.service'
 import { EditorService } from './shared/services/editor.service';
 import { ChatService } from './shared/services/chat.service';
-import { DisplayComponent } from './display/display.component';
+import { MainComponent } from './main/main.component';
+import { ForumComponent } from './shared/components/forum/forum.component';
+import { ViewpostComponent } from './shared/components/forum/viewpost/viewpost.component';
+import { DetailpostComponent } from './shared/components/forum/detailpost/detailpost.component';
+import { NewpostComponent } from './shared/components/forum/newpost/newpost.component';
+import {  ForumService } from './shared/services/forum.service';
+import { CKEditorModule } from 'ng2-ckeditor';
+
+import {LoginService} from './home/service/login.service'
+
+import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
+import { ProfileComponent } from './shared/components/profile/profile.component';
+
 
 
 @NgModule({
@@ -27,41 +40,66 @@ import { DisplayComponent } from './display/display.component';
     RepoSidebarComponent,
     ChatSidebarComponent,
     FooterComponent,
-    DisplayComponent
+    WebeditorComponent,
+    ProfileComponent,
+    MainComponent,
+    ViewpostComponent,
+    DetailpostComponent,
+    NewpostComponent,
+    ForumComponent,
+    WebeditorComponent
+
   ],
   imports: [
     BrowserModule,
-     HttpModule,
+    HttpModule,
     FormsModule,
+    CKEditorModule,
+    AceEditorModule,
+
     ModalModule.forRoot(),
     RouterModule.forRoot([
+
    
     {
        path:'home',
        component:HomeComponent
      },
+
       {
-        path: 'onlinepeerlearning',
-        component: DisplayComponent
+        path: 'main',
+        component: MainComponent
+      },
+        {
+        path: 'questions',
+        component: ViewpostComponent
       },
       {
-        path: 'onlineUsers',
-        component: ChatSidebarComponent
+        path: 'addquestion',
+        component: NewpostComponent
       },
-      {
-       path:'',
-       component:DisplayComponent
-     }
-      // {
-      //   path: 'onlinepeerlearning/:id',
-      //   component: DisplayComponent
-      // },
-    /*  {
-      path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
-    }*/
+        {
+        path: 'questiondetail',
+        component: DetailpostComponent
+      },
+     {
+        path: 'webeditor',
+        component: WebeditorComponent
+      },
+       {
+        path: 'editProfile',
+        component: ProfileComponent
+      }
+      ,     
+     {
+      path:'**',
+      component: HomeComponent
+    }
+
    ],  { useHash: true })
   ],
-  providers: [GitService,EditorService,ChatService],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService],
+
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

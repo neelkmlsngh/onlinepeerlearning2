@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Knowledge base forum</title>
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!--Plugin Css-->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand text-white" href="#">Knowledge Base</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">Questions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled text-white" href="#"></a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input #city value="" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+  <div class="container-fluid bg-light">
+    <div class="row">
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-8">
+        <div class="heading h4 mt-4">
+          All Questions
+        </div>
+        <hr>
+        <div class="questionsumary">
+          <div class="row">
+            <div class="statuscontainer col-sm-3">
+              <div class="vote h5">
+                211 votes
+              </div>
+              <div class="answeraccepted h5 bg-success   border py-2 text-white mt-4">
+                <strong class="pl-4">12</strong>
+                <br><small class="pl-3">answers</small>
+              </div>
+              <div class="views h6 text-danger mt-4">
+                1.5 million views
+              </div>
+            </div>
+            <div class="col-sm-9">
+              <div class="questionTitle h5 text-primary">
+                JavaScript array of array not swapping images onClick
+              </div>
+              <div class="problemDescription medium">
+                I'm working on an assignment to fill the table data cells of a webpage with images that will on click swap position moving a "hero" tile to a "winning" tile. The onClick passes the cell location to a doClick method that will make sure the tile swap is not outside of the table. The table cell's row and column value is then passed to a swap method to trade the position of the two tiles. However when I click on row 1, col 0 of the table, the doClick line if (top != -1 && cells[top][col].innerHTML == "<img src=../images/mage.jpg>") never evaluates to true. This only happens when passing the img scr element to the table position. This works when I just substitute a letter or number but not with the img src element. Any suggestion would be appreciated.
+              </div>
+              <div class="tags h6 text-success mt-3">
+                Mysql,c#
+              </div>
+              <div class="row">
+                <div class="col-sm-5 postedDate small">
+                  asked Oct 20 '08 at 13:18
+                </div>
+                <div class="col-sm-7 text-primary text-right">
+                  posted by prashant
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="answer">
+          <label class="h4">Your answer</label>
+          <ckeditor class="mt-4" name="codeSnippet" [(ngModel)]="codeSnippet"></ckeditor>
+        </div>
+        <hr>
+        <hr>
+        <div class="login">
+          <div class="row">
+            <div class="col-sm-6 border py-2">
+             <label class="h4">Signup or Login</label>
+              <br>
+                      <div class="form-group col-sm mt-2 border py-2">
+     <input type="button" class="btn btn-primary border py-2" value="Login with Github">
+      </div>
+            </div>
+            <div class="col-sm-6 border py-2">
+              <label class="h4">Post as a Guest</label>
+              <br>
+               <div class="form-group col-sm mt-2 border py-2">
+      <label for="inputState" class="">Name</label>
+     <input type="text" class="form-control " placeholder="name" name="name" [(ngModel)]="name">
+      </div>
+              <div class="form-group col-sm mt-2 border py-2">
+      <label for="inputState" class="">Email</label>
+     <input type="email" class="form-control " placeholder="email" name="name" [(ngModel)]="name">
+      </div>
+            </div>
+          </div>
+        </div>
+       <div class="postanswer mt-4 mb-4 text-center">
+       <input type="button" class="btn btn-md btn-success" value="Post your answer">
+       </div>
+      </div>
+      <div class="col-sm-2">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
