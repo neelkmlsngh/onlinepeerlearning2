@@ -25,7 +25,7 @@ export class MainComponent implements OnInit {
 
      getcontent(text){
        this.content=text;
-       console.log("dsdfs"+this.content)
+       console.log("Main Component Data--> "+this.content)
      }
 
 }

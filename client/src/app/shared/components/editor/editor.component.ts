@@ -16,24 +16,20 @@ import { GitService } from '../../services/git.service'
 export class EditorComponent implements OnInit {
 
   @Input() content :any;
+  cont: any = this.content;
   notebook:any;
 
   constructor(private editorService: EditorService, private gitService: GitService) {}
 
-
-  ngAfterViewInit() {
-    this.notebook = window['RunKit'].createNotebook({
+ngOnChanges(){
+  if(this.notebook==undefined) {
+this.notebook = window['RunKit'].createNotebook({
       element: document.getElementById("my-element"),
       source: this.content
-
     })
-  }
-
-/*  changeContent(){
-    this.content="Content changed";
-    this.notebook.setSource(this.content);
-  }
- */
+}
+    this.notebook.setSource(this.content)
+}
  
   //method to get github repositories
   ngOnInit() {
