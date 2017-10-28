@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit} from '@angular/core';
 import { Router} from '@angular/router'
-import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material';
+import { Subject } from 'rxjs/Subject'
+import { Observable } from 'rxjs/Observable'
+import 'rxjs/Rx';
 
 import { ForumService } from '../../../services/forum.service';
 
@@ -10,7 +12,7 @@ import { ForumService } from '../../../services/forum.service';
   templateUrl: './viewpost.component.html',
   styleUrls: ['./viewpost.component.css']
 })
-export class ViewpostComponent implements OnInit {
+export class ViewpostComponent implements OnInit,AfterViewInit {
 
 data:any=[];
  constructor(private forum:ForumService,private router: Router) { 
@@ -20,6 +22,20 @@ data:any=[];
  ngOnInit() {
   this.viewPost();
  }
+
+ ngAfterViewInit() {
+
+    const searchTerm:any = document.getElementById('search');
+     
+     const search$= Observable.fromEvent(searchTerm, 'keyup')
+       //.do(()=> console.log(searchTerm.value))
+      
+       .switchMap(()=>this.forum.searchEntries(searchTerm.value));
+
+       search$.subscribe(
+         data=>this.data=data
+       ); 
+  }
 
  viewPost()
  {
@@ -36,7 +52,7 @@ data:any=[];
 
  getDetails(searchTerm:any){
   //alert(searchTerm.value
-console.log(searchTerm)
+  console.log(searchTerm)
   this.forum.searchEntries(searchTerm.value)
     .subscribe(res => {
       this.data =res;
