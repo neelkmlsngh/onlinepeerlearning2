@@ -11,7 +11,7 @@ import{AceEditorModule} from 'ng2-ace-editor'
 export class WebeditorComponent implements OnInit {
   htmlValue: any = "<h1>Hello World</h1>";
   cssValue: any = "body{color:red}";
-  jsValue: any
+  jsValue: any;
   code: any;
   isValid:boolean=true;
  isValid2:boolean=false;

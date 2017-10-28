@@ -17,6 +17,7 @@ body {
 }
 
 
+
 /* Code Editors */
 
 #code_editors {
@@ -51,9 +52,10 @@ body {
 }
 
 
+
 /* Output Area */
 
-#output {  
+#output {
   top: 0;
   right: 0;
   bottom: 0;
@@ -69,14 +71,17 @@ body {
   border: 0;
 }
 
-#html{
+#html {
   height: 300px;
+  font-size: 18px;
 }
 
-#css{
+#css {
   height: 300px;
+  font-size: 18px;
 }
 
-#javascript{
+#javascript {
   height: 300px;
+  font-size: 18px;
 }
