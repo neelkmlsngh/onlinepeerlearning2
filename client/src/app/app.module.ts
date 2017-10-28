@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import 'hammerjs';
+import {MatTabsModule} from '@angular/material';
+import{MatTabGroup} from '@angular/material';
 import { ModalModule } from 'ngx-bootstrap';
 import { AceEditorModule } from 'ng2-ace-editor'
 import { AppComponent } from './app.component';
@@ -69,6 +72,8 @@ import { ProfileService } from './shared/services/profile.service';
     BrowserAnimationsModule,
     AceEditorModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
 
     ModalModule.forRoot(),
     RouterModule.forRoot([
