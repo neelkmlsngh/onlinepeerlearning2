@@ -27,7 +27,9 @@ import {LoginService} from './home/service/login.service'
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
-import {AuthenticationService} from './shared/services/authentication.service'
+import {AuthenticationService} from './shared/services/authentication.service';
+import { FanMenuModule } from 'ng2-fan-menu';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,9 @@ import {AuthenticationService} from './shared/services/authentication.service'
     BrowserModule,
     HttpModule,
     FormsModule,
+    FanMenuModule,
     CKEditorModule,
+    BrowserAnimationsModule,
     AceEditorModule,
     ReactiveFormsModule,
 
