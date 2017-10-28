@@ -21,7 +21,7 @@ export class ForumService {
 
   searchEntries(searchTerm:any) {
     var api='https://localhost:8080/api/forum/'+ searchTerm
-    console.log(searchTerm,"agaya")
+    console.log(searchTerm)
   return this.http
       .get(api)
       .map(res => res.json());
