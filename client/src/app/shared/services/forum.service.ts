@@ -25,7 +25,15 @@ export class ForumService {
   return this.http
       .get(api)
       .map(res => res.json());
-}               
+}  
+
+  /*getEmployeeByID method to fetch details by id used in supervisor component*/
+  getPostByQuestion(question:string) { 
+    return this.http.
+    get('https://localhost:8080/api/forum/getQuestionDetail/' + question)
+    .map(res => res.json());
+     }
+             
 
 
 }

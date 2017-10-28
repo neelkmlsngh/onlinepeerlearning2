@@ -5,6 +5,10 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap';
 import { AceEditorModule } from 'ng2-ace-editor'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material';
+import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
@@ -62,6 +66,9 @@ import { ProfileService } from './shared/services/profile.service';
     FormsModule,
     CKEditorModule,
     AceEditorModule,
+    MatIconModule,
+    AngularFontAwesomeModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
 
     ModalModule.forRoot(),
@@ -102,7 +109,10 @@ import { ProfileService } from './shared/services/profile.service';
     /*  {
       path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
     }*/
-
+     {
+        path: 'questiondetail/:value',
+        component: DetailpostComponent
+      },
      {
         path: 'addquestion',
         component: NewpostComponent
