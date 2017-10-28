@@ -12,21 +12,26 @@ export class ForumService {
  save(data:any){         
      return this.http         .
                post('https://localhost:8080/api/forum',data)         
-               .map(res=>res.json());     }
+               .map(res=>res.json());}
 
  getPost(){         
-     return this.http         .
-               get('https://localhost:8080/api/forum')         
-                .map(res=>res.json());     }
+     return this.http         
+               .get('https://localhost:8080/api/forum')         
+                .map(res=>res.json());}
 
   searchEntries(searchTerm:any) {
+
+    if(searchTerm!=""){
     var api='https://localhost:8080/api/forum/'+ searchTerm
-    console.log(searchTerm)
   return this.http
       .get(api)
       .map(res => res.json());
 }               
-
-
+   else {
+   return this.http     
+              .get('https://localhost:8080/api/forum')     
+               .map(res=>res.json());
+ }   
+ }
 }
 
