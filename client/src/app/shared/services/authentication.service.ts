@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http'
 import { config } from '../config/config';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RequestOptions, Request, RequestMethod,Headers } from '@angular/http';
+import { RequestOptions, Request, RequestMethod, Headers } from '@angular/http';
 
 @Injectable()
 export class AuthenticationService {
@@ -25,7 +25,7 @@ export class AuthenticationService {
     if (token) {
       this.router.navigate(["/main"])
 
-    } else if(!token) {
+    } else if (!token) {
       this.router.navigate(["/"])
 
     }
@@ -37,16 +37,23 @@ export class AuthenticationService {
   }
 
   logout() {
-    localStorage.getItem('currentUser');
+    let user = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(user);
+    let userid = user.userId
+     // return this.http
+     //  .post(this.config.connect.url + this.config.connect.port + '/logout')
+     //  .map(res => res, error => error.json());
     localStorage.removeItem('currentUser');
     this.router.navigate(["/"])
+
+    
   }
 
   private authoriZation() {
-      let token = this.getToken()
-      if (token) {
-        let headers = new Headers({ 'Authorization': token });
-        return new RequestOptions({ headers: headers });
-      }
+    let token = this.getToken()
+    if (token) {
+      let headers = new Headers({ 'Authorization': token });
+      return new RequestOptions({ headers: headers });
     }
+  }
 }
