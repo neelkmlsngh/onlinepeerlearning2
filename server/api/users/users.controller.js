@@ -4,11 +4,11 @@ const UserModel = require('./users.entity')
 
 //Save new user details
 const saveUserCredentials = function(userInfo,done) {
-    UserModel.findOrCreate({ userid: userInfo.id }, {
+    UserModel.findOrCreate({ userId: userInfo.userId }, {
             name: userInfo.name,
             publicRepos: userInfo.publicRepos,
             avatarUrl: userInfo.avatarUrl,
-            userid: userInfo.id
+            userId: userInfo.userId
 
         }, function(err, user) {
             if (err) {

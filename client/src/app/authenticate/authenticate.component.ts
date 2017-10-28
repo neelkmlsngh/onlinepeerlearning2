@@ -17,7 +17,7 @@ export class AuthenticateComponent implements OnInit {
    //this.authenticationservice.getToken();
     let userId = this.route.snapshot.params['userId'];
      let token = this.route.snapshot.params['token'];
-    //console.log(userId+" "+token);
+    console.log(userId+" "+token);
     this.authenticationservice.setUserInfo(userId,token);
     
   }

@@ -14,7 +14,7 @@ export class AuthenticationService {
   git() {
 
     return this.http
-      .get(this.config.connect.url + this.config.connect.port + '/auth/github',this.authoriZation())
+      .get(this.config.connect.url + this.config.connect.port + '/auth/github')
       .map(res => res, error => error.json());
   }
 
@@ -25,7 +25,7 @@ export class AuthenticationService {
     if (token) {
       this.router.navigate(["/main"])
 
-    } else {
+    } else if(!token) {
       this.router.navigate(["/"])
 
     }
