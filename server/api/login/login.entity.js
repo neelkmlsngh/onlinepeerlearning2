@@ -1,24 +1,19 @@
 const mongoose = require('mongoose');
 
 /*
- * This is a users schema, for persisting credentials of each user registered in the system
+ * This is a login schema, for persisting credentials of each user login in via git
  */
 
-var UserSchema = new mongoose.Schema({
+var LoginSchema = new mongoose.Schema({
   name: String,
-  userid: String,
-  updated_at: { type: Date, default: Date.now },
-  avatar_url:String,
-  public_repos: String,
-  repos_url: String,
-  html_url: String,
-  company: String,
-  location: String,
-  email: String,
-  bio: String,
-  created_at: String,
+
+  userId: String,
+  updatedAt:{ type: Date, default: Date.now },
+ 	createdOn:Date,
+  status:Boolean
+
 });
-UserSchema.statics.findOrCreate = require("find-or-create");
-module.exports = mongoose.model("login", UserSchema);
+LoginSchema.statics.findOrCreate = require("find-or-create");
+module.exports = mongoose.model("login", LoginSchema);
 
 

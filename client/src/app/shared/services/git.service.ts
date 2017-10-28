@@ -55,16 +55,14 @@ export class GitService {
     }
   }
   getFile(repo, file) {
-    if (this.userName) {
-      let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
-      let options = new RequestOptions({ headers: headers });
-      return this._http.get('https://api.github.com/repos/' + this.userName + "/" +
-        repo + '/contents/' + file + '?client_id=' + this.clientId +
-        '&client_secret=' + this.clientSecret, options)
-      //.map(res => res.json())
-      // .catch(this.handleError);
-    }
-  }
+   if (this.userName) {
+     let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
+     let options = new RequestOptions({ headers: headers });
+     return this._http.get('https://api.github.com/repos/' + this.userName + "/" +
+       repo + '/contents/' + file + '?client_id=' + this.clientId +
+       '&client_secret=' + this.clientSecret, options)
+   }
+ }
   //method to update the user
   updateUser(userName: string) {
     this.userName = userName;

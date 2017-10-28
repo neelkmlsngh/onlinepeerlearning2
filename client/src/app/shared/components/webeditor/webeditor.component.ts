@@ -11,15 +11,17 @@ import{AceEditorModule} from 'ng2-ace-editor'
 export class WebeditorComponent implements OnInit {
   htmlValue: any = "<h1>Hello World</h1>";
   cssValue: any = "body{color:red}";
-  jsValue: any
+  jsValue: any;
   code: any;
+  isValid:boolean=true;
+ isValid2:boolean=false;
 
-  ngOnInit() {
+ ngOnInit() {
     this.onChange(this.code)
 
-  }
+ }
 
-  base_tpl: string =
+ base_tpl: string =
     "<!doctype html>\n" +
     "<html>\n\t" +
     "<head>\n\t\t" +
@@ -33,44 +35,44 @@ export class WebeditorComponent implements OnInit {
     "</html>";
 
 
-  prepareSource() {
+ prepareSource() {
 
-    let src = '';
+   let src = '';
     let css = '';
     let js = '';
 
-    // HTML
+   // HTML
     src = this.base_tpl.replace('</body>', this.htmlValue + '</body>');
 
-    // CSS
+   // CSS
     css = '<style>' + this.cssValue + '</style>';
     src = src.replace('</head>', css + '</head>');
 
-    //Js
+   //Js
     
-    src= src.replace('</script>',this.jsValue+ '</script>');
+   src= src.replace('</script>',this.jsValue+ '</script>');
 
-    return src;
+   return src;
   };
 
-  render() {
+ render() {
     let source = this.prepareSource();
     console.log("Source " + source)
 
-    let iframe = document.querySelector('#output iframe')
+   let iframe = document.querySelector('#output iframe')
     console.log(iframe);
     let iframe_doc = iframe['contentDocument'];
 
-    iframe_doc.open();
+   iframe_doc.open();
     iframe_doc.write(source);
     iframe_doc.close();
   };
 
-   onChange(code) {
+  onChange(code) {
         this.render();
     }
 
-  cm_opt: any = {
+ cm_opt: any = {
     mode: 'text/html',
     gutter: true,
     lineNumbers: true,
