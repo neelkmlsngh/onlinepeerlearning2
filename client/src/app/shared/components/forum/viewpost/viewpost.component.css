@@ -1,5 +1,52 @@
-.answeraccepted{
-  width:86px;
+
+.answeraccepted {
+  width: 86px;
+  background-color: #00695C;
+}
+
+.like{
+	background-color: #00695C;
+}
+
+.problemDescription{
+	font-size: 15px;
+}
+
+.tags{
+	background-color: #CE93D8;
+}
+
+.postquestion{
+  background-color: #00695C;
+}
+
+.questionTitle{
+	color: #6A1B9A;
+}
+
+.user{
+	color: #00695C;
+}
+
+.views{
+	color:  #6A1B9A;
+}
+
+.ans{
+	  padding-left: 11px;
+}
+
+.navbar{
+	background-color: #00695C;
+}
+
+hr {
+  border: 0;
+  /*clear: both;*/
+  display: block;
+  width: 99%;
+  background-color: #DBDCDD;
+  height: 1px;
 }
 body {
   font-family: 'Alegreya Sans', sans-serif;
@@ -33,7 +80,7 @@ li {
 .footer1 .footer {
     background-color: #2E3436;
     padding: 35px 0;
-    margin-top: 5em;
+    /*margin-top: 5em;*/
 }
 
 .footer1 .footer .footer-desc p {
@@ -127,7 +174,4 @@ li {
 		text-align: center;
 	}
 }
-
-
-
 

@@ -66,6 +66,29 @@ router.get('/:searchTerm', function(req, res) {
     return;
   }
 });
+
+
+router.get('/getQuestionDetail/:question', function(req, res) {
+  console.log("...........prashant");
+  let getValue=req.params.question;
+   //let regex = new RegExp(req.params.searchTerm, "i")
+  //console.log(res)
+  logger.debug('User persistent started');
+  try {
+    usrCtrl.getSearch(getValue,'appConstant.INSERT_TYPE.PROFILES').then((successResult) => {
+      logger.info('Get successResult successfully and return back');
+      return res.status(201).send(successResult);
+    }, (errResult) => {
+          logger.error(errResult);
+          return res.status(500).send({ error: errResult});
+        });
+  } catch (err) {
+    logger.fatal('Exception occurred' + err);
+    res.send({ error: err });
+    return;
+  }
+});
+
  module.exports = router;
 
 
