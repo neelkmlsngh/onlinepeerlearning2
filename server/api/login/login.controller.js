@@ -5,9 +5,9 @@ const userController = require('./../users/users.controller')
 
 //save new login user details
 const saveLoginCredentials = function(userInfo, done) {
-    loginModel.findOrCreate({ userId: userInfo.id }, {
+    loginModel.findOrCreate({ userId: userInfo.userId }, {
         name: userInfo.name,
-        userId: userInfo.id,
+        userId: userInfo.userId,
         status: true
     }, function(err, user) {
         if (err) {
