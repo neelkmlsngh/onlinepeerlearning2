@@ -22,18 +22,23 @@ const loggerConfig = config.loggerConstant;
 const db = config.db;
 
 let people = [{
+        id: "1234",
         name: "Douglas  Pace"
     },
     {
+        id: "3434",
         name: "Mcleod  Mueller"
     },
     {
+        id: "5634",
         name: "Day  Meyers"
     },
     {
+        id: "4534",
         name: "Aguirre  Ellis"
     },
     {
+        id: "5698",
         name: "Cook  Tyson"
     }
 ];
@@ -56,12 +61,13 @@ function loginviagit() {
         callbackURL: "https://localhost:8080/auth/github/callback"
     }, function(accessToken, refreshToken, profile, done) {
         let userInfo = {
+            id: "1234",
             name: profile._json.login,
             userId: profile.id,
             avatarUrl: profile._json.avatar_url,
             publicRepos: profile._json.public_repos,
             reposUrl: profile._json.repos_url,
-            status:true
+            status: true
 
 
         }

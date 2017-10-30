@@ -48,7 +48,7 @@ export class LoginComponent{
 	clearTimeout(this.typingTimer);
 	}
 
-	public login():void{
+	public login(){
 
 	/*	if(this.username === '' || this.username === null) {
 			alert(`Username can't be empty.`);
@@ -70,17 +70,17 @@ export class LoginComponent{
 				}
 			});
 		}*/
-		  this.authenticationService.git()
-            .subscribe((res) => {
-
-                if (res)
-                		console.log(res)
-                    /*this.router.navigate(["/"]).then(result => { window.location.href = res.url; });*/
-                else
-                    this.router.navigateByUrl('home')
-            }, error => {
-                console.log("Error" + error)
-            })
+		  
+    this.authenticationService.git()
+    .subscribe((res) => {
+      if (res)
+        this.router.navigate(["/"]).then(result => { window.location.href = res.url; });
+      else
+        this.router.navigateByUrl('home')
+    }, error => {
+      console.log("Error" + error)
+    })
+  
 
 	}
 
