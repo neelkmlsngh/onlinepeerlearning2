@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import 'hammerjs';
 import {MatTabsModule} from '@angular/material';
 import{MatTabGroup} from '@angular/material';
+import {MatFormFieldModule} from '@angular/material';
 import { ModalModule } from 'ngx-bootstrap';
 import { AceEditorModule } from 'ng2-ace-editor'
 import { AppComponent } from './app.component';
@@ -74,6 +75,7 @@ import { ProfileService } from './shared/services/profile.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    MatFormFieldModule,
 
     ModalModule.forRoot(),
     RouterModule.forRoot([

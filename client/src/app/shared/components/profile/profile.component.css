@@ -121,6 +121,12 @@ h5 {
 }
 
 
+.heading
+{
+    background-color: #F3E5F5;
+}
+
+
 .example-container {
   display: flex;
   flex-direction: column;
@@ -128,8 +134,4 @@ h5 {
 
 .example-container > * {
   width: 100%;
-}
-
-.heading{
-    background-color: #F3E5F5;
 }
