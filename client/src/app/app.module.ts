@@ -16,7 +16,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awes
 import {MatInputModule} from '@angular/material';
 import {MatRadioModule} from '@angular/material';
 /*import {MatInputModule} from '@angular/material';*/
->>>>>>> 4151c61a4be1ae94aca7e040e3ab513a9247a02e
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
@@ -56,7 +56,7 @@ import { AuthoriseGuard } from './guard/authorise.guard';
     RepoSidebarComponent,
     ChatSidebarComponent,
     FooterComponent,
-   ChatWindowComponent,
+    ChatWindowComponent,
     WebeditorComponent,
     ProfileComponent,
     MainComponent,
@@ -77,7 +77,7 @@ import { AuthoriseGuard } from './guard/authorise.guard';
     CKEditorModule,
     BrowserAnimationsModule,
     AceEditorModule,
-   /* MatInputModule,*/
+    MatInputModule,
     MatIconModule,
     MatButtonModule,
     MatRadioModule,
@@ -105,7 +105,7 @@ import { AuthoriseGuard } from './guard/authorise.guard';
         {
         path: 'questions',
         component: ViewpostComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
       {
 
@@ -136,18 +136,18 @@ import { AuthoriseGuard } from './guard/authorise.guard';
      {
         path: 'questiondetail/:value',
         component: DetailpostComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
      {
         path: 'addquestion',
         component: NewpostComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
-        {
-        path: 'questiondetail',
-        component: DetailpostComponent,
-        canActivate: [AuthoriseGuard]
-      },
+      //   {
+      //   path: 'questiondetail',
+      //   component: DetailpostComponent,
+      //   canActivate: [AuthoriseGuard]
+      // },
      {
         path: 'webeditor',
         component: WebeditorComponent,
