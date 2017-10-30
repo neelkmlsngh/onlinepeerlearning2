@@ -1,76 +1,122 @@
 <div class="heading">
-<hr>
-    <h1 class="text-center display-4">User Profile Page</h1>
-<hr>
+  <hr>
+  <h1 class="text-center display-4">User Profile Page</h1>
+  <hr>
 </div>
-
 <div class="container">
-<div class="row">
-<div class="col-sm-3">
-<div class="card card-inverse card-info">
-    <img class="card-img-top"  src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
-    <div class="card-block">
-      <figure class="profile">
-        <img [src]="imgPath" class="profile-avatar" alt="vfujuh">
-      </figure>
-      <h4 class="card-title mt-3">Neal Caffery</h4>
-      <div class="meta card-text">
-        <a>Friends</a>
-      </div>
-      <div class="card-text">
-        Neal is a web designer living in India.
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card card-inverse card-info">
+        <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+        <div class="card-block">
+          <figure class="profile">
+            <img [src]="imgPath" class="profile-avatar" alt="vfujuh">
+          </figure>
+          <h4 class="card-title mt-3">Neal Caffery</h4>
+          <div class="meta card-text">
+            <a>Friends</a>
+          </div>
+          <div class="card-text">
+            Neal is a web designer living in India.
+          </div>
+        </div>
+        <div class="card-footer">
+          <small>Last updated 3 mins ago</small>
+        </div>
       </div>
     </div>
-    <div class="card-footer">
-      <small>Last updated 3 mins ago</small>
+    <div class="col-sm-9">
+      <mat-tab-group>
+        <mat-tab label="GitHub Info">
+          <form class="form-horizontal" role="form" [formGroup]="userInfo">
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Github ID</label>
+              <div class="col-lg-8">
+                <input class="form-control" type="text" formControlName="userid">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Login Name</label>
+              <div class="col-lg-8">
+                <input class="form-control" formControlName="name" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Public Repositories</label>
+              <div class="col-md-8">
+                <input class="form-control" formControlName="public_repos" type="text" readonly>
+              </div>
+            </div>
+          </form>
+        </mat-tab>
+        <mat-tab label="Personal Info">
+          <div class="card-block">
+            <form class="form" role="form" autocomplete="off">
+              <div class="form-group ">
+                <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="text" value="Jane">
+                </div>
+              </div>
+              <div class="form-group ">
+                <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="text" value="Bishop">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="email" value="email@gmail.com">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-3 col-form-label form-control-label">Company</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="text" value="">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-3 col-form-label form-control-label">Website</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="url" value="">
+                </div>
+              </div>
+              <div class="form-group ">
+                <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="text" value="janeuser">
+                </div>
+              </div>
+              <div class="form-group ">
+                <label class="col-lg-3 col-form-label form-control-label">Gender</label>
+                <div class="col-lg-9 gender">
+                  <div class="row">
+                    <mat-radio-group>
+                      <mat-radio-button value="1">Male</mat-radio-button>
+                      <mat-radio-button value="2">Female</mat-radio-button>
+                      <mat-radio-button value="3">Other</mat-radio-button>
+                    </mat-radio-group>
+                    <!-- <input type="radio" name="gender" value="male" checked> Male
+                <input type="radio" name="gender" value="female"> Female
+                <input type="radio" name="gender" value="other"> Other -->
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-3 col-form-label form-control-label"></label>
+                <div class="col-lg-9">
+                  <!-- <input type="reset" class="btn btn-secondary" value="Cancel"> -->
+                  <button type="button" class="btn btn-secondary save">Save</button>
+                  <button type="button" class="btn btn-secondary cancel">Cancel</button>
+                  <!-- <input type="button" class="btn btn-primary" value="Save Changes"> -->
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- /form user info -->
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
-</div>
-<div class="col-sm-9">
-<mat-tab-group>
-  <mat-tab label="GitHub Info">
-  <form class="form-horizontal" role="form" [formGroup]="userInfo">
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Github ID:</label>
-            <div class="col-lg-8">
-              <input class="form-control"  type="text" formControlName="userid">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Login Name:</label>
-            <div class="col-lg-8">
-              <input class="form-control" formControlName="name" type="text">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Public Repositories:</label>
-            <div class="col-md-8">
-              <input class="form-control" formControlName="public_repos" type="text" readonly>
-            </div>
-          </div>
-        </form>
-  </mat-tab>
-
-  <mat-tab label="Personal Info">
-  <!-- <div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="Input">
-  </mat-form-field>
-
-  <mat-form-field>
-    <textarea matInput placeholder="Textarea"></textarea>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="Select">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div> -->
-
-
-  </mat-tab>
-</mat-tab-group>
-</div>
-</div>
 </div>
