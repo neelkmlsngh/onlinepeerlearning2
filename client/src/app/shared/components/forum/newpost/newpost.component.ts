@@ -36,6 +36,8 @@ export class NewpostComponent implements OnInit {
    console.log(data.value);
    this.forum.save(data.value).subscribe((data1)=>{
      console.log(data1);
+     alert("your post have been inserted");
+      location.reload();
    })
  }
 }
