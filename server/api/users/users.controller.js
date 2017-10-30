@@ -1,14 +1,14 @@
 const logger = require('../../services/app.logger');
 const appConstant = require('../../config').app;
 const UserModel = require('./users.entity')
-
+const ProfileController=require('./../profile/profile.controller')
 //Save new user details
 const saveUserCredentials = function(userInfo,done) {
-    UserModel.findOrCreate({ userid: userInfo.id }, {
-            name: userInfo.name,
+    UserModel.findOrCreate({ userId: userInfo.userId }, {
+           
             publicRepos: userInfo.publicRepos,
             avatarUrl: userInfo.avatarUrl,
-            userid: userInfo.id
+            userId: userInfo.userId
 
         }, function(err, user) {
             if (err) {
@@ -17,6 +17,7 @@ const saveUserCredentials = function(userInfo,done) {
                 logger.info("user not saved")
             } else {
                 logger.info('saved successfully')
+                ProfileController.saveUserProfile(userInfo,done);
                 return done(err, user);
             }
         }
