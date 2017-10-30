@@ -43,7 +43,7 @@ import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
-import { AuthoriseGuard } from './guard/authorise.guard';
+import { AuthoriseGuard } from './shared/services/authorise.guard';
 
 @NgModule({
   declarations: [
