@@ -22,7 +22,37 @@ export class WebeditorComponent implements OnInit {
   jsblob: any;
   textcontent: any
   myUrl: any;
-  data: any
+  data: any;
+  comments: any = "\n<!-- Enter Your Comment -->";
+  tabels: string = "\n<table>\n" +
+    "<tr>\n\t" +
+    "<th>Heading</th>\n\t\t" +
+    "<th>Heading</th>\n\t\t" +
+    "</tr>\n" +
+    "<tr>\n" +
+    "<td>Value</td>\n\t\t" +
+    "<td>Value</td>\n\t\t" +
+    "</tr>\n" +
+    "</table>";
+
+  unordered: any = '\n<ul>\n' +
+    '<li>Item 1</li>\n' +
+    '<li>Item 2</li>\n' +
+    '<li>Item 3</li>\n' +
+    '</ul>';
+
+
+  forms: any = '\n<form action="" method="get">\n' +
+    '<label for="first-name">First name</label>\n' +
+    '<input id="first-name" type="text" name="firstname"><br>\n' +
+    '<label for="last-name">Last name</label>\n' +
+    '<input id="last-name" type="text" name="lastname"><br>\n' +
+    '<input type="submit" value="Submit">\n' +
+    '</form>';
+
+
+  includeJs: any = '\n<script src="script.js"></script>';
+  includeCss: any = '\n<link href="style.css" rel="stylesheet">';
 
   ngOnInit() {
     this.onChange(this.code)
@@ -42,6 +72,26 @@ export class WebeditorComponent implements OnInit {
     "</script>\n"
   "</html>";
 
+  comment() {
+    this.htmlValue += " " + this.comments;
+  }
+
+  table() {
+    this.htmlValue += " " + this.tabels;
+  }
+
+  unodered() {
+    this.htmlValue += " " + this.unordered;
+  }
+  form() {
+    this.htmlValue += " " + this.forms;
+  }
+  includeJS() {
+    this.htmlValue += " " + this.includeJs;
+  }
+  includeCSS() {
+    this.htmlValue += " " + this.includeCss;
+  }
 
   prepareSource() {
 

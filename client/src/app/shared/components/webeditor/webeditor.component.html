@@ -12,13 +12,33 @@
           <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">JAVASCRIPT</a>
         </li>
       </ul>
-      <a href="javascript:void(0);" (click)="downloadZip()">Zip IT</a>
-      <div id="myDiv"></div>
       <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
           <div id="wrap">
             <section id="code_editors">
-              <a href="javascript:void(0);" (click)="downloadHtmlFile()">Download HTML File</a>
+              <nav class="navbar navbar-light bg-dark">
+                <form class="form-inline">
+                  <!--  -->
+                  <div class="dropdown">
+                    <button class="btn btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Add Snippet
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" (click)="comment()">Comment</a>
+                      <a class="dropdown-item" (click)="table()">Table</a>
+                      <a class="dropdown-item" (click)="unodered()">UnOrdered List</a>
+                      <a class="dropdown-item" (click)="form()">Form</a>
+                      <a class="dropdown-item" (click)="includeJS()">Include a JavaScript File</a>
+                      <a class="dropdown-item" (click)="includeCSS()">Include a CSS File</a>
+                    </div>
+                  </div>
+                  &nbsp;
+                  <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" (click)="downloadHtmlFile()"><i class="fa fa-download" aria-hidden="true"></i> Download File</button>
+                  &nbsp;
+                  <button type="button" class="btn btn-outline-success" href="javascript:void(0);" (click)="downloadZip()"><i class="fa fa-file-archive-o" aria-hidden="true"></i> Zip IT</button>
+                  <div id="myDiv"></div>
+                </form>
+              </nav>
               <div id="myHtmlDiv"></div>
               <div ace-editor [(text)]="htmlValue" [mode]="'html'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="html">
               </div>
@@ -28,8 +48,16 @@
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
           <div id="wrap">
             <section id="code_editors">
-              <a href="javascript:void(0);" (click)="downloadCssFile()">Download CSS File</a>
-              <div id="myCssDiv"></div>
+              <nav class="navbar navbar-light bg-dark">
+                <form class="form-inline">
+                  <button class="btn btn-outline-primary" type="button"><i class="fa fa-code" aria-hidden="true"></i> Add Snippet</button>
+                  &nbsp;
+                  <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" href="javascript:void(0);" (click)="downloadCssFile()"><i class="fa fa-download" aria-hidden="true"></i> Download File</button>
+                  &nbsp;
+                  <button type="button" class="btn btn-outline-success" href="javascript:void(0);" (click)="downloadZip()"><i class="fa fa-file-archive-o" aria-hidden="true"></i> Zip IT</button>
+                  <div id="myCssDiv"></div>
+                </form>
+              </nav>
               <div ace-editor [(text)]="cssValue" [mode]="'css'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="css">
               </div>
             </section>
@@ -38,8 +66,16 @@
         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
           <div id="wrap">
             <section id="code_editors">
-              <a href="javascript:void(0);" (click)="downloadJsFile()">Download JS File</a>
-              <div id="myJsDiv"></div>
+              <nav class="navbar navbar-light bg-dark">
+                <form class="form-inline">
+                  <button class="btn btn-outline-primary" type="button"><i class="fa fa-code" aria-hidden="true"></i> Add Snippet</button>
+                  &nbsp;
+                  <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" href="javascript:void(0);" (click)="downloadJsFile()"><i class="fa fa-download" aria-hidden="true"></i> Download File</button>
+                  &nbsp;
+                  <button type="button" class="btn btn-outline-success " href="javascript:void(0);" (click)="downloadZip()"><i class="fa fa-file-archive-o" aria-hidden="true"></i> Zip IT</button>
+                  <div id="myJsDiv"></div>
+                </form>
+              </nav>
               <div ace-editor [(text)]="jsValue" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" (textChanged)="onChange($event)" class="code_box" id="javascript">
               </div>
             </section>
