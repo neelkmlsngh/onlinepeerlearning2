@@ -56,8 +56,7 @@ data:any=[];
   this.forum.searchEntries(searchTerm.value)
     .subscribe(res => {
       this.data =res;
-      console.log(this.data)
-     
+      console.log(this.data);
     });
 }
 
