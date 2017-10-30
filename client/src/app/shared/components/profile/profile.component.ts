@@ -42,10 +42,8 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  upload(img){
-    this.img={
-      "img":img
-    }
+  upload(){
+    
   }
 
   displayData(data:any){
