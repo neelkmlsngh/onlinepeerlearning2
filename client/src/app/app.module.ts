@@ -7,12 +7,14 @@ import 'hammerjs';
 import {MatTabsModule} from '@angular/material';
 import{MatTabGroup} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
 import { ModalModule } from 'ngx-bootstrap';
 import { AceEditorModule } from 'ng2-ace-editor'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import {MatInputModule} from '@angular/material';
+import {MatRadioModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -77,6 +79,8 @@ import { ProfileService } from './shared/services/profile.service';
     AceEditorModule,
     MatInputModule,
     MatIconModule,
+    MatButtonModule,
+    MatRadioModule,
 
     AngularFontAwesomeModule,
     ReactiveFormsModule,
