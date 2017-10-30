@@ -54,7 +54,7 @@ import { AuthoriseGuard } from './guard/authorise.guard';
     RepoSidebarComponent,
     ChatSidebarComponent,
     FooterComponent,
-   ChatWindowComponent,
+    ChatWindowComponent,
     WebeditorComponent,
     ProfileComponent,
     MainComponent,
@@ -75,7 +75,7 @@ import { AuthoriseGuard } from './guard/authorise.guard';
     CKEditorModule,
     BrowserAnimationsModule,
     AceEditorModule,
-   /* MatInputModule,*/
+    MatInputModule,
     MatIconModule,
     MatButtonModule,
     MatRadioModule,
@@ -103,7 +103,7 @@ import { AuthoriseGuard } from './guard/authorise.guard';
         {
         path: 'questions',
         component: ViewpostComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
       {
 
@@ -134,18 +134,18 @@ import { AuthoriseGuard } from './guard/authorise.guard';
      {
         path: 'questiondetail/:value',
         component: DetailpostComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
      {
         path: 'addquestion',
         component: NewpostComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
-        {
-        path: 'questiondetail',
-        component: DetailpostComponent,
-        canActivate: [AuthoriseGuard]
-      },
+      //   {
+      //   path: 'questiondetail',
+      //   component: DetailpostComponent,
+      //   canActivate: [AuthoriseGuard]
+      // },
      {
         path: 'webeditor',
         component: WebeditorComponent,
