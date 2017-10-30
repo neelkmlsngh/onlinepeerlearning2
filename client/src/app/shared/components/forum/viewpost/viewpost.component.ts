@@ -3,6 +3,7 @@ import { Router} from '@angular/router'
 import {MatIconRegistry} from '@angular/material';
 import { Subject } from 'rxjs/Subject'
 import { Observable } from 'rxjs/Observable'
+import { TruncateModule } from 'ng2-truncate';
 import 'rxjs/Rx';
 
 import { ForumService } from '../../../services/forum.service';
@@ -13,11 +14,12 @@ import { ForumService } from '../../../services/forum.service';
   styleUrls: ['./viewpost.component.css']
 })
 export class ViewpostComponent implements OnInit,AfterViewInit {
-
+  
 data:any=[];
+p: number[] = [];
  constructor(private forum:ForumService,private router: Router) { 
 
- }
+}
 
  ngOnInit() {
   this.viewPost();

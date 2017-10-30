@@ -36,6 +36,9 @@ import {LoginService} from './home/service/login.service'
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { TruncateModule } from 'ng2-truncate';
+import { FanMenuModule } from 'ng2-fan-menu';
 import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/audio-chat.component';
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
@@ -66,6 +69,7 @@ import { AuthoriseGuard } from './guard/authorise.guard';
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     HttpModule,
     FormsModule,
     CKEditorModule,
@@ -73,6 +77,8 @@ import { AuthoriseGuard } from './guard/authorise.guard';
     AceEditorModule,
    /* MatInputModule,*/
     MatIconModule,
+    TruncateModule,
+   
 
     AngularFontAwesomeModule,
     ReactiveFormsModule,
