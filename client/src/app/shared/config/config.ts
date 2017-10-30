@@ -2,8 +2,8 @@ export const config: any = {
 
   
    	 language: [
-"HTML/CSS",
-"JAVASCRIPT"
+"JAVASCRIPT",
+"HTML/CSS"
 ],
  connect: {
        "url": "https://localhost:",

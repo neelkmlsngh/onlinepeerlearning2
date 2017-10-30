@@ -11,6 +11,7 @@ import { ChatService } from '../../services/chat.service';
 export class ChatSidebarComponent implements OnInit, OnDestroy, AfterViewInit {
   connection;
   users:any;
+  chat: any = null;
   windowRef:any;
   methodToExport:any;
   link:string='';
@@ -64,4 +65,16 @@ sh(){
   ngOnDestroy() {
     this.connection.unsubscribe();
   }
+ username(name){
+ this.chat=name;
+ 
+ var $chatbox = $('.chatbox');
+
+  $chatbox.toggleClass('chatbox--tray');
+   $chatbox.removeClass('chatbox--tray')
+ setTimeout(()=>{
+$('.chatbox').removeClass('chatbox--tray')
+ },500);
+ 
+   }
 }

@@ -1,0 +1,27 @@
+<input class="form-control bg-white" type="text" value={{mypeerid}} readonly>
+ <input type="text" class="form-control" [(ngModel)]="anotherid" placeholder="Enter Your Connection Id" aria-describedby="sizing-addon1">
+ <img src="https://www.adjust.com/new-assets/images/site-images/interface/user.svg" class="img-responsive myimg">
+
+
+ 
+
+
+ <div class="btn-group col sm-4 align-self-center">
+
+
+
+   <img src="https://cdn4.iconfinder.com/data/icons/rcons-phone/16/handset_round-2-512.png" (click)="audioconnect()" class="btn btn-outline-success btn-lg img-responsive callimg mr-2" data-toggle="popover" title="Audio Call">
+
+   <img src="https://image.flaticon.com/icons/png/512/39/39517.png" class="btn btn-outline-success btn-lg callimg mr-2" data-toggle="popover" title="Mute">
+
+   <img src="https://png.icons8.com/end-call/android/1600" class="btn btn-outline-danger btn-lg callimg mr-2" data-toggle="popover" title="End Call">
+
+
+
+
+
+</div>
+
+<audio #myaudio autoplay></audio>
+
+
