@@ -60,7 +60,8 @@ function loginviagit() {
             userId: profile.id,
             avatarUrl: profile._json.avatar_url,
             publicRepos: profile._json.public_repos,
-            reposUrl: profile._json.repos_url
+            reposUrl: profile._json.repos_url,
+            status:true
 
          
         }
@@ -115,7 +116,6 @@ function setupMiddlewares(app) {
     }));
 
     app.use(compression());
-
     app.use(methodOverride());
     app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
     app.use(passport.initialize());

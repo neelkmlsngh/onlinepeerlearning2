@@ -1,7 +1,10 @@
 import { Component, OnInit, AfterViewInit} from '@angular/core';
+import { Router} from '@angular/router'
+import {MatIconRegistry} from '@angular/material';
 import { Subject } from 'rxjs/Subject'
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/Rx';
+
 import { ForumService } from '../../../services/forum.service';
 
 @Component({
@@ -11,9 +14,10 @@ import { ForumService } from '../../../services/forum.service';
 })
 export class ViewpostComponent implements OnInit,AfterViewInit {
 
- constructor(private forum:ForumService) { }
+data:any=[];
+ constructor(private forum:ForumService,private router: Router) { 
 
- data:any=[];
+ }
 
  ngOnInit() {
   this.viewPost();
@@ -41,6 +45,10 @@ export class ViewpostComponent implements OnInit,AfterViewInit {
      console.log(this.data);
    })
  }
+
+   getQuestionDetail(value):any { 
+      this.router.navigate(['/questiondetail',value])   
+    }
 
  getDetails(searchTerm:any){
   //alert(searchTerm.value

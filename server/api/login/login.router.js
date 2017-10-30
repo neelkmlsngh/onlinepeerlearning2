@@ -28,11 +28,33 @@ router.get('/auth/github/callback',
             name: req.user.doc.name
         }
         console.log(appConfig.SECRET + " " + req.user.doc.userId + " " + appConfig.EXPIRETIME)
-        let userToken = jwt.sign({ userdetails}, appConfig.SECRET, {
+        let userToken = jwt.sign({ userdetails }, appConfig.SECRET, {
             expiresIn: appConfig.EXPIRETIME
         });;
-    
-        res.redirect(appConfig.REDIRECT +req.user.doc.userId  + "/" + userToken)
+
+        res.redirect(appConfig.REDIRECT + req.user.doc.userId + "/" + userToken)
 
     });
+
+router.put('/logout', (req, res) => {
+    console.log(req.body.userid)
+    userId = req.body.userid
+    User.findOneAndUpdate({ userId: userId }, {
+        // updating preferences
+        $set: {
+            status: false
+        }
+    }, (err, Data) => {
+        // action to take if error occurs 
+        if (err) {
+            logger.error("error occured");
+        }
+        // action to take when there is no error
+        else {
+            logger.info("logout successfully")
+            console.log('asas', Data)
+            res.send(Data);
+        }
+    });
+});
 module.exports = router;
