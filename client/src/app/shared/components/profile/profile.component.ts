@@ -10,6 +10,7 @@ export class ProfileComponent implements OnInit {
   userInfo:FormGroup;
   currentUser:any;
   imgPath:string='';
+  img;
 
   constructor(@Inject(FormBuilder) private fb: FormBuilder,private profileService:ProfileService) {
     // initialising user details to be displayed
@@ -41,6 +42,12 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  upload(img){
+    this.img={
+      "img":img
+    }
+  }
+
   displayData(data:any){
     console.log(data)
     this.userInfo=this.fb.group({
@@ -50,8 +57,7 @@ export class ProfileComponent implements OnInit {
       public_repos:[data.public_repos]
     })
   }
-
-  upload(){
-  	
-  }
 }
+
+
+  

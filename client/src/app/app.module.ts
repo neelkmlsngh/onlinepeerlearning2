@@ -15,8 +15,6 @@ import {MatIconModule} from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import {MatInputModule} from '@angular/material';
 import {MatRadioModule} from '@angular/material';
-/*import {MatInputModule} from '@angular/material';*/
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
@@ -45,7 +43,8 @@ import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
-//import { AuthoriseGuard } from './guard/authorise.guard';
+//import { AuthoriseGuard } from './shared/services/authorise.guard';
+
 
 @NgModule({
   declarations: [
