@@ -62,10 +62,10 @@ function loginviagit() {
             publicRepos: profile._json.public_repos,
             reposUrl: profile._json.repos_url
 
-         
+
         }
 
- 
+
         //save login credentials in login collection
         //function called by login controller
         loginController.saveLoginCredentials(userInfo, done);

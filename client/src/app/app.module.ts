@@ -23,10 +23,12 @@ import { DetailpostComponent } from './shared/components/forum/detailpost/detail
 import { NewpostComponent } from './shared/components/forum/newpost/newpost.component';
 import {  ForumService } from './shared/services/forum.service';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {LoginService} from './home/service/login.service'
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { MatButtonModule,MatIconModule,} from '@angular/material';
 
 import { FanMenuModule } from 'ng2-fan-menu';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -36,6 +38,10 @@ import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/
 
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
+import { ChatComponent } from './shared/components/chat/chat.component';
+import { LoginComponent } from './shared/components/chat/login/login.component';
+import { NotFoundComponent } from './shared/components/chat/not-found/not-found.component';
+import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +63,11 @@ import { ProfileService } from './shared/services/profile.service';
     WebeditorComponent,
     AuthenticateComponent,
     AudioChatComponent,
-    VideoChatComponent
+    VideoChatComponent,
+    ChatComponent,
+    LoginComponent,
+    NotFoundComponent,
+    ChatHomeComponent
 
   ],
   imports: [
@@ -69,6 +79,9 @@ import { ProfileService } from './shared/services/profile.service';
     BrowserAnimationsModule,
     AceEditorModule,
     ReactiveFormsModule,
+    NgbModule.forRoot(),
+    MatButtonModule, 
+    MatIconModule,
 
     ModalModule.forRoot(),
     RouterModule.forRoot([
@@ -100,6 +113,11 @@ import { ProfileService } from './shared/services/profile.service';
        path:'audio',
        component:AudioChatComponent
      },
+
+     { path : '' , component : LoginComponent},
+     { path : 'chome' , component : ChatHomeComponent},
+     { path : 'chome/:userid' , component : ChatHomeComponent},
+     { path : '**' , component : NotFoundComponent},
       
       // {
       //   path: 'onlinepeerlearning/:id',
@@ -129,11 +147,11 @@ import { ProfileService } from './shared/services/profile.service';
       path:'auth/:userId/:token',
       component: AuthenticateComponent
     }
-    ,     
+    /*,     
      {
       path:'**',
       component: HomeComponent
-    }
+    }*/
    ],  { useHash: true })
   ],
   providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService],
