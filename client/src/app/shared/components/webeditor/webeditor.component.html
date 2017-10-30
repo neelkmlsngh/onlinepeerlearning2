@@ -20,9 +20,7 @@
                 <form class="form-inline">
                   <!--  -->
                   <div class="dropdown">
-                    <button class="btn btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-code" aria-hidden="true"></i> 
-                      Add Snippet
-                    </button>
+                    <button class="btn btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-code" aria-hidden="true"></i>Add Snippet</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <a class="dropdown-item" (click)="comment()">Comment</a>
                       <a class="dropdown-item" (click)="table()">Table</a>
@@ -33,9 +31,9 @@
                     </div>
                   </div>
                   &nbsp;
-                  <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" (click)="downloadHtmlFile()"><i class="fa fa-download" aria-hidden="true"></i> Download File</button>
+                  <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" (click)="downloadHtmlFile()" data-toggle="tooltip" data-placement="Top" title="Download"><i class="fa fa-download" aria-hidden="true"></i></button>
                   &nbsp;
-                  <button type="button" class="btn btn-outline-success" href="javascript:void(0);" (click)="downloadZip()"><i class="fa fa-file-archive-o" aria-hidden="true"></i> Zip IT</button>
+                  <button type="button" class="btn btn-outline-success" href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
                   <div id="myDiv"></div>
                 </form>
               </nav>
@@ -59,9 +57,9 @@
                       <a class="dropdown-item" (click)="mediaQuery()">Media Query</a>
                     </div>
                   &nbsp;
-                  <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" href="javascript:void(0);" (click)="downloadCssFile()"><i class="fa fa-download" aria-hidden="true"></i> Download File</button>
+                  <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" href="javascript:void(0);" (click)="downloadCssFile()" data-toggle="tooltip" data-placement="top" title="Download"><i class="fa fa-download" aria-hidden="true"></i></button>
                   &nbsp;
-                  <button type="button" class="btn btn-outline-success" href="javascript:void(0);" (click)="downloadZip()"><i class="fa fa-file-archive-o" aria-hidden="true"></i> Zip IT</button>
+                  <button type="button" class="btn btn-outline-success" href="javascript:void(0);" (click)="downloadZip()"data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
                   <div id="myCssDiv"></div>
                 </form>
               </nav>
