@@ -54,6 +54,29 @@ export class WebeditorComponent implements OnInit {
   includeJs: any = '\n<script src="script.js"></script>';
   includeCss: any = '\n<link href="style.css" rel="stylesheet">';
 
+/*snippet for css*/
+  commentsCss:any ="\n/* Add your comment here */";
+  elementSelector:any ="\np {"+
+     "\nfont-size: 20px;"+
+      "\n}";
+  classSelector:any= "\n.className {"+
+    "\nbackground-color: green;"+
+    "\n}";
+  idSelector:any= "\n#idName {"+
+    "\nbackground-color: green;"+
+    "\n}";
+  mediaQueries:any ="\n@media screen and (max-width: 320px) {"+
+  "\n/* Rules when screen is up to 320px wide */"+
+    "\n}"+
+
+    "\n@media screen and (min-width: 321px) and (max-width: 768px) {"+
+      "\n/* Rules when screen is between 321px and 768px wide */"+
+    "\n}"+
+
+    "\n@media screen and (min-width: 769px) {"+
+     "\n/* Rules when screen is wider than 768px */"+
+    "\n}";
+
   ngOnInit() {
     this.onChange(this.code)
 
@@ -91,6 +114,28 @@ export class WebeditorComponent implements OnInit {
   }
   includeCSS() {
     this.htmlValue += " " + this.includeCss;
+  }
+
+
+  /*css snippet methods*/
+  commentCss(){
+    this.cssValue += " "+ this.commentsCss;
+  }
+
+  elementsSelector(){
+    this.cssValue +=" "+ this.elementSelector;
+  }
+
+  class(){
+    this.cssValue += " " + this.classSelector;
+  }
+
+  id() {
+    this.cssValue += " " + this.idSelector;
+  }
+
+  mediaQuery(){
+    this.cssValue += " " + this.mediaQueries;
   }
 
   prepareSource() {

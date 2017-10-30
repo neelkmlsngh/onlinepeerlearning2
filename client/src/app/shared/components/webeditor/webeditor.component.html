@@ -20,7 +20,7 @@
                 <form class="form-inline">
                   <!--  -->
                   <div class="dropdown">
-                    <button class="btn btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-code" aria-hidden="true"></i> 
                       Add Snippet
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -50,7 +50,14 @@
             <section id="code_editors">
               <nav class="navbar navbar-light bg-dark">
                 <form class="form-inline">
-                  <button class="btn btn-outline-primary" type="button"><i class="fa fa-code" aria-hidden="true"></i> Add Snippet</button>
+                  <button class="btn btn-outline-primary" type="button" id="dropdownMenuButon1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-code" aria-hidden="true"></i> Add Snippet</button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <a class="dropdown-item" (click)="commentCss()">Comment</a>
+                      <a class="dropdown-item" (click)="elementsSelector()">Element Selector</a>
+                      <a class="dropdown-item" (click)="class()">Class Selector</a>
+                      <a class="dropdown-item" (click)="id()">ID Selector</a>
+                      <a class="dropdown-item" (click)="mediaQuery()">Media Query</a>
+                    </div>
                   &nbsp;
                   <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" href="javascript:void(0);" (click)="downloadCssFile()"><i class="fa fa-download" aria-hidden="true"></i> Download File</button>
                   &nbsp;
