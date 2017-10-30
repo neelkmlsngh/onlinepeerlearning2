@@ -38,7 +38,6 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { TruncateModule } from 'ng2-truncate';
-import { FanMenuModule } from 'ng2-fan-menu';
 import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/audio-chat.component';
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
@@ -96,7 +95,7 @@ import { AuthoriseGuard } from './guard/authorise.guard';
      {
         path: 'main',
         component: MainComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
         {
         path: 'questions',
