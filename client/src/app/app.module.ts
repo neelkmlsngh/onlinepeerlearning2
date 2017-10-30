@@ -6,12 +6,13 @@ import { RouterModule } from '@angular/router';
 import 'hammerjs';
 import {MatTabsModule} from '@angular/material';
 import{MatTabGroup} from '@angular/material';
+import {MatFormFieldModule} from '@angular/material';
 import { ModalModule } from 'ngx-bootstrap';
 import { AceEditorModule } from 'ng2-ace-editor'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
-import {MatInputModule} from '@angular/material';
+/*import {MatInputModule} from '@angular/material';*/
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -65,7 +66,6 @@ import { ProfileService } from './shared/services/profile.service';
     AuthenticateComponent,
     AudioChatComponent,
     VideoChatComponent
-
   ],
   imports: [
     BrowserModule,
@@ -74,13 +74,14 @@ import { ProfileService } from './shared/services/profile.service';
     CKEditorModule,
     BrowserAnimationsModule,
     AceEditorModule,
-    MatInputModule,
+   /* MatInputModule,*/
     MatIconModule,
 
     AngularFontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    MatFormFieldModule,
 
     ModalModule.forRoot(),
     RouterModule.forRoot([
@@ -148,7 +149,7 @@ import { ProfileService } from './shared/services/profile.service';
      {
       path:'**',
       component: HomeComponent
-    }
+    },
    ],  { useHash: true })
   ],
   providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService],
