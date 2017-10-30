@@ -22,7 +22,7 @@ user:{}
     //console.log(dataObj.userId);
     localStorage.setItem('currentUser', JSON.stringify({ token: token, userId: userId }));
     if (token) {
-      this.router.navigate(["/main"])
+      this.router.navigate(["/main"]);
 
     } else if (!token) {
       this.router.navigate(["/"])
