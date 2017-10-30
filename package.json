@@ -31,7 +31,6 @@
     "method-override": "^2.3.10",
     "mongoose": "^4.12.4",
     "morgan": "^1.9.0",
-    "ng2-fan-menu": "^1.0.1",
     "passport": "^0.4.0",
     "passport-github2": "^0.1.11",
     "peer": "^0.2.8",
