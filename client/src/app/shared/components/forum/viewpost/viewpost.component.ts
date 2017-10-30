@@ -10,9 +10,10 @@ import { ForumService } from '../../../services/forum.service';
   styleUrls: ['./viewpost.component.css']
 })
 export class ViewpostComponent implements OnInit,AfterViewInit {
+  
 
  constructor(private forum:ForumService) { }
-
+    p: number[] = [];
  data:any=[];
 
  ngOnInit() {

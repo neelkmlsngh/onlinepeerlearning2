@@ -40,7 +40,7 @@
  <!--  <div *ngFor="let result of data">
   {{result.questionTitle}}
   </div> -->
-  
+
   <div class="container-fluid bg-light">
     <div class="row">
       <div class="col-sm-2">
@@ -51,7 +51,7 @@
         </div>
         <hr>
         <div class="questionsumary">
-          <div class="row" *ngFor="let result of data">
+          <div class="row" *ngFor="let result of data| paginate: { itemsPerPage:2, currentPage: p }">
             <div class="statuscontainer col-sm-3">
               <div class="vote h5">
                 {{result.votes}} votes
@@ -86,6 +86,7 @@
             <hr>
              <span>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
           </div>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
         </div>
        

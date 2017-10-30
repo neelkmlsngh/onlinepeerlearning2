@@ -27,6 +27,7 @@ import {LoginService} from './home/service/login.service'
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { FanMenuModule } from 'ng2-fan-menu';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -62,6 +63,7 @@ import { ProfileService } from './shared/services/profile.service';
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     HttpModule,
     FormsModule,
     FanMenuModule,
