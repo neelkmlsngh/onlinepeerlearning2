@@ -13,8 +13,17 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 logout(){ 
-
-	this.authenticationservice.logout();
-
+ let user = JSON.parse(localStorage.getItem('currentUser'));
+    
+    let userid = user.userId
+    user={
+      userid:userid
+    }
+     
+	this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
+     console.log('data1');
+     this.router.navigate(["/"]);
+     localStorage.removeItem('currentUser');
+})
 }
 }
