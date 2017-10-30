@@ -26,27 +26,27 @@ export class WebeditorComponent implements OnInit {
   comments: any = "\n<!-- Enter Your Comment -->";
   tabels: string = "\n<table>\n" +
     "<tr>\n\t" +
-    "<th>Heading</th>\n\t\t" +
-    "<th>Heading</th>\n\t\t" +
+    "<th>Heading</th>\n\t" +
+    "<th>Heading</th>\n" +
     "</tr>\n" +
-    "<tr>\n" +
-    "<td>Value</td>\n\t\t" +
-    "<td>Value</td>\n\t\t" +
+    "<tr>\n\t" +
+    "<td>Value</td>\n\t" +
+    "<td>Value</td>\n" +
     "</tr>\n" +
     "</table>";
 
-  unordered: any = '\n<ul>\n' +
-    '<li>Item 1</li>\n' +
-    '<li>Item 2</li>\n' +
+  unordered: any = '\n<ul>\n\t' +
+    '<li>Item 1</li>\n\t' +
+    '<li>Item 2</li>\n\t' +
     '<li>Item 3</li>\n' +
     '</ul>';
 
 
-  forms: any = '\n<form action="" method="get">\n' +
-    '<label for="first-name">First name</label>\n' +
-    '<input id="first-name" type="text" name="firstname"><br>\n' +
-    '<label for="last-name">Last name</label>\n' +
-    '<input id="last-name" type="text" name="lastname"><br>\n' +
+  forms: any = '\n<form action="" method="get">\n\t' +
+    '<label for="first-name">First name :</label>\n\t' +
+    '<input id="first-name" type="text" name="firstname"><br><br>\n\t' +
+    '<label for="last-name">Last name :</label>\n\t' +
+    '<input id="last-name" type="text" name="lastname"><br>\n\t' +
     '<input type="submit" value="Submit">\n' +
     '</form>';
 
