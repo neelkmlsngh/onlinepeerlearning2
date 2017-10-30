@@ -1,7 +1,5 @@
-<!-- start of containing frame -->
 <div class="container-fluid well animated fadeIn">
   <div class="row-fluid">
-    <!-- start of carousel -->
     <div id="my-carousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="item active">
@@ -22,11 +20,20 @@
             </div>
           </div>
         </div>
+        <nav class="item-menu">
+          <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+          <label id="menu-open-handler" class="menu-open-button" for="menu-open">
+            Start
+          </label>
+          <div class="real-menu">
+            <a href="#" class="menu-item" data-name="Public Forum" data-toggle="popover" title="Enter Public Forum"> <i class="fa fa-sign-in"></i> </a>
+            <a href="#" class="menu-item" data-name="Github Login" data-toggle="popover" title="Login via Github"> <i class="fa fa-github"></i> </a>
+            <a href="#" class="menu-item" data-name="Instructions" data-toggle="popover" title="Important instructions before you start"> <i class="fa fa-bars"></i> </a>
+          </div>
+        </nav>
       </div>
     </div>
   </div>
-  <!-- end of carousel -->
-  <!-- start of modal for instructions -->
   <template #template>
     <div class="modal-header">
       <h4 class="modal-title"><b>Guidelines</b></h4>
@@ -51,10 +58,18 @@
       </p>
     </div>
   </template>
-  <!-- end of instructions modal -->
 </div>
-<!-- ng2 fan menu -->
-<app-menu-container [options]="options" [gutter]="gutter" [startAngles]="startAngles" [wings]="wings" (onWingSelected)="selectWing($event)">
-</app-menu-container>
-<!-- end of ng2 fan menu -->
-<!-- end of containing frame -->
+<script>
+var checkbox = document.getElementById('menu-open');
+
+var handler = document.getElementById('menu-open-handler');
+
+var toggleInterval = setInterval(function() {
+  checkbox.checked = !checkbox.checked;
+}, 2000);
+
+handler.onclick = function() {
+  clearInterval(toggleInterval);
+};
+
+</script>

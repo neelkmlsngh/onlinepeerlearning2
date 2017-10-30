@@ -28,7 +28,6 @@ import { WebeditorComponent } from './shared/components/webeditor/webeditor.comp
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 
-import { FanMenuModule } from 'ng2-fan-menu';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/audio-chat.component';
@@ -64,7 +63,6 @@ import { ProfileService } from './shared/services/profile.service';
     BrowserModule,
     HttpModule,
     FormsModule,
-    FanMenuModule,
     CKEditorModule,
     BrowserAnimationsModule,
     AceEditorModule,
