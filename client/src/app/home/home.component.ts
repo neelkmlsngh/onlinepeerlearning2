@@ -1,10 +1,11 @@
 //imports required from angular
 
-import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import {AuthenticationService} from '../shared/services/authentication.service'
+
 //component decorator
 
 @Component({
@@ -37,24 +38,23 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-
   //open modal window 
 
   public openModalWithClass(template: TemplateRef < any > ) {
    this.modalRef = this.modalService.show(template, Object.assign({}, this.configModal, { class: 'gray modal-lg' }));
   }
-  
+
+  //login via git method
+
   loginByGit() {
-        this.authenticationservice.git()
-            .subscribe((res) => {
-
-                if (res)
-                    this.router.navigate(["/"]).then(result => { window.location.href = res.url; });
-                else
-                    this.router.navigateByUrl('home')
-            }, error => {
-                console.log("Error" + error)
-            })
-    }
-
+    this.authenticationservice.git()
+    .subscribe((res) => {
+      if (res)
+        this.router.navigate(["/"]).then(result => { window.location.href = res.url; });
+      else
+        this.router.navigateByUrl('home')
+    }, error => {
+      console.log("Error" + error)
+    })
+  }
 }
