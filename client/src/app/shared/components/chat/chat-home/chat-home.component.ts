@@ -21,10 +21,10 @@ export class ChatHomeComponent implements OnInit {
 	/*
 	* UI related variables starts
 	*/
-	private overlayDisplay = false;
-	private selectedUserId = null;
-	private selectedSocketId = null;
-	private selectedUserName = null;	
+	 overlayDisplay = false;
+	 selectedUserId = null;
+	 selectedSocketId = null;
+	 selectedUserName = null;	
 	/* 
 	* UI related variables ends
 	*/
@@ -32,12 +32,12 @@ export class ChatHomeComponent implements OnInit {
 	/*
 	* Chat and message related variables starts
 	*/
-	private username = null;
-	private userId = null;
-	private socketId = null;
-	private chatListUsers = [];
-	private message = '';
-	private messages = [];
+	 username = null;
+	 userId = null;
+	 socketId = null;
+	 chatListUsers = [];
+	 message = '';
+	 messages = [];
 	/*
 	* Chat and message related variables ends
 	*/

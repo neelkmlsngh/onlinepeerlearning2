@@ -70,7 +70,7 @@ class Server {
         this.includeRoutes();
 
         this.http.listen(this.port, this.host, () => {
-            console.log(`Listening on http://${this.host}:${this.port}`);
+            console.log(`Listening on https://${this.host}:${this.port}`);
         });
     }
 
