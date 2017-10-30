@@ -15,7 +15,8 @@ import {MatIconModule} from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import {MatInputModule} from '@angular/material';
 import {MatRadioModule} from '@angular/material';
-
+/*import {MatInputModule} from '@angular/material';*/
+>>>>>>> 4151c61a4be1ae94aca7e040e3ab513a9247a02e
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
@@ -38,14 +39,13 @@ import {LoginService} from './home/service/login.service'
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
-
-
-
+import {NgxPaginationModule} from 'ngx-pagination';
+import { TruncateModule } from 'ng2-truncate';
 import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/audio-chat.component';
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
-
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
+import { AuthoriseGuard } from './guard/authorise.guard';
 
 @NgModule({
   declarations: [
@@ -68,19 +68,21 @@ import { ProfileService } from './shared/services/profile.service';
     AuthenticateComponent,
     AudioChatComponent,
     VideoChatComponent
-
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     HttpModule,
     FormsModule,
     CKEditorModule,
     BrowserAnimationsModule,
     AceEditorModule,
-    MatInputModule,
+   /* MatInputModule,*/
     MatIconModule,
     MatButtonModule,
     MatRadioModule,
+    TruncateModule,
+   
 
     AngularFontAwesomeModule,
     ReactiveFormsModule,
@@ -97,26 +99,31 @@ import { ProfileService } from './shared/services/profile.service';
      },
      {
         path: 'main',
-        component: MainComponent
+        component: MainComponent,
+        //canActivate: [AuthoriseGuard]
       },
         {
         path: 'questions',
-        component: ViewpostComponent
+        component: ViewpostComponent,
+        canActivate: [AuthoriseGuard]
       },
       {
 
        path:'chat-window',
-       component:ChatWindowComponent
+       component:ChatWindowComponent,
+       canActivate: [AuthoriseGuard]
      },
 
      {
         path: 'video',
-        component: VideoChatComponent
+        component: VideoChatComponent,
+        canActivate: [AuthoriseGuard]
       },
       {
 
        path:'audio',
-       component:AudioChatComponent
+       component:AudioChatComponent,
+       canActivate: [AuthoriseGuard]
      },
       
       // {
@@ -128,37 +135,43 @@ import { ProfileService } from './shared/services/profile.service';
     }*/
      {
         path: 'questiondetail/:value',
-        component: DetailpostComponent
+        component: DetailpostComponent,
+        canActivate: [AuthoriseGuard]
       },
      {
         path: 'addquestion',
-        component: NewpostComponent
+        component: NewpostComponent,
+        canActivate: [AuthoriseGuard]
       },
         {
         path: 'questiondetail',
-        component: DetailpostComponent
+        component: DetailpostComponent,
+        canActivate: [AuthoriseGuard]
       },
      {
         path: 'webeditor',
-        component: WebeditorComponent
+        component: WebeditorComponent,
+        canActivate: [AuthoriseGuard]
       },
        {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthoriseGuard]
       } ,     
      {
       path:'auth/:userId/:token',
-      component: AuthenticateComponent
+      component: AuthenticateComponent,
+      canActivate: [AuthoriseGuard]
     }
     ,     
      {
       path:'**',
-      component: HomeComponent
-    }
+      component: HomeComponent,
+      canActivate: [AuthoriseGuard]
+    },
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService],
-
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,AuthoriseGuard],
   bootstrap: [AppComponent]
 })
 
