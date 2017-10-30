@@ -94,22 +94,26 @@ import { AuthoriseGuard } from './guard/authorise.guard';
       },
         {
         path: 'questions',
-        component: ViewpostComponent
+        component: ViewpostComponent,
+        canActivate: [AuthoriseGuard]
       },
       {
 
        path:'chat-window',
-       component:ChatWindowComponent
+       component:ChatWindowComponent,
+       canActivate: [AuthoriseGuard]
      },
 
      {
         path: 'video',
-        component: VideoChatComponent
+        component: VideoChatComponent,
+        canActivate: [AuthoriseGuard]
       },
       {
 
        path:'audio',
-       component:AudioChatComponent
+       component:AudioChatComponent,
+       canActivate: [AuthoriseGuard]
      },
       
       // {
@@ -121,32 +125,39 @@ import { AuthoriseGuard } from './guard/authorise.guard';
     }*/
      {
         path: 'questiondetail/:value',
-        component: DetailpostComponent
+        component: DetailpostComponent,
+        canActivate: [AuthoriseGuard]
       },
      {
         path: 'addquestion',
-        component: NewpostComponent
+        component: NewpostComponent,
+        canActivate: [AuthoriseGuard]
       },
         {
         path: 'questiondetail',
-        component: DetailpostComponent
+        component: DetailpostComponent,
+        canActivate: [AuthoriseGuard]
       },
      {
         path: 'webeditor',
-        component: WebeditorComponent
+        component: WebeditorComponent,
+        canActivate: [AuthoriseGuard]
       },
        {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthoriseGuard]
       } ,     
      {
       path:'auth/:userId/:token',
-      component: AuthenticateComponent
+      component: AuthenticateComponent,
+      canActivate: [AuthoriseGuard]
     }
     ,     
      {
       path:'**',
-      component: HomeComponent
+      component: HomeComponent,
+      canActivate: [AuthoriseGuard]
     },
    ],  { useHash: true })
   ],
