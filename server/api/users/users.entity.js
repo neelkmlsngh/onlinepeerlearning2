@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({
   name: String,
-  userId: String,
+  userId: {type:String,unique:true},
   updatedAt: { type: Date, default: Date.now },
   avatarUrl:String,
   publicRepos: String,
