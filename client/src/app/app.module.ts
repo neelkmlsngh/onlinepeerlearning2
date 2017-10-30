@@ -15,8 +15,6 @@ import {MatIconModule} from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import {MatInputModule} from '@angular/material';
 import {MatRadioModule} from '@angular/material';
-/*import {MatInputModule} from '@angular/material';*/
->>>>>>> 4151c61a4be1ae94aca7e040e3ab513a9247a02e
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
