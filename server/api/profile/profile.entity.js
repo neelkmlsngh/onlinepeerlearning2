@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 
 var ProfileSchema = new mongoose.Schema({
   userId:String,
-  name: String,
-  contact:{type:Number,default:null},
+  firstName: {type:String,default:null},
+  lastName: {type:String,default:null},
   email:{type:String,default:null},
   gender:{type:String,default:null},
   biodata:{type:String,default:null}
