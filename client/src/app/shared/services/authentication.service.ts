@@ -9,7 +9,7 @@ export class AuthenticationService {
   config = config;
   constructor(private http: Http, private router: Router) {}
 
-
+user:{}
 
   git() {
 
@@ -19,7 +19,6 @@ export class AuthenticationService {
   }
 
   setUserInfo(userId, token) {
-
     //console.log(dataObj.userId);
     localStorage.setItem('currentUser', JSON.stringify({ token: token, userId: userId }));
     if (token) {
@@ -36,15 +35,22 @@ export class AuthenticationService {
     return token;
   }
 
-  logout() {
-    let user = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(user);
-    let userid = user.userId
-     // return this.http
-     //  .post(this.config.connect.url + this.config.connect.port + '/logout')
-     //  .map(res => res, error => error.json());
-    localStorage.removeItem('currentUser');
-    this.router.navigate(["/"])
+  logoutEditor(user) {
+    // alert('logout called')
+    // let user = JSON.parse(localStorage.getItem('currentUser'));
+    
+    // let userid = user.userId
+    // user={
+    //   userid:userid
+    // }
+    //  localStorage.removeItem('currentUser');
+    
+    // this.router.navigate(["/"])
+console.log(this.config.connect.url + this.config.connect.port +'/logout',user);
+     return this.http
+      .put(this.config.connect.url + this.config.connect.port +'/logout',user)
+      .map(res => res, error => error.json());
+   
 
     
   }
