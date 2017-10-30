@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone, AfterViewInit} from '@angular/core';
 import * as $ from 'jquery';
 
 import { ChatService } from '../../services/chat.service';
@@ -8,19 +8,42 @@ import { ChatService } from '../../services/chat.service';
   styleUrls: ['./chat-sidebar.component.css'],
   providers: [ChatService]
 })
-export class ChatSidebarComponent implements OnInit, OnDestroy {
+export class ChatSidebarComponent implements OnInit, OnDestroy, AfterViewInit {
   connection;
   users:any;
   windowRef:any;
-  constructor(private chatService: ChatService) {}
-  ngOnInit() {
-    this.connection = this.chatService.getOnlineUsers().subscribe(user => {
-      this.users=user;
-      
-    })
+  methodToExport:any;
+  link:string='';
+
+  constructor(private chatService: ChatService, private zone: NgZone) {
+    this.methodToExport=this.calledFromOutside;
+    window['angularComponentRef'] = {component: this, zone: zone};
+  }
+  
+calledFromOutside(url:string) {
+    this.zone.run(() => {
+      this.link=url;
+    });
   }
 
-  screenShare(call) {
+  ngOnInit() {
+    debugger
+     this.connection = this.chatService.getOnlineUsers().subscribe(user => {
+      this.users=user;
+      
+    }) 
+   /*$(document).ready(function(){
+        $('.togetherjs-dock-right').hide();
+    });*/
+
+
+  }
+  ngAfterViewInit() {
+   console.log($('.togetherjs-dock-right'))
+    $('#togetherjs-dock').hide();
+  }
+
+  /*screenShare(call) {
      this.windowRef= window;
      if (this.windowRef.TogetherJS) {
          this.windowRef.TogetherJS();
@@ -33,6 +56,9 @@ export class ChatSidebarComponent implements OnInit, OnDestroy {
                 $('#togetherjs-window-pointer-right').remove();
             },100)
      }
+}*/
+sh(){
+  $('#textbx').toggle();
 }
 
   ngOnDestroy() {

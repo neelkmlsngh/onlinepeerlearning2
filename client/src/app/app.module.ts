@@ -47,8 +47,7 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
     DetailpostComponent,
     NewpostComponent,
     ForumComponent,
-    WebeditorComponent
-
+    WebeditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,7 +93,7 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
      {
       path:'**',
       component: HomeComponent
-    }
+    },
 
    ],  { useHash: true })
   ],

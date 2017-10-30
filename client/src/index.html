@@ -15,6 +15,28 @@
 <body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="./assets/download.js"></script>
+  <script>
+    TogetherJSConfig_on = {
+      ready: function () {
+        var data = sessionStorage.getItem('togetherjs-session.status');
+        var link='https://localhost:8080/#/main&togetherjs=';
+        var dataObj=JSON.parse(data);
+
+        $('#togetherjs-dock').hide();
+        $('#togetherjs-share').hide();
+        console.log(link+dataObj.shareId);
+        
+        window.angularComponentRef.zone.run(() => {
+          window.angularComponentRef.component.methodToExport(link+dataObj.shareId);
+        });
+        
+      }
+    };
+
+    TogetherJS.on("ready", function () {
+      $('#togetherjs-dock').hide();
+    })
+</script>
   <app-root></app-root>
 </body>
 
