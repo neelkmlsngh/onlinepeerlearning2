@@ -35,6 +35,23 @@ const getPost = function() {
 
 };
 
+const getPostByQuestion = function(getValue) {
+    return new Promise((resolve, reject) => {
+
+        formModel.findOne({ getValue }, (err, data) => {
+            if (err) {
+                logger.error('Internal error' + err);
+                reject(err);
+            } else {
+                logger.error('Internal error' + err);
+                resolve(data);
+            }
+        })
+    })
+
+};
+
+
 
 const getSearch = function(getValue) {
 	return new Promise((resolve,reject)=>{
@@ -71,7 +88,8 @@ const getSearch = function(getValue) {
 module.exports = {
     addPost: addPost,
     getPost: getPost,
-    getSearch: getSearch
+    getSearch: getSearch,
+    getPostByQuestion: getPostByQuestion,
 };
 
 

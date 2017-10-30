@@ -1,47 +1,57 @@
+<div class="heading">
+<hr>
+    <h1 class="text-center display-4">User Profile Page</h1>
+<hr>
+</div>
 
 <div class="container">
-    <h1>Edit Profile</h1>
-    <hr>
-    <div class="row">
-      <!-- left column -->
-      <div class="col-md-3">
-
-        <div class="text-center">
-        <!-- <img [src]="imgPath" alt="Mountain View" width="500" height="377"> -->
-          <img [src]="imgPath" id="profile-img-tag" class="avatar img-circle" alt="avatar">
-          <h6>Upload a different photo...</h6>
-          <input class="form-control" type="file"  name="file" id="profile-img" (click)="upload()">
-        </div>
-      
+<div class="row">
+<div class="col-sm-3">
+<div class="card card-inverse card-info">
+    <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+    <div class="card-block">
+      <figure class="profile">
+        <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+      </figure>
+      <h4 class="card-title mt-3">Neal Caffery</h4>
+      <div class="meta card-text">
+        <a>Friends</a>
       </div>
-      
-      <!-- edit form column -->
-      <div class="col-md-9 personal-info">
-        <h3>Personal info</h3>
-        
-        <form class="form-horizontal" role="form" [formGroup]="userInfo">
+      <div class="card-text">
+        Neal is a web designer living in India.
+      </div>
+    </div>
+    <div class="card-footer">
+      <small>Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>
+<div class="col-sm-9">
+<mat-tab-group>
+  <mat-tab label="GitHub Info">
+  <form class="form-horizontal" role="form">
           <div class="form-group">
-            <label class="col-lg-3 control-label">User ID:</label>
+            <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
-              <input class="form-control"  type="text" formControlName="userid" readonly>
+              <input class="form-control" value="Jane" type="text">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Login Name:</label>
+            <label class="col-lg-3 control-label">Last name:</label>
             <div class="col-lg-8">
-              <input class="form-control"  type="text" formControlName="name">
+              <input class="form-control" value="Bishop" type="text">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Repos_url:</label>
+            <label class="col-lg-3 control-label">Github ID:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" readonly formControlName="repos_url">
+              <input class="form-control" value="janesemail@gmail.com" type="text" readonly>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">Public_repos:</label>
+            <label class="col-md-3 control-label">Username:</label>
             <div class="col-md-8">
-              <input class="form-control"  type="text" readonly formControlName="public_repos">
+              <input class="form-control" value="janeuser" type="text" readonly>
             </div>
           </div>
           <div class="form-group">
@@ -53,8 +63,26 @@
             </div>
           </div>
         </form>
-      </div>
-  </div>
+  </mat-tab>
+
+  <mat-tab label="Personal Info">
+  <!-- <div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Input">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Textarea"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Select">
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div> -->
+  </mat-tab>
+</mat-tab-group>
 </div>
-
-
+</div>
+</div>
