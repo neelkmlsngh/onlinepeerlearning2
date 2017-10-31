@@ -104,7 +104,7 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
         {
         path: 'questions',
         component: ViewpostComponent,
-        canActivate: [AuthoriseGuard]
+        // canActivate: [AuthoriseGuard]
       },
       {
 
@@ -135,18 +135,12 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
      {
         path: 'questiondetail/:value',
         component: DetailpostComponent,
-        canActivate: [AuthoriseGuard]
+        // canActivate: [AuthoriseGuard]
       },
      {
         path: 'addquestion',
         component: NewpostComponent,
-        canActivate: [AuthoriseGuard]
       },
-      //   {
-      //   path: 'questiondetail',
-      //   component: DetailpostComponent,
-      //   canActivate: [AuthoriseGuard]
-      // },
      {
         path: 'webeditor',
         component: WebeditorComponent,

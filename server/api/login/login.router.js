@@ -25,7 +25,7 @@ router.get('/auth/github',cors(corsOptions),
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function will be called,
 //   which, in this example, will redirect the user to the home page.
-router.get('/auth/github/callback',cors(corsOptions)
+router.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function(req, res) {
         
