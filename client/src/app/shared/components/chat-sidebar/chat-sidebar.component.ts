@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy, NgZone, AfterViewInit,  TemplateRef} from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { Component, OnInit, OnDestroy, NgZone} from '@angular/core';
 import * as $ from 'jquery';
 
 import { ChatService } from '../../services/chat.service';
@@ -10,32 +8,16 @@ import { ChatService } from '../../services/chat.service';
   styleUrls: ['./chat-sidebar.component.css'],
   providers: [ChatService]
 })
-export class ChatSidebarComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ChatSidebarComponent implements OnInit, OnDestroy {
   connection;
   users:any;
   chat: any = null;
-  windowRef:any;
-  methodToExport:any;
-  link:string='';
-  public modalRef: BsModalRef;
 
-  constructor(private chatService: ChatService, private zone: NgZone, private modalService:BsModalService) {
-    this.methodToExport=this.calledFromOutside;
-    window['angularComponentRef'] = {component: this, zone: zone};
+  constructor(private chatService: ChatService) {
   }
 
-  public openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
-  
-calledFromOutside(url:string) {
-    this.zone.run(() => {
-      this.link=url;
-    });
-  }
 
   ngOnInit() {
-    debugger
      this.connection = this.chatService.getOnlineUsers().subscribe(user => {
       this.users=user;
       
@@ -46,28 +28,11 @@ calledFromOutside(url:string) {
 
 
   }
-  ngAfterViewInit() {
-   console.log($('.togetherjs-dock-right'))
-    $('#togetherjs-dock').hide();
-  }
 
-  /*screenShare(call) {
-     this.windowRef= window;
-     if (this.windowRef.TogetherJS) {
-         this.windowRef.TogetherJS();
 
-         setTimeout(function(){
-                $('.togetherjs-dock-right').remove();
-                this.screenSharingLink=$('.togetherjs-share-link').val();
-                console.log("=======11111",this.screenSharingLink);
-                $('#togetherjs-share').remove();
-                $('#togetherjs-window-pointer-right').remove();
-            },100)
-     }
-}*/
-sh(){
+/*sh(){
   $('#textbx').toggle();
-}
+}*/
 
   ngOnDestroy() {
     this.connection.unsubscribe();

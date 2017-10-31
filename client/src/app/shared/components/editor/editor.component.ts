@@ -38,7 +38,8 @@ export class EditorComponent implements OnInit {
       })
   }
 
-   /*download Javascript file*/
+
+  /*download Javascript file*/
   downloadJsFile() {
     let downloadLink = document.createElement("a");
 

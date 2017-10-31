@@ -15,6 +15,6 @@ export class CoderunnerService {
       testscript: code
     }
     return this.http
-      .post(this.config.connect.url2 + this.config.connect.port2 + '/execute', data)
+      .post(this.config.connect.url + this.config.connect.port2 + '/execute', data)
   }
 }
