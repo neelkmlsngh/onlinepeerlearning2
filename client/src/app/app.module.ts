@@ -7,13 +7,14 @@ import 'hammerjs';
 import {MatTabsModule} from '@angular/material';
 import{MatTabGroup} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
 import { ModalModule } from 'ngx-bootstrap';
 import { AceEditorModule } from 'ng2-ace-editor'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import {MatInputModule} from '@angular/material';
-/*import {MatInputModule} from '@angular/material';*/
+import {MatRadioModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
@@ -38,12 +39,12 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { TruncateModule } from 'ng2-truncate';
-import { FanMenuModule } from 'ng2-fan-menu';
 import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/audio-chat.component';
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
-import { AuthoriseGuard } from './guard/authorise.guard';
+import { AuthoriseGuard } from './shared/services/authorise.guard';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { AuthoriseGuard } from './guard/authorise.guard';
     RepoSidebarComponent,
     ChatSidebarComponent,
     FooterComponent,
-   ChatWindowComponent,
+    ChatWindowComponent,
     WebeditorComponent,
     ProfileComponent,
     MainComponent,
@@ -77,6 +78,8 @@ import { AuthoriseGuard } from './guard/authorise.guard';
     AceEditorModule,
     MatInputModule,
     MatIconModule,
+    MatButtonModule,
+    MatRadioModule,
     TruncateModule,
    
 
@@ -137,13 +140,7 @@ import { AuthoriseGuard } from './guard/authorise.guard';
      {
         path: 'addquestion',
         component: NewpostComponent,
-        // canActivate: [AuthoriseGuard]
       },
-      //   {
-      //   path: 'questiondetail',
-      //   component: DetailpostComponent,
-      //   // canActivate: [AuthoriseGuard]
-      // },
      {
         path: 'webeditor',
         component: WebeditorComponent,
@@ -157,13 +154,13 @@ import { AuthoriseGuard } from './guard/authorise.guard';
      {
       path:'auth/:userId/:token',
       component: AuthenticateComponent,
-      canActivate: [AuthoriseGuard]
+       //canActivate: [AuthoriseGuard]
     }
     ,     
      {
       path:'**',
       component: HomeComponent,
-      canActivate: [AuthoriseGuard]
+      
     },
    ],  { useHash: true })
   ],

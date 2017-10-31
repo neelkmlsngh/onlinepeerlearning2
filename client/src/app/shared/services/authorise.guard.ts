@@ -17,7 +17,8 @@ export class AuthoriseGuard implements CanActivate {
  //checking valid or invalid user
  private isAuthorised(): boolean {
    //accessing token from local storage
-   let token = localStorage.getItem('currentUser');
+   let user =JSON.parse(localStorage.getItem('currentUser'));
+   let token=user.token;
    //if token is valid then user can visit different routes
    if (token) {
      this.authorised = true;
@@ -32,3 +33,5 @@ export class AuthoriseGuard implements CanActivate {
  }
 
 }
+
+

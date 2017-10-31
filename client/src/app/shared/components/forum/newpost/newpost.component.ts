@@ -1,11 +1,11 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ForumService } from '../../../services/forum.service';
 
 @Component({
   selector: 'app-newpost',
   templateUrl: './newpost.component.html',
-  styleUrls: ['./newpost.component.css']
+  styleUrls: ['./newpost.component.css'],
+  providers: [ForumService]
 })
 export class NewpostComponent implements OnInit {
 
@@ -36,7 +36,7 @@ export class NewpostComponent implements OnInit {
    this.forum.save(data.value).subscribe((data1)=>{
      console.log(data1);
      // alert("your post have been inserted");
-      // location.reload();
+
    })
  }
 }
