@@ -44,6 +44,7 @@ import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
 import { AuthoriseGuard } from './shared/services/authorise.guard';
+import { AnswersComponent } from './shared/components/forum/answers/answers.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
     WebeditorComponent,
     AuthenticateComponent,
     AudioChatComponent,
-    VideoChatComponent
+    VideoChatComponent,
+    AnswersComponent
   ],
   imports: [
     BrowserModule,
@@ -135,6 +137,11 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
      {
         path: 'questiondetail/:value',
         component: DetailpostComponent,
+        // canActivate: [AuthoriseGuard]
+      },
+        {
+        path: 'answers/:value',
+        component: AnswersComponent,
         // canActivate: [AuthoriseGuard]
       },
      {
