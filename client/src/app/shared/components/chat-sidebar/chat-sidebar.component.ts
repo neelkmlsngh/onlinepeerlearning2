@@ -1,4 +1,6 @@
-import { Component, OnInit, OnDestroy, NgZone, AfterViewInit} from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone, AfterViewInit,  TemplateRef} from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
 
 import { ChatService } from '../../services/chat.service';
@@ -15,10 +17,15 @@ export class ChatSidebarComponent implements OnInit, OnDestroy, AfterViewInit {
   windowRef:any;
   methodToExport:any;
   link:string='';
+  public modalRef: BsModalRef;
 
-  constructor(private chatService: ChatService, private zone: NgZone) {
+  constructor(private chatService: ChatService, private zone: NgZone, private modalService:BsModalService) {
     this.methodToExport=this.calledFromOutside;
     window['angularComponentRef'] = {component: this, zone: zone};
+  }
+
+  public openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
   
 calledFromOutside(url:string) {
