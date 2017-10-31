@@ -1,7 +1,148 @@
-<div class="container-fluid">
+<html lang="en">
+<!--head tag-->
+
+<head>
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!--Plugin Css-->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!--Custom Font-->
+</head>
+<!--ending of head tag-->
+<!--starting of body tag-->
+
+<body class="fixed-nav bg-dark" id="page-top">
+  <!--nav bar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" href="#">Online Code Editor</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
+
+            <i class="fa fa-fw fa-sitemap"></i>
+
+            <span class="nav-link-text">Choose Mode</span>
+
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseMulti">
+            <li>
+              <a (click)="mode('html')">HTML/CSS</a>
+            </li>
+            <li>
+              <a (click)="mode('javascript')">JAVASCRIPT</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item active" data-toggle="tooltip" data-placement="right" title="Repository List">
+          <a class="nav-link collapse" data-toggle="collapses" data-parent="#exampleAccordion">
+
+              <i class="fa fa-fw fa-dashboard"></i>
+
+              <span class="nav-link-text">Repo
+
+               </span>
+
+            </a>
+
+<div *ngFor="let repo of githubUser" class="dropdown">
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a *ngFor="let files of data" class="list-group-item list-group-item-action" (click)="showFile(selectedValue, files.name)">
+    <ul class="sidenav-third-level ">
+                <li>
+                  <a>{{files.name}}</a>
+                </li>
+              </ul>
+              </a>
+  </div>
+</div>
+
+          <div class="list-group">
+            <select name="carlist" form="carform" [(ngModel)]="selectedValue" (click)="reposearch(selectedValue)">
+              <option *ngFor="let repo of githubUser">{{repo.name}}</option>
+            </select>
+            <a *ngFor="let files of data" class="list-group-item list-group-item-action" (click)="showFile(selectedValue, files.name)">
+              <ul class="sidenav-third-level ">
+                <li>
+                  <a>{{files.name}}</a>
+                </li>
+              </ul>
+            </a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+
+              <i class="fa fa-fw fa-angle-left"></i>
+
+            </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-5">
+        <li class="nav-item">
+          <a class="nav-link">
+
+              <i class="fa fa-forumbee"></i>
+
+             Forums</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)=logout()>
+
+              <i class="fa fa-fw fa-sign-out"></i>
+
+             Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/profile'">
+
+              <i class="fa fa-fw fa-user-circle-o"></i>
+
+             Profile</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--nav bar end-->
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- request status -->
+      <div class="card mb-3">
+        <div class="card-body acolor text-center">
+          <a>repo buttons</a>
+        </div>
+      </div>
+      <!-- code editor selected based on mode -->
+      <div *ngIf="mod=='javascript'">
+        <app-editor [content]="content"></app-editor>
+      </div>
+      <div *ngIf="mod=='html'">
+        <app-webeditor></app-webeditor>
+      </div>
+    </div>
+  </div>
+  <!-- footer -->
+  <footer class="sticky-footer">
+    <div class="container">
+      <div class="text-center">
+        <small>© 2017 Copyright: <a href="https://www.MDBootstrap.com"> codeEditor.com</a></small>
+      </div>
+    </div>
+  </footer>
+  <!-- footer end -->
+</body>
+<!-- ending of body tag -->
+
+</html>
+<!-- <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <app-navbar></app-navbar>
+      <app-navbar></app-navb
+ar>
     </div>
   </div>
   <div class="row">
@@ -16,7 +157,7 @@
         <div class="col-md-4">
           <div class="row mt-3">
             <div class="col-md-12">
-              <!-- select language -->
+              select language
               <select name="languages2" (change)="mode($event)">
                 <option [value]='lng' *ngFor="let lng of languages">{{lng}}</option>
               </select>
@@ -38,3 +179,4 @@
     <app-chat-sidebar></app-chat-sidebar>
   </div>
 </div>
+ -->

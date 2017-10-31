@@ -53,8 +53,6 @@ export class EditorComponent implements OnInit {
 
   }
 
-  mode() {
-  }
-
+ 
 
 }
