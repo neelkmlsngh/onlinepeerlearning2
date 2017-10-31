@@ -55,6 +55,7 @@ function loginviagit() {
         clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
         callbackURL: "https://localhost:8080/auth/github/callback"
     }, function(accessToken, refreshToken, profile, done) {
+        console.log(profile);
         let userInfo = {
             name: profile._json.login,
             userId: profile.id,
