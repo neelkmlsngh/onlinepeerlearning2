@@ -22,7 +22,7 @@ router.get('/auth/github',
 router.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function(req, res) {
-        console.log(req);
+        
         userdetails = {
             userid: req.user.doc.userId,
             name: req.user.doc.name
@@ -31,7 +31,7 @@ router.get('/auth/github/callback',
         let userToken = jwt.sign({ userdetails }, appConfig.SECRET, {
             expiresIn: appConfig.EXPIRETIME
         });;
-
+        console.log(userToken)
         res.redirect(appConfig.REDIRECT + req.user.doc.userId + "/" + userToken)
 
     });
