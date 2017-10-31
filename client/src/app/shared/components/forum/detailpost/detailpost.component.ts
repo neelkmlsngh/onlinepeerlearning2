@@ -16,6 +16,7 @@ export class DetailpostComponent implements OnInit {
 
   constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {}
   name: string;
+  editor1:string;
   obj:any = {};
   codeSnippet: string;
   data: any = [];
