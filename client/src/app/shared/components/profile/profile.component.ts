@@ -10,6 +10,7 @@ export class ProfileComponent implements OnInit {
   userInfo:FormGroup;
   currentUser:any;
   imgPath:string='';
+  img;
 
   constructor(@Inject(FormBuilder) private fb: FormBuilder,private profileService:ProfileService) {
     // initialising user details to be displayed
@@ -25,20 +26,24 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser= JSON.parse(localStorage.getItem('currentUser'))
-    console.log(this.currentUser)
+    console.log(this.currentUser+"first")
     this.profileService.getDataFromDB(this.currentUser.userId)
     .subscribe((res)=>{
       console.log(JSON.stringify(res)+"service")
       let data={
-        userid:res.userid,
-        repos_url:res.repos_url,
-        public_repos:res.public_repos,
-        avatar_url:res.avatar_url,
+        userid:res.userId,
+        public_repos:res.publicRepos,
+        avatar_url:res.avatarUrl,
         name:res.name
       }
       this.imgPath=data.avatar_url;
+      console.log(this.imgPath+"img path")
       this.displayData(data);
     })
+  }
+
+  upload(){
+    
   }
 
   displayData(data:any){
@@ -50,8 +55,7 @@ export class ProfileComponent implements OnInit {
       public_repos:[data.public_repos]
     })
   }
-
-  upload(){
-  	
-  }
 }
+
+
+  

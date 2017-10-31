@@ -1,18 +1,57 @@
-/* good for titles... */
+/*font styling on heading*/
 
-body, h1, h2, h3, h4, h5, h6 {
+body, h1, h3 {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
+}
+
+/*css on button*/
+
+.orange-circle-button {
+  box-shadow: 2px 4px 0 2px rgba(0, 0, 0, 0.1);
+  border: .5em solid lightgrey;
+  font-size: 1.3em;
+  line-height: 1.7em;
+  color: #000000;
+  background: linear-gradient(to right, #00c3ff, #ffff1c);
+  margin: auto;
+  border-radius: 30%;
+  height: 11.5em;
+  width: 12em;
+  position: relative;
+  margin-top: 120px;
+  margin-left: 30px;
+}
+
+.github-image{
+  width: 5em;
+  height: 5em;
+}
+
+/*css on hover the button*/
+
+.orange-circle-button:hover {
+  color: #ffffff;
+  background: linear-gradient(to right, #ff9966, #ff5e62);
+  text-decoration: none;
+  border-color: lightgrey;
+}
+
+.orange-circle-button:visited {
+  color: #ffffff;
+  background-color: #e84d0e;
+  text-decoration: none;
+}
+
+.btn-circle:hover {
+  color: white;
+  opacity: 1;
 }
 
 /*css on modal*/
 
 .modal-body {
   background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/itCjTBE/grey-light-smooth-moving-waves-background-video-animation-hd-1920x1080_vjkea4zve__F0000.png");
-}
-
-h4 {
-  color: white;
 }
 
 .modal-header {
@@ -23,42 +62,23 @@ h4 {
   justify-content: center;
 }
 
-.carousel-inner
-{
-  background-image: url("../../assets/image/carousel.jpg");
-  height: 100%;
-  width: 100%;
-}
-
 .WhiteText
 {
   color:white;
   font-size: 100px;
   text-align: center;
-  margin-top:250px;
+  margin-top:100px;
 }
 
 .YellowText
 {
   color:gold;
   font-size: 40px;
-  margin-bottom: 7.1em;
+  margin-bottom: 4.2em;
   text-align: center;
 }
 
-.spacer-md
-{
-  padding-top:50px;
-}
-
 /* make the slide sections move at different speeds */
-
-.slide-delay-1 {
-  -webkit-animation-delay: 0.2s;
-  -moz-animation-delay: 0.2s;
-  -o-animation-delay: 0.2s;
-  -ms-animation-delay: 0.2s;
-}
 
 .slide-delay-2 {
   -webkit-animation-delay: 0.5s;
@@ -259,56 +279,105 @@ h4 {
   color:white;
   font-size: 40px;
   text-align: center;
-  margin-top:200px;
+  margin-top:50px;
   }
 
   .YellowText {
   color:gold;
   font-size: 20px;
-  margin-bottom: 14em;
   text-align: center;
+  }
+
+  h5 {
+    font-size: 0.7em;
+  }
+
+  .orange-circle-button {
+    font-size: 1em;
+    height: 12em;
+    width: 12em;
+    border-radius: 30%;
+    line-height: 1.5em;
+    margin-left: 70px;
+    margin-top:20px;
+  }
+
+  github-img {
+    width: 2.5em;
+    height: 2.5em;
   }
 }
 
 @media screen and (max-width: 768px) and (min-width: 426px) {
+  
   .WhiteText {
   color:white;
   font-size: 70px;
   text-align: center;
-  margin-top:200px;
+  margin-top:20px;
   }
   
   .YellowText {
   color:gold;
   font-size: 30px;
-  margin-bottom: 4.5em;
   text-align: center;
+  }
+  
+  .orange-circle-button {
+    font-size: 0.8em;
+    height: 12em;
+    width: 12em;
+    margin-bottom: 100px;
+    border-radius: 30%;
+    line-height: 1.5em;
+    margin-left: 20px;
+  }
+
+  github-img {
+    width: 3.5em;
+    height: 3.5em;
+  }
+
+  h5 {
+    font-size: 0.7em;
   }
 }
 
 @media screen and (width: 320px){
+  
   .WhiteText{
      font-size: 30px;
   }
 
   .YellowText {
   font-size: 15px;
-  margin-bottom: 15em;
   } 
+
+  .orange-circle-button {
+    margin-left: 45px;
+  }
+}
+
+@media screen and (width: 425px){
+ 
+  .orange-circle-button {
+    margin-left: 80px;
+  }
 }
 
 @media screen and (width: 1024px){
+  
   .WhiteText {
   color:white;
   font-size: 70px;
   text-align: center;
-  margin-top:200px;
+  margin-top:50px;
   }
 
   .YellowText {
   color:gold;
   font-size: 30px;
-  margin-bottom: 5.7em;
+  margin-bottom: 4em;
   text-align: center;
   } 
 }

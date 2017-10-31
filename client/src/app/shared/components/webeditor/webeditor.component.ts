@@ -22,7 +22,60 @@ export class WebeditorComponent implements OnInit {
   jsblob: any;
   textcontent: any
   myUrl: any;
-  data: any
+  data: any;
+  comments: any = "\n<!-- Enter Your Comment -->";
+  tabels: string = "\n<table>\n" +
+    "<tr>\n\t" +
+    "<th>Heading</th>\n\t" +
+    "<th>Heading</th>\n" +
+    "</tr>\n" +
+    "<tr>\n\t" +
+    "<td>Value</td>\n\t" +
+    "<td>Value</td>\n" +
+    "</tr>\n" +
+    "</table>";
+
+  unordered: any = '\n<ul>\n\t' +
+    '<li>Item 1</li>\n\t' +
+    '<li>Item 2</li>\n\t' +
+    '<li>Item 3</li>\n' +
+    '</ul>';
+
+
+  forms: any = '\n<form action="" method="get">\n\t' +
+    '<label for="first-name">First name :</label>\n\t' +
+    '<input id="first-name" type="text" name="firstname"><br><br>\n\t' +
+    '<label for="last-name">Last name :</label>\n\t' +
+    '<input id="last-name" type="text" name="lastname"><br>\n\t' +
+    '<input type="submit" value="Submit">\n' +
+    '</form>';
+
+
+  includeJs: any = '\n<script src="script.js"></script>';
+  includeCss: any = '\n<link href="style.css" rel="stylesheet">';
+
+/*snippet for css*/
+  commentsCss:any ="\n/* Add your comment here */";
+  elementSelector:any ="\np {"+
+     "\nfont-size: 20px;"+
+      "\n}";
+  classSelector:any= "\n.className {"+
+    "\nbackground-color: green;"+
+    "\n}";
+  idSelector:any= "\n#idName {"+
+    "\nbackground-color: green;"+
+    "\n}";
+  mediaQueries:any ="\n@media screen and (max-width: 320px) {"+
+  "\n/* Rules when screen is up to 320px wide */"+
+    "\n}"+
+
+    "\n@media screen and (min-width: 321px) and (max-width: 768px) {"+
+      "\n/* Rules when screen is between 321px and 768px wide */"+
+    "\n}"+
+
+    "\n@media screen and (min-width: 769px) {"+
+     "\n/* Rules when screen is wider than 768px */"+
+    "\n}";
 
   ngOnInit() {
     this.onChange(this.code)
@@ -42,6 +95,48 @@ export class WebeditorComponent implements OnInit {
     "</script>\n"
   "</html>";
 
+  comment() {
+    this.htmlValue += " " + this.comments;
+  }
+
+  table() {
+    this.htmlValue += " " + this.tabels;
+  }
+
+  unodered() {
+    this.htmlValue += " " + this.unordered;
+  }
+  form() {
+    this.htmlValue += " " + this.forms;
+  }
+  includeJS() {
+    this.htmlValue += " " + this.includeJs;
+  }
+  includeCSS() {
+    this.htmlValue += " " + this.includeCss;
+  }
+
+
+  /*css snippet methods*/
+  commentCss(){
+    this.cssValue += " "+ this.commentsCss;
+  }
+
+  elementsSelector(){
+    this.cssValue +=" "+ this.elementSelector;
+  }
+
+  class(){
+    this.cssValue += " " + this.classSelector;
+  }
+
+  id() {
+    this.cssValue += " " + this.idSelector;
+  }
+
+  mediaQuery(){
+    this.cssValue += " " + this.mediaQueries;
+  }
 
   prepareSource() {
 
