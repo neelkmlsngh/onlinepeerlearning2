@@ -31,7 +31,9 @@ user:{}
   }
 
   getToken(): any {
-    let token = JSON.parse(localStorage.getItem('currentUser'))['token'];
+    let userDetails = JSON.parse(localStorage.getItem('currentUser'));
+    let token=userDetails.token;
+console.log('token',token)
     return token;
   }
 
@@ -43,10 +45,7 @@ user:{}
     // user={
     //   userid:userid
     // }
-    //  localStorage.removeItem('currentUser');
-    
-    // this.router.navigate(["/"])
-console.log(this.config.connect.url + this.config.connect.port +'/logout',user);
+     localStorage.removeItem('currentUser');
      return this.http
       .put(this.config.connect.url + this.config.connect.port +'/logout',user)
       .map(res => res, error => error.json());
