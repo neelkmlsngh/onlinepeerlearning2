@@ -43,7 +43,7 @@ import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
-//import { AuthoriseGuard } from './shared/services/authorise.guard';
+import { AuthoriseGuard } from './shared/services/authorise.guard';
 
 
 @NgModule({
@@ -99,30 +99,30 @@ import { ProfileService } from './shared/services/profile.service';
      {
         path: 'main',
         component: MainComponent,
-        //canActivate: [AuthoriseGuard]
+        canActivate: [AuthoriseGuard]
       },
         {
         path: 'questions',
         component: ViewpostComponent,
-        //canActivate: [AuthoriseGuard]
+        canActivate: [AuthoriseGuard]
       },
       {
 
        path:'chat-window',
        component:ChatWindowComponent,
-       //canActivate: [AuthoriseGuard]
+       canActivate: [AuthoriseGuard]
      },
 
      {
         path: 'video',
         component: VideoChatComponent,
-        //canActivate: [AuthoriseGuard]
+        canActivate: [AuthoriseGuard]
       },
       {
 
        path:'audio',
        component:AudioChatComponent,
-       //canActivate: [AuthoriseGuard]
+       canActivate: [AuthoriseGuard]
      },
       
       // {
@@ -135,12 +135,12 @@ import { ProfileService } from './shared/services/profile.service';
      {
         path: 'questiondetail/:value',
         component: DetailpostComponent,
-        //canActivate: [AuthoriseGuard]
+        canActivate: [AuthoriseGuard]
       },
      {
         path: 'addquestion',
         component: NewpostComponent,
-        //canActivate: [AuthoriseGuard]
+        canActivate: [AuthoriseGuard]
       },
       //   {
       //   path: 'questiondetail',
@@ -150,17 +150,17 @@ import { ProfileService } from './shared/services/profile.service';
      {
         path: 'webeditor',
         component: WebeditorComponent,
-        //canActivate: [AuthoriseGuard]
+        canActivate: [AuthoriseGuard]
       },
        {
         path: 'profile',
         component: ProfileComponent,
-        //canActivate: [AuthoriseGuard]
+        canActivate: [AuthoriseGuard]
       } ,     
      {
       path:'auth/:userId/:token',
       component: AuthenticateComponent,
-      // canActivate: [AuthoriseGuard]
+       //canActivate: [AuthoriseGuard]
     }
     ,     
      {
@@ -170,7 +170,7 @@ import { ProfileService } from './shared/services/profile.service';
     },
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,AuthoriseGuard],
   bootstrap: [AppComponent]
 })
 
