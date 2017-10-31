@@ -872,3 +872,10 @@ footer.sticky-footer {
 
 }
 
+
+select.selectpicker {
+  background-color: grey;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* display: none !important; */
+}

@@ -1,4 +1,8 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone, TemplateRef } from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import * as $ from 'jquery';
+
 import { config } from '../shared/config/config';
 import { GitService } from '../shared/services/git.service'
 
@@ -7,80 +11,100 @@ import { GitService } from '../shared/services/git.service'
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
+
 export class MainComponent implements OnInit {
 
-    constructor( private gitService: GitService) { }
-  
-  content:any;
-  languages:any=[];
-  mod:any='html'
-  githubUser:any;
+  content: any;
+  languages: any = [];
+  mod: any = 'html'
+  githubUser: any;
   selectedValue: any;
   data: any;
   fileData: any;
   selectedfile: any;
   url: any = "";
-  text: any ="enter code here";
- 
+  text: any = "enter code here";
+  windowRef: any;
+  methodToExport: any;
+  link: string = '';
+  public modalRef: BsModalRef;
+
+  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService) {
+
+    this.methodToExport = this.calledFromOutside;
+    window['angularComponentRef'] = { component: this, zone: zone };
+
+  }
+
+  public openModal(template: TemplateRef < any > ) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  calledFromOutside(url: string) {
+    this.zone.run(() => {
+      this.link = url;
+    });
+  }
 
 
-ngOnInit() {
-      this.languages=config.language;
+
+  ngOnInit() {
+    this.languages = config.language;
     this.gitService.getRepos()
-     .subscribe(repos => {
-       this.githubUser = repos;   
+      .subscribe(repos => {
+        this.githubUser = repos;
 
-     })
- }
+      })
+  }
 
 
-reposearch(selected)
-            {                
-             
-                this.gitService.getTree(selected)
-                .subscribe(data=>{this.data=data
-                 console.log(this.data)})
-               
-            }
+  reposearch(selected) {
 
- showFile(reponame, filename) {
-   this.gitService.openFolder(reponame, filename)
-     .subscribe(
-       data => {
-         this.data = data
-         this.url = this.url + filename + "/"
-         console.log(this.url)
-       }
-       , err => {
-         this.show(reponame, this.url + filename)
-         this.url = "";
+    this.gitService.getTree(selected)
+      .subscribe(data => {
+        this.data = data
 
-       })
- }
+      })
 
- show(reponame, filename) {
-   this.gitService.getFile(reponame, filename)
-     .subscribe(data => {
+  }
 
-       this.fileData = data;
-       this.text = this.fileData._body;
-       this.content.emit(this.text);
-       console.log(JSON.stringify(this.text))
-     })
- }
- 
+  showFile(reponame, filename) {
+    this.gitService.openFolder(reponame, filename)
+      .subscribe(
+        data => {
+          this.data = data
+          this.url = this.url + filename + "/"
+
+        }, err => {
+          this.show(reponame, this.url + filename)
+          this.url = "";
+
+        })
+  }
+
+  show(reponame, filename) {
+    this.gitService.getFile(reponame, filename)
+      .subscribe(data => {
+
+        this.fileData = data;
+        this.text = this.fileData._body;
+        this.content.emit(this.text);
+
+      })
+  }
+
 
 
 
 
   mode(event) {
-     
-    this.mod = event;
-     }
 
-     getcontent(text){
-       this.content=text;
-     }
+    this.mod = event;
+  }
+
+  getcontent(text) {
+    this.content = text;
+  }
 
 
 }
