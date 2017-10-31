@@ -43,6 +43,7 @@ import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
+import { CoderunnerService } from './shared/services/coderunner.service';
 import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { AnswersComponent } from './shared/components/forum/answers/answers.component';
 
@@ -171,7 +172,7 @@ import { AnswersComponent } from './shared/components/forum/answers/answers.comp
     },
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,AuthoriseGuard],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,AuthoriseGuard],
   bootstrap: [AppComponent]
 })
 
