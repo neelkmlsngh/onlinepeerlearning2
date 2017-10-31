@@ -20,9 +20,8 @@ logout(){
       userid:userid
     }
      
-	this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
-     console.log('data1');
-     this.router.navigate(["/"]);
+		this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
+    this.router.navigate(["/"]);
      localStorage.removeItem('currentUser');
 })
 }

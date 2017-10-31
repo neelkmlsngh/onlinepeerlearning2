@@ -61,12 +61,12 @@ function loginviagit() {
             avatarUrl: profile._json.avatar_url,
             publicRepos: profile._json.public_repos,
             reposUrl: profile._json.repos_url,
-            status:true
+            status: true
 
-         
+
         }
 
- 
+
         //save login credentials in login collection
         //function called by login controller
         loginController.saveLoginCredentials(userInfo, done);
