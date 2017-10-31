@@ -116,13 +116,13 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
      {
         path: 'video',
         component: VideoChatComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
       {
 
        path:'audio',
        component:AudioChatComponent,
-       canActivate: [AuthoriseGuard]
+       //canActivate: [AuthoriseGuard]
      },
       
       // {
