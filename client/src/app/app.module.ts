@@ -119,13 +119,13 @@ import { AnswersComponent } from './shared/components/forum/answers/answers.comp
      {
         path: 'video',
         component: VideoChatComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
       {
 
        path:'audio',
        component:AudioChatComponent,
-       canActivate: [AuthoriseGuard]
+       //canActivate: [AuthoriseGuard]
      },
       
       // {
