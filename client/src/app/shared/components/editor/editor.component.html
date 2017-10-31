@@ -1,4 +1,13 @@
-<div  ace-editor [(text)]="content" [mode]="'javascript'" [theme]="'tomorrow_night_blue'" [options]="options" [readOnly]="false" [autoUpdateContent]="true"   (textChanged)="onChange($event)" class="editor mt-3">
- </div>
-
-<div id="editor"></div>
+<section id="code_editors">
+  <a href="javascript:void(0);" (click)="downloadJsFile()">Javascript File
+              <i class="fa fa-download" aria-hidden="true" data-toggle="popover" title="Download JS File"></i>  </a>
+  <div id="myJsDiv"></div>
+  <button class="btn-primary" (click)="executecode()">Execute</button>
+  <div ace-editor [(text)]="jsValue" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" class="code_box" id="javascript">
+  </div>
+</section>
+<div class="row">
+  <div class="col-md-12">Output:
+    <div class="output">{{dataObj}}</div>
+  </div>
+</div>
