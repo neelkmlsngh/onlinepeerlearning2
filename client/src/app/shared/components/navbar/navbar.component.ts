@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import swal from 'sweetalert2';
 import {AuthenticationService} from '../../../shared/services/authentication.service'
 @Component({
   selector: 'app-navbar',
@@ -21,6 +22,24 @@ logout(){
     }
      
 		this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
+      //We get dialog result
+        if (data1) {
+          swal({
+      timer: 1000,
+      title: "Preferences are set",
+      text:  "accepted",
+      type:  'success',
+      showConfirmButton: false,
+    })
+        } else {
+          swal({
+      timer: 1000,
+      title: "Preferences are not set",
+      text:  "declined",
+      type: 'error',
+      showConfirmButton: false,
+    })
+        }
     this.router.navigate(["/"]);
      localStorage.removeItem('currentUser');
 })
