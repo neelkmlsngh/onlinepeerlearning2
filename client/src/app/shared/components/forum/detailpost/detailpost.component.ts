@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ForumService } from '../../../services/forum.service';
 import { ParamMap } from '@angular/router';
 import { Router, ActivatedRoute, Params, Data } from '@angular/router'
+
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -12,6 +13,7 @@ import 'rxjs/add/operator/switchMap';
 
 export class DetailpostComponent implements OnInit {
 
+
   constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {}
   name: string;
   obj:any = {};
@@ -20,7 +22,16 @@ export class DetailpostComponent implements OnInit {
   errors: string;
   answer:string="";
   questionTitle:string="";
+  userId: any;
+
   ngOnInit() {
+    var config = {
+    extraPlugins: 'codesnippet',
+    codeSnippet_theme: 'monokai_sublime',
+    height: 356
+  };
+
+  CKEDITOR.replace( 'editor1', config );
 
     this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
@@ -33,8 +44,9 @@ export class DetailpostComponent implements OnInit {
     };
   }
 
-  postAnswer(data) {
-    console.log(data.value);
+  postAnswer() {
+
+
     this.obj = {
       username: "prashant",
       answer: this.answer,
@@ -47,6 +59,7 @@ export class DetailpostComponent implements OnInit {
         })
       }
     }
+  
 
 
  

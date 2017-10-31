@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ForumService } from '../../../services/forum.service';
-
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-newpost',
   templateUrl: './newpost.component.html',
@@ -23,6 +23,16 @@ export class NewpostComponent implements OnInit {
 
  
  ngOnInit() {
+
+        var config = {
+    extraPlugins: 'codesnippet',
+    codeSnippet_theme: 'monokai_sublime',
+    height: 356
+  };
+
+  CKEDITOR.replace( 'editor1', config );
+
+
       this.date = new Date();  
       let day = this.date.getDate();    
       let month = this.date.getMonth() + 1;    
@@ -33,11 +43,27 @@ export class NewpostComponent implements OnInit {
  insertPost(data)
  {
    console.log(data.value);
-   this.forum.save(data.value).subscribe((data1)=>{
-     console.log(data1);
-     // alert("your post have been inserted");
-
-   })
+   this.forum.save(data.value).subscribe((res)=>{
+        //We get dialog result
+        if (res) {
+          console.log(res)
+          swal({
+      timer: 1000,
+      title: "Posted Successfully",
+      text:  "accepted",
+      type:  'success',
+      showConfirmButton: false,
+    })
+        } else {
+          swal({
+      timer: 1000,
+      title: "Error occured",
+      text:  "declined",
+      type: 'error',
+      showConfirmButton: false,
+    })
+        }
+      })
  }
 }
 

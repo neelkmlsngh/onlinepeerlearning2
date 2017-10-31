@@ -35,7 +35,8 @@
     "passport": "^0.4.0",
     "passport-github2": "^0.1.11",
     "peer": "^0.2.8",
-    "socket.io": "^1.4.6"
+    "socket.io": "^1.4.6",
+    "sweetalert2": "^6.11.3"
   },
   "devDependencies": {
     "@angular/cli": "^1.4.9"

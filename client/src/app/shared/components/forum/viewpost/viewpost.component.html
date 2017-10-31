@@ -60,8 +60,8 @@
               <div class="vote h5">
                 {{result.votes}} votes
               </div>
-              <div class="answeraccepted h5  border py-2 text-white mt-4">
-                <strong class="pl-4">12</strong>
+              <div class="answeraccepted h5  border py-2 text-white mt-4" (click)="showAnswers(result.questionTitle)">
+                <strong class="pl-4">{{result.answers.length}}</strong>
                 <br><small class="ans">answers</small>
               </div>
               <div class="views h6  mt-4">

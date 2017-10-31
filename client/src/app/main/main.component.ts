@@ -5,7 +5,8 @@ import * as $ from 'jquery';
 
 import { config } from '../shared/config/config';
 import { GitService } from '../shared/services/git.service'
-
+import { AuthenticationService } from '../shared/services/authentication.service';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -29,7 +30,7 @@ export class MainComponent implements OnInit {
   link: string = '';
   public modalRef: BsModalRef;
 
-  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService) {
+  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,private authenticationservice:AuthenticationService,private router:Router) {
 
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
@@ -106,5 +107,17 @@ export class MainComponent implements OnInit {
     this.content = text;
   }
 
-
+logout(){ 
+ let user = JSON.parse(localStorage.getItem('currentUser'));
+    
+    let userid = user.userId;
+    user={
+      userid:userid
+    }
+     
+    this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
+    this.router.navigate(["/"]);
+     localStorage.removeItem('currentUser');
+})
+}
 }
