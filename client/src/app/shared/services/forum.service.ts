@@ -50,7 +50,12 @@ export class ForumService {
   //     .post('https://localhost:8080/api/forum/answer/' + )
   //     .map(res => res.json());
   // }
+  saveAnswer(question,answer){
+     return this.http.
+     get('https://localhost:8080/api/forum/update/' + question,answer)
+      .map(res => res.json());
 
+}
 
   private authoriZation() {
     let token = this.autheticationservice.getToken();

@@ -51,7 +51,16 @@ p: number[]=[];
 
    })
  }
-
+   getDetails(searchTerm:any){
+  //alert(searchTerm.value
+console.log(searchTerm)
+  this.forum.searchEntries(searchTerm.value)
+    .subscribe(res => {
+      this.data =res;
+      console.log(this.data)
+    
+    });
+}
    getQuestionDetail(value):any { 
       this.router.navigate(['/questiondetail',value])   
     }
