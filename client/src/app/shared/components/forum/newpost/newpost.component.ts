@@ -23,6 +23,16 @@ export class NewpostComponent implements OnInit {
 
  
  ngOnInit() {
+
+        var config = {
+    extraPlugins: 'codesnippet',
+    codeSnippet_theme: 'monokai_sublime',
+    height: 356
+  };
+
+  CKEDITOR.replace( 'editor1', config );
+
+
       this.date = new Date();  
       let day = this.date.getDate();    
       let month = this.date.getMonth() + 1;    
