@@ -102,7 +102,7 @@ import { AnswersComponent } from './shared/components/forum/answers/answers.comp
      {
         path: 'main',
         component: MainComponent,
-        canActivate: [AuthoriseGuard]
+        /*canActivate: [AuthoriseGuard]*/
       },
         {
         path: 'questions',

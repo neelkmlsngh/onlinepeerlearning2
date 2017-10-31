@@ -33,9 +33,9 @@
         var dataObj=JSON.parse(data);
 
         $('#togetherjs-dock').hide();
-        $('#togetherjs-share').hide();
-   
-        
+        $('.togetherjs-dock-right').hide();
+        $('#togetherjs-share').hide();   
+
         window.angularComponentRef.zone.run(() => {
           window.angularComponentRef.component.methodToExport(link+dataObj.shareId);
         });
@@ -45,6 +45,7 @@
 
     TogetherJS.on("ready", function () {
       $('#togetherjs-dock').hide();
+      $('.togetherjs-dock-right').hide();
     })
 </script>
   <app-root></app-root>
