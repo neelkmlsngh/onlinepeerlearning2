@@ -43,7 +43,9 @@ import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
+import { CoderunnerService } from './shared/services/coderunner.service';
 import { AuthoriseGuard } from './shared/services/authorise.guard';
+import { AnswersComponent } from './shared/components/forum/answers/answers.component';
 
 
 @NgModule({
@@ -66,7 +68,8 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
     WebeditorComponent,
     AuthenticateComponent,
     AudioChatComponent,
-    VideoChatComponent
+    VideoChatComponent,
+    AnswersComponent
   ],
   imports: [
     BrowserModule,
@@ -137,6 +140,11 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
         component: DetailpostComponent,
         // canActivate: [AuthoriseGuard]
       },
+        {
+        path: 'answers/:value',
+        component: AnswersComponent,
+        // canActivate: [AuthoriseGuard]
+      },
      {
         path: 'addquestion',
         component: NewpostComponent,
@@ -164,7 +172,7 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
     },
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,AuthoriseGuard],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,AuthoriseGuard],
   bootstrap: [AppComponent]
 })
 

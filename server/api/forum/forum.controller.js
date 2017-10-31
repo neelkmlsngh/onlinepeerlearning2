@@ -93,7 +93,7 @@ const saveAnswer = function(getValue, updateValue) {
 
                 formModel.update({
                   'questionTitle': getValue}, {
-                        $set:{ 'answers': updateValue}},(err, data) => {
+                        $push:{ 'answers': updateValue}},(err, data) => {
                             if (err) {
                                 logger.error('Internal error' + err);
                                 reject(err);
