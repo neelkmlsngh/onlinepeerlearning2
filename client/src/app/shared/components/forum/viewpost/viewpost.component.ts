@@ -16,6 +16,7 @@ import { ForumService } from '../../../services/forum.service';
 export class ViewpostComponent implements OnInit,AfterViewInit {
 
 data:any=[];
+p: number[]=[];
  constructor(private forum:ForumService,private router: Router) { 
 
  }
