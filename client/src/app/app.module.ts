@@ -99,7 +99,7 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
      {
         path: 'main',
         component: MainComponent,
-        canActivate: [AuthoriseGuard]
+        /*canActivate: [AuthoriseGuard]*/
       },
         {
         path: 'questions',
