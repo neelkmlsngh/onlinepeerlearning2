@@ -44,6 +44,16 @@ export class ForumService {
       .map(res => res.json());
   }
 
+
+
+    /*update method used in supervisor component*/ 
+     saveAnswer(id, employee) {    
+     console.log(employee) 
+         return this.http    
+          .put('https://localhost:8080/api/forum/update/' + id, employee)   
+            .map(res => res.json()); 
+             }
+
    private authoriZation() {
     let token = this.autheticationservice.getToken();
     if (token) {
