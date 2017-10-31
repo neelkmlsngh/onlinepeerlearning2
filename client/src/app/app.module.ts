@@ -15,8 +15,6 @@ import {MatIconModule} from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import {MatInputModule} from '@angular/material';
 import {MatRadioModule} from '@angular/material';
-/*import {MatInputModule} from '@angular/material';*/
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
@@ -45,7 +43,10 @@ import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
-import { AuthoriseGuard } from './guard/authorise.guard';
+import { CoderunnerService } from './shared/services/coderunner.service';
+import { AuthoriseGuard } from './shared/services/authorise.guard';
+import { AnswersComponent } from './shared/components/forum/answers/answers.component';
+
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { AuthoriseGuard } from './guard/authorise.guard';
     WebeditorComponent,
     AuthenticateComponent,
     AudioChatComponent,
-    VideoChatComponent
+    VideoChatComponent,
+    AnswersComponent
   ],
   imports: [
     BrowserModule,
@@ -100,12 +102,12 @@ import { AuthoriseGuard } from './guard/authorise.guard';
      {
         path: 'main',
         component: MainComponent,
-        //canActivate: [AuthoriseGuard]
+        canActivate: [AuthoriseGuard]
       },
         {
         path: 'questions',
         component: ViewpostComponent,
-        //canActivate: [AuthoriseGuard]
+        // canActivate: [AuthoriseGuard]
       },
       {
 
@@ -136,18 +138,17 @@ import { AuthoriseGuard } from './guard/authorise.guard';
      {
         path: 'questiondetail/:value',
         component: DetailpostComponent,
-        //canActivate: [AuthoriseGuard]
+        // canActivate: [AuthoriseGuard]
+      },
+        {
+        path: 'answers/:value',
+        component: AnswersComponent,
+        // canActivate: [AuthoriseGuard]
       },
      {
         path: 'addquestion',
         component: NewpostComponent,
-        //canActivate: [AuthoriseGuard]
       },
-      //   {
-      //   path: 'questiondetail',
-      //   component: DetailpostComponent,
-      //   canActivate: [AuthoriseGuard]
-      // },
      {
         path: 'webeditor',
         component: WebeditorComponent,
@@ -161,17 +162,17 @@ import { AuthoriseGuard } from './guard/authorise.guard';
      {
       path:'auth/:userId/:token',
       component: AuthenticateComponent,
-      canActivate: [AuthoriseGuard]
+       //canActivate: [AuthoriseGuard]
     }
     ,     
      {
       path:'**',
       component: HomeComponent,
-      canActivate: [AuthoriseGuard]
+      
     },
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,AuthoriseGuard],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,AuthoriseGuard],
   bootstrap: [AppComponent]
 })
 

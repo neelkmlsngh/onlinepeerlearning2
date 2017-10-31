@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {AuthenticationService} from '../../../shared/services/authentication.service'
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -20,9 +21,14 @@ logout(){
       userid:userid
     }
      
-	this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
-     console.log('data1');
-     this.router.navigate(["/"]);
+		this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
+      swal({
+            timer: 2000,
+            title: "Successfully Logged Out",
+            type: 'success',
+            showConfirmButton: false,
+          })
+    this.router.navigate(["/"]);
      localStorage.removeItem('currentUser');
 })
 }

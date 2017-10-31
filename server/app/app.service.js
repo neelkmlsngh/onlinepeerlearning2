@@ -55,18 +55,19 @@ function loginviagit() {
         clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
         callbackURL: "https://localhost:8080/auth/github/callback"
     }, function(accessToken, refreshToken, profile, done) {
+        console.log(profile);
         let userInfo = {
             name: profile._json.login,
             userId: profile.id,
             avatarUrl: profile._json.avatar_url,
             publicRepos: profile._json.public_repos,
             reposUrl: profile._json.repos_url,
-            status:true
+            status: true
 
-         
+
         }
 
- 
+
         //save login credentials in login collection
         //function called by login controller
         loginController.saveLoginCredentials(userInfo, done);
