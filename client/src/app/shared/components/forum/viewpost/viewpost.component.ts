@@ -11,7 +11,8 @@ import { ForumService } from '../../../services/forum.service';
 @Component({
   selector: 'app-viewpost',
   templateUrl: './viewpost.component.html',
-  styleUrls: ['./viewpost.component.css']
+  styleUrls: ['./viewpost.component.css'],
+  providers: [ForumService]
 })
 export class ViewpostComponent implements OnInit,AfterViewInit {
   
