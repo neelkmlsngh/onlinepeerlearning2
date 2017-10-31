@@ -45,6 +45,7 @@ import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
 import { AuthoriseGuard } from './shared/services/authorise.guard';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,12 +99,12 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
      {
         path: 'main',
         component: MainComponent,
-        //canActivate: [AuthoriseGuard]
+        canActivate: [AuthoriseGuard]
       },
         {
         path: 'questions',
         component: ViewpostComponent,
-        //canActivate: [AuthoriseGuard]
+        canActivate: [AuthoriseGuard]
       },
       {
 
@@ -134,12 +135,12 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
      {
         path: 'questiondetail/:value',
         component: DetailpostComponent,
-        //canActivate: [AuthoriseGuard]
+        canActivate: [AuthoriseGuard]
       },
      {
         path: 'addquestion',
         component: NewpostComponent,
-        //canActivate: [AuthoriseGuard]
+        canActivate: [AuthoriseGuard]
       },
       //   {
       //   path: 'questiondetail',
@@ -159,13 +160,13 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
      {
       path:'auth/:userId/:token',
       component: AuthenticateComponent,
-      canActivate: [AuthoriseGuard]
+       //canActivate: [AuthoriseGuard]
     }
     ,     
      {
       path:'**',
       component: HomeComponent,
-      canActivate: [AuthoriseGuard]
+      
     },
    ],  { useHash: true })
   ],

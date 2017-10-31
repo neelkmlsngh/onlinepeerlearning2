@@ -13,7 +13,7 @@ const saveUserCredentials = function(userInfo,done) {
         }, function(err, user) {
             if (err) {
                 logger.info("error occured")
-                console.log(err)
+                
             } else if (!user) {
                 logger.info("user not saved")
             } else {
