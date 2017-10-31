@@ -3,7 +3,6 @@ import { Router} from '@angular/router'
 import {MatIconRegistry} from '@angular/material';
 import { Subject } from 'rxjs/Subject'
 import { Observable } from 'rxjs/Observable'
-import { TruncateModule } from 'ng2-truncate';
 import 'rxjs/Rx';
 
 import { ForumService } from '../../../services/forum.service';
@@ -11,24 +10,22 @@ import { ForumService } from '../../../services/forum.service';
 @Component({
   selector: 'app-viewpost',
   templateUrl: './viewpost.component.html',
-  styleUrls: ['./viewpost.component.css']
+  styleUrls: ['./viewpost.component.css'],
+  providers: [ForumService]
 })
 export class ViewpostComponent implements OnInit,AfterViewInit {
-  
+
 data:any=[];
-p: number[] = [];
  constructor(private forum:ForumService,private router: Router) { 
 
-}
+ }
 
  ngOnInit() {
   this.viewPost();
  }
 
  ngAfterViewInit() {
-
     const searchTerm:any = document.getElementById('search');
-     
      const search$= Observable.fromEvent(searchTerm, 'keyup')
        //.do(()=> console.log(searchTerm.value))
       
