@@ -28,17 +28,18 @@ router.get('/auth/github',cors(corsOptions),
 router.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function(req, res) {
-        
+
         userdetails = {
             userid: req.user.doc.userId,
             name: req.user.doc.name
         }
-        console.log(appConfig.SECRET + " " + req.user.doc.userId + " " + appConfig.EXPIRETIME)
+        console.log(req)
+        console.log(appConfig.SECRET + " " + req.user.doc.name + " " + appConfig.EXPIRETIME)
         let userToken = jwt.sign({ userdetails }, appConfig.SECRET, {
             expiresIn: appConfig.EXPIRETIME
         });;
         console.log(userToken)
-        res.redirect(appConfig.REDIRECT + req.user.doc.userId + "/" + userToken)
+        res.redirect(appConfig.REDIRECT + req.user.doc.userId + "/" + userToken + "/" +req.user.doc.name)
 
     });
 
@@ -48,7 +49,8 @@ router.put('/logout', (req, res) => {
     User.findOneAndUpdate({ userId: userId }, {
         // updating preferences
         $set: {
-            status: false
+            //  status: false
+            online: 'N'
         }
     }, (err, Data) => {
         // action to take if error occurs 
@@ -64,19 +66,4 @@ router.put('/logout', (req, res) => {
     });
 });
 
-online={}
-app=[];
-function userOnline(){
-    User.find({status:true},function (err,data){
-          if (err) {
-                        logger.error("error in getting currencynews")
-
-                    } else if (data) {
-                       online.userid=data.userId;
-                       app.push(online)
-                       console.log(app)
-                    }
-    })
-}
-userOnline();
 module.exports = router;

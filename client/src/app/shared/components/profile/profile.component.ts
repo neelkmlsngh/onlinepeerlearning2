@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { Headers, RequestOptions, Http } from '@angular/http';
 import { ProfileService } from '../../services/profile.service';
 @Component({
   selector: 'app-profile',
@@ -11,9 +12,12 @@ export class ProfileComponent implements OnInit {
   currentUser:any;
   imgPath:string='';
   img;
+  public formData: FormData;
+  public options: RequestOptions;
 
-  constructor(@Inject(FormBuilder) private fb: FormBuilder,private profileService:ProfileService) {
+  constructor(@Inject(FormBuilder) private fb: FormBuilder,private profileService:ProfileService, private http: Http) {
     // initialising user details to be displayed
+    this.formData= new FormData();
     this.userInfo = fb.group({
       userid: ['', [Validators.required]],
       repos_url: ['', [Validators.required]],
@@ -42,10 +46,6 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  upload(){
-    
-  }
-
   displayData(data:any){
     console.log(data)
     this.userInfo=this.fb.group({
@@ -55,6 +55,29 @@ export class ProfileComponent implements OnInit {
       public_repos:[data.public_repos]
     })
   }
+
+    fileChange(event) {
+   let fileList: FileList = event.target.files;
+   if(fileList.length > 0) {
+       let file: File = fileList[0];
+       this.formData.append('uploadFile', file, file.name);
+       let headers = new Headers();
+       headers.append('enctype', 'multipart/form-data');
+       headers.append('Accept', 'application/json');
+       this.options = new RequestOptions({ headers: headers });
+     
+   }
+}
+
+uploadFile(){
+  this.http.put('https://localhost:8080/api/profile/image/'+29884468, this.formData, this.options)
+           .subscribe(
+               data => {
+               // swal('File','File successfully uploaded','success')
+               },
+               error => console.log(error)
+           )
+}
 }
 
 
