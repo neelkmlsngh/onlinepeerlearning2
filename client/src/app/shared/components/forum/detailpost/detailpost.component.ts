@@ -24,16 +24,18 @@ export class DetailpostComponent implements OnInit {
   answer:string="";
   questionTitle:string="";
   userId: any;
-
   ngOnInit() {
     var config = {
     extraPlugins: 'codesnippet',
     codeSnippet_theme: 'monokai_sublime',
-    height: 356
+    height: 356,
+    text: 'cleared'
+
   };
-
+  
   CKEDITOR.replace( 'editor1', config );
-
+  CKEDITOR.instances.editor1.setData("")
+ 
     this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
       .subscribe((res) => {
@@ -46,8 +48,7 @@ export class DetailpostComponent implements OnInit {
   }
 
   postAnswer() {
-
-
+console.log(CKEDITOR.instances.editor1.getData());
     this.obj = {
       username: "prashant",
       answer: this.answer,

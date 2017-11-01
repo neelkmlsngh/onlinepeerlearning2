@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit {
 }
 
 uploadFile(){
-  this.http.post('https://localhost:8080/api/profile/image/'+1234, this.formData, this.options)
+  this.http.put('https://localhost:8080/api/profile/image/'+29884468, this.formData, this.options)
            .subscribe(
                data => {
                // swal('File','File successfully uploaded','success')
