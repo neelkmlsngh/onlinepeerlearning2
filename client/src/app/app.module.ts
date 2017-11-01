@@ -43,7 +43,7 @@ import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
-import { AuthoriseGuard } from './shared/services/authorise.guard';
+//import { AuthoriseGuard } from './shared/services/authorise.guard';
 
 
 @NgModule({
@@ -99,7 +99,7 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
      {
         path: 'main',
         component: MainComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
         {
         path: 'questions',
@@ -110,19 +110,19 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
 
        path:'chat-window',
        component:ChatWindowComponent,
-       canActivate: [AuthoriseGuard]
+       //canActivate: [AuthoriseGuard]
      },
 
      {
         path: 'video',
         component: VideoChatComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
       {
 
        path:'audio',
        component:AudioChatComponent,
-       canActivate: [AuthoriseGuard]
+       //canActivate: [AuthoriseGuard]
      },
       
       // {
@@ -144,15 +144,15 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
      {
         path: 'webeditor',
         component: WebeditorComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
        {
         path: 'profile',
         component: ProfileComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       } ,     
      {
-      path:'auth/:userId/:token',
+      path:'auth/:userId/:token/:name',
       component: AuthenticateComponent,
        //canActivate: [AuthoriseGuard]
     }
@@ -164,7 +164,7 @@ import { AuthoriseGuard } from './shared/services/authorise.guard';
     },
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,AuthoriseGuard],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService],
   bootstrap: [AppComponent]
 })
 

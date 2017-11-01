@@ -5,9 +5,8 @@ const mongoose = require('mongoose');
  */
 
 var LoginSchema = new mongoose.Schema({
-  name: String,
-
-  userId: String,
+  userName: String,
+	userId: String,
   updatedAt:{ type: Date, default: Date.now },
  	createdOn:Date,
   status:Boolean

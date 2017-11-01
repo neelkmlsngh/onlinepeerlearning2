@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
 logout(){ 
  let user = JSON.parse(localStorage.getItem('currentUser'));
     
-    let userid = user.userId
+    let userid = user.userId;
     user={
       userid:userid
     }
