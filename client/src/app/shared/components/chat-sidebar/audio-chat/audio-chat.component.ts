@@ -75,4 +75,16 @@ conn.on('open', function(){
       console.log('Failed to get stream', err);
     })
   }
+    
+  stop(){
+     
+    var conn = this.peer.destroy(this.anotherid);
+    
+conn.on('close', function(){
+  conn.send('End Call');
+ 
+ 
+});
+  }
+
 }

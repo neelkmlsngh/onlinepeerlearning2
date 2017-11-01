@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { AuthenticationService } from './authentication.service';
+import { RequestOptions, Request, RequestMethod, Headers } from '@angular/http';
 
 @Injectable()
 export class ForumService {
 
-  constructor(private http: Http) {}
+  constructor(private http: Http, private autheticationservice: AuthenticationService) {}
 
   ngOnInit() {} //method is used to hit api on express server and post the data of form in database     
   save(data: any) {
@@ -40,5 +42,26 @@ export class ForumService {
     return this.http.
     get('https://localhost:8080/api/forum/getQuestionDetail/' + question)
       .map(res => res.json());
+  }
+
+
+  // showAnswer(question: string) {
+  //   return this.http
+  //     .post('https://localhost:8080/api/forum/answer/' + )
+  //     .map(res => res.json());
+  // }
+  saveAnswer(question,answer){
+     return this.http.
+     get('https://localhost:8080/api/forum/update/' + question,answer)
+      .map(res => res.json());
+
+}
+
+  private authoriZation() {
+    let token = this.autheticationservice.getToken();
+    if (token) {
+      let headers = new Headers({ 'Authorization': token });
+      return new RequestOptions({ headers: headers });
+    }
   }
 }

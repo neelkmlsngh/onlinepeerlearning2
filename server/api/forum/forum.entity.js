@@ -5,12 +5,11 @@ var forumSchema = new Schema({
    username: String,
    questionTitle: String,
    problemDescription: String,
-   date: Date,
+   date: String,
    time: String,
-   answers: Array,
+   answers: [{ username: String, answer: String, codeSnippet:String, likes:String, dislikes:String }],
    votes: String,
    noOfViews: Number,
-   noOfAnswers:String,
    codeSnippet: String,
    tags:String
 });

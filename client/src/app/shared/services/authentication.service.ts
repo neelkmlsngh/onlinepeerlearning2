@@ -9,7 +9,7 @@ export class AuthenticationService {
   config = config;
   constructor(private http: Http, private router: Router) {}
 
-user:{}
+user:any
 
   git() {
     return this.http
@@ -17,20 +17,25 @@ user:{}
       .map(res => res, error => error.json());
   }
 
-  setUserInfo(userId, token) {
+  setUserInfo(obj) {
     //console.log(dataObj.userId);
-    localStorage.setItem('currentUser', JSON.stringify({ token: token, userId: userId }));
-    if (token) {
+     this.user=obj;
+
+   
+     localStorage.setItem('currentUser', JSON.stringify({ token: this.user.token, userId: this.user.userId,userName:this.user.name }));
+    if (this.user.token) {
       this.router.navigate(["/main"]);
 
-    } else if (!token) {
+    } else if (!this.user.token) {
       this.router.navigate(["/"])
 
     }
   }
 
   getToken(): any {
-    let token = JSON.parse(localStorage.getItem('currentUser'))['token'];
+    let userDetails = JSON.parse(localStorage.getItem('currentUser'));
+    let token=userDetails.token;
+console.log('token',token)
     return token;
   }
 
@@ -45,10 +50,7 @@ user:{}
     // user={
     //   userid:userid
     // }
-    //  localStorage.removeItem('currentUser');
-    
-    // this.router.navigate(["/"])
-console.log(this.config.connect.url + this.config.connect.port +'/logout',user);
+     localStorage.removeItem('currentUser');
      return this.http
       .put(this.config.connect.url + this.config.connect.port +'/logout',user)
       .map(res => res, error => error.json());

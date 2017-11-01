@@ -11,8 +11,7 @@ const useRoutes = function(app) {
     app.use('/api/profile', apiRoutes.profileRoutes);
     app.use('/chat', apiRoutes.chatRoutes)
 };
-
 module.exports = {
     useRoutes: useRoutes
 };
-//apiRoutes.authtoken
+//apiRoutes.authtoke

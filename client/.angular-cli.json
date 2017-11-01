@@ -23,9 +23,18 @@
             "styles.css",
             "../node_modules/bootstrap/dist/css/bootstrap.min.css",
             "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-            "../node_modules/font-awesome/css/font-awesome.css"
+            "../node_modules/font-awesome/css/font-awesome.css",
+            "../node_modules/sweetalert2/dist/sweetalert2.min.css"
         ],
-        "scripts": [],
+        "scripts": [
+            "../node_modules/jquery/dist/jquery.min.js",
+            "../node_modules/popper.js/dist/umd/popper.min.js",
+            "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+            "../node_modules/ace-builds/src-min/ace.js",
+            "../node_modules/ace-builds/src/theme-twilight.js",
+            "../node_modules/hammerjs/hammer.min.js",
+            "../node_modules/sweetalert2/dist/sweetalert2.min.js"
+        ],
         "environmentSource": "environments/environment.ts",
         "environments":
         {
@@ -66,4 +75,4 @@
         "component":
         {}
     }
-} 
+}

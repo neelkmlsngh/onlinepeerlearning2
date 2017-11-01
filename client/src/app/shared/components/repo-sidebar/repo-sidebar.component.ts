@@ -20,6 +20,7 @@ githubUser: any;
 
 @Output() content  = new EventEmitter<any>();
 
+
   constructor(private editorService: EditorService, private gitService: GitService) { }
 ngOnInit() {
     this.gitService.getRepos()
@@ -49,6 +50,7 @@ reposearch()
        , err => {
          this.show(reponame, this.url + filename)
          this.url = "";
+
        })
  }
 

@@ -5,11 +5,17 @@ const logger = require('../../services/app.logger');
 const usrCtrl = require('./login.controller');
 const appConfig = require('../../config').app;
 const User = require('./login.entity')
-
+const cors = require('cors')
 /*
  * it calls when hit on log via git hub button on client side
  */
-router.get('/auth/github',
+
+   var corsOptions = {
+    origin: '*',
+    methods: ['GET'],
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+router.get('/auth/github',cors(corsOptions),
     passport.authenticate('github', { scope: ['user:email'] }),
     // var token = jwt.sign(req.user.doc,secretKey);
     function(req, res) {});
@@ -27,12 +33,13 @@ router.get('/auth/github/callback',
             userid: req.user.doc.userId,
             name: req.user.doc.name
         }
-        console.log(appConfig.SECRET + " " + req.user.doc.userId + " " + appConfig.EXPIRETIME)
+        console.log(req)
+        console.log(appConfig.SECRET + " " + req.user.doc.name + " " + appConfig.EXPIRETIME)
         let userToken = jwt.sign({ userdetails }, appConfig.SECRET, {
             expiresIn: appConfig.EXPIRETIME
         });;
         console.log(userToken)
-        res.redirect(appConfig.REDIRECT + req.user.doc.userId + "/" + userToken)
+        res.redirect(appConfig.REDIRECT + req.user.doc.userId + "/" + userToken + "/" +req.user.doc.name)
 
     });
 
@@ -58,4 +65,5 @@ router.put('/logout', (req, res) => {
         }
     });
 });
+
 module.exports = router;
