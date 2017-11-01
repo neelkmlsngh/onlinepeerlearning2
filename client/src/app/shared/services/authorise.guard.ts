@@ -27,7 +27,7 @@ export class AuthoriseGuard implements CanActivate {
    else
    {
      this.authorised = false;
-     this.route.navigate(['/home']);
+     this.route.navigate(['/']);
    }
    return this.authorised;
  }

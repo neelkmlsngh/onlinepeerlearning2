@@ -21,6 +21,12 @@ likeflag=false;
 dislikeflag=false;
 dislikes=0;
 data:any=[];
+
+answer:any={};
+noofanswer:number=0;
+answerlength: any = [];
+p: number[]=[];
+
  constructor(private forum:ForumService,private router: Router) { 
 
  }
@@ -45,24 +51,23 @@ data:any=[];
  {
    //console.log(data.value);
    this.forum.getPost().subscribe((data1)=>{
+   
      this.data=data1;
-     console.log(this.data);
    })
  }
-
-   getQuestionDetail(value):any { 
-      this.router.navigate(['/questiondetail',value])   
-    }
-
- getDetails(searchTerm:any){
+   getDetails(searchTerm:any){
   //alert(searchTerm.value
-  console.log(searchTerm)
+
+console.log(searchTerm)
   this.forum.searchEntries(searchTerm.value)
     .subscribe(res => {
       this.data =res;
-      console.log(this.data);
+      console.log(this.data)
     });
 }
+   getQuestionDetail(value):any { 
+      this.router.navigate(['/questiondetail',value])   
+    }
 
 like(){
   if(this.likeflag==false){
@@ -83,9 +88,9 @@ like(){
   }
 }
 
-  dislike(){
+ dislike(){
 
-    if(this.dislikeflag==false){
+   if(this.dislikeflag==false){
       if(this.likeflag==true){
   this.dislikeCounter=this.dislikes++;
   this.dislikeflag=true;
@@ -102,6 +107,14 @@ like(){
     this.dislikeflag=false;
   }
 
-  }
+ }
 }
+   showAnswers(value):any{
+      // this.forum.getPostByQuestion(value).subscribe((data)=>{
+      //   console.log("answers................",data[0].answers);
+      // })
+     this.router.navigate(['/answers',value])  
 
+    }
+
+}

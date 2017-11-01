@@ -78,4 +78,51 @@ conn.on('open', function(){
       console.log('Failed to get stream', err);
     })
   }
+
+
+  stop(){
+     
+    var conn = this.peer.destroy(this.anotherid);
+    
+conn.on('close', function(){
+  conn.send('End Call');
+ 
+ 
+});
+  }
+
+    /*mute() {
+  
+
+    let video = this.myVideo.nativeElement;
+    var localvar = this.peer;
+    var fname = this.anotherid;
+    
+    var n = <any>navigator;
+    
+    n.getUserMedia = ( n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia  || n.msGetUserMedia );
+    
+    n.getUserMedia({video: true, audio: false}, function(stream) {
+      var call = localvar.call(fname, stream);
+      call.on('stream', function(remotestream) {
+        video.src = URL.createObjectURL(remotestream);
+        video.pause();
+      })
+    }, function(err){
+      console.log('Failed to get stream', err);
+    })
+  }*/
+
+    mute() {
+    let video=this.myVideo.nativeElement;
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ audio:false,video:true })
+                            .then(stream => {
+                              video.src = window.URL.createObjectURL(stream);
+                              video.play();
+                            })
+    }
+
+  }
+
 }

@@ -57,11 +57,17 @@
         <div class="questionsumary">
           <div class="row" *ngFor="let result of data| paginate: { itemsPerPage:4, currentPage: p }">
             <div class="statuscontainer col-sm-3">
+
             <!--   <div class="vote h5">
                  Total Votes: {{votes}}
               </div> -->
               <div class="answeraccepted h5  border py-2 text-white mt-4">
                 <strong class="pl-4">12</strong>
+
+          
+              <div class="answeraccepted h5  border py-2 text-white mt-4" (click)="showAnswers(result.questionTitle)">
+                <strong class="pl-4">{{result.answers.length}}</strong>
+
                 <br><small class="ans">answers</small>
               </div>
               <div class="views h6  mt-4">

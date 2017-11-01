@@ -10,7 +10,6 @@ var forumSchema = new Schema({
    answers: [{ username: String, answer: String, codeSnippet:String, likes:String, dislikes:String }],
    votes: Number,
    noOfViews: Number,
-   noOfAnswers:String,
    codeSnippet: String,
    tags:String
 });
