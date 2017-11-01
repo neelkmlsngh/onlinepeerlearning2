@@ -5,7 +5,13 @@ const mongoose = require('mongoose');
  */
 
 var ProfileSchema = new mongoose.Schema({
-  userId:String
+  userId:String,
+  firstName: {type:String,default:null},
+  lastName: {type:String,default:null},
+  email:{type:String,default:null},
+  gender:{type:String,default:null},
+  biodata:{type:String,default:null},
+  image:{type:String,default:null}
 });
 ProfileSchema.statics.findOrCreate = require("find-or-create");
 module.exports = mongoose.model("profile", ProfileSchema);

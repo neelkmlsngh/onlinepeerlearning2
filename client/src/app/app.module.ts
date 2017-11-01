@@ -43,8 +43,14 @@ import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
+
 import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { SnippetComponent } from './shared/components/snippet/snippet.component';
+
+
+//import { AuthoriseGuard } from './shared/services/authorise.guard';
+import { CoderunnerService } from './shared/services/coderunner.service';
+import { AnswersComponent } from './shared/components/forum/answers/answers.component';
 
 
 @NgModule({
@@ -68,7 +74,11 @@ import { SnippetComponent } from './shared/components/snippet/snippet.component'
     AuthenticateComponent,
     AudioChatComponent,
     VideoChatComponent,
-    SnippetComponent
+
+    SnippetComponent,
+
+    AnswersComponent
+
   ],
   imports: [
     BrowserModule,
@@ -98,10 +108,16 @@ import { SnippetComponent } from './shared/components/snippet/snippet.component'
        path:'home',
        component:HomeComponent
      },
+       {
+       path:'snippet',
+       component:SnippetComponent
+     },
      {
         path: 'main',
         component: MainComponent,
+
        /* canActivate: [AuthoriseGuard]*/
+
       },
         {
         path: 'questions',
@@ -112,19 +128,19 @@ import { SnippetComponent } from './shared/components/snippet/snippet.component'
 
        path:'chat-window',
        component:ChatWindowComponent,
-       canActivate: [AuthoriseGuard]
+       //canActivate: [AuthoriseGuard]
      },
 
      {
         path: 'video',
         component: VideoChatComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
       {
 
        path:'audio',
        component:AudioChatComponent,
-       canActivate: [AuthoriseGuard]
+       //canActivate: [AuthoriseGuard]
      },
       
       // {
@@ -139,6 +155,11 @@ import { SnippetComponent } from './shared/components/snippet/snippet.component'
         component: DetailpostComponent,
         // canActivate: [AuthoriseGuard]
       },
+        {
+        path: 'answers/:value',
+        component: AnswersComponent,
+        // canActivate: [AuthoriseGuard]
+      },
      {
         path: 'addquestion',
         component: NewpostComponent,
@@ -146,15 +167,18 @@ import { SnippetComponent } from './shared/components/snippet/snippet.component'
      {
         path: 'webeditor',
         component: WebeditorComponent,
+
      /*   canActivate: [AuthoriseGuard]*/
+
+
       },
        {
         path: 'profile',
         component: ProfileComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       } ,     
      {
-      path:'auth/:userId/:token',
+      path:'auth/:userId/:token/:name',
       component: AuthenticateComponent,
        //canActivate: [AuthoriseGuard]
     }
@@ -166,7 +190,8 @@ import { SnippetComponent } from './shared/components/snippet/snippet.component'
     },
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,AuthoriseGuard],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService],
+
   bootstrap: [AppComponent]
 })
 

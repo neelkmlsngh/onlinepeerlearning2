@@ -5,6 +5,7 @@ import { AceEditorModule } from 'ng2-ace-editor';
 
 import { EditorService } from '../../services/editor.service';
 import { GitService } from '../../services/git.service'
+import { CoderunnerService } from '../../services/coderunner.service'
 
 import 'brace';
 import 'brace/ext/language_tools';
@@ -19,40 +20,37 @@ import 'ace-builds/src-min-noconflict/snippets/html';
 
 export class EditorComponent implements OnInit {
 
-  @Input() content: any;
-  cont: any = this.content;
-  notebook: any;
+  jsValue: any = "";
+  data: any;
+  codeoutput: any;
+  dataObj: any = "";
 
-  constructor(private editorService: EditorService, private gitService: GitService) {}
+  constructor(private coderunner: CoderunnerService) {}
 
-  text: string = "//Enter your code here";
-  options: any = { maxLines: 1000, printMargin: false };
+  ngOnInit() {}
 
-//get code from ace ecitor to runkit
-  onChange(code) {
-    if (this.notebook != undefined) {
-      this.notebook.setSource(code)
-      console.log("new code", code);
-    }
-  }
-
-  ngOnChanges() {
-    if (this.notebook == undefined) {
-      this.notebook = window['RunKit'].createNotebook({
-        element: document.getElementById("editor"),
-        source: this.content
+  /*execute the code and return output*/
+  executecode() {
+    this.coderunner.executecode(this.jsValue)
+      .subscribe(data => {
+        this.codeoutput = data
+        this.dataObj = this.codeoutput._body
       })
-    }
-    this.notebook.setSource(this.content)
   }
 
-  //method to get github repositories
-  ngOnInit() {
 
-    // this.lang = "javascript";
+  /*download Javascript file*/
+  downloadJsFile() {
+    let downloadLink = document.createElement("a");
 
+    let blob = new Blob([this.jsValue]);
+    let url = URL.createObjectURL(blob);
+    downloadLink.href = url;
+    downloadLink.download = "script.js";
+    let parent = document.getElementById('myJsDiv');
+    parent.appendChild(downloadLink);
+    downloadLink.click();
+    parent.removeChild(downloadLink);
+    return false;
   }
-
- 
-
 }

@@ -5,3 +5,4 @@ interface NodeModule {
 
 }
 declare var Peer: any;
+declare var CKEDITOR: any;

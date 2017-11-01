@@ -16,7 +16,8 @@ module.exports = function(appName) {
   let app = service.createApp();
 
   app.use(express.static(path.resolve(__dirname, '../../', 'client/dist')));
-
+  app.use(express.static(path.resolve(__dirname, '../', 'uploads')));
+  
   app = service.setupMiddlewares(app);
   app = service.setupRestRoutes(app);
   service.setupMongooseConnections();

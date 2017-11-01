@@ -16,6 +16,17 @@ import { ForumService } from '../../../services/forum.service';
 export class ViewpostComponent implements OnInit,AfterViewInit {
 
 data:any=[];
+
+answer:any={};
+noofanswer:number=0;
+answerlength: any = [];
+p: number[]=[];
+dislikeCounter:number;
+likeCounter:number;
+likes= 0;
+likeflag=false;
+dislikeflag=false;
+dislikes=0;
  constructor(private forum:ForumService,private router: Router) { 
 
  }
@@ -40,24 +51,70 @@ data:any=[];
  {
    //console.log(data.value);
    this.forum.getPost().subscribe((data1)=>{
+   
      this.data=data1;
-     console.log(this.data);
    })
  }
+   getDetails(searchTerm:any){
+  //alert(searchTerm.value
 
+console.log(searchTerm)
+  this.forum.searchEntries(searchTerm.value)
+    .subscribe(res => {
+      this.data =res;
+      console.log(this.data)
+    });
+}
    getQuestionDetail(value):any { 
       this.router.navigate(['/questiondetail',value])   
     }
 
- getDetails(searchTerm:any){
-  //alert(searchTerm.value
-  console.log(searchTerm)
-  this.forum.searchEntries(searchTerm.value)
-    .subscribe(res => {
-      this.data =res;
-      console.log(this.data);
-    });
+like(){
+  if(this.likeflag==false){
+    if(this.dislikeflag==true){
+  this.likeCounter=this.likes++;
+  this.likeflag=true;
+  this.dislikes--;
+  this.dislikeflag=false;
+  }
+  else{
+     this.likeCounter=this.likes++;
+  this.likeflag=true;
+  }
+}
+  else{
+    this.likes--;
+    this.likeflag=false;
+  }
 }
 
-}
+ dislike(){
 
+   if(this.dislikeflag==false){
+      if(this.likeflag==true){
+  this.dislikeCounter=this.dislikes++;
+  this.dislikeflag=true;
+  this.likes--;
+  this.likeflag=false;
+  }
+  else{
+    this.dislikeCounter=this.dislikes++;
+  this.dislikeflag=true;
+  }
+}
+  else{
+    this.dislikes--;
+    this.dislikeflag=false;
+  }
+
+ }
+
+    showAnswers(value){
+      // this.forum.getPostByQuestion(value).subscribe((data)=>{
+      //   console.log("answers................",data[0].answers);
+      // })
+     this.router.navigate(['/answers',value])  
+
+    }
+
+}
