@@ -20,7 +20,6 @@ export class DetailpostComponent implements OnInit {
   obj:any = {};
   codeSnippet: string;
   data: any = [];
-  editor1: any;
   errors: string;
   answer:string="";
   questionTitle:string="";

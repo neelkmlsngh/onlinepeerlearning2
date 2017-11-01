@@ -108,12 +108,16 @@ like(){
   }
 
  }
-}
-   /*showAnswers(value):any{
+showAnswers(value){
+
       // this.forum.getPostByQuestion(value).subscribe((data)=>{
       //   console.log("answers................",data[0].answers);
       // })
      this.router.navigate(['/answers',value])  
 
-    }*/
+    }
+}
+
+
+    
 
