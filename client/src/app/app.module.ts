@@ -46,6 +46,8 @@ import { ProfileService } from './shared/services/profile.service';
 //import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { CoderunnerService } from './shared/services/coderunner.service';
 import { AnswersComponent } from './shared/components/forum/answers/answers.component';
+import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
+import { ChatComponent } from './shared/components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { AnswersComponent } from './shared/components/forum/answers/answers.comp
     AuthenticateComponent,
     AudioChatComponent,
     VideoChatComponent,
-    AnswersComponent
+    AnswersComponent,
+    ChatHomeComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +106,6 @@ import { AnswersComponent } from './shared/components/forum/answers/answers.comp
         path: 'main',
         component: MainComponent,
         //canActivate: [AuthoriseGuard]
-
       },
         {
         path: 'questions',
@@ -164,7 +167,12 @@ import { AnswersComponent } from './shared/components/forum/answers/answers.comp
       component: AuthenticateComponent,
        //canActivate: [AuthoriseGuard]
     }
-    ,     
+    ,
+   /* {
+        path: 'chome',
+        component: ChatHomeComponent
+      },
+*/     
      {
       path:'**',
       component: HomeComponent,

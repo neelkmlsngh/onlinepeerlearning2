@@ -1,4 +1,4 @@
-body {
+/* body {
   margin-top: 20px;
   background: #eee;
 }
@@ -76,7 +76,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/*****************CHAT BODY *******************/
+****************CHAT BODY ******************
 .chat-body h6 {
   font-size: 20px;
   margin: 0 0 20px;
@@ -152,7 +152,7 @@ body {
   position: relative;
   padding-bottom: 1px;
 }
-/*RIGHT*/
+RIGHT
 .chat-body .answer.right {
   padding: 0 58px 0 0;
   text-align: right;
@@ -178,7 +178,7 @@ body {
   padding-right: 12px;
   color: #333333;
 }
-/**************ADD FORM ***************/
+*************ADD FORM **************
 .chat-body .answer-add {
   clear: both;
   position: relative;
@@ -221,11 +221,11 @@ body {
   color: #fff;
 }
 .chat input:-moz-placeholder {
-  /* Firefox 18- */
+  Firefox 18-
   color: #fff;
 }
 .chat input::-moz-placeholder {
-  /* Firefox 19+ */
+  Firefox 19+
   color: #fff;
 }
 .chat input:-ms-input-placeholder {
@@ -267,8 +267,7 @@ body {
   margin: 0px;
   line-height: 35px;
   cursor: pointer;
-  /*    
-    .collapsed{
+  .collapsed{
        .arrow:before{
                  font-family: FontAwesome;
                  content: "\f053";
@@ -279,7 +278,6 @@ body {
                  float:right;
             }
      }
-*/
 }
 .nav-side-menu ul :not(collapsed) .arrow:before,
 .nav-side-menu li :not(collapsed) .arrow:before {
@@ -391,3 +389,4 @@ body {
 }
 
 
+ */
