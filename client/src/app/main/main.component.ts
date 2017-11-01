@@ -94,10 +94,6 @@ export class MainComponent implements OnInit {
       })
   }
 
-
-
-
-
   mode(event) {
 
     this.mod = event;
