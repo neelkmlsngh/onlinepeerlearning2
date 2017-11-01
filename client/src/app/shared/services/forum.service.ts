@@ -44,7 +44,12 @@ export class ForumService {
       .map(res => res.json());
   }
 
+ saveAnswer(question:string){
+     return this.http.
+     get('https://localhost:8080/api/forum/update/' + question)
+      .map(res => res.json());
 
+ }
   // showAnswer(question: string) {
   //   return this.http
   //     .post('https://localhost:8080/api/forum/answer/' + )
