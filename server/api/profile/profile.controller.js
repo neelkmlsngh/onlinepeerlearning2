@@ -13,7 +13,6 @@ const getProfile = function(getId) {
                 logger.error('Internal error' + err);
                 reject(err);
             } else {
-                console.log("data================" + data)
                 /*logger.error('Internal error' + err);*/
                 resolve(data);
             }
@@ -68,15 +67,15 @@ const updateUserProfile = function(profileInfo, getId) {
 
 const updateImage = function(dataObj, getId) {
     let userId = getId;
-    let imgUrl = dataObj.imgPath;
+    let img = dataObj.img;
     console.log("==========="+getId);
     console.log('userId======='+userId);
-    console.log('url========='+JSON.stringify(imgUrl));
+    console.log('url========='+img);
     return new Promise((resolve, reject) => {
 
         ProfileModel.updateOne({ "userId": userId }, {
             $set: {
-                avatarUrl: JSON.stringify(imgUrl)
+                avatarUrl: img
             }
         }, { upsert: true }, (err, data) => {
           if(err){

@@ -69,9 +69,10 @@ var upload = multer({ storage: storage }).any();
      }
      else {
       let dataObj={
-        imgPath:req.files[0].path
+        img:req.files[0].filename
       }
       console.log(dataObj,getId);
+      console.log(JSON.stringify(req.files[0])+"-------------")
        usrCtrl.updateImage(dataObj,getId); 
     }
   });

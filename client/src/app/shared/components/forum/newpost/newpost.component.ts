@@ -16,6 +16,7 @@ export class NewpostComponent implements OnInit {
     tags:string;
     dateCurr:any;
     codeSnippet:string;
+    obj:any={};
 
 
 
@@ -42,9 +43,17 @@ export class NewpostComponent implements OnInit {
 
  insertPost(data)
  {
-   console.log(CKEDITOR.instances.editor1.getData());
-   console.log(data.value);
-   this.forum.save(data.value).subscribe((res)=>{
+
+       this.obj = {
+      questionTitle: this.questionTitle,
+      codeSnippet: CKEDITOR.instances.editor1.getData(),
+      problemDescription: this.problemDescription,
+      tags:this.tags,
+      date:this.date
+    }
+   console.log(this.obj);
+   this.forum.save(this.obj).subscribe((res)=>{
+
         //We get dialog result
         if (res) {
           console.log(res)

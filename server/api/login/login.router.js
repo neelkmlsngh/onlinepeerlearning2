@@ -28,7 +28,7 @@ router.get('/auth/github',cors(corsOptions),
 router.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function(req, res) {
-        
+
         userdetails = {
             userid: req.user.doc.userId,
             name: req.user.doc.name
@@ -49,7 +49,8 @@ router.put('/logout', (req, res) => {
     User.findOneAndUpdate({ userId: userId }, {
         // updating preferences
         $set: {
-            status: false
+            //  status: false
+            online: 'N'
         }
     }, (err, Data) => {
         // action to take if error occurs 

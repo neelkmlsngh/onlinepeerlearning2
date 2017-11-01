@@ -1,13 +1,18 @@
-<section id="code_editors">
-  <a href="javascript:void(0);" (click)="downloadJsFile()">Javascript File
-              <i class="fa fa-download" aria-hidden="true" data-toggle="popover" title="Download JS File"></i>  </a>
-  <div id="myJsDiv"></div>
-  <button class="btn-primary" (click)="executecode()">Execute</button>
-  <div ace-editor [(text)]="jsValue" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" class="code_box" id="javascript">
-  </div>
-</section>
-<div class="row">
-  <div class="col-md-12">Output:
-    <div class="output">{{dataObj}}</div>
+<div class="container">
+  <section id="code_editors">
+    <button class="btn btn-outline-primary" href="javascript:void(0);" (click)="downloadJsFile()" data-toggle="tooltip" data-placement="Top" title="Download">
+      <i class="fa fa-download" aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-outline-primary" (click)="executecode()" data-toggle="tooltip" data-placement="Top" title="Execute"> <i class="fa fa-play" aria-hidden="true"></i></button>
+    <div id="myJsDiv"></div>
+    <div ace-editor [(text)]="jsValue" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" class="code_box" id="javascript">
+    </div>
+  </section>
+  <br>
+  <div>
+    <div class="col-md-12 output" id="output">
+      <h3>Output:</h3>
+      <div>{{dataObj}}</div>
+    </div>
   </div>
 </div>
