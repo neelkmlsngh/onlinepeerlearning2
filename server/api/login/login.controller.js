@@ -5,12 +5,11 @@ const userController = require('./../users/users.controller')
 
 //save new login user details
 const saveLoginCredentials = function(userInfo, done) {
-    console.log("find or update" + userInfo.userId)
-    loginModel.findOneAndUpdate({ userId: userInfo.userId }, {
+    loginModel.findOneAndUpdate({ userId: userInfo.userId,userName:userInfo.name}, {
         $set: {
             status: true
         }
-    },{upsert:true,'new':true},function(err, user) {
+    }, { upsert: true, 'new': true }, function(err, user) {
         if (err) {
             logger.info("login user not found" + err)
         } else if (user) {

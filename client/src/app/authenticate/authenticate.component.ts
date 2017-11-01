@@ -12,16 +12,20 @@ export class AuthenticateComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,private authenticationservice:AuthenticationService
   ) {}
-
+obj:any
   ngOnInit() {
+
    //this.authenticationservice.getToken();
     let userId = this.route.snapshot.params['userId'];
      let token = this.route.snapshot.params['token'];
-    console.log(userId+" "+token);
-    this.authenticationservice.setUserInfo(userId,token);
+     let name=this.route.snapshot.params['name'];
+     this.obj={
+       userId:userId,
+       token:token,
+       name:name
+
+     }
+    this.authenticationservice.setUserInfo(this.obj);
     
   }
-
-
-
 }
