@@ -2,6 +2,8 @@ const ProfileModel = require('../users/users.entity');
 const logger = require('../../services/app.logger');
 const appConstant = require('../../config').app;
 const ProfileUser = require('./profile.entity')
+
+
 const getProfile = function(getId) {
     console.log(getId + '65gt65')
     return new Promise((resolve, reject) => {

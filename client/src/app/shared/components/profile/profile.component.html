@@ -21,7 +21,8 @@
           </div>
         </div>
         <div class="card-footer">
-        <input class="form-control" type="file"  name="file" id="profile-img" (click)="upload()">
+        <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
+        <button type="button" class="upload-button btn-lg" (click)="uploadFile()">Upload</button>
           <small>Last updated 3 mins ago</small>
         </div>
       </div>
