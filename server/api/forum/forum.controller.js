@@ -63,7 +63,7 @@ const getSearch = function(getValue) {
                         "$options": "i"
                     }
                 }, {
-                    "description": {
+                    "problemDescription": {
                         "$regex": getValue,
                         "$options": "i"
                     }
@@ -89,29 +89,30 @@ const getSearch = function(getValue) {
 };
 
 const saveAnswer = function(getValue, updateValue) {
-        return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
 
-                formModel.update({
-                  'questionTitle': getValue}, {
-                        $push:{ 'answers': updateValue}},(err, data) => {
-                            if (err) {
-                                logger.error('Internal error' + err);
-                                reject(err);
-                            } else {
-                                logger.error('Internal error' + err);
-                                resolve(data);
-                            }
-                        }
-                      )
-              });
-      };
+        formModel.update({
+            'questionTitle': getValue
+        }, {
+            $push: { 'answers': updateValue }
+        }, (err, data) => {
+            if (err) {
+                logger.error('Internal error' + err);
+                reject(err);
+            } else {
+                logger.error('Internal error' + err);
+                resolve(data);
+            }
+        })
+    });
+};
 
 
-        module.exports = {
-            addPost: addPost,
-            getPost: getPost,
-            getSearch: getSearch,
-            getPostByQuestion: getPostByQuestion,
-            saveAnswer : saveAnswer 
+module.exports = {
+    addPost: addPost,
+    getPost: getPost,
+    getSearch: getSearch,
+    getPostByQuestion: getPostByQuestion,
+    saveAnswer: saveAnswer
 
-        };
+};

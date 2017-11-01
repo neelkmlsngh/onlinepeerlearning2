@@ -60,7 +60,7 @@
       <input type="text" class="form-control bg-white" placeholder={{date}} value={{date}} placement="top" name="date" [(ngModel)]="date" readonly="true">
       </div>
       </div>
-        <ckeditor class="mt-2" name="codeSnippet" [(ngModel)]="codeSnippet"></ckeditor>
+      <ckeditor class="mt-2" name="editor1" [(ngModel)]="codeSnippet"></ckeditor>
      <div class="row mt-4 mb-4">       
      <div class="col-sm-6">
      <button class="btn post btn-md text-white form-control myBtn" (click)="insertPost(postSubmit)">Post question</button>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ForumService } from '../../../services/forum.service';
 import { ParamMap } from '@angular/router';
 import { Router, ActivatedRoute, Params, Data } from '@angular/router'
+
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -12,8 +13,10 @@ import 'rxjs/add/operator/switchMap';
 
 export class DetailpostComponent implements OnInit {
 
+
   constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {}
   name: string;
+  editor1:string;
   obj:any = {};
   codeSnippet: string;
   data: any = [];
@@ -23,6 +26,13 @@ export class DetailpostComponent implements OnInit {
   userId: any;
 
   ngOnInit() {
+    var config = {
+    extraPlugins: 'codesnippet',
+    codeSnippet_theme: 'monokai_sublime',
+    height: 356
+  };
+
+  CKEDITOR.replace( 'editor1', config );
 
     this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
@@ -36,23 +46,7 @@ export class DetailpostComponent implements OnInit {
   }
 
   postAnswer() {
-// console.log("-->")
-//     console.log(this.data)
 
-//      this.forum.getPostByQuestion(this.data[0].questionTitle)
-//      .subscribe(res=> {
-//        this.userId = res
-// this.userId[0].answers[this.userId[0].answers.length].codeSnippet = "Hey"
-// /*this.userId[0].answers[this.userId[0].answers.length].answer = this.answer;
-// console.log("---->")*/
-//   console.log(this.userId)
-//      })
-
-
-     
-
-    /* this.forum.saveAnswer(this.userId, data)
-     .subscribe(res=> res.json())*/
 
     this.obj = {
       username: "prashant",
@@ -60,7 +54,7 @@ export class DetailpostComponent implements OnInit {
       likes: "11",
       dislikes: "2"
     }
-    this.forum.saveAnswer(this.data[0].questionTitle, this.userId)
+    this.forum.saveAnswer(this.data[0].questionTitle, this.obj)
       .subscribe(res => {
           this.data = res;
         })
