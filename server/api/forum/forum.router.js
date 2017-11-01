@@ -29,6 +29,8 @@ const appConfig = require('../../config').app;
   }
 });
 
+
+
 router.get('/', function(req, res) {
   //console.log(res)
   logger.debug('User persistent started');
@@ -88,6 +90,8 @@ router.get('/getQuestionDetail/:question', function(req, res) {
     return;
   }
 });
+
+
 
 router.put('/update/:question', (req, res) => {  
 

@@ -16,6 +16,10 @@ import { ForumService } from '../../../services/forum.service';
 export class ViewpostComponent implements OnInit,AfterViewInit {
 
 data:any=[];
+
+answer:any={};
+noofanswer:number=0;
+answerlength: any = [];
 p: number[]=[];
 dislikeCounter:number;
 likeCounter:number;
@@ -47,21 +51,23 @@ dislikes=0;
  {
    //console.log(data.value);
    this.forum.getPost().subscribe((data1)=>{
+   
      this.data=data1;
    })
  }
-
-   getQuestionDetail(value):any { 
-      this.router.navigate(['/questiondetail',value])   
-    }
-
- getDetails(searchTerm:any){
+   getDetails(searchTerm:any){
   //alert(searchTerm.value
+
+console.log(searchTerm)
   this.forum.searchEntries(searchTerm.value)
     .subscribe(res => {
       this.data =res;
+      console.log(this.data)
     });
 }
+   getQuestionDetail(value):any { 
+      this.router.navigate(['/questiondetail',value])   
+    }
 
 like(){
   if(this.likeflag==false){
@@ -103,4 +109,12 @@ like(){
 
  }
 }
+    showAnswers(value):any{
+      // this.forum.getPostByQuestion(value).subscribe((data)=>{
+      //   console.log("answers................",data[0].answers);
+      // })
+     this.router.navigate(['/answers',value])  
 
+    }
+
+}
