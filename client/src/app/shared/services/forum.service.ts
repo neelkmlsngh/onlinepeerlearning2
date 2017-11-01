@@ -52,7 +52,7 @@ export class ForumService {
   // }
   saveAnswer(question,answer){
      return this.http.
-     get('https://localhost:8080/api/forum/update/' + question,answer)
+     put('https://localhost:8080/api/forum/update/' + question,answer)
       .map(res => res.json());
 
 }

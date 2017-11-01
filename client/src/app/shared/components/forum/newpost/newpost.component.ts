@@ -31,7 +31,7 @@ export class NewpostComponent implements OnInit {
   };
 
   CKEDITOR.replace( 'editor1', config );
-
+  CKEDITOR.instances.editor1.setData("");
 
       this.date = new Date();  
       let day = this.date.getDate();    
@@ -42,6 +42,7 @@ export class NewpostComponent implements OnInit {
 
  insertPost(data)
  {
+   console.log(CKEDITOR.instances.editor1.getData());
    console.log(data.value);
    this.forum.save(data.value).subscribe((res)=>{
         //We get dialog result

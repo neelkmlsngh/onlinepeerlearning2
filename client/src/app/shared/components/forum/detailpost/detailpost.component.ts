@@ -48,10 +48,10 @@ export class DetailpostComponent implements OnInit {
   }
 
   postAnswer() {
-console.log(CKEDITOR.instances.editor1.getData());
+   console.log(CKEDITOR.instances.editor1.getData());
     this.obj = {
       username: "prashant",
-      answer: this.answer,
+      answer: CKEDITOR.instances.editor1.getData(),
       likes: "11",
       dislikes: "2"
     }
