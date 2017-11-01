@@ -48,7 +48,7 @@ import { ChatComponent } from './shared/components/chat/chat.component';
 import { LoginComponent } from './shared/components/chat/login/login.component';
 import { NotFoundComponent } from './shared/components/chat/not-found/not-found.component';
 import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
-import { AuthoriseGuard } from './guard/authorise.guard';
+//import { AuthoriseGuard } from './shared/services/authorise.guard';
 
 @NgModule({
   declarations: [
@@ -118,21 +118,21 @@ import { AuthoriseGuard } from './guard/authorise.guard';
       },
       {
 
-        path: 'chat-window',
-        component: ChatWindowComponent,
-        canActivate: [AuthoriseGuard]
-      },
+       path:'chat-window',
+       component:ChatWindowComponent,
+       //canActivate: [AuthoriseGuard]
+     },
 
       {
         path: 'video',
         component: VideoChatComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
       {
 
         path: 'audio',
         component: AudioChatComponent,
-        canActivate: [AuthoriseGuard]
+        /*canActivate: [AuthoriseGuard]*/
       },
 
       {
@@ -158,34 +158,35 @@ import { AuthoriseGuard } from './guard/authorise.guard';
       {
         path: 'webeditor',
         component: WebeditorComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
       {
         path: 'profile',
         component: ProfileComponent,
-        canActivate: [AuthoriseGuard]
+       /* canActivate: [AuthoriseGuard]*/
       },
       {
         path: 'auth/:userId/:token',
         component: AuthenticateComponent,
-        canActivate: [AuthoriseGuard]
+        /*canActivate: [AuthoriseGuard]*/
       },
-      {
-        path: '**',
-        component: HomeComponent
-      },
+     
       {
         path: 'chome',
         component: ChatHomeComponent
       },
-      {
+       {
+        path: '**',
+        component: HomeComponent
+      },
+      /*{
         path: 'chome/:userid',
         component: ChatHomeComponent
-      },
+      },*/
     ], { useHash: true })
   ],
 
-  providers: [LoginService, GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, AuthoriseGuard],
+  providers: [LoginService, GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService/*, AuthoriseGuard*/],
   bootstrap: [AppComponent]
 })
 

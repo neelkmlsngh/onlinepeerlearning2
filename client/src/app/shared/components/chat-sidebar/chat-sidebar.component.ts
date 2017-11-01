@@ -8,7 +8,7 @@ import { ChatService } from '../../services/chat.service';
   styleUrls: ['./chat-sidebar.component.css'],
   providers: [ChatService]
 })
-export class ChatSidebarComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ChatSidebarComponent  {
   connection;
   users:any;
   chat: any = null;
@@ -28,11 +28,10 @@ calledFromOutside(url:string) {
   }
 
   ngOnInit() {
-    debugger
-     this.connection = this.chatService.getOnlineUsers().subscribe(user => {
+  /*   this.connection = this.chatService.getOnlineUsers().subscribe(user => {
       this.users=user;
       
-    }) 
+    }) */
    /*$(document).ready(function(){
         $('.togetherjs-dock-right').hide();
     });*/
@@ -44,7 +43,7 @@ calledFromOutside(url:string) {
     $('#togetherjs-dock').hide();
   }
 
-  /*screenShare(call) {
+  screenShare(call) {
      this.windowRef= window;
      if (this.windowRef.TogetherJS) {
          this.windowRef.TogetherJS();
@@ -57,7 +56,7 @@ calledFromOutside(url:string) {
                 $('#togetherjs-window-pointer-right').remove();
             },100)
      }
-}*/
+}
 sh(){
   $('#textbx').toggle();
 }

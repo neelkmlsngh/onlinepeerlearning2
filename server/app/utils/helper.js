@@ -2,7 +2,7 @@
 * Real time private chatting app using Angular 2, Nodejs, mongodb and Socket.io
 * @author Shashank Tiwari
 */
-
+const loginModel=require('./../../api/login/login.entity');
 'use strict';
 
 class Helper{
@@ -72,12 +72,16 @@ class Helper{
 	* Return : callback 
 	*/
 	userSessionCheck(data,callback){
-		this.Mongodb.onConnect( (db,ObjectID) => {
+		/*this.Mongodb.onConnect( (db,ObjectID) => {
 			db.collection('users').findOne( { _id : ObjectID(data.userId) , online : 'Y'}, (err, result) => {
 				db.close();
 				callback(err,result);
 			});
-		});
+		});*/
+
+		loginModel.findOne({"userId":data.userId},(err,result)=>{
+		callback(err,result);
+		})
 	}
 
 

@@ -8,11 +8,13 @@ const profileRoutes = require('./profile');
 
 const authtokenRoutes = require('./authtoken');
 
+const chatRoutes = require('./chat');
 
 module.exports = {
-	userRoutes : userRoutes,
-	forumRoutes : forumRoutes,
-	loginRoutes : loginRoutes,
-  profileRoutes : profileRoutes,
-  authtokenRoutes : authtokenRoutes,
+    userRoutes: userRoutes,
+    forumRoutes: forumRoutes,
+    loginRoutes: loginRoutes,
+    profileRoutes: profileRoutes,
+    authtokenRoutes: authtokenRoutes,
+    chatRoutes: chatRoutes
 }

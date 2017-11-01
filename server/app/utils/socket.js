@@ -147,7 +147,7 @@ class Socket{
           	next();
         });
 
-        this.socketEvents();
+        /*this.socketEvents();*/
 	}
 }
 module.exports = Socket;

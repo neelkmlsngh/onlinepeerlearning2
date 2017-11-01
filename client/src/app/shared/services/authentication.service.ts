@@ -21,7 +21,7 @@ user:{}
     //console.log(dataObj.userId);
     localStorage.setItem('currentUser', JSON.stringify({ token: token, userId: userId }));
     if (token) {
-      this.router.navigate(["/main"])
+      this.router.navigate(["/main"]);
 
     } else if (!token) {
       this.router.navigate(["/"])
@@ -34,6 +34,9 @@ user:{}
     return token;
   }
 
+ getUserId(): any {
+    return JSON.parse(localStorage.getItem('currentUser'))['userId'];
+  }
   logoutEditor(user) {
     // alert('logout called')
     // let user = JSON.parse(localStorage.getItem('currentUser'));

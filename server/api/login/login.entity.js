@@ -5,11 +5,11 @@ const mongoose = require('mongoose');
  */
 
 var LoginSchema = new mongoose.Schema({
-  username: String,
+  userName: String,
   userId: String,
   updatedAt:{ type: Date, default: Date.now },
  	createdOn:Date,
-  online:Boolean,
+  online:String,
   timestamp:Number,
   socketId:String,
 });

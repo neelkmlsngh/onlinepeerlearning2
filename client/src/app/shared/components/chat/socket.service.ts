@@ -19,7 +19,7 @@ export class SocketService {
 	/* 
 	* specifying Base URL.
 	*/
-	private BASE_URL = 'http://localhost:4000';  
+	private BASE_URL = 'https://192.168.252.152:8080';  
   	private socket;
 
   	constructor() {}
@@ -28,7 +28,7 @@ export class SocketService {
 	* Method to connect the users to socket
 	*/
   	connectSocket(userId:string){
-  		this.socket = io(this.BASE_URL,{ query: `userId=${userId}`});
+  		this.socket = io.connect(this.BASE_URL,{ query: `userId=${userId}`});
   	}
  
  	/* 
@@ -66,7 +66,6 @@ export class SocketService {
 			this.socket.on('add-message-response', (data) => {
 				observer.next(data);    
 			});
-
 			return () => {
 				this.socket.disconnect();
 			};  
@@ -83,6 +82,7 @@ export class SocketService {
 
 		let observable = new Observable(observer => {
 			this.socket.on('chat-list-response', (data) => {
+				console.log(JSON.stringify(data,null,2));
 				observer.next(data);    
 			});
 

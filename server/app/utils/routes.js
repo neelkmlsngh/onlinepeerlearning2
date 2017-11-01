@@ -208,4 +208,5 @@ class Routes {
         this.appRoutes();
     }
 }
+
 module.exports = Routes;

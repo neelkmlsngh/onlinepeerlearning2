@@ -6,7 +6,7 @@ export const config: any = {
 "HTML/CSS"
 ],
  connect: {
-       "url": "https://localhost:",
+       "url": "https://192.168.252.152:",
        "port": "8080"
    }
 

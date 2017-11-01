@@ -75,4 +75,8 @@ export class GitService {
       return Observable.throw(error.status || 'Server error');
     }
   }
+
+  getSha(){
+    
+  }
 }
