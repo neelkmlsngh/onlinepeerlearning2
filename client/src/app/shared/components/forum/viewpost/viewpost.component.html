@@ -86,12 +86,12 @@
                     <div class="col-sm-9">
                     <div class="row">
                     <div class="col-sm-6">
-                      <a class="btn like text-white" href="#">
-                 <i class="fa fa-thumbs-up fa-lg text-white"></i> Like</a>
+                      <button class="btn text-black btn-outline-success" (click)="like()">
+                 <i class="fa fa-thumbs-up fa-lg text-black"></i> {{likes}}</button>
                  </div>
                  <div class="row">
-                   <a class="btn like text-white" href="#">
-                 <i class="fa fa-thumbs-down fa-lg text-white"></i> DisLike</a>
+                   <button class="btn text-black btn-outline-danger" (click)="dislike()">
+                 <i class="fa fa-thumbs-down fa-lg text-black"></i> {{dislikes}}</button>
                  </div>
                  </div>
                     </div>
