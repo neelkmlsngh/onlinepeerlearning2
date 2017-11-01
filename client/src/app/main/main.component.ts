@@ -2,7 +2,7 @@ import { Component, OnInit, Input, NgZone, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
-
+import swal from 'sweetalert2';
 import { config } from '../shared/config/config';
 import { GitService } from '../shared/services/git.service'
 import { AuthenticationService } from '../shared/services/authentication.service';
@@ -116,6 +116,16 @@ logout(){
     }
      
     this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
+      if (data1) {
+         swal({
+      timer: 2500,
+      title: "Logged Out Successfully",
+      text:  "",
+      type:  'success',
+      showConfirmButton: false,
+    })
+        }
+
     this.router.navigate(["/"]);
      localStorage.removeItem('currentUser');
 })

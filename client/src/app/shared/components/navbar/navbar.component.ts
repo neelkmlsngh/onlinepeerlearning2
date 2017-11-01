@@ -22,12 +22,7 @@ logout(){
     }
      
 		this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
-      swal({
-            timer: 2000,
-            title: "Successfully Logged Out",
-            type: 'success',
-            showConfirmButton: false,
-          })
+      
     this.router.navigate(["/"]);
      localStorage.removeItem('currentUser');
 })

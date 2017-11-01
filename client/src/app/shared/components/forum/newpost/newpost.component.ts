@@ -48,17 +48,17 @@ export class NewpostComponent implements OnInit {
         if (res) {
           console.log(res)
           swal({
-      timer: 1000,
+      timer: 2200,
       title: "Posted Successfully",
-      text:  "accepted",
+      text:  "",
       type:  'success',
       showConfirmButton: false,
     })
         } else {
           swal({
-      timer: 1000,
+      timer: 2200,
       title: "Error occured",
-      text:  "declined",
+      text:  "",
       type: 'error',
       showConfirmButton: false,
     })
