@@ -43,14 +43,9 @@ import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/
 import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
-<<<<<<< HEAD
 //import { AuthoriseGuard } from './shared/services/authorise.guard';
-=======
 import { CoderunnerService } from './shared/services/coderunner.service';
-import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { AnswersComponent } from './shared/components/forum/answers/answers.component';
->>>>>>> c7cfd5233a68ff8923f7227ee7ac8c70168dbd4b
-
 
 @NgModule({
   declarations: [
