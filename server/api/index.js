@@ -9,10 +9,13 @@ const profileRoutes = require('./profile');
 const authtokenRoutes = require('./authtoken');
 
 
+const snippetRoutes = require('./snippet');
+
+
 module.exports = {
 	userRoutes : userRoutes,
 	forumRoutes : forumRoutes,
 	loginRoutes : loginRoutes,
   profileRoutes : profileRoutes,
-  authtokenRoutes : authtokenRoutes,
+  snippetRoutes : snippetRoutes,
 }

@@ -53,6 +53,7 @@ export class MainComponent implements OnInit {
     this.gitService.getRepos()
       .subscribe(repos => {
         this.githubUser = repos;
+        this.mod="Select Mode"
 
       })
   }

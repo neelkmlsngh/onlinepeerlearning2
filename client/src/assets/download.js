@@ -1,4 +1,4 @@
-$(function() {
+/*$(function() {
   $(document).ready(function() {
     var textFile = null,
       makeTextFile = function(text) {
@@ -24,3 +24,4 @@ $(function() {
     }, false);
   })
 });
+*/

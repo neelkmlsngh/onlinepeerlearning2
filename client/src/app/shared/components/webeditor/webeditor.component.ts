@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef,Input } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { AceEditorDirective } from 'ng2-ace-editor'
 import { AceEditorModule } from 'ng2-ace-editor'
@@ -11,6 +11,9 @@ import * as JSZip from 'jszip'
   styleUrls: ['./webeditor.component.css']
 })
 export class WebeditorComponent implements OnInit {
+
+   @Input() content: any;
+
   htmlValue: any = "<h1>Hello World</h1>";
   cssValue: any = "body{color:red}";
   jsValue: any = "";

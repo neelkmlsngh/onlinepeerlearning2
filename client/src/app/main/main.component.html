@@ -98,9 +98,14 @@
         <div class="row">
           <div class="card-body acolor text-left">
             <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Select Mode
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{mod}}
               </button>
+                  <!--dropdown of modes(html/javascript)-->
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" (click)="mode('html')">Html/Css</a>
+                <a class="dropdown-item" (click)="mode('javascript')">Javascript</a>
+              </div>
                   <!--screen share button-->
               <button id="togetherjs-share-button start-togetherjs" class="togetherjs-button btn  btn-secondary" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="Add a friend" (click)="openModal(template)"> screen sharing</button>
               <div id="togetherjs-dock-participants"></div>
@@ -118,11 +123,7 @@
                   </div>
                 </div>
               </template>
-                  <!--dropdown of modes(html/javascript)-->
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" (click)="mode('html')">Html/Css</a>
-                <a class="dropdown-item" (click)="mode('javascript')">Javascript</a>
-              </div>
+
             </div>
           </div>
           <div class="card-body acolor text-left ">
@@ -132,9 +133,9 @@
               </button>
                <!--dropdown of repo modification-->
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item">Create</a>
-                <a class="dropdown-item">Update</a>
-                <a class="dropdown-item">Delete</a>
+                <a class="dropdown-item">Create file</a>
+                <a class="dropdown-item">Update file</a>
+                <a class="dropdown-item">Delete file</a>
               </div>
             </div>
           </div>
