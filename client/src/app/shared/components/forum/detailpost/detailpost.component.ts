@@ -21,7 +21,7 @@ export class DetailpostComponent implements OnInit {
   codeSnippet: string;
   data: any = [];
   errors: string;
-  answer:string="";
+ answer:string="";
   questionTitle:string="";
   userId: any;
 
@@ -33,12 +33,12 @@ export class DetailpostComponent implements OnInit {
   };
 
   CKEDITOR.replace( 'editor1', config );
-
+  CKEDITOR.instances.editor1.setData("");
     this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
       .subscribe((res) => {
         this.data = res;
-        console.log(this.data[0].questionTitle);
+        console.log("MyDATA========= "+JSON.stringify(this.data));
       })
     error => {
       this.errors = error;
@@ -47,16 +47,17 @@ export class DetailpostComponent implements OnInit {
 
   postAnswer() {
 
-
+//console.log("prashant..............",data.value);
     this.obj = {
       username: "prashant",
-      answer: this.answer,
+      answer: CKEDITOR.instances.editor1.getData(),
       likes: "11",
       dislikes: "2"
     }
+    // debugger
     this.forum.saveAnswer(this.data[0].questionTitle, this.obj)
       .subscribe(res => {
-          this.data = res;
+          console.log(res);
         })
       }
     }
