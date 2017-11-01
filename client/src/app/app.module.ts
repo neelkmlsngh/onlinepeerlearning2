@@ -168,11 +168,11 @@ import { ChatComponent } from './shared/components/chat/chat.component';
        //canActivate: [AuthoriseGuard]
     }
     ,
-    {
+   /* {
         path: 'chome',
         component: ChatHomeComponent
       },
-     
+*/     
      {
       path:'**',
       component: HomeComponent,

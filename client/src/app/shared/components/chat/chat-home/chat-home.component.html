@@ -37,7 +37,15 @@ Loading overlay section starts
     </div> -->
 <div class="chatbox chatbox--tray chatbox--empty">
   <div class="chatbox__title">
-    <h5><a href="#">{{selectedUserName}}</a></h5>
+    <h5><a>{{selectedUserName}}</a></h5>
+      <button class="btn btn-outline-success btn-lg callimg mr-6" data-toggle="popover" title="Audio Call">
+            <i class="fa fa-phone" aria-hidden="true">
+                
+           </i>
+        </button>
+        <button class="btn btn-outline-primary btn-lg callimg mr-6" data-toggle="popover" title="Video Call">
+            <i class="fa fa-video-camera" aria-hidden="true"></i>
+        </button>
     <button class="chatbox__title__tray">
       <span></span>
     </button>
@@ -50,6 +58,8 @@ Loading overlay section starts
           </span>
     </button>
   </div>
+
+
   <ul class="message-thread">
     <li *ngFor="let message of messages" [class.align-right]="alignMessage(message.toUserId)">
       {{ message.message}}
@@ -107,14 +117,35 @@ Loading overlay section starts
     </span>
      </div>
    </div> -->
-<div class="brand">Online Users</div>
+<!--  <div class="brand">Online Users</div>
 <div class="menu-list">
-  <ul class="n">
-    click event to handle the selection : selectedUser() adding a class to indicate the selection
-    <li *ngFor="let user of chatListUsers">
-      {{ user.userName}}
-      <button type="button" class="close pull-right" aria-label="Close" (click)="selectedUser(user)" [class.selected-user]="isUserSelected(user._id)">Chat
-      </button>
-    </li>
-  </ul>
-</div>
+<ul class="n">
+  click event to handle the selection : selectedUser() adding a class to indicate the selection
+  <li *ngFor="let user of chatListUsers">
+    {{ user.userName}}
+    <button type="button" class="close pull-right" aria-label="Close" (click)="selectedUser(user)" [class.selected-user]="isUserSelected(user._id)">Chat
+    </button>
+  </li>
+</ul>
+</div>   -->
+
+<span class="done">
+      <button mat-fab class="button-collapse sidebar" (click)="removesb()">
+     <mat-icon>check circle</mat-icon>
+   </button>
+      
+    </span>
+
+  <div class="nav-side-menu side">
+  <div class="brand">Online Users</div>
+  <div class="menu-list">
+   <ul class="n">
+          <li *ngFor="let user of chatListUsers">
+            {{ user.userName}}
+            <button class="btn btn-outline-primary btn-lg callimg mr-6 close" data-toggle="popover" title="Chat" (click)="selectedUser(user)" [class.selected-user]="isUserSelected(user._id)">Chat
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          </button>
+          </li>
+        </ul>
+  </div>
+ </div>  
