@@ -58,7 +58,7 @@ var upload = multer({ storage: storage }).any();
    }
  })
 
-  router.post('/image/:userId',function(req,res){
+  router.put('/image/:userId',function(req,res){
   let getId= req.params.userId;
   let profileInfo = req.body;
   console.log(profileInfo+"")
@@ -72,7 +72,7 @@ var upload = multer({ storage: storage }).any();
         imgPath:req.files[0].path
       }
       console.log(dataObj,getId);
-        
+       usrCtrl.updateImage(dataObj,getId); 
     }
   });
    }catch(err){
