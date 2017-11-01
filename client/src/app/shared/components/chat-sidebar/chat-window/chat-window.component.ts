@@ -21,9 +21,9 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.connection = this.chatService.getMessages().subscribe(message => {
+  /*  this.connection = this.chatService.getMessages().subscribe(message => {
       this.messages.push(message);
-    })
+    })*/
   }
 
  ngOnDestroy() {

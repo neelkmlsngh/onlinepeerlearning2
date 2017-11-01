@@ -9,10 +9,10 @@ export class ChatService {
   config = config
   
   sendMessage(message){
-    this.socket.emit('add-message', message);    
+/*    this.socket.emit('add-message', message);*/    
   }
   getMessages() {
-    let observable = new Observable(observer => {
+    /*let observable = new Observable(observer => {
       this.socket = io(this.config.connect.url+this.config.connect.port);
       this.socket.on('message', (data) => {
         observer.next(data);    
@@ -21,10 +21,10 @@ export class ChatService {
         this.socket.disconnect();
       };  
     })     
-    return observable;
+    return observable;*/
   } 
    getOnlineUsers() {
-    let observable = new Observable(observer => {
+    /*let observable = new Observable(observer => {
       this.socket = io(this.config.connect.url+this.config.connect.port);
       this.socket.on('users', (data) => {
         observer.next(data);    
@@ -33,7 +33,7 @@ export class ChatService {
         this.socket.disconnect();
       };  
     })     
-    return observable;
+    return observable;*/
   } 
    
 }  
