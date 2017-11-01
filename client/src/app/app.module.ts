@@ -47,6 +47,7 @@ import { ProfileService } from './shared/services/profile.service';
 import { CoderunnerService } from './shared/services/coderunner.service';
 import { AnswersComponent } from './shared/components/forum/answers/answers.component';
 import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
+import { ChatComponent } from './shared/components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,9 @@ import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.
     AuthenticateComponent,
     AudioChatComponent,
     VideoChatComponent,
-    AnswersComponent
+    AnswersComponent,
+    ChatHomeComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
