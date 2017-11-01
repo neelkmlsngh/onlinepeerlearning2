@@ -57,9 +57,9 @@
         <div class="questionsumary">
           <div class="row" *ngFor="let result of data| paginate: { itemsPerPage:4, currentPage: p }">
             <div class="statuscontainer col-sm-3">
-              <div class="vote h5">
-                {{result.votes}} votes
-              </div>
+            <!--   <div class="vote h5">
+                 Total Votes: {{votes}}
+              </div> -->
               <div class="answeraccepted h5  border py-2 text-white mt-4">
                 <strong class="pl-4">12</strong>
                 <br><small class="ans">answers</small>
@@ -86,12 +86,12 @@
                     <div class="col-sm-9">
                     <div class="row">
                     <div class="col-sm-6">
-                      <a class="btn like text-white" href="#">
-                 <i class="fa fa-thumbs-up fa-lg text-white"></i> Like</a>
+                      <button class="btn text-black btn-outline-success" (click)="like()">
+                 <i class="fa fa-thumbs-up fa-lg text-black"></i> {{likes}}</button>
                  </div>
                  <div class="row">
-                   <a class="btn like text-white" href="#">
-                 <i class="fa fa-thumbs-down fa-lg text-white"></i> DisLike</a>
+                   <button class="btn text-black btn-outline-danger" (click)="dislike()">
+                 <i class="fa fa-thumbs-down fa-lg text-black"></i> {{dislikes}}</button>
                  </div>
                  </div>
                     </div>

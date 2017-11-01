@@ -14,7 +14,12 @@ import { ForumService } from '../../../services/forum.service';
   providers: [ForumService]
 })
 export class ViewpostComponent implements OnInit,AfterViewInit {
-
+dislikeCounter:number;
+likeCounter:number;
+likes= 0;
+likeflag=false;
+dislikeflag=false;
+dislikes=0;
 data:any=[];
  constructor(private forum:ForumService,private router: Router) { 
 
@@ -59,5 +64,44 @@ data:any=[];
     });
 }
 
+like(){
+  if(this.likeflag==false){
+    if(this.dislikeflag==true){
+  this.likeCounter=this.likes++;
+  this.likeflag=true;
+  this.dislikes--;
+  this.dislikeflag=false;
+  }
+  else{
+     this.likeCounter=this.likes++;
+  this.likeflag=true;
+  }
+}
+  else{
+    this.likes--;
+    this.likeflag=false;
+  }
+}
+
+  dislike(){
+
+    if(this.dislikeflag==false){
+      if(this.likeflag==true){
+  this.dislikeCounter=this.dislikes++;
+  this.dislikeflag=true;
+  this.likes--;
+  this.likeflag=false;
+  }
+  else{
+    this.dislikeCounter=this.dislikes++;
+  this.dislikeflag=true;
+  }
+}
+  else{
+    this.dislikes--;
+    this.dislikeflag=false;
+  }
+
+  }
 }
 
