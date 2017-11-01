@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, NgZone} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import * as $ from 'jquery';
 
 import { ChatService } from '../../services/chat.service';
@@ -22,17 +22,7 @@ export class ChatSidebarComponent implements OnInit, OnDestroy {
       this.users=user;
       
     }) 
-   /*$(document).ready(function(){
-        $('.togetherjs-dock-right').hide();
-    });*/
-
-
   }
-
-
-/*sh(){
-  $('#textbx').toggle();
-}*/
 
   ngOnDestroy() {
     this.connection.unsubscribe();
