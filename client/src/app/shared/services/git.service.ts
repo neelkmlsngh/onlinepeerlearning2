@@ -7,15 +7,16 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class GitService {
-  userName:any
-  
+  userName: any = "GauravGupta131220";
+
   private clientId: string = '60b9f23dedffbdfc476c';
   private clientSecret: string = 'd1c186c6373f96571c0bfcf76b84e4dc6fd0c15a';
   constructor(private _http: Http) {
     // console.log('Github Service Ready.');
     let userDetails = JSON.parse(localStorage.getItem('currentUser'));
-    this.userName =userDetails.userName ;
+    /*this.userName =userDetails.userName ;*/
   }
+
   //method to get github username
   getUser() {
     if (this.userName) {
@@ -27,6 +28,7 @@ export class GitService {
         .catch(this.handleError);
     }
   }
+
   //method to get all the repositories of the user
   getRepos() {
     if (this.userName) {
@@ -57,14 +59,58 @@ export class GitService {
     }
   }
   getFile(repo, file) {
-   if (this.userName) {
-     let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
-     let options = new RequestOptions({ headers: headers });
-     return this._http.get('https://api.github.com/repos/' + this.userName + "/" +
-       repo + '/contents/' + file + '?client_id=' + this.clientId +
-       '&client_secret=' + this.clientSecret, options)
-   }
- }
+    if (this.userName) {
+      let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
+      let options = new RequestOptions({ headers: headers });
+      return this._http.get('https://api.github.com/repos/' + this.userName + "/" +
+        repo + '/contents/' + file + '?client_id=' + this.clientId +
+        '&client_secret=' + this.clientSecret, options)
+    }
+  }
+
+  //method to create file on github
+  createFile(text) {
+    if (this.userName) {
+      /*let headers = new Headers({ 'Authorization': "Basic dGFudXByZWV0X3NpbmdoQHlhaG9vLmNvbTo4NTI3NDc5MDMyMGZiMzNmYzkxNzhmZTA4NWE4YTA2NjVmZDNiNTU4" });
+   let options= new RequestOptions({ headers: headers });*/
+      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master', this.authoriZation())
+        .map(res => res.json())
+    }
+  }
+
+  //method to create the file and saving the sha-base-tree
+  commitfile(text, sha) {
+    if (this.userName) {
+      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits/' + sha, this.authoriZation())
+        .map(res => res.json())
+    }
+  }
+
+  //method to create file, sending new file name and saving the sha-new-tree
+  treecommit(text, basetree) {
+    if (this.userName) {
+      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/trees', basetree, this.authoriZation())
+        .map(res => res.json())
+    }
+  }
+
+  //method to create a file on github and saving sha-new-commit
+  newcommit(text, newcommit) {
+    if (this.userName) {
+      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits', newcommit, this.authoriZation())
+        .map(res => res.json())
+
+    }
+  }
+
+  //method to create a fiel on github 
+  lastcommit(text, lastcommit) {
+    if (this.userName) {
+      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master', lastcommit, this.authoriZation())
+        .map(res => res.json())
+    }
+  }
+
   //method to update the user
   updateUser(userName: string) {
     this.userName = userName;
@@ -78,7 +124,43 @@ export class GitService {
     }
   }
 
-  getSha(){
-    
+  //method to get the sha of the file   
+  getsha(text, filename) {
+    if (this.userName) {
+      console.log(filename)
+      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/contents/' + filename, this.authoriZation())
+        .map(res => res.json())
+
+    }
+  }
+
+  
+  //method to update the file on github
+  updateFile(text, filename, updateobj) {
+    if (this.userName) {
+      console.log('from service...........' + updateobj)
+      return this._http.put('https://api.github.com/repos/' + this.userName + '/' + text + '/contents/' + filename, updateobj, this.authoriZation())
+        .map(res => res.json())
+    }
+  }
+
+  //method to delete the file on github
+  deleteFile(text, filename, deletefileobj) {
+    if (this.userName) {
+      //let head=this.authoriZation();  
+      let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206MjZmZGZmYmUzMDBlNmRmODU0NjQ0NGI5Mzk2NDc4YTdjNTUxODUxMQ" });
+      console.log('from service...........' + deletefileobj)
+      return this._http.delete('https://api.github.com/repos/' + this.userName + '/' + text + '/contents/' + filename, new RequestOptions({
+          headers: headers,
+          body: deletefileobj
+        }))
+        .map(res => res.json())
+    }
+  }
+
+  //method for authorization
+  private authoriZation() {
+    let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206MjZmZGZmYmUzMDBlNmRmODU0NjQ0NGI5Mzk2NDc4YTdjNTUxODUxMQ" });
+    return new RequestOptions({ headers: headers });
   }
 }

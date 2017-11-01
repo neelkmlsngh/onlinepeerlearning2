@@ -3,7 +3,24 @@
               <i class="fa fa-download" aria-hidden="true" data-toggle="popover" title="Download JS File"></i>  </a>
   <div id="myJsDiv"></div>
   <button class="btn-primary" (click)="executecode()">Execute</button>
-  <div ace-editor [(text)]="jsValue" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" class="code_box" id="javascript">
+  <div class="btn-group">
+    <button class="btn btn-default" type="button" (click)="save()">
+      Create
+    </button>
+    <button class="btn btn-default" type="button" (click)="update()">
+      Update
+    </button>
+    <button class="btn btn-default" type="button" (click)="delete()">
+      Delete
+    </button>
+  </div>
+  <div ace-editor 
+  [(text)]="content" 
+  [mode]="'javascript'" 
+  [theme]="'twilight'" 
+  [readOnly]="false" 
+  [autoUpdateContent]="true" 
+  [durationBeforeCallback]="2000" class="code_box" id="javascript">
   </div>
 </section>
 <div class="row">

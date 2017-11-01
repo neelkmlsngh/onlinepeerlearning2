@@ -10,7 +10,7 @@ import { GitService } from '../../services/git.service'
 })
 export class RepoSidebarComponent implements OnInit {
 
-githubUser: any;
+  githubUser: any;
   selectedValue: any;
   data: any;
   fileData: any;

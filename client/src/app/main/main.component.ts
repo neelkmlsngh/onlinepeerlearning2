@@ -15,7 +15,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class MainComponent implements OnInit {
 
+
   content: any;
+  reponame: any;
+  filenamed: any;
+
+  
   languages: any = [];
   mod: any = 'html'
   githubUser: any;
@@ -84,13 +89,19 @@ export class MainComponent implements OnInit {
   }
 
   show(reponame, filename) {
+
+
+    this.reponame=reponame;
+    this.filenamed=filename;
     this.gitService.getFile(reponame, filename)
       .subscribe(data => {
 
         this.fileData = data;
         this.text = this.fileData._body;
-        this.content.emit(this.text);
-
+        console.log(this.text)
+        // this.content.emit(this.text);
+        this.content=this.text;
+        console.log("content data "+ this.content);
       })
   }
 
