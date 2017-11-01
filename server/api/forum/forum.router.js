@@ -94,7 +94,7 @@ router.get('/getQuestionDetail/:question', function(req, res) {
 
 
 router.put('/update/:question', (req, res) => {  
-
+//console.log("hit api",getValue);
 let  getValue=req.params.question; 
 let forumUpdate = req.body;
   logger.debug('User persistent started');
