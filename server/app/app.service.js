@@ -26,6 +26,7 @@ const config = require('../config');
 const loginController = require('./../api/login/login.controller')
 const loggerConfig = config.loggerConstant;
 const db = config.db;
+const gitId = config.app;
 
 //login function of git called by app.js
 function loginviagit() {
@@ -36,14 +37,11 @@ function loginviagit() {
         done(null, obj);
     });
     passport.use(new GitHubStrategy({
-         clientID: '7328322e0495591f5a69',
-         clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
-         callbackURL: "https://localhost:8080/auth/github/callback"
-        /*clientID: 'd800be26e1dd031f7308',
-        clientSecret: '096d2f5bd449fb0d226a5feedfff33d429365c0b',
-        callbackURL: "https://192.168.252.152:8080/auth/github/callback"*/
+        clientID: gitId.CLIENT_ID,
+        clientSecret: gitId.CLIENT_SECRET,
+        callbackURL: gitId.CALLBACK_URL
     }, function(accessToken, refreshToken, profile, done) {
-        console.log(profile);
+        //console.log(profile);
         let userInfo = {
             name: profile._json.login,
             userId: profile.id,
