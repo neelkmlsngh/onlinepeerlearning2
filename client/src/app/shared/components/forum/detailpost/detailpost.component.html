@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Knowledge base forum</title>
+</head>
+<body>
 <form #postSubmit='ngForm'>
   <nav class="navbar navbar-expand-lg navbar-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,12 +15,12 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link text-white" href="" routerLink="/questions">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link text-white" href="" routerLink="/questions">Home <span class="srnb -only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white" href="" routerLink="/questions">Questions</a>
         </li>
-       <!--  <li class="nav-item"> -->
+        <li class="nav-item">
           <li class="nav-item">
             <a class="nav-link disabled text-white" href="#"></a>
           </li>
@@ -47,9 +55,9 @@
                 <strong class="pl-4">12</strong>
                 <br><small class="ans">answers</small>
               </div>
-              <div class="views h6  mt-4">
+              <!-- <div class="views h6  mt-4">
                 1.5 million views
-              </div>
+              </div> -->
             </div>
             <div class="col-sm-9">
               <div class="questionTitle">
@@ -70,7 +78,7 @@
                  <i class="fa fa-thumbs-up fa-lg text-white"></i> Like</a>
                     </div>
                     <div class="col-sm-6">
-                      asked {{result.date}}
+                      asked Oct 20 '08 at 13:18
                     </div>
                   </div>
                 </div>
@@ -85,8 +93,9 @@
         <div class="answer mt-3">
           <label class="h5">Your answer</label>
 
-          <ckeditor value="" id="editor1" class="editor1" name="editor1" 
-         [(ngModel)]="editor1"></ckeditor>
+          <ckeditor id="editor1" class="editor1" name="editor1" 
+          [(ngModel)]="editor1"
+          ></ckeditor>
 
         </div>
             <hr>
@@ -134,3 +143,5 @@
     </div>
   </div>
   </form>
+</body>
+</html>
