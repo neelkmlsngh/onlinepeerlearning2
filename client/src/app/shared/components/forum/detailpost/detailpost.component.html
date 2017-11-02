@@ -12,10 +12,10 @@
         <li class="nav-item">
           <a class="nav-link text-white" href="" routerLink="/questions">Questions</a>
         </li>
-       <!--  <li class="nav-item"> -->
-          <li class="nav-item">
-            <a class="nav-link disabled text-white" href="#"></a>
-          </li>
+        <!--  <li class="nav-item"> -->
+        <li class="nav-item">
+          <a class="nav-link disabled text-white" href="#"></a>
+        </li>
       </ul>
       <span class="navbar-text white-text">
               <a class="text-white" href="#">
@@ -27,7 +27,6 @@
         </span>
     </div>
   </nav>
-
   <div class="container-fluid bg-light">
     <div class="row">
       <div class="col-sm-2">
@@ -56,7 +55,7 @@
                 {{result.questionTitle}}
               </div>
               <div class="problemDescription">
-             {{result.problemDescription}}
+                {{result.problemDescription}}
               </div>
               <div class="text-white mt-3 mb-3">
                 <div class="tags d-inline border py-1">Angularjs</div>
@@ -81,15 +80,15 @@
             </div>
           </div>
         </div>
+        <!--  <div class="codesnippet  border py-2 bg-light">
+            <div [innerHtml]="result.codeSnippet"></div>
+            </div> -->
         <hr>
         <div class="answer mt-3">
           <label class="h5">Your answer</label>
-
-          <ckeditor value="" id="editor1" class="editor1" name="editor1" 
-         [(ngModel)]="editor1"></ckeditor>
-
+          <ckeditor value="" id="editor1" class="editor1" name="editor1" [(ngModel)]="editor1"></ckeditor>
         </div>
-            <hr>
+        <hr>
         <div class="login">
           <div class="row">
             <div class="col-sm-6 border py-2">
@@ -113,19 +112,15 @@
                 </mat-form-field>
               </div>
               <div class="form-group col-sm mt-2">
-                <!--  <label for="inputState" class="">Email</label>
-                <input type="email" class="form-control " placeholder="email" name="name" [(ngModel)]="name"> -->
                 <span><i class="fa fa-envelope fa-2x prefix"></i></span>
                 <mat-form-field class="example-full-width">
                   <input matInput placeholder="email">
                 </mat-form-field>
               </div>
-             <!--  <button class="btn like btn-md text-white text-center btn-center"><i class="fa fa-sign-in fa-lg text-white"></i> Login</button> -->
             </div>
           </div>
         </div>
         <div class="postanswer mt-4 mb-4 text-center">
-          <!-- <input type="button" class="btn btn-md btn-success" value="Post your answer"> -->
           <button class="btn like btn-md text-white" (click)="postAnswer()">Post your answer</button>
         </div>
       </div>
@@ -133,4 +128,4 @@
       </div>
     </div>
   </div>
-  </form>
+</form>
