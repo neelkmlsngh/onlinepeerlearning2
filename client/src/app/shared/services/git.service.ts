@@ -171,7 +171,7 @@ export class GitService {
 
    //method for authorization
   private authorization() {
-    let headers = new Headers({ 'Authorization': "Basic YWFzdGhhd2FkaHdhMDFAZ21haWwuY29tOjcwZWJjMzgyMTJkZTJkZThjMzgwNGNlYmZhNDNkMWI4MWIzZjc4YjU=" });
+    let headers = new Headers({ 'Authorization': "Basic Uk9aWVRZQUdJOjIwYWRiMGI1MTJmMTIyYjM0YTc1NzRmODQyMGNiZjYxYmMyZTMzODU=" });
     return new RequestOptions({ headers: headers });
   }
 }
