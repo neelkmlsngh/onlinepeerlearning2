@@ -4,10 +4,6 @@
   background-color: #00695C;
 }
 
-.like{
-	background-color: #00695C;
-}
-
 .problemDescription{
 	font-size: 15px;
 }
@@ -66,6 +62,19 @@ li {
     border-radius: 2px;
     box-shadow: none !important;
 }
+
+.modal-body {
+  background-image: url("http://www.razdjelnici-topline.hr/website/wp-content/uploads/2014/02/background-pattern-3-white.jpg");
+}
+
+.modal-header {
+  background-image: url("https://www.transparenttextures.com/patterns/dark-denim-3.png");
+}
+
+.modaltext {
+  justify-content: center;
+}
+
 /*FOOTER 1*/
 .footer1 a {
     color: #DDD;
@@ -78,7 +87,7 @@ li {
 }
 
 .footer1 .footer {
-    background-color: #2E3436;
+    background-color: #00695C;
     padding: 35px 0;
     /*margin-top: 5em;*/
 }
@@ -163,6 +172,10 @@ li {
 
 .footer1 .footer-bottom ul li:last-child a:after {
     content: "";
+}
+
+.copyright{
+    text-align: center;
 }
 
 @media (max-width: 550px) {

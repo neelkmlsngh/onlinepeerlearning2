@@ -7,7 +7,7 @@ var forumSchema = new Schema({
    problemDescription: String,
    date: String,
    time: String,
-   answers: [{ username: String, answer: String, codeSnippet:String, likes:String, dislikes:String }],
+   answers: [{ username: String, answer: String, codeSnippet:String, likes: Number, dislikes: Number }],
    votes: Number,
    noOfViews: Number,
    codeSnippet: String,
