@@ -15,4 +15,11 @@ export class ProfileService {
       .get(api)
       .map(res => res.json(),error=>error.json());
   }
+
+  uploadFile(userId,formData,options){
+    const api="https://localhost:8080/api/profile/image/"+userId
+
+    return this.http.put(api,formData,options)
+    .map(res => res.json(),error=>error.json());
+  }
 }
