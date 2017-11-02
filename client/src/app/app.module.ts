@@ -20,12 +20,12 @@ import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { RepoSidebarComponent } from './shared/components/repo-sidebar/repo-sidebar.component';
-import { ChatSidebarComponent } from './shared/components/chat-sidebar/chat-sidebar.component';
+
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { GitService } from './shared/services/git.service'
 import { EditorService } from './shared/services/editor.service';
 import { ChatService } from './shared/services/chat.service';
-import { ChatWindowComponent } from './shared/components/chat-sidebar/chat-window/chat-window.component';
+
 import { MainComponent } from './main/main.component';
 import { ForumComponent } from './shared/components/forum/forum.component';
 import { ViewpostComponent } from './shared/components/forum/viewpost/viewpost.component';
@@ -39,8 +39,8 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { TruncateModule } from 'ng2-truncate';
-import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/audio-chat.component';
-import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
+import { AudioChatComponent } from './shared/components/chat/audio-chat/audio-chat.component';
+import { VideoChatComponent } from './shared/components/chat/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
 //import { AuthoriseGuard } from './shared/services/authorise.guard';
@@ -56,9 +56,9 @@ import { ChatComponent } from './shared/components/chat/chat.component';
     EditorComponent,
     NavbarComponent,
     RepoSidebarComponent,
-    ChatSidebarComponent,
+   
     FooterComponent,
-    ChatWindowComponent,
+   
     WebeditorComponent,
     ProfileComponent,
     MainComponent,
@@ -112,13 +112,7 @@ import { ChatComponent } from './shared/components/chat/chat.component';
         component: ViewpostComponent,
         // canActivate: [AuthoriseGuard]
       },
-      {
-
-       path:'chat-window',
-       component:ChatWindowComponent,
-       //canActivate: [AuthoriseGuard]
-     },
-
+      
      {
         path: 'video',
         component: VideoChatComponent,

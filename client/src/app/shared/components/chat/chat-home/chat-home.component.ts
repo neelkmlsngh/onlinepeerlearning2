@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,TemplateRef } from '@angular/core';
 import { ActivatedRoute ,Router } from '@angular/router';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
 import {AuthenticationService} from './../../../services/authentication.service';
 
@@ -19,6 +21,7 @@ export class ChatHomeComponent implements OnInit{
  /*
 	* UI related variables starts
 	*/
+ public modalRef: BsModalRef;
 	 overlayDisplay = false;
 	 selectedUserId = null;
 	 selectedSocketId = null;
@@ -44,6 +47,7 @@ export class ChatHomeComponent implements OnInit{
 		private socketService : SocketService,
 		private route :ActivatedRoute,
 		private router :Router,
+		private modalService: BsModalService,
 		private authenticationService :AuthenticationService
 	) { }
 	ngOnInit() {
@@ -250,4 +254,15 @@ var $chatbox = $('.chatbox'),
        
 }
 
+audiocall(template1: TemplateRef<any>)
+{
+	this.modalRef = this.modalService.show(template1);
+ 
+}
+
+videocall(template2: TemplateRef<any>)
+{
+	this.modalRef = this.modalService.show(template2);
+ 
+}
 }

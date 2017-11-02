@@ -1,7 +1,7 @@
 /*
-* Real time private chatting app using Angular 2,Nodejs, mongodb and Socket.io
-* @author Shashank Tiwari
-*/
+ * Real time private chatting app using Angular 2,Nodejs, mongodb and Socket.io
+ * @author Shashank Tiwari
+ */
 
 
 import { Injectable } from '@angular/core';
@@ -9,88 +9,87 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
+import { config } from '../../config/config';
+
 /*npm install @types/socket.io-client --save
-*/
+ */
 import * as io from 'socket.io-client';
 
 @Injectable()
 export class SocketService {
 
-	/* 
-	* specifying Base URL.
-	*/
-	private BASE_URL = 'https://192.168.252.152:8080';  
-  	private socket;
+  config = config;
+  private socket;
 
-  	constructor() {}
+  constructor() {}
 
-  	/* 
-	* Method to connect the users to socket
-	*/
-  	connectSocket(userId:string){
-  		this.socket = io.connect(this.BASE_URL,{ query: `userId=${userId}`});
-  	}
- 
- 	/* 
-	* Method to emit the add-messages event.
-	*/
-	sendMessage(message:any):void{
-		this.socket.emit('add-message', message);
-	}
+  /* 
+   * Method to connect the users to socket
+   */
+  connectSocket(userId: string) {
+    this.socket = io.connect(this.config.connect.url + this.config.connect.port, { query: `userId=${userId}` });
+  }
 
-	/* 
-	* Method to emit the logout event.
-	*/
-	logout(userId):any{
+  /* 
+   * Method to emit the add-messages event.
+   */
+  sendMessage(message: any): void {
+    this.socket.emit('add-message', message);
+  }
 
-		this.socket.emit('logout', userId);
+  /* 
+   * Method to emit the logout event.
+   */
+  logout(userId): any {
 
-		let observable = new Observable(observer => {
-			this.socket.on('logout-response', (data) => {
-				observer.next(data);    
-			});
+    this.socket.emit('logout', userId);
 
-			return () => {
-				
-				this.socket.disconnect();
-			};  
-		})     
-		return observable;
-	}
+    let observable = new Observable(observer => {
+      this.socket.on('logout-response', (data) => {
+        observer.next(data);
+      });
 
-	/* 
-	* Method to receive add-message-response event.
-	*/
-	receiveMessages():any{ 
-		let observable = new Observable(observer => {
-			this.socket.on('add-message-response', (data) => {
-				observer.next(data);    
-			});
-			return () => {
-				this.socket.disconnect();
-			};  
-		});     
-		return observable;
-	}
+      return () => {
 
-	/* 
-	* Method to receive chat-list-response event.
-	*/
-	getChatList(userId:string):any {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }
 
-		this.socket.emit('chat-list' , { userId : userId });
+  /* 
+   * Method to receive add-message-response event.
+   */
+  receiveMessages(): any {
+    let observable = new Observable(observer => {
+      this.socket.on('add-message-response', (data) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    });
+    return observable;
+  }
 
-		let observable = new Observable(observer => {
-			this.socket.on('chat-list-response', (data) => {
-				console.log(JSON.stringify(data,null,2));
-				observer.next(data);    
-			});
+  /* 
+   * Method to receive chat-list-response event.
+   */
+  getChatList(userId: string): any {
 
-			return () => {
-				this.socket.disconnect();
-			};  
-		})     
-		return observable;
-	} 
+    this.socket.emit('chat-list', { userId: userId });
+
+    let observable = new Observable(observer => {
+      this.socket.on('chat-list-response', (data) => {
+        console.log(JSON.stringify(data, null, 2));
+        observer.next(data);
+      });
+
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }
 
 }
