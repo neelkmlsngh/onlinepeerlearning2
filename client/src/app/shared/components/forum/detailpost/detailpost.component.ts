@@ -30,7 +30,6 @@ export class DetailpostComponent implements OnInit {
       codeSnippet_theme: 'monokai_sublime',
       height: 356
     };
-
     CKEDITOR.replace('editor1', config);
     CKEDITOR.instances.editor1.setData("");
 
@@ -38,7 +37,6 @@ export class DetailpostComponent implements OnInit {
       .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
       .subscribe((res) => {
         this.data = res;
-        //console.log("MyDATA========= "+JSON.stringify(this.data));
       })
     error => {
       this.errors = error;

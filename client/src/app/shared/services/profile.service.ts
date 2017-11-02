@@ -6,19 +6,19 @@ import { config } from '../config/config';
 @Injectable()
 export class ProfileService {
  config = config;
-  constructor(private http:Http) { }
+ constructor(private http:Http) { }
 
- // method to get data of user using uiserid
+ // service method to get data of user using uiserid
   getDataFromDB(userId){
-   	const api="https://localhost:8080/api/profile/"+userId
+   const api=config.connect.url+config.connect.port+"/api/profile/"+userId //url to get details fron db
    return this.http
-      .get(api)
-      .map(res => res.json(),error=>error.json());
+   .get(api)
+   .map(res => res.json(),error=>error.json());
   }
 
+ // service method to upload image
   uploadFile(userId,formData,options){
-    const api="https://localhost:8080/api/profile/image/"+userId
-
+    const api=config.connect.url+config.connect.port+"/api/profile/image/"+userId // url to upload profile picture
     return this.http.put(api,formData,options)
     .map(res => res.json(),error=>error.json());
   }

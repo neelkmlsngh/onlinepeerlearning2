@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Knowledge base forum</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-</head>
-<body>
 <form #postSubmit='ngForm'>
   <nav class="navbar navbar-expand-lg navbar-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,47 +27,43 @@
         </span>
     </div>
   </nav>
-<div class="container-fluid bg-light">
-  <div class="row">
-    <div class="col-sm-2">
-      
-    </div>
-    <div class="col-sm-8">
-       <div class="form-group col-sm mt-5 border py-2">
-      <label for="inputState" class="">Question title</label>
-     <input type="text" class="form-control " placeholder="New choice" name="questionTitle" [(ngModel)]="questionTitle">
+  <div class="container-fluid bg-light">
+    <div class="row">
+      <div class="col-sm-2">
       </div>
-       <div class="form-group col-sm border mt-2 py-3">
-      <label for="inputState" class="">problem description</label>
-       <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="write description" name="problemDescription" [(ngModel)]="problemDescription"></textarea>
-      </div>
+      <div class="col-sm-8">
+        <div class="form-group col-sm mt-5 border py-2">
+          <label for="inputState" class="">Question title</label>
+          <input type="text" class="form-control " placeholder="New choice" name="questionTitle" [(ngModel)]="questionTitle">
+        </div>
+        <div class="form-group col-sm border mt-2 py-3">
+          <label for="inputState" class="">problem description</label>
+          <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="write description" name="problemDescription" [(ngModel)]="problemDescription"></textarea>
+        </div>
         <div class="form-group col-sm mt-2 border py-2">
-      <label for="inputState" class="">Tags</label>
-     <input type="text" class="form-control " placeholder="at least one tag such as html,Angular,java,c#" name="tags" [(ngModel)]="tags">
+          <label for="inputState" class="">Tags</label>
+          <input type="text" class="form-control " placeholder="at least one tag such as html,Angular,java,c#" name="tags" [(ngModel)]="tags">
+        </div>
+        <div class="border py-2">
+          <div class="col-sm-6">
+            <label for="inputState" class="">Date</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="form-control bg-white" placeholder={{date}} value={{date}} placement="top" name="date" [(ngModel)]="date" readonly="true">
+          </div>
+        </div>
+        <ckeditor class="mt-2" name="editor1" [(ngModel)]="codeSnippet"></ckeditor>
+        <div class="row mt-4 mb-4">
+          <div class="col-sm-6">
+            <button class="btn post btn-md text-white form-control myBtn" (click)="insertPost(postSubmit)">Post question</button>
+          </div>
+          <div class="col-sm-6">
+            <button class="btn cancel btn-md text-white form-control myBtn">Cancel</button>
+          </div>
+        </div>
       </div>
-      <div class="border py-2">
-      <div class="col-sm-6">
-      <label for="inputState" class="">Date</label>
+      <div class="col-sm-2">
       </div>
-      <div class="col-sm-6">
-      <input type="text" class="form-control bg-white" placeholder={{date}} value={{date}} placement="top" name="date" [(ngModel)]="date" readonly="true">
-      </div>
-      </div>
-      <ckeditor class="mt-2" name="editor1" [(ngModel)]="codeSnippet"></ckeditor>
-     <div class="row mt-4 mb-4">       
-     <div class="col-sm-6">
-     <button class="btn post btn-md text-white form-control myBtn" (click)="insertPost(postSubmit)">Post question</button>
-     </div>
-     <div class="col-sm-6">
-     <button class="btn cancel btn-md text-white form-control myBtn">Cancel</button> 
-     </div>     
-     </div>
-    </div>
-    <div class="col-sm-2">
-      
     </div>
   </div>
-</div>
 </form>
-</body>
-</html>
