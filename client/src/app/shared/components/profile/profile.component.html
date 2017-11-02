@@ -1,11 +1,11 @@
 <div class="heading">
   <hr>
-  <h1 class="text-center display-4">User Profile Page</h1>
+  <h1 class="text-center display-4">{{config.profile.USER_PROFILE_PAGE}}</h1>
   <hr>
 </div>
 <div class="container">
   <div class="row">
-  <!-- Profile Card -->
+    <!-- Profile Card -->
     <div class="col-sm-3">
       <div class="card card-inverse card-info">
         <img class="card-img-top" [src]="imgPath">
@@ -25,31 +25,31 @@
         <div class="card-footer">
           <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
           <div class="col-sm-3">
-            <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">Upload</button>
+            <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">{{config.profile.UPLOAD}}</button>
           </div>
         </div>
       </div>
     </div>
     <div class="col-sm-9">
-    <!-- Nav pills tab -->
+      <!-- Nav pills tab -->
       <mat-tab-group>
-      <!-- GitHub information -->
+        <!-- GitHub information -->
         <mat-tab label="GitHub Info">
           <form class="form-horizontal" role="form" [formGroup]="userInfo">
             <div class="form-group">
-              <label class="col-lg-3 control-label">Github ID</label>
+              <label class="col-lg-3 control-label">{{config.profile.GITHUB_ID}}</label>
               <div class="col-lg-8">
                 <input class="form-control" type="text" formControlName="userid">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-3 control-label">Login Name</label>
+              <label class="col-lg-3 control-label">{{config.profile.LOGIN_NAME}}</label>
               <div class="col-lg-8">
                 <input class="form-control" formControlName="name" type="text">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-3 control-label">Public Repositories</label>
+              <label class="col-md-3 control-label">{{config.profile.PUBLIC_REPO}}</label>
               <div class="col-md-8">
                 <input class="form-control" formControlName="public_repos" type="text" readonly>
               </div>
@@ -61,55 +61,49 @@
           <div class="card-block">
             <form class="form" role="form" autocomplete="off">
               <div class="form-group ">
-                <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                <label class="col-lg-3 col-form-label form-control-label">{{config.profile.FIRST_NAME}}</label>
                 <div class="col-lg-9">
                   <input class="form-control" type="text" value="Jane">
                 </div>
               </div>
               <div class="form-group ">
-                <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                <label class="col-lg-3 col-form-label form-control-label">{{config.profile.LAST_NAME}}</label>
                 <div class="col-lg-9">
                   <input class="form-control" type="text" value="Bishop">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                <label class="col-lg-3 col-form-label form-control-label">{{config.profile.EMAIL}}</label>
                 <div class="col-lg-9">
                   <input class="form-control" type="email" value="email@gmail.com">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-lg-3 col-form-label form-control-label">Company</label>
+                <label class="col-lg-3 col-form-label form-control-label">{{config.profile.COMPANY}}</label>
                 <div class="col-lg-9">
                   <input class="form-control" type="text" value="NTL">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-lg-3 col-form-label form-control-label">Website</label>
+                <label class="col-lg-3 col-form-label form-control-label">{{config.profile.WEBSITE}}</label>
                 <div class="col-lg-9">
                   <input class="form-control" type="url" value="">
                 </div>
               </div>
-              <div class="form-group ">
-                <label class="col-lg-3 col-form-label form-control-label">Username</label>
-                <div class="col-lg-9">
-                  <input class="form-control" type="text" value="janeuser">
-                </div>
-              </div>
               <div class="form-group">
-                <label class=" col-lg-3 col-form-label form-control-label" for="exampleTextarea">Bio</label>
+                <label class=" col-lg-3 col-form-label form-control-label" for="exampleTextarea">{{config.profile.BIO}}</label>
                 <div class="col-lg-9">
                   <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
                 </div>
               </div>
               <div class="form-group ">
-                <label class="col-lg-3 col-form-label form-control-label">Gender</label>
+                <label class="col-lg-3 col-form-label form-control-label">{{config.profile.GENDER}}</label>
                 <div class="col-lg-9 gender">
                   <div class="row">
                     <mat-radio-group>
-                      <mat-radio-button value="1">Male</mat-radio-button>
-                      <mat-radio-button value="2">Female</mat-radio-button>
-                      <mat-radio-button value="3">Other</mat-radio-button>
+                      <mat-radio-button value="1">{{config.profile.MALE}}</mat-radio-button>
+                      <mat-radio-button value="2">{{config.profile.FEMALE}}</mat-radio-button>
+                      <mat-radio-button value="3">{{config.profile.OTHER}}</mat-radio-button>
                     </mat-radio-group>
                   </div>
                 </div>
@@ -117,10 +111,8 @@
               <div class="form-group">
                 <label class="col-lg-3 col-form-label form-control-label"></label>
                 <div class="col-lg-9">
-                  
-                  <button type="button" class="btn btn-secondary save">Save</button>
-                  <button type="button" class="btn btn-secondary cancel">Cancel</button>
-                  
+                  <button type="button" class="btn btn-secondary save">{{config.profile.SAVE}}</button>
+                  <button type="button" class="btn btn-secondary cancel">{{config.profile.CANCEL}}</button>
                 </div>
               </div>
             </form>

@@ -12,12 +12,7 @@ var partials = require('express-partials');
 var util = require('util');
 var session = require('express-session');
 const jwt = require('jsonwebtoken');
-/*const https = require('https');
- */
-/*var socket = socketio(http);
-const socketio = require('socket.io');
-var io = require('socket.io')(server);
-*/
+
 const helper = require('./../api/chat/chat.controller');
 
 const appRoutes = require('./app.router');
@@ -37,11 +32,13 @@ function loginviagit() {
         done(null, obj);
     });
     passport.use(new GitHubStrategy({
+
         clientID: gitId.CLIENT_ID,
         clientSecret: gitId.CLIENT_SECRET,
         callbackURL: gitId.CALLBACK_URL
     }, function(accessToken, refreshToken, profile, done) {
         //console.log(profile);
+
         let userInfo = {
             name: profile._json.login,
             userId: profile.id,
@@ -50,6 +47,7 @@ function loginviagit() {
             reposUrl: profile._json.repos_url,
             online: "Y"
         }
+
         //save login credentials in login collection
         //function called by login controller
         loginController.saveLoginCredentials(userInfo, done);
@@ -64,6 +62,25 @@ function createApp() {
 //  Use application routes
 function setupRestRoutes(app) {
     appRoutes.useRoutes(app);
+
+
+    // app.use(function(req, res) {
+    //     let err = new Error(loggerConfig.RESOURCE_NOT_FOUND);
+    //     err.status = 404;
+    //     logger.error(err);
+    //     return res.status(err.status).json({
+    //         error: err.message
+    //     });
+    // });
+
+    // app.use(function(err, req, res) {
+    //     logger.error(loggerConfig.INTERNAL_SERVER_ERROR + ': ', err);
+    //     return res.status(err.status || 500).json({
+    //         error: err.message
+    //     });
+    // });
+
+
     app.use(function(req, res) {
         let err = new Error(loggerConfig.RESOURCE_NOT_FOUND);
         err.status = 404;
@@ -78,6 +95,7 @@ function setupRestRoutes(app) {
             error: err.message
         });
     });
+
     return app;
 }
 //  Use application middlewares
@@ -116,88 +134,69 @@ function setupMongooseConnections() {
 }
 
 function socketEvents(io) {
-    io.on('connection', (socket) => {
-        /**
-         * get the user's Chat list
-         */
-        //  console.log("+++++++++++++++++++++++++++++++Socket Connected+++++++++++++++++++++++")
-        socket.on('chat-list', (data) => {
-            let chatListResponse = {};
-            if (data.userId == '') {
-                chatListResponse.error = true;
-                chatListResponse.message = `User does not exits.`;
-                io.emit('chat-list-response', chatListResponse);
-            } else {
-                helper.getUserInfo(data.userId, (err, UserInfoResponse) => {
-                    delete UserInfoResponse.password;
-                    helper.getChatList(socket.id, (err, response) => {
-                        io.to(socket.id).emit('chat-list-response', {
-                            error: false,
-                            singleUser: false,
-                            chatList: response
-                        });
-                        socket.broadcast.emit('chat-list-response', {
-                            error: false,
-                            singleUser: true,
-                            chatList: UserInfoResponse
-                        });
-                    });
-                });
-            }
-        });
-        /**
-         * send the messages to the user
-         */
-        socket.on('add-message', (data) => {
-            if (data.message === '') {
-                io.to(socket.id).emit(`add-message-response`, `Message cant be empty`);
-            } else if (data.fromUserId === '') {
-                io.to(socket.id).emit(`add-message-response`, `Unexpected error, Login again.`);
-            } else if (data.toUserId === '') {
-                io.to(socket.id).emit(`add-message-response`, `Select a user to chat.`);
-            } else {
-                let toSocketId = data.toSocketId;
-                let fromSocketId = data.fromSocketId;
-                delete data.toSocketId;
-                data.timestamp = Math.floor(new Date() / 1000);
-                helper.insertMessages(data, (error, response) => {
-                    io.to(toSocketId).emit(`add-message-response`, data);
-                });
-            }
-        });
-        /**
-         * Logout the user
-         */
-        socket.on('logout', (data) => {
-            const userId = data.userId;
-            helper.logout(userId, false, (error, result) => {
-                io.to(socket.id).emit('logout-response', {
-                    error: false
-                });
-                socket.broadcast.emit('chat-list-response', {
-                    error: false,
-                    userDisconnected: true,
-                    socketId: socket.id
-                });
-            });
-        });
-        /**
-         * sending the disconnected user to all socket users. 
-         */
-        socket.on('disconnect', () => {
-            socket.broadcast.emit('chat-list-response', {
+  io.on('connection', (socket) => {
+    /**
+     * get the user's Chat list
+     */
+    socket.on('chat-list', (data) => {
+      let chatListResponse = {};
+      if (data.userId == '') {
+        chatListResponse.error = true;
+        chatListResponse.message = `User does not exits.`;
+        io.emit('chat-list-response', chatListResponse);
+      } else {
+          helper.getUserInfo(data.userId, (err, UserInfoResponse) => {
+            delete UserInfoResponse.password;
+            helper.getChatList(socket.id, (err, response) => {
+              io.to(socket.id).emit('chat-list-response', {
                 error: false,
-                userDisconnected: true,
-                socketId: socket.id
+                singleUser: false,
+                chatList: response
+              });
+              socket.broadcast.emit('chat-list-response', {
+                error: false,
+                singleUser: true,
+                chatList: UserInfoResponse
+              });
             });
-        });
+          });
+      }
     });
+      /**
+       * send the messages to the user
+       */
+    socket.on('add-message', (data) => {
+      if (data.message === '') {
+        io.to(socket.id).emit(`add-message-response`, `Message cant be empty`);
+      } else if (data.fromUserId === '') {
+        io.to(socket.id).emit(`add-message-response`, `Unexpected error, Login again.`);
+      } else if (data.toUserId === '') {
+        io.to(socket.id).emit(`add-message-response`, `Select a user to chat.`);
+      } else {
+        let toSocketId = data.toSocketId;
+        let fromSocketId = data.fromSocketId;
+        delete data.toSocketId;
+        data.timestamp = Math.floor(new Date() / 1000);
+        helper.insertMessages(data, (error, response) => {
+          io.to(toSocketId).emit(`add-message-response`, data);
+        });
+      }
+    });
+
+    socket.on('disconnect', () => {
+      socket.broadcast.emit('chat-list-response', {
+        error: false,
+        userDisconnected: true,
+        socketId: socket.id
+      });
+    });
+  });
 }
 module.exports = {
-    createApp: createApp,
-    setupRestRoutes: setupRestRoutes,
-    setupMiddlewares: setupMiddlewares,
-    setupMongooseConnections: setupMongooseConnections,
-    loginviagit: loginviagit,
-    socketEvents: socketEvents
+  createApp: createApp,
+  setupRestRoutes: setupRestRoutes,
+  setupMiddlewares: setupMiddlewares,
+  setupMongooseConnections: setupMongooseConnections,
+  loginviagit: loginviagit,
+  socketEvents: socketEvents
 };
