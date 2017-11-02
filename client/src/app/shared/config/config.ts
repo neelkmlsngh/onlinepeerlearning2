@@ -17,6 +17,7 @@ export const config: any = {
     "port2": "3030"
   },
 
+
   footer:
   {
     "title":"About Us",
@@ -38,6 +39,11 @@ export const config: any = {
     "faq":"FAQ",
     "signup":"SignUp",
     "schools":"For Schools"
+
+  },
+  
+  repoSidebar:{
+    "repos" : "Repos"
 
   }
 
