@@ -8,6 +8,7 @@ export class ProfileService {
   config = config;
   constructor(private http: Http) {}
 
+
   // service method to get data of user using userid
   getDataFromDB(userId) {
 
@@ -25,5 +26,6 @@ export class ProfileService {
     const api = config.connect.url + config.connect.port + "/api/profile/image/" + userId
     return this.http.put(api, formData, options)
       .map(res => res.json(), error => error.json());
+
   }
 }
