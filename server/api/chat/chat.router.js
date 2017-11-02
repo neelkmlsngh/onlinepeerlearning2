@@ -28,110 +28,15 @@ router.post('/usernameCheck', (request, response) => {
     }
 });
 
-/*router.post('/registerUser', (request, response) => {
-
-    const data = {
-        userame: (request.body.username).toLowerCase(),
-        email: request.body.email,
-        password: request.body.password
-    };
-
-    let registrationResponse = {}
-
-    if (data.username === '') {
-
-        registrationResponse.error = true;
-        registrationResponse.message = `username cant be empty.`;
-        response.status(412).json(registrationResponse);
-
-    } else if (data.email === '') {
-
-        registrationResponse.error = true;
-        registrationResponse.message = `email cant be empty.`;
-        response.status(412).json(registrationResponse);
-
-    } else if (data.password === '') {
-
-        registrationResponse.error = true;
-        registrationResponse.message = `password cant be empty.`;
-        response.status(412).json(registrationResponse);
-
-    } else {
-
-        data.timestamp = Math.floor(new Date() / 1000);
-        data.online = 'Y';
-        data.socketId = '';
-
-        helper.registerUser(data, (error, result) => {
-
-            if (error) {
-
-                registrationResponse.error = true;
-                registrationResponse.message = `Server error.`;
-                response.status(404).json(registrationResponse);
-            } else {
-
-                registrationResponse.error = false;
-                registrationResponse.userId = result.insertedId;
-                registrationResponse.message = `User registration successful.`;
-                response.status(200).json(registrationResponse);
-            }
-        });
-    }
-});*/
-
-/*router.post('/login', (request, response) => {
-
-    const data = {
-        username: (request.body.username).toLowerCase(),
-        password: request.body.password
-    };
-
-    let loginResponse = {}
-
-    if (data.username === '' || data.username === null) {
-
-        loginResponse.error = true;
-        loginResponse.message = `username cant be empty.`;
-        response.status(412).json(loginResponse);
-
-    } else if (data.password === '' || data.password === null) {
-
-        loginResponse.error = true;
-        loginResponse.message = `password cant be empty.`;
-        response.status(412).json(loginResponse);
-
-    } else {
-
-        helper.login(data, (error, result) => {
-
-            if (error || result === null) {
-
-                loginResponse.error = true;
-                loginResponse.message = `Server error.`;
-                response.status(404).json(loginResponse);
-            } else {
-                loginResponse.error = false;
-                loginResponse.userId = result._id;
-                loginResponse.message = `User logged in.`;
-                response.status(200).json(loginResponse);
-            }
-        });
-    }
-});*/
-
 router.post('/userSessionCheck', (request, response) => {
-
 
     let userId = request.body.userId;
     let sessionCheckResponse = {}
 
     if (userId == '') {
-
         sessionCheckResponse.error = true;
         sessionCheckResponse.message = `User Id cant be empty.`;
         response.status(412).json(sessionCheckResponse);
-
     } else {
 
         helper.userSessionCheck({

@@ -12,12 +12,7 @@ var partials = require('express-partials');
 var util = require('util');
 var session = require('express-session');
 const jwt = require('jsonwebtoken');
-/*const https = require('https');
- */
-/*var socket = socketio(http);
-const socketio = require('socket.io');
-var io = require('socket.io')(server);
-*/
+
 const helper = require('./../api/chat/chat.controller');
 
 const appRoutes = require('./app.router');
@@ -38,8 +33,8 @@ function loginviagit() {
     });
     passport.use(new GitHubStrategy({
 
-        clientID: '7328322e0495591f5a69',
-        clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
+        clientID: gitId.CLIENT_ID,
+        clientSecret: gitId.CLIENT_SECRET,
         callbackURL: gitId.CALLBACK_URL
     }, function(accessToken, refreshToken, profile, done) {
         //console.log(profile);
@@ -143,7 +138,6 @@ function socketEvents(io) {
         /**
          * get the user's Chat list
          */
-        //  console.log("+++++++++++++++++++++++++++++++Socket Connected+++++++++++++++++++++++")
         socket.on('chat-list', (data) => {
             let chatListResponse = {};
             if (data.userId == '') {
@@ -188,25 +182,7 @@ function socketEvents(io) {
                 });
             }
         });
-        /**
-         * Logout the user
-         */
-        socket.on('logout', (data) => {
-            const userId = data.userId;
-            helper.logout(userId, false, (error, result) => {
-                io.to(socket.id).emit('logout-response', {
-                    error: false
-                });
-                socket.broadcast.emit('chat-list-response', {
-                    error: false,
-                    userDisconnected: true,
-                    socketId: socket.id
-                });
-            });
-        });
-        /**
-         * sending the disconnected user to all socket users. 
-         */
+
         socket.on('disconnect', () => {
             socket.broadcast.emit('chat-list-response', {
                 error: false,
