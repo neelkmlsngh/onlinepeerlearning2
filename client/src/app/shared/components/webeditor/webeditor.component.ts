@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms'
 import { AceEditorDirective } from 'ng2-ace-editor'
 import { AceEditorModule } from 'ng2-ace-editor'
 import * as JSZip from 'jszip'
-
+import { ForumService } from '../../../shared/services/forum.service';
 
 @Component({
   selector: 'app-webeditor',
@@ -11,6 +11,8 @@ import * as JSZip from 'jszip'
   styleUrls: ['./webeditor.component.css']
 })
 export class WebeditorComponent implements OnInit {
+
+constructor(private snippet: ForumService) {}
 
    @Input() content: any;
 
@@ -26,6 +28,13 @@ export class WebeditorComponent implements OnInit {
   textcontent: any
   myUrl: any;
   data: any;
+  html:any;
+  css:any
+
+
+
+
+
   comments: any = "\n<!-- Enter Your Comment -->";
   tabels: string = "\n<table>\n" +
     "<tr>\n\t" +
@@ -83,6 +92,17 @@ export class WebeditorComponent implements OnInit {
   ngOnInit() {
     this.onChange(this.code)
 
+    this.snippet.getSnippet()
+    .subscribe(res=>{
+ this.html=res.filter(ele=>ele.language==='html');
+ this.css =res.filter(ele=>ele.language==='css');
+
+})
+  }
+
+  show(code){ 
+     this.htmlValue=code;
+     this.cssValue=code;
   }
 
   base_tpl: string =

@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 var SnippetSchema = new mongoose.Schema({
   title: String,
   code: String,
-  lang: String,
+  language: String,
 });
 
 //exporting the SnippetSchema file
