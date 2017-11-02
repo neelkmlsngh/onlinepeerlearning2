@@ -5,7 +5,7 @@ const ProfileUser = require('./profile.entity')
 
 
 const getProfile = function(getId) {
-    console.log(getId + '65gt65')
+    // console.log(getId + '65gt65')
     return new Promise((resolve, reject) => {
 
         ProfileModel.findOne({ userId: getId }, (err, data) => {
@@ -13,7 +13,7 @@ const getProfile = function(getId) {
                 logger.error('Internal error' + err);
                 reject(err);
             } else {
-                console.log("data================" + data)
+                // console.log("data================" + data)
                 /*logger.error('Internal error' + err);*/
                 resolve(data);
             }

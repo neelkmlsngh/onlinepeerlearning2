@@ -160,7 +160,7 @@ import { AnswersComponent } from './shared/components/forum/answers/answers.comp
         //canActivate: [AuthoriseGuard]
       } ,     
      {
-      path:'auth/:userId/:token/:name',
+      path:'auth/:userId/:token',
       component: AuthenticateComponent,
        //canActivate: [AuthoriseGuard]
     }

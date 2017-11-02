@@ -51,11 +51,11 @@ function loginviagit() {
 
     passport.use(new GitHubStrategy({
 
-        clientID: '7328322e0495591f5a69',
-        clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
-        callbackURL: "https://localhost:8080/auth/github/callback"
+        clientID: 'f9ea78d1f4ead499cd22',
+        clientSecret: '5a9f55cb5eaa65140a5949fb6595e0283c667c72',
+        callbackURL: "https://192.168.252.57:8080/auth/github/callback"
     }, function(accessToken, refreshToken, profile, done) {
-        console.log(profile);
+      // console.log(profile)
         let userInfo = {
             name: profile._json.login,
             userId: profile.id,
@@ -63,10 +63,7 @@ function loginviagit() {
             publicRepos: profile._json.public_repos,
             reposUrl: profile._json.repos_url,
             status: true
-
-
         }
-
 
         //save login credentials in login collection
         //function called by login controller
@@ -87,21 +84,21 @@ function setupRestRoutes(app) {
 
     appRoutes.useRoutes(app);
 
-    app.use(function(req, res) {
-        let err = new Error(loggerConfig.RESOURCE_NOT_FOUND);
-        err.status = 404;
-        logger.error(err);
-        return res.status(err.status).json({
-            error: err.message
-        });
-    });
+    // app.use(function(req, res) {
+    //     let err = new Error(loggerConfig.RESOURCE_NOT_FOUND);
+    //     err.status = 404;
+    //     logger.error(err);
+    //     return res.status(err.status).json({
+    //         error: err.message
+    //     });
+    // });
 
-    app.use(function(err, req, res) {
-        logger.error(loggerConfig.INTERNAL_SERVER_ERROR + ': ', err);
-        return res.status(err.status || 500).json({
-            error: err.message
-        });
-    });
+    // app.use(function(err, req, res) {
+    //     logger.error(loggerConfig.INTERNAL_SERVER_ERROR + ': ', err);
+    //     return res.status(err.status || 500).json({
+    //         error: err.message
+    //     });
+    // });
 
     return app;
 }

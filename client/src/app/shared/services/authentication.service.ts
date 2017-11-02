@@ -6,7 +6,7 @@ import { RequestOptions, Request, RequestMethod, Headers } from '@angular/http';
 
 @Injectable()
 export class AuthenticationService {
-  config = config;
+  // config = config;
   constructor(private http: Http, private router: Router) {}
 
 user:any
@@ -14,16 +14,15 @@ user:any
   git() {
 
     return this.http
-      .get(this.config.connect.url + this.config.connect.port + '/auth/github')
+      .get('/auth/github')
       .map(res => res, error => error.json());
   }
 
   setUserInfo(obj) {
-    //console.log(dataObj.userId);
      this.user=obj;
 
    
-     localStorage.setItem('currentUser', JSON.stringify({ token: this.user.token, userId: this.user.userId,userName:this.user.name }));
+     localStorage.setItem('currentUser', JSON.stringify({ token: this.user.token, userId: this.user.userId,userName:this.user.userName }));
     if (this.user.token) {
       this.router.navigate(["/main"]);
 
@@ -41,16 +40,10 @@ console.log('token',token)
   }
 
   logoutEditor(user) {
-    // alert('logout called')
-    // let user = JSON.parse(localStorage.getItem('currentUser'));
-    
-    // let userid = user.userId
-    // user={
-    //   userid:userid
-    // }
+   
      localStorage.removeItem('currentUser');
      return this.http
-      .put(this.config.connect.url + this.config.connect.port +'/logout',user)
+      .put(config.connect.url + config.connect.port +'/logout',user)
       .map(res => res, error => error.json());
    
 
@@ -63,5 +56,11 @@ console.log('token',token)
       let headers = new Headers({ 'Authorization': token });
       return new RequestOptions({ headers: headers });
     }
+  }
+
+  getUser(userId){
+ return this.http.get(config.connect.url + config.connect.port +'/'+userId)
+      .map(res => res.json(), error => error.json());
+   
   }
 }
