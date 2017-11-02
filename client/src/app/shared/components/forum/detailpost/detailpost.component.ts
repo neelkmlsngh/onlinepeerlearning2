@@ -28,11 +28,8 @@ export class DetailpostComponent implements OnInit {
     var config = {
       extraPlugins: 'codesnippet',
       codeSnippet_theme: 'monokai_sublime',
-      height: 356,
-      text: 'cleared'
-
+      height: 356
     };
-
     CKEDITOR.replace('editor1', config);
     CKEDITOR.instances.editor1.setData("");
 
@@ -47,7 +44,6 @@ export class DetailpostComponent implements OnInit {
   }
 
   postAnswer() {
-
     this.obj = {
       username: "prashant",
       answer: CKEDITOR.instances.editor1.getData(),

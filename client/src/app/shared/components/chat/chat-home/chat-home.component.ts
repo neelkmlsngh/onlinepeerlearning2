@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,TemplateRef } from '@angular/core';
 import { ActivatedRoute ,Router } from '@angular/router';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
 import {AuthenticationService} from './../../../services/authentication.service';
 
@@ -19,6 +21,7 @@ export class ChatHomeComponent implements OnInit{
  /*
 	* UI related variables starts
 	*/
+ public modalRef: BsModalRef;
 	 overlayDisplay = false;
 	 selectedUserId = null;
 	 selectedSocketId = null;
@@ -44,28 +47,12 @@ export class ChatHomeComponent implements OnInit{
 		private socketService : SocketService,
 		private route :ActivatedRoute,
 		private router :Router,
+		private modalService: BsModalService,
 		private authenticationService :AuthenticationService
 	) { }
 	ngOnInit() {
+	$('.chatbox').hide();	
 	this.userId=this.authenticationService.getUserId();
-	var $chatbox = $('.chatbox'),
-			$chatboxTitle = $('.chatbox__title'),
-			$chatboxTitleClose = $('.chatbox__title__close'),
-			$chatboxCredentials = $('.chatbox__credentials');
-		$chatboxTitle.on('click', function() {
-			$chatbox.toggleClass('chatbox--tray');
-		});
-		$chatboxTitleClose.on('click', function(e) {
-			e.stopPropagation();
-			$chatbox.addClass('chatbox--closed');
-		});
-		$chatbox.on('transitionend', function() {
-			if ($chatbox.hasClass('chatbox--closed')) $chatbox.remove();
-		});
-		$chatboxCredentials.on('submit', function(e) {
-			e.preventDefault();
-			$chatbox.removeClass('chatbox--empty');
-		});
 		/*
 		* getting userID from URL using 'route.snapshot'
 		*/      
@@ -167,22 +154,22 @@ export class ChatHomeComponent implements OnInit{
 
    openchatbox():void
     {
-
-        /*this.removesb()*/
-    var $chatbox = $('.chatbox'),
+var $chatbox = $('.chatbox'),
             $chatboxTitle = $('.chatbox__title'),
             $chatboxTitleClose = $('.chatbox__title__close'),
             $chatboxTitleTray = $('.chatbox__title__tray'),
             $chatboxCredentials = $('.chatbox__credentials');
+        
         $chatboxTitle.on('click', function() {
             $chatbox.toggleClass('chatbox--tray');
             
-       });
+        });
         $chatboxTitleClose.on('click', function(e) {
-            e.stopPropagation();
-            $chatbox.addClass('chatbox--closed');
+            //e.stopPropagation();
+            /*$chatbox.addClass('chatbox--closed');*/
+            $chatbox.hide();
             
-       });
+        });
         $chatbox.on('transitionend', function() {
             if ($chatbox.hasClass('chatbox--closed'))
              $chatbox.hide();
@@ -191,8 +178,7 @@ export class ChatHomeComponent implements OnInit{
             e.preventDefault();
             $chatbox.removeClass('chatbox--empty');
         });
-
-       $('#myhead').on('click',function(){
+        $('#myhead').on('click',function(){
             $chatbox.toggleClass('chatbox--tray');
         });
         $chatboxTitleTray.on('click',function(){
@@ -263,4 +249,20 @@ export class ChatHomeComponent implements OnInit{
         return this.userId ===  userId ? false : true;
     }
 
+    removesb(){
+       $('.side').toggle();
+       
+}
+
+audiocall(template1: TemplateRef<any>)
+{
+	this.modalRef = this.modalService.show(template1);
+ 
+}
+
+videocall(template2: TemplateRef<any>)
+{
+	this.modalRef = this.modalService.show(template2);
+ 
+}
 }

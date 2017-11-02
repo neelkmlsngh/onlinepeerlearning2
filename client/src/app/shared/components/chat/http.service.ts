@@ -4,17 +4,16 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 
+import { config } from '../../config/config';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class HttpService {
-
-  	/* 
-	* specifying Base URL.
-	*/
-    private BASE_URL = 'https://192.168.252.152:8080/';
-
+    
+    config = config;
+    
     /* 
 	* Setting the Request headers.
 	*/
@@ -25,31 +24,31 @@ export class HttpService {
   	constructor( private http:Http) { }
 
   	public userNameCheck(params){
-  		return this.http.post(this.BASE_URL+'chat/usernameCheck',JSON.stringify(params),this.headerOptions)
+  		return this.http.post(this.config.connect.url + this.config.connect.port+'/chat/usernameCheck',JSON.stringify(params),this.headerOptions)
   			.map( (response:Response) => response.json())
   			.catch( (error:any) => Observable.throw(error.json().error || `Server error`) );
   	}
 
 	public login(params){
-        return this.http.post(this.BASE_URL+'chat/login',JSON.stringify(params),this.headerOptions)
+        return this.http.post(this.config.connect.url + this.config.connect.port+'/chat/login',JSON.stringify(params),this.headerOptions)
   			.map( (response:Response) => response.json())
   			.catch( (error:any) => Observable.throw(error.json().error || `Server error`) );
   	}
 
   	public registerUser(params){
-  		return this.http.post(this.BASE_URL+'chat/registerUser',JSON.stringify(params),this.headerOptions)
+  		return this.http.post(this.config.connect.url + this.config.connect.port+'/chat/registerUser',JSON.stringify(params),this.headerOptions)
   			.map( (response:Response) => response.json())
   			.catch( (error:any) => Observable.throw(error.json().error || `Server error`) );
   	}
 
     public userSessionCheck(params){
-        return this.http.post(this.BASE_URL+'chat/userSessionCheck',JSON.stringify(params),this.headerOptions)
+        return this.http.post(this.config.connect.url + this.config.connect.port+'/chat/userSessionCheck',JSON.stringify(params),this.headerOptions)
             .map( (response:Response) => response.json())
             .catch( (error:any) => Observable.throw(error.json().error || `Server error`) );
     }
 
 	public getMessages(params){
-		return this.http.post(this.BASE_URL+'chat/getMessages',JSON.stringify(params),this.headerOptions)
+		return this.http.post(this.config.connect.url + this.config.connect.port+'/chat/getMessages',JSON.stringify(params),this.headerOptions)
 	    	.map( (response:Response) => response.json())
 	      	.catch( (error:any) => Observable.throw(error.json().error || `Server error`) );
 	}

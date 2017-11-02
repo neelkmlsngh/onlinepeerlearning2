@@ -13,7 +13,6 @@ const getProfile = function(getId) {
                 logger.error('Internal error' + err);
                 reject(err);
             } else {
-                /*logger.error('Internal error' + err);*/
                 resolve(data);
             }
         })
@@ -56,7 +55,6 @@ const updateUserProfile = function(profileInfo, getId) {
         }, { upsert: true }, (err, data) => {
           if(err){
             reject(err);
-            //console.log("Updated Data ===================\n" + JSON.stringify(data2, null, 2));
           }else if(data){
             resolve(data);
           }
@@ -68,19 +66,15 @@ const updateUserProfile = function(profileInfo, getId) {
 const updateImage = function(dataObj, getId) {
     let userId = getId;
     let img = dataObj.img;
-    console.log("==========="+getId);
-    console.log('userId======='+userId);
-    console.log('url========='+img);
     return new Promise((resolve, reject) => {
 
-        ProfileModel.updateOne({ "userId": userId }, {
+        ProfileModel.findOneAndUpdate({ userId: userId }, {
             $set: {
-                avatarUrl: img
+                avatarUrl: "https://localhost:8080/"+img
             }
-        }, { upsert: true }, (err, data) => {
+        }, { new: true }, (err, data) => {
           if(err){
             reject(err);
-            //console.log("Updated Data ===================\n" + JSON.stringify(data2, null, 2));
           }else if(data){
             resolve(data);
           }

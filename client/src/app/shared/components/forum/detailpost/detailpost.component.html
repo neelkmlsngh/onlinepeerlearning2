@@ -1,131 +1,132 @@
-<form #postSubmit='ngForm'>
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand text-white" href="">Knowledge Base</a>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link text-white" href="" routerLink="/questions">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="" routerLink="/questions">Questions</a>
-        </li>
-        <!--  <li class="nav-item"> -->
-        <li class="nav-item">
-          <a class="nav-link disabled text-white" href="#"></a>
-        </li>
-      </ul>
-      <span class="navbar-text white-text">
+  <form #postSubmit='ngForm'>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand text-white" href="">Knowledge Base</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link text-white" href="" routerLink="/questions">Home <span class="srnb -only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="" routerLink="/questions">Questions</a>
+          </li>
+          <!--  <li class="nav-item"> -->
+          <li class="nav-item">
+            <a class="nav-link disabled text-white" href="#"></a>
+          </li>
+        </ul>
+        <span class="navbar-text white-text">
               <a class="text-white" href="#">
                  <i class="fa fa-question-circle fa-lg text-white"></i>  Help</a>
         </span>
-      <span class="navbar-text white-text ml-4 mr-2">
+        <span class="navbar-text white-text ml-4 mr-2">
             <a class="text-white" href="#">
                  <i class="fa fa-sign-in fa-lg text-white"></i>  Login</a>
         </span>
-    </div>
-  </nav>
-  <div class="container-fluid bg-light">
-    <div class="row">
-      <div class="col-sm-2">
       </div>
-      <div class="col-sm-8">
-        <div class="heading h4 mt-4">
-          All Questions
+    </nav>
+    <div class="container-fluid bg-light">
+      <div class="row">
+        <div class="col-sm-2">
         </div>
-        <hr>
-        <div class="questionsumary">
-          <div class="row mb-3" *ngFor="let result of data">
-            <div class="statuscontainer col-sm-3">
-              <div class="vote h5">
-                211 votes
-              </div>
-              <div class="answeraccepted h5  border py-2 text-white mt-4">
-                <strong class="pl-4">12</strong>
-                <br><small class="ans">answers</small>
-              </div>
-              <div class="views h6  mt-4">
+        <div class="col-sm-8">
+          <div class="heading h4 mt-4">
+            All Questions
+          </div>
+          <hr>
+          <div class="questionsumary">
+            <div class="row mb-3" *ngFor="let result of data">
+              <div class="statuscontainer col-sm-3">
+                <div class="vote h5">
+                  211 votes
+                </div>
+                <div class="answeraccepted h5  border py-2 text-white mt-4">
+                  <strong class="pl-4">12</strong>
+                  <br><small class="ans">answers</small>
+                </div>
+                <!-- <div class="views h6  mt-4">
                 1.5 million views
+              </div> -->
               </div>
-            </div>
-            <div class="col-sm-9">
-              <div class="questionTitle">
-                {{result.questionTitle}}
-              </div>
-              <div class="problemDescription">
-                {{result.problemDescription}}
-              </div>
-              <div class="text-white mt-3 mb-3">
-                <div class="tags d-inline border py-1">Angularjs</div>
-                <div class="tags d-inline boredr py-1">Nodejs</div>
-              </div>
-              <div class="row">
-                <div class="col-sm-5 postedDate small">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <a class="btn like text-white" href="#">
+              <div class="col-sm-9">
+                <div class="questionTitle">
+                  {{result.questionTitle}}
+                </div>
+                <div class="problemDescription">
+                  {{result.problemDescription}}
+                </div>
+                <div class="text-white mt-3 mb-3">
+                  <div class="tags d-inline border py-1">Angularjs</div>
+                  <div class="tags d-inline boredr py-1">Nodejs</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-5 postedDate small">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <a class="btn like text-white" href="#">
                  <i class="fa fa-thumbs-up fa-lg text-white"></i> Like</a>
-                    </div>
-                    <div class="col-sm-6">
-                      asked {{result.date}}
+                      </div>
+                      <div class="col-sm-6">
+                        asked Oct 20 '08 at 13:18
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-sm-7 user text-right">
-                  <span><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></span> posted by prashant
+                  <div class="col-sm-7 user text-right">
+                    <span><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></span> posted by prashant
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!--  <div class="codesnippet  border py-2 bg-light">
+          <!--  <div class="codesnippet  border py-2 bg-light">
             <div [innerHtml]="result.codeSnippet"></div>
             </div> -->
-        <hr>
-        <div class="answer mt-3">
-          <label class="h5">Your answer</label>
-          <ckeditor value="" id="editor1" class="editor1" name="editor1" [(ngModel)]="editor1"></ckeditor>
-        </div>
-        <hr>
-        <div class="login">
-          <div class="row">
-            <div class="col-sm-6 border py-2">
-              <label class="h5">Signup or Login</label>
-              <br>
-              <!--  <div class="form-group col-sm mt-2">
+          <hr>
+          <div class="answer mt-3">
+            <label class="h5">Your answer</label>
+            <ckeditor id="editor1" class="editor1" name="editor1" [(ngModel)]="editor1"></ckeditor>
+          </div>
+          <hr>
+          <div class="login">
+            <div class="row">
+              <div class="col-sm-6 border py-2">
+                <label class="h5">Signup or Login</label>
+                <br>
+                <!--  <div class="form-group col-sm mt-2">
                 <input type="button" class="btn btn-primary border py-2" value="Login with Github">
               </div> -->
-              <a class="btn like text-white mt-4" href="#">
+                <a class="btn like text-white mt-4" href="#">
                  <i class="fa fa-github fa-lg text-white"></i> Login with github</a>
-            </div>
-            <div class="col-sm-6 border py-2">
-              <label class="h5">Post as a Guest</label>
-              <br>
-              <div class="form-group col-sm mt-2">
-                <!--    <label for="inputState" class="">Name</label>
-                <input type="text" class="form-control " placeholder="name" name="name" [(ngModel)]="name" -->
-                <span><i class="fa fa-user-circle-o fa-2x prefix"></i></span>
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="First name">
-                </mat-form-field>
               </div>
-              <div class="form-group col-sm mt-2">
-                <span><i class="fa fa-envelope fa-2x prefix"></i></span>
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="email">
-                </mat-form-field>
+              <div class="col-sm-6 border py-2">
+                <label class="h5">Post as a Guest</label>
+                <br>
+                <div class="form-group col-sm mt-2">
+                  <!--    <label for="inputState" class="">Name</label>
+                <input type="text" class="form-control " placeholder="name" name="name" [(ngModel)]="name" -->
+                  <span><i class="fa fa-user-circle-o fa-2x prefix"></i></span>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="First name">
+                  </mat-form-field>
+                </div>
+                <div class="form-group col-sm mt-2">
+                  <span><i class="fa fa-envelope fa-2x prefix"></i></span>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="email">
+                  </mat-form-field>
+                </div>
               </div>
             </div>
           </div>
+          <div class="postanswer mt-4 mb-4 text-center">
+            <button class="btn like btn-md text-white" (click)="postAnswer()">Post your answer</button>
+          </div>
         </div>
-        <div class="postanswer mt-4 mb-4 text-center">
-          <button class="btn like btn-md text-white" (click)="postAnswer()">Post your answer</button>
+        <div class="col-sm-2">
         </div>
-      </div>
-      <div class="col-sm-2">
       </div>
     </div>
-  </div>
-</form>
+  </form>
+

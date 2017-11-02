@@ -34,7 +34,6 @@ export class NewpostComponent implements OnInit {
   CKEDITOR.replace( 'editor1', config );
   CKEDITOR.instances.editor1.setData("");
 
-
       this.date = new Date();  
       let day = this.date.getDate();    
       let month = this.date.getMonth() + 1;    
@@ -44,6 +43,7 @@ export class NewpostComponent implements OnInit {
 
  insertPost(data)
  {
+
        this.obj = {
       questionTitle: this.questionTitle,
       codeSnippet: CKEDITOR.instances.editor1.getData(),
@@ -53,21 +53,22 @@ export class NewpostComponent implements OnInit {
     }
    console.log(this.obj);
    this.forum.save(this.obj).subscribe((res)=>{
+
         //We get dialog result
         if (res) {
           console.log(res)
           swal({
-      timer: 1000,
+      timer: 2200,
       title: "Posted Successfully",
-      text:  "accepted",
+      text:  "",
       type:  'success',
       showConfirmButton: false,
     })
         } else {
           swal({
-      timer: 1000,
+      timer: 2200,
       title: "Error occured",
-      text:  "declined",
+      text:  "",
       type: 'error',
       showConfirmButton: false,
     })
