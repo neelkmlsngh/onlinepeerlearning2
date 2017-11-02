@@ -16,8 +16,6 @@ import { ForumService } from '../../../services/forum.service';
   providers: [ForumService]
 })
 export class ViewpostComponent implements OnInit,AfterViewInit {
-dislikeCounter:number;
-likeCounter:number;
 likes= 0;
 likeflag=false;
 dislikeflag=false;
@@ -85,6 +83,8 @@ console.log(searchTerm)
       this.router.navigate(['/questiondetail',value])   
     }
 
+//method for likes
+
 like(){
   if(this.likeflag==false){
     if(this.dislikeflag==true){
@@ -103,6 +103,8 @@ like(){
     this.likeflag=false;
   }
 }
+
+//method for dislikes
 
  dislike(){
 
