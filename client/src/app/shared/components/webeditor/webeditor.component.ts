@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef,Input } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { AceEditorDirective } from 'ng2-ace-editor'
 import { AceEditorModule } from 'ng2-ace-editor'
 import * as JSZip from 'jszip'
-
+import { ForumService } from '../../../shared/services/forum.service';
 
 @Component({
   selector: 'app-webeditor',
@@ -11,6 +11,11 @@ import * as JSZip from 'jszip'
   styleUrls: ['./webeditor.component.css']
 })
 export class WebeditorComponent implements OnInit {
+
+constructor(private snippet: ForumService) {}
+
+   @Input() content: any;
+
   htmlValue: any = "<h1>Hello World</h1>";
   cssValue: any = "body{color:red}";
   jsValue: any = "";
@@ -23,6 +28,12 @@ export class WebeditorComponent implements OnInit {
   textcontent: any
   myUrl: any;
   data: any;
+  html:any;
+  css:any
+  caretPos: any;
+  caretText: any;
+  obj: any;
+
   comments: any = "\n<!-- Enter Your Comment -->";
   tabels: string = "\n<table>\n" +
     "<tr>\n\t" +
@@ -80,6 +91,17 @@ export class WebeditorComponent implements OnInit {
   ngOnInit() {
     this.onChange(this.code)
 
+    this.snippet.getSnippet()
+    .subscribe(res=>{
+ this.html=res.filter(ele=>ele.language==='html');
+ this.css =res.filter(ele=>ele.language==='css');
+
+})
+  }
+
+  show(code){ 
+     this.htmlValue=code;
+     this.cssValue=code;
   }
 
   base_tpl: string =
@@ -264,4 +286,36 @@ export class WebeditorComponent implements OnInit {
         return false;
       });
   }
+
+  /*  `
+  <h2>Cursor Position : {{caretPos}}</h2>
+  <div>
+    <textarea rows="4" #myTextArea (click)="getCaretPos(myTextArea)" (keyup)="getCaretPos(myTextArea)" cols="40" >{{caretText}}</textarea>
+  </div>
+  <div>
+  <button (click)="add()">click</button>
+  `
+*/
+  getCaretPos(oField) {
+    if (oField.selectionStart || oField.selectionStart == '0') {
+       this.caretPos = oField.selectionStart;
+       this.obj = oField;
+    }
+  }
+
+  add() {
+      this.insertAtCursor(this.obj, this.caretText)
+  }
+
+  insertAtCursor(myField, myValue) {
+  if (myField.selectionStart || myField.selectionStart == '0') {
+        var startPos = myField.selectionStart;
+        var endPos = myField.selectionEnd;
+        myField.value = myField.value.substring(0, startPos)
+            + myValue
+            + myField.value.substring(endPos, myField.value.length);
+    } else {
+        myField.value += myValue;
+    }
+}
 }

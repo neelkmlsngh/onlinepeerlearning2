@@ -1,10 +1,12 @@
-//imports required from angular
+// imports required from angular
 
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import {AuthenticationService} from '../shared/services/authentication.service'
+
+import { config } from '../config/config';
 
 //component decorator
 
@@ -27,6 +29,7 @@ export class HomeComponent implements OnInit {
    backdrop: true,
    ignoreBackdropClick: false
    };
+   config=config;
 
   //constructor having modal service and router
 
