@@ -19,6 +19,14 @@ export const config: any = {
 
   repoSidebar:{
     "repos" : "Repos"
+  },
+
+  navbar: {
+    "logo" : "Logo",
+    "profile" : "Profile",
+    "forums" : "Forums",
+    "logout" : "Logout"
+
   }
 
 };
