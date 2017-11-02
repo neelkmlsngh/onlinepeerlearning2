@@ -17,6 +17,7 @@ export class NewpostComponent implements OnInit, AfterViewInit{
     dateCurr:any;
     codeSnippet:string;
     obj:any={};
+    addSnippet:any;
 
  constructor(private forum:ForumService) { }
 
@@ -38,8 +39,8 @@ export class NewpostComponent implements OnInit, AfterViewInit{
     removePlugins: 'list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize'
 
   };
-  CKEDITOR.replace( 'editor1', config );
-  CKEDITOR.instances.editor1.setData("");
+  CKEDITOR.replace( 'addSnippet', config );
+  CKEDITOR.instances.addSnippet.setData("");
 
    var problemDescriptionConfig = {
     codeSnippet_theme: 'monokai_sublime',
@@ -57,7 +58,7 @@ CKEDITOR.instances.problemDescription.setData("");
 
        this.obj = {
       questionTitle: this.questionTitle,
-      codeSnippet: CKEDITOR.instances.editor1.getData(),
+      codeSnippet: CKEDITOR.instances.addSnippet.getData(),
       problemDescription: CKEDITOR.instances.problemDescription.getData(),
       tags:this.tags,
       date:this.date

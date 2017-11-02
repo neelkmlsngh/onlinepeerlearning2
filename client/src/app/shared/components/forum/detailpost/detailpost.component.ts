@@ -16,7 +16,7 @@ import { ForumService } from '../../../services/forum.service';
 export class DetailpostComponent implements OnInit, AfterViewInit {
   constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {}
   name: string;
-  editor1: string;
+  editor: string;
   obj: any = {};
   codeSnippet: string;
   data: any = [];
@@ -36,6 +36,7 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
       this.errors = error;
     };
   }
+//method to load editor to postAnswer
    ngAfterViewInit(){
      var config = {
       extraPlugins: 'codesnippet',
@@ -44,17 +45,17 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
       removeButtons: 'About',
 
     };
-    CKEDITOR.replace('editor1', config);
-    CKEDITOR.instances.editor1.setData("");
+    CKEDITOR.replace('editor', config);
+    CKEDITOR.instances.editor.setData("");
    }
+ //method to postAnswer
   postAnswer() {
     this.obj = {
       username: "prashant",
-      answer: CKEDITOR.instances.editor1.getData(),
+      answer: CKEDITOR.instances.editor.getData(),
       likes: "11",
       dislikes: "2"
     }
-    // debugger
     this.forum.saveAnswer(this.data[0].questionTitle, this.obj)
       .subscribe(res => {
         console.log(res);

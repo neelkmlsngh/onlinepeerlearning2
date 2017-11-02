@@ -69,13 +69,10 @@ const addSocketId = function(data, callback) {
 }
 
 module.exports = {
-	login: login,
-	registerUser: registerUser,
 	userSessionCheck: userSessionCheck,
 	getUserInfo: getUserInfo,
 	getChatList: getChatList,
 	insertMessages: insertMessages,
 	getMessages: getMessages,
-	logout: logout,
 	addSocketId: addSocketId
 };
