@@ -6,9 +6,9 @@ import * as $ from 'jquery';
 import { AuthenticationService } from './../../../services/authentication.service';
 
 /*importing services starts*/
-import { SocketService } from './../services/socket.service';
-import { HttpService } from './../services/http.service';
-import { ChatService } from './../services/chat.service';
+import { SocketService } from './../../../services/chatservices/socket.service';
+import { HttpService } from './../../../services/chatservices/http.service';
+import { ChatService } from './../../../services/chatservices/chat.service';
 
 @Component({
   selector: 'app-chat-home',
