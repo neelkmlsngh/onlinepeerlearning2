@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit} from '@angular/core';
 import { ForumService } from '../../../services/forum.service';
 import swal from 'sweetalert2';
 @Component({
@@ -7,7 +7,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./newpost.component.css'],
   providers: [ForumService]
 })
-export class NewpostComponent implements OnInit {
+export class NewpostComponent implements OnInit, AfterViewInit{
 
   ckeditorContent:any;
     date:any;
@@ -17,22 +17,12 @@ export class NewpostComponent implements OnInit {
     dateCurr:any;
     codeSnippet:string;
     obj:any={};
-
-
+    addSnippet:any;
 
  constructor(private forum:ForumService) { }
 
  
  ngOnInit() {
-
-        var config = {
-    extraPlugins: 'codesnippet',
-    codeSnippet_theme: 'monokai_sublime',
-    height: 356
-  };
-
-  CKEDITOR.replace( 'editor1', config );
-  CKEDITOR.instances.editor1.setData("");
 
       this.date = new Date();  
       let day = this.date.getDate();    
@@ -40,14 +30,36 @@ export class NewpostComponent implements OnInit {
       let year = this.date.getFullYear();    
       this.date = day + '/' + month + '/' + year;
  }
+  ngAfterViewInit(){
+        var config = {
+    extraPlugins: 'codesnippet',
+    codeSnippet_theme: 'monokai_sublime',
+    height: 356,
+    removeButtons: 'Link,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript,addFile,Image,Table,Styles,Format,Maximize,HorizontalRule,Unlink,Blockquote,Indent,Outdent,RemoveFormat,Spell',
+    removePlugins: 'list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize'
+
+  };
+  CKEDITOR.replace( 'addSnippet', config );
+  CKEDITOR.instances.addSnippet.setData("");
+
+   var problemDescriptionConfig = {
+    codeSnippet_theme: 'monokai_sublime',
+    height: 356,
+    removeButtons: 'About,Cut,Save,NewPage,Outdent,Indent,-,Cut,Copy,Paste,PasteText,PasteFromWord,-,Maximize'
+    
+  };
+CKEDITOR.replace( 'problemDescription', problemDescriptionConfig );
+CKEDITOR.instances.problemDescription.setData("");
+  }
+
 
  insertPost(data)
  {
 
        this.obj = {
       questionTitle: this.questionTitle,
-      codeSnippet: CKEDITOR.instances.editor1.getData(),
-      problemDescription: this.problemDescription,
+      codeSnippet: CKEDITOR.instances.addSnippet.getData(),
+      problemDescription: CKEDITOR.instances.problemDescription.getData(),
       tags:this.tags,
       date:this.date
     }
