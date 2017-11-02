@@ -43,11 +43,17 @@ import { AudioChatComponent } from './shared/components/chat/audio-chat/audio-ch
 import { VideoChatComponent } from './shared/components/chat/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
+
+import { AuthoriseGuard } from './shared/services/authorise.guard';
+import { SnippetComponent } from './shared/components/snippet/snippet.component';
+
+
 //import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { CoderunnerService } from './shared/services/coderunner.service';
 import { AnswersComponent } from './shared/components/forum/answers/answers.component';
 import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
 import { ChatComponent } from './shared/components/chat/chat.component';
+
 
 @NgModule({
   declarations: [
@@ -70,9 +76,12 @@ import { ChatComponent } from './shared/components/chat/chat.component';
     AuthenticateComponent,
     AudioChatComponent,
     VideoChatComponent,
+
+  SnippetComponent,
     AnswersComponent,
     ChatHomeComponent,
     ChatComponent
+
   ],
   imports: [
     BrowserModule,
@@ -102,10 +111,17 @@ import { ChatComponent } from './shared/components/chat/chat.component';
        path:'home',
        component:HomeComponent
      },
+       {
+       path:'snippet',
+       component:SnippetComponent
+     },
      {
         path: 'main',
         component: MainComponent,
-        //canActivate: [AuthoriseGuard]
+
+
+       /* canActivate: [AuthoriseGuard]*/
+
       },
         {
         path: 'questions',
@@ -149,7 +165,10 @@ import { ChatComponent } from './shared/components/chat/chat.component';
      {
         path: 'webeditor',
         component: WebeditorComponent,
-        //canActivate: [AuthoriseGuard]
+
+     /*   canActivate: [AuthoriseGuard]*/
+
+
       },
        {
         path: 'profile',
