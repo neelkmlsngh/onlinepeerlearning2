@@ -1,3 +1,4 @@
+
 import { Component, OnInit, AfterViewInit, TemplateRef} from '@angular/core';
 import { Router} from '@angular/router'
 import {MatIconRegistry} from '@angular/material';
@@ -15,6 +16,7 @@ import { ForumService } from '../../../services/forum.service';
   styleUrls: ['./viewpost.component.css'],
   providers: [ForumService]
 })
+
 export class ViewpostComponent implements OnInit,AfterViewInit {
 likes= 0;
 likeflag=false;
@@ -86,55 +88,54 @@ console.log(searchTerm)
 //method for likes
 
 like(){
-  if(this.likeflag==false){
-    if(this.dislikeflag==true){
-  this.likes++;
-  this.likeflag=true;
-  this.dislikes--;
-  this.dislikeflag=false;
-  }
-  else{
-     this.likes++;
-  this.likeflag=true;
-  }
+ if(this.likeflag==false){
+   if(this.dislikeflag==true){
+ this.likes++;
+ this.likeflag=true;
+ this.dislikes--;
+ this.dislikeflag=false;
+ }
+ else{
+    this.likes++;
+ this.likeflag=true;
+ }
 }
-  else{
-    this.likes--;
-    this.likeflag=false;
-  }
+ else{
+   this.likes--;
+   this.likeflag=false;
+ }
 }
+
 
 //method for dislikes
 
  dislike(){
 
-   if(this.dislikeflag==false){
-      if(this.likeflag==true){
-  this.dislikes++;
-  this.dislikeflag=true;
-  this.likes--;
-  this.likeflag=false;
-  }
-  else{
-    this.dislikes++;
-  this.dislikeflag=true;
-  }
-}
-  else{
-    this.dislikes--;
-    this.dislikeflag=false;
-  }
+  if(this.dislikeflag==false){
+     if(this.likeflag==true){
+ this.dislikes++;
+ this.dislikeflag=true;
+ this.likes--;
+ this.likeflag=false;
  }
-showAnswers(value){
-
-      // this.forum.getPostByQuestion(value).subscribe((data)=>{
-      //   console.log("answers................",data[0].answers);
-      // })
-     this.router.navigate(['/answers',value])  
-
-    }
+ else{
+   this.dislikes++;
+ this.dislikeflag=true;
+ }
 }
+ else{
+   this.dislikes--;
+   this.dislikeflag=false;
+ }
+}
+ 
+  showAnswers(value) {
+    // this.forum.getPostByQuestion(value).subscribe((data)=>{
+    //   console.log("answers................",data[0].answers);
+    // })
+    this.router.navigate(['/answers', value])
 
+  }
 
-    
+}
 

@@ -5,15 +5,13 @@ const mongoose = require('mongoose');
  */
 
 var UserSchema = new mongoose.Schema({
-  name: String,
-  userId: {type:String},
-  updatedAt: { type: Date, default: Date.now },
-  avatarUrl:String,
-  publicRepos: String,
-  reposUrl: String,
-  
+    name: String,
+    userId: { type: String, unique: true },
+    updatedAt: { type: Date, default: Date.now },
+    avatarUrl: String,
+    publicRepos: String,
+    reposUrl: String,
+
 });
 UserSchema.statics.findOrCreate = require("find-or-create");
 module.exports = mongoose.model("user", UserSchema);
-
-
