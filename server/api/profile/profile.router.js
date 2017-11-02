@@ -71,9 +71,12 @@ var upload = multer({ storage: storage }).any();
       let dataObj={
         img:req.files[0].filename
       }
-      console.log(dataObj,getId);
-      console.log(JSON.stringify(req.files[0])+"-------------")
-       usrCtrl.updateImage(dataObj,getId); 
+       usrCtrl.updateImage(dataObj,getId).then(successResult=>{
+        console.log("successResult "+successResult)
+        return res.status(201).send(successResult);
+       },error=>{
+
+       }); 
     }
   });
    }catch(err){

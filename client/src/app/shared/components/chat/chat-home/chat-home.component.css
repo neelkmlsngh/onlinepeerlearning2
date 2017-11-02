@@ -78,7 +78,7 @@
 }
 
 .message-typer {
-  padding-top: 20px;
+  padding-top: 0px;
 }
 
 .user-list {
@@ -328,6 +328,7 @@ img {
   display: flex;
   -webkit-flex-direction: column;
   flex-direction: column;
+  margin-right: 55px;
 }
 
 .chatbox--tray {
@@ -505,11 +506,12 @@ img {
 }
 
 .chatbox--empty {
-  height: 262px;
+  height: 392px;
+    width: 339px;
 }
 
 .chatbox--empty.chatbox--tray {
-  bottom: -212px;
+  bottom: -350px;
 }
 
 .chatbox--empty.chatbox--closed {

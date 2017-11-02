@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
+import {Router} from '@angular/router'
+import { Compiler } from '@angular/core';
  
 @Component({
   selector: 'app-video-chat',
@@ -16,14 +17,12 @@ export class VideoChatComponent implements OnInit {
   mypeerid;
  
  
-constructor() { }
+constructor(private router: Router,private compiler:Compiler) { }
  
-
   
  ngOnInit() {
     let video = this.myVideo.nativeElement;
     this.peer = new Peer({host: '192.168.252.33', port: 8081, path: '/peerjs'});
-
     setTimeout(() => {
       this.mypeerid = this.peer.id;
     },3000);
@@ -78,22 +77,18 @@ conn.on('open', function(){
       console.log('Failed to get stream', err);
     })
   }
-
-
   stop(){
      
     var conn = this.peer.destroy(this.anotherid);
-    
+    this.compiler.clearCache();
+   window.location.reload();
+   this.router.navigate(["/main"]);
 conn.on('close', function(){
   conn.send('End Call');
- 
- 
-});
+ });
   }
-
-    /*mute() {
+    mute() {
   
-
     let video = this.myVideo.nativeElement;
     var localvar = this.peer;
     var fname = this.anotherid;
@@ -106,23 +101,11 @@ conn.on('close', function(){
       var call = localvar.call(fname, stream);
       call.on('stream', function(remotestream) {
         video.src = URL.createObjectURL(remotestream);
-        video.pause();
+        video.play();
       })
     }, function(err){
       console.log('Failed to get stream', err);
     })
-  }*/
-
-    mute() {
-    let video=this.myVideo.nativeElement;
-    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ audio:false,video:true })
-                            .then(stream => {
-                              video.src = window.URL.createObjectURL(stream);
-                              video.play();
-                            })
-    }
-
   }
-
+  
 }

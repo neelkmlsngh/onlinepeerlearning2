@@ -1,3 +1,32 @@
+<section id="code_editors">
+  <a href="javascript:void(0);" (click)="downloadJsFile()">Javascript File
+              <i class="fa fa-download" aria-hidden="true" data-toggle="popover" title="Download JS File"></i>  </a>
+  <div id="myJsDiv"></div>
+  <button class="btn-primary" (click)="executecode()">Execute</button>
+  <div class="btn-group">
+    <button class="btn btn-default" type="button" (click)="save()">
+      Create
+    </button>
+    <button class="btn btn-default" type="button" (click)="update()">
+      Update
+    </button>
+    <button class="btn btn-default" type="button" (click)="delete()">
+      Delete
+    </button>
+  </div>
+  <div ace-editor 
+  [(text)]="content" 
+  [mode]="'javascript'" 
+  [theme]="'twilight'" 
+  [readOnly]="false" 
+  [autoUpdateContent]="true" 
+  [durationBeforeCallback]="2000" class="code_box" id="javascript">
+  </div>
+</section>
+<div class="row">
+  <div class="col-md-12">Output:
+    <div class="output">{{dataObj}}</div>
+<!-- =======
 <div class="container">
   <section id="code_editors">
     <button class="btn btn-outline-primary" href="javascript:void(0);" (click)="downloadJsFile()" data-toggle="tooltip" data-placement="Top" title="Download">
@@ -14,5 +43,6 @@
       <h3>Output:</h3>
       <div>{{dataObj}}</div>
     </div>
+>>>>>>> b08e044276a904e86989241e45420cf2c09345d7 -->
   </div>
 </div>
