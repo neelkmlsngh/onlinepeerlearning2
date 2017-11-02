@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Knowledge base forum</title>
 </head>
@@ -24,7 +25,7 @@
           </li>
       </ul>
       <span class="navbar-text white-text">
-              <a class="text-white" href="#">
+              <a class="text-white" (click)="clickHelpModal(template)">
                  <i class="fa fa-question-circle fa-lg text-white"></i>  Help</a>
         </span>
       <span class="navbar-text white-text ml-4 mr-2">
@@ -39,11 +40,11 @@
       </div>
       <div class="col-sm-8">
         <nav class="col-lg-12 col-lg-offset-12 col-md-6 col-md-offset-3 col-sm-8 navbar      col-sm-offset-2 col-xs-10 col-xs-offset-1 mt-4">
-            <div class="input-group input-group-md">
-              <input id="search" #value value="" type="search($event)" class="form-control mr-sm-2 bg-white" placeholder="search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0 detail" (click)="getDetails(value)" type="submit">Search</button>
-            </div>
-          </nav>
+          <div class="input-group input-group-md">
+            <input id="search" #value value="" type="search($event)" class="form-control mr-sm-2 bg-white" placeholder="search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0 detail" (click)="getDetails(value)" type="submit">Search</button>
+          </div>
+        </nav>
         <div class="row">
           <div class="col-sm-6 heading h5 mt-4">
             All Questions
@@ -57,9 +58,9 @@
         <div class="questionsumary">
           <div class="row" *ngFor="let result of data| paginate: { itemsPerPage:4, currentPage: p }">
             <div class="statuscontainer col-sm-3">
-              <div class="vote h5">
+              <!--       <div class="vote h5">
                 {{result.votes}} votes
-              </div>
+              </div> -->
               <div class="answeraccepted h5  border py-2 text-white mt-4" (click)="showAnswers(result.questionTitle)">
                 <strong class="pl-4">{{result.answers.length}}</strong>
                 <br><small class="ans">answers</small>
@@ -72,7 +73,6 @@
               <div class="questionTitle">
                 <a class="question" (click)="getQuestionDetail(result.questionTitle)">{{result.questionTitle }}</a>
               </div>
- 
               <div class="problemDescription">
                 {{result.problemDescription | truncate : 200}}
               </div>
@@ -84,16 +84,16 @@
                 <div class="col-sm-5 postedDate small">
                   <div class="row">
                     <div class="col-sm-9">
-                    <div class="row">
-                    <div class="col-sm-6">
-                      <button class="btn text-black btn-outline-success" (click)="like()">
-                 <i class="fa fa-thumbs-up fa-lg text-black"></i> {{likes}}</button>
-                 </div>
-                 <div class="row">
-                   <button class="btn text-black btn-outline-danger" (click)="dislike()">
-                 <i class="fa fa-thumbs-down fa-lg text-black"></i> {{dislikes}}</button>
-                 </div>
-                 </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <button class="btn text-black btn-outline-success" (click)="like()">
+                            <i class="fa fa-thumbs-up fa-lg text-black"></i> {{likes}}</button>
+                        </div>
+                        <div class="row">
+                          <button class="btn text-black btn-outline-danger" (click)="dislike()">
+                            <i class="fa fa-thumbs-down fa-lg text-black"></i> {{dislikes}}</button>
+                        </div>
+                      </div>
                     </div>
                     <div class="col-sm-3">
                       asked Oct 20 '08 at 13:18
@@ -137,12 +137,6 @@
               <li><a href="#"><i class="fa fa-youtube"></i></a></li>
             </ul>
           </div>
-          <nav class="col-lg-12 col-lg-offset-12 col-md-6 col-md-offset-3 col-sm-8       col-sm-offset-2 col-xs-10 col-xs-offset-1">
-            <div class="input-group input-group-md">
-              <input type="text" class="form-control" placeholder="Email Address">
-              <span class="input-group-addon">Subscribe</span>
-            </div>
-          </nav>
         </div>
         <!--/.row-->
       </div>
@@ -151,11 +145,24 @@
     <!--/.footer-->
     <div class="footer-bottom">
       <div class="container">
-        <div class="pull-left"> Copyright © <a href="">Peer Learning</a>.  All right reserved.</div>
+        <div class="copyright"> Copyright © <a href="">Peer Learning</a>.  All right reserved.</div>
       </div>
     </div>
     <!--/.footer-bottom-->
   </footer>
 </body>
+<template #template>
+  <div class="modal-header">
+    <h4 class="modal-title"><b>Help</b></h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p class="modaltext">
+     visit our website for further suggestions..
+    </p>
+  </div>
+</template>
 
 </html>

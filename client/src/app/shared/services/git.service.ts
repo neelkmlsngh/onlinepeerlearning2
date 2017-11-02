@@ -7,7 +7,7 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class GitService {
-  userName: any = "GauravGupta131220";
+  userName: any = "aasthawadhwa01";
   username:any="ROZYTYAGI";
 
   private clientId: string = '60b9f23dedffbdfc476c';
