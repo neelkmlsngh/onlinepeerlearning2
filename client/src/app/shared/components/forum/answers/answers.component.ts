@@ -13,6 +13,7 @@ export class AnswersComponent implements OnInit {
 
   constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) { }
    data: any = [];
+   question:string;
    errors: any;
 
   ngOnInit() {
@@ -20,8 +21,9 @@ export class AnswersComponent implements OnInit {
   	 this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
       .subscribe((res) => {
-        this.data = res;
-        console.log(this.data);
+        this.question=res[0].questionTitle;
+        this.data = res[0].answers;
+        console.log("prashant....................",this.data);
       })
     error => {
       this.errors = error;
