@@ -33,6 +33,7 @@ export class MainComponent implements OnInit {
   windowRef: any;
   methodToExport: any;
   link: string = '';
+  value: any;
   public modalRef: BsModalRef;
 
   constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,private authenticationservice:AuthenticationService,private router:Router) {
@@ -137,4 +138,23 @@ logout(){
      localStorage.removeItem('currentUser');
 })
 }
+onKey(event){
+this.value+=event
+}
+
+
+createRepo(name,desc){
+   let repoName={
+  "name": name,
+  "description": desc,
+  "homepage": "https://github.com",
+  "private": false,
+  "has_issues": false,
+  "has_projects": false,
+  "has_wiki": false
+}
+   this.gitService.createRepos(repoName)
+   .subscribe(data =>{
+   })
+ }
 }

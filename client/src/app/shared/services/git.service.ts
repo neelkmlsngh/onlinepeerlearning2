@@ -8,6 +8,7 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class GitService {
   userName: any = "GauravGupta131220";
+  username:any="ROZYTYAGI";
 
   private clientId: string = '60b9f23dedffbdfc476c';
   private clientSecret: string = 'd1c186c6373f96571c0bfcf76b84e4dc6fd0c15a';
@@ -161,6 +162,21 @@ export class GitService {
   //method for authorization
   private authoriZation() {
     let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206MjZmZGZmYmUzMDBlNmRmODU0NjQ0NGI5Mzk2NDc4YTdjNTUxODUxMQ" });
+    return new RequestOptions({ headers: headers });
+  }
+
+  //method to create Repository on github
+  createRepos(text) {
+
+    if (this.username) {
+      return this._http.post('https://api.github.com/user/repos', text, this.authorization())
+        .map(res => res.json())
+    }
+  }
+
+   //method for authorization
+  private authorization() {
+    let headers = new Headers({ 'Authorization': "Basic dHlhZ2lyb3p5NEBnbWFpbC5jb206NDk3NzI5NjdkMDVjZDAxN2ZkZjFmMDk5YmExZGM2MjQ5ZGY2ZjNlZA==" });
     return new RequestOptions({ headers: headers });
   }
 }
