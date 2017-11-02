@@ -1,6 +1,4 @@
 const https = require('https');
-/*const socketio = require('socket.io');
-const io = socketio(https)*/
 var fs = require('fs');
 var path = require('path');
 const debug = require('debug')('dataDisplayApp:server');
@@ -28,30 +26,27 @@ var options1 = {
 var server = https.createServer(options, app);
 const io = require('socket.io')(server);
 // app.use('/peerjs', ExpressPeerServer(server, options1));
+
 //this is for socket that is used for getting online users and messages
-//socketApp.socketConnection(server);
-// let server = https.createServer(app);
-//socketApp.socketConfig(socket);
-/*function socketConfig(io) {*/
 io.use(function(socket, next) {
-    let userID = socket.request._query['userId'];
-    let userSocketId = socket.id;
-    const data = {
-        id: userID,
-        value: {
-            $set: {
-                socketId: userSocketId,
-                online: 'Y'
-            }
-        }
+  let userID = socket.request._query['userId'];
+  let userSocketId = socket.id;
+  const data = {
+    id: userID,
+    value: {
+      $set: {
+          socketId: userSocketId,
+          online: 'Y'
+      }
     }
-    helper.addSocketId(data, (error, response) => {
-        // socket id updated.
-    });
-    next();
+  }
+  helper.addSocketId(data, (error, response) => {
+      // socket id updated.
+  });
+  next();
 });
 socketApp.socketEvents(io);
-/*}*/
+
 //Listen on provided port, on all network interfaces.
 server.listen(port);
 server.on('error', onError);

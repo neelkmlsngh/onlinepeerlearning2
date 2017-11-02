@@ -7,6 +7,7 @@ import { config } from '../shared/config/config';
 import { GitService } from '../shared/services/git.service'
 import { AuthenticationService } from '../shared/services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -60,6 +61,7 @@ export class MainComponent implements OnInit {
     this.gitService.getRepos()
       .subscribe(repos => {
         this.githubUser = repos;
+        this.mod="Select Mode"
 
       })
   }
@@ -133,11 +135,12 @@ logout(){
 })
 }
 
+//method to enter new repository name
 onKey(event){
 this.value+=event
 }
 
-
+//methd for creating new repository
 createRepo(name,desc){
    let repoName={
   "name": name,
