@@ -16,6 +16,9 @@ h5 {
   margin: 0;
 }
 
+
+/*Profile Card classes*/
+
 .card {
   font-size: 1em;
   overflow: hidden;
@@ -121,6 +124,8 @@ h5 {
 }
 
 
+/*/profile card class*/
+
 .heading {
   background-color: #F3E5F5;
 }
@@ -135,13 +140,30 @@ h5 {
   width: 100%;
 }
 
+
+/*save button*/
+
 .save {
   background-color: #BA68C8;
 }
 
+
+/*Upload button*/
+
+.upload {
+  margin-top: 10%;
+  background-color: #BA68C8;
+}
+
+
+/*Cancel Button*/
+
 .cancel {
   background-color: red;
 }
+
+
+/*Gender radio buttons*/
 
 .gender {
   margin-left: 2%
