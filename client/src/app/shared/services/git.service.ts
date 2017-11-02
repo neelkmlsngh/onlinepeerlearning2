@@ -8,6 +8,7 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class GitService {
  userName:any;
+ username:any="ROZYTYAGI"
   private clientId: string = '60b9f23dedffbdfc476c';
   private clientSecret: string = 'd1c186c6373f96571c0bfcf76b84e4dc6fd0c15a';
   constructor(private _http: Http) {
@@ -161,13 +162,13 @@ export class GitService {
   //method to create Repository on github
   createRepos(text) {
 
-    if (this.userName) {
+    if (this.username) {
       return this._http.post('https://api.github.com/user/repos', text, this.authorization())
         .map(res => res.json())
     }
   }
 
-   //method for authorization
+   //method for authorization for creating new repository
   private authorization() {
     let headers = new Headers({ 'Authorization': "Basic Uk9aWVRZQUdJOjIwYWRiMGI1MTJmMTIyYjM0YTc1NzRmODQyMGNiZjYxYmMyZTMzODU=" });
     return new RequestOptions({ headers: headers });
