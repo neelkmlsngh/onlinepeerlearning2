@@ -7,7 +7,7 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class GitService {
-  userName: any = "GauravGupta131220";
+  userName: any = "aasthawadhwa01";
   username:any="ROZYTYAGI";
 
   private clientId: string = '60b9f23dedffbdfc476c';
@@ -74,7 +74,7 @@ export class GitService {
     if (this.userName) {
       /*let headers = new Headers({ 'Authorization': "Basic dGFudXByZWV0X3NpbmdoQHlhaG9vLmNvbTo4NTI3NDc5MDMyMGZiMzNmYzkxNzhmZTA4NWE4YTA2NjVmZDNiNTU4" });
    let options= new RequestOptions({ headers: headers });*/
-      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master', this.authoriZation())
+      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master', this.authorization())
         .map(res => res.json())
     }
   }
@@ -82,7 +82,7 @@ export class GitService {
   //method to create the file and saving the sha-base-tree
   commitfile(text, sha) {
     if (this.userName) {
-      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits/' + sha, this.authoriZation())
+      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits/' + sha, this.authorization())
         .map(res => res.json())
     }
   }
@@ -90,7 +90,7 @@ export class GitService {
   //method to create file, sending new file name and saving the sha-new-tree
   treecommit(text, basetree) {
     if (this.userName) {
-      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/trees', basetree, this.authoriZation())
+      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/trees', basetree, this.authorization())
         .map(res => res.json())
     }
   }
@@ -98,7 +98,7 @@ export class GitService {
   //method to create a file on github and saving sha-new-commit
   newcommit(text, newcommit) {
     if (this.userName) {
-      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits', newcommit, this.authoriZation())
+      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits', newcommit, this.authorization())
         .map(res => res.json())
 
     }
@@ -107,7 +107,7 @@ export class GitService {
   //method to create a fiel on github 
   lastcommit(text, lastcommit) {
     if (this.userName) {
-      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master', lastcommit, this.authoriZation())
+      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master', lastcommit, this.authorization())
         .map(res => res.json())
     }
   }
@@ -129,7 +129,7 @@ export class GitService {
   getsha(text, filename) {
     if (this.userName) {
       console.log(filename)
-      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/contents/' + filename, this.authoriZation())
+      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/contents/' + filename, this.authorization())
         .map(res => res.json())
 
     }
@@ -140,7 +140,7 @@ export class GitService {
   updateFile(text, filename, updateobj) {
     if (this.userName) {
       console.log('from service...........' + updateobj)
-      return this._http.put('https://api.github.com/repos/' + this.userName + '/' + text + '/contents/' + filename, updateobj, this.authoriZation())
+      return this._http.put('https://api.github.com/repos/' + this.userName + '/' + text + '/contents/' + filename, updateobj, this.authorization())
         .map(res => res.json())
     }
   }
@@ -149,7 +149,7 @@ export class GitService {
   deleteFile(text, filename, deletefileobj) {
     if (this.userName) {
       //let head=this.authoriZation();  
-      let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206MjZmZGZmYmUzMDBlNmRmODU0NjQ0NGI5Mzk2NDc4YTdjNTUxODUxMQ" });
+      let headers = new Headers({ 'Authorization': "Basic YWFzdGhhd2FkaHdhMDFAZ21haWwuY29tOjcwZWJjMzgyMTJkZTJkZThjMzgwNGNlYmZhNDNkMWI4MWIzZjc4YjU=" });
       console.log('from service...........' + deletefileobj)
       return this._http.delete('https://api.github.com/repos/' + this.userName + '/' + text + '/contents/' + filename, new RequestOptions({
           headers: headers,
@@ -159,11 +159,6 @@ export class GitService {
     }
   }
 
-  //method for authorization
-  private authoriZation() {
-    let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206MjZmZGZmYmUzMDBlNmRmODU0NjQ0NGI5Mzk2NDc4YTdjNTUxODUxMQ" });
-    return new RequestOptions({ headers: headers });
-  }
 
   //method to create Repository on github
   createRepos(text) {
@@ -176,7 +171,7 @@ export class GitService {
 
    //method for authorization
   private authorization() {
-    let headers = new Headers({ 'Authorization': "Basic dHlhZ2lyb3p5NEBnbWFpbC5jb206NDk3NzI5NjdkMDVjZDAxN2ZkZjFmMDk5YmExZGM2MjQ5ZGY2ZjNlZA==" });
+    let headers = new Headers({ 'Authorization': "Basic YWFzdGhhd2FkaHdhMDFAZ21haWwuY29tOjcwZWJjMzgyMTJkZTJkZThjMzgwNGNlYmZhNDNkMWI4MWIzZjc4YjU=" });
     return new RequestOptions({ headers: headers });
   }
 }
