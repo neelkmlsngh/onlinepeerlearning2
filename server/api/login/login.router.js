@@ -55,7 +55,7 @@ router.put('/logout', (req, res) => {
     }, (err, Data) => {
         // action to take if error occurs 
         if (err) {
-            logger.error("error occured");
+            logger.error("error occured in logout");
         }
         // action to take when there is no error
         else {
