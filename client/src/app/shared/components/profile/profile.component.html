@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-sm-3">
       <div class="card card-inverse card-info">
-        <img class="card-img-top"[src]="'https://localhost:8080/janu_2-1509520073510.jpg'" >
+        <img class="card-img-top"[src]="imgPath" >
         <div class="card-block">
           <figure class="profile">
             <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="vfujuh">
@@ -22,8 +22,10 @@
         </div>
         <div class="card-footer">
         <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
+        <div class="col-sm-3">
         <button type="button" class="upload-button btn-lg" (click)="uploadFile()">Upload</button>
-          <small>Last updated 3 mins ago</small>
+         <!-- <button type="button" class="btn btn-secondary save" (click)="uploadFile()">Upload</button> -->
+         </div>
         </div>
       </div>
     </div>
