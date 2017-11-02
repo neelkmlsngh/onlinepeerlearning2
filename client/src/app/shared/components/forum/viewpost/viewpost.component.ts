@@ -1,4 +1,3 @@
-
 import { Component, OnInit, AfterViewInit, TemplateRef} from '@angular/core';
 import { Router} from '@angular/router'
 import {MatIconRegistry} from '@angular/material';
@@ -106,9 +105,7 @@ like(){
  }
 }
 
-
 //method for dislikes
-
  dislike(){
 
   if(this.dislikeflag==false){

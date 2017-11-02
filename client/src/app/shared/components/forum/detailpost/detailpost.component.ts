@@ -14,7 +14,10 @@ import 'rxjs/add/operator/switchMap';
 export class DetailpostComponent implements OnInit {
 
 
-  constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {}
+  constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {
+
+  }
+
   name: string;
   editor1: string;
   obj: any = {};
@@ -30,6 +33,7 @@ export class DetailpostComponent implements OnInit {
       codeSnippet_theme: 'monokai_sublime',
       height: 356
     };
+    
     CKEDITOR.replace('editor1', config);
     CKEDITOR.instances.editor1.setData("");
 
@@ -50,7 +54,6 @@ export class DetailpostComponent implements OnInit {
       likes: "11",
       dislikes: "2"
     }
-    // debugger
     this.forum.saveAnswer(this.data[0].questionTitle, this.obj)
       .subscribe(res => {
         console.log(res);
