@@ -9,22 +9,24 @@ export class AuthenticationService {
   config = config;
   constructor(private http: Http, private router: Router) {}
 
-user:{}
+user:any
 
   git() {
-
     return this.http
       .get(this.config.connect.url + this.config.connect.port + '/auth/github')
       .map(res => res, error => error.json());
   }
 
-  setUserInfo(userId, token) {
+  setUserInfo(obj) {
     //console.log(dataObj.userId);
-    localStorage.setItem('currentUser', JSON.stringify({ token: token, userId: userId }));
-    if (token) {
+     this.user=obj;
+
+   
+     localStorage.setItem('currentUser', JSON.stringify({ token: this.user.token, userId: this.user.userId,userName:this.user.name }));
+    if (this.user.token) {
       this.router.navigate(["/main"]);
 
-    } else if (!token) {
+    } else if (!this.user.token) {
       this.router.navigate(["/"])
 
     }
@@ -37,6 +39,9 @@ console.log('token',token)
     return token;
   }
 
+ getUserId(): any {
+    return JSON.parse(localStorage.getItem('currentUser'))['userId'];
+  }
   logoutEditor(user) {
     // alert('logout called')
     // let user = JSON.parse(localStorage.getItem('currentUser'));

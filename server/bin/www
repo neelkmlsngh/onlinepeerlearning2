@@ -1,21 +1,22 @@
 const https = require('https');
+/*const socketio = require('socket.io');
+const io = socketio(https)*/
 var fs = require('fs');
 var path = require('path');
 const debug = require('debug')('dataDisplayApp:server');
 var ExpressPeerServer = require('peer').ExpressPeerServer;
 
+const helper = require('./../api/chat/chat.controller')
+
 const logger = require('../services/app.logger');
 const socketApp = require('../app/app.service')
 const config = require('../config');
-
 const appConstants = config.app;
 const loggerConfig = config.loggerConstant;
 let appName = appConstants.APPNAME;
 let app = require('../app/app')(appName);
-
 // Get port from environment and store in Express.
 let port = normalizePort(appConstants.PORT);
-
 var options = {
     key: fs.readFileSync(path.resolve(__dirname, '../resources/key.pem')),
     cert: fs.readFileSync(path.resolve(__dirname, '../resources/cert.pem'))
@@ -23,23 +24,39 @@ var options = {
 var options1 = {
     debug: true
 }
-
 // Create HTTPS server.
 var server = https.createServer(options, app);
+const io = require('socket.io')(server);
 // app.use('/peerjs', ExpressPeerServer(server, options1));
-
 //this is for socket that is used for getting online users and messages
-socketApp.socketConnection(server);
-
+//socketApp.socketConnection(server);
 // let server = https.createServer(app);
-
+//socketApp.socketConfig(socket);
+/*function socketConfig(io) {*/
+io.use(function(socket, next) {
+    let userID = socket.request._query['userId'];
+    let userSocketId = socket.id;
+    const data = {
+        id: userID,
+        value: {
+            $set: {
+                socketId: userSocketId,
+                online: 'Y'
+            }
+        }
+    }
+    helper.addSocketId(data, (error, response) => {
+        // socket id updated.
+    });
+    next();
+});
+socketApp.socketEvents(io);
+/*}*/
 //Listen on provided port, on all network interfaces.
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
 logger.debug(loggerConfig.SERVER_RUNNING + port);
-
 // Normalize a port into a number, string, or false.
 function normalizePort(val) {
     let port = parseInt(val, 10);
@@ -51,17 +68,14 @@ function normalizePort(val) {
     }
     return false;
 }
-
 // Event listener for HTTP server "error" event.
 function onError(error) {
     if (error.syscall !== 'listen') {
         throw error;
     }
-
     let bind = typeof port === 'string' ?
         'Pipe ' + port :
         'Port ' + port;
-
     // handle specific listen errors with friendly messages
     switch (error.code) {
         case 'EACCES':
@@ -76,7 +90,6 @@ function onError(error) {
             throw error;
     }
 }
-
 // Event listener for HTTP server "listening" event.
 function onListening() {
     let addr = server.address();

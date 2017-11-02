@@ -20,12 +20,12 @@ import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { RepoSidebarComponent } from './shared/components/repo-sidebar/repo-sidebar.component';
-import { ChatSidebarComponent } from './shared/components/chat-sidebar/chat-sidebar.component';
+
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { GitService } from './shared/services/git.service'
 import { EditorService } from './shared/services/editor.service';
 import { ChatService } from './shared/services/chat.service';
-import { ChatWindowComponent } from './shared/components/chat-sidebar/chat-window/chat-window.component';
+
 import { MainComponent } from './main/main.component';
 import { ForumComponent } from './shared/components/forum/forum.component';
 import { ViewpostComponent } from './shared/components/forum/viewpost/viewpost.component';
@@ -39,14 +39,15 @@ import { ProfileComponent } from './shared/components/profile/profile.component'
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { TruncateModule } from 'ng2-truncate';
-import { AudioChatComponent } from './shared/components/chat-sidebar/audio-chat/audio-chat.component';
-import { VideoChatComponent } from './shared/components/chat-sidebar/video-chat/video-chat.component';
+import { AudioChatComponent } from './shared/components/chat/audio-chat/audio-chat.component';
+import { VideoChatComponent } from './shared/components/chat/video-chat/video-chat.component';
 import {AuthenticationService} from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
+//import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { CoderunnerService } from './shared/services/coderunner.service';
-import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { AnswersComponent } from './shared/components/forum/answers/answers.component';
-
+import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
+import { ChatComponent } from './shared/components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -55,9 +56,9 @@ import { AnswersComponent } from './shared/components/forum/answers/answers.comp
     EditorComponent,
     NavbarComponent,
     RepoSidebarComponent,
-    ChatSidebarComponent,
+   
     FooterComponent,
-    ChatWindowComponent,
+   
     WebeditorComponent,
     ProfileComponent,
     MainComponent,
@@ -69,7 +70,9 @@ import { AnswersComponent } from './shared/components/forum/answers/answers.comp
     AuthenticateComponent,
     AudioChatComponent,
     VideoChatComponent,
-    AnswersComponent
+    AnswersComponent,
+    ChatHomeComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -102,20 +105,14 @@ import { AnswersComponent } from './shared/components/forum/answers/answers.comp
      {
         path: 'main',
         component: MainComponent,
-        /*canActivate: [AuthoriseGuard]*/
+        //canActivate: [AuthoriseGuard]
       },
         {
         path: 'questions',
         component: ViewpostComponent,
         // canActivate: [AuthoriseGuard]
       },
-      {
-
-       path:'chat-window',
-       component:ChatWindowComponent,
-       canActivate: [AuthoriseGuard]
-     },
-
+      
      {
         path: 'video',
         component: VideoChatComponent,
@@ -152,19 +149,24 @@ import { AnswersComponent } from './shared/components/forum/answers/answers.comp
      {
         path: 'webeditor',
         component: WebeditorComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       },
        {
         path: 'profile',
         component: ProfileComponent,
-        canActivate: [AuthoriseGuard]
+        //canActivate: [AuthoriseGuard]
       } ,     
      {
-      path:'auth/:userId/:token',
+      path:'auth/:userId/:token/:name',
       component: AuthenticateComponent,
        //canActivate: [AuthoriseGuard]
     }
-    ,     
+    ,
+   /* {
+        path: 'chome',
+        component: ChatHomeComponent
+      },
+*/     
      {
       path:'**',
       component: HomeComponent,
@@ -172,7 +174,8 @@ import { AnswersComponent } from './shared/components/forum/answers/answers.comp
     },
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,AuthoriseGuard],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService],
+
   bootstrap: [AppComponent]
 })
 

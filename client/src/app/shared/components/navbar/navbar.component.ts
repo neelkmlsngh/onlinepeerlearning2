@@ -16,18 +16,13 @@ export class NavbarComponent implements OnInit {
 logout(){ 
  let user = JSON.parse(localStorage.getItem('currentUser'));
     
-    let userid = user.userId
+    let userid = user.userId;
     user={
       userid:userid
     }
      
 		this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
-      swal({
-            timer: 2000,
-            title: "Successfully Logged Out",
-            type: 'success',
-            showConfirmButton: false,
-          })
+      
     this.router.navigate(["/"]);
      localStorage.removeItem('currentUser');
 })

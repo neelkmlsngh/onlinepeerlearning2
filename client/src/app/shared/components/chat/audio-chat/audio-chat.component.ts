@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import {Router} from '@angular/router'
  
 @Component({
   selector: 'app-audio-chat',
@@ -13,14 +14,11 @@ export class AudioChatComponent implements OnInit {
   anotherid;
   mypeerid;
   
-  constructor() {
-    
-  }
+  constructor(private router: Router) { }
   
   ngOnInit() {
     let audio = this.myAudio.nativeElement;
     this.peer = new Peer({host: '192.168.252.33', port: 8081, path: '/peerjs'});
-
     setTimeout(() => {
       this.mypeerid = this.peer.id;
     },3000);
@@ -86,5 +84,4 @@ conn.on('close', function(){
  
 });
   }
-
 }
