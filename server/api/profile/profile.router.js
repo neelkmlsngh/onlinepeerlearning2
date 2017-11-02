@@ -58,7 +58,7 @@ var upload = multer({ storage: storage }).any();
    }
  })
 
-  router.post('/image/:userId',function(req,res){
+  router.put('/image/:userId',function(req,res){
   let getId= req.params.userId;
   let profileInfo = req.body;
   console.log(profileInfo+"")
@@ -69,10 +69,14 @@ var upload = multer({ storage: storage }).any();
      }
      else {
       let dataObj={
-        imgPath:req.files[0].path
+        img:req.files[0].filename
       }
-      console.log(dataObj,getId);
-        
+       usrCtrl.updateImage(dataObj,getId).then(successResult=>{
+        console.log("successResult "+successResult)
+        return res.status(201).send(successResult);
+       },error=>{
+
+       }); 
     }
   });
    }catch(err){

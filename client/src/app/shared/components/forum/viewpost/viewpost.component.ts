@@ -1,8 +1,11 @@
-import { Component, OnInit, AfterViewInit} from '@angular/core';
+
+import { Component, OnInit, AfterViewInit, TemplateRef} from '@angular/core';
 import { Router} from '@angular/router'
 import {MatIconRegistry} from '@angular/material';
 import { Subject } from 'rxjs/Subject'
 import { Observable } from 'rxjs/Observable'
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import 'rxjs/Rx';
 
 import { ForumService } from '../../../services/forum.service';
@@ -13,21 +16,28 @@ import { ForumService } from '../../../services/forum.service';
   styleUrls: ['./viewpost.component.css'],
   providers: [ForumService]
 })
-export class ViewpostComponent implements OnInit,AfterViewInit {
 
+export class ViewpostComponent implements OnInit,AfterViewInit {
+likes= 0;
+likeflag=false;
+dislikeflag=false;
+dislikes=0;
 data:any=[];
 
 answer:any={};
 noofanswer:number=0;
 answerlength: any = [];
 p: number[]=[];
-dislikeCounter:number;
-likeCounter:number;
-likes= 0;
-likeflag=false;
-dislikeflag=false;
-dislikes=0;
- constructor(private forum:ForumService,private router: Router) { 
+
+public modalRef: BsModalRef;
+  public configModal = {
+   animated: true,
+   keyboard: true,
+   backdrop: true,
+   ignoreBackdropClick: false
+   };
+
+ constructor(private forum:ForumService,private router: Router, private modalService: BsModalService) { 
 
  }
 
@@ -45,6 +55,12 @@ dislikes=0;
        search$.subscribe(
          data=>this.data=data
        ); 
+  }
+
+//open modal window 
+
+  public clickHelpModal(template: TemplateRef < any > ) {
+   this.modalRef = this.modalService.show(template, Object.assign({}, this.configModal, { class: 'gray modal-lg' }));
   }
 
  viewPost()
@@ -69,52 +85,57 @@ console.log(searchTerm)
       this.router.navigate(['/questiondetail',value])   
     }
 
+//method for likes
+
 like(){
-  if(this.likeflag==false){
-    if(this.dislikeflag==true){
-  this.likeCounter=this.likes++;
-  this.likeflag=true;
-  this.dislikes--;
-  this.dislikeflag=false;
-  }
-  else{
-     this.likeCounter=this.likes++;
-  this.likeflag=true;
-  }
+ if(this.likeflag==false){
+   if(this.dislikeflag==true){
+ this.likes++;
+ this.likeflag=true;
+ this.dislikes--;
+ this.dislikeflag=false;
+ }
+ else{
+    this.likes++;
+ this.likeflag=true;
+ }
 }
-  else{
-    this.likes--;
-    this.likeflag=false;
-  }
+ else{
+   this.likes--;
+   this.likeflag=false;
+ }
 }
+
+
+//method for dislikes
 
  dislike(){
 
-   if(this.dislikeflag==false){
-      if(this.likeflag==true){
-  this.dislikeCounter=this.dislikes++;
-  this.dislikeflag=true;
-  this.likes--;
-  this.likeflag=false;
-  }
-  else{
-    this.dislikeCounter=this.dislikes++;
-  this.dislikeflag=true;
-  }
-}
-  else{
-    this.dislikes--;
-    this.dislikeflag=false;
-  }
-
+  if(this.dislikeflag==false){
+     if(this.likeflag==true){
+ this.dislikes++;
+ this.dislikeflag=true;
+ this.likes--;
+ this.likeflag=false;
  }
+ else{
+   this.dislikes++;
+ this.dislikeflag=true;
+ }
+}
+ else{
+   this.dislikes--;
+   this.dislikeflag=false;
+ }
+}
+ 
+  showAnswers(value) {
+    // this.forum.getPostByQuestion(value).subscribe((data)=>{
+    //   console.log("answers................",data[0].answers);
+    // })
+    this.router.navigate(['/answers', value])
 
-    showAnswers(value){
-      // this.forum.getPostByQuestion(value).subscribe((data)=>{
-      //   console.log("answers................",data[0].answers);
-      // })
-     this.router.navigate(['/answers',value])  
-
-    }
+  }
 
 }
+

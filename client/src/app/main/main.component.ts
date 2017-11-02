@@ -2,7 +2,7 @@ import { Component, OnInit, Input, NgZone, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
-
+import swal from 'sweetalert2';
 import { config } from '../shared/config/config';
 import { GitService } from '../shared/services/git.service'
 import { AuthenticationService } from '../shared/services/authentication.service';
@@ -15,7 +15,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class MainComponent implements OnInit {
 
+
   content: any;
+  reponame: any;
+  filenamed: any;
+
+  
   languages: any = [];
   mod: any = 'html'
   githubUser: any;
@@ -28,6 +33,7 @@ export class MainComponent implements OnInit {
   windowRef: any;
   methodToExport: any;
   link: string = '';
+  value: any;
   public modalRef: BsModalRef;
 
   constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,private authenticationservice:AuthenticationService,private router:Router) {
@@ -84,13 +90,19 @@ export class MainComponent implements OnInit {
   }
 
   show(reponame, filename) {
+
+
+    this.reponame=reponame;
+    this.filenamed=filename;
     this.gitService.getFile(reponame, filename)
       .subscribe(data => {
 
         this.fileData = data;
         this.text = this.fileData._body;
-        this.content.emit(this.text);
-
+        console.log(this.text)
+        // this.content.emit(this.text);
+        this.content=this.text;
+        console.log("content data "+ this.content);
       })
   }
 
@@ -112,8 +124,37 @@ logout(){
     }
      
     this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
+      if (data1) {
+         swal({
+      timer: 2500,
+      title: "Logged Out Successfully",
+      text:  "",
+      type:  'success',
+      showConfirmButton: false,
+    })
+        }
+
     this.router.navigate(["/"]);
      localStorage.removeItem('currentUser');
 })
 }
+onKey(event){
+this.value+=event
+}
+
+
+createRepo(name,desc){
+   let repoName={
+  "name": name,
+  "description": desc,
+  "homepage": "https://github.com",
+  "private": false,
+  "has_issues": false,
+  "has_projects": false,
+  "has_wiki": false
+}
+   this.gitService.createRepos(repoName)
+   .subscribe(data =>{
+   })
+ }
 }

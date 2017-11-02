@@ -12,7 +12,6 @@ export class AuthenticationService {
 user:any
 
   git() {
-
     return this.http
       .get('/auth/github')
       .map(res => res, error => error.json());
@@ -39,6 +38,9 @@ console.log('token',token)
     return token;
   }
 
+ getUserId(): any {
+    return JSON.parse(localStorage.getItem('currentUser'))['userId'];
+  }
   logoutEditor(user) {
    
      localStorage.removeItem('currentUser');

@@ -41,11 +41,12 @@ router.put('/logout', (req, res) => {
     User.findOneAndUpdate({ userId: userId }, {
         // updating preferences
         $set: {
-            status: false
+            //  status: false
+            online: 'N'
         }
     }, (err, Data) => {
         if (err) {
-            logger.error("error occured");
+            logger.error("error occured in logout");
         }
         else {
             logger.info("logout successfully")
