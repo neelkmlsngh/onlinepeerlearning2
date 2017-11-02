@@ -146,10 +146,10 @@
           </button>
         </div>
         <h6>Enter Repository Name</h6>
-        <input type="text" name="" #box (keyup)="onKey($event)">
+        <input type="text" name="" #repoName (keyup)="onKey($event)">
         <h6>Description</h6>
-        <input type="text" name="" #boxes (keyup)="onKey($event)">
-        <input type="button" class="btn btn-sm btn-success submit" name="" value="create" (click)="createRepo(box.value,boxes.value)">
+        <input type="text" name="" #description (keyup)="onKey($event)">
+        <input type="button" class="btn btn-sm btn-success submit" name="" value="create" (click)="createRepo(repoName.value,description.value)">
       </template>
       <!-- code editor selected based on mode -->
       <div *ngIf="mod=='javascript'">
