@@ -134,69 +134,69 @@ function setupMongooseConnections() {
 }
 
 function socketEvents(io) {
-    io.on('connection', (socket) => {
-        /**
-         * get the user's Chat list
-         */
-        socket.on('chat-list', (data) => {
-            let chatListResponse = {};
-            if (data.userId == '') {
-                chatListResponse.error = true;
-                chatListResponse.message = `User does not exits.`;
-                io.emit('chat-list-response', chatListResponse);
-            } else {
-                helper.getUserInfo(data.userId, (err, UserInfoResponse) => {
-                    delete UserInfoResponse.password;
-                    helper.getChatList(socket.id, (err, response) => {
-                        io.to(socket.id).emit('chat-list-response', {
-                            error: false,
-                            singleUser: false,
-                            chatList: response
-                        });
-                        socket.broadcast.emit('chat-list-response', {
-                            error: false,
-                            singleUser: true,
-                            chatList: UserInfoResponse
-                        });
-                    });
-                });
-            }
-        });
-        /**
-         * send the messages to the user
-         */
-        socket.on('add-message', (data) => {
-            if (data.message === '') {
-                io.to(socket.id).emit(`add-message-response`, `Message cant be empty`);
-            } else if (data.fromUserId === '') {
-                io.to(socket.id).emit(`add-message-response`, `Unexpected error, Login again.`);
-            } else if (data.toUserId === '') {
-                io.to(socket.id).emit(`add-message-response`, `Select a user to chat.`);
-            } else {
-                let toSocketId = data.toSocketId;
-                let fromSocketId = data.fromSocketId;
-                delete data.toSocketId;
-                data.timestamp = Math.floor(new Date() / 1000);
-                helper.insertMessages(data, (error, response) => {
-                    io.to(toSocketId).emit(`add-message-response`, data);
-                });
-            }
-        });
-
-        socket.on('disconnect', () => {
-            socket.broadcast.emit('chat-list-response', {
+  io.on('connection', (socket) => {
+    /**
+     * get the user's Chat list
+     */
+    socket.on('chat-list', (data) => {
+      let chatListResponse = {};
+      if (data.userId == '') {
+        chatListResponse.error = true;
+        chatListResponse.message = `User does not exits.`;
+        io.emit('chat-list-response', chatListResponse);
+      } else {
+          helper.getUserInfo(data.userId, (err, UserInfoResponse) => {
+            delete UserInfoResponse.password;
+            helper.getChatList(socket.id, (err, response) => {
+              io.to(socket.id).emit('chat-list-response', {
                 error: false,
-                userDisconnected: true,
-                socketId: socket.id
+                singleUser: false,
+                chatList: response
+              });
+              socket.broadcast.emit('chat-list-response', {
+                error: false,
+                singleUser: true,
+                chatList: UserInfoResponse
+              });
             });
-        });
+          });
+      }
     });
+      /**
+       * send the messages to the user
+       */
+    socket.on('add-message', (data) => {
+      if (data.message === '') {
+        io.to(socket.id).emit(`add-message-response`, `Message cant be empty`);
+      } else if (data.fromUserId === '') {
+        io.to(socket.id).emit(`add-message-response`, `Unexpected error, Login again.`);
+      } else if (data.toUserId === '') {
+        io.to(socket.id).emit(`add-message-response`, `Select a user to chat.`);
+      } else {
+        let toSocketId = data.toSocketId;
+        let fromSocketId = data.fromSocketId;
+        delete data.toSocketId;
+        data.timestamp = Math.floor(new Date() / 1000);
+        helper.insertMessages(data, (error, response) => {
+          io.to(toSocketId).emit(`add-message-response`, data);
+        });
+      }
+    });
+
+    socket.on('disconnect', () => {
+      socket.broadcast.emit('chat-list-response', {
+        error: false,
+        userDisconnected: true,
+        socketId: socket.id
+      });
+    });
+  });
 }
 module.exports = {
-    createApp: createApp,
-    setupRestRoutes: setupRestRoutes,
-    setupMiddlewares: setupMiddlewares,
-    setupMongooseConnections: setupMongooseConnections,
-    loginviagit: loginviagit,
-    socketEvents: socketEvents
+  createApp: createApp,
+  setupRestRoutes: setupRestRoutes,
+  setupMiddlewares: setupMiddlewares,
+  setupMongooseConnections: setupMongooseConnections,
+  loginviagit: loginviagit,
+  socketEvents: socketEvents
 };
