@@ -13,7 +13,7 @@ user:any
 
   git() {
     return this.http
-      .get('/auth/github')
+      .get(config.connect.url + config.connect.port +'/auth/github')
       .map(res => res, error => error.json());
   }
 

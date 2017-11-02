@@ -23,7 +23,7 @@ const saveLoginCredentials = function(userInfo, done) {
     });
 };
 
-<<<<<<< HEAD
+
 const getUser = (userId) => {
     return new Promise((resolve, reject) => {
         loginModel.findOne({ userId: userId }, (err, data) => {
@@ -35,8 +35,7 @@ const getUser = (userId) => {
         })
     })
 }
-=======
->>>>>>> c72b52973b0424d3a537299ca3fad3e2b0af9916
+
 module.exports = {
         saveLoginCredentials: saveLoginCredentials,
         getUser: getUser,

@@ -38,8 +38,8 @@ function loginviagit() {
     });
     passport.use(new GitHubStrategy({
 
-        clientID: gitId.CLIENT_ID,
-        clientSecret: gitId.CLIENT_SECRET,
+        clientID: '7328322e0495591f5a69',
+        clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
         callbackURL: gitId.CALLBACK_URL
     }, function(accessToken, refreshToken, profile, done) {
         //console.log(profile);
@@ -67,7 +67,7 @@ function createApp() {
 //  Use application routes
 function setupRestRoutes(app) {
     appRoutes.useRoutes(app);
-<<<<<<< HEAD
+
 
     // app.use(function(req, res) {
     //     let err = new Error(loggerConfig.RESOURCE_NOT_FOUND);
@@ -85,7 +85,7 @@ function setupRestRoutes(app) {
     //     });
     // });
 
-=======
+
     app.use(function(req, res) {
         let err = new Error(loggerConfig.RESOURCE_NOT_FOUND);
         err.status = 404;
@@ -100,7 +100,7 @@ function setupRestRoutes(app) {
             error: err.message
         });
     });
->>>>>>> c72b52973b0424d3a537299ca3fad3e2b0af9916
+
     return app;
 }
 //  Use application middlewares
