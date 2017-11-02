@@ -4,28 +4,7 @@ const helper = require('./chat.controller');
 const appConfig = require('../../config').app;
 const chatEntity = require('./chat.entity')
 
-router.post('/usernameCheck', (request, response) => {
-
-	if (request.body.userName === "") {
-		response.status(412).json({
-			error: true,
-			message: `username cant be empty.`
-		});
-	} else {
-		helper.userNameCheck({
-			userName: request.body.userName.toLowerCase()
-		}, (count) => {
-			let result = {};
-			if (count > 0) {
-				result.error = true;
-			} else {
-				result.error = false;
-			}
-			response.status(200).json(result);
-		});
-	}
-});
-
+//This route is defined for checking the user information from database that user is valid user or not
 router.post('/userSessionCheck', (request, response) => {
 
 	let userId = request.body.userId;
@@ -54,6 +33,7 @@ router.post('/userSessionCheck', (request, response) => {
 	}
 });
 
+//This route is for getting messages from database according to toUserId and fromUserId
 router.post('/getMessages', (request, response) => {
 	let userId = request.body.userId;
 	let toUserId = request.body.toUserId;
