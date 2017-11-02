@@ -2,47 +2,67 @@
   <a href="javascript:void(0);" (click)="downloadJsFile()">Javascript File
               <i class="fa fa-download" aria-hidden="true" data-toggle="popover" title="Download JS File"></i>  </a>
   <div id="myJsDiv"></div>
+
+  <!--button to execute the code -->
   <button class="btn-primary" (click)="executecode()">Execute</button>
-  <div class="btn-group">
-    <button class="btn btn-default" type="button" (click)="save()">
-      Create
-    </button>
-    <button class="btn btn-default" type="button" (click)="update()">
-      Update
-    </button>
-    <button class="btn btn-default" type="button" (click)="delete()">
-      Delete
-    </button>
+  
+
+  <!-- button to create the file-->
+  <button class="btn-success" type="button" (click)="openModal(createfile)">
+    Create
+  </button>
+
+   <!-- button to update the file-->
+  <button class="btn-success" type="button" (click)="openModal(updatefile)">
+    Update
+  </button>
+
+  <!-- button to delete the file-->
+  <button class="btn-success" type="button" (click)="delete()">
+    Delete
+  </button>
+  
+  
+  <!-- create file modal window when create button is clicked-->
+  <template #createfile>
+    <div class="modal-header">
+      <h5 class="modal-title pull-left">Your current repository is: <b style="color: #A9A9A9">{{reponame}}</b></h5>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <h6>enter your file name</h6>
+    <input type="text" name="" #box (keyup)="onKey($event)">
+    <h6>enter your commit message</h6>
+    <input type="text" name="" #boxes (keyup)="onKey($event)">
+    <input type="button" class="btn btn-sm btn-success submit" name="" value="submit" (click)="save(box.value,boxes.value)">
+  </template>
+  
+  
+  <!-- update file modal window when update button is clicked -->
+  <template #updatefile>
+    <div class="modal-header">
+      <h5 class="modal-title pull-left">Your current repository is: <b style="color: #A9A9A9">{{reponame}}</b></h5>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <h6>enter your commit message</h6>
+    <input type="text" name="" #box (keyup)="onKey($event)">
+    <h6>Do you want to update the file {{filenamed}}?</h6> 
+    <input type="button" class="btn btn-sm btn-success submit" name="" value="yes" (click)="update(box.value)">
+  </template>
+
+  
+  <!-- Ace Editor -->
+  <div ace-editor [(text)]="content" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" class="code_box" id="javascript">
   </div>
-  <div ace-editor 
-  [(text)]="content" 
-  [mode]="'javascript'" 
-  [theme]="'twilight'" 
-  [readOnly]="false" 
-  [autoUpdateContent]="true" 
-  [durationBeforeCallback]="2000" class="code_box" id="javascript">
-  </div>
+  
 </section>
+
+<!-- Output section -->
 <div class="row">
   <div class="col-md-12">Output:
     <div class="output">{{dataObj}}</div>
-<!-- =======
-<div class="container">
-  <section id="code_editors">
-    <button class="btn btn-outline-primary" href="javascript:void(0);" (click)="downloadJsFile()" data-toggle="tooltip" data-placement="Top" title="Download">
-      <i class="fa fa-download" aria-hidden="true"></i>
-    </button>
-    <button class="btn btn-outline-primary" (click)="executecode()" data-toggle="tooltip" data-placement="Top" title="Execute"> <i class="fa fa-play" aria-hidden="true"></i></button>
-    <div id="myJsDiv"></div>
-    <div ace-editor [(text)]="jsValue" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" class="code_box" id="javascript">
-    </div>
-  </section>
-  <br>
-  <div>
-    <div class="col-md-12 output" id="output">
-      <h3>Output:</h3>
-      <div>{{dataObj}}</div>
-    </div>
->>>>>>> b08e044276a904e86989241e45420cf2c09345d7 -->
   </div>
 </div>

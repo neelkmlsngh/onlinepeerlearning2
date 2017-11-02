@@ -7,13 +7,15 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class GitService {
- userName:any;
+ 
+  userName:any="GauravGupta131220";
+
   private clientId: string = '60b9f23dedffbdfc476c';
   private clientSecret: string = 'd1c186c6373f96571c0bfcf76b84e4dc6fd0c15a';
   constructor(private _http: Http) {
     // console.log('Github Service Ready.');
     let userDetails = JSON.parse(localStorage.getItem('currentUser'));
-    this.userName =userDetails.userName ;
+   /* this.userName =userDetails.userName ;*/
   }
 
   //method to get github username
@@ -169,7 +171,7 @@ export class GitService {
 
    //method for authorization
   private authorization() {
-    let headers = new Headers({ 'Authorization': "Basic Uk9aWVRZQUdJOjIwYWRiMGI1MTJmMTIyYjM0YTc1NzRmODQyMGNiZjYxYmMyZTMzODU=" });
+    let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206ODk0OWMxOTU3ZTA0Yzg1NmQ3ZGIxMTI5MTY1M2EyYmRmOWQ3MDAwZQ==" });
     return new RequestOptions({ headers: headers });
   }
 }
