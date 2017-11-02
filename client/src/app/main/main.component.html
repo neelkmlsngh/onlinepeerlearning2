@@ -138,7 +138,7 @@
               </button>
               <!--dropdown of repo modification-->
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
+                <!-- link to create new repository -->
                 <a class="dropdown-item" (click)="openModal(templates)">Create</a>
                 <a class="dropdown-item">Update</a>
                 <a class="dropdown-item">Delete</a>
@@ -148,6 +148,7 @@
           </div>
         </div>
       </div>
+      <!-- modal for enter repository name and description for repository -->
       <template #templates>
         <div class="modal-header">
           <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">

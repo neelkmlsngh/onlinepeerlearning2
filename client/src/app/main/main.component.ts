@@ -140,11 +140,13 @@ logout(){
      localStorage.removeItem('currentUser');
 })
 }
+
+//method to enter new repository name
 onKey(event){
 this.value+=event
 }
 
-
+//methd for creating new repository
 createRepo(name,desc){
    let repoName={
   "name": name,
