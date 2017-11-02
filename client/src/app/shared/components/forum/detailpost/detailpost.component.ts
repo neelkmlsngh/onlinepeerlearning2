@@ -16,31 +16,27 @@ export class DetailpostComponent implements OnInit {
 
   constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {}
   name: string;
-  editor1:string;
-  obj:any = {};
+  editor1: string;
+  obj: any = {};
   codeSnippet: string;
   data: any = [];
   errors: string;
-  answer:string="";
-  questionTitle:string="";
+  answer: string = "";
+  questionTitle: string = "";
   userId: any;
   ngOnInit() {
     var config = {
-    extraPlugins: 'codesnippet',
-    codeSnippet_theme: 'monokai_sublime',
-    height: 356,
-    text: 'cleared'
+      extraPlugins: 'codesnippet',
+      codeSnippet_theme: 'monokai_sublime',
+      height: 356
+    };
+    CKEDITOR.replace('editor1', config);
+    CKEDITOR.instances.editor1.setData("");
 
-  };
-  
-  CKEDITOR.replace( 'editor1', config );
-  CKEDITOR.instances.editor1.setData("")
- 
     this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
       .subscribe((res) => {
         this.data = res;
-        console.log(this.data[0].questionTitle);
       })
     error => {
       this.errors = error;
@@ -48,20 +44,16 @@ export class DetailpostComponent implements OnInit {
   }
 
   postAnswer() {
-console.log(CKEDITOR.instances.editor1.getData());
     this.obj = {
       username: "prashant",
-      answer: this.answer,
+      answer: CKEDITOR.instances.editor1.getData(),
       likes: "11",
       dislikes: "2"
     }
+    // debugger
     this.forum.saveAnswer(this.data[0].questionTitle, this.obj)
       .subscribe(res => {
-          this.data = res;
-        })
-      }
-    }
-  
-
-
- 
+        console.log(res);
+      })
+  }
+}

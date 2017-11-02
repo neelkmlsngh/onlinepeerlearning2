@@ -52,8 +52,9 @@ export class ForumService {
   //     .map(res => res.json());
   // }
   saveAnswer(question,answer){
+    console.log(answer);
      return this.http.
-     get('https://localhost:8080/api/forum/update/' + question,answer)
+     put('https://localhost:8080/api/forum/update/' + question,answer)
       .map(res => res.json());
 
 }
@@ -65,6 +66,7 @@ export class ForumService {
       return new RequestOptions({ headers: headers });
     }
   }
+
 
   addSnippet(data) {
     return this.http
@@ -91,6 +93,7 @@ export class ForumService {
           .put('https://localhost:8080/api/forum/delete/' , title)   
             .map(res => res.json()); 
              }
+
 
 
 

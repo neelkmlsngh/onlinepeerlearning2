@@ -3,17 +3,19 @@ const logger = require('../../services/app.logger');
 const appConstant = require('../../config').app;
 const ProfileUser = require('./profile.entity')
 
-
+// get user details with the given userId
 const getProfile = function(getId) {
-    console.log(getId + '65gt65')
-    return new Promise((resolve, reject) => {
 
+    // console.log(getId + '65gt65')
+
+    return new Promise((resolve, reject) => {
         ProfileModel.findOne({ userId: getId }, (err, data) => {
             if (err) {
                 logger.error('Internal error' + err);
                 reject(err);
             } else {
-                console.log("data================" + data)
+
+                // console.log("data================" + data)
                 /*logger.error('Internal error' + err);*/
                 resolve(data);
             }
@@ -24,9 +26,7 @@ const getProfile = function(getId) {
 //Save new userprofile details
 const saveUserProfile = function(userInfo, done) {
     ProfileUser.findOrCreate({ userId: userInfo.userId }, {
-
         userId: userInfo.userId
-
     }, function(err, user) {
         if (err) {
             logger.info("error occured")
@@ -55,36 +55,32 @@ const updateUserProfile = function(profileInfo, getId) {
                 biodata: profileInfo.biodata
             }
         }, { upsert: true }, (err, data) => {
-          if(err){
-            reject(err);
-            //console.log("Updated Data ===================\n" + JSON.stringify(data2, null, 2));
-          }else if(data){
-            resolve(data);
-          }
+            if (err) {
+                reject(err);
+            } else if (data) {
+                resolve(data);
+            }
         })
 
     })
 }
 
+// update profile picture of a user with given userId
 const updateImage = function(dataObj, getId) {
     let userId = getId;
-    let imgUrl = dataObj.imgPath;
-    console.log("==========="+getId);
-    console.log('userId======='+userId);
-    console.log('url========='+JSON.stringify(imgUrl));
+    let img = dataObj.img;
     return new Promise((resolve, reject) => {
 
-        ProfileModel.updateOne({ "userId": userId }, {
+        ProfileModel.findOneAndUpdate({ userId: userId }, {
             $set: {
-                avatarUrl: JSON.stringify(imgUrl)
+                avatarUrl: appConstant.URL + img
             }
-        }, { upsert: true }, (err, data) => {
-          if(err){
-            reject(err);
-            //console.log("Updated Data ===================\n" + JSON.stringify(data2, null, 2));
-          }else if(data){
-            resolve(data);
-          }
+        }, { new: true }, (err, data) => {
+            if (err) {
+                reject(err);
+            } else if (data) {
+                resolve(data);
+            }
         })
 
     })

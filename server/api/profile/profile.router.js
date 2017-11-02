@@ -42,7 +42,7 @@ var upload = multer({ storage: storage }).any();
  router.put('/profileInfo/:userId',function(req,res){
   let getId= req.params.userId;
   let profileInfo = req.body;
-  console.log(profileInfo)
+  // console.log(profileInfo)
    try{
       usrCtrl.updateUserProfile(profileInfo,getId).then((successResult)=>{
         logger.info('Get successResult successfully and return back');
@@ -69,10 +69,14 @@ var upload = multer({ storage: storage }).any();
      }
      else {
       let dataObj={
-        imgPath:req.files[0].path
+        img:req.files[0].filename
       }
-      console.log(dataObj,getId);
-       usrCtrl.updateImage(dataObj,getId); 
+       usrCtrl.updateImage(dataObj,getId).then(successResult=>{
+        console.log("successResult "+successResult)
+        return res.status(201).send(successResult);
+       },error=>{
+
+       }); 
     }
   });
    }catch(err){

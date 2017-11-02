@@ -95,7 +95,7 @@ const saveAnswer = function(getValue, updateValue) {
             'questionTitle': getValue
         }, {
             $push: { 'answers': updateValue }
-        }, (err, data) => {
+        }, { upsert: true }, (err, data) => {
             if (err) {
                 logger.error('Internal error' + err);
                 reject(err);

@@ -5,17 +5,11 @@ const logger = require('../../services/app.logger');
 const usrCtrl = require('./login.controller');
 const appConfig = require('../../config').app;
 const User = require('./login.entity')
-const cors = require('cors')
-/*
- * it calls when hit on log via git hub button on client side
- */
 
-   var corsOptions = {
-    origin: '*',
-    methods: ['GET'],
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-router.get('/auth/github',cors(corsOptions),
+// * it calls when hit on log via git hub button on client side
+// */
+
+router.get('/auth/github',
     passport.authenticate('github', { scope: ['user:email'] }),
     // var token = jwt.sign(req.user.doc,secretKey);
     function(req, res) {});
@@ -28,41 +22,46 @@ router.get('/auth/github',cors(corsOptions),
 router.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function(req, res) {
-        
         userdetails = {
             userid: req.user.doc.userId,
             name: req.user.doc.name
         }
-        console.log(req)
-        console.log(appConfig.SECRET + " " + req.user.doc.name + " " + appConfig.EXPIRETIME)
+        //console.log(appConfig.SECRET + " " + req.user.doc.name + " " + appConfig.EXPIRETIME)
         let userToken = jwt.sign({ userdetails }, appConfig.SECRET, {
             expiresIn: appConfig.EXPIRETIME
-        });;
-        console.log(userToken)
-        res.redirect(appConfig.REDIRECT + req.user.doc.userId + "/" + userToken + "/" +req.user.doc.name)
+        });
+        //console.log(userToken)
+        res.redirect(appConfig.REDIRECT + req.user.doc.userId + "/" + userToken)
 
     });
 
 router.put('/logout', (req, res) => {
-    console.log(req.body.userid)
+    //console.log(req.body.userid)
     userId = req.body.userid
     User.findOneAndUpdate({ userId: userId }, {
         // updating preferences
         $set: {
-            status: false
+            //  status: false
+            online: 'N'
         }
     }, (err, Data) => {
-        // action to take if error occurs 
         if (err) {
-            logger.error("error occured");
+            logger.error("error occured in logout");
         }
-        // action to take when there is no error
         else {
             logger.info("logout successfully")
-            console.log('asas', Data)
             res.send(Data);
         }
     });
 });
 
+router.get('/:userId', (req, res) => {
+    console.log("getcall");
+    let userId = req.params.userId;
+    usrCtrl.getUser(userId).then(successResult => {
+        res.send(successResult);
+    }, error => {
+
+    })
+});
 module.exports = router;

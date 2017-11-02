@@ -30,10 +30,9 @@ constructor(private snippet: ForumService) {}
   data: any;
   html:any;
   css:any
-
-
-
-
+  caretPos: any;
+  caretText: any;
+  obj: any;
 
   comments: any = "\n<!-- Enter Your Comment -->";
   tabels: string = "\n<table>\n" +
@@ -287,4 +286,36 @@ constructor(private snippet: ForumService) {}
         return false;
       });
   }
+
+  /*  `
+  <h2>Cursor Position : {{caretPos}}</h2>
+  <div>
+    <textarea rows="4" #myTextArea (click)="getCaretPos(myTextArea)" (keyup)="getCaretPos(myTextArea)" cols="40" >{{caretText}}</textarea>
+  </div>
+  <div>
+  <button (click)="add()">click</button>
+  `
+*/
+  getCaretPos(oField) {
+    if (oField.selectionStart || oField.selectionStart == '0') {
+       this.caretPos = oField.selectionStart;
+       this.obj = oField;
+    }
+  }
+
+  add() {
+      this.insertAtCursor(this.obj, this.caretText)
+  }
+
+  insertAtCursor(myField, myValue) {
+  if (myField.selectionStart || myField.selectionStart == '0') {
+        var startPos = myField.selectionStart;
+        var endPos = myField.selectionEnd;
+        myField.value = myField.value.substring(0, startPos)
+            + myValue
+            + myField.value.substring(endPos, myField.value.length);
+    } else {
+        myField.value += myValue;
+    }
+}
 }
