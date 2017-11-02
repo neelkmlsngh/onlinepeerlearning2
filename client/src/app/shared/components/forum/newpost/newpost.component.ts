@@ -9,7 +9,7 @@ import swal from 'sweetalert2';
 })
 export class NewpostComponent implements OnInit {
 
-  ckeditorContent:any;
+    ckeditorContent:any;
     date:any;
     questionTitle:string;
     problemDescription:string;
@@ -51,12 +51,11 @@ export class NewpostComponent implements OnInit {
       tags:this.tags,
       date:this.date
     }
-   console.log(this.obj);
+   
    this.forum.save(this.obj).subscribe((res)=>{
 
         //We get dialog result
         if (res) {
-          console.log(res)
           swal({
       timer: 2200,
       title: "Posted Successfully",
