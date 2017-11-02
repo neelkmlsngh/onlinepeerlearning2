@@ -72,7 +72,8 @@ export class ProfileComponent implements OnInit {
 
 
 uploadFile(){
-  this.profileService.uploadFile(/*this.currentUser.userId*/29884468,this.formData,this.options)
+  console.log(this.currentUser.userId)
+  this.profileService.uploadFile(this.currentUser.userId,this.formData,this.options)
   .subscribe(
     res=>{
       this.imgPath=res.avatarUrl;
