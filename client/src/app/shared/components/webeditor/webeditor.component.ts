@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef,Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { AceEditorDirective } from 'ng2-ace-editor'
 import { AceEditorModule } from 'ng2-ace-editor'
 import * as JSZip from 'jszip'
 import { ForumService } from '../../../shared/services/forum.service';
+import { webEditorConfig } from '../../config/webEditor.config';
 
 @Component({
   selector: 'app-webeditor',
@@ -12,9 +13,10 @@ import { ForumService } from '../../../shared/services/forum.service';
 })
 export class WebeditorComponent implements OnInit {
 
-constructor(private snippet: ForumService) {}
+  constructor(private snippet: ForumService) {}
+  config = webEditorConfig;
 
-   @Input() content: any;
+  @Input() content: any;
 
   htmlValue: any = "<h1>Hello World</h1>";
   cssValue: any = "body{color:red}";
@@ -28,8 +30,8 @@ constructor(private snippet: ForumService) {}
   textcontent: any
   myUrl: any;
   data: any;
-  html:any;
-  css:any
+  html: any;
+  css: any
   caretPos: any;
   caretText: any;
   obj: any;
@@ -65,43 +67,43 @@ constructor(private snippet: ForumService) {}
   includeJs: any = '\n<script src="script.js"></script>';
   includeCss: any = '\n<link href="style.css" rel="stylesheet">';
 
-/*snippet for css*/
-  commentsCss:any ="\n/* Add your comment here */";
-  elementSelector:any ="\np {"+
-     "\nfont-size: 20px;"+
-      "\n}";
-  classSelector:any= "\n.className {"+
-    "\nbackground-color: green;"+
+  /*snippet for css*/
+  commentsCss: any = "\n/* Add your comment here */";
+  elementSelector: any = "\np {" +
+    "\nfont-size: 20px;" +
     "\n}";
-  idSelector:any= "\n#idName {"+
-    "\nbackground-color: green;"+
+  classSelector: any = "\n.className {" +
+    "\nbackground-color: green;" +
     "\n}";
-  mediaQueries:any ="\n@media screen and (max-width: 320px) {"+
-  "\n/* Rules when screen is up to 320px wide */"+
-    "\n}"+
+  idSelector: any = "\n#idName {" +
+    "\nbackground-color: green;" +
+    "\n}";
+  mediaQueries: any = "\n@media screen and (max-width: 320px) {" +
+    "\n/* Rules when screen is up to 320px wide */" +
+    "\n}" +
 
-    "\n@media screen and (min-width: 321px) and (max-width: 768px) {"+
-      "\n/* Rules when screen is between 321px and 768px wide */"+
-    "\n}"+
+    "\n@media screen and (min-width: 321px) and (max-width: 768px) {" +
+    "\n/* Rules when screen is between 321px and 768px wide */" +
+    "\n}" +
 
-    "\n@media screen and (min-width: 769px) {"+
-     "\n/* Rules when screen is wider than 768px */"+
+    "\n@media screen and (min-width: 769px) {" +
+    "\n/* Rules when screen is wider than 768px */" +
     "\n}";
 
   ngOnInit() {
     this.onChange(this.code)
 
     this.snippet.getSnippet()
-    .subscribe(res=>{
- this.html=res.filter(ele=>ele.language==='html');
- this.css =res.filter(ele=>ele.language==='css');
+      .subscribe(res => {
+        this.html = res.filter(ele => ele.language === 'html');
+        this.css = res.filter(ele => ele.language === 'css');
 
-})
+      })
   }
 
-  show(code){ 
-     this.htmlValue=code;
-     this.cssValue=code;
+  show(code) {
+    this.htmlValue = code;
+    this.cssValue = code;
   }
 
   base_tpl: string =
@@ -140,15 +142,15 @@ constructor(private snippet: ForumService) {}
 
 
   /*css snippet methods*/
-  commentCss(){
-    this.cssValue += " "+ this.commentsCss;
+  commentCss() {
+    this.cssValue += " " + this.commentsCss;
   }
 
-  elementsSelector(){
-    this.cssValue +=" "+ this.elementSelector;
+  elementsSelector() {
+    this.cssValue += " " + this.elementSelector;
   }
 
-  class(){
+  class() {
     this.cssValue += " " + this.classSelector;
   }
 
@@ -156,7 +158,7 @@ constructor(private snippet: ForumService) {}
     this.cssValue += " " + this.idSelector;
   }
 
-  mediaQuery(){
+  mediaQuery() {
     this.cssValue += " " + this.mediaQueries;
   }
 
@@ -298,24 +300,24 @@ constructor(private snippet: ForumService) {}
 */
   getCaretPos(oField) {
     if (oField.selectionStart || oField.selectionStart == '0') {
-       this.caretPos = oField.selectionStart;
-       this.obj = oField;
+      this.caretPos = oField.selectionStart;
+      this.obj = oField;
     }
   }
 
   add() {
-      this.insertAtCursor(this.obj, this.caretText)
+    this.insertAtCursor(this.obj, this.caretText)
   }
 
   insertAtCursor(myField, myValue) {
-  if (myField.selectionStart || myField.selectionStart == '0') {
-        var startPos = myField.selectionStart;
-        var endPos = myField.selectionEnd;
-        myField.value = myField.value.substring(0, startPos)
-            + myValue
-            + myField.value.substring(endPos, myField.value.length);
+    if (myField.selectionStart || myField.selectionStart == '0') {
+      var startPos = myField.selectionStart;
+      var endPos = myField.selectionEnd;
+      myField.value = myField.value.substring(0, startPos) +
+        myValue +
+        myField.value.substring(endPos, myField.value.length);
     } else {
-        myField.value += myValue;
+      myField.value += myValue;
     }
-}
+  }
 }
