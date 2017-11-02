@@ -36,12 +36,12 @@ function loginviagit() {
         done(null, obj);
     });
     passport.use(new GitHubStrategy({
-        /* clientID: '7328322e0495591f5a69',
+         clientID: '7328322e0495591f5a69',
          clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
-         callbackURL: "https://localhost:8080/auth/github/callback"*/
-        clientID: 'd800be26e1dd031f7308',
+         callbackURL: "https://localhost:8080/auth/github/callback"
+        /*clientID: 'd800be26e1dd031f7308',
         clientSecret: '096d2f5bd449fb0d226a5feedfff33d429365c0b',
-        callbackURL: "https://192.168.252.152:8080/auth/github/callback"
+        callbackURL: "https://192.168.252.152:8080/auth/github/callback"*/
     }, function(accessToken, refreshToken, profile, done) {
         console.log(profile);
         let userInfo = {
