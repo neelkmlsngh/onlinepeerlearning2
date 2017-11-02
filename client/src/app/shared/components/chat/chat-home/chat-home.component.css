@@ -526,3 +526,19 @@ img {
 .chatbox--empty .chatbox__credentials {
   display: block;
 }
+
+
+.ridge 
+{
+    border-style: ridge;
+    height: 50%;
+    width: 100%;
+}
+.range{
+    width: 100%;
+    height: 100%;
+}
+.videoWidth{
+width : 100%;
+height: 100%;
+}

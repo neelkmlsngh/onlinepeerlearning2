@@ -1,9 +1,12 @@
-import { Component, OnInit,TemplateRef } from '@angular/core';
+import { Component, OnInit,TemplateRef,ViewChild,Compiler } from '@angular/core';
 import { ActivatedRoute ,Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
 import {AuthenticationService} from './../../../services/authentication.service';
+/*import{VideoChatComponent} from '../video-chat/video-chat.component';
+import{AudioChatComponent} from '../audio-chat/audio-chat.component';
+*/
 
 /* Importing services starts*/
 import { SocketService } from './../socket.service';
@@ -16,7 +19,16 @@ import { ChatService } from './../chat.service';
   styleUrls: ['./chat-home.component.css'],
   providers : [ChatService,HttpService,SocketService]
 })
+
+
 export class ChatHomeComponent implements OnInit{
+	 @ViewChild('myaudio') myAudio: any;
+	 @ViewChild('myvideo') myVideo: any;
+  
+ peer;
+  anotherid; mypeerid;
+  
+
 
  /*
 	* UI related variables starts
@@ -48,7 +60,7 @@ export class ChatHomeComponent implements OnInit{
 		private route :ActivatedRoute,
 		private router :Router,
 		private modalService: BsModalService,
-		private authenticationService :AuthenticationService
+		private authenticationService :AuthenticationService,private compiler:Compiler
 	) { }
 	ngOnInit() {
 	$('.chatbox').hide();	
@@ -129,6 +141,55 @@ export class ChatHomeComponent implements OnInit{
 				}
 			});
 		}
+
+		 let audio = this.myAudio.nativeElement;
+		   let video = this.myVideo.nativeElement;
+    this.peer = new Peer({host: '192.168.252.33', port: 8081, path: '/peerjs'});
+    setTimeout(() => {
+      this.mypeerid = this.peer.id;
+    },3000);
+    
+    this.peer.on('connection', function(conn) {
+  conn.on('data', function(data){
+    console.log(data);
+  });
+});
+ 
+ var n1 = <any>navigator;
+    
+    n1.getUserMedia =  ( n1.getUserMedia || n1.webkitGetUserMedia || n1.mozGetUserMedia || n1.msGetUserMedia );
+    
+    this.peer.on('call', function(call) {
+      
+      n1.getUserMedia({video: false, audio: true}, function(stream) {
+        call.answer(stream);
+        call.on('stream', function(remotestream){
+          audio.src = URL.createObjectURL(remotestream);
+          audio.play();
+        })
+      }, function(err) {
+        console.log('Failed to get stream', err);
+      })
+    })
+
+    
+   
+ var n2 = <any>navigator;
+    
+    n2.getUserMedia =  ( n2.getUserMedia || n2.webkitGetUserMedia || n2.mozGetUserMedia || n2.msGetUserMedia );
+    
+    this.peer.on('call', function(call) {
+      
+      n2.getUserMedia({video: true, audio: true}, function(stream) {
+        call.answer(stream);
+        call.on('stream', function(remotestream){
+          video.src = URL.createObjectURL(remotestream);
+          video.play();
+        })
+      }, function(err) {
+        console.log('Failed to get stream', err);
+      })
+    })
 	}													
 
 	selectedUser(user):void{
@@ -265,4 +326,98 @@ videocall(template2: TemplateRef<any>)
 	this.modalRef = this.modalService.show(template2);
  
 }
+
+
+
+  connect(){
+    var conn = this.peer.connect(this.anotherid);
+conn.on('open', function(){
+  conn.send('Message from that id');
+});
+  }
+  
+  audioconnect(){
+    let audio = this.myAudio.nativeElement;
+    var localvar = this.peer;
+    var fname = this.anotherid;
+    
+    var n1 = <any>navigator;
+    
+    n1.getUserMedia = ( n1.getUserMedia || n1.webkitGetUserMedia || n1.mozGetUserMedia  || n1.msGetUserMedia );
+    
+    n1.getUserMedia({video: false, audio: true}, function(stream) {
+      var call = localvar.call(fname, stream);
+      call.on('stream', function(remotestream) {
+        audio.src = URL.createObjectURL(remotestream);
+        audio.play();
+      })
+    }, function(err){
+      console.log('Failed to get stream', err);
+    })
+  }
+    
+  stopaudio(){
+     
+    var conn = this.peer.destroy(this.anotherid);
+    
+conn.on('close', function(){
+  conn.send('End Call');
+ 
+ 
+});
+  }
+
+  
+  videoconnect(){
+    let video = this.myVideo.nativeElement;
+    var localvar = this.peer;
+    var fname = this.anotherid;
+    
+    var n2 = <any>navigator;
+    
+    n2.getUserMedia = ( n2.getUserMedia || n2.webkitGetUserMedia || n2.mozGetUserMedia  || n2.msGetUserMedia );
+    
+    n2.getUserMedia({video: true, audio: true}, function(stream) {
+      var call = localvar.call(fname, stream);
+      call.on('stream', function(remotestream) {
+        video.src = URL.createObjectURL(remotestream);
+        video.play();
+      })
+    }, function(err){
+      console.log('Failed to get stream', err);
+    })
+  }
+  stopvideo(){
+     
+    var conn = this.peer.destroy(this.anotherid);
+    this.compiler.clearCache();
+   window.location.reload();
+   this.router.navigate(["/main"]);
+conn.on('close', function(){
+  conn.send('End Call');
+ });
+  }
+    /*mute() {
+  
+    let video = this.myVideo.nativeElement;
+    var localvar = this.peer;
+    var fname = this.anotherid;
+    
+    var n = <any>navigator;
+    
+    n.getUserMedia = ( n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia  || n.msGetUserMedia );
+    
+    n.getUserMedia({video: true, audio: false}, function(stream) {
+      var call = localvar.call(fname, stream);
+      call.on('stream', function(remotestream) {
+        video.src = URL.createObjectURL(remotestream);
+        video.play();
+      })
+    }, function(err){
+      console.log('Failed to get stream', err);
+    })
+  }
+  */
+
+
 }

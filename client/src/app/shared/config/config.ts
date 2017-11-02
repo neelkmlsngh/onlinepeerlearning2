@@ -6,16 +6,16 @@ export const config: any = {
     "JAVASCRIPT",
     "HTML/CSS"
   ],
- /* connect: {
-       "url": "https://192.168.252.152:",
+  connect: {
+       "url": "https://192.168.252.33:",
        "port": "8080"
-   }*/
-  connect:
+   }
+ /* connect:
   {
     "url": "https://localhost:",
     "url2": "http://localhost:",
     "port": "8080",
     "port2": "3030"
   }
-
+*/
 };
