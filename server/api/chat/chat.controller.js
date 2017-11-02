@@ -69,7 +69,6 @@ const addSocketId = function(data, callback) {
 }
 
 module.exports = {
-	userNameCheck: userNameCheck,
 	login: login,
 	registerUser: registerUser,
 	userSessionCheck: userSessionCheck,
