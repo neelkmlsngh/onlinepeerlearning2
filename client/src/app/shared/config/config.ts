@@ -4,7 +4,7 @@ export const config: any = {
     "JAVASCRIPT",
     "HTML/CSS"
   ],
-<<<<<<< HEAD
+
 /*  connect: {
        "url": "https://192.168.252.152:",
        "port": "8080"
@@ -13,10 +13,6 @@ export const config: any = {
   {
     "url4": "https://localhost:8080/api/login",
     "url2": "https://localhost:",
-=======
-
-  connect: {
->>>>>>> cdbad7888c248e0b3c50860f0fe0f695e24b616e
     "url": "https://localhost:",
     "url3": "https//192.168.252.57:",
     "port": "8080",
@@ -54,5 +50,11 @@ export const config: any = {
     "profile": "Profile",
     "forums": "Forums",
     "logout": "Logout"
+  },
+  peer:{
+  "host":"192.168.252.33",
+  "port":"8081",
+  "path":"/peerjs"
+
   }
 };

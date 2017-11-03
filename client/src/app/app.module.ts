@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import 'hammerjs';
 import {MatTabsModule} from '@angular/material';
-import{MatTabGroup} from '@angular/material';
+import {MatTabGroup} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
 import { ModalModule } from 'ngx-bootstrap';
@@ -56,8 +56,6 @@ import { SnippetComponent } from './shared/components/snippet/snippet.component'
 import { CoderunnerService } from './shared/services/coderunner.service';
 import { AnswersComponent } from './shared/components/forum/answers/answers.component';
 import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
-import { ChatComponent } from './shared/components/chat/chat.component';
-
 
 @NgModule({
   declarations: [
@@ -83,8 +81,7 @@ import { ChatComponent } from './shared/components/chat/chat.component';
 
     SnippetComponent,
     AnswersComponent,
-    ChatHomeComponent,
-    ChatComponent
+    ChatHomeComponent
 
   ],
   imports: [

@@ -4,11 +4,13 @@ import { Headers, RequestOptions } from '@angular/http';
 
 import { ProfileService } from '../../services/profile.service';
 import {config} from '../../config/profile';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
   userInfo:FormGroup;
   currentUser:any;

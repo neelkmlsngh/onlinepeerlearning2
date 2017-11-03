@@ -29,7 +29,7 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
   answer: string = "";
   questionTitle: string = "";
   userId: any;
- 
+
   ngOnInit() {
     this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
@@ -40,9 +40,9 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
       this.errors = error;
     };
   }
-//method to load editor to postAnswer
-   ngAfterViewInit(){
-     var config = {
+  //method to load editor to postAnswer
+  ngAfterViewInit() {
+    var config = {
       extraPlugins: 'codesnippet',
       codeSnippet_theme: 'monokai_sublime',
       height: 356,
@@ -51,8 +51,8 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
     };
     CKEDITOR.replace('editor', config);
     CKEDITOR.instances.editor.setData("");
-   }
- //method to postAnswer
+  }
+  //method to postAnswer
   postAnswer() {
     this.obj = {
       username: "prashant",
