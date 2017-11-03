@@ -13,7 +13,7 @@ export class ProfileService {
   getDataFromDB(userId) {
 
     //url to get details from db
-    const api = config.connect.url + config.connect.port + "/api/profile/" + userId
+    const api = config.connect.url + config.connect.port + "/api/users/" + userId
     return this.http
       .get(api)
       .map(res => res.json(), error => error.json());
@@ -23,7 +23,7 @@ export class ProfileService {
   uploadFile(userId, formData, options) {
 
     // url to upload profile picture
-    const api = config.connect.url + config.connect.port + "/api/profile/image/" + userId
+    const api = config.connect.url + config.connect.port + "/api/users/image/" + userId
     return this.http.put(api, formData, options)
       .map(res => res.json(), error => error.json());
 
