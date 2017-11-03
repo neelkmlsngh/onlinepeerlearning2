@@ -137,6 +137,19 @@ export class MainComponent implements OnInit {
      localStorage.removeItem('currentUser');
 })
 }
+//method generate personal access token for new user
+createAccessToken(){
+  let cred={
+  "scopes": [
+    "repo"
+  ],
+  "note": "test3"
+}
+  this.gitService.createToken(cred)
+  .subscribe(data=>{
+    console.log("llllll",(data))
+  })
+}
 
 //method to enter new repository name
 onKey(event){

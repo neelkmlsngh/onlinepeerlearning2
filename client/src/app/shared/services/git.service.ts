@@ -159,6 +159,7 @@ export class GitService {
   }
 //method to create user personal access token
 createToken(credentials){
+  console.log(credentials,"yyyyyyyyyyyyy");
   if(this.username){
  return this._thhp.post('https://api.github.com/authorizations',credentials)
  .map(res=>res.json())
