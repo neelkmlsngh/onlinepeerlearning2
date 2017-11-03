@@ -36,5 +36,4 @@ app.post('/execute', function(req, res) {
 // Create HTTPS server.
 var server = https.createServer(options, app);
 server.listen(3030, function() {
-    console.log('Server listening on port 3030')
 })

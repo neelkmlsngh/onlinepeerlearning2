@@ -15,6 +15,7 @@ import { ChatService } from './../../../services/chatservices/chat.service';
   templateUrl: './chat-home.component.html',
   styleUrls: ['./chat-home.component.css']
 })
+
 export class ChatHomeComponent implements OnInit {
 
   /*ui related variables starts*/
@@ -213,5 +214,10 @@ export class ChatHomeComponent implements OnInit {
   videocall(template2: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template2);
   }
-
 }
+
+
+
+
+
+

@@ -12,5 +12,9 @@ module.exports = {
 	CALLBACK_URL: "https://192.168.252.152:8080/auth/github/callback"*/
 	 CLIENT_ID: '7328322e0495591f5a69',
 	CLIENT_SECRET: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c@',
-	CALLBACK_URL: "https://localhost:8080/auth/github/callback"
+	CALLBACK_URL: "https://localhost:8080/auth/github/callback",
+	URL: "https://localhost:8080/"
 	}
+
+}
+
