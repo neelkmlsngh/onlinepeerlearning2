@@ -3,14 +3,14 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand text-white" href="">Knowledge Base</a>
+      <a class="navbar-brand text-white" href="">{{config.DETAILPOST.KNOWLEDGE_BASE}}</a>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link text-white" href="" routerLink="/questions">Home</a>
+            <a class="nav-link text-white" href="" routerLink="/questions">{{config.DETAILPOST.HOME}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="" routerLink="/questions">Questions</a>
+            <a class="nav-link text-white" href="" routerLink="/questions">{{config.DETAILPOST.QUESTIONS}}</a>
           </li>
           <!--  <li class="nav-item"> -->
           <li class="nav-item">
@@ -19,11 +19,11 @@
         </ul>
         <span class="navbar-text white-text">
               <a class="text-white" href="#">
-                 <i class="fa fa-question-circle fa-lg text-white"></i>  Help</a>
+                 <i class="fa fa-question-circle fa-lg text-white"></i>{{config.DETAILPOST.HELP}}</a>
         </span>
         <span class="navbar-text white-text ml-4 mr-2">
             <a class="text-white" href="#">
-                 <i class="fa fa-sign-in fa-lg text-white"></i>  Login</a>
+                 <i class="fa fa-sign-in fa-lg text-white"></i>{{config.DETAILPOST.LOGIN}}</a>
         </span>
       </div>
     </nav>
@@ -33,18 +33,18 @@
         </div>
         <div class="col-sm-8">
           <div class="heading h4 mt-4">
-            All Questions
+           {{config.DETAILPOST.ALL_QUESTIONS}}
           </div>
           <hr>
           <div class="questionsumary">
             <div class="row mb-3" *ngFor="let result of data">
               <div class="statuscontainer col-sm-3">
                 <div class="vote h5">
-                  211 votes
+                  211 {{config.DETAILPOST.VOTES}}
                 </div>
                 <div class="answeraccepted h5  border py-2 text-white mt-4">
                   <strong class="pl-4">12</strong>
-                  <br><small class="ans">answers</small>
+                  <br><small class="ans">{{config.DETAILPOST.ANSWERS}}</small>
                 </div>
                 <!-- <div class="views h6  mt-4">
                 1.5 million views
@@ -66,10 +66,10 @@
                     <div class="row">
                       <div class="col-sm-6">
                         <a class="btn like text-white" href="#">
-                 <i class="fa fa-thumbs-up fa-lg text-white"></i> Like</a>
+                 <i class="fa fa-thumbs-up fa-lg text-white"></i>{{config.DETAILPOST.LIKES}}</a>
                       </div>
                       <div class="col-sm-6">
-                        asked {{result.date}}
+                        {{config.DETAILPOST.ASKED}} {{result.date}}
                       </div>
         
                     </div>
@@ -86,23 +86,23 @@
             </div> -->
           <hr>
           <div class="answer mt-3">
-            <label class="h5">Your answer</label>
+            <label class="h5">{{config.DETAILPOST.YOUR_ANSWERS}}</label>
             <ckeditor id="editor" class="editor" name="editor" [(ngModel)]="editor"></ckeditor>
           </div>
           <hr>
           <div class="login">
             <div class="row">
               <div class="col-sm-6 border py-2">
-                <label class="h5">Signup or Login</label>
+                <label class="h5">{{config.DETAILPOST.SIGNUP_LOGIN}}</label>
                 <br>
                 <!--  <div class="form-group col-sm mt-2">
                 <input type="button" class="btn btn-primary border py-2" value="Login with Github">
               </div> -->
                 <a class="btn like text-white mt-4" href="#">
-                 <i class="fa fa-github fa-lg text-white"></i> Login with github</a>
+                 <i class="fa fa-github fa-lg text-white"></i>{{config.DETAILPOST.LOGIN_WITH_GITHUB}}</a>
               </div>
               <div class="col-sm-6 border py-2">
-                <label class="h5">Post as a Guest</label>
+                <label class="h5">{{config.DETAILPOST.POST_AS_A_GUEST}}</label>
                 <br>
                 <div class="form-group col-sm mt-2">
                   <!--    <label for="inputState" class="">Name</label>
@@ -122,7 +122,7 @@
             </div>
           </div>
           <div class="postanswer mt-4 mb-4 text-center">
-            <button class="btn like btn-md text-white" (click)="postAnswer()">Post your answer</button>
+            <button class="btn like btn-md text-white" (click)="postAnswer()">{{config.DETAILPOST.POST_YOUR_ANSWER_BUTTON}}</button>
           </div>
         </div>
         <div class="col-sm-2">
