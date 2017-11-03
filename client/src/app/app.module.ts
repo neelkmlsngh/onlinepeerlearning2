@@ -50,6 +50,7 @@ import { ProfileService } from './shared/services/profile.service';
 
 import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { SnippetComponent } from './shared/components/snippet/snippet.component';
+import {  SnippetService } from './shared/services/snippet.service';
 
 
 //import { AuthoriseGuard } from './shared/services/authorise.guard';
@@ -206,7 +207,7 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
     },
    ],  { useHash: true })
   ],
-  providers: [GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService],
+  providers: [GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService,SnippetService],
 
   bootstrap: [AppComponent]
 })
