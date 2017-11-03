@@ -118,13 +118,12 @@ export class MainComponent implements OnInit {
   logout() {
     let user = JSON.parse(localStorage.getItem('currentUser'));
 
-    let userid = user.userId;
+    let userId = user.userId;
     user = {
-      userid: userid
+      userId: userId
     }
-
     this.authenticationservice.logoutEditor(user).subscribe((data1) => {
-      if (data1) {
+      if (data1.status==200) {
         swal({
           timer: 2500,
           title: "Logged Out Successfully",

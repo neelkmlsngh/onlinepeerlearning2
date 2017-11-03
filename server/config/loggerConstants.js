@@ -1,4 +1,5 @@
 module.exports = {
+
 	MONGODB_CONNECTED : 'Connected to MongoDB successfully',
 	MONGODB_CONNECTION_ERROR : 'Error in MongoDB connection',
 	MONGODB_DISCONNECTED : 'Disconnected from MongoDB',
@@ -20,6 +21,6 @@ module.exports = {
 	GET_DATA_FROM_ID : 'get data from id succesfully',
 	GET_DATA_FROM_ID_ERROR : 'error in getting  data from id succesfully',
 	EXCEPTION_NOT_FOUND:'Exception occurred',
-	EXCEPTION_FOUND:'Exception occurred'
-
+	EXCEPTION_FOUND:'Exception occurred',
+	USER_ID: 'Invalid USER ID'
 }

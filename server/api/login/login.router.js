@@ -11,7 +11,6 @@ const loggerConfig = require('../../config/loggerConstants');
 //login router 
 router.get('/auth/github',
     passport.authenticate('github', { scope: ['user:email'] }),
-    // var token = jwt.sign(req.user.doc,secretKey);
     function(req, res) {});
 
 // GET /auth/github/callback
@@ -30,47 +29,59 @@ router.get('/auth/github/callback',
             res.redirect(appConfig.SUCCESS_REDIRECT + req.user.doc.userId + "/" + userToken)
         } catch (err) {
             logger.fatal(loggerConfig.EXCEPTION_NOT_FOUND + err);
-            res.send({ error: err });
+            res.send({ status:408 , error: err });
             return;
         }
     });
 
-
+//logout routes
 router.put('/logout', (req, res) => {
     userId = req.body.userid;
     try {
         if (!userId) {
             logger.error(loginConfig.USERID_NOT_FOUND);
-            throw new Error('Invalid inputs passed...!');
+            res.send({ status: 404, message: loginConfig.USERID_NOT_FOUND});
         }
 
         User.findOneAndUpdate({ userId: userId }, {
             // updating online status
             $set: {
-                online: loginConfig.ONLINE
+                online: loginConfig.OFFLINE
             }
         }, (err, data) => {
             if (err) {
                 logger.error(loginConfig.LOGOUT_FAIL);
             } else {
                 logger.info(loginConfig.LOGOUT_SUCCESS)
-                res.send(data)
-                //res.send({ status: 200, message: loginConfig.LOGOUT_SUCCESS, data: data });
+                res.json({ status: 200, message: loginConfig.LOGOUT_SUCCESS, data: data });
             }
         });
     } catch (err) {
-        logger.fatal( + err);
-        res.send({ error: err });
+        logger.fatal(+err);
+        res.json({ status: 408, message: loginConfig.LOGOUT_FAIL, error: error });
         return;
     }
 });
 
+//get userName w.r.t userId
 router.get('/:userId', (req, res) => {
     let userId = req.params.userId;
-    usrCtrl.getUser(userId).then(successResult => {
-        res.send({ status: 200, message: loginConfig.USERNAME_FIND_SUCCESSFULLY, data:successResult });
-    }, error => {
+    try{
+    if (!userId) {
+        logger.error(loginConfig.USER_ID)
+    } else if (userId) {
+        usrCtrl.getUser(userId).then(successResult => {
+            res.json({ status: 200, message: loginConfig.USERNAME_FIND_SUCCESSFULLY, data: successResult });
 
-    })
+        }, error => {
+             logger.error(error);
+          return res.json({status: 408, message: loginConfig.USER_ID, error: error});
+        })
+    }
+  }catch(err){
+    logger.err(+err)
+    res.json({status: 404, message: loginConfig.USER_ID,err:err});
+  }
 });
+
 module.exports = router;
