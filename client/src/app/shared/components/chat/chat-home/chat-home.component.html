@@ -51,7 +51,6 @@
     </ul>
   </div>
 </div>
-
 <span class="done">
       <button mat-fab class="button-collapse sidebar" (click)="removesb()">
      <mat-icon>check circle</mat-icon>
@@ -71,10 +70,11 @@
     </ul>
   </div>
 </div>
-
+<!--use template for audio call component -->
 <template #template1>
   <app-audio-chat></app-audio-chat>
 </template>
+<!--use template for video call component -->
 <template #template2>
   <app-video-chat></app-video-chat>
 </template>

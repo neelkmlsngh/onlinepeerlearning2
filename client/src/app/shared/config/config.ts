@@ -8,7 +8,7 @@ export const config: any = {
   connect: {
     "url": "https://localhost:",
     "url2": "http://localhost:",
-    "url3": "https//192.168.252.57:",
+    "url3": "https//192.168.252.33:",
     "port": "8080",
     "port2": "3030"
   },
@@ -44,5 +44,11 @@ export const config: any = {
     "profile": "Profile",
     "forums": "Forums",
     "logout": "Logout"
+  },
+  peer:{
+  "host":"192.168.252.33",
+  "port":"8081",
+  "path":"/peerjs"
+
   }
 };
