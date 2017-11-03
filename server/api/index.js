@@ -1,6 +1,6 @@
 const userRoutes = require('./users');
 
-const forumRoutes = require('./forum');
+const forumRoutes = require('./forums');
 
 const loginRoutes = require('./login');
 
