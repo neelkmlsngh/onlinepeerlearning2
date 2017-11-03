@@ -33,8 +33,8 @@ function loginviagit() {
     });
     passport.use(new GitHubStrategy({
 
-        clientID: '7328322e0495591f5a69',
-        clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
+        clientID: gitId.CLIENT_ID,
+        clientSecret: gitId.CLIENT_SECRET,
         callbackURL: gitId.CALLBACK_URL
     }, function(accessToken, refreshToken, profile, done) {
         let userInfo = {

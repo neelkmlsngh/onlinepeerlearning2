@@ -108,8 +108,8 @@ export class ChatHomeComponent implements OnInit {
     this.selectedUserName = user.userName;
 
     this.chatService.getMessages({ userId: this.userId, toUserId: user.userId }, (error, response) => {
-      if (!response.error) {
-        this.messages = response.messages;
+      if (response.status == 200) {
+        this.messages = response.data;
 
       }
     });

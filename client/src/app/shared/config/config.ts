@@ -15,9 +15,9 @@ export const config: any = {
   connect:
   {
 
-    "url4": "https://localhost:8080/api/login",
+    "url4": "https://192.168.252.152:8080/api/login",
     "url2": "https://localhost:",
-    "url": "https://localhost:",
+    "url": "https://192.168.252.152:",
     "url3": "https//192.168.252.57:",
     "port": "8080",
     "port2": "3030"
