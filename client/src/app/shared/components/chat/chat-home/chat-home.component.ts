@@ -54,51 +54,48 @@ export class ChatHomeComponent implements OnInit {
     if (this.userId === '' || typeof this.userId == 'undefined') {
       this.router.navigate(['/']);
     } else {
-      this.chatService.userSessionCheck(this.userId, (error, response) => {
-        if (error) {
-          this.router.navigate(['/']); /* Home page redirection */
-        } else {
-          this.overlayDisplay = true;
+      this.chatService.checkUserSession(this.userId, (error, response) => {
+        this.overlayDisplay = true;
 
-          // making socket connection by passing UserId.  
-          this.socketService.connectSocket(this.userId);
+        // making socket connection by passing UserId.  
+        this.socketService.connectSocket(this.userId);
 
-          // calling method of service to get the online users list.  
-          this.socketService.getChatList(this.userId).subscribe(response => {
-            if (!response.error) {
-              if (response.singleUser) {
+        // calling method of service to get the online users list.  
+        this.socketService.getChatList(this.userId).subscribe(response => {
+          if (!response.error) {
+            if (response.singleUser) {
 
-                // Removing duplicate user from online users list array.
-                if (this.chatListUsers.length > 0) {
-                  this.chatListUsers = this.chatListUsers.filter(function(obj) {
-                    return obj._id !== response.chatList._id;
-                  });
-                }
-                this.chatListUsers.push(response.chatList);
-              } else if (response.userDisconnected) {
+              // Removing duplicate user from online users list array.
+              if (this.chatListUsers.length > 0) {
                 this.chatListUsers = this.chatListUsers.filter(function(obj) {
-                  return obj.socketId !== response.socketId;
+                  return obj._id !== response.chatList._id;
                 });
-              } else {
-
-                //Updating online userslist if user logs in.
-                this.chatListUsers = response.chatList;
               }
+              this.chatListUsers.push(response.chatList);
+            } else if (response.userDisconnected) {
+              this.chatListUsers = this.chatListUsers.filter(function(obj) {
+                return obj.socketId !== response.socketId;
+              });
             } else {
-              alert(`Chat list failure.`);
-            }
-          });
 
-          //method for recieving messages through socket          
-          this.socketService.receiveMessages().subscribe(response => {
-            if (this.selectedUserId && this.selectedUserId == response.fromUserId) {
-              this.messages.push(response);
-              setTimeout(() => {
-                document.querySelector(`.message-thread`).scrollTop = document.querySelector(`.message-thread`).scrollHeight;
-              }, 100);
+              //Updating online userslist if user logs in.
+              this.chatListUsers = response.chatList;
             }
-          });
-        }
+          } else {
+            alert(`Chat list failure.`);
+          }
+        });
+
+        //method for recieving messages through socket          
+        this.socketService.receiveMessages().subscribe(response => {
+          if (this.selectedUserId && this.selectedUserId == response.fromUserId) {
+            this.messages.push(response);
+            setTimeout(() => {
+              document.querySelector(`.message-thread`).scrollTop = document.querySelector(`.message-thread`).scrollHeight;
+            }, 100);
+          }
+        });
+        
       });
     }
   }
