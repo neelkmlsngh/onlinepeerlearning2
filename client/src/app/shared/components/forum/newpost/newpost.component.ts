@@ -9,22 +9,21 @@ import swal from 'sweetalert2';
   providers: [ForumService]
 })
 
-export class NewpostComponent implements OnInit, AfterViewInit {
+export class NewpostComponent implements OnInit, AfterViewInit{
 
-  ckeditorContent: any;
-  date: any;
-  questionTitle: string;
-  problemDescription: string;
-  tags: string;
-  dateCurr: any;
-  codeSnippet: string;
-  obj: any = {};
-  addSnippet: any;
+    ckeditorContent:any;
+    date:any;
+    questionTitle:string;
+    problemDescription:string;
+    tags:string;
+    dateCurr:any;
+    codeSnippet:string;
+    obj:any={};
+    addSnippet:any;
 
   constructor(private forum: ForumService) {}
 
   ngOnInit() {
-
     this.date = new Date();
     let day = this.date.getDate();
     let month = this.date.getMonth() + 1;
@@ -52,7 +51,7 @@ export class NewpostComponent implements OnInit, AfterViewInit {
     CKEDITOR.replace('problemDescription', problemDescriptionConfig);
     CKEDITOR.instances.problemDescription.setData("");
   }
-  //method to add post
+  //method to add post on forum
   insertPost(data) {
     this.obj = {
       questionTitle: this.questionTitle,
@@ -65,7 +64,7 @@ export class NewpostComponent implements OnInit, AfterViewInit {
 
       if (res) {
         console.log(res)
-        swal({ //alert message
+        swal({ //alert message for success
           timer: 2200,
           title: "Posted Successfully",
           text: "",
@@ -73,7 +72,7 @@ export class NewpostComponent implements OnInit, AfterViewInit {
           showConfirmButton: false,
         })
       } else {
-        swal({ //alert message
+        swal({ //alert message for error
           timer: 2200,
           title: "Error occured",
           text: "",
