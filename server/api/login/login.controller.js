@@ -9,9 +9,7 @@ const appConfig = require('../../config').app;
 const saveLoginCredentials = function(userInfo, done) {
     loginModel.findOneAndUpdate({ userId: userInfo.userId, userName: userInfo.name }, {
         $set: {
-            // status: true
             online: 'Y'
-            // socketId: null
         }
     }, { upsert: true, 'new': true }, function(err, user) {
         if (err) {
@@ -37,6 +35,6 @@ const getUser = (userId) => {
 }
 
 module.exports = {
-        saveLoginCredentials: saveLoginCredentials,
-        getUser: getUser,
+    saveLoginCredentials: saveLoginCredentials,
+    getUser: getUser,
 };

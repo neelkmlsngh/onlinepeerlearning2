@@ -13,7 +13,9 @@ user:any
 
   git() {
     return this.http
-      .get('/auth/github')
+
+      .get(config.connect.url4 +'/auth/github')
+
       .map(res => res, error => error.json());
   }
 
@@ -61,7 +63,7 @@ console.log('token',token)
   }
 
   getUser(userId){
- return this.http.get(config.connect.url + config.connect.port +'/'+userId)
+ return this.http.get(config.connect.url + config.connect.port +'/api/login/'+userId)
       .map(res => res.json(), error => error.json());
    
   }
