@@ -55,6 +55,7 @@ import { CoderunnerService } from './shared/services/coderunner.service';
 import { AnswersComponent } from './shared/components/forum/answers/answers.component';
 import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
 import { ChatComponent } from './shared/components/chat/chat.component';
+import { ErrorpageComponent } from './shared/components/errorpage/errorpage.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { ChatComponent } from './shared/components/chat/chat.component';
   SnippetComponent,
     AnswersComponent,
     ChatHomeComponent,
-    ChatComponent
+    ChatComponent,
+    ErrorpageComponent
 
   ],
   imports: [
