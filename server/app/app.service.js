@@ -37,8 +37,6 @@ function loginviagit() {
         clientSecret: gitId.CLIENT_SECRET,
         callbackURL: gitId.CALLBACK_URL
     }, function(accessToken, refreshToken, profile, done) {
-        //console.log(profile);
-
         let userInfo = {
             name: profile._json.login,
             userId: profile.id,

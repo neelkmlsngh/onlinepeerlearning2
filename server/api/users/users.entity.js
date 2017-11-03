@@ -20,6 +20,7 @@ var UserSchema = new mongoose.Schema({
     bio: { type: String, default: null }
 
 
+
 });
 UserSchema.statics.findOrCreate = require("find-or-create");
 module.exports = mongoose.model("user", UserSchema);

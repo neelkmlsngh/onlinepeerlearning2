@@ -1,15 +1,9 @@
 const userRoutes = require('./users');
-
-const forumRoutes = require('./forum');
-
+const forumRoutes = require('./forums');
 const loginRoutes = require('./login');
-
 const authtokenRoutes = require('./authtoken');
-
 const chatRoutes = require('./chat');
-
 const snippetRoutes = require('./snippet');
-
 
 module.exports = {
 
@@ -18,6 +12,5 @@ module.exports = {
     loginRoutes: loginRoutes,
     authtokenRoutes: authtokenRoutes,
     chatRoutes: chatRoutes,
-      snippetRoutes : snippetRoutes,
+    snippetRoutes: snippetRoutes,
 }
-

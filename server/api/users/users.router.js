@@ -45,68 +45,73 @@ var upload = multer({ storage: storage }).any();
   }
 });
 
+
+//route to get user details for the given userId
  router.get('/:userId',function(req,res){
   let getId= req.params.userId;
   try {
     usrCtrl.getProfile(getId).then((successResult)=>{
       logger.info('Get successResult successfully and return back');
-      return res.status(201).send(successResult);
-
+      /*return res.status(201).send(successResult);*/
+      return res.json({status:201,message:'User details successfully retrieved',data:successResult})
     }, (errResult) => {
           logger.error(errResult);
-          return res.status(500).send({ error: errResult});
+          /*return res.status(500).send({ error: errResult});*/
+          return res.json({status:500,message:'Incorrect credentials',data:errResult})
         });
   } catch (err) {
     logger.fatal('Exception occurred' + err);
-    res.send({ error: err });
-    return;
+    /*res.send({ error: err });*/
+    return res.json({status:false,message:'Exception occurred',data:err})
   }
  })
 
+//route to update profile information for the given userId
  router.put('/profileInfo/:userId',function(req,res){
   let getId= req.params.userId;
   let profileInfo = req.body;
-  console.log(profileInfo)
-   try{
+  try{
       usrCtrl.updateUserProfile(profileInfo,getId).then((successResult)=>{
-        logger.info('Get successResult successfully and return back');
-      return res.status(201).send(successResult);
+      logger.info('Get successResult successfully and return back');
+      /*return res.status(201).send(successResult);*/
+      return res.json({status:201,message:'UserProfile successfully updated',data:successResult})
     }),(errResult)=>{
         logger.error(errResult);
-        return res.status(500).send({ error: errResult});
+        /*return res.status(500).send({ error: errResult});*/
+        return res.json({status:500,message:'UserProfile cannot be updated due to some error',data:errResult})
       }
    }catch(err){
     logger.fatal('Exception occurred' + err);
-    res.send({ error: err });
-    return;
+    /*res.send({ error: err });*/
+    return res.json({status:false,message:'Exception occurred',data:err})
    }
  })
 
+//route to update profile image for the given userId
  router.put('/image/:userId',function(req,res){
   let getId= req.params.userId;
   let profileInfo = req.body;
-  console.log(profileInfo+"")
    try{
     upload(req, res, function(err) {
      if (err) {
-         console.log(err);
+       return res.json({status:false,message:'Error occurred',data:err})  
      }
      else {
       let dataObj={
         img:req.files[0].filename
       }
        usrCtrl.updateImage(dataObj,getId).then(successResult=>{
-        console.log("successResult "+successResult)
-        return res.status(201).send(successResult);
+        /*return res.status(201).send(successResult);*/
+        return res.json({status:201,message:'Image successfully updated',data:successResult})
        },error=>{
-
+         return res.json({status:false,message:'Error occurred in updating image',data:error})
        }); 
     }
   });
    }catch(err){
     logger.fatal('Exception occurred' + err);
-    res.send({ error: err });
-    return;
+    /*res.send({ error: err });*/
+    return res.json({status:false,message:'Exception occurred',data:err})
    }
  })
 

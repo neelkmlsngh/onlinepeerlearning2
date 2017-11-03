@@ -2,7 +2,6 @@ const https = require('https');
 var fs = require('fs');
 var path = require('path');
 const debug = require('debug')('dataDisplayApp:server');
-var ExpressPeerServer = require('peer').ExpressPeerServer;
 
 const helper = require('./../api/chat/chat.controller')
 
@@ -19,13 +18,11 @@ var options = {
     key: fs.readFileSync(path.resolve(__dirname, '../resources/key.pem')),
     cert: fs.readFileSync(path.resolve(__dirname, '../resources/cert.pem'))
 };
-var options1 = {
-    debug: true
-}
+
 // Create HTTPS server.
 var server = https.createServer(options, app);
 const io = require('socket.io')(server);
-// app.use('/peerjs', ExpressPeerServer(server, options1));
+
 
 //this is for socket that is used for getting online users and messages
 io.use(function(socket, next) {
