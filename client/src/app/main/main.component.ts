@@ -21,7 +21,7 @@ export class MainComponent implements OnInit {
   reponame: any;
   filenamed: any;
 
-  
+
   languages: any = [];
   mod: any = 'html'
   githubUser: any;
@@ -37,7 +37,7 @@ export class MainComponent implements OnInit {
   value: any;
   public modalRef: BsModalRef;
 
-  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,private authenticationservice:AuthenticationService,private router:Router) {
+  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router) {
 
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
@@ -61,14 +61,14 @@ export class MainComponent implements OnInit {
     this.gitService.getRepos()
       .subscribe(repos => {
         this.githubUser = repos;
-        this.mod="Select Mode"
+        this.mod = "Select Mode"
 
       })
   }
 
 
   reposearch(selected) {
-
+    this.reponame=selected;
     this.gitService.getTree(selected)
       .subscribe(data => {
         this.data = data
@@ -83,7 +83,6 @@ export class MainComponent implements OnInit {
         data => {
           this.data = data
           this.url = this.url + filename + "/"
-
         }, err => {
           this.show(reponame, this.url + filename)
           this.url = "";
@@ -94,22 +93,21 @@ export class MainComponent implements OnInit {
   show(reponame, filename) {
 
 
-    this.reponame=reponame;
-    this.filenamed=filename;
+    this.reponame = reponame;
+    this.filenamed = filename;
+
     this.gitService.getFile(reponame, filename)
       .subscribe(data => {
-
         this.fileData = data;
         this.text = this.fileData._body;
         console.log(this.text)
         // this.content.emit(this.text);
-        this.content=this.text;
-        console.log("content data "+ this.content);
+        this.content = this.text;
+        console.log("content data " + this.content);
       })
   }
 
   mode(event) {
-
     this.mod = event;
   }
 
@@ -117,34 +115,36 @@ export class MainComponent implements OnInit {
     this.content = text;
   }
 
-logout(){ 
- let user = JSON.parse(localStorage.getItem('currentUser'));
-    
+  logout() {
+    let user = JSON.parse(localStorage.getItem('currentUser'));
+
     let userid = user.userId;
-    user={
-      userid:userid
+    user = {
+      userid: userid
     }
-     
-    this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
+
+    this.authenticationservice.logoutEditor(user).subscribe((data1) => {
       if (data1) {
-         swal({
-      timer: 2500,
-      title: "Logged Out Successfully",
-      text:  "",
-      type:  'success',
-      showConfirmButton: false,
-    })
-        }
+        swal({
+          timer: 2500,
+          title: "Logged Out Successfully",
+          text: "",
+          type: 'success',
+          showConfirmButton: false,
+        })
+      }
 
     this.router.navigate(["/"]);
      localStorage.removeItem('currentUser');
 })
 }
+
+//method to enter new repository name
 onKey(event){
 this.value+=event
 }
 
-
+//methd for creating new repository
 createRepo(name,desc){
    let repoName={
   "name": name,
@@ -159,4 +159,5 @@ createRepo(name,desc){
    .subscribe(data =>{
    })
  }
+
 }
