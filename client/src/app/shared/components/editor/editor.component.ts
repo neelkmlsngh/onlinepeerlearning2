@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Output, ViewChild, OnInit, Input } from '@angular/core'
+import { Component, EventEmitter, Output, ViewChild, OnInit, Input, TemplateRef } from '@angular/core'
 import { FormsModule } from '@angular/forms';
 import { config } from './../../config/config';
 import { AceEditorModule } from 'ng2-ace-editor';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 import { EditorService } from '../../services/editor.service';
 import { GitService } from '../../services/git.service'
@@ -41,6 +43,9 @@ export class EditorComponent implements OnInit {
   newcommit: any;
   filename: any;
   filesha: any;
+  value: any;
+  public modalRef: BsModalRef;
+
 
   basetree: any = {};
   newcommitobj: any = {};
@@ -48,7 +53,7 @@ export class EditorComponent implements OnInit {
   updatefileobj: any = {};
   deletefileobj: any = {};
 
-  constructor(private coderunner: CoderunnerService, private gitService: GitService) {}
+  constructor(private coderunner: CoderunnerService, private gitService: GitService, private modalService: BsModalService) {}
 
   ngOnInit() {}
 
@@ -59,6 +64,11 @@ export class EditorComponent implements OnInit {
         this.codeoutput = data
         this.dataObj = this.codeoutput._body
       })
+  }
+
+
+  public openModal(template: TemplateRef < any > ) {
+    this.modalRef = this.modalService.show(template);
   }
 
 
@@ -77,45 +87,45 @@ export class EditorComponent implements OnInit {
     return false;
   }
 
-  /**
-   * method to create a file on git
-   */
-  save() {
+  onKey(event) {
+    this.value += event
+  }
 
-    console.log(this.content);
-    console.log(this.reponame);
-    console.log(this.filenamed);
-    /*console.log(this.content);
-    console.log("repository name is " + this.reponame);
-    console.log("file name is " + this.filenamed);*/
 
+  //method to create a file on git
+  save(fileName, commitMessage) {
+
+    //hitting the create file api to get sha of the latest commit
     this.gitService.createFile(this.reponame)
       .subscribe(repos => {
         console.log(this.reponame);
         this.latestcommit = repos.object.sha;
-        // console.log(repos)
+
+        //hitting the commit file api to get sha of the tree commit
         this.gitService.commitfile(this.reponame, this.latestcommit)
           .subscribe(repos => {
             this.treecommit = repos.sha;
             this.basetree = {
               "base_tree": this.treecommit,
               "tree": [{
-                "path": "helloMoto.html",
+                "path": fileName,
                 "mode": "100644",
                 "type": "blob",
                 "content": this.content
               }]
             }
 
+            //hitting the create file api to get sha of the new tree commit
             this.gitService.treecommit(this.reponame, this.basetree)
               .subscribe(repos => {
                 this.newtree = repos.sha;
                 this.newcommitobj = {
                   "parents": [this.latestcommit],
                   "tree": this.newtree,
-                  "message": "new file created"
+                  "message": commitMessage
                 }
 
+                //hitting the create file api to get sha of the new commit
                 this.gitService.newcommit(this.reponame, this.newcommitobj)
                   .subscribe(repos => {
                     this.newcommit = repos.sha;
@@ -123,37 +133,57 @@ export class EditorComponent implements OnInit {
                       "sha": this.newcommit
                     }
 
+                    //hitting final api to create the file
                     this.gitService.lastcommit(this.reponame, this.lastcommit)
                       .subscribe(repos => {})
+
+                    if (repos) {
+                      swal({
+                        timer: 2200,
+                        title: "file " + fileName + " created successfully!",
+                        text: "",
+                        type: 'success',
+                        showConfirmButton: false,
+                      })
+                    } else {
+                      swal({
+                        timer: 2200,
+                        title: "Error occured",
+                        text: "",
+                        type: 'error',
+                        showConfirmButton: false,
+                      })
+                    }
                   })
               })
           })
       })
   }
 
-  /**
-   *method to get the file and update the content on git
-   */
-  update() {
+
+  //method to get the file and update the content on git
+  update(commitMessage) {
     console.log("INDIDE UPDATE " + this.content);
     //getting the file sha
     this.gitService.getsha(this.reponame, this.filenamed)
       .subscribe(repos => {
         this.filesha = repos.sha;
         this.updatefileobj = {
-          "message": "file content updated",
+          "message": commitMessage,
           "path": this.filenamed,
           "content": btoa(this.content),
           "sha": this.filesha
         }
+
+        //hitting the update file api to update the file contents
         this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
           .subscribe(repos => {
-            // console.log(repos)
+
 
             if (repos) {
               swal({
                 timer: 2200,
-                title: "file updated successfully!",
+                title: "file " + this.filenamed + " updated successfully!",
                 text: "",
                 type: 'success',
                 showConfirmButton: false,
@@ -175,20 +205,22 @@ export class EditorComponent implements OnInit {
   }
 
 
-  /**
-   *method to get the file and delete the content on git
-   */
-  delete() {
+
+  //method to get the file and delete the content on git
+  delete(commitMessage) {
     console.log("INSIDE DELETE " + this.content);
+
     //getting the file sha
     this.gitService.getsha(this.reponame, this.filenamed)
       .subscribe(repos => {
         this.filesha = repos.sha;
         this.deletefileobj = {
-          "message": "file deleted",
+          "message": commitMessage,
           "path": this.filenamed,
           "sha": this.filesha
         }
+
+        //hitting the delete file api to delete the file
         this.gitService.deleteFile(this.reponame, this.filenamed, this.deletefileobj)
           .subscribe(repos => {
             // console.log(repos)

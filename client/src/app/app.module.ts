@@ -26,7 +26,9 @@ import { RepoSidebarComponent } from './shared/components/repo-sidebar/repo-side
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { GitService } from './shared/services/git.service'
 import { EditorService } from './shared/services/editor.service';
-import { ChatService } from './shared/services/chat.service';
+import { SocketService } from './shared/services/chatservices/socket.service';
+import { HttpService } from './shared/services/chatservices/http.service';
+import { ChatService } from './shared/services/chatservices/chat.service';
 
 import { MainComponent } from './main/main.component';
 import { ForumComponent } from './shared/components/forum/forum.component';
@@ -196,7 +198,7 @@ import { ChatComponent } from './shared/components/chat/chat.component';
     },
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService],
+  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService],
 
   bootstrap: [AppComponent]
 })

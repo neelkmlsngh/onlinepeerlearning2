@@ -6,7 +6,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import {AuthenticationService} from '../shared/services/authentication.service'
 
-import { config } from '../config/config';
+import { homeConfig } from '../shared/config/homeConfig';
 
 //component decorator
 
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
    backdrop: true,
    ignoreBackdropClick: false
    };
-   config=config;
+   config=homeConfig;
 
   //constructor having modal service and router
 

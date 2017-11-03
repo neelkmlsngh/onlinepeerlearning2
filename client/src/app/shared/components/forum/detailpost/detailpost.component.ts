@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ForumService } from '../../../services/forum.service';
+//@angular Files Imports
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ParamMap } from '@angular/router';
 import { Router, ActivatedRoute, Params, Data } from '@angular/router'
-
+//Reactive Extensions Library
 import 'rxjs/add/operator/switchMap';
+//Custom Files Imports
+import { ForumService } from '../../../services/forum.service';
 
 @Component({
   selector: 'app-detailpost',
@@ -11,15 +13,15 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./detailpost.component.css']
 })
 
-export class DetailpostComponent implements OnInit {
-
+//forum questions details class
+export class DetailpostComponent implements OnInit, AfterViewInit {
 
   constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {
 
   }
 
   name: string;
-  editor1: string;
+  editor: string;
   obj: any = {};
   codeSnippet: string;
   data: any = [];
@@ -27,16 +29,8 @@ export class DetailpostComponent implements OnInit {
   answer: string = "";
   questionTitle: string = "";
   userId: any;
+ 
   ngOnInit() {
-    var config = {
-      extraPlugins: 'codesnippet',
-      codeSnippet_theme: 'monokai_sublime',
-      height: 356
-    };
-    
-    CKEDITOR.replace('editor1', config);
-    CKEDITOR.instances.editor1.setData("");
-
     this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
       .subscribe((res) => {
@@ -46,11 +40,23 @@ export class DetailpostComponent implements OnInit {
       this.errors = error;
     };
   }
+//method to load editor to postAnswer
+   ngAfterViewInit(){
+     var config = {
+      extraPlugins: 'codesnippet',
+      codeSnippet_theme: 'monokai_sublime',
+      height: 356,
+      removeButtons: 'About',
 
+    };
+    CKEDITOR.replace('editor', config);
+    CKEDITOR.instances.editor.setData("");
+   }
+ //method to postAnswer
   postAnswer() {
     this.obj = {
       username: "prashant",
-      answer: CKEDITOR.instances.editor1.getData(),
+      answer: CKEDITOR.instances.editor.getData(),
       likes: "11",
       dislikes: "2"
     }

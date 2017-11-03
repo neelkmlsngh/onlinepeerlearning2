@@ -16,7 +16,7 @@ import { ForumService } from '../../../services/forum.service';
   providers: [ForumService]
 })
 
-export class ViewpostComponent implements OnInit,AfterViewInit {
+export class ViewpostComponent implements OnInit {
 likes= 0;
 likeflag=false;
 dislikeflag=false;
@@ -43,18 +43,6 @@ public modalRef: BsModalRef;
  ngOnInit() {
   this.viewPost();
  }
-
- ngAfterViewInit() {
-    const searchTerm:any = document.getElementById('search');
-     const search$= Observable.fromEvent(searchTerm, 'keyup')
-       //.do(()=> console.log(searchTerm.value))
-      
-       .switchMap(()=>this.forum.searchEntries(searchTerm.value));
-
-       search$.subscribe(
-         data=>this.data=data
-       ); 
-  }
 
 //open modal window 
 

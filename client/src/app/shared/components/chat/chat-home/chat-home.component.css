@@ -1,4 +1,4 @@
-.header {
+  .header {
   background-color: rgba(80, 208, 193, 0.51);
   margin-bottom: 5px;
   box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.32);
@@ -21,12 +21,6 @@
   display: inline-flex;
   list-style-type: none;
 }
-
-
-/*.chat-body{
-    width: 100%;
-    padding: 10px;
-}*/
 
 .massege-container {
   background-color: rgba(80, 208, 193, 0.51);
@@ -142,6 +136,10 @@ body {
   height: 50%;
   width: auto;
 }
+
+
+
+
 
 
 /* nav-side bar */
@@ -507,7 +505,7 @@ img {
 
 .chatbox--empty {
   height: 392px;
-    width: 339px;
+  width: 339px;
 }
 
 .chatbox--empty.chatbox--tray {
@@ -526,3 +524,4 @@ img {
 .chatbox--empty .chatbox__credentials {
   display: block;
 }
+

@@ -110,5 +110,4 @@ module.exports = {
     getSearch: getSearch,
     getPostByQuestion: getPostByQuestion,
     saveAnswer: saveAnswer
-
 };
