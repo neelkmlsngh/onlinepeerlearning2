@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import {AuthenticationService} from '../../../shared/services/authentication.service'
 import swal from 'sweetalert2';
-import { config } from '../../../config/config';
+import { config } from '../../config/config';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +13,7 @@ import { config } from '../../../config/config';
 })
 export class NavbarComponent implements OnInit {
 
+  config = config
   //constructor to create instance of services
   constructor( private router: Router,
     private authenticationservice :AuthenticationService) { }

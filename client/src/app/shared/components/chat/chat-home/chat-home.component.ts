@@ -13,8 +13,7 @@ import { ChatService } from './../../../services/chatservices/chat.service';
 @Component({
   selector: 'app-chat-home',
   templateUrl: './chat-home.component.html',
-  styleUrls: ['./chat-home.component.css'],
-  providers: [ChatService, HttpService, SocketService]
+  styleUrls: ['./chat-home.component.css']
 })
 
 export class ChatHomeComponent implements OnInit {
@@ -215,7 +214,7 @@ export class ChatHomeComponent implements OnInit {
   videocall(template2: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template2);
   }
-
+}
 
 
 
