@@ -1,4 +1,4 @@
-.chatbox {
+.videobox {
     position: fixed;
     bottom: 0;
     right: 30px;
@@ -13,20 +13,20 @@
    -webkit-flex-direction: column;
     flex-direction: column;
 }
-.chatbox--tray {
+.videobox--tray {
     bottom: -350px;
 }
-.chatbox--closed {
+.videobox--closed {
     bottom: -400px;
 }
-.chatbox .form-control:focus {
+.videobox .form-control:focus {
     border-color: #1f2836 ;
 }
-.chatbox__title,
-.chatbox__body {
+.videobox__title,
+.videobox__body {
     border-bottom: none;
 }
-.chatbox__title {
+.videobox__title {
     min-height: 50px;
     padding-right: 10px;
     background-color: #1f2836 ;
@@ -38,7 +38,7 @@
    -webkit-align-items: center;
     align-items: center;
 }
-.chatbox__title h5 {
+.videobox__title h5 {
     height: 50px;
     margin: 0 0 0 15px;
     line-height: 50px;
@@ -47,7 +47,7 @@
    -webkit-flex-grow: 1;
     flex-grow: 1;
 }
-.chatbox__title h5 a {
+.videobox__title h5 a {
     color: #fff;
     max-width: 195px;
     display: inline-block;
@@ -56,7 +56,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.chatbox__title h5:before {
+.videobox__title h5:before {
     content: '';
     display: block;
     position: absolute;
@@ -69,8 +69,8 @@
    -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
 }
-.chatbox__title__tray,
-.chatbox__title__close {
+.videobox__title__tray,
+.videobox__title__close {
     width: 24px;
     height: 24px;
     outline: 0;
@@ -81,24 +81,24 @@
    -webkit-transition: opacity 200ms;
     transition: opacity 200ms;
 }
-.chatbox__title__tray:hover,
-.chatbox__title__close:hover {
+.videobox__title__tray:hover,
+.videobox__title__close:hover {
     opacity: 1;
 }
-.chatbox__title__tray span {
+.videobox__title__tray span {
     width: 12px;
     height: 12px;
     display: inline-block;
     border-bottom: 2px solid #fff
 }
-.chatbox__title__close svg {
+.videobox__title__close svg {
     vertical-align: middle;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 1.2px;
 }
-.chatbox__body,
-.chatbox__credentials {
+.videobox__body,
+.videobox__credentials {
     padding: 15px;
     border-top: 0;
     background-color: #f5f5f5 ;
@@ -107,20 +107,20 @@
    -webkit-flex-grow: 1;
     flex-grow: 1;
 }
-.chatbox__credentials {
+.videobox__credentials {
     display: none;
 }
-.chatbox__credentials .form-control {
+.videobox__credentials .form-control {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
-.chatbox__body {
+.videobox__body {
     overflow-y: auto;
 }
-.chatbox__body__message {
+.videobox__body__message {
     position: relative;
 }
-.chatbox__body__message p {
+.videobox__body__message p {
     padding: 15px;
     border-radius: 4px;
     font-size: 14px;
@@ -128,7 +128,7 @@
     -webkit-box-shadow: 1px 1px rgba(100, 100, 100, 0.1);
     box-shadow: 1px 1px rgba(100, 100, 100, 0.1);
 }
-.chatbox__body__message img {
+.videobox__body__message img {
     width: 40px;
     height: 40px;
     border-radius: 4px;
@@ -136,23 +136,23 @@
     position: absolute;
     top: 15px;
 }
-.chatbox__body__message--left p {
+.videobox__body__message--left p {
     margin-left: 15px;
     padding-left: 30px;
     text-align: left;
 }
-.chatbox__body__message--left img {
+.videobox__body__message--left img {
     left: -5px;
 }
-.chatbox__body__message--right p {
+.videobox__body__message--right p {
     margin-right: 15px;
     padding-right: 30px;
     text-align: right;
 }
-.chatbox__body__message--right img {
+.videobox__body__message--right img {
     right: -5px;
 }
-.chatbox__message {
+.videobox__message {
     padding: 15px;
     min-height: 50px;
     outline: 0;
@@ -163,20 +163,20 @@
     border-bottom: none;
     background-color: #fefefe ;
 }
-.chatbox--empty {
+.videobox--empty {
   height: 380px;
 }
-.chatbox--empty.chatbox--tray {
+.videobox--empty.video--tray {
     bottom: -330px;
 }
-.chatbox--empty.chatbox--closed {
+.videobox--empty.video--closed {
     bottom: -262px;
 }
-.chatbox--empty .chatbox__body,
-.chatbox--empty .chatbox__message {
+.videobox--empty .videobox__body,
+.videobox--empty .videobox__message {
     display: none;
 }
-.chatbox--empty .chatbox__credentials {
+.videobox--empty .videobox__credentials {
     display: block;
 }
 .message-thread{

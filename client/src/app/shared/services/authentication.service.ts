@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http'
-import { config } from '../config/config';
+import { config } from './../config/config';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RequestOptions, Request, RequestMethod, Headers } from '@angular/http';
 
@@ -13,7 +13,9 @@ user:any
 
   git() {
     return this.http
+
       .get(config.connect.url4 +'/auth/github')
+
       .map(res => res, error => error.json());
   }
 
