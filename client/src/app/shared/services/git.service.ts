@@ -161,7 +161,6 @@ export class GitService {
 
   //method to create Repository on github
   createRepos(text) {
-
     if (this.username) {
       return this._http.post('https://api.github.com/user/repos', text, this.authorization())
         .map(res => res.json())
