@@ -20,8 +20,8 @@ export class HttpService {
   constructor(private http: Http) {}
   
   //Method for checking if username exists 
-  public userSessionCheck(params) {
-    return this.http.post(this.config.connect.url + this.config.connect.port + '/api/chat/userSessionCheck', JSON.stringify(params), this.headerOptions)
+  public checkUserSession(params) {
+    return this.http.post(this.config.connect.url + this.config.connect.port + '/api/chat/checkUserSession', JSON.stringify(params), this.headerOptions)
       .map((response: Response) => response.json())
       .catch((error: any) => Observable.throw(error.json().error || `Server error`));
   }

@@ -22,32 +22,30 @@ export class WebeditorComponent implements OnInit {
   cssValue: any = this.config.webEditor.CSSTEMP;
   jsValue: any = "";
   code: any;
-  isValid: boolean = true;
-  isValid2: boolean = false;
   cssblob: any;
   htmlblob: any;
   jsblob: any;
-  textcontent: any
-  myUrl: any;
-  data: any;
+  textcontent: any;
   html: any;
-  css: any
+  css: any;
   caretPos: any;
   caretText: any;
   obj: any;
-  comments: any ;
-  tabels: string ;
-  unordered: any ;
-  forms: any ;
-  includeJs: any; 
-  includeCss: any; 
 
-  /*snippet for css*/
-  commentsCss: any; 
-  elementSelector: any; 
-  classSelector: any ;
-  idSelector: any ;
-  mediaQueries: any; 
+  /*variable for snippet used in css*/
+  comments: any;
+  tabels: string;
+  unordered: any;
+  forms: any;
+  includeJs: any;
+  includeCss: any;
+
+  /*variable for snippet used in css*/
+  commentsCss: any;
+  elementSelector: any;
+  classSelector: any;
+  idSelector: any;
+  mediaQueries: any;
 
   ngOnInit() {
     this.onChange(this.code)
@@ -65,8 +63,48 @@ export class WebeditorComponent implements OnInit {
     this.cssValue = code;
   }
 
-  base_tpl: string = this.config.webEditor.OUTPUTTEMP;    
+  /*Giving the basic syntax of an HTMl page on Iframe*/
+  base_tpl: string = this.config.webEditor.OUTPUTTEMP;
+  
+  prepareSource() {
+    let src = '';
+    let css = '';
+    let js = '';
+    // HTML
+    src = this.base_tpl.replace('</body>', this.htmlValue + '</body>');
+    // CSS
+    css = '<style>' + this.cssValue + '</style>';
+    src = src.replace('</head>', css + '</head>');
+    //Js
+    src = src.replace('</script>', this.jsValue + '</script>');
+    return src;
+  };
 
+  /*To return value in iframe*/
+  render() {
+    let source = this.prepareSource();
+    console.log("Source " + source)
+
+    let iframe = document.querySelector('#output iframe')
+    console.log(iframe);
+    let iframe_doc = iframe['contentDocument'];
+
+    iframe_doc.open();
+    iframe_doc.write(source);
+    iframe_doc.close();
+  };
+
+  /*Method to pass the value directly into iframe*/
+  onChange(code) {
+    this.render();
+  }
+
+  cm_opt: any = {
+    mode: 'text/html',
+    gutter: true,
+    lineNumbers: true,
+  };
+  /*HTML snippet methods start*/
   comment() {
     this.htmlValue += " " + this.comments;
   }
@@ -87,9 +125,9 @@ export class WebeditorComponent implements OnInit {
   includeCSS() {
     this.htmlValue += " " + this.includeCss;
   }
+  /*HTML snippet methods ends*/
 
-
-  /*css snippet methods*/
+  /*css snippet methods start*/
   commentCss() {
     this.cssValue += " " + this.commentsCss;
   }
@@ -109,54 +147,11 @@ export class WebeditorComponent implements OnInit {
   mediaQuery() {
     this.cssValue += " " + this.mediaQueries;
   }
-
-  prepareSource() {
-
-    let src = '';
-    let css = '';
-    let js = '';
-
-    // HTML
-    src = this.base_tpl.replace('</body>', this.htmlValue + '</body>');
-
-    // CSS
-    css = '<style>' + this.cssValue + '</style>';
-    src = src.replace('</head>', css + '</head>');
-
-    //Js
-
-    src = src.replace('</script>', this.jsValue + '</script>');
-
-    return src;
-  };
-
-  render() {
-    let source = this.prepareSource();
-    console.log("Source " + source)
-
-    let iframe = document.querySelector('#output iframe')
-    console.log(iframe);
-    let iframe_doc = iframe['contentDocument'];
-
-    iframe_doc.open();
-    iframe_doc.write(source);
-    iframe_doc.close();
-  };
-
-  onChange(code) {
-    this.render();
-  }
-
-  cm_opt: any = {
-    mode: 'text/html',
-    gutter: true,
-    lineNumbers: true,
-  };
+  /*css snippet methods ends*/
 
   /*download whole content in single file*/
   downloadFile() {
     var downloadLink = document.createElement("a");
-
     var blob = new Blob([this.textcontent]);
     var url = URL.createObjectURL(blob);
     downloadLink.href = url;

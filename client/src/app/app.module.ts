@@ -37,7 +37,7 @@ import { DetailpostComponent } from './shared/components/forum/detailpost/detail
 import { NewpostComponent } from './shared/components/forum/newpost/newpost.component';
 import { ForumService } from './shared/services/forum.service';
 import { CKEditorModule } from 'ng2-ckeditor';
-import { LoginService } from './home/service/login.service'
+
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
@@ -55,6 +55,9 @@ import { SnippetComponent } from './shared/components/snippet/snippet.component'
 import { CoderunnerService } from './shared/services/coderunner.service';
 import { AnswersComponent } from './shared/components/forum/answers/answers.component';
 import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
+
+import { ErrorpageComponent } from './shared/components/errorpage/errorpage.component';
+
 
 @NgModule({
   declarations: [
@@ -80,7 +83,11 @@ import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.
 
     SnippetComponent,
     AnswersComponent,
-    ChatHomeComponent
+
+    ChatHomeComponent,
+
+    ErrorpageComponent
+
 
   ],
   imports: [
@@ -108,21 +115,23 @@ import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.
     ModalModule.forRoot(),
     RouterModule.forRoot([
 
-      {
-        path: 'home',
-        component: HomeComponent
-      },
-      {
-        path: 'snippet',
-        component: SnippetComponent
-      },
-      {
+
+    {
+       path:'home',
+       component:HomeComponent
+     },
+         {
+       path:'error',
+       component: ErrorpageComponent
+     },
+       {
+       path:'snippet',
+       component:SnippetComponent
+     },
+     {
         path: 'main',
         component: MainComponent,
-
-
         /* canActivate: [AuthoriseGuard]*/
-
       },
       {
         path: 'Forum',
@@ -217,7 +226,7 @@ import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.
       },
     ], { useHash: true })
   ],
-  providers: [LoginService, GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, CoderunnerService, ChatService, HttpService, SocketService],
+  providers: [GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService],
 
   bootstrap: [AppComponent]
 })
