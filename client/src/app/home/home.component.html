@@ -5,21 +5,21 @@
     <div class="row">
       <!-- public forum button -->
       <div class="col-md-4 col-sm-12">
-        <button class="btn btn-default orange-circle-button" data-toggle="popover" title="Enter Public Forum" routerLink="/questions">{{config.home.button1}}
+        <button class="btn btn-default orange-circle-button" data-toggle="popover" title="Enter Public Forum" routerLink="/questions">{{config.home.BUTTON1}}
         </button>
       </div>
       <!-- login via github button -->
       <div class="col-md-4 col-sm-12">
-        <button class="btn btn-default orange-circle-button" (click)="loginByGit()" data-toggle="popover" title="Login via Github">{{config.home.button2}}
+        <button class="btn btn-default orange-circle-button" (click)="loginByGit()" data-toggle="popover" title="Login via Github">{{config.home.BUTTON2}}
           <br>
           <img src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-256.png" class="github-image">
         </button>
       </div>
       <!-- instructions button -->
       <div class="col-md-4 col-sm-12">
-        <button class="btn btn-default orange-circle-button" (click)="openModalWithClass(template)" data-toggle="popover" title="Important Instructions">{{config.home.button3}}
+        <button class="btn btn-default orange-circle-button" (click)="openModalWithClass(template)" data-toggle="popover" title="Important Instructions">{{config.home.BUTTON3}}
           <br />
-          <h5>{{config.home.button3Subtitle}}</h5></button>
+          <h5>{{config.home.BUTTONSUBTITLE}}</h5></button>
       </div>
     </div>
   </div>
@@ -34,13 +34,13 @@
               <div class="row spacer-md">
                 <div class="col-sm-12 col-md-12">
                   <div class="animated fadeInRightBig text-center ">
-                    <h1 class="WhiteText content-right">{{config.home.title}}</h1>
+                    <h1 class="WhiteText content-right">{{config.home.TITLE}}</h1>
                   </div>
                 </div>
               </div>
               <div class="row spacer-md">
                 <div class="col-sm-12 col-md-12 col-md-offset-1">
-                  <h3 class="animated fadeInLeftBig slide-delay-2 YellowText">{{config.home.tagLine}}</h3>
+                  <h3 class="animated fadeInLeftBig slide-delay-2 YellowText">{{config.home.TAGLINE}}</h3>
                 </div>
               </div>
             </div>
@@ -53,13 +53,13 @@
 <!-- modal template starts -->
 <template #template>
   <div class="modal-header">
-    <h4 class="modal-title"><b>{{config.home.modalTitle}}</b></h4>
+    <h4 class="modal-title"><b>{{config.home.MODALTITLE}}</b></h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <strong><u>{{config.home.modalBody}}</u></strong>
+    <strong><u>{{config.home.MODALBODY}}</u></strong>
     <br>
     <p class="modaltext">
       1. Login into code editor via Github or If New User?Create Github account to Login into Code Editor.
