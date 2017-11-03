@@ -1,4 +1,4 @@
-export const config: any = {
+export const homeConfig: any = {
 	home: {
 		"button1": "Enter Public Forum",
 		"button2": "Login via Github",
@@ -8,5 +8,5 @@ export const config: any = {
 		"tagLine": "Work on code editor and consult your peers when you are stuck.",
 		"modalTitle": "Guidelines",
 		"modalBody": "Guidelines for Github Account"
-	}
+		}
 };

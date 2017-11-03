@@ -11,6 +11,7 @@ export class ForumService {
   constructor(private http: Http, private autheticationservice: AuthenticationService) {}
 
   ngOnInit() {} //method is used to hit api on express server and post the data of form in database     
+  
   save(data: any) {
     return this.http.
     post('https://localhost:8080/api/forum', data)
@@ -65,5 +66,35 @@ export class ForumService {
       return new RequestOptions({ headers: headers });
     }
   }
+
+
+  addSnippet(data) {
+    return this.http
+      .post('https://localhost:8080/api/snippet',data)
+      .map(res => res.json());
+  }
+
+    getSnippet() {
+    return this.http
+      .get('https://localhost:8080/api/snippet')
+      .map(res => res.json());
+  }
+
+   /*update method used to modify snippet*/ 
+     updateSnippet(title , code) {    
+         return this.http    
+          .put('https://localhost:8080/api/forum/update/' + title, code)   
+            .map(res => res.json()); 
+             }
+
+              /*update method used to modify snippet*/ 
+     deleteSnippet(title) {    
+         return this.http    
+          .put('https://localhost:8080/api/forum/delete/' , title)   
+            .map(res => res.json()); 
+             }
+
+
+
 
 }
