@@ -6,12 +6,13 @@
   <div class="container">
   <!-- error message being displayed in jumbotron -->
     <div class="jumbotron">
-      <h1><font face="Tahoma" color="red">Error 500</font></h1>
+      <h1><font face="Tahoma" color="red">{{config.error.ERROR}} 500</font></h1>
       <br />
-      <p><b>Oops! Something went wrong..</b></p>
+      <p><b>{{config.error.ERRORMESSAGE}}</b></p>
       <br>
       <!-- button to take user back to home page -->
-      <a href="/home" class="btn btn-secondary btn-lg btn-block"><i class="icon-home icon-white"></i> Take Me Home</a>
+      <a href="/home" class="btn btn-secondary btn-lg btn-block"><i class="icon-home icon-white"></i> 
+      {{config.error.HOMEBUTTON}}</a>
     </div>
   </div>
 </body>

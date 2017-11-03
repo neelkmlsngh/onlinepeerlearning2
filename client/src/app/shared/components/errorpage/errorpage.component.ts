@@ -2,6 +2,8 @@
 
 import { Component, OnInit } from '@angular/core';
 
+import { errorConfig } from '../../config/errorConfig'
+
 @Component({
   selector: 'app-errorpage',
   templateUrl: './errorpage.component.html',
@@ -12,8 +14,10 @@ import { Component, OnInit } from '@angular/core';
 
 export class ErrorpageComponent implements OnInit {
 
+	config = errorConfig;
+
 	//constructor
-	
+
   constructor() { }
 
   //ngOnInit
