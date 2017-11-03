@@ -207,7 +207,7 @@ export class EditorComponent implements OnInit {
 
 
   //method to get the file and delete the content on git
-  delete() {
+  delete(commitMessage) {
     console.log("INSIDE DELETE " + this.content);
 
     //getting the file sha
@@ -215,7 +215,7 @@ export class EditorComponent implements OnInit {
       .subscribe(repos => {
         this.filesha = repos.sha;
         this.deletefileobj = {
-          "message": "file deleted",
+          "message": commitMessage,
           "path": this.filenamed,
           "sha": this.filesha
         }

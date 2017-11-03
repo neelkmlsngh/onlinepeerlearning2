@@ -152,7 +152,7 @@ export class GitService {
   deleteFile(text, filename, deletefileobj) {
     if (this.userName) {
       //let head=this.authoriZation();  
-      let headers = new Headers({ 'Authorization': "Basic YWFzdGhhd2FkaHdhMDFAZ21haWwuY29tOjcwZWJjMzgyMTJkZTJkZThjMzgwNGNlYmZhNDNkMWI4MWIzZjc4YjU=" });
+      let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206ODk0OWMxOTU3ZTA0Yzg1NmQ3ZGIxMTI5MTY1M2EyYmRmOWQ3MDAwZQ==" });
       console.log('from service...........' + deletefileobj)
       return this._http.delete('https://api.github.com/repos/' + this.userName + '/' + text + '/contents/' + filename, new RequestOptions({
           headers: headers,
