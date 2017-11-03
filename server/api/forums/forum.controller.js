@@ -1,16 +1,16 @@
 const forumModel = require('./forum.entity');
 const logger = require('../../services/app.logger');
 const appConstant = require('../../config').app;
+const logConfig = require('../../config/loggerConstants');
 
 //Post forum question function
 const addPost = function(formdata) {
     return new Promise((resolve, reject) => {
         forumModel.create(formdata, (err, data) => {
             if (err) {
-                logger.error('Internal error' + err);
+                logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                logger.error('Internal error' + err);
                 resolve(data);
             }
         })
@@ -23,10 +23,9 @@ const getPost = function() {
     return new Promise((resolve, reject) => {
         forumModel.find({}, (err, data) => {
             if (err) {
-                logger.error('Internal error' + err);
+                logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                logger.error('Internal error' + err);
                 resolve(data);
             }
         })
@@ -35,14 +34,13 @@ const getPost = function() {
 };
 
 //post answer by question
-const getPostByQuestion = function(getValue) {
+const getPostById = function(Id) {
     return new Promise((resolve, reject) => {
-        forumModel.findOne({ getValue }, (err, data) => {
+        forumModel.findOne({ _id: Id }, (err, data) => {
             if (err) {
-                logger.error('Internal error' + err);
+                logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                logger.error('Internal error' + err);
                 resolve(data);
             }
         })
@@ -74,10 +72,10 @@ const getSearch = function(getValue) {
             ]
         }, (err, data) => {
             if (err) {
-                logger.error('Internal error' + err);
+                logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                logger.error('Internal error' + err);
+              con
                 resolve(data);
             }
         })
@@ -93,10 +91,9 @@ const saveAnswer = function(getValue, updateValue) {
             $push: { 'answers': updateValue }
         }, { upsert: true }, (err, data) => {
             if (err) {
-                logger.error('Internal error' + err);
+                logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                logger.error('Internal error' + err);
                 resolve(data);
             }
         })

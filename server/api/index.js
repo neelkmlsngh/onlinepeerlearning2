@@ -18,6 +18,6 @@ module.exports = {
     loginRoutes: loginRoutes,
     authtokenRoutes: authtokenRoutes,
     chatRoutes: chatRoutes,
-      snippetRoutes : snippetRoutes,
+     snippetRoutes : snippetRoutes,
 }
 

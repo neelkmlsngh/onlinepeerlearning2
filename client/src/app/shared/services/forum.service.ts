@@ -14,34 +14,34 @@ export class ForumService {
   
   save(data: any) {
     return this.http.
-    post('https://localhost:8080/api/forum', data)
+    post('https://localhost:8080/api/forums', data)
       .map(res => res.json());
   }
 
   getPost() {
     return this.http
-      .get('https://localhost:8080/api/forum')
+      .get('https://localhost:8080/api/forums')
       .map(res => res.json());
   }
 
   searchEntries(searchTerm: any) {
 
     if (searchTerm != "") {
-      var api = 'https://localhost:8080/api/forum/' + searchTerm
+      var api = 'https://localhost:8080/api/forums/' + searchTerm
       return this.http
         .get(api)
         .map(res => res.json());
 
     } else {
       return this.http
-        .get('https://localhost:8080/api/forum')
+        .get('https://localhost:8080/api/forums')
         .map(res => res.json());
     }
   }
   /*getEmployeeByID method to fetch details by id used in supervisor component*/
-  getPostByQuestion(question: string) {
+  getPostByQuestion(id : string) {
     return this.http.
-    get('https://localhost:8080/api/forum/getQuestionDetail/' + question)
+    get('https://localhost:8080/api/forums/' + id)
       .map(res => res.json());
   }
 
@@ -54,7 +54,7 @@ export class ForumService {
   saveAnswer(question,answer){
     console.log(answer);
      return this.http.
-     put('https://localhost:8080/api/forum/update/' + question,answer)
+     put('https://localhost:8080/api/forums/' + question,answer)
       .map(res => res.json());
 
 }
@@ -66,34 +66,6 @@ export class ForumService {
       return new RequestOptions({ headers: headers });
     }
   }
-
-
-  addSnippet(data) {
-    return this.http
-      .post('https://localhost:8080/api/snippet',data)
-      .map(res => res.json());
-  }
-
-    getSnippet() {
-    return this.http
-      .get('https://localhost:8080/api/snippet')
-      .map(res => res.json());
-  }
-
-   /*update method used to modify snippet*/ 
-     updateSnippet(title , code) {    
-         return this.http    
-          .put('https://localhost:8080/api/forum/update/' + title, code)   
-            .map(res => res.json()); 
-             }
-
-              /*update method used to modify snippet*/ 
-     deleteSnippet(title) {    
-         return this.http    
-          .put('https://localhost:8080/api/forum/delete/' , title)   
-            .map(res => res.json()); 
-             }
-
 
 
 

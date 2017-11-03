@@ -1,20 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import 'hammerjs';
-import {MatTabsModule} from '@angular/material';
-import {MatTabGroup} from '@angular/material';
-import {MatFormFieldModule} from '@angular/material';
-import {MatButtonModule} from '@angular/material';
+import { MatTabsModule } from '@angular/material';
+import { MatTabGroup } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
 import { ModalModule } from 'ngx-bootstrap';
 import { AceEditorModule } from 'ng2-ace-editor'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
-import {MatInputModule} from '@angular/material';
-import {MatRadioModule} from '@angular/material';
+import { MatInputModule } from '@angular/material';
+import { MatRadioModule } from '@angular/material';
 import { TagInputModule } from 'ngx-chips';
 
 import { AppComponent } from './app.component';
@@ -35,22 +35,21 @@ import { ForumComponent } from './shared/components/forum/forum.component';
 import { ViewpostComponent } from './shared/components/forum/viewpost/viewpost.component';
 import { DetailpostComponent } from './shared/components/forum/detailpost/detailpost.component';
 import { NewpostComponent } from './shared/components/forum/newpost/newpost.component';
-import {  ForumService } from './shared/services/forum.service';
+import { ForumService } from './shared/services/forum.service';
 import { CKEditorModule } from 'ng2-ckeditor';
-import {LoginService} from './home/service/login.service'
+import { LoginService } from './home/service/login.service'
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { TruncateModule } from 'ng2-truncate';
 import { AudioChatComponent } from './shared/components/chat/audio-chat/audio-chat.component';
 import { VideoChatComponent } from './shared/components/chat/video-chat/video-chat.component';
-import {AuthenticationService} from './shared/services/authentication.service'
+import { AuthenticationService } from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
 
 import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { SnippetComponent } from './shared/components/snippet/snippet.component';
-
 
 //import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { CoderunnerService } from './shared/services/coderunner.service';
@@ -64,9 +63,9 @@ import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.
     EditorComponent,
     NavbarComponent,
     RepoSidebarComponent,
-   
+
     FooterComponent,
-   
+
     WebeditorComponent,
     ProfileComponent,
     MainComponent,
@@ -98,7 +97,7 @@ import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.
     MatRadioModule,
     TruncateModule,
     TagInputModule,
-   
+
 
     AngularFontAwesomeModule,
     ReactiveFormsModule,
@@ -109,93 +108,116 @@ import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.
     ModalModule.forRoot(),
     RouterModule.forRoot([
 
-    {
-       path:'home',
-       component:HomeComponent
-     },
-       {
-       path:'snippet',
-       component:SnippetComponent
-     },
-     {
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: 'snippet',
+        component: SnippetComponent
+      },
+      {
         path: 'main',
         component: MainComponent,
 
 
-       /* canActivate: [AuthoriseGuard]*/
+        /* canActivate: [AuthoriseGuard]*/
 
       },
-        {
+      {
+        path: 'Forum',
+        component: ForumComponent,
+        children: [{
+            path: 'questions',
+            component: ViewpostComponent
+          },
+          {
+            path: 'questiondetail/:value',
+            component: ViewpostComponent
+          },
+          {
+            path: 'addquestion',
+            component: NewpostComponent,
+          },
+
+          {
+            path: 'answers/:value',
+            component: AnswersComponent,
+            // canActivate: [AuthoriseGuard]
+          },
+        ]
+
+      },
+      {
         path: 'questions',
         component: ViewpostComponent,
         // canActivate: [AuthoriseGuard]
       },
-      
-     {
+
+      {
         path: 'video',
         component: VideoChatComponent,
         //canActivate: [AuthoriseGuard]
       },
       {
 
-       path:'audio',
-       component:AudioChatComponent,
-       //canActivate: [AuthoriseGuard]
-     },
-      
+        path: 'audio',
+        component: AudioChatComponent,
+        //canActivate: [AuthoriseGuard]
+      },
+
       // {
       //   path: 'onlinepeerlearning/:id',
       //   component: DisplayComponent
       // },
-    /*  {
-      path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
-    }*/
-     {
+      /*  {
+        path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
+      }*/
+      {
         path: 'questiondetail/:value',
         component: DetailpostComponent,
         // canActivate: [AuthoriseGuard]
       },
-        {
+      {
         path: 'answers/:value',
         component: AnswersComponent,
         // canActivate: [AuthoriseGuard]
       },
-     {
+      {
         path: 'addquestion',
         component: NewpostComponent,
       },
-     {
+      {
         path: 'webeditor',
         component: WebeditorComponent,
 
-     /*   canActivate: [AuthoriseGuard]*/
+        /*   canActivate: [AuthoriseGuard]*/
 
 
       },
-       {
+      {
         path: 'profile',
         component: ProfileComponent,
         //canActivate: [AuthoriseGuard]
-      } ,     
-     {
-      path:'auth/:userId/:token',
-      component: AuthenticateComponent,
-       //canActivate: [AuthoriseGuard]
-    }
-    ,
-   /* {
+      },
+      {
+        path: 'auth/:userId/:token',
+        component: AuthenticateComponent,
+        //canActivate: [AuthoriseGuard]
+      },
+      /* {
         path: 'chome',
         component: ChatHomeComponent
       },
-*/     
-     {
-      path:'**',
-      component: HomeComponent,
-      
-    },
-   ],  { useHash: true })
+*/
+      {
+        path: '**',
+        component: HomeComponent,
+
+      },
+    ], { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService],
+  providers: [LoginService, GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, CoderunnerService, ChatService, HttpService, SocketService],
 
   bootstrap: [AppComponent]
 })

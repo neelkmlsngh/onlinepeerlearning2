@@ -21,5 +21,4 @@ module.exports = {
 	GET_DATA_FROM_ID_ERROR : 'error in getting  data from id succesfully',
 	EXCEPTION_NOT_FOUND:'Exception occurred',
 	EXCEPTION_FOUND:'Exception occurred'
-
 }

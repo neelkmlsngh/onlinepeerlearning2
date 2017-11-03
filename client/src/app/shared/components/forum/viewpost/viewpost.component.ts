@@ -21,7 +21,7 @@ export class ViewpostComponent implements OnInit {
   likeflag = false;
   dislikeflag = false;
   dislikes = 0;
-  data: any = [];
+  data: any = {};
   answer: any = {};
   noofanswer: number = 0;
   answerlength: any = [];
@@ -38,6 +38,7 @@ export class ViewpostComponent implements OnInit {
   constructor(private forum: ForumService, private router: Router, private modalService: BsModalService) {
 
   }
+  
   // method to show posts on forum
   ngOnInit() {
     this.viewPost();
@@ -49,8 +50,8 @@ export class ViewpostComponent implements OnInit {
   //method call posts from service
   viewPost() {
     this.forum.getPost().subscribe((data1) => {
-
       this.data = data1;
+      console.log(this.data);
     })
   }
   //method for search 
