@@ -47,7 +47,7 @@ export class ChatHomeComponent implements OnInit {
   ngOnInit() {
     $('.chatbox').hide();
 
-    // getting userID from the local storage	
+    // getting userID from the local storage  
     this.userId = this.authenticationService.getUserId();
     if (this.userId === '' || typeof this.userId == 'undefined') {
       this.router.navigate(['/']);
@@ -87,7 +87,7 @@ export class ChatHomeComponent implements OnInit {
             }
           });
 
-          //method for recieving messages through socket					
+          //method for recieving messages through socket          
           this.socketService.receiveMessages().subscribe(response => {
             if (this.selectedUserId && this.selectedUserId == response.fromUserId) {
               this.messages.push(response);
@@ -120,7 +120,7 @@ export class ChatHomeComponent implements OnInit {
 
   //Method for opening chatbox
   openchatbox(): void {
-  	//Jquery for handling chatbox opening and closing
+    //Jquery for handling chatbox opening and closing
     var $chatbox = $('.chatbox'),
       $chatboxTitle = $('.chatbox__title'),
       $chatboxTitleClose = $('.chatbox__title__close'),
@@ -215,9 +215,3 @@ export class ChatHomeComponent implements OnInit {
     this.modalRef = this.modalService.show(template2);
   }
 }
-
-
-
-
-
-
