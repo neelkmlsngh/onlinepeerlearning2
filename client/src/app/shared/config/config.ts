@@ -4,7 +4,6 @@ export const config: any = {
     "JAVASCRIPT",
     "HTML/CSS"
   ],
-
 /*  connect: {
        "url": "https://192.168.252.152:",
        "port": "8080"

@@ -1,42 +1,42 @@
-.answeraccepted {
+  .answeraccepted {
   width: 86px;
   background-color: #00695C;
 }
 
-.like{
-	background-color: #00695C;
-}
-
-.problemDescription{
-	font-size: 15px;
-}
-
-.tags{
-	background-color: #CE93D8;
-}
-
-.postquestion{
+.like {
   background-color: #00695C;
 }
 
-.questionTitle{
-	color: #6A1B9A;
+.problemDescription {
+  font-size: 15px;
 }
 
-.user{
-	color: #00695C;
+.tags {
+  background-color: #CE93D8;
 }
 
-.views{
-	color:  #6A1B9A;
+.postquestion {
+  background-color: #00695C;
 }
 
-.ans{
-	  padding-left: 11px;
+.questionTitle {
+  color: #6A1B9A;
 }
 
-.navbar{
-	background-color: #00695C;
+.user {
+  color: #00695C;
+}
+
+.views {
+  color: #6A1B9A;
+}
+
+.ans {
+  padding-left: 11px;
+}
+
+.navbar {
+  background-color: #00695C;
 }
 
 .example-form {
@@ -46,5 +46,5 @@
 }
 
 .example-full-width {
-  width: 100%;
+width: 100%;
 }
