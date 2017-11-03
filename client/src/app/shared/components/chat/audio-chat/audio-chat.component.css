@@ -1,4 +1,4 @@
-.chatbox {
+.audiobox {
     position: fixed;
     bottom: 0;
     right: 30px;
@@ -13,20 +13,20 @@
    -webkit-flex-direction: column;
     flex-direction: column;
 }
-.chatbox--tray {
+.audiobox--tray {
     bottom: -350px;
 }
-.chatbox--closed {
+.audiobox--closed {
     bottom: -400px;
 }
-.chatbox .form-control:focus {
+.audiobox .form-control:focus {
     border-color: #1f2836 ;
 }
-.chatbox__title,
-.chatbox__body {
+.audiobox__title,
+.audiobox__body {
     border-bottom: none;
 }
-.chatbox__title {
+.audiobox__title {
     min-height: 50px;
     padding-right: 10px;
     background-color: #1f2836 ;
@@ -38,7 +38,7 @@
    -webkit-align-items: center;
     align-items: center;
 }
-.chatbox__title h5 {
+.audiobox__title h5 {
     height: 50px;
     margin: 0 0 0 15px;
     line-height: 50px;
@@ -47,7 +47,7 @@
    -webkit-flex-grow: 1;
     flex-grow: 1;
 }
-.chatbox__title h5 a {
+.audiobox__title h5 a {
     color: #fff;
     max-width: 195px;
     display: inline-block;
@@ -56,7 +56,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.chatbox__title h5:before {
+.audiobox__title h5:before {
     content: '';
     display: block;
     position: absolute;
@@ -69,8 +69,8 @@
    -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
 }
-.chatbox__title__tray,
-.chatbox__title__close {
+.audiobox__title__tray,
+.audiobox__title__close {
     width: 24px;
     height: 24px;
     outline: 0;
@@ -81,24 +81,24 @@
    -webkit-transition: opacity 200ms;
     transition: opacity 200ms;
 }
-.chatbox__title__tray:hover,
-.chatbox__title__close:hover {
+.audiobox__title__tray:hover,
+.audiobox__title__close:hover {
     opacity: 1;
 }
-.chatbox__title__tray span {
+.audiobox__title__tray span {
     width: 12px;
     height: 12px;
     display: inline-block;
     border-bottom: 2px solid #fff
 }
-.chatbox__title__close svg {
+.audiobox__title__close svg {
     vertical-align: middle;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 1.2px;
 }
-.chatbox__body,
-.chatbox__credentials {
+.audiobox__body,
+.audiobox__credentials {
     padding: 15px;
     border-top: 0;
     background-color: #f5f5f5 ;
@@ -107,20 +107,20 @@
    -webkit-flex-grow: 1;
     flex-grow: 1;
 }
-.chatbox__credentials {
+.audiobox__credentials {
     display: none;
 }
-.chatbox__credentials .form-control {
+.audiobox__credentials .form-control {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
-.chatbox__body {
+.audiobox__body {
     overflow-y: auto;
 }
-.chatbox__body__message {
+.audiobox__body__message {
     position: relative;
 }
-.chatbox__body__message p {
+.audiobox__body__message p {
     padding: 15px;
     border-radius: 4px;
     font-size: 14px;
@@ -128,7 +128,7 @@
     -webkit-box-shadow: 1px 1px rgba(100, 100, 100, 0.1);
     box-shadow: 1px 1px rgba(100, 100, 100, 0.1);
 }
-.chatbox__body__message img {
+.audiobox__body__message img {
     width: 40px;
     height: 40px;
     border-radius: 4px;
@@ -136,23 +136,23 @@
     position: absolute;
     top: 15px;
 }
-.chatbox__body__message--left p {
+.audiobox__body__message--left p {
     margin-left: 15px;
     padding-left: 30px;
     text-align: left;
 }
-.chatbox__body__message--left img {
+.audiobox__body__message--left img {
     left: -5px;
 }
-.chatbox__body__message--right p {
+.audiobox__body__message--right p {
     margin-right: 15px;
     padding-right: 30px;
     text-align: right;
 }
-.chatbox__body__message--right img {
+.audiobox__body__message--right img {
     right: -5px;
 }
-.chatbox__message {
+.audiobox__message {
     padding: 15px;
     min-height: 50px;
     outline: 0;
@@ -163,20 +163,20 @@
     border-bottom: none;
     background-color: #fefefe ;
 }
-.chatbox--empty {
+.audiobox--empty {
   height: 380px;
 }
-.chatbox--empty.chatbox--tray {
-    bottom: -330px;
+.audiobox--empty.audiobox--tray {
+    bottom: -1070px;
 }
-.chatbox--empty.chatbox--closed {
+.audiobox--empty.audiobox--closed {
     bottom: -262px;
 }
-.chatbox--empty .chatbox__body,
-.chatbox--empty .chatbox__message {
+.audiobox--empty .audiobox__body,
+.audiobox--empty .audiobox__message {
     display: none;
 }
-.chatbox--empty .chatbox__credentials {
+.audiobox--empty .audiobox__credentials {
     display: block;
 }
 .message-thread{

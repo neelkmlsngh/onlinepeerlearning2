@@ -157,7 +157,7 @@ import { ChatComponent } from './shared/components/chat/chat.component';
         //canActivate: [AuthoriseGuard]
       } ,     
      {
-      path:'auth/:userId/:token/:name',
+      path:'auth/:userId/:token',
       component: AuthenticateComponent,
        //canActivate: [AuthoriseGuard]
     }

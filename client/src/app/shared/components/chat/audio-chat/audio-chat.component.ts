@@ -18,7 +18,7 @@ export class AudioChatComponent implements OnInit {
   
   ngOnInit() {
     let audio = this.myAudio.nativeElement;
-    this.peer = new Peer({host: '192.168.252.152', port: 8081, path: '/peerjs'});
+    this.peer = new Peer({host: '192.168.252.33', port: 8081, path: '/peerjs'});
     setTimeout(() => {
       this.mypeerid = this.peer.id;
     },3000);

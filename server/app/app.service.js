@@ -37,11 +37,13 @@ function loginviagit() {
         done(null, obj);
     });
     passport.use(new GitHubStrategy({
-        clientID: gitId.CLIENT_ID,
-        clientSecret: gitId.CLIENT_SECRET,
-        callbackURL: gitId.CALLBACK_URL
+
+        clientID: '5f192d7ba0e4bee96c8e',
+        clientSecret: '2c823f9d981d53a9300fe64e434fa55cd0b2151c',
+        callbackURL: 'https://192.168.252.33:8080/auth/github/callback'
     }, function(accessToken, refreshToken, profile, done) {
         //console.log(profile);
+
         let userInfo = {
             name: profile._json.login,
             userId: profile.id,
@@ -50,6 +52,7 @@ function loginviagit() {
             reposUrl: profile._json.repos_url,
             online: "Y"
         }
+
         //save login credentials in login collection
         //function called by login controller
         loginController.saveLoginCredentials(userInfo, done);
@@ -64,6 +67,25 @@ function createApp() {
 //  Use application routes
 function setupRestRoutes(app) {
     appRoutes.useRoutes(app);
+
+
+    // app.use(function(req, res) {
+    //     let err = new Error(loggerConfig.RESOURCE_NOT_FOUND);
+    //     err.status = 404;
+    //     logger.error(err);
+    //     return res.status(err.status).json({
+    //         error: err.message
+    //     });
+    // });
+
+    // app.use(function(err, req, res) {
+    //     logger.error(loggerConfig.INTERNAL_SERVER_ERROR + ': ', err);
+    //     return res.status(err.status || 500).json({
+    //         error: err.message
+    //     });
+    // });
+
+
     app.use(function(req, res) {
         let err = new Error(loggerConfig.RESOURCE_NOT_FOUND);
         err.status = 404;
@@ -78,6 +100,7 @@ function setupRestRoutes(app) {
             error: err.message
         });
     });
+
     return app;
 }
 //  Use application middlewares
