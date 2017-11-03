@@ -4,43 +4,43 @@
     <div class="row">
       <!--First column-->
       <div class="col-md-3 offset-md-1">
-        <h5 class="title"> About Us</h5>
-        <p class="aboutUs">We're immensely proud of the unique products that our developers have created to help coders practice coding and easily pushing on git on a single click.</p>
+        <h5 class="title">{{config.footer.title}}</h5>
+        <p class="aboutUs">{{config.footer.about}}</p>
       </div>
       <!--/.First column-->
       <hr class="hidden-md-up">
-      <!--Second column-->
+      <!--Second column for navigation-->
       <div class="col-md-2 offset-md-1">
-        <h5 class="title">Navigation</h5>
+        <h5 class="title">{{config.footer.navigation}}</h5>
         <ul class="navigation">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#">{{config.footer.home}}</a></li>
+          <li><a href="#">{{config.footer.services}}</a></li>
+          <li><a href="#">{{config.footer.link}}</a></li>
+          <li><a href="#">{{config.footer.contact}}</a></li>
         </ul>
       </div>
       <!--/.Second column-->
       <hr class="hidden-md-up">
-      <!--Third column-->
+      <!--Third column for Features-->
       <div class="col-md-2">
-        <h5 class="title">Features</h5>
+        <h5 class="title">{{config.footer.features}}</h5>
         <ul class="features">
-          <li><a href="#">Code Editor</a></li>
-          <li><a href="#">Terminal</a></li>
-          <li><a href="#">Forums</a></li>
-          <li><a href="#">Connections</a></li>
+          <li><a href="#">{{config.footer.editor}}</a></li>
+          <li><a href="#">{{config.footer.terminal}}</a></li>
+          <li><a href="#">{{config.footer.forums}}</a></li>
+          <li><a href="#">{{config.footer.connections}}</a></li>
         </ul>
       </div>
       <!--/.Third column-->
       <hr class="hidden-md-up">
-      <!--Fourth column-->
+      <!--Fourth column for developers-->
       <div class="col-md-2">
-        <h5 class="title">Developers</h5>
+        <h5 class="title">{{config.footer.developers}}</h5>
         <ul class="developers">
-          <li><a href="#">Environment</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">SignUp</a></li>
-          <li><a href="#">For Schools</a></li>
+          <li><a href="#">{{config.footer.environment}}</a></li>
+          <li><a href="#">{{config.footer.faq}}</a></li>
+          <li><a href="#">{{config.footer.signup}}</a></li>
+          <li><a href="#">{{config.footer.schools}}</a></li>
         </ul>
       </div>
       <!--/.Fourth column-->
@@ -50,6 +50,7 @@
   <hr>
   <!--/.Call to action-->
   <hr>
+  <!--Social buttons-->
   <div align="center" class="socialbtns">
     <ul class="noStyle">
       <li><a href="#" class="fa fa-lg fa-facebook"></a></li>
@@ -66,7 +67,7 @@
   <!--Copyright-->
   <div class="footer-copyright">
     <div class="container-fluid">
-      © 2017 Copyright: <a href="https://www.MDBootstrap.com"> codeEditor.com</a>
+      {{config.footer.copyright}} <a href="https://www.MDBootstrap.com"> {{config.footer.website}}</a>
     </div>
   </div>
   <!--/.Copyright-->
