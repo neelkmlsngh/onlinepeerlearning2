@@ -1,228 +1,47 @@
-<html lang="en">
-<!--head tag-->
-
-<head>
-  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-  <!--Plugin Css-->
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-</head>
-<!--ending of head tag-->
-<!--starting of body tag-->
-
-<body class="fixed-nav bg-dark" id="page-top">
-  <!--nav bar-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="#">Online Code Editor</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <!--starting div tag for Repository-->
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-        <li class="nav-item active" data-toggle="tooltip" data-placement="right" title="Repository List">
-          <a class="nav-link collapse" data-toggle="collapses" data-parent="#exampleAccordion">
-
-              <i class="fa fa-fw fa-dashboard"></i>
-
-              <span class="nav-link-text">Repo
-
-               </span>
-
-            </a>
-          <div *ngFor="let repo of githubUser" class="dropdown">
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a *ngFor="let files of data" class="list-group-item list-group-item-action" (click)="showFile(selectedValue, files.name)">
-                <ul class="sidenav-third-level ">
-                  <li>
-                    <a>{{files.name}}</a>
-                  </li>
-                </ul>
-              </a>
-            </div>
-          </div>
-          <div class="list-group">
-            <select class="selectpicker" data-style="btn-primary" name="carlist" form="carform" [(ngModel)]="selectedValue" (click)="reposearch(selectedValue)">
-              <option *ngFor="let repo of githubUser">{{repo.name}}</option>
-            </select>
-            <a *ngFor="let files of data" class="list-group-item list-group-item-action" (click)="showFile(selectedValue, files.name)">
-              <ul class="sidenav-third-level ">
-                <li>
-                  <a>{{files.name}}</a>
-                </li>
-              </ul>
-            </a>
-          </div>
-        </li>
-      </ul>
-      <ul class="navbar-nav sidenav-toggler">
-        <li class="nav-item">
-          <a class="nav-link text-center" id="sidenavToggler">
-
-              <i class="fa fa-fw fa-angle-left"></i>
-
-            </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-5">
-        <li class="nav-item">
-          <a class="nav-link">
-
-              <i class="fa fa-forumbee"></i>
-
-             Forums</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)=logout()>
-
-              <i class="fa fa-fw fa-sign-out"></i>
-
-             Logout</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/profile'">
-
-              <i class="fa fa-fw fa-user-circle-o"></i>
-
-             Profile</a>
-        </li>
-      </ul>
-    </div>
-    <!--endingting div tag for Repository-->
-  </nav>
-  <!--nav bar end-->
-  <div class="content-wrapper">
-    <div class="container-fluid">
-      <!-- request status -->
-      <div class="card mb-3">
-        <div class="row">
-          <div class="card-body acolor text-left">
-            <div class="dropdown">
-               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{mod}}
-               </button>
-
-                  <!--dropdown of modes(html/javascript)-->
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" (click)="mode('html')">Html/Css</a>
-                <a class="dropdown-item" (click)="mode('javascript')">Javascript</a>
-              </div>
-                  <!--screen share button-->
-            
-
-              <!--screen share button-->
-              <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn  btn-secondary" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="Add a friend" (click)="openModal(template)"> screen sharing</button>
-
-               <button  type="button" class=" btn  btn-secondary" [routerLink]="'/snippet'"> Custom snippet</button>
-
-              <div id="togetherjs-dock-participants"></div>
-              <template #template>
-                <div class="modal-header">
-                  <h4 class="modal-title pull-left">Modal</h4>
-                  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  Copy this URL and send to your friend
-                  <div *ngIf="link!==''">
-                    <p><a target="_blank" [attr.href]="link" (click)="redirect()">{{link}}</a></p>
-                  </div>
-                </div>
-              </template>
-           </div>
-          </div>
-          <div class="card-body acolor text-left ">
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Repository Modification
-              </button>
-              <!--dropdown of repo modification-->
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <!-- link to create new repository -->
-                <a class="dropdown-item" (click)="openModal(templates)">Create</a>
-                <a class="dropdown-item">Update</a>
-                <a class="dropdown-item">Delete</a>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- modal for enter repository name and description for repository -->
-      <template #templates>
-        <div class="modal-header">
-          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <h6>Enter Repository Name</h6>
-        <input type="text" name="" #repoName (keyup)="onKey($event)">
-        <h6>Description</h6>
-        <input type="text" name="" #description (keyup)="onKey($event)">
-        <input type="button" class="btn btn-sm btn-success submit" name="" value="create" (click)="createRepo(repoName.value,description.value)">
-      </template>
-      <!-- code editor selected based on mode -->
-      <div *ngIf="mod=='javascript'">
-        <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-editor>
-      </div>
-      <div *ngIf="mod=='html'">
-        <app-webeditor></app-webeditor>
-      </div>
-    </div>
-  </div>
-  <app-chat-home></app-chat-home>
-  <!-- footer -->
- <!--  <footer class="sticky-footer">
-   <div class="container">
-     <div class="text-center">
-       <small>© 2017 Copyright: <a href="https://www.MDBootstrap.com"> codeEditor.com</a></small>
-     </div>
-   </div>
- </footer> -->
-  <!-- footer end -->
-</body>
-<!-- ending of body tag -->
-
-</html>
-<!-- <div class="container-fluid">
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <app-navbar></app-navb
-ar>
+<app-navbar></app-navbar>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-3">Profile Picture
-    </div>
-    <div class="col-md-9">Welcome Message
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8">
+  <div class="row mt-5 py-3">
+    <div class="col-md-12">
       <div class="row">
-        <div class="col-md-4">
-          <div class="row mt-3">
-            <div class="col-md-12">
-              select language
-              <select name="languages2" (change)="mode($event)">
-                <option [value]='lng' *ngFor="let lng of languages">{{lng}}</option>
-              </select>
-            </div>
-          </div>
-          <app-repo-sidebar (content)="getcontent($event)"></app-repo-sidebar>
-        </div>
-        <div class="col-md-8">
-          <div class="row mt-3">
-            <div class="col-md-12 mt-3">
-            <div *ngIf="mod=='JAVASCRIPT'"><app-editor></app-editor></div>
-           <div *ngIf="mod=='HTML/CSS'"><app-webeditor></app-webeditor></div>
-        
-            </div>
-          </div>
+        <div class="col-md-2">
+
+<!-- first column -->
+<div class="row mt-3">
+  <div class="col-md-12">
+  <!-- card to make block for repo sidebar -->
+    <div class="card">
+    <h5 class="card-header">Modes</h5>
+      <div class="card-block">
+        <div class="list-group">
+          <select name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="changeMode()">
+            <option value="html">Html/Css</option>
+             <option value="javascript">Javascript</option>
+          </select>
         </div>
       </div>
     </div>
-    <app-chat-sidebar></app-chat-sidebar>
+  </div>
+  <!-- card end -->
+</div>
+
+        <app-repo-sidebar (content)=getcontent($event)></app-repo-sidebar>
+        </div>
+        <div *ngIf="mode=='javascript'" class="col-md-10">
+        <app-editor [content]="content"></app-editor>
+        </div>
+        <div *ngIf="mode=='html'" class="col-md-10">
+        <app-webeditor [content]="content"></app-webeditor>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+    <app-footer></app-footer>
+    </div>
   </div>
 </div>
- -->
