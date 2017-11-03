@@ -45,13 +45,12 @@
       <li *ngFor="let user of chatListUsers">
         {{ user.userName}}
         <button class="btn btn-outline-primary btn-lg callimg mr-6 close" data-toggle="popover" title="Chat" (click)="selectedUser(user)" [class.selected-user]="isUserSelected(user._id)">Chat
-          <i class="fa fa-envelope" aria-hidden="true"></i>
+        <i class="fa fa-envelope" aria-hidden="true"></i>
         </button>
       </li>
     </ul>
   </div>
 </div>
-
 <span class="done">
       <button mat-fab class="button-collapse sidebar" (click)="removesb()">
      <mat-icon>check circle</mat-icon>
@@ -59,7 +58,7 @@
       
     </span>
 <div class="nav-side-menu side">
-  <div class="brand">Online Users</div>
+  <div class="brand">{{config.chat.TITLE}}</div>
   <div class="menu-list">
     <ul class="n">
       <li *ngFor="let user of chatListUsers">
@@ -71,10 +70,11 @@
     </ul>
   </div>
 </div>
-
+<!--use template for audio call component -->
 <template #template1>
   <app-audio-chat></app-audio-chat>
 </template>
+<!--use template for video call component -->
 <template #template2>
   <app-video-chat></app-video-chat>
 </template>

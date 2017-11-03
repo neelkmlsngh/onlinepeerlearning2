@@ -5,12 +5,15 @@ export const config: any = {
     "HTML/CSS"
   ],
 
+
   /*  connect: {
          "url": "https://192.168.252.152:",
          "port": "8080"
      }*/
 
-  connect: {
+  connect:
+  {
+
     "url4": "https://localhost:8080/api/login",
     "url2": "https://localhost:",
     "url": "https://localhost:",
@@ -50,5 +53,11 @@ export const config: any = {
     "profile": "Profile",
     "forums": "Forums",
     "logout": "Logout"
+  },
+  peer:{
+  "host":"192.168.252.33",
+  "port":"8081",
+  "path":"/peerjs"
+
   }
 };
