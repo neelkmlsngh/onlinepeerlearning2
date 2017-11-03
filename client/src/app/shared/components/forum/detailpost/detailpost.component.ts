@@ -12,9 +12,14 @@ import { ForumService } from '../../../services/forum.service';
   templateUrl: './detailpost.component.html',
   styleUrls: ['./detailpost.component.css']
 })
+
 //forum questions details class
 export class DetailpostComponent implements OnInit, AfterViewInit {
-  constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {}
+
+  constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {
+
+  }
+
   name: string;
   editor: string;
   obj: any = {};

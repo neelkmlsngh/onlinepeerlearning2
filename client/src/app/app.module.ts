@@ -15,6 +15,8 @@ import {MatIconModule} from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import {MatInputModule} from '@angular/material';
 import {MatRadioModule} from '@angular/material';
+import { TagInputModule } from 'ngx-chips';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
@@ -77,7 +79,7 @@ import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.
     AudioChatComponent,
     VideoChatComponent,
 
-  SnippetComponent,
+    SnippetComponent,
     AnswersComponent,
     ChatHomeComponent
 
@@ -95,6 +97,7 @@ import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.
     MatButtonModule,
     MatRadioModule,
     TruncateModule,
+    TagInputModule,
    
 
     AngularFontAwesomeModule,
