@@ -49,5 +49,11 @@ export const config: any = {
     "profile": "Profile",
     "forums": "Forums",
     "logout": "Logout"
+  },
+  peer:{
+  "host":"192.168.252.33",
+  "port":"8081",
+  "path":"/peerjs"
+
   }
 };
