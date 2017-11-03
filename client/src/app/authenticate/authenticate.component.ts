@@ -21,12 +21,15 @@ export class AuthenticateComponent implements OnInit {
 
     //call method  to find username of this userId
    this.authenticationservice.getUser(userId).subscribe(data => {
+   
       let userInfo={
         userId: userId,
         token: token,
-        userName: data.userName
+        userName: data.data.userName
       }
+
       this.authenticationservice.setUserInfo(userInfo);
+    
     }, error => console.log(error));
   }
 

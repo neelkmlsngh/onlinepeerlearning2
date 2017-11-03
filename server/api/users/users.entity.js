@@ -5,12 +5,12 @@ const mongoose = require('mongoose');
  */
 
 var UserSchema = new mongoose.Schema({
-    name: String,
+    name: {type:String},
     userId: { type: String, unique: true },
     updatedAt: { type: Date, default: Date.now },
-    avatarUrl: String,
-    publicRepos: String,
-    reposUrl: String,
+    avatarUrl: {type:String},
+    publicRepos: {type:String},
+    reposUrl: {type:String},
 
 });
 UserSchema.statics.findOrCreate = require("find-or-create");
