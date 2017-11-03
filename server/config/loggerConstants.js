@@ -7,5 +7,11 @@ module.exports = {
 	ALREADY_IN_USE : ' is already in use',
 	SERVER_RUNNING : 'Server running  on ',
 	INTERNAL_SERVER_ERROR : 'Internal server error',
-	RESOURCE_NOT_FOUND : 'Resource not found'
+	RESOURCE_NOT_FOUND : 'Resource not found',
+	GET_FORUM_QUESTION : 'fetching forum question successfully',
+	POST_FORUM_QUESTION : 'posting forum question successfully',
+	SEARCH_FORUM_QUESTION : 'search forum  question successfully',
+	ADD_ANSWER_ON_QUESTION : 'add answer to question succesfully',
+	
+
 }

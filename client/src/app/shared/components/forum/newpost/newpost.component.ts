@@ -18,10 +18,7 @@ export class NewpostComponent implements OnInit {
     codeSnippet:string;
     obj:any={};
 
-
-
  constructor(private forum:ForumService) { }
-
  
  ngOnInit() {
 

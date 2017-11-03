@@ -1,10 +1,9 @@
 const router = require('express').Router();
 const logger = require('../../services/app.logger');
-const usrCtrl = require('./forum.controller');
+const forumCtrl = require('./forum.controller');
 const appConfig = require('../../config').app;
-/*
- * Actual URI will be HTTP POST /users/
- */
+
+//post forum questions in a database
 router.post('/', function(req, res) {
     let forumData = req.body;
     logger.debug('User persistent started');
@@ -14,8 +13,8 @@ router.post('/', function(req, res) {
             throw new Error('Invalid inputs passed...!');
         }
 
-        usrCtrl.addPost(forumData, 'appConstant.INSERT_TYPE.PROFILES').then((successResult) => {
-            logger.info('Get successResult successfully and return back');
+        forumCtrl.addPost(forumData).then((successResult) => {
+            logger.info('post forum question successfully');
             return res.status(201).send(successResult);
         }, (errResult) => {
             logger.error(errResult);
@@ -28,30 +27,29 @@ router.post('/', function(req, res) {
     }
 });
 
-
-
+//get forum question from database
 router.get('/', function(req, res) {
     logger.debug('User persistent started');
     try {
-        usrCtrl.getPost('appConstant.INSERT_TYPE.PROFILES').then((successResult) => {
+        forumCtrl.getPost().then((successResult) => {
             logger.info('Get successResult successfully and return back');
-            return res.status(201).send(successResult);
+            return res.status(201).send({ success: true, message: Get successResult successfully , data: successResult});
         }, (errResult) => {
             logger.error(errResult);
-            return res.status(500).send({ error: errResult });
+            return res.status(500).send({ success: true, message: error, data: errResult });
         });
     } catch (err) {
         logger.fatal('Exception occurred' + err);
-        res.send({ error: err });
-        return;
+        return res.status(500).send({ success: false, message: con.messages.lostcard_get, data: err });
     }
 });
 
+//search forum questions from database
 router.get('/:searchTerm', function(req, res) {
     let getValue = req.params.searchTerm;
     logger.debug('User persistent started');
     try {
-        usrCtrl.getSearch(getValue, 'appConstant.INSERT_TYPE.PROFILES').then((successResult) => {
+        forumCtrl.getSearch(getValue).then((successResult) => {
             logger.info('Get successResult successfully and return back');
             return res.status(201).send(successResult);
         }, (errResult) => {
@@ -65,12 +63,12 @@ router.get('/:searchTerm', function(req, res) {
     }
 });
 
-
+//get the question detail from database
 router.get('/getQuestionDetail/:question', function(req, res) {
     let getValue = req.params.question;
     logger.debug('User persistent started');
     try {
-        usrCtrl.getSearch(getValue, 'appConstant.INSERT_TYPE.PROFILES').then((successResult) => {
+        forumCtrl.getSearch(getValue).then((successResult) => {
             logger.info('Get successResult successfully and return back');
             return res.status(201).send(successResult);
         }, (errResult) => {
@@ -84,14 +82,13 @@ router.get('/getQuestionDetail/:question', function(req, res) {
     }
 });
 
-
-
+//add answers to paticular forum question
 router.put('/update/:question', (req, res) => {
     let getValue = req.params.question;
     let forumUpdate = req.body;
     logger.debug('User persistent started');
     try {
-        usrCtrl.saveAnswer(getValue, forumUpdate, 'appConstant.INSERT_TYPE.PROFILES').then((successResult) => {
+        forumCtrl.saveAnswer(getValue, forumUpdate).then((successResult) => {
             logger.info('Get successResult successfully and return back');
             return res.status(201).send(successResult);
         }, (errResult) => {
