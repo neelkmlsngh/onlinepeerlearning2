@@ -7,5 +7,6 @@ module.exports = {
 	ALREADY_IN_USE : ' is already in use',
 	SERVER_RUNNING : 'Server running  on ',
 	INTERNAL_SERVER_ERROR : 'Internal server error',
-	RESOURCE_NOT_FOUND : 'Resource not found'
+	RESOURCE_NOT_FOUND : 'Resource not found',
+	EXCEPTION_NOT_FOUND:'Exception occurred'
 }
