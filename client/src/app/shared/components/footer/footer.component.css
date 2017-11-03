@@ -5,6 +5,9 @@ a:hover {
   text-decoration: none;
 }
 
+/**
+ * Social buttons margin 
+ */
 .socialbtns,
 .socialbtns ul,
 .socialbtns li {
@@ -12,11 +15,17 @@ a:hover {
   padding: 5px;
 }
 
+/**
+ * Social buttons listing style
+ */
 .socialbtns li {
   list-style: none outside none;
   display: inline-block;
 }
 
+/**
+ * Social buttons fa class  style
+ */
 .socialbtns .fa {
   color: #FFF;
   background-color: #000;
@@ -37,6 +46,9 @@ a:hover {
   -o-transform: rotate(-360deg);
 }
 
+/**
+ * style of Social buttons while hovering
+ */
 .socialbtns .fa:hover {
   transition: all ease 0.3s;
   -moz-transition: all ease 0.3s;
@@ -48,6 +60,9 @@ a:hover {
   -o-transform: rotate(360deg);
 }
 
+/**
+ * font size of elements present in footer
+ */
 .aboutUs,
 .navigation,
 .features,
@@ -66,10 +81,16 @@ a:hover {
   text-align: justify;
 }
 
+/**
+ * margin of the footer
+ */
 .footer {
   margin-top: 2rem;
 }
 
+/**
+ * background colour and font size of footer
+ */
 footer {
   background: #333;
   color: #eee;
@@ -88,6 +109,9 @@ ul.noStyle {
   line-height: 30px;
 }
 
+/**
+ * font size of matter present in about us
+ */
 .aboutUs p {
   font-size: 12px;
 }

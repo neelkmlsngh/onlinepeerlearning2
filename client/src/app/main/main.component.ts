@@ -68,7 +68,7 @@ export class MainComponent implements OnInit {
 
 
   reposearch(selected) {
-
+    this.reponame=selected;
     this.gitService.getTree(selected)
       .subscribe(data => {
         this.data = data
@@ -83,7 +83,6 @@ export class MainComponent implements OnInit {
         data => {
           this.data = data
           this.url = this.url + filename + "/"
-
         }, err => {
           this.show(reponame, this.url + filename)
           this.url = "";
@@ -96,9 +95,9 @@ export class MainComponent implements OnInit {
 
     this.reponame = reponame;
     this.filenamed = filename;
+
     this.gitService.getFile(reponame, filename)
       .subscribe(data => {
-
         this.fileData = data;
         this.text = this.fileData._body;
         console.log(this.text)
@@ -109,7 +108,6 @@ export class MainComponent implements OnInit {
   }
 
   mode(event) {
-
     this.mod = event;
   }
 
@@ -136,26 +134,30 @@ export class MainComponent implements OnInit {
         })
       }
 
-      this.router.navigate(["/"]);
-      localStorage.removeItem('currentUser');
-    })
-  }
-  onKey(event) {
-    this.value += event
-  }
+    this.router.navigate(["/"]);
+     localStorage.removeItem('currentUser');
+})
+}
 
+//method to enter new repository name
+onKey(event){
+this.value+=event
+}
 
-  createRepo(name, desc) {
-    let repoName = {
-      "name": name,
-      "description": desc,
-      "homepage": "https://github.com",
-      "private": false,
-      "has_issues": false,
-      "has_projects": false,
-      "has_wiki": false
-    }
-    this.gitService.createRepos(repoName)
-      .subscribe(data => {})
-  }
+//methd for creating new repository
+createRepo(name,desc){
+   let repoName={
+  "name": name,
+  "description": desc,
+  "homepage": "https://github.com",
+  "private": false,
+  "has_issues": false,
+  "has_projects": false,
+  "has_wiki": false
+}
+   this.gitService.createRepos(repoName)
+   .subscribe(data =>{
+   })
+ }
+
 }
