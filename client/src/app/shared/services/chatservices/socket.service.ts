@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { config } from '../../../config/config';
+import { config } from '../../config/config';
 import * as io from 'socket.io-client';
 
 @Injectable()

@@ -9,6 +9,8 @@ import { config } from './../../config/config';
  /*FooterComponent class*/
 export class FooterComponent implements OnInit {
 
+	config = config
+
   constructor() { }
 
   ngOnInit() {
