@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormBuilder, Validators, NgForm } from '@angula
 import { Headers, RequestOptions } from '@angular/http';
 
 import { ProfileService } from '../../services/profile.service';
+import {config} from '../../config/profile';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -14,6 +15,7 @@ export class ProfileComponent implements OnInit {
   imgPath:string='';
   formData: FormData;
   options: RequestOptions;
+  config=config;
 
   constructor(@Inject(FormBuilder) private fb: FormBuilder,private profileService:ProfileService) {
     // initialising user details to be displayed

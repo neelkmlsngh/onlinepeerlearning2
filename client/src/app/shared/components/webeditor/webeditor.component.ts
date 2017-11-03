@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { AceEditorDirective } from 'ng2-ace-editor'
 import { AceEditorModule } from 'ng2-ace-editor'
 import * as JSZip from 'jszip'
-
+import { ForumService } from '../../../shared/services/forum.service';
+import { webEditorConfig } from '../../config/webEditor.config';
 
 @Component({
   selector: 'app-webeditor',
@@ -11,8 +12,14 @@ import * as JSZip from 'jszip'
   styleUrls: ['./webeditor.component.css']
 })
 export class WebeditorComponent implements OnInit {
-  htmlValue: any = "<h1>Hello World</h1>";
-  cssValue: any = "body{color:red}";
+
+  constructor(private snippet: ForumService) {}
+  config = webEditorConfig;
+
+  @Input() content: any;
+
+  htmlValue: any = this.config.webEditor.HTMLTEMP;
+  cssValue: any = this.config.webEditor.CSSTEMP;
   jsValue: any = "";
   code: any;
   isValid: boolean = true;
@@ -23,80 +30,42 @@ export class WebeditorComponent implements OnInit {
   textcontent: any
   myUrl: any;
   data: any;
+  html: any;
+  css: any
   caretPos: any;
   caretText: any;
   obj: any;
-  comments: any = "\n<!-- Enter Your Comment -->";
-  tabels: string = "\n<table>\n" +
-    "<tr>\n\t" +
-    "<th>Heading</th>\n\t" +
-    "<th>Heading</th>\n" +
-    "</tr>\n" +
-    "<tr>\n\t" +
-    "<td>Value</td>\n\t" +
-    "<td>Value</td>\n" +
-    "</tr>\n" +
-    "</table>";
+  comments: any ;
+  tabels: string ;
+  unordered: any ;
+  forms: any ;
+  includeJs: any; 
+  includeCss: any; 
 
-  unordered: any = '\n<ul>\n\t' +
-    '<li>Item 1</li>\n\t' +
-    '<li>Item 2</li>\n\t' +
-    '<li>Item 3</li>\n' +
-    '</ul>';
-
-
-  forms: any = '\n<form action="" method="get">\n\t' +
-    '<label for="first-name">First name :</label>\n\t' +
-    '<input id="first-name" type="text" name="firstname"><br><br>\n\t' +
-    '<label for="last-name">Last name :</label>\n\t' +
-    '<input id="last-name" type="text" name="lastname"><br>\n\t' +
-    '<input type="submit" value="Submit">\n' +
-    '</form>';
-
-
-  includeJs: any = '\n<script src="script.js"></script>';
-  includeCss: any = '\n<link href="style.css" rel="stylesheet">';
-
-/*snippet for css*/
-  commentsCss:any ="\n/* Add your comment here */";
-  elementSelector:any ="\np {"+
-     "\nfont-size: 20px;"+
-      "\n}";
-  classSelector:any= "\n.className {"+
-    "\nbackground-color: green;"+
-    "\n}";
-  idSelector:any= "\n#idName {"+
-    "\nbackground-color: green;"+
-    "\n}";
-  mediaQueries:any ="\n@media screen and (max-width: 320px) {"+
-  "\n/* Rules when screen is up to 320px wide */"+
-    "\n}"+
-
-    "\n@media screen and (min-width: 321px) and (max-width: 768px) {"+
-      "\n/* Rules when screen is between 321px and 768px wide */"+
-    "\n}"+
-
-    "\n@media screen and (min-width: 769px) {"+
-     "\n/* Rules when screen is wider than 768px */"+
-    "\n}";
+  /*snippet for css*/
+  commentsCss: any; 
+  elementSelector: any; 
+  classSelector: any ;
+  idSelector: any ;
+  mediaQueries: any; 
 
   ngOnInit() {
     this.onChange(this.code)
 
+    this.snippet.getSnippet()
+      .subscribe(res => {
+        this.html = res.filter(ele => ele.language === 'html');
+        this.css = res.filter(ele => ele.language === 'css');
+
+      })
   }
 
-  base_tpl: string =
-    "<!doctype html>\n" +
-    "<html>\n\t" +
-    "<head>\n\t\t" +
-    "<meta charset=\"utf-8\">\n\t\t" +
-    "<title>Test</title>\n\n\t\t\n\t" +
-    "</head>\n\t" +
-    "<body>\n\t\n\t" +
-    "</body>\n" +
-    "<script>\n\t\n\t" +
-    "</script>\n"
-  "</html>";
+  show(code) {
+    this.htmlValue = code;
+    this.cssValue = code;
+  }
+
+  base_tpl: string = this.config.webEditor.OUTPUTTEMP;    
 
   comment() {
     this.htmlValue += " " + this.comments;
@@ -121,15 +90,15 @@ export class WebeditorComponent implements OnInit {
 
 
   /*css snippet methods*/
-  commentCss(){
-    this.cssValue += " "+ this.commentsCss;
+  commentCss() {
+    this.cssValue += " " + this.commentsCss;
   }
 
-  elementsSelector(){
-    this.cssValue +=" "+ this.elementSelector;
+  elementsSelector() {
+    this.cssValue += " " + this.elementSelector;
   }
 
-  class(){
+  class() {
     this.cssValue += " " + this.classSelector;
   }
 
@@ -137,7 +106,7 @@ export class WebeditorComponent implements OnInit {
     this.cssValue += " " + this.idSelector;
   }
 
-  mediaQuery(){
+  mediaQuery() {
     this.cssValue += " " + this.mediaQueries;
   }
 
@@ -268,35 +237,26 @@ export class WebeditorComponent implements OnInit {
       });
   }
 
-  /*  `
-  <h2>Cursor Position : {{caretPos}}</h2>
-  <div>
-    <textarea rows="4" #myTextArea (click)="getCaretPos(myTextArea)" (keyup)="getCaretPos(myTextArea)" cols="40" >{{caretText}}</textarea>
-  </div>
-  <div>
-  <button (click)="add()">click</button>
-  `
-*/
   getCaretPos(oField) {
     if (oField.selectionStart || oField.selectionStart == '0') {
-       this.caretPos = oField.selectionStart;
-       this.obj = oField;
+      this.caretPos = oField.selectionStart;
+      this.obj = oField;
     }
   }
 
   add() {
-      this.insertAtCursor(this.obj, this.caretText)
+    this.insertAtCursor(this.obj, this.caretText)
   }
 
   insertAtCursor(myField, myValue) {
-  if (myField.selectionStart || myField.selectionStart == '0') {
-        var startPos = myField.selectionStart;
-        var endPos = myField.selectionEnd;
-        myField.value = myField.value.substring(0, startPos)
-            + myValue
-            + myField.value.substring(endPos, myField.value.length);
+    if (myField.selectionStart || myField.selectionStart == '0') {
+      var startPos = myField.selectionStart;
+      var endPos = myField.selectionEnd;
+      myField.value = myField.value.substring(0, startPos) +
+        myValue +
+        myField.value.substring(endPos, myField.value.length);
     } else {
-        myField.value += myValue;
+      myField.value += myValue;
     }
-}
+  }
 }
