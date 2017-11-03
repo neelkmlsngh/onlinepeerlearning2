@@ -5,13 +5,12 @@ export const config: any = {
     "HTML/CSS"
   ],
 
-<<<<<<< HEAD
-=======
+
 /*  connect: {
        "url": "https://192.168.252.152:",
        "port": "8080"
    }*/
->>>>>>> 8bc85f2ea557452119e3cb8c90808ee7ca48a2b3
+
   connect:
   {
     "url4": "https://localhost:8080/api/login",

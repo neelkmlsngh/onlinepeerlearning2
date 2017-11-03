@@ -1,3 +1,5 @@
+//imports required from angular
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './errorpage.component.html',
   styleUrls: ['./errorpage.component.css']
 })
+
+//error component class starts
+
 export class ErrorpageComponent implements OnInit {
 
+	//constructor
+	
   constructor() { }
+
+  //ngOnInit
 
   ngOnInit() {
   }

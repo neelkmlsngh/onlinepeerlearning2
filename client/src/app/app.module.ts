@@ -35,7 +35,7 @@ import { DetailpostComponent } from './shared/components/forum/detailpost/detail
 import { NewpostComponent } from './shared/components/forum/newpost/newpost.component';
 import {  ForumService } from './shared/services/forum.service';
 import { CKEditorModule } from 'ng2-ckeditor';
-import {LoginService} from './home/service/login.service'
+
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
@@ -203,7 +203,7 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
     },
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService],
+  providers: [GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService],
 
   bootstrap: [AppComponent]
 })
