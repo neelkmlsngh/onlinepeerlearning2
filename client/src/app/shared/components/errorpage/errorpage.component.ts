@@ -1,6 +1,7 @@
 //imports required from angular
 
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { errorConfig } from '../../config/errorConfig'
 
@@ -18,7 +19,7 @@ export class ErrorpageComponent implements OnInit {
 
 	//constructor
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   //ngOnInit
 
