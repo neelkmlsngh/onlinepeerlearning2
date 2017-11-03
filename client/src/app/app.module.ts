@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import 'hammerjs';
 import {MatTabsModule} from '@angular/material';
-import{MatTabGroup} from '@angular/material';
+import {MatTabGroup} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
 import { ModalModule } from 'ngx-bootstrap';
@@ -15,6 +15,8 @@ import {MatIconModule} from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import {MatInputModule} from '@angular/material';
 import {MatRadioModule} from '@angular/material';
+import { TagInputModule } from 'ngx-chips';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
@@ -35,7 +37,7 @@ import { DetailpostComponent } from './shared/components/forum/detailpost/detail
 import { NewpostComponent } from './shared/components/forum/newpost/newpost.component';
 import {  ForumService } from './shared/services/forum.service';
 import { CKEditorModule } from 'ng2-ckeditor';
-import {LoginService} from './home/service/login.service'
+
 import { WebeditorComponent } from './shared/components/webeditor/webeditor.component';
 import { ProfileComponent } from './shared/components/profile/profile.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
@@ -54,7 +56,8 @@ import { SnippetComponent } from './shared/components/snippet/snippet.component'
 import { CoderunnerService } from './shared/services/coderunner.service';
 import { AnswersComponent } from './shared/components/forum/answers/answers.component';
 import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
-import { ChatComponent } from './shared/components/chat/chat.component';
+
+import { ErrorpageComponent } from './shared/components/errorpage/errorpage.component';
 
 
 @NgModule({
@@ -79,10 +82,13 @@ import { ChatComponent } from './shared/components/chat/chat.component';
     AudioChatComponent,
     VideoChatComponent,
 
-  SnippetComponent,
+    SnippetComponent,
     AnswersComponent,
+
     ChatHomeComponent,
-    ChatComponent
+
+    ErrorpageComponent
+
 
   ],
   imports: [
@@ -98,6 +104,7 @@ import { ChatComponent } from './shared/components/chat/chat.component';
     MatButtonModule,
     MatRadioModule,
     TruncateModule,
+    TagInputModule,
    
 
     AngularFontAwesomeModule,
@@ -112,6 +119,10 @@ import { ChatComponent } from './shared/components/chat/chat.component';
     {
        path:'home',
        component:HomeComponent
+     },
+         {
+       path:'error',
+       component: ErrorpageComponent
      },
        {
        path:'snippet',
@@ -195,7 +206,7 @@ import { ChatComponent } from './shared/components/chat/chat.component';
     },
    ],  { useHash: true })
   ],
-  providers: [LoginService,GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService],
+  providers: [GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService],
 
   bootstrap: [AppComponent]
 })

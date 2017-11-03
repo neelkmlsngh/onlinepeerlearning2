@@ -17,8 +17,7 @@ const saveUserCredentials = function(userInfo, done) {
             logger.info("user not saved")
         } else {
             logger.info('saved successfully')
-            ProfileController.saveUserProfile(userInfo, done);
-            return done(err, user);
+           return done(err, user);
         }
     });
 };

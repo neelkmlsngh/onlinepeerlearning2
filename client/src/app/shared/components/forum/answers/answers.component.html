@@ -2,12 +2,12 @@
     <nav class="navbar navbar-expand-lg navbar-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button>TagInputModule
       <a class="navbar-brand text-white" href="">Knowledge Base</a>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link text-white" href="" routerLink="/questions">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link text-white" href="" routerLink="/questions">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="" routerLink="/questions">Questions</a>
@@ -32,7 +32,7 @@
         <div class="col-sm-2">
         </div>
         <div class="col-sm-8">
-          <div class="heading h4 mt-4">
+          <div class="heading h5 mt-4">
             All Questions
           </div>
           <hr>
@@ -92,19 +92,19 @@
                 <div class="codeSnippet">
                   {{result.codeSnippet}}
                 </div>
-                <div class="form-group col-sm border mt-2 py-3">
+               <!--  <div class="form-group col-sm border mt-2 py-3">
                   <label for="inputState" class="">Add comments</label>
                   <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="write description" name="problemDescription" [(ngModel)]="problemDescription"></textarea>
-                </div>
+                </div> -->
                 <div class="col-sm-6">
                 
                 </div>
                 <div class="col-sm-6">
                 <div class="date">
-                asked on {{result.date}}
+                asked on 2/11/2011
                 </div>
-                <div class="username">
-                 {{result.username}}
+                <div class="username text-right">
+                   <span><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></span>posted by {{result.username}}
                 </div>
                 </div>
               </div>

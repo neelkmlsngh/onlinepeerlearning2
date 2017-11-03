@@ -1,12 +1,11 @@
-const formModel = require('./forum.entity');
+const forumModel = require('./forum.entity');
 const logger = require('../../services/app.logger');
 const appConstant = require('../../config').app;
 
-//Save new student's details
+//Post forum question function
 const addPost = function(formdata) {
     return new Promise((resolve, reject) => {
-        console.log(formdata)
-        formModel.create(formdata, (err, data) => {
+        forumModel.create(formdata, (err, data) => {
             if (err) {
                 logger.error('Internal error' + err);
                 reject(err);
@@ -19,10 +18,10 @@ const addPost = function(formdata) {
 
 };
 
+//get forum question function
 const getPost = function() {
     return new Promise((resolve, reject) => {
-
-        formModel.find({}, (err, data) => {
+        forumModel.find({}, (err, data) => {
             if (err) {
                 logger.error('Internal error' + err);
                 reject(err);
@@ -35,10 +34,10 @@ const getPost = function() {
 
 };
 
+//post answer by question
 const getPostByQuestion = function(getValue) {
     return new Promise((resolve, reject) => {
-
-        formModel.findOne({ getValue }, (err, data) => {
+        forumModel.findOne({ getValue }, (err, data) => {
             if (err) {
                 logger.error('Internal error' + err);
                 reject(err);
@@ -51,12 +50,10 @@ const getPostByQuestion = function(getValue) {
 
 };
 
-
-
+//search question of function
 const getSearch = function(getValue) {
     return new Promise((resolve, reject) => {
-
-        formModel.find({
+        forumModel.find({
             $or: [{
                     "questionTitle": {
                         "$regex": getValue,
@@ -85,13 +82,12 @@ const getSearch = function(getValue) {
             }
         })
     })
-
 };
 
+//save answer of question
 const saveAnswer = function(getValue, updateValue) {
     return new Promise((resolve, reject) => {
-
-        formModel.update({
+        forumModel.update({
             'questionTitle': getValue
         }, {
             $push: { 'answers': updateValue }
@@ -114,5 +110,4 @@ module.exports = {
     getSearch: getSearch,
     getPostByQuestion: getPostByQuestion,
     saveAnswer: saveAnswer
-
 };
