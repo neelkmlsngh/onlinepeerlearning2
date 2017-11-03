@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ForumService } from '../../../shared/services/forum.service';
+import { SnippetService } from '../../../shared/services/snippet.service';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { ForumService } from '../../../shared/services/forum.service';
 
 export class SnippetComponent implements OnInit {
 
-  constructor(private snippet: ForumService) { }
+  constructor(private snippet: SnippetService) { }
 
     title: any;
     language ="Select Language";

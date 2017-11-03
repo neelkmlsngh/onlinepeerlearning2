@@ -3,10 +3,9 @@ const logger = require('../../services/app.logger');
 const appConstant = require('../../config').app;
 
 //Save new snippet details
-const addSnippet = function(formdata) {
+const addSnippet = function(data) {
     return new Promise((resolve, reject) => {
-        console.log(formdata)
-        snippetModel.create(formdata, (err, data) => {
+        snippetModel.create(data, (err, data) => {
             if (err) {
                 logger.error('Internal error' + err);
                 reject(err);
