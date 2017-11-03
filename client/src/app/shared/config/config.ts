@@ -6,6 +6,7 @@ export const config: any = {
   ],
 
 
+
 /*  connect: {
        "url": "https://192.168.252.152:",
        "port": "8080"
@@ -13,6 +14,7 @@ export const config: any = {
 
   connect:
   {
+
     "url4": "https://localhost:8080/api/login",
     "url2": "https://localhost:",
     "url": "https://localhost:",

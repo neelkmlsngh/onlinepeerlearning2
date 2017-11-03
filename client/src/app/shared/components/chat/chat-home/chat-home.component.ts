@@ -4,8 +4,9 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
 import { AuthenticationService } from './../../../services/authentication.service';
+import {chatConfig} from '../../../config/chatConfig';
 
-/*importing services starts*/
+/*importing services*/
 import { SocketService } from './../../../services/chatservices/socket.service';
 import { HttpService } from './../../../services/chatservices/http.service';
 import { ChatService } from './../../../services/chatservices/chat.service';
@@ -24,6 +25,7 @@ export class ChatHomeComponent implements OnInit {
   selectedUserId = null;
   selectedSocketId = null;
   selectedUserName = null;
+  config=chatConfig;
 
   //chat and message related variables starts
   userId = null;
@@ -185,8 +187,6 @@ export class ChatHomeComponent implements OnInit {
             fromSocketId: this.socketId
           }
           this.messages.push(data);
-
-          // alert(JSON.stringify(this.messages[0]))
           setTimeout(() => {
             document.querySelector(`.message-thread`).scrollTop = document.querySelector(`.message-thread`).scrollHeight;
           }, 100);

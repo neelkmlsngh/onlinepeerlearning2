@@ -48,7 +48,7 @@ console.log('token',token)
      localStorage.removeItem('currentUser');
      return this.http
       .put(config.connect.url + config.connect.port +'/logout',user)
-      .map(res => res, error => error.json());
+      .map(res => res.json(), error => error.json());
    
 
     
