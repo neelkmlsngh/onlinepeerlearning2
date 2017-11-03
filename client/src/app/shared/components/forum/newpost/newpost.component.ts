@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ForumService } from '../../../services/forum.service';
 import swal from 'sweetalert2';
+import { config } from './../../../config/forum';
 
 @Component({
   selector: 'app-newpost',
@@ -10,7 +11,7 @@ import swal from 'sweetalert2';
 })
 
 export class NewpostComponent implements OnInit, AfterViewInit{
-
+    config=config;
     ckeditorContent:any;
     date:any;
     questionTitle:string;
@@ -32,20 +33,20 @@ export class NewpostComponent implements OnInit, AfterViewInit{
   }
   //method to call problemDescriptionConfigEditor
   ngAfterViewInit() {
-    var config = {
+    var configuration = {
       extraPlugins: 'codesnippet',
       codeSnippet_theme: 'monokai_sublime',
       height: 356,
-      removeButtons: 'Link,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript,addFile,Image,Table,Styles,Format,Maximize,HorizontalRule,Unlink,Blockquote,Indent,Outdent,RemoveFormat,Spell',
-      removePlugins: 'list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize'
+      removeButtons:config.NEWPOST.CKEDITOR.REMOVED_BUTTONS,
+      removePlugins:config.NEWPOST.CKEDITOR.REMOVED_PLUGINS,
     };
-    CKEDITOR.replace('addSnippet', config);
+    CKEDITOR.replace('addSnippet', configuration);
     CKEDITOR.instances.addSnippet.setData("");
 
     var problemDescriptionConfig = {
       codeSnippet_theme: 'monokai_sublime',
       height: 356,
-      removeButtons: 'About,Cut,Save,NewPage,Outdent,Indent,-,Cut,Copy,Paste,PasteText,PasteFromWord,-,Maximize'
+      removeButtons: 'About'
 
     };
     CKEDITOR.replace('problemDescription', problemDescriptionConfig);
