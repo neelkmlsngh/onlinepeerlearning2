@@ -8,6 +8,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import 'rxjs/Rx';
 
 import { ForumService } from '../../../services/forum.service';
+import { config } from './../../../config/forum';
 
 @Component({
   selector: 'app-viewpost',
@@ -26,7 +27,7 @@ export class ViewpostComponent implements OnInit {
   noofanswer: number = 0;
   answerlength: any = [];
   p: number[] = [];
-
+  config=config;
   public modalRef: BsModalRef;
   public configModal = {
     animated: true,

@@ -6,7 +6,7 @@ import { Router, ActivatedRoute, Params, Data } from '@angular/router'
 import 'rxjs/add/operator/switchMap';
 //Custom Files Imports
 import { ForumService } from '../../../services/forum.service';
-
+import { config } from './../../../config/forum';
 @Component({
   selector: 'app-detailpost',
   templateUrl: './detailpost.component.html',
@@ -29,7 +29,7 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
   answer: string = "";
   questionTitle: string = "";
   userId: any;
-
+  config=config;
   ngOnInit() {
     this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))

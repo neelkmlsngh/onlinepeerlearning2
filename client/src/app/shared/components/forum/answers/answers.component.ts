@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ParamMap } from '@angular/router';
 import { Router, ActivatedRoute, Params, Data } from '@angular/router'
-import { ForumService } from '../../../services/forum.service';
+
 import 'rxjs/add/operator/switchMap';
+
+import { ForumService } from '../../../services/forum.service';
+import { config } from './../../../config/forum';
+
 
 @Component({
   selector: 'app-answers',
@@ -15,6 +19,7 @@ export class AnswersComponent implements OnInit {
    data: any = [];
    question:string;
    errors: any;
+   config = config
   //method to post answer
   ngOnInit() {
   	 this.router.paramMap
