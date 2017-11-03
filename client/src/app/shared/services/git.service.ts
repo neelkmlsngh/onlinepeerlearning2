@@ -7,18 +7,14 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class GitService {
-
- 
-  userName:any="GauravGupta131220";
-
+ userName:any;
  username:any="ROZYTYAGI"
-
   private clientId: string = '60b9f23dedffbdfc476c';
   private clientSecret: string = 'd1c186c6373f96571c0bfcf76b84e4dc6fd0c15a';
   constructor(private _http: Http) {
     // console.log('Github Service Ready.');
     let userDetails = JSON.parse(localStorage.getItem('currentUser'));
-   /* this.userName =userDetails.userName ;*/
+    this.userName =userDetails.userName ;
   }
 
   //method to get github username
@@ -161,7 +157,13 @@ export class GitService {
         .map(res => res.json())
     }
   }
-
+//method to create user personal access token
+createToken(credentials){
+  if(this.username){
+ return this._thhp.post('https://api.github.com/authorizations',credentials)
+ .map(res=>res.json())
+}
+}
 
   //method to create Repository on github
   createRepos(text) {
@@ -173,7 +175,7 @@ export class GitService {
 
    //method for authorization for creating new repository
   private authorization() {
-    let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206ODk0OWMxOTU3ZTA0Yzg1NmQ3ZGIxMTI5MTY1M2EyYmRmOWQ3MDAwZQ==" });
+    let headers = new Headers({ 'Authorization': "Basic Uk9aWVRZQUdJOnR5YWdpQDk2" });
     return new RequestOptions({ headers: headers });
   }
 }
