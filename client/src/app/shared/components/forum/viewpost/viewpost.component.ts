@@ -8,7 +8,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import 'rxjs/Rx';
 
 import { ForumService } from '../../../services/forum.service';
-import { forumConfig } from './../../../config/forum';
+import { forumConfig } from './../../../config/forum.config';
 
 @Component({
   selector: 'app-viewpost',

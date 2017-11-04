@@ -14,7 +14,8 @@ var session = require('express-session');
 const jwt = require('jsonwebtoken');
 
 const helper = require('./../api/chat/chat.controller');
-
+const loginconfig = require('../config/login.config')
+const fileUploader = require('../api/users/users.router')
 const appRoutes = require('./app.router');
 const logger = require('../services/app.logger');
 const config = require('../config');
@@ -35,6 +36,7 @@ function loginviagit() {
 
         clientID: gitId.CLIENT_ID,
         clientSecret: gitId.CLIENT_SECRET,
+
         callbackURL: gitId.CALLBACK_URL
     }, function(accessToken, refreshToken, profile, done) {
         let userInfo = {
@@ -43,8 +45,9 @@ function loginviagit() {
             avatarUrl: profile._json.avatar_url,
             publicRepos: profile._json.public_repos,
             reposUrl: profile._json.repos_url,
-            online: "Y"
+            online: loginconfig.ONLINE
         }
+
 
         //save login credentials in login collection
         //function called by login controller
@@ -188,6 +191,10 @@ function socketEvents(io) {
                 socketId: socket.id
             });
         });
+
+        socket.on('send-file', (fileObj) => {
+            fileUploader.fileUpload(fileObj);
+        })
     });
 }
 module.exports = {

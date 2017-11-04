@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, Params, Data } from '@angular/router'
 import 'rxjs/add/operator/switchMap';
 
 import { ForumService } from '../../../services/forum.service';
-import { forumConfig } from './../../../config/forum';
+import { forumConfig } from './../../../config/forum.config';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class AnswersComponent implements OnInit {
   //method to post answer
   ngOnInit() {
   	 this.router.paramMap
-      .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
+      .switchMap((params: ParamMap) => this.forum.getPostById(this.router.snapshot.params['value']))
       .subscribe((res) => {
         this.question=res[0].questionTitle;
         this.data = res[0].answers;

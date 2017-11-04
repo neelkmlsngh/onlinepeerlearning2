@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { AuthenticationService } from './authentication.service';
 import { RequestOptions, Request, RequestMethod, Headers } from '@angular/http';
-import { forumConfig } from './../config/forum'
+import { forumConfig } from './../config/forum.config'
 import { config } from './../config/config'
 @Injectable()
 export class ForumService {
@@ -16,7 +16,7 @@ export class ForumService {
 
   ngOnInit() {} //method is used to hit api on express server and post the data of form in database     
   
-  save(data: any) {
+  savePost(data: any) {
     return this.http.
     post(forumConfig.forumUrls.FORUMURL+config.forumConnect.APIURL, data)
       .map(res => res.json());
@@ -31,7 +31,7 @@ export class ForumService {
   searchEntries(searchTerm: any) {
 
     if (searchTerm != "") {
-      var api = forumConfig.forumUrls.FORUMURL+config.forumConnect.APIURL + searchTerm
+      var api = forumConfig.forumUrls.FORUMURL+config.forumConnect.SEARCHAPIURL + searchTerm
       return this.http
         .get(api)
         .map(res => res.json());
@@ -43,18 +43,11 @@ export class ForumService {
     }
   }
   /*getEmployeeByID method to fetch details by id used in supervisor component*/
-  getPostByQuestion(id : string) {
+  getPostById(id : string) {
     return this.http.
     get(forumConfig.forumUrls.FORUMURL+config.forumConnect.APIURL + id)
       .map(res => res.json());
   }
-
-
-  // showAnswer(question: string) {
-  //   return this.http
-  //     .post('https://localhost:8080/api/forum/answer/' + )
-  //     .map(res => res.json());
-  // }
   saveAnswer(question,answer){
     console.log(answer);
      return this.http.
@@ -62,9 +55,6 @@ export class ForumService {
       .map(res => res.json());
 
 }
-
-
-
   private authoriZation() {
     let token = this.autheticationservice.getToken();
     if (token) {

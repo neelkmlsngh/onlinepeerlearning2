@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ForumService } from '../../../services/forum.service';
 import swal from 'sweetalert2';
-import { forumConfig } from './../../../config/forum';
+import { forumConfig } from './../../../config/forum.config';
 
 @Component({
   selector: 'app-newpost',
@@ -64,7 +64,7 @@ export class NewpostComponent implements OnInit, AfterViewInit{
       date: this.date,
       userName:userName
     }
-    this.forum.save(this.obj).subscribe((res) => {
+    this.forum.savePost(this.obj).subscribe((res) => {
 
       if (res) {
         console.log(res)

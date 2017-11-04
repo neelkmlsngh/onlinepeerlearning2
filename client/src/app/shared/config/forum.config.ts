@@ -1,4 +1,3 @@
-
 export const forumConfig = {
   "ANSWERS":
   {
@@ -73,6 +72,6 @@ export const forumConfig = {
  },
 
  "forumUrls":{
-        FORUMURL:'https://localhost:8080/',
+        "FORUMURL":'https://localhost:8080/',
  }
 }
