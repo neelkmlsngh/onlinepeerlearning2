@@ -36,7 +36,7 @@ router.get('/auth/github/callback',
 
 //logout routes
 router.put('/logout', (req, res) => {
-    userId = req.body.userId;
+    let userId = req.body.userId;
     try {
         if (!userId) {
             logger.error(loginConfig.USERID_NOT_FOUND);
