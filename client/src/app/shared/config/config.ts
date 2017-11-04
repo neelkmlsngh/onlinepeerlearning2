@@ -21,9 +21,9 @@ export const config: any = {
 
   connect:
   {
-    apiURL : "https://192.168.252.152:8080",
-    vmURL : "https://192.168.252.152:3030",
-    peerjsURL : "https://192.168.252.152:8081"
+    apiURL : "https://192.168.252.211:8080",
+    vmURL : "https://192.168.252.211:3030",
+    peerjsURL : "https://192.168.252.211:8081"
   },
 
   giturls: {

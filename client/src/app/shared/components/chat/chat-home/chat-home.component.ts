@@ -120,12 +120,12 @@ export class ChatHomeComponent implements OnInit {
 
       }
     });
-    this.openchatbox()
-    this.hidechatbox()
+    this.openChatBox()
+    this.hideChatBox()
   }
 
   //Method for opening chatbox
-  openchatbox(): void {
+  openChatBox(): void {
     //Jquery for handling chatbox opening and closing
     var $chatbox = $('.chatbox'),
       $chatboxTitle = $('.chatbox__title'),
@@ -158,9 +158,13 @@ export class ChatHomeComponent implements OnInit {
   }
 
   //Method for closing chatbox
-  hidechatbox(): void {
+  hideChatBox(): void {
     $('.chatbox').show();
     $('.side').hide();
+  }
+  
+  chatBoxToggle(): void{
+  $('.chatbox').toggleClass('chatbox--tray');
   }
 
   isUserSelected(userId: string): boolean {
@@ -205,7 +209,7 @@ export class ChatHomeComponent implements OnInit {
     return this.userId === userId ? false : true;
   }
 
-  removesb() {
+  removesb(): void {
     $('.side').toggle();
   }
 

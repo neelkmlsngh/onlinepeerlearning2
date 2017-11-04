@@ -8,7 +8,7 @@
     <button class="btn btn-outline-primary btn-lg callimg mr-6" data-toggle="popover" (click)="videocall(template2)" title="Video Call">
       <i class="fa fa-video-camera" aria-hidden="true"></i>
     </button>
-    <button class="chatbox__title__tray">
+    <button class="chatbox__title__tray" (click)="chatBoxToggle()">
       <span></span>
     </button>
     <button class="chatbox__title__close">
@@ -32,7 +32,7 @@
 </div>
 <!-- Togglable button -->
 <span class="done">
-  <button mat-fab class="button-collapse sidebar" (click)="removesb()">
+  <button mat-fab class="button-collapse sidebar" data-toggle="tooltip" (click)="removesb()" title="Online Users">
     <mat-icon>chat
     </mat-icon>
   </button>
