@@ -4,18 +4,16 @@ import { config } from './../../config/config';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import swal from 'sweetalert2';
 
 import { EditorService } from '../../services/editor.service';
 import { GitService } from '../../services/git.service'
 import { CoderunnerService } from '../../services/coderunner.service'
 
-
-
 import 'brace';
 import 'brace/ext/language_tools';
 import 'brace/mode/html';
 import 'ace-builds/src-min-noconflict/snippets/html';
-import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editor',
@@ -25,33 +23,17 @@ import swal from 'sweetalert2';
 
 export class EditorComponent implements OnInit {
 
-
-
-  @Input() content: any;
-
+  @Input() content: any="enter code here";
   @Input() reponame: any;
-
   @Input() filenamed: any;
 
-  jsValue: any = "hii everyone";
-  data: any;
-  codeoutput: any;
-  dataObj: any = "";
-  latestcommit: any;
-  treecommit: any;
-  newtree: any;
-  newcommit: any;
-  filename: any;
-  filesha: any;
-  value: any;
+  config = config
+
+  jsValue: any = "hii everyone";data: any;codeoutput: any;dataObj: any = "";latestcommit: any;treecommit: any;newtree: any;newcommit: any;filename: any;
+  filesha: any;value: any;
+
   public modalRef: BsModalRef;
-
-
-  basetree: any = {};
-  newcommitobj: any = {};
-  lastcommit: any = {};
-  updatefileobj: any = {};
-  deletefileobj: any = {};
+  basetree: any = {};newcommitobj: any = {};lastcommit: any = {};updatefileobj: any = {};deletefileobj: any = {};
 
   constructor(private coderunner: CoderunnerService, private gitService: GitService, private modalService: BsModalService) {}
 
@@ -66,16 +48,13 @@ export class EditorComponent implements OnInit {
       })
   }
 
-
   public openModal(template: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template);
   }
 
-
   /*download Javascript file*/
   downloadJsFile() {
     let downloadLink = document.createElement("a");
-
     let blob = new Blob([this.jsValue]);
     let url = URL.createObjectURL(blob);
     downloadLink.href = url;
@@ -179,7 +158,6 @@ export class EditorComponent implements OnInit {
         this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
           .subscribe(repos => {
 
-
             if (repos) {
               swal({
                 timer: 2200,
@@ -197,10 +175,7 @@ export class EditorComponent implements OnInit {
                 showConfirmButton: false,
               })
             }
-
-
           })
-
       })
   }
 
@@ -227,7 +202,7 @@ export class EditorComponent implements OnInit {
             if (repos) {
               swal({
                 timer: 2200,
-                title: "file deleted successfully!",
+                title: "file " + this.filenamed + " deleted successfully!",
                 text: "",
                 type: 'success',
                 showConfirmButton: false,
@@ -241,9 +216,7 @@ export class EditorComponent implements OnInit {
                 type: 'error',
                 showConfirmButton: false,
               })
-
             }
-
           })
       })
   }

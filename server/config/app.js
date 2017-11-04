@@ -16,5 +16,4 @@ module.exports = {
 	URL: "https://localhost:8080/"
 	}
 
-}
 
