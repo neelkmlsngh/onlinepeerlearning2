@@ -50,8 +50,9 @@ export class SocketService {
     return observable;
   }
 
-  sendFile(fileObj){
+/*  sendFile(fileObj){
     this.socket.emit('send-file', fileObj)
-  }
+  }*/
 
 }
+
