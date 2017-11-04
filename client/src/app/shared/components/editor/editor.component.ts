@@ -4,18 +4,16 @@ import { config } from './../../config/config';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import swal from 'sweetalert2';
 
 import { EditorService } from '../../services/editor.service';
 import { GitService } from '../../services/git.service'
 import { CoderunnerService } from '../../services/coderunner.service'
 
-
-
 import 'brace';
 import 'brace/ext/language_tools';
 import 'brace/mode/html';
 import 'ace-builds/src-min-noconflict/snippets/html';
-import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editor',
@@ -25,13 +23,11 @@ import swal from 'sweetalert2';
 
 export class EditorComponent implements OnInit {
 
-
-
-  @Input() content: any;
-
+  @Input() content: any = "enter code here";
   @Input() reponame: any;
-
   @Input() filenamed: any;
+
+  config = config
 
   jsValue: any = "";
   data: any;
@@ -44,9 +40,8 @@ export class EditorComponent implements OnInit {
   filename: any;
   filesha: any;
   value: any;
+
   public modalRef: BsModalRef;
-
-
   basetree: any = {};
   newcommitobj: any = {};
   lastcommit: any = {};
@@ -66,16 +61,13 @@ export class EditorComponent implements OnInit {
       })
   }
 
-
   public openModal(template: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template);
   }
 
-
   /*download Javascript file*/
   downloadJsFile() {
     let downloadLink = document.createElement("a");
-
     let blob = new Blob([this.jsValue]);
     let url = URL.createObjectURL(blob);
     downloadLink.href = url;
@@ -87,6 +79,7 @@ export class EditorComponent implements OnInit {
     return false;
   }
 
+  //method to store the entered value
   onKey(event) {
     this.value += event
   }
@@ -137,6 +130,7 @@ export class EditorComponent implements OnInit {
                     this.gitService.lastcommit(this.reponame, this.lastcommit)
                       .subscribe(repos => {})
 
+                    //sweet alert on getting response
                     if (repos) {
                       swal({
                         timer: 2200,
@@ -145,7 +139,10 @@ export class EditorComponent implements OnInit {
                         type: 'success',
                         showConfirmButton: false,
                       })
-                    } else {
+                    }
+
+                    //sweet alert on getting error
+                    else {
                       swal({
                         timer: 2200,
                         title: "Error occured",
@@ -179,7 +176,7 @@ export class EditorComponent implements OnInit {
         this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
           .subscribe(repos => {
 
-
+            //sweet alert on getting response
             if (repos) {
               swal({
                 timer: 2200,
@@ -188,7 +185,10 @@ export class EditorComponent implements OnInit {
                 type: 'success',
                 showConfirmButton: false,
               })
-            } else {
+            }
+
+            //sweet alert on getting error
+            else {
               swal({
                 timer: 2200,
                 title: "Error occured",
@@ -197,10 +197,7 @@ export class EditorComponent implements OnInit {
                 showConfirmButton: false,
               })
             }
-
-
           })
-
       })
   }
 
@@ -223,17 +220,19 @@ export class EditorComponent implements OnInit {
         //hitting the delete file api to delete the file
         this.gitService.deleteFile(this.reponame, this.filenamed, this.deletefileobj)
           .subscribe(repos => {
-            // console.log(repos)
+
+            //sweet alert on getting response
             if (repos) {
               swal({
                 timer: 2200,
-                title: "file deleted successfully!",
+                title: "file " + this.filenamed + " deleted successfully!",
                 text: "",
                 type: 'success',
                 showConfirmButton: false,
               })
             } else {
 
+              //sweet alert on getting error
               swal({
                 timer: 2200,
                 title: "Error occured",
@@ -241,9 +240,7 @@ export class EditorComponent implements OnInit {
                 type: 'error',
                 showConfirmButton: false,
               })
-
             }
-
           })
       })
   }

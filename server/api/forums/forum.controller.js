@@ -75,7 +75,6 @@ const getSearch = function(getValue) {
                 logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-              con
                 resolve(data);
             }
         })
@@ -105,6 +104,6 @@ module.exports = {
     addPost: addPost,
     getPost: getPost,
     getSearch: getSearch,
-    getPostByQuestion: getPostByQuestion,
+    getPostById: getPostById,
     saveAnswer: saveAnswer
 };

@@ -18,13 +18,33 @@ export const config: any = {
 
   connect:
   {
+    apiURL : "https://192.168.252.178:8080",
+    vmURL : "https://192.168.252.178:3030",
+    peerjsURL : "https://192.168.252.178:8081"
+  },
 
-    "url4": "https://192.168.252.152:8080/api/login",
-    "url2": "https://localhost:",
-    "url": "https://192.168.252.152:",
-    "url3": "https//192.168.252.57:",
-    "port": "8080",
-    "port2": "3030"
+  giturls: {
+    HOSTURL: "https://api.github.com/repos/",
+    SUBURL: "/git/refs/heads/master",
+    COMMITFILEURL: "/git/commits/",
+    TREECOMMITURL: "/git/trees",
+    NEWCOMMITURL: "/git/commits",
+    CONTENTURL: "/contents/",
+    CREATEREPOS: "https://api.github.com/user/repos",
+    HOSTURLUSERS: "https://api.github.com/users/"
+  },
+
+  editor: {
+    JAVASCRIPTNAME: "Javascript File",
+    REPONAME: "Your current repository is:",
+    FILENAME: "enter your file name",
+    COMMIT: "enter your commit message",
+    UPDATE: "Do you want to update the file ",
+    DELETE: "Do you want to delete the file",
+    EXECUTEBTN: "Execute",
+    CREATEBTN: "Create",
+    UPDATEBTN: "Update",
+    DELETEBTN: "Delete"
   },
 
   footer: {
@@ -50,7 +70,8 @@ export const config: any = {
   },
 
   repoSidebar: {
-    "repos": "Repos"
+    "repos": "Repos",
+    "entercode":"enter code here"
   },
 
   navbar: {
@@ -59,10 +80,5 @@ export const config: any = {
     "forums": "Forums",
     "logout": "Logout"
   },
-  peer:{
-  "host":"192.168.252.33",
-  "port":"8081",
-  "path":"/peerjs"
-
-  }
+  
 };
