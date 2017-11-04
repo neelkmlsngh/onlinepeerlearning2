@@ -15,7 +15,7 @@ export class ProfileService {
   getDataFromDB(userId) {
 
     //url to get details from db
-    const api = config.connect.url + config.connect.port + "/api/users/" + userId
+    const api = config.connect.apiURL+ "/api/users/" + userId
     return this.http
       .get(api)
       .map(res => res.json(), error => error.json());
@@ -31,8 +31,8 @@ export class ProfileService {
 
   }
 
-    uploadChatFile(formData, options) {}
-/*
+   
+
   uploadChatFile(formData, options) {
    let fileObj={
       "formData": formData,
@@ -49,5 +49,8 @@ export class ProfileService {
       };
     })
     return observable;
-  }*/
+  }
+
+  
+
 }
