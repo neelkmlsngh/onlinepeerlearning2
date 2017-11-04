@@ -13,10 +13,10 @@
     </button>
     <button class="chatbox__title__close">
       <span>
-          <svg viewBox="0 0 12 12" width="12px" height="12px">
-            <line stroke="#FFFFFF " x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
-            <line stroke="#FFFFFF " x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
-          </svg>
+              <svg viewBox="0 0 12 12" width="12px" height="12px">
+                  <line stroke="#FFFFFF " x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
+                  <line stroke="#FFFFFF " x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
+              </svg>
           </span>
     </button>
   </div>
@@ -27,15 +27,7 @@
     </li>
   </ul>
   <div class="message-typer">
-    <textarea class="message form-control" placeholder="Type and hit Enter" [(ngModel)]="message" (keyup)="sendMessage($event)">
-     <!-- <div class="card-footer">
-          <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
-          <div class="col-sm-3">
-            <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">{{config.profile.UPLOAD}}</button>
-          </div>
-        </div> -->
-    </textarea>
-
+    <textarea class="message form-control" placeholder="Type and hit Enter" [(ngModel)]="message" (keyup)="sendMessage($event)"></textarea>
   </div>
 </div>
 <!-- Togglable button -->
@@ -53,7 +45,7 @@
       <li *ngFor="let user of chatListUsers">
         {{ user.userName}}
         <button class="btn btn-outline-primary btn-lg callimg mr-6 close" data-toggle="popover" title="Chat" (click)="selectedUser(user)" [class.selected-user]="isUserSelected(user._id)">Chat
-        <i class="fa fa-envelope" aria-hidden="true"></i>
+          <i class="fa fa-envelope" aria-hidden="true"></i>
         </button>
       </li>
     </ul>

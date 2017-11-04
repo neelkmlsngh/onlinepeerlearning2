@@ -155,7 +155,6 @@ let apiRoutes:Routes = [
     MatFormFieldModule,
     ModalModule.forRoot(),
     RouterModule.forRoot(apiRoutes, { useHash: true })
-  ],
 
   providers: [GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService,SnippetService],
 

@@ -4,7 +4,7 @@ const appConstant = require('../../config').app;
 const userController = require('./../users/users.controller');
 const jwt = require('jsonwebtoken');
 const appConfig = require('../../config').app;
-const loginConfig=require('../../config/login.config');
+const loginConfig = require('../../config/login.config');
 
 //save new login user details
 const saveLoginCredentials = function(userInfo, done) {
@@ -14,7 +14,7 @@ const saveLoginCredentials = function(userInfo, done) {
         }
     }, { upsert: true, 'new': true }, function(err, user) {
         if (err) {
-            logger.info(loginConfig.LOGIN_USER+ err)
+            logger.info(loginConfig.LOGIN_USER + err)
         } else if (user) {
             logger.info(loginConfig.LOGIN)
             userController.saveUserCredentials(userInfo, done);
