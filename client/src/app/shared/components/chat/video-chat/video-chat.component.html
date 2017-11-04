@@ -3,10 +3,10 @@
     <!--head section-->
     <h5 id="myhead"><a>Video Call</a></h5>
     <div>
-      <button class="videobox__title__tray">
+      <button class="videobox__title__tray" (click)="videoboxtoggle()">
         <span></span>
       </button>
-      <button class="videobox__title__close">
+      <button class="videobox__title__close" (click)="hidevideochatbox()">
         <span>
                <svg viewBox="0 0 12 12" width="12px" height="12px">
                    <line stroke="#FFFFFF " x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
@@ -34,7 +34,7 @@
     </button>
     <!--mute video call button -->
     <button class="btn btn-outline-success btn-lg ml-2 ml-2" data-toggle="popover" title="Mute" vi-controls-pause>
-      <i class="fa fa-volume-off" (click)="videoMute()" aria-hidden="true"></i>
+      <i class="fa fa-volume-off" (click)="video()" aria-hidden="true"></i>
     </button>
     <!-- disconnect video call button -->
     <button class="btn btn-outline-danger btn-lg ml-2 ml-2" data-toggle="popover" (click)="videoDisconnect()" title="End Call">

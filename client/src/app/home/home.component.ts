@@ -6,7 +6,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import {AuthenticationService} from '../shared/services/authentication.service'
 
-import { homeConfig } from '../shared/config/homeConfig';
+import { homeConfig } from '../shared/config/home.config';
 
 //component decorator
 

@@ -49,39 +49,15 @@ export const config: any = {
     UPDATEBTN: "Update",
     DELETEBTN: "Delete"
   },
+  peerserver:{
+ "host":"192.168.252.211",
+ "port":"8081",
+ "path":"/peerjs"
 
-  footer: {
-    "title": "About Us",
-    "about": "We're immensely proud of the unique products that our developers have created to help coders practice coding and easily pushing on git on a single click.",
-    "Copyright": "© 2017 Copyright:",
-    "website": "codeEditor.com",
-    "navigation": "Navigation",
-    "home": "Home",
-    "services": "Services",
-    "link": "Link",
-    "contact": "Contact",
-    "features": "Features",
-    "editor": "Code Editor",
-    "terminal": "Terminal",
-    "forums": "Forums",
-    "connections": "Connections",
-    "developers": "Developers",
-    "environment": "Environment",
-    "faq": "FAQ",
-    "signup": "SignUp",
-    "schools": "For Schools"
-  },
+ }
 
-  repoSidebar: {
-    "repos": "Repos",
-    "entercode":"enter code here"
-  },
+  
 
-  navbar: {
-    "logo": "Logo",
-    "profile": "Profile",
-    "forums": "Forums",
-    "logout": "Logout"
-  },
+  
   
 };

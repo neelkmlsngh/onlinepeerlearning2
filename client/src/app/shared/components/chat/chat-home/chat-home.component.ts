@@ -32,6 +32,8 @@ export class ChatHomeComponent implements OnInit {
   options: RequestOptions;
   currentUser:any;
   imgPath:string='';
+  showVideoBox: any = false;
+  showAudioBox: any = false;
 
   //chat and message related variables starts
   userId = null;
@@ -167,6 +169,14 @@ export class ChatHomeComponent implements OnInit {
   $('.chatbox').toggleClass('chatbox--tray');
   }
 
+  showVideo() {
+   this.showVideoBox = !this.showVideoBox;
+ }
+
+ showAudio(){
+   this.showAudioBox = !this.showAudioBox;
+ }
+
   isUserSelected(userId: string): boolean {
     if (!this.selectedUserId) {
       return false;
@@ -236,9 +246,9 @@ export class ChatHomeComponent implements OnInit {
      
    }
 }
-/*// method to be called when Upload button is clicked
+// method to be called when Upload button is clicked
 uploadFile(){
   this.profileService.uploadChatFile(this.formData,this.options)
-   }*/
+   }
 }
 
