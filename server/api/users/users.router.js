@@ -52,16 +52,13 @@ var upload = multer({ storage: storage }).any();
   try {
     usrCtrl.getProfile(getId).then((successResult)=>{
       logger.info('Get successResult successfully and return back');
-      /*return res.status(201).send(successResult);*/
       return res.json({status:201,message:'User details successfully retrieved',data:successResult})
     }, (errResult) => {
           logger.error(errResult);
-          /*return res.status(500).send({ error: errResult});*/
           return res.json({status:500,message:'Incorrect credentials',data:errResult})
         });
   } catch (err) {
     logger.fatal('Exception occurred' + err);
-    /*res.send({ error: err });*/
     return res.json({status:false,message:'Exception occurred',data:err})
   }
  })
@@ -101,7 +98,6 @@ var upload = multer({ storage: storage }).any();
         img:req.files[0].filename
       }
        usrCtrl.updateImage(dataObj,getId).then(successResult=>{
-        /*return res.status(201).send(successResult);*/
         return res.json({status:201,message:'Image successfully updated',data:successResult})
        },error=>{
          return res.json({status:false,message:'Error occurred in updating image',data:error})
@@ -110,7 +106,6 @@ var upload = multer({ storage: storage }).any();
   });
    }catch(err){
     logger.fatal('Exception occurred' + err);
-    /*res.send({ error: err });*/
     return res.json({status:false,message:'Exception occurred',data:err})
    }
  })
