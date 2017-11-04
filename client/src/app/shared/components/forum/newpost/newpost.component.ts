@@ -64,7 +64,7 @@ export class NewpostComponent implements OnInit, AfterViewInit{
       date: this.date,
       userName:userName
     }
-    this.forum.save(this.obj).subscribe((res) => {
+    this.forum.savePost(this.obj).subscribe((res) => {
 
       if (res) {
         console.log(res)
