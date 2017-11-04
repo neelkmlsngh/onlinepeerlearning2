@@ -31,6 +31,8 @@ export class ProfileService {
 
   }
 
+    uploadChatFile(formData, options) {}
+/*
   uploadChatFile(formData, options) {
    let fileObj={
       "formData": formData,
@@ -47,5 +49,5 @@ export class ProfileService {
       };
     })
     return observable;
-  }
+  }*/
 }
