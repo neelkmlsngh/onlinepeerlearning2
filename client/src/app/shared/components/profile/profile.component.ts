@@ -4,6 +4,7 @@ import { Headers, RequestOptions } from '@angular/http';
 
 import { ProfileService } from '../../services/profile.service';
 import {config} from '../../config/profile';
+import { errorConfig } from '../../config/errorConfig';
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit {
   formData: FormData;
   options: RequestOptions;
   config=config;
+  errorConfig= errorConfig;
 
   constructor(@Inject(FormBuilder) private fb: FormBuilder,private profileService:ProfileService) {
     // initialising user details to be displayed
@@ -75,7 +77,7 @@ uploadFile(){
   .subscribe(
     res=>{
       this.imgPath=res.avatarUrl;
-    },error=> console.log(error)
+    },error=> {{errorConfig.error.UPLOAD}}
     )
 }
 }

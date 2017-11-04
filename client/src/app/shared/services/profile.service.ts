@@ -15,7 +15,7 @@ export class ProfileService {
   getDataFromDB(userId) {
 
     //url to get details from db
-    const api = config.connect.url + config.connect.port + "/api/users/" + userId
+    const api = config.connect.apiURL+ "/api/users/" + userId
     return this.http
       .get(api)
       .map(res => res.json(), error => error.json());
