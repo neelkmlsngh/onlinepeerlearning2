@@ -17,7 +17,7 @@ const saveUserCredentials = function(userInfo, done) {
             logger.info("user not saved")
         } else {
             logger.info('saved successfully')
-           return done(err, user);
+            return done(err, user);
         }
     });
 };
@@ -34,24 +34,6 @@ const getProfile = function(getId) {
             }
         })
     })
-};
-
-//Save new userprofile details
-const saveUserProfile = function(userInfo, done) {
-    UserModel.findOrCreate({ userId: userInfo.userId }, {
-        userId: userInfo.userId
-    }, function(err, user) {
-        if (err) {
-            logger.info("error occured")
-
-        } else if (!user) {
-            logger.info("user not saved")
-        } else {
-            logger.info('saved successfully')
-
-            return done(err, user);
-        }
-    });
 };
 
 //Update user details
