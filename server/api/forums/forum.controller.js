@@ -105,6 +105,6 @@ module.exports = {
     addPost: addPost,
     getPost: getPost,
     getSearch: getSearch,
-    getPostByQuestion: getPostByQuestion,
+    getPostById: getPostById,
     saveAnswer: saveAnswer
 };
