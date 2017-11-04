@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { config } from '../config/config'; 
 
 @Injectable()
 export class SnippetService {
@@ -11,28 +12,28 @@ export class SnippetService {
  /* method used to Add snippet*/ 
   addSnippet(data) {
     return this.http
-      .post('https://localhost:8080/api/snippet',data)
+      .post(config.connect.apiURL+'/api/snippets',data)
       .map(res => res.json());
   }
 
  /* method  to get snippet from database and show it into editor*/ 
     getSnippet() {
     return this.http
-      .get('https://localhost:8080/api/snippet')
+      .get(config.connect.apiURL+'/api/snippets')
       .map(res => res.json());
   }
 
    /*update method used to modify snippet*/ 
      updateSnippet(title , code) {    
          return this.http    
-          .put('https://localhost:8080/api/forum/update/' + title, code)   
+          .put(config.connect.apiURL+'/api/snippets/update/' + title, code)   
             .map(res => res.json()); 
              }
 
               /*method to Remove snippet*/ 
      deleteSnippet(title) {    
          return this.http    
-          .put('https://localhost:8080/api/forum/delete/' , title)   
+          .put(config.connect.apiURL+'/api/snippets/delete/' , title)   
             .map(res => res.json()); 
              }
 

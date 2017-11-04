@@ -5,11 +5,13 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
 import { AuthenticationService } from './../../../services/authentication.service';
 import {chatConfig} from '../../../config/chatConfig';
+import { Headers, RequestOptions } from '@angular/http';
 
 /*importing services*/
 import { SocketService } from './../../../services/chatservices/socket.service';
 import { HttpService } from './../../../services/chatservices/http.service';
 import { ChatService } from './../../../services/chatservices/chat.service';
+import { ProfileService } from './../../../services/profile.service';
 
 @Component({
   selector: 'app-chat-home',
@@ -26,6 +28,10 @@ export class ChatHomeComponent implements OnInit {
   selectedSocketId = null;
   selectedUserName = null;
   config=chatConfig;
+  formData: FormData;
+  options: RequestOptions;
+  currentUser:any;
+  imgPath:string='';
 
   //chat and message related variables starts
   userId = null;
@@ -42,7 +48,8 @@ export class ChatHomeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private modalService: BsModalService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private profileService:ProfileService
   ) {}
 
   /*method loading various functions*/
@@ -211,4 +218,23 @@ export class ChatHomeComponent implements OnInit {
   videocall(template2: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template2);
   }
+
+  fileChange(event) {
+      this.formData= new FormData();
+   let fileList: FileList = event.target.files;
+   if(fileList.length > 0) {
+    let file: File = fileList[0];
+    this.formData.append('uploadFile', file, file.name);
+    let headers = new Headers();
+    headers.append('enctype', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    this.options = new RequestOptions({ headers: headers });
+     
+   }
 }
+/*// method to be called when Upload button is clicked
+uploadFile(){
+  this.profileService.uploadChatFile(this.formData,this.options)
+   }*/
+}
+
