@@ -85,4 +85,3 @@ export const config: any = {
   },
   
 };
->>>>>>> ebdf0cca1aa50e91e35020ccb6ace2266ebd8bed

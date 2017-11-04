@@ -23,7 +23,7 @@ export class AnswersComponent implements OnInit {
   //method to post answer
   ngOnInit() {
   	 this.router.paramMap
-      .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
+      .switchMap((params: ParamMap) => this.forum.getPostById(this.router.snapshot.params['value']))
       .subscribe((res) => {
         this.question=res[0].questionTitle;
         this.data = res[0].answers;

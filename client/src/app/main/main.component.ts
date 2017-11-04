@@ -15,11 +15,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class MainComponent implements OnInit {
+
+ 
   content: any;
   reponame: any;
   filenamed: any;
   languages: any = [];
-  mod: any = 'html';
+  mode: any = 'html';
   githubUser: any;
   selectedValue: any = "html";
   data: any;
