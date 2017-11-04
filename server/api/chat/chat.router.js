@@ -4,9 +4,9 @@ const helper = require('./chat.controller');
 const appConfig = require('../../config').app;
 const chatEntity = require('./chat.entity')
 const chatRouteConfig = require('../../config').chatRouteConfig;
+
 //This route is defined for checking the user information from database that user is valid user or not
 router.post('/userSessionCheck', (request, response) => {
-
 	let userId = request.body.userId;
 	let sessionCheckResponse = {}
 	helper.userSessionCheck({
@@ -28,6 +28,7 @@ router.post('/userSessionCheck', (request, response) => {
 
 //This route is for getting messages from database according to toUserId and fromUserId
 router.post('/getMessages', (request, response) => {
+
 	let userId = request.body.userId;
 	let toUserId = request.body.toUserId;
 	let messages = {}
@@ -40,7 +41,7 @@ router.post('/getMessages', (request, response) => {
 		} else {
 			messages.status = 200;
 			messages.messages = chatRouteConfig.ERROR_MESSAGE;
-			message.data = result;
+			messages.data = result;
 			response.status(200).json(messages);
 		}
 	});
