@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -78,15 +79,19 @@ let apiRoutes:Routes = [
   },
   {
     path: 'forums',
-    component: ForumComponent,
     children: [{
+      path: '',
+    component: ForumComponent,
+    },
+    {
         path: 'view',
-        component: ViewpostComponent
+        component: ViewpostComponent,
+        children:[{
+          path: ':postId',
+          component: DetailpostComponent
+        }]
       },
-      {
-        path: 'view/:postId',
-        component: ViewpostComponent
-      },
+      
       {
         path: 'add',
         component: NewpostComponent,
@@ -156,7 +161,6 @@ let apiRoutes:Routes = [
     ModalModule.forRoot(),
     RouterModule.forRoot(apiRoutes, { useHash: true })
     ],
-
   providers: [GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService,SnippetService],
 
   bootstrap: [AppComponent]

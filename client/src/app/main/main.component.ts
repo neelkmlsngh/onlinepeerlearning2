@@ -16,7 +16,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class MainComponent implements OnInit {
 
- 
+
   content: any;
   reponame: any;
   filenamed: any;
@@ -105,6 +105,16 @@ export class MainComponent implements OnInit {
 
   getcontent(text) {
     this.content = text;
+  }
+
+  getfilename(filename) {
+    this.filenamed = filename;
+  }
+
+
+  getreponame(reponame) {
+    this.reponame = reponame;
+
   }
 
   //method for logout
