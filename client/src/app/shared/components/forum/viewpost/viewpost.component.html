@@ -57,7 +57,7 @@
       <hr>
       <!-- showing questions -->
       <div class="questionsumary">
-        <div class="row" *ngFor="let result of data| paginate: { itemsPerPage:4, currentPage: p }">
+        <div class="row" *ngFor="let result of data.data| paginate: { itemsPerPage:4, currentPage: p }">
           <div class="statuscontainer col-sm-3">
             <div class="vote h5">
               {{result.votes}} {{config.VIEWPOST.VOTES}}
@@ -72,7 +72,7 @@
           </div>
           <div class="col-sm-9">
             <div class="questionTitle">
-              <a class="question" (click)="getQuestionDetail(result.questionTitle)">{{result.questionTitle}}</a>
+              <a class="question" (click)="getQuestionDetail(result._id)">{{result.questionTitle }}</a>
             </div>
             <div class="problemDescription">
               {{result.problemDescription | truncate : 200}}

@@ -54,12 +54,15 @@ export class NewpostComponent implements OnInit, AfterViewInit{
   }
   //method to add post on forum
   insertPost(data) {
+    let user = JSON.parse(localStorage.getItem('currentUser'));
+    let userName=user.userName
     this.obj = {
       questionTitle: this.questionTitle,
       codeSnippet: CKEDITOR.instances.addSnippet.getData(),
       problemDescription: CKEDITOR.instances.problemDescription.getData(),
       tags: this.tags,
-      date: this.date
+      date: this.date,
+      userName:userName
     }
     this.forum.save(this.obj).subscribe((res) => {
 

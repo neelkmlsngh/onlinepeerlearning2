@@ -24,7 +24,7 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
   editor: string;
   obj: any = {};
   codeSnippet: string;
-  data: any = [];
+  data: any = {};
   errors: string;
   answer: string = "";
   questionTitle: string = "";
@@ -34,7 +34,8 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
     this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
       .subscribe((res) => {
-        this.data = res;
+        this.data = res.data;
+        console.log(this.data);
       })
     error => {
       this.errors = error;

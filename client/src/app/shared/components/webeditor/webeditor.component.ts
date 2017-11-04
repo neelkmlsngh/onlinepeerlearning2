@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms'
 import { AceEditorDirective } from 'ng2-ace-editor'
 import { AceEditorModule } from 'ng2-ace-editor'
 import * as JSZip from 'jszip'
-import { ForumService } from '../../../shared/services/forum.service';
+import { SnippetService } from '../../../shared/services/snippet.service';
 import { webEditorConfig } from '../../config/webEditor.config';
 
 @Component({
@@ -13,7 +13,7 @@ import { webEditorConfig } from '../../config/webEditor.config';
 })
 export class WebeditorComponent implements OnInit {
 
-  constructor(private snippet: ForumService) {}
+  constructor(private snippet: SnippetService) {}
   config = webEditorConfig;
 
   @Input() content: any;

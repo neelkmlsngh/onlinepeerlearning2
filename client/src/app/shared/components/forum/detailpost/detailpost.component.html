@@ -37,7 +37,7 @@
         </div>
         <hr>
         <div class="questionsumary">
-          <div class="row mb-3" *ngFor="let result of data">
+          <div class="row mb-3">
             <div class="statuscontainer col-sm-3">
               <div class="vote h5">
                 211 {{config.DETAILPOST.VOTES}}
@@ -49,10 +49,10 @@
             </div>
             <div class="col-sm-9">
               <div class="questionTitle">
-                {{result.questionTitle}}
+                {{data.questionTitle}}
               </div>
               <div class="problemDescription">
-                {{result.problemDescription}}
+                {{data.problemDescription}}
               </div>
               <div class="text-white mt-3 mb-3">
                 <div class="tags d-inline border py-1">Angularjs</div>
@@ -66,7 +66,7 @@
                  <i class="fa fa-thumbs-up fa-lg text-white"></i>{{config.DETAILPOST.LIKES}}</a>
                     </div>
                     <div class="col-sm-6">
-                      {{config.DETAILPOST.ASKED}} {{result.date}}
+                      {{config.DETAILPOST.ASKED}} {{data.date}}
                     </div>
                   </div>
                 </div>

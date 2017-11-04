@@ -2,24 +2,27 @@ const router = require('express').Router();
 const logger = require('../../services/app.logger');
 const usrCtrl = require('./snippet.controller');
 const appConfig = require('../../config').app;
-const snippet =require ('./snippet.entity');
+
 /*
- * Actual URI will be HTTP POST /users/
+ * variable for snippet  schema 
+ */
+const snippet =require ('./snippet.entity');
+
+/*
+ * saving snippet into database 
  */
  router.post('/', function(req, res) {
 
 
-  let forumData = req.body;
-    console.log("forumData")
-  console.log(forumData)
+  let snippetData = req.body;
   logger.debug('User persistent started');
   try {
-    if (!forumData) {
+    if (!snippetData) {
       logger.error('userData not found');
       throw new Error('Invalid inputs passed...!');
     }
 
-    usrCtrl.addSnippet(forumData, 'appConstant.INSERT_TYPE.PROFILES').then((successResult) => {
+    usrCtrl.addSnippet(snippetData).then((successResult) => {
       logger.info('Get successResult successfully and return back');
       return res.status(201).send(successResult);
     }, (errResult) => {
@@ -28,17 +31,19 @@ const snippet =require ('./snippet.entity');
         });
   } catch (err) {
     logger.fatal('Exception occurred' + err);
-    res.send({ error: err });
+    res.json({status: 500, message: "Internal Server Error", data: err });
     return;
   }
 });
 
-
+/*
+ * get snippet from database and showing it into editor 
+ */
 router.get('/', function(req, res) {
   //console.log(res)
   logger.debug('User persistent started');
   try {
-    usrCtrl.getSnippet( 'appConstant.INSERT_TYPE.PROFILES').then((successResult) => {
+    usrCtrl.getSnippet( ).then((successResult) => {
       logger.info('Get successResult successfully and return back');
       return res.status(201).send(successResult);
     }, (errResult) => {
@@ -47,19 +52,21 @@ router.get('/', function(req, res) {
         });
   } catch (err) {
     logger.fatal('Exception occurred' + err);
-    res.send({ error: err });
+    res.json({status: 500, message: "Internal Server Error", data: err });
     return;
   }
 });
 
-
+/*
+ * Modify code of snippet 
+ */
 router.put('/update', (req, res) => {  
 
 let  getValue= req.body.title; 
-let forumUpdate = req.body.code;
+let snippetUpdate = req.body.code;
   logger.debug('User persistent started');
   try {
-    usrCtrl.updateSnippet(getValue, forumUpdate,'appConstant.INSERT_TYPE.PROFILES').then((successResult) => {
+    usrCtrl.updateSnippet(getValue, snippetUpdate).then((successResult) => {
       logger.info('Get successResult successfully and return back');
       return res.status(201).send(successResult);
     }, (errResult) => {
@@ -68,19 +75,21 @@ let forumUpdate = req.body.code;
         });
   } catch (err) {
     logger.fatal('Exception occurred' + err);
-    res.send({ error: err });
+     res.json({status: 500, message: "Internal Server Error", data: err });
     return;
   }
 });
 
-
+/*
+ *Api to  Remove snippet 
+ */
 router.delete('/delete', (req, res) => {  
 
 let  getValue= req.body.title; 
-let forumUpdate = req.body.code;
+let snippetUpdate = req.body.code;
   logger.debug('User persistent started');
   try {
-    usrCtrl.deleteSnippet(getValue, forumUpdate,'appConstant.INSERT_TYPE.PROFILES').then((successResult) => {
+    usrCtrl.deleteSnippet(getValue, snippetUpdate).then((successResult) => {
       logger.info('Get successResult successfully and return back');
       return res.status(201).send(successResult);
     }, (errResult) => {
@@ -89,7 +98,7 @@ let forumUpdate = req.body.code;
         });
   } catch (err) {
     logger.fatal('Exception occurred' + err);
-    res.send({ error: err });
+     res.json({status: 500, message: "Internal Server Error", data: err });
     return;
   }
 });
