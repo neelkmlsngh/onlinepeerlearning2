@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/yogendragitrepo/onlinepeerlearning#readme",
   "dependencies": {
+    "chai": "^4.1.2",
     "compression": "^1.7.1",
     "cors": "^2.8.4",
     "cors-anywhere": "^0.4.0",
@@ -36,11 +37,14 @@
     "passport": "^0.4.0",
     "passport-github2": "^0.1.11",
     "peer": "^0.2.8",
+    "sinon": "^4.1.1",
     "socket.io": "^1.4.6",
     "sweetalert2": "^6.11.3",
     "vm2": "^3.5.2"
   },
   "devDependencies": {
-    "@angular/cli": "^1.4.9"
+    "@angular/cli": "^1.4.9",
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0"
   }
 }

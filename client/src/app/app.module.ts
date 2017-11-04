@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -158,11 +159,11 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
         ]
 
       },
-      {
-        path: 'questions',
-        component: ViewpostComponent,
-        // canActivate: [AuthoriseGuard]
-      },
+      // {
+      //   path: 'questions',
+      //   component: ViewpostComponent,
+      //   // canActivate: [AuthoriseGuard]
+      // },
 
       {
         path: 'video',
@@ -183,20 +184,20 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
       /*  {
         path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
       }*/
-      {
-        path: 'questiondetail/:value',
-        component: DetailpostComponent,
-        // canActivate: [AuthoriseGuard]
-      },
-      {
-        path: 'answers/:value',
-        component: AnswersComponent,
-        // canActivate: [AuthoriseGuard]
-      },
-      {
-        path: 'addquestion',
-        component: NewpostComponent,
-      },
+      // {
+      //   path: 'questiondetail/:value',
+      //   component: DetailpostComponent,
+      //   // canActivate: [AuthoriseGuard]
+      // },
+      // {
+      //   path: 'answers/:value',
+      //   component: AnswersComponent,
+      //   // canActivate: [AuthoriseGuard]
+      // },
+      // {
+      //   path: 'addquestion',
+      //   component: NewpostComponent,
+      // },
       {
         path: 'webeditor',
         component: WebeditorComponent,
