@@ -75,7 +75,6 @@ const getSearch = function(getValue) {
                 logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-              con
                 resolve(data);
             }
         })
