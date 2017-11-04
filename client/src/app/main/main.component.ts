@@ -143,7 +143,7 @@ createAccessToken(){
   "scopes": [
     "repo"
   ],
-  "note": "test3"
+  "note": "test5"
 }
   this.gitService.createToken(cred)
   .subscribe(data=>{

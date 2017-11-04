@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import * as $ from 'jquery';
 
 @Injectable()
 export class GitService {
@@ -161,7 +162,7 @@ export class GitService {
 createToken(credentials){
   console.log(credentials,"yyyyyyyyyyyyy");
   if(this.username){
- return this._thhp.post('https://api.github.com/authorizations',credentials)
+ return this._http.post('https://api.github.com/authorizations',credentials)
  .map(res=>res.json())
 }
 }
@@ -179,4 +180,10 @@ createToken(credentials){
     let headers = new Headers({ 'Authorization': "Basic Uk9aWVRZQUdJOnR5YWdpQDk2" });
     return new RequestOptions({ headers: headers });
   }
+
+  //method for authorization for creating personal access token
+ /* private authorizationToken(){
+    let headers=new Authorization({'Username':"ROZYTYAGI",'Password':"tyagi@96"});
+    return new RequestOptions({headers: headers})
+  }*/
 }
