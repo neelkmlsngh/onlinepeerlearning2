@@ -181,8 +181,8 @@ createToken(credentials){
   }
 
   //method for authorization for creating personal access token
- /* private authorizationToken(){
-    let headers=new Authorization({'Username':"ROZYTYAGI",'Password':"tyagi@96"});
+  private authorizationToken(){
+    let headers=new Headers({'Username':"ROZYTYAGI",'Password':"tyagi@96"});
     return new RequestOptions({headers: headers})
-  }*/
+  }
 }
