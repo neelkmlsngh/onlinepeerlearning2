@@ -1,7 +1,4 @@
 module.exports = {
-
-
-
     APPNAME: 'Onlinepeerlearning',
     SECRET: 'secretkey',
     EXPIRETIME: 86400,
@@ -15,5 +12,3 @@ module.exports = {
     URL: "https://192.168.252.147:8080/"
 
 }
-
-

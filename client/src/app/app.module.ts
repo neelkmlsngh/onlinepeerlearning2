@@ -79,15 +79,19 @@ let apiRoutes:Routes = [
   },
   {
     path: 'forums',
-    component: ForumComponent,
     children: [{
+      path: '',
+    component: ForumComponent,
+    },
+    {
         path: 'view',
-        component: ViewpostComponent
+        component: ViewpostComponent,
+        children:[{
+          path: ':postId',
+          component: DetailpostComponent
+        }]
       },
-      {
-        path: 'view/:postId',
-        component: ViewpostComponent
-      },
+      
       {
         path: 'add',
         component: NewpostComponent,
