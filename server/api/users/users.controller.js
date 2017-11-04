@@ -63,6 +63,7 @@ const updateUserProfile = function(profileInfo, getId) {
 //create personel access token
 const createToken = function(profileInfo, getId) {
     let userId = getId + "";
+
     return new Promise((resolve, reject) => {
 
         ProfileUser.updateOne({ "userId": userId }, {
@@ -73,6 +74,7 @@ const createToken = function(profileInfo, getId) {
             if (err) {
                 reject(err);
             } else if (data) {
+                console.log("token=====",JSON.parse(data))
                 resolve(data);
             }
         })
@@ -107,5 +109,5 @@ module.exports = {
     getProfile: getProfile,
     updateUserProfile: updateUserProfile,
     updateImage: updateImage,
-    accessToken: accessToken
+    createToken: createToken
 };

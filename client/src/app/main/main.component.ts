@@ -154,13 +154,13 @@ createAccessToken(){
   .subscribe(data=>{
      this.accessToken=data.token;
      console.log("token---------",this.accessToken);
-    console.log("llllll",(data))
     this.storeToken(this.accessToken)
   })
 }
 
 //method to store personal access token into database
 storeToken(token){
+  console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
  this.currentUser= JSON.parse(localStorage.getItem('currentUser'))
  let userId=this.currentUser.userId;
 this.profileService.storeAccessToken(userId,token)
