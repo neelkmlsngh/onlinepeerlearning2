@@ -38,21 +38,21 @@ router.get('/', function(req, res) {
 });
 
 //search forum questions from database
-// router.get('/:searchTerm', function(req, res) {
-//     let getValue = req.params.searchTerm;
-//     try {
-//         forumCtrl.getSearch(getValue).then((successResult) => {
-//             logger.info(logConfig.SEARCH_FORUM_QUESTION);
-//             return res.json({ status: 201, message: logConfig.SEARCH_FORUM_QUESTION, data: successResult });
-//         }, (errResult) => {
-//             logger.error(errResult);
-//             return res.send({ status: 200, message: logConfig.SEARCH_FORUM_QUESTION_ERROR, data: errResult });
-//         });
-//     } catch (err) {
-//         logger.fatal(logConfig.EXCEPTION_FOUND + err);
-//         return res.send({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
-//     }
-// });
+router.get('/:searchTerm', function(req, res) {
+    let getValue = req.params.searchTerm;
+    try {
+        forumCtrl.getSearch(getValue).then((successResult) => {
+            logger.info(logConfig.SEARCH_FORUM_QUESTION);
+            return res.json({ status: 201, message: logConfig.SEARCH_FORUM_QUESTION, data: successResult });
+        }, (errResult) => {
+            logger.error(errResult);
+            return res.send({ status: 200, message: logConfig.SEARCH_FORUM_QUESTION_ERROR, data: errResult });
+        });
+    } catch (err) {
+        logger.fatal(logConfig.EXCEPTION_FOUND + err);
+        return res.send({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
+    }
+});
 
 //get the question detail from database
 router.get('/:id', function(req, res) {
