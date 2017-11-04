@@ -25,7 +25,7 @@ export class ProfileService {
   uploadFile(userId, formData, options) {
 
     // url to upload profile picture
-    const api = config.connect.url + config.connect.port + "/api/users/image/" + userId
+    const api = config.connect.apiURL + "/api/users/image/" + userId
     return this.http.put(api, formData, options)
       .map(res => res.json(), error => error.json());
 
