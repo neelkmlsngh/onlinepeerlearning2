@@ -6,6 +6,26 @@ html {
 
 }
 
+.card{
+  width: 70%;
+  height: 80%;
+  background: linear-gradient(to right, #44a08d, #093637);
+}
+
+select{
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+}
+
+h5{
+  font-size: 17px;
+  color: white;
+}
+
+.card-header{
+  height: 60%;
+  text-align: center;
+}
+
 /*margin of footer*/
 
 body.sticky-footer {
