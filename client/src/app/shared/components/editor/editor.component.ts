@@ -23,17 +23,30 @@ import 'ace-builds/src-min-noconflict/snippets/html';
 
 export class EditorComponent implements OnInit {
 
-  @Input() content: any="enter code here";
+  @Input() content: any = "enter code here";
   @Input() reponame: any;
   @Input() filenamed: any;
 
   config = config
 
-  jsValue: any = "hii everyone";data: any;codeoutput: any;dataObj: any = "";latestcommit: any;treecommit: any;newtree: any;newcommit: any;filename: any;
-  filesha: any;value: any;
+  jsValue: any = "";
+  data: any;
+  codeoutput: any;
+  dataObj: any = "";
+  latestcommit: any;
+  treecommit: any;
+  newtree: any;
+  newcommit: any;
+  filename: any;
+  filesha: any;
+  value: any;
 
   public modalRef: BsModalRef;
-  basetree: any = {};newcommitobj: any = {};lastcommit: any = {};updatefileobj: any = {};deletefileobj: any = {};
+  basetree: any = {};
+  newcommitobj: any = {};
+  lastcommit: any = {};
+  updatefileobj: any = {};
+  deletefileobj: any = {};
 
   constructor(private coderunner: CoderunnerService, private gitService: GitService, private modalService: BsModalService) {}
 
@@ -59,13 +72,14 @@ export class EditorComponent implements OnInit {
     let url = URL.createObjectURL(blob);
     downloadLink.href = url;
     downloadLink.download = "script.js";
-    let parent = document.getElementById('myJsDiv');
+    let parent = document.getElementById('jsDiv');
     parent.appendChild(downloadLink);
     downloadLink.click();
     parent.removeChild(downloadLink);
     return false;
   }
 
+  //method to store the entered value
   onKey(event) {
     this.value += event
   }
@@ -116,6 +130,7 @@ export class EditorComponent implements OnInit {
                     this.gitService.lastcommit(this.reponame, this.lastcommit)
                       .subscribe(repos => {})
 
+                    //sweet alert on getting response
                     if (repos) {
                       swal({
                         timer: 2200,
@@ -124,7 +139,10 @@ export class EditorComponent implements OnInit {
                         type: 'success',
                         showConfirmButton: false,
                       })
-                    } else {
+                    }
+
+                    //sweet alert on getting error
+                    else {
                       swal({
                         timer: 2200,
                         title: "Error occured",
@@ -158,6 +176,7 @@ export class EditorComponent implements OnInit {
         this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
           .subscribe(repos => {
 
+            //sweet alert on getting response
             if (repos) {
               swal({
                 timer: 2200,
@@ -166,7 +185,10 @@ export class EditorComponent implements OnInit {
                 type: 'success',
                 showConfirmButton: false,
               })
-            } else {
+            }
+
+            //sweet alert on getting error
+            else {
               swal({
                 timer: 2200,
                 title: "Error occured",
@@ -198,7 +220,8 @@ export class EditorComponent implements OnInit {
         //hitting the delete file api to delete the file
         this.gitService.deleteFile(this.reponame, this.filenamed, this.deletefileobj)
           .subscribe(repos => {
-            // console.log(repos)
+
+            //sweet alert on getting response
             if (repos) {
               swal({
                 timer: 2200,
@@ -209,6 +232,7 @@ export class EditorComponent implements OnInit {
               })
             } else {
 
+              //sweet alert on getting error
               swal({
                 timer: 2200,
                 title: "Error occured",

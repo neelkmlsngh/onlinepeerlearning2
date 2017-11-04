@@ -23,9 +23,9 @@ export class MainComponent implements OnInit {
 
 
   languages: any = [];
-  mod: any = 'html'
+  mode: any = 'html'
   githubUser: any;
-  selectedValue: any;
+  selectedValue: any = "html";
   data: any;
   fileData: any;
   selectedfile: any;
@@ -61,7 +61,7 @@ export class MainComponent implements OnInit {
     this.gitService.getRepos()
       .subscribe(repos => {
         this.githubUser = repos;
-        this.mod = "Select Mode"
+        this.mode = "html"
 
       })
   }
@@ -107,8 +107,8 @@ export class MainComponent implements OnInit {
       })
   }
 
-  mode(event) {
-    this.mod = event;
+  changeMode() {
+    this.mode = this.selectedValue;
   }
 
   getcontent(text) {
@@ -118,13 +118,12 @@ export class MainComponent implements OnInit {
   logout() {
     let user = JSON.parse(localStorage.getItem('currentUser'));
 
-    let userid = user.userId;
+    let userId = user.userId;
     user = {
-      userid: userid
+      userId: userId
     }
-
     this.authenticationservice.logoutEditor(user).subscribe((data1) => {
-      if (data1) {
+      if (data1.status==200) {
         swal({
           timer: 2500,
           title: "Logged Out Successfully",

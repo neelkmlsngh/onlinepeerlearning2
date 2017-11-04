@@ -1,14 +1,17 @@
-import { Component, OnInit,AfterViewInit} from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ForumService } from '../../../services/forum.service';
 import swal from 'sweetalert2';
+import { config } from './../../../config/forum';
+
 @Component({
   selector: 'app-newpost',
   templateUrl: './newpost.component.html',
   styleUrls: ['./newpost.component.css'],
   providers: [ForumService]
 })
-export class NewpostComponent implements OnInit, AfterViewInit{
 
+export class NewpostComponent implements OnInit, AfterViewInit{
+    config=config;
     ckeditorContent:any;
     date:any;
     questionTitle:string;
@@ -19,72 +22,68 @@ export class NewpostComponent implements OnInit, AfterViewInit{
     obj:any={};
     addSnippet:any;
 
- constructor(private forum:ForumService) { }
+  constructor(private forum: ForumService) {}
 
- 
- ngOnInit() {
-
-      this.date = new Date();  
-      let day = this.date.getDate();    
-      let month = this.date.getMonth() + 1;    
-      let year = this.date.getFullYear();    
-      this.date = day + '/' + month + '/' + year;
- }
-  ngAfterViewInit(){
-        var config = {
-    extraPlugins: 'codesnippet',
-    codeSnippet_theme: 'monokai_sublime',
-    height: 356,
-    removeButtons: 'Link,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript,addFile,Image,Table,Styles,Format,Maximize,HorizontalRule,Unlink,Blockquote,Indent,Outdent,RemoveFormat,Spell',
-    removePlugins: 'list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize'
-
-  };
-  CKEDITOR.replace( 'addSnippet', config );
-  CKEDITOR.instances.addSnippet.setData("");
-
-   var problemDescriptionConfig = {
-    codeSnippet_theme: 'monokai_sublime',
-    height: 356,
-    removeButtons: 'About,Cut,Save,NewPage,Outdent,Indent,-,Cut,Copy,Paste,PasteText,PasteFromWord,-,Maximize'
-    
-  };
-CKEDITOR.replace( 'problemDescription', problemDescriptionConfig );
-CKEDITOR.instances.problemDescription.setData("");
+  ngOnInit() {
+    this.date = new Date();
+    let day = this.date.getDate();
+    let month = this.date.getMonth() + 1;
+    let year = this.date.getFullYear();
+    this.date = day + '/' + month + '/' + year;
   }
+  //method to call problemDescriptionConfigEditor
+  ngAfterViewInit() {
+    var configuration = {
+      extraPlugins: 'codesnippet',
+      codeSnippet_theme: 'monokai_sublime',
+      height: 356,
+      removeButtons:config.NEWPOST.CKEDITOR.REMOVED_BUTTONS,
+      removePlugins:config.NEWPOST.CKEDITOR.REMOVED_PLUGINS,
+    };
+    CKEDITOR.replace('addSnippet', configuration);
+    CKEDITOR.instances.addSnippet.setData("");
 
+    var problemDescriptionConfig = {
+      codeSnippet_theme: 'monokai_sublime',
+      height: 356,
+      removeButtons: 'About'
 
- insertPost(data)
- {
-
-       this.obj = {
+    };
+    CKEDITOR.replace('problemDescription', problemDescriptionConfig);
+    CKEDITOR.instances.problemDescription.setData("");
+  }
+  //method to add post on forum
+  insertPost(data) {
+    let user = JSON.parse(localStorage.getItem('currentUser'));
+    let userName=user.userName
+    this.obj = {
       questionTitle: this.questionTitle,
       codeSnippet: CKEDITOR.instances.addSnippet.getData(),
       problemDescription: CKEDITOR.instances.problemDescription.getData(),
-      tags:this.tags,
-      date:this.date
+      tags: this.tags,
+      date: this.date,
+      userName:userName
     }
-   
-   this.forum.save(this.obj).subscribe((res)=>{
+    this.forum.save(this.obj).subscribe((res) => {
 
-        //We get dialog result
-        if (res) {
-          swal({
-      timer: 2200,
-      title: "Posted Successfully",
-      text:  "",
-      type:  'success',
-      showConfirmButton: false,
+      if (res) {
+        console.log(res)
+        swal({ //alert message for success
+          timer: 2200,
+          title: "Posted Successfully",
+          text: "",
+          type: 'success',
+          showConfirmButton: false,
+        })
+      } else {
+        swal({ //alert message for error
+          timer: 2200,
+          title: "Error occured",
+          text: "",
+          type: 'error',
+          showConfirmButton: false,
+        })
+      }
     })
-        } else {
-          swal({
-      timer: 2200,
-      title: "Error occured",
-      text:  "",
-      type: 'error',
-      showConfirmButton: false,
-    })
-        }
-      })
- }
+  }
 }
-

@@ -5,19 +5,21 @@ const mongoose = require('mongoose');
  */
 
 var UserSchema = new mongoose.Schema({
-    name: String,
+    name: { type: String },
     userId: { type: String, unique: true },
     updatedAt: { type: Date, default: Date.now },
-    avatarUrl: String,
-    publicRepos: String,
-    reposUrl: String,
-    firstName: {type:String,default:null},
-    lastName: {type:String,default:null},
-    email:{type:String,default:null},
-    company:{type:String,default:null},
-    website:{type:String,default:null},
-    gender:{type:String,default:null},
-    bio:{type:String,default:null}
+    avatarUrl: { type: String },
+    publicRepos: { type: String },
+    reposUrl: { type: String },
+    firstName: { type: String, default: null },
+    lastName: { type: String, default: null },
+    email: { type: String, default: null },
+    company: { type: String, default: null },
+    website: { type: String, default: null },
+    gender: { type: String, default: null },
+    bio: { type: String, default: null }
+
+
 
 });
 UserSchema.statics.findOrCreate = require("find-or-create");

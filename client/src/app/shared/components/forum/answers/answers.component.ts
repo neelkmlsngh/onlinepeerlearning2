@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ForumService } from '../../../services/forum.service';
 import { ParamMap } from '@angular/router';
 import { Router, ActivatedRoute, Params, Data } from '@angular/router'
+
 import 'rxjs/add/operator/switchMap';
+
+import { ForumService } from '../../../services/forum.service';
+import { config } from './../../../config/forum';
+
 
 @Component({
   selector: 'app-answers',
@@ -15,15 +19,14 @@ export class AnswersComponent implements OnInit {
    data: any = [];
    question:string;
    errors: any;
-
+   config = config
+  //method to post answer
   ngOnInit() {
-
   	 this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
       .subscribe((res) => {
         this.question=res[0].questionTitle;
         this.data = res[0].answers;
-        console.log("prashant....................",this.data);
       })
     error => {
       this.errors = error;

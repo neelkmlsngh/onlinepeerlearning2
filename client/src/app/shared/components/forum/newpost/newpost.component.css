@@ -3,48 +3,48 @@
   background-color: #00695C;
 }
 
-.like{
-	background-color: #00695C;
-}
-
-.problemDescription{
-	font-size: 15px;
-}
-
-.tags{
-	background-color: #CE93D8;
-}
-
-.postquestion{
+.like {
   background-color: #00695C;
 }
 
-.questionTitle{
-	color: #6A1B9A;
+.problemDescription {
+  font-size: 15px;
 }
 
-.user{
-	color: #00695C;
+.tags {
+  background-color: #CE93D8;
 }
 
-.views{
-	color:  #6A1B9A;
+.postquestion {
+  background-color: #00695C;
 }
 
-.post{
-	background-color: #039BE5;
+.questionTitle {
+  color: #6A1B9A;
 }
 
-.cancel{
-	background-color: #FF5722;
+.user {
+  color: #00695C;
 }
 
-.ans{
-	  padding-left: 11px;
+.views {
+  color: #6A1B9A;
 }
 
-.navbar{
-	background-color: #00695C;
+.post {
+  background-color: #039BE5;
+}
+
+.cancel {
+  background-color: #FF5722;
+}
+
+.ans {
+  padding-left: 11px;
+}
+
+.navbar {
+  background-color: #00695C;
 }
 
 .example-form {

@@ -3,14 +3,14 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand text-white" href="">Knowledge Base</a>
+    <a class="navbar-brand text-white" href="">{{config.NEWPOST.KNOWLEDGE_BASE}}</a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link text-white" href="" routerLink="/questions">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link text-white" href="" routerLink="/questions">{{config.NEWPOST.HOME}} <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="" routerLink="/questions">Questions</a>
+          <a class="nav-link text-white" href="" routerLink="/questions">{{config.NEWPOST.QUESTIONS}}</a>
         </li>
         <li class="nav-item">
           <li class="nav-item">
@@ -19,11 +19,11 @@
       </ul>
       <span class="navbar-text white-text">
               <a class="text-white" href="#">
-                 <i class="fa fa-question-circle fa-lg text-white"></i>  Help</a>
+                 <i class="fa fa-question-circle fa-lg text-white"></i>{{config.NEWPOST.HELP}}</a>
         </span>
       <span class="navbar-text white-text ml-4 mr-2">
             <a class="text-white" href="#">
-                 <i class="fa fa-sign-in fa-lg text-white"></i>  Login</a>
+                 <i class="fa fa-sign-in fa-lg text-white"></i>{{config.NEWPOST.LOGIN}}</a>
         </span>
     </div>
   </nav>
@@ -33,35 +33,35 @@
       </div>
       <div class="col-sm-8">
         <div class="form-group col-sm mt-5 border py-2">
-          <label for="inputState" class="">Question title</label>
+          <label for="inputState" class="">{{config.NEWPOST.QUESTION_TITLE}}</label>
           <input type="text" class="form-control " placeholder="New choice" name="questionTitle" [(ngModel)]="questionTitle">
         </div>
         <div class="form-group col-sm border mt-2 py-3">
-          <label for="inputState" class="">problem description</label>
+          <label for="inputState" class="">{{config.NEWPOST.PROBLEM_DESCRIPTION}}</label>
           <ckeditor id="problemDescription" class="problemDescription" name="problemDescription" [(ngModel)]="problemDescription"></ckeditor>
         </div>
         <div class="form-group col-sm mt-2 border py-2">
-          <label for="inputState" class="">Tags</label>
+          <label for="inputState" class="">{{config.NEWPOST.TAGS}}</label>
           <input type="text" class="form-control " placeholder="at least one tag such as html,Angular,java,c#" name="tags" [(ngModel)]="tags">
         </div>
         <div class="border py-2">
           <div class="col-sm-6">
-            <label for="inputState" class="">Date</label>
+            <label for="inputState" class="">{{config.NEWPOST.DATE}}</label>
           </div>
           <div class="col-sm-6">
             <input type="text" class="form-control bg-white" placeholder={{date}} value={{date}} placement="top" name="date" [(ngModel)]="date" readonly="true">
           </div>
         </div>
          <div class="form-group col-sm border mt-2 py-3">
-          <label for="inputState" class="">Add Snippet</label>
+          <label for="inputState" class="">{{config.NEWPOST.ADD_SNIPPET}}</label>
         <ckeditor id="addSnippet" class="addSnippet" name="addSnippet" [(ngModel)]="addSnippet"></ckeditor>
         </div>
         <div class="row mt-4 mb-4">
           <div class="col-sm-6">
-            <button class="btn post btn-md text-white form-control myBtn" (click)="insertPost(postSubmit)">Post question</button>
+            <button class="btn post btn-md text-white form-control myBtn" (click)="insertPost(postSubmit)">{{config.NEWPOST.POST_BUTTON}}</button>
           </div>
           <div class="col-sm-6">
-            <button class="btn cancel btn-md text-white form-control myBtn">Cancel</button>
+            <button class="btn cancel btn-md text-white form-control myBtn">{{config.NEWPOST.CANCEL}}</button>
           </div>
         </div>
       </div>

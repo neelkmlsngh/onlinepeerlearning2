@@ -5,13 +5,13 @@ const mongoose = require('mongoose');
  */
 
 var LoginSchema = new mongoose.Schema({
-  userName: String,
-  userId: String,
+  userName: {type:String},
+  userId: {type:String,unique:true},
   updatedAt:{ type: Date, default: Date.now },
  	createdOn:Date,
-  online:String,
-  timestamp:Number,
-  socketId:String,
+  online:{type:String},
+  timestamp:{type:Number},
+  socketId:{type:String},
 });
 LoginSchema.statics.findOrCreate = require("find-or-create");
 module.exports = mongoose.model("login", LoginSchema);

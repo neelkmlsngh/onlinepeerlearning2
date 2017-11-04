@@ -19,8 +19,8 @@ export class ChatService {
   }
 
   //Method to check the session of user.
-  public userSessionCheck(userId, callback): any {
-    this.httpService.userSessionCheck({ userId: userId }).subscribe(
+  public checkUserSession(userId, callback): any {
+    this.httpService.checkUserSession({ userId: userId }).subscribe(
       response => {
         callback(false, response);
       },

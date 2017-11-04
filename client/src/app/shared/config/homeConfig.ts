@@ -1,12 +1,12 @@
 export const homeConfig: any = {
 	home: {
-		"button1": "Enter Public Forum",
-		"button2": "Login via Github",
-		"button3": "Important Instructions",
-		"button3Subtitle": "before you start",
-		"title": "Peer Learning",
-		"tagLine": "Work on code editor and consult your peers when you are stuck.",
-		"modalTitle": "Guidelines",
-		"modalBody": "Guidelines for Github Account"
+		BUTTON1 : "Enter Public Forum",
+		BUTTON2: "Login via Github",
+		BUTTON3: "Important Instructions",
+		BUTTONSUBTITLE: "before you start",
+		TITLE: "Peer Learning",
+		TAGLINE: "Work on code editor and consult your peers when you are stuck.",
+		MODALTITLE: "Guidelines",
+		MODALBODY: "Guidelines for Github Account"
 		}
 };
