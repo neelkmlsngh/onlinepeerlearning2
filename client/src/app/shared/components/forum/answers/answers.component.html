@@ -2,15 +2,16 @@
     <nav class="navbar navbar-expand-lg navbar-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>TagInputModule
-      <a class="navbar-brand text-white" href="">Knowledge Base</a>
+      </button>
+      <a class="navbar-brand text-white" href="">{{config.ANSWERS.KNOWLEDGE_BASE}}</a>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link text-white" href="" routerLink="/questions">Home</a>
+            <a class="nav-link text-white" href="" routerLink="/questions">{{config.ANSWERS.HOME}}<span class="sr-only">(current)</span></a>
+
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="" routerLink="/questions">Questions</a>
+            <a class="nav-link text-white" href="" routerLink="/questions">{{config.ANSWERS.QUESTIONS}}</a>
           </li>
           <li class="nav-item">
             <li class="nav-item">
@@ -19,11 +20,11 @@
         </ul>
         <span class="navbar-text white-text">
               <a class="text-white" href="#">
-                 <i class="fa fa-question-circle fa-lg text-white"></i>  Help</a>
+                 <i class="fa fa-question-circle fa-lg text-white"></i>{{config.ANSWERS.HELP}}</a>
         </span>
         <span class="navbar-text white-text ml-4 mr-2">
             <a class="text-white" href="#">
-                 <i class="fa fa-sign-in fa-lg text-white"></i>  Login</a>
+                 <i class="fa fa-sign-in fa-lg text-white"></i>{{config.ANSWERS.LOGIN}}</a>
         </span>
       </div>
     </nav>
@@ -32,54 +33,10 @@
         <div class="col-sm-2">
         </div>
         <div class="col-sm-8">
-          <div class="heading h5 mt-4">
-            All Questions
+          <div class="heading h4 mt-4">
+            {{config.ANSWERS.ALL_QUESTIONS}}
           </div>
           <hr>
-          <!--      <div class="questionsumary">
-            <div class="row mb-3" *ngFor="let result of data">
-              <div class="statuscontainer col-sm-3">
-                <div class="vote h5">
-                  211 votes
-                </div>
-                <div class="answeraccepted h5  border py-2 text-white mt-4">
-                  <strong class="pl-4">12</strong>
-                  <br><small class="ans">answers</small>
-                </div>
-                <div class="views h6  mt-4">
-                  1.5 million views
-                </div>
-              </div>
-              <div class="col-sm-9">
-                <div class="questionTitle">
-                  {{question}}
-                </div>
-                <div class="problemDescription">
-                  {{result.problemDescription}}
-                </div>
-                <div class="text-white mt-3 mb-3">
-                  <div class="tags d-inline border py-1">Angularjs</div>
-                  <div class="tags d-inline boredr py-1">Nodejs</div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-5 postedDate small">
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <a class="btn like text-white" href="#">
-                 <i class="fa fa-thumbs-up fa-lg text-white"></i> Like</a>
-                      </div>
-                      <div class="col-sm-6">
-                        asked Oct 20 '08 at 13:18
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-7 user text-right">
-                    <span><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></span> posted by prashant
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
           <div class="questionsumary">
             <div class="question">
               {{question}}
@@ -92,8 +49,8 @@
                 <div class="codeSnippet">
                   {{result.codeSnippet}}
                 </div>
-               <!--  <div class="form-group col-sm border mt-2 py-3">
-                  <label for="inputState" class="">Add comments</label>
+                <div class="form-group col-sm border mt-2 py-3">
+                  <label for="inputState" class="">{{config.ANSWERS.ADD_COMMENTS}}</label>
                   <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="write description" name="problemDescription" [(ngModel)]="problemDescription"></textarea>
                 </div> -->
                 <div class="col-sm-6">
@@ -101,7 +58,7 @@
                 </div>
                 <div class="col-sm-6">
                 <div class="date">
-                asked on 2/11/2011
+                {{config.ANSWERS.ASKED_ON}} {{result.date}}
                 </div>
                 <div class="username text-right">
                    <span><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></span>posted by {{result.username}}

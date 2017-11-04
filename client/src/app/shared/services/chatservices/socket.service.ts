@@ -14,7 +14,7 @@ export class SocketService {
 
   //Method to connect the users to socket
   connectSocket(userId: string) {
-    this.socket = io.connect(this.config.connect.url + this.config.connect.port, { query: `userId=${userId}` });
+    this.socket = io.connect(this.config.connect.apiURL, { query: `userId=${userId}` });
   }
 
   //Method to emit the add-messages event.

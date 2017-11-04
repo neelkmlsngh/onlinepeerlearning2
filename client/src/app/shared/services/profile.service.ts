@@ -11,7 +11,6 @@ export class ProfileService {
 
   constructor(private http: Http,private socketService:SocketService) {}
 
-
   // service method to get data of user using userid
   getDataFromDB(userId) {
 
