@@ -28,12 +28,12 @@
   </ul>
   <div class="message-typer">
     <textarea class="message form-control" placeholder="Type and hit Enter" [(ngModel)]="message" (keyup)="sendMessage($event)">
-     <!-- <div class="card-footer">
+     <div class="card-footer">
           <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
           <div class="col-sm-3">
             <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">{{config.profile.UPLOAD}}</button>
           </div>
-        </div> -->
+        </div>
     </textarea>
 
   </div>
