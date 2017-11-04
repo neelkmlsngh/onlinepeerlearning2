@@ -12,7 +12,7 @@ export class ForumService {
 
   ngOnInit() {} //method is used to hit api on express server and post the data of form in database     
   
-  save(data: any) {
+  savePost(data: any) {
     return this.http.
     post('https://localhost:8080/api/forums', data)
       .map(res => res.json());
@@ -27,7 +27,7 @@ export class ForumService {
   searchEntries(searchTerm: any) {
 
     if (searchTerm != "") {
-      var api = 'https://localhost:8080/api/forums/' + searchTerm
+      var api = 'https://localhost:8080/api/forums/term/' + searchTerm
       return this.http
         .get(api)
         .map(res => res.json());
@@ -39,7 +39,7 @@ export class ForumService {
     }
   }
   /*getEmployeeByID method to fetch details by id used in supervisor component*/
-  getPostByQuestion(id : string) {
+  getPostById(id : string) {
     return this.http.
     get('https://localhost:8080/api/forums/' + id)
       .map(res => res.json());

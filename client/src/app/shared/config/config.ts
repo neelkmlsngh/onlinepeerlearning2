@@ -1,9 +1,16 @@
 export const config: any = {
 
+  
+
   language: [
     "JAVASCRIPT",
     "HTML/CSS"
   ],
+
+  con: {
+    title:"Add Snippet",
+    button:"Add Snippet"
+    },
 
 
 
@@ -14,9 +21,9 @@ export const config: any = {
 
   connect:
   {
-    apiURL : "https://192.168.252.178:8080",
-    vmURL : "https://192.168.252.178:3030",
-    peerjsURL : "https://192.168.252.178:8081"
+    apiURL : "https://192.168.252.152:8080",
+    vmURL : "https://192.168.252.152:3030",
+    peerjsURL : "https://192.168.252.152:8081"
   },
 
   giturls: {
