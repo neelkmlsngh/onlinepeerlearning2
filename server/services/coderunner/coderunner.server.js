@@ -5,12 +5,13 @@ const bodyParser = require('body-parser');
 const { fork } = require('child_process');
 const fs = require('fs');
 const cors = require('cors')
+const coderunnerConfig = require('../../config').coderunnerConfig;
 
 let app = express();
 
 var options = {
-    key: fs.readFileSync(path.resolve(__dirname, '../../resources/key.pem')),
-    cert: fs.readFileSync(path.resolve(__dirname, '../../resources/cert.pem'))
+    key: fs.readFileSync(path.resolve(__dirname, coderunnerConfig.resourceKey)),
+    cert: fs.readFileSync(path.resolve(__dirname, coderunnerConfig.resourceCert))
 };
 
 app.use(bodyParser.json());
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors())
 
+/*route to execute a child process*/
 app.post('/execute', function(req, res) {
     const fileName = Date.now().toString() + '.log';
     const out = fs.openSync('./logs/fileName', 'a');

@@ -30,14 +30,6 @@ export const config: any = {
     HOSTURLUSERS: "https://api.github.com/users/"
   },
 
-<<<<<<< HEAD
-    "url4": "https://192.168.252.152:8080/api/login",
-    "url2": "https://192.168.252.152:",
-    "url": "https://192.168.252.152:",
-    "url3": "https//192.168.252.57:",
-    "port": "8080",
-    "port2": "3030"
-=======
   editor: {
     JAVASCRIPTNAME: "Javascript File",
     REPONAME: "Your current repository is:",
@@ -49,7 +41,6 @@ export const config: any = {
     CREATEBTN: "Create",
     UPDATEBTN: "Update",
     DELETEBTN: "Delete"
->>>>>>> bdb17c1466c0360690a1b51ae4303a4af7800449
   },
 
   footer: {
