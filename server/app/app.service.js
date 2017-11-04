@@ -34,9 +34,9 @@ function loginviagit() {
     });
     passport.use(new GitHubStrategy({
 
+        clientID: gitId.CLIENT_ID,
+        clientSecret: gitId.CLIENT_SECRET,
 
-        clientID: '7328322e0495591f5a69',
-        clientSecret: 'aac0e311b9be3dbd2fbe98cd23e3fa5fc60ea32c',
         callbackURL: gitId.CALLBACK_URL
     }, function(accessToken, refreshToken, profile, done) {
         let userInfo = {
@@ -47,6 +47,7 @@ function loginviagit() {
             reposUrl: profile._json.repos_url,
             online: loginconfig.ONLINE
         }
+
 
         //save login credentials in login collection
         //function called by login controller

@@ -30,12 +30,12 @@ export class ProfileService {
       .map(res => res.json(), error => error.json());
 
   }
-/*
+
   uploadChatFile(formData, options) {
    let fileObj={
       "formData": formData,
       "options": options
     }
     this.socketService.sendFile(fileObj)
-  }*/
+  }
 }

@@ -39,10 +39,10 @@ describe('profileService ,(mockBackend)', () => {
    }));
 
  /*Testcase to check whether instance of service is created or not*/
- it('can instantiate service with "new"', inject([Http], (http: Http) => {
+ /*it('can instantiate service with "new"', inject([Http], (http: Http) => {
    expect(http).not.toBeNull('http should be provided');
    let service = new profileService(http);
    expect(service instanceof profileService).toBe(true, 'new service should be ok');
- }));
+ }));*/
 
 })
