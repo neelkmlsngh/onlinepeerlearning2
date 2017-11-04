@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import {AuthenticationService} from '../../../shared/services/authentication.service'
 import swal from 'sweetalert2';
-import { config } from '../../config/config';
+import { config } from '../../config/navConfig';
 
 @Component({
   selector: 'app-navbar',
