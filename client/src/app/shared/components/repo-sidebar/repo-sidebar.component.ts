@@ -3,7 +3,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 /*import third party libraries*/
 import { EditorService } from '../../services/editor.service';
 import { GitService } from '../../services/git.service';
-import { config } from './../../config/repoSidebarConfig';
+import { config } from './../../config/repoSidebar.config';
 
 @Component({
   selector: 'app-repo-sidebar',
