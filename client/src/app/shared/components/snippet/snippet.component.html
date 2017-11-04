@@ -3,23 +3,26 @@
     <div class="form-area">
       <form role="form">
         <br style="clear:both">
-        <h3>Add Snippet </h3>
+        <!-- form title -->
+        <h3>{{con.con.title}} </h3>
         <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">{{language}}<span class="caret"></span>
         </button>
+
         <!-- dropdown for language selection -->
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" (click)="mode('html')">Html</a></li>
-          <li><a class="dropdown-item" (click)="mode('css')">Css</a></li>
-          <li><a class="dropdown-item" (click)="mode('javascript')">Javascript</a></li>
-        </ul>
+        <select name="carlist" form="carform"  (change)="mode($event)">
+            <option *ng for lng of languages>{{lng}}</option>
+            </select>
         <div class="form-group">
+
           <!-- two way binding of 'title' -->
           <input type="text" class="form-control" id="title" name="title" placeholder="Title" required [(ngModel)]="title">
         </div>
+
         <!-- text area of ck editor -->
         <ckeditor id="editor1" class="editor1" name="editor1" [(ngModel)]="editor1"></ckeditor>
+
         <!-- submit button for code snippet -->
-        <button type="button " id="submit " name="submit " class="btn btn-primary pull-right " (click)="submit() " [routerLink]="'/main'">Add Snippet</button>
+        <button type="button " id="submit " name="submit " class="btn btn-primary pull-right " (click)="submit() " [routerLink]="'/main'">{{con.con.button}}t</button>
       </form>
     </div>
   </div>

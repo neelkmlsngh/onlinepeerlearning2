@@ -38,7 +38,7 @@ router.get('/', function(req, res) {
 });
 
 //search forum questions from database
-router.get('/:searchTerm', function(req, res) {
+router.get('/term/:searchTerm', function(req, res) {
     let getValue = req.params.searchTerm;
     try {
         forumCtrl.getSearch(getValue).then((successResult) => {
