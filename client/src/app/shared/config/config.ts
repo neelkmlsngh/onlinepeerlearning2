@@ -3,8 +3,9 @@ export const config: any = {
   
 
   language: [
-    "JAVASCRIPT",
-    "HTML/CSS"
+    "javascript",
+    "html",
+    "css"
   ],
 
   con: {
@@ -21,9 +22,9 @@ export const config: any = {
 
   connect:
   {
-    apiURL : "https://192.168.252.152:8080",
-    vmURL : "https://192.168.252.152:3030",
-    peerjsURL : "https://192.168.252.152:8081"
+    apiURL : "https://192.168.252.211:8080",
+    vmURL : "https://192.168.252.211:3030",
+    peerjsURL : "https://192.168.252.211:8081"
   },
 
   giturls: {
@@ -58,5 +59,11 @@ export const config: any = {
   forumConnect:{
     "APIURL":'api/forums/',
     "SEARCHAPIURL":'api/forums/term/'
-  }
+  },
+  peerserver:{
+ "host":"192.168.252.211",
+ "port":"8081",
+ "path":"/peerjs"
+
+ }
 };

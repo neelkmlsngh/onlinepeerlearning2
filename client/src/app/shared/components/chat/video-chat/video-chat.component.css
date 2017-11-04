@@ -15,7 +15,7 @@
 }
 
 .videobox--tray {
-  bottom: -350px;
+  bottom: -330px;
 }
 
 .videobox--closed {
@@ -190,6 +190,7 @@
 
 .videobox--empty {
   height: 380px;
+  margin-right: 62%;
 }
 
 .videobox--empty.video--tray {
