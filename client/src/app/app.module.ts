@@ -78,11 +78,14 @@ let apiRoutes:Routes = [
     /* canActivate: [AuthoriseGuard]*/
   },
   {
-    path: 'forums',
-    component: ForumComponent,
+    path: 'forums',  
     children: [{
+        path: '',
+        component: ForumComponent,
+      },
+    {
         path: 'view',
-        component: ViewpostComponent
+        component: ViewpostComponent,
       },
       {
         path: 'view/:postId',
