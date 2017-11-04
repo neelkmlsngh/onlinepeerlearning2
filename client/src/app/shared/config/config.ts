@@ -76,5 +76,7 @@ export const config: any = {
     "forums": "Forums",
     "logout": "Logout"
   },
-  
+  forumConnect:{
+    "APIURL":'api/forums/'
+  }
 };

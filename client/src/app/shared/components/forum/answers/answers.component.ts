@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, Params, Data } from '@angular/router'
 import 'rxjs/add/operator/switchMap';
 
 import { ForumService } from '../../../services/forum.service';
-import { config } from './../../../config/forum';
+import { forumConfig } from './../../../config/forum';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class AnswersComponent implements OnInit {
    data: any = [];
    question:string;
    errors: any;
-   config = config
+   forumConfig = forumConfig
   //method to post answer
   ngOnInit() {
   	 this.router.paramMap

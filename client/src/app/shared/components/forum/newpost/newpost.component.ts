@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ForumService } from '../../../services/forum.service';
 import swal from 'sweetalert2';
-import { config } from './../../../config/forum';
+import { forumConfig } from './../../../config/forum';
 
 @Component({
   selector: 'app-newpost',
@@ -11,7 +11,7 @@ import { config } from './../../../config/forum';
 })
 
 export class NewpostComponent implements OnInit, AfterViewInit{
-    config=config;
+    forumConfig=forumConfig;
     ckeditorContent:any;
     date:any;
     questionTitle:string;
@@ -37,8 +37,8 @@ export class NewpostComponent implements OnInit, AfterViewInit{
       extraPlugins: 'codesnippet',
       codeSnippet_theme: 'monokai_sublime',
       height: 356,
-      removeButtons:config.NEWPOST.CKEDITOR.REMOVED_BUTTONS,
-      removePlugins:config.NEWPOST.CKEDITOR.REMOVED_PLUGINS,
+      removeButtons:forumConfig.NEWPOST.CKEDITOR.REMOVED_BUTTONS,
+      removePlugins:forumConfig.NEWPOST.CKEDITOR.REMOVED_PLUGINS,
     };
     CKEDITOR.replace('addSnippet', configuration);
     CKEDITOR.instances.addSnippet.setData("");
