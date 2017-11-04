@@ -11,7 +11,8 @@ import * as $ from 'jquery';
 @Injectable()
 export class GitService {
   userName: any = "GauravGupta131220";
-  username: any = "ROZYTYAGI"
+  username: any = "ROZYTYAGI";
+  userpassword: any = "tyagi@96";
   private clientId: string = '60b9f23dedffbdfc476c';
   private clientSecret: string = 'd1c186c6373f96571c0bfcf76b84e4dc6fd0c15a';
 
@@ -161,28 +162,30 @@ export class GitService {
 createToken(credentials){
   console.log(credentials,"yyyyyyyyyyyyy");
   if(this.username){
- return this._http.post('https://api.github.com/authorizations',credentials)
+ return this._http.post('https://api.github.com/authorizations',credentials,this.authorizationToken(this.username,this.userpassword))
  .map(res=>res.json())
 }
 }
-
   //method to create Repository on github
-  createRepos(text) {
+  createRepos(text,accessToken) {
     if (this.username) {
-      return this._http.post(config.giturls.CREATEREPOS, text, this.authorization())
+      return this._http.post(config.giturls.CREATEREPOS, text, this.authorization(accessToken))
         .map(res => res.json())
     }
   }
 
   //method for authorization for creating new repository
-  private authorization() {
-    let headers = new Headers({ 'Authorization': "Basic Uk9aWVRZQUdJOnR5YWdpQDk2" });
+  private authorization(accessToken) {
+    let headers = new Headers({ 'Authorization': "Basic "+accessToken });
     return new RequestOptions({ headers: headers });
   }
 
   //method for authorization for creating personal access token
-  private authorizationToken(){
-    let headers=new Headers({'Username':"ROZYTYAGI",'Password':"tyagi@96"});
+  private authorizationToken(username,password){
+    let data=btoa(username + ':'+ password)
+    console.log('data-----------------------')
+    console.log(data)
+    let headers=new Headers({"Authorization": "Basic "+data});
     return new RequestOptions({headers: headers})
   }
 }

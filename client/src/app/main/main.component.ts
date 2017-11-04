@@ -35,6 +35,7 @@ export class MainComponent implements OnInit {
   methodToExport: any;
   link: string = '';
   value: any;
+  accessToken: any;
   public modalRef: BsModalRef;
 
   constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router) {
@@ -143,10 +144,12 @@ createAccessToken(){
   "scopes": [
     "repo"
   ],
-  "note": "test5"
+  "note": "onlinePeerLearning"
 }
   this.gitService.createToken(cred)
   .subscribe(data=>{
+     this.accessToken=data.token;
+     console.log("token---------",this.accessToken);
     console.log("llllll",(data))
   })
 }
@@ -167,7 +170,7 @@ createRepo(name,desc){
   "has_projects": false,
   "has_wiki": false
 }
-   this.gitService.createRepos(repoName)
+   this.gitService.createRepos(repoName,this.accessToken)
    .subscribe(data =>{
    })
  }
