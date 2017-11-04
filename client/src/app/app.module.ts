@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -156,7 +157,6 @@ let apiRoutes:Routes = [
     ModalModule.forRoot(),
     RouterModule.forRoot(apiRoutes, { useHash: true })
     ],
-
   providers: [GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService,SnippetService],
 
   bootstrap: [AppComponent]
