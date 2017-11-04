@@ -3,8 +3,9 @@ export const config: any = {
   
 
   language: [
-    "JAVASCRIPT",
-    "HTML/CSS"
+    "javascript",
+    "html",
+    "css"
   ],
 
   con: {
