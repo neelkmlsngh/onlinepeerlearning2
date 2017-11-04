@@ -22,21 +22,6 @@ export class SocketService {
     this.socket.emit('add-message', message);
   }
 
-  //Method to emit the logout event.
-  logout(userId): any {
-
-    this.socket.emit('logout', userId);
-    let observable = new Observable(observer => {
-      this.socket.on('logout-response', (data) => {
-        observer.next(data);
-      });
-      return () => {
-        this.socket.disconnect();
-      };
-    })
-    return observable;
-  }
-
   //Method to receive add-message-response event.
   receiveMessages(): any {
     let observable = new Observable(observer => {
@@ -63,6 +48,10 @@ export class SocketService {
       };
     })
     return observable;
+  }
+
+  sendFile(fileObj){
+    this.socket.emit('send-file', fileObj)
   }
 
 }

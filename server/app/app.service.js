@@ -14,6 +14,7 @@ var session = require('express-session');
 const jwt = require('jsonwebtoken');
 
 const helper = require('./../api/chat/chat.controller');
+const fileUploader = require('../api/users/users.router')
 
 const appRoutes = require('./app.router');
 const logger = require('../services/app.logger');
@@ -188,6 +189,10 @@ function socketEvents(io) {
                 socketId: socket.id
             });
         });
+
+        socket.on('send-file',(fileObj)=>{
+            fileUploader.fileUpload(fileObj);
+        })
     });
 }
 module.exports = {
