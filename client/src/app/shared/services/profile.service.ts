@@ -36,4 +36,11 @@ export class ProfileService {
     }
     this.socketService.sendFile(fileObj)
   }
+ 
+  //method store token into database
+  storeAccessToken(userId,token){
+    const api = config.connect.apiURL+"/api/users/token"+userId
+    return this.http.put(api,token)
+    .map(res=>res.json(),error=>error.json());
+  }
 }

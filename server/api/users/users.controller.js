@@ -60,6 +60,26 @@ const updateUserProfile = function(profileInfo, getId) {
     })
 }
 
+//create personel access token
+const createToken = function(profileInfo, getId) {
+    let userId = getId + "";
+    return new Promise((resolve, reject) => {
+
+        ProfileUser.updateOne({ "userId": userId }, {
+            $set: {
+                accessToken: profileInfo.accessToken
+            }
+        }, { upsert: true }, (err, data) => {
+            if (err) {
+                reject(err);
+            } else if (data) {
+                resolve(data);
+            }
+        })
+
+    })
+}
+
 // update profile picture of a user with given userId
 const updateImage = function(dataObj, getId) {
     let userId = getId;
@@ -86,5 +106,6 @@ module.exports = {
     saveUserCredentials: saveUserCredentials,
     getProfile: getProfile,
     updateUserProfile: updateUserProfile,
-    updateImage: updateImage
+    updateImage: updateImage,
+    accessToken: accessToken
 };

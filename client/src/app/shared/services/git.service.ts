@@ -10,6 +10,7 @@ import * as $ from 'jquery';
 
 @Injectable()
 export class GitService {
+  accessToken:any;
   userName: any = "GauravGupta131220";
   username: any = "ROZYTYAGI";
   userpassword: any = "tyagi@96";
@@ -79,7 +80,7 @@ export class GitService {
   //method to create file on github
   createFile(text) {
     if (this.userName) {
-      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.SUBURL, this.authorization())
+      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.SUBURL, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
@@ -87,7 +88,7 @@ export class GitService {
   //method to create the file and saving the sha-base-tree
   commitfile(text, sha) {
     if (this.userName) {
-      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.COMMITFILEURL + sha, this.authorization())
+      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.COMMITFILEURL + sha, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
@@ -95,7 +96,7 @@ export class GitService {
   //method to create file, sending new file name and saving the sha-new-tree
   treecommit(text, basetree) {
     if (this.userName) {
-      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.TREECOMMITURL, basetree, this.authorization())
+      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.TREECOMMITURL, basetree, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
@@ -103,7 +104,7 @@ export class GitService {
   //method to create a file on github and saving sha-new-commit
   newcommit(text, newcommit) {
     if (this.userName) {
-      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.NEWCOMMITURL, newcommit, this.authorization())
+      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.NEWCOMMITURL, newcommit, this.authorization(this.accessToken))
         .map(res => res.json())
 
     }
@@ -112,7 +113,7 @@ export class GitService {
   //method to create a fiel on github 
   lastcommit(text, lastcommit) {
     if (this.userName) {
-      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.SUBURL, lastcommit, this.authorization())
+      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.SUBURL, lastcommit, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
@@ -133,7 +134,7 @@ export class GitService {
   //method to get the sha of the file   
   getsha(text, filename) {
     if (this.userName) {
-      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, this.authorization())
+      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
@@ -141,7 +142,7 @@ export class GitService {
   //method to update the file on github
   updateFile(text, filename, updateobj) {
     if (this.userName) {
-      return this._http.put(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, updateobj, this.authorization())
+      return this._http.put(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, updateobj, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
@@ -168,8 +169,9 @@ createToken(credentials){
 }
   //method to create Repository on github
   createRepos(text,accessToken) {
+    this.accessToken=accessToken
     if (this.username) {
-      return this._http.post(config.giturls.CREATEREPOS, text, this.authorization(accessToken))
+      return this._http.post(config.giturls.CREATEREPOS, text, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
