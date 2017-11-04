@@ -59,6 +59,55 @@ import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.
 
 import { ErrorpageComponent } from './shared/components/errorpage/errorpage.component';
 
+let apiRoutes:Routes = [
+  { path:'',
+    component:HomeComponent
+  },
+  {
+    path:'error',
+    component: ErrorpageComponent
+  },
+  {
+    path:'snippets',
+    component:SnippetComponent
+  },
+  {
+    path: 'main',
+    component: MainComponent,
+    /* canActivate: [AuthoriseGuard]*/
+  },
+  {
+    path: 'forums',
+    component: ForumComponent,
+    children: [{
+        path: 'view',
+        component: ViewpostComponent
+      },
+      {
+        path: 'view/:postId',
+        component: ViewpostComponent
+      },
+      {
+        path: 'add',
+        component: NewpostComponent,
+      },
+    ]
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    //canActivate: [AuthoriseGuard]
+  },
+  {
+    path: 'auth/:userId/:token',
+    component: AuthenticateComponent,
+    //canActivate: [AuthoriseGuard]
+  },
+  {
+    path: '**',
+    component: HomeComponent,
+  },
+]; 
 
 @NgModule({
   declarations: [
@@ -67,9 +116,7 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
     EditorComponent,
     NavbarComponent,
     RepoSidebarComponent,
-
     FooterComponent,
-
     WebeditorComponent,
     ProfileComponent,
     MainComponent,
@@ -81,16 +128,12 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
     AuthenticateComponent,
     AudioChatComponent,
     VideoChatComponent,
-
     SnippetComponent,
     AnswersComponent,
-
     ChatHomeComponent,
-
     ErrorpageComponent
-
-
   ],
+
   imports: [
     BrowserModule,
     NgxPaginationModule,
@@ -105,128 +148,14 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
     MatRadioModule,
     TruncateModule,
     TagInputModule,
-
-
     AngularFontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTabsModule,
     MatFormFieldModule,
-
     ModalModule.forRoot(),
-    RouterModule.forRoot([
+    RouterModule.forRoot(apiRoutes, { useHash: true })
 
-
-    {
-       path:'home',
-       component:HomeComponent
-     },
-         {
-       path:'error',
-       component: ErrorpageComponent
-     },
-       {
-       path:'snippet',
-       component:SnippetComponent
-     },
-     {
-        path: 'main',
-        component: MainComponent,
-        /* canActivate: [AuthoriseGuard]*/
-      },
-      {
-        path: 'Forum',
-        component: ForumComponent,
-        children: [{
-            path: 'questions',
-            component: ViewpostComponent
-          },
-          {
-            path: 'questiondetail/:value',
-            component: ViewpostComponent
-          },
-          {
-            path: 'addquestion',
-            component: NewpostComponent,
-          },
-
-          {
-            path: 'answers/:value',
-            component: AnswersComponent,
-            // canActivate: [AuthoriseGuard]
-          },
-        ]
-
-      },
-      {
-        path: 'questions',
-        component: ViewpostComponent,
-        // canActivate: [AuthoriseGuard]
-      },
-
-      {
-        path: 'video',
-        component: VideoChatComponent,
-        //canActivate: [AuthoriseGuard]
-      },
-      {
-
-        path: 'audio',
-        component: AudioChatComponent,
-        //canActivate: [AuthoriseGuard]
-      },
-
-      // {
-      //   path: 'onlinepeerlearning/:id',
-      //   component: DisplayComponent
-      // },
-      /*  {
-        path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
-      }*/
-      {
-        path: 'questiondetail/:value',
-        component: DetailpostComponent,
-        // canActivate: [AuthoriseGuard]
-      },
-      {
-        path: 'answers/:value',
-        component: AnswersComponent,
-        // canActivate: [AuthoriseGuard]
-      },
-      {
-        path: 'addquestion',
-        component: NewpostComponent,
-      },
-      {
-        path: 'webeditor',
-        component: WebeditorComponent,
-
-        /*   canActivate: [AuthoriseGuard]*/
-
-
-      },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-        //canActivate: [AuthoriseGuard]
-      },
-      {
-        path: 'auth/:userId/:token',
-        component: AuthenticateComponent,
-        //canActivate: [AuthoriseGuard]
-      },
-      /* {
-        path: 'chome',
-        component: ChatHomeComponent
-      },
-*/
-      {
-        path: '**',
-        component: HomeComponent,
-
-      },
-    ], { useHash: true })
-  ],
   providers: [GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService,SnippetService],
 
   bootstrap: [AppComponent]
