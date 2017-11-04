@@ -38,12 +38,4 @@ describe('profileService ,(mockBackend)', () => {
    inject([XHRBackend], (backend: MockBackend) => {
      expect(backend).not.toBeNull('backend should be provided');
    }));
-
- /*Testcase to check whether instance of service is created or not*/
-/* it('can instantiate service with "new"', inject([Http,Router], (http: Http,router: Router) => {
-   expect(http).not.toBeNull('http should be provided');
-   let service = new authenticationService(http,router);
-   expect(service instanceof authenticationService).toBe(true, 'new service should be ok');
- }));*/
-
 })
