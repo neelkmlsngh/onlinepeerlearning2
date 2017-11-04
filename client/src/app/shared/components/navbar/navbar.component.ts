@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthenticationService } from '../../../shared/services/authentication.service'
 import swal from 'sweetalert2';
-import { config } from '../../config/config';
+import { config } from '../../config/nav.config';
 
 @Component({
   selector: 'app-navbar',
@@ -32,13 +32,12 @@ export class NavbarComponent implements OnInit {
       if (data1.status == 200) {
         swal({
           timer: 2500,
-          title: "Logged Out Successfully",
+          title: this.config.navbar.LOGOUTSUCCESS,
           text: "",
-          type: 'success',
+          type: this.config.navbar.SUCCESS,
           showConfirmButton: false,
         })
       }
-
       this.router.navigate(["/"]);
       localStorage.removeItem('currentUser');
     })

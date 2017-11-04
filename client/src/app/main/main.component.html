@@ -13,7 +13,7 @@
             <div class="col-md-12">
               <!-- card to make block for repo sidebar -->
               <div class="card">
-                <h5 class="card-header">Modes</h5>
+                <h5 class="card-header"><b>Modes</b></h5>
                 <div class="card-block">
                   <div class="list-group">
                     <select name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="changeMode()">
@@ -40,6 +40,11 @@
   <div class="row">
     <div class="col-md-12">
       <app-footer></app-footer>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <app-chat-home></app-chat-home>
     </div>
   </div>
 </div>
