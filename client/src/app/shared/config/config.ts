@@ -1,7 +1,5 @@
 export const config: any = {
 
-  
-
   language: [
     "JAVASCRIPT",
     "HTML/CSS"
@@ -11,13 +9,6 @@ export const config: any = {
     title:"Add Snippet",
     button:"Add Snippet"
     },
-
-
-
-/*  connect: {
-       "url": "https://192.168.252.152:",
-       "port": "8080"
-   }*/
 
   connect:
   {
@@ -49,9 +40,4 @@ export const config: any = {
     UPDATEBTN: "Update",
     DELETEBTN: "Delete"
   }
-
-  
-
-  
-  
 };
