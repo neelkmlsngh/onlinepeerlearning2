@@ -38,12 +38,13 @@ export class SnippetComponent implements OnInit {
 
    // method to add code to snippet
   submit() {
-    console.log(CKEDITOR.instances.editor1.getData())
+    
   	let obj = {
   		title: this.title,
   		language: this.languag,
   		code: CKEDITOR.instances.editor1.getData()
   	}
+    console.log(obj);
   	this.snippet.addSnippet(obj)
   	.subscribe(res=>console.log(res))
   }
