@@ -15,15 +15,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class MainComponent implements OnInit {
-
-
   content: any;
   reponame: any;
   filenamed: any;
-
-
   languages: any = [];
-  mod: any = 'html'
+  mod: any = 'html';
   githubUser: any;
   selectedValue: any;
   data: any;
@@ -54,8 +50,6 @@ export class MainComponent implements OnInit {
     });
   }
 
-
-
   ngOnInit() {
     this.languages = config.language;
     this.gitService.getRepos()
@@ -66,15 +60,13 @@ export class MainComponent implements OnInit {
       })
   }
 
-
   reposearch(selected) {
-    this.reponame=selected;
+    this.reponame = selected;
     this.gitService.getTree(selected)
       .subscribe(data => {
         this.data = data
 
       })
-
   }
 
   showFile(reponame, filename) {
@@ -91,8 +83,6 @@ export class MainComponent implements OnInit {
   }
 
   show(reponame, filename) {
-
-
     this.reponame = reponame;
     this.filenamed = filename;
 
@@ -115,15 +105,15 @@ export class MainComponent implements OnInit {
     this.content = text;
   }
 
+  //method for logout
   logout() {
     let user = JSON.parse(localStorage.getItem('currentUser'));
-
     let userId = user.userId;
     user = {
       userId: userId
     }
     this.authenticationservice.logoutEditor(user).subscribe((data1) => {
-      if (data1.status==200) {
+      if (data1.status == 200) {
         swal({
           timer: 2500,
           title: "Logged Out Successfully",
@@ -133,30 +123,29 @@ export class MainComponent implements OnInit {
         })
       }
 
-    this.router.navigate(["/"]);
-     localStorage.removeItem('currentUser');
-})
-}
+      this.router.navigate(["/"]);
+      localStorage.removeItem('currentUser');
+    })
+  }
 
-//method to enter new repository name
-onKey(event){
-this.value+=event
-}
+  //method to enter new repository name
+  onKey(event) {
+    this.value += event
+  }
 
-//methd for creating new repository
-createRepo(name,desc){
-   let repoName={
-  "name": name,
-  "description": desc,
-  "homepage": "https://github.com",
-  "private": false,
-  "has_issues": false,
-  "has_projects": false,
-  "has_wiki": false
-}
-   this.gitService.createRepos(repoName)
-   .subscribe(data =>{
-   })
- }
+  //methd for creating new repository
+  createRepo(name, desc) {
+    let repoName = {
+      "name": name,
+      "description": desc,
+      "homepage": "https://github.com",
+      "private": false,
+      "has_issues": false,
+      "has_projects": false,
+      "has_wiki": false
+    }
+    this.gitService.createRepos(repoName)
+      .subscribe(data => {})
+  }
 
 }
