@@ -29,18 +29,18 @@ router.get('/auth/github/callback',
             res.redirect(appConfig.SUCCESS_REDIRECT + req.user.doc.userId + "/" + userToken)
         } catch (err) {
             logger.fatal(loggerConfig.EXCEPTION_NOT_FOUND + err);
-            res.send({ status:408 , error: err });
+            res.send({ status: 408, error: err });
             return;
         }
     });
 
 //logout routes
 router.put('/logout', (req, res) => {
-    userId = req.body.userid;
+    userId = req.body.userId;
     try {
         if (!userId) {
             logger.error(loginConfig.USERID_NOT_FOUND);
-            res.send({ status: 404, message: loginConfig.USERID_NOT_FOUND});
+            res.send({ status: 404, message: loginConfig.USERID_NOT_FOUND });
         }
 
         User.findOneAndUpdate({ userId: userId }, {
@@ -58,30 +58,30 @@ router.put('/logout', (req, res) => {
         });
     } catch (err) {
         logger.fatal(+err);
-        res.json({ status: 408, message: loginConfig.LOGOUT_FAIL, error: error });
+        res.json({ status: 404, message: loginConfig.LOGOUT_FAIL, error: error });
         return;
     }
 });
 
 //get userName w.r.t userId
 router.get('/:userId', (req, res) => {
-    let userId = req.params.userId;
-    try{
-    if (!userId) {
-        logger.error(loginConfig.USER_ID)
-    } else if (userId) {
-        usrCtrl.getUser(userId).then(successResult => {
-            res.json({ status: 200, message: loginConfig.USERNAME_FIND_SUCCESSFULLY, data: successResult });
+            let userId = req.params.userId;
+            try {
+                if (!userId) {
+                    logger.error(loginConfig.USER_ID)
+                } else if (userId) {
+                    usrCtrl.getUser(userId).then(successResult => {
+                        res.json({ status: 200, message: loginConfig.USERNAME_FIND_SUCCESSFULLY, data: successResult });
 
-        }, error => {
-             logger.error(error);
-          return res.json({status: 408, message: loginConfig.USER_ID, error: error});
-        })
+                    }, error => {
+                        logger.error(error);
+                        return res.json({ status: 404, message: loginConfig.USER_ID, error: error });
+                    })
+                }
+            } catch (err) {
+                logger.err(+err)
+                res.json({ status: 404, message: loginConfig.USER_ID, err: err });
     }
-  }catch(err){
-    logger.err(+err)
-    res.json({status: 404, message: loginConfig.USER_ID,err:err});
-  }
 });
 
 module.exports = router;
