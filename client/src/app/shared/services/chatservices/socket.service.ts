@@ -14,27 +14,12 @@ export class SocketService {
 
   //Method to connect the users to socket
   connectSocket(userId: string) {
-    this.socket = io.connect(this.config.connect.url + this.config.connect.port, { query: `userId=${userId}` });
+    this.socket = io.connect(this.config.connect.apiURL, { query: `userId=${userId}` });
   }
 
   //Method to emit the add-messages event.
   sendMessage(message: any): void {
     this.socket.emit('add-message', message);
-  }
-
-  //Method to emit the logout event.
-  logout(userId): any {
-
-    this.socket.emit('logout', userId);
-    let observable = new Observable(observer => {
-      this.socket.on('logout-response', (data) => {
-        observer.next(data);
-      });
-      return () => {
-        this.socket.disconnect();
-      };
-    })
-    return observable;
   }
 
   //Method to receive add-message-response event.
@@ -63,6 +48,10 @@ export class SocketService {
       };
     })
     return observable;
+  }
+
+  sendFile(fileObj){
+    this.socket.emit('send-file', fileObj)
   }
 
 }
