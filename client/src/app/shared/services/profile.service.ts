@@ -8,7 +8,6 @@ export class ProfileService {
   config = config;
   constructor(private http: Http) {}
 
-
   // service method to get data of user using userid
   getDataFromDB(userId) {
 
