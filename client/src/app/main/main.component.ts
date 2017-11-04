@@ -21,7 +21,7 @@ export class MainComponent implements OnInit {
   languages: any = [];
   mod: any = 'html';
   githubUser: any;
-  selectedValue: any;
+  selectedValue: any = "html";
   data: any;
   fileData: any;
   selectedfile: any;
@@ -55,7 +55,7 @@ export class MainComponent implements OnInit {
     this.gitService.getRepos()
       .subscribe(repos => {
         this.githubUser = repos;
-        this.mod = "Select Mode"
+        this.mode = "html"
 
       })
   }
@@ -97,8 +97,8 @@ export class MainComponent implements OnInit {
       })
   }
 
-  mode(event) {
-    this.mod = event;
+  changeMode() {
+    this.mode = this.selectedValue;
   }
 
   getcontent(text) {

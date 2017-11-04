@@ -21,7 +21,7 @@ app.use(cors())
 
 app.post('/execute', function(req, res) {
     const fileName = Date.now().toString() + '.log';
-    const out = fs.openSync(fileName, 'a');
+    const out = fs.openSync('./logs/fileName', 'a');
     const compute = fork('coderunner.vm.js', [], {
         stdio: ['ignore', out, out, 'ipc']
     });
