@@ -4,6 +4,10 @@ export const config: any = {
     "JAVASCRIPT",
     "HTML/CSS"
   ],
+  con: {
+    title:"Add Snippet",
+    button:"Add Snippet"
+    },
 
 
 
