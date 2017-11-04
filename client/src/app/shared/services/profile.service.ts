@@ -37,5 +37,15 @@ export class ProfileService {
       "options": options
     }
     this.socketService.sendFile(fileObj)
+    let observable = new Observable(observer => {
+      this.socket.on('chat-list-response', (data) => {
+        console.log(JSON.stringify(data, null, 2));
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
   }
 }
