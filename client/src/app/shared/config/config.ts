@@ -22,10 +22,9 @@ export const config: any = {
 
   connect:
   {
-    apiURL : "https://192.168.252.211:8080",
-    vmURL : "https://192.168.252.211:3030",
-    peerjsURL : "https://192.168.252.211:8081"
-  },
+    apiURL : "https://192.168.252.33:8080",
+    vmURL : "https://192.168.252.33:3030"
+      },
 
   giturls: {
     HOSTURL: "https://api.github.com/repos/",
@@ -51,7 +50,7 @@ export const config: any = {
     DELETEBTN: "Delete"
   },
   peerserver:{
- "host":"192.168.252.211",
+ "host":"192.168.252.33",
  "port":"8081",
  "path":"/peerjs"
 
