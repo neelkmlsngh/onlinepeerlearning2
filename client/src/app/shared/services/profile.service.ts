@@ -37,5 +37,12 @@ export class ProfileService {
       "options": options
     }
     this.socketService.sendFile(fileObj)
+  }
+  uploadChatFile(formData, options) {
+   let fileObj={
+      "formData": formData,
+      "options": options
+    }
+    this.socketService.sendFile(fileObj)
   }*/
 }
