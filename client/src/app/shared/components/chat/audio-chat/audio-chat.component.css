@@ -15,7 +15,7 @@
 }
 
 .audiobox--tray {
-  bottom: -350px;
+  bottom: -328px;
 }
 
 .audiobox--closed {
@@ -190,10 +190,11 @@
 
 .audiobox--empty {
   height: 380px;
+  margin-right: 42%;
 }
 
 .audiobox--empty.audiobox--tray {
-  bottom: -1070px;
+  bottom: -330px;
 }
 
 .audiobox--empty.audiobox--closed {

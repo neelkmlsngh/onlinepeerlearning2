@@ -1,5 +1,4 @@
-
-export const config = {
+export const forumConfig = {
   "ANSWERS":
   {
     "KNOWLEDGE_BASE":"Knowledge Base",
@@ -70,5 +69,9 @@ export const config = {
     "PEER_LEARNING":"Peer Learning",
     "ALL_RIGHTS":"All right reserved",
     "MODAL_TEXT":"visit our website for further suggestions.."
+ },
+
+ "forumUrls":{
+        "FORUMURL":'https://localhost:8080/',
  }
 }
