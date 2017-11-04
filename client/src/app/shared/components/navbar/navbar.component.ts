@@ -32,13 +32,12 @@ export class NavbarComponent implements OnInit {
       if (data1.status == 200) {
         swal({
           timer: 2500,
-          title: "Logged Out Successfully",
+          title: this.config.navbar.LOGOUTSUCCESS,
           text: "",
-          type: 'success',
+          type: this.config.navbar.SUCCESS,
           showConfirmButton: false,
         })
       }
-
       this.router.navigate(["/"]);
       localStorage.removeItem('currentUser');
     })

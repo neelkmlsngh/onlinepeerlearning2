@@ -9,7 +9,7 @@ import { Router, RouterLinkWithHref } from '@angular/router';
 import {HttpModule} from '@angular/http'
 
 import { HomeComponent } from './home.component';
-import { homeConfig } from '../shared/config/homeConfig';
+import { homeConfig } from '../shared/config/home.config';
 
 
 describe('HomeComponent', () => {
@@ -62,21 +62,21 @@ describe('HomeComponent', () => {
 
   it('button 1 should contain title', () => {
     fixture.detectChanges();
-    expect(button1el.textContent).toContain(homeConfig.home.BUTTON1);
+    expect(button1el.textContent).toContain(homeConfig.BUTTON1);
   });
 
   it('button 2 should contain title', () => {
     fixture.detectChanges();
-    expect(button2el.textContent).toContain(homeConfig.home.BUTTON2);
+    expect(button2el.textContent).toContain(homeConfig.BUTTON2);
   });
 
     it('button 3 should contain title', () => {
     fixture.detectChanges();
-    expect(button3el.textContent).toContain(homeConfig.home.BUTTON3);
+    expect(button3el.textContent).toContain(homeConfig.BUTTON3);
   });
 
         it('button 3 subtitle should contain title', () => {
     fixture.detectChanges();
-    expect(buttonSubtitleEl.textContent).toContain(homeConfig.home.BUTTONSUBTITLE);
+    expect(buttonSubtitleEl.textContent).toContain(homeConfig.BUTTONSUBTITLE);
   });
 });
