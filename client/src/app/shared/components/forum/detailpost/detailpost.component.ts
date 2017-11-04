@@ -32,7 +32,7 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
   config=config;
   ngOnInit() {
     this.router.paramMap
-      .switchMap((params: ParamMap) => this.forum.getPostByQuestion(this.router.snapshot.params['value']))
+      .switchMap((params: ParamMap) => this.forum.getPostById(this.router.snapshot.params['value']))
       .subscribe((res) => {
         this.data = res.data;
         console.log(this.data);
