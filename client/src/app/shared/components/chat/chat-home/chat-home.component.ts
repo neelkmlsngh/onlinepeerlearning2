@@ -232,9 +232,9 @@ export class ChatHomeComponent implements OnInit {
      
    }
 }
-// method to be called when Upload button is clicked
+/*// method to be called when Upload button is clicked
 uploadFile(){
   this.profileService.uploadChatFile(this.formData,this.options)
-   }
+   }*/
 }
 
