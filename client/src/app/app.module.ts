@@ -78,6 +78,25 @@ let apiRoutes:Routes = [
     /* canActivate: [AuthoriseGuard]*/
   },
   {
+        path: 'questions',
+        component: ViewpostComponent,
+        // canActivate: [AuthoriseGuard]
+      },
+      {
+        path: 'questiondetail/:value',
+        component: DetailpostComponent,
+        // canActivate: [AuthoriseGuard]
+      },
+        {
+        path: 'answers/:value',
+        component: AnswersComponent,
+        // canActivate: [AuthoriseGuard]
+      },
+     {
+        path: 'addquestion',
+        component: NewpostComponent,
+      },
+  {
     path: 'forums',
     component: ForumComponent,
     children: [{
