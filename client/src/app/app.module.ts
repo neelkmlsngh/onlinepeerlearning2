@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule,Routes } from '@angular/router';
 import 'hammerjs';
 import { MatTabsModule } from '@angular/material';
 import { MatTabGroup } from '@angular/material';
@@ -155,6 +155,7 @@ let apiRoutes:Routes = [
     MatFormFieldModule,
     ModalModule.forRoot(),
     RouterModule.forRoot(apiRoutes, { useHash: true })
+    ],
 
   providers: [GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService,SnippetService],
 
