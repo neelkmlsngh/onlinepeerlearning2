@@ -14,13 +14,9 @@ export const config: any = {
 
   connect:
   {
-
-    "url4": "https://192.168.252.152:8080/api/login",
-    "url2": "https://localhost:",
-    "url": "https://192.168.252.152:",
-    "url3": "https//192.168.252.57:",
-    "port": "8080",
-    "port2": "3030"
+    apiURL : "https://192.168.252.178:8080",
+    vmURL : "https://192.168.252.178:3030",
+    peerjsURL : "https://192.168.252.178:8081"
   },
 
   footer: {
@@ -55,10 +51,5 @@ export const config: any = {
     "forums": "Forums",
     "logout": "Logout"
   },
-  peer:{
-  "host":"192.168.252.33",
-  "port":"8081",
-  "path":"/peerjs"
-
-  }
+  
 };
