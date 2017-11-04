@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http'
-import { config } from '../config/config';
+import { config } from './../config/config';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RequestOptions, Request, RequestMethod, Headers } from '@angular/http';
 
@@ -13,7 +13,9 @@ user:any
 
   git() {
     return this.http
-      .get(config.connect.url + config.connect.port +'/auth/github')
+
+      .get(config.connect.url4 +'/auth/github')
+
       .map(res => res, error => error.json());
   }
 
@@ -46,7 +48,7 @@ console.log('token',token)
      localStorage.removeItem('currentUser');
      return this.http
       .put(config.connect.url + config.connect.port +'/logout',user)
-      .map(res => res, error => error.json());
+      .map(res => res.json(), error => error.json());
    
 
     
@@ -61,7 +63,7 @@ console.log('token',token)
   }
 
   getUser(userId){
- return this.http.get(config.connect.url + config.connect.port +'/'+userId)
+ return this.http.get(config.connect.url + config.connect.port +'/api/login/'+userId)
       .map(res => res.json(), error => error.json());
    
   }

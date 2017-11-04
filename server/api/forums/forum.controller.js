@@ -1,17 +1,16 @@
-const formModel = require('./forum.entity');
+const forumModel = require('./forum.entity');
 const logger = require('../../services/app.logger');
 const appConstant = require('../../config').app;
+const logConfig = require('../../config/loggerConstants');
 
-//Save new student's details
+//Post forum question function
 const addPost = function(formdata) {
     return new Promise((resolve, reject) => {
-        console.log(formdata)
-        formModel.create(formdata, (err, data) => {
+        forumModel.create(formdata, (err, data) => {
             if (err) {
-                logger.error('Internal error' + err);
+                logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                logger.error('Internal error' + err);
                 resolve(data);
             }
         })
@@ -19,15 +18,14 @@ const addPost = function(formdata) {
 
 };
 
+//get forum question function
 const getPost = function() {
     return new Promise((resolve, reject) => {
-
-        formModel.find({}, (err, data) => {
+        forumModel.find({}, (err, data) => {
             if (err) {
-                logger.error('Internal error' + err);
+                logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                logger.error('Internal error' + err);
                 resolve(data);
             }
         })
@@ -35,15 +33,14 @@ const getPost = function() {
 
 };
 
-const getPostByQuestion = function(getValue) {
+//post answer by question
+const getPostById = function(Id) {
     return new Promise((resolve, reject) => {
-
-        formModel.findOne({ getValue }, (err, data) => {
+        forumModel.findOne({ _id: Id }, (err, data) => {
             if (err) {
-                logger.error('Internal error' + err);
+                logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                logger.error('Internal error' + err);
                 resolve(data);
             }
         })
@@ -51,12 +48,10 @@ const getPostByQuestion = function(getValue) {
 
 };
 
-
-
+//search question of function
 const getSearch = function(getValue) {
     return new Promise((resolve, reject) => {
-
-        formModel.find({
+        forumModel.find({
             $or: [{
                     "questionTitle": {
                         "$regex": getValue,
@@ -77,30 +72,28 @@ const getSearch = function(getValue) {
             ]
         }, (err, data) => {
             if (err) {
-                logger.error('Internal error' + err);
+                logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                logger.error('Internal error' + err);
+              con
                 resolve(data);
             }
         })
     })
-
 };
 
+//save answer of question
 const saveAnswer = function(getValue, updateValue) {
     return new Promise((resolve, reject) => {
-
-        formModel.update({
+        forumModel.update({
             'questionTitle': getValue
         }, {
             $push: { 'answers': updateValue }
         }, { upsert: true }, (err, data) => {
             if (err) {
-                logger.error('Internal error' + err);
+                logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                logger.error('Internal error' + err);
                 resolve(data);
             }
         })
@@ -112,7 +105,6 @@ module.exports = {
     addPost: addPost,
     getPost: getPost,
     getSearch: getSearch,
-    getPostByQuestion: getPostByQuestion,
+    getPostById: getPostById,
     saveAnswer: saveAnswer
-
 };

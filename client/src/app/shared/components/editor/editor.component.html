@@ -1,7 +1,7 @@
 <section id="code_editors">
   <a href="javascript:void(0);" (click)="downloadJsFile()">Javascript File
               <i class="fa fa-download" aria-hidden="true" data-toggle="popover" title="Download JS File"></i>  </a>
-  <div id="myJsDiv"></div>
+  <div id="jsDiv"></div>
 
   <!--button to execute the code -->
   <button class="btn-primary" (click)="executecode()">Execute</button>
@@ -18,7 +18,7 @@
   </button>
 
   <!-- button to delete the file-->
-  <button class="btn-success" type="button" (click)="delete()">
+  <button class="btn-success" type="button" (click)="openModal(deletefile)">
     Delete
   </button>
   
@@ -51,6 +51,21 @@
     <input type="text" name="" #box (keyup)="onKey($event)">
     <h6>Do you want to update the file {{filenamed}}?</h6> 
     <input type="button" class="btn btn-sm btn-success submit" name="" value="yes" (click)="update(box.value)">
+  </template>
+
+
+  <!-- delete file modal window when delete button is clicked -->
+  <template #deletefile>
+    <div class="modal-header">
+      <h5 class="modal-title pull-left">Your current repository is: <b style="color: #A9A9A9">{{reponame}}</b></h5>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <h6>enter your commit message</h6>
+    <input type="text" name="" #box (keyup)="onKey($event)">
+    <h6>Do you want to delete the file {{filenamed}}?</h6> 
+    <input type="button" class="btn btn-sm btn-success submit" name="" value="yes" (click)="delete(box.value)">
   </template>
 
   

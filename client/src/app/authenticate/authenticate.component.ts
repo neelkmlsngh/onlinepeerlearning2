@@ -12,22 +12,32 @@ export class AuthenticateComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute, private authenticationservice: AuthenticationService
   ) {}
-  
+
 
   ngOnInit() {
-   //get userId and token from the URL
+    //get userId and token from the URL
     let userId = this.route.snapshot.params['userId'];
     let token = this.route.snapshot.params['token'];
 
     //call method  to find username of this userId
-   this.authenticationservice.getUser(userId).subscribe(data => {
-      let userInfo={
-        userId: userId,
-        token: token,
-        userName: data.userName
+    this.authenticationservice.getUser(userId).subscribe(data => {
+      if (data.status == 200) {
+        let userInfo = {
+          userId: userId,
+          token: token,
+          userName: data.data.userName
+        }
+
+        this.authenticationservice.setUserInfo(userInfo);
+
+      } else {
+        this.router.navigate(["/error"])
+
       }
-      this.authenticationservice.setUserInfo(userInfo);
-    }, error => console.log(error));
+
+
+    })
+
   }
 
 

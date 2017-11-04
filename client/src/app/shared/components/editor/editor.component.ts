@@ -33,7 +33,7 @@ export class EditorComponent implements OnInit {
 
   @Input() filenamed: any;
 
-  jsValue: any = "hii everyone";
+  jsValue: any = "";
   data: any;
   codeoutput: any;
   dataObj: any = "";
@@ -80,7 +80,7 @@ export class EditorComponent implements OnInit {
     let url = URL.createObjectURL(blob);
     downloadLink.href = url;
     downloadLink.download = "script.js";
-    let parent = document.getElementById('myJsDiv');
+    let parent = document.getElementById('jsDiv');
     parent.appendChild(downloadLink);
     downloadLink.click();
     parent.removeChild(downloadLink);
@@ -207,7 +207,7 @@ export class EditorComponent implements OnInit {
 
 
   //method to get the file and delete the content on git
-  delete() {
+  delete(commitMessage) {
     console.log("INSIDE DELETE " + this.content);
 
     //getting the file sha
@@ -215,7 +215,7 @@ export class EditorComponent implements OnInit {
       .subscribe(repos => {
         this.filesha = repos.sha;
         this.deletefileobj = {
-          "message": "file deleted",
+          "message": commitMessage,
           "path": this.filenamed,
           "sha": this.filesha
         }

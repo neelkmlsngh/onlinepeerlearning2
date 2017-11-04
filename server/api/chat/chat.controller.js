@@ -4,7 +4,7 @@ const loginModel = require('../login/login.entity')
 const chatMsgModel = require('./chat.entity')
 
 //This is for checking that user is in database or not
-const userSessionCheck = function(data, callback) {
+const checkUserSession = function(data, callback) {
 	loginModel.findOne({ "userId": data.userId }, (err, result) => {
 		callback(err, result);
 	})
@@ -69,7 +69,7 @@ const addSocketId = function(data, callback) {
 }
 
 module.exports = {
-	userSessionCheck: userSessionCheck,
+	checkUserSession: checkUserSession,
 	getUserInfo: getUserInfo,
 	getChatList: getChatList,
 	insertMessages: insertMessages,

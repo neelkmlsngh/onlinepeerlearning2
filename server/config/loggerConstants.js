@@ -1,4 +1,5 @@
 module.exports = {
+
 	MONGODB_CONNECTED : 'Connected to MongoDB successfully',
 	MONGODB_CONNECTION_ERROR : 'Error in MongoDB connection',
 	MONGODB_DISCONNECTED : 'Disconnected from MongoDB',
@@ -7,5 +8,19 @@ module.exports = {
 	ALREADY_IN_USE : ' is already in use',
 	SERVER_RUNNING : 'Server running  on ',
 	INTERNAL_SERVER_ERROR : 'Internal server error',
-	RESOURCE_NOT_FOUND : 'Resource not found'
+	INTERNAL_ERROR : 'Internal error',
+	RESOURCE_NOT_FOUND : 'Resource not found',
+	GET_FORUM_QUESTION : 'fetching forum question successfully',
+	GET_FORUM_QUESTION_ERROR : 'error in getting forum question successfully',
+	POST_FORUM_QUESTION : 'posting forum question successfully',
+	POST_FORUM_QUESTION_ERROR : 'error in posting forum question successfully',
+	SEARCH_FORUM_QUESTION : 'search forum  question successfully',
+	SEARCH_FORUM_QUESTION_ERROR : 'error in searching  forum  question',
+	ADD_ANSWER_ON_QUESTION : 'add answer to question succesfully',
+	ADD_ANSWER_ON_QUESTION_ERROR : 'error in adding  answer to question',
+	GET_DATA_FROM_ID : 'get data from id succesfully',
+	GET_DATA_FROM_ID_ERROR : 'error in getting  data from id succesfully',
+	EXCEPTION_NOT_FOUND:'Exception occurred',
+	EXCEPTION_FOUND:'Exception occurred',
+	USER_ID: 'Invalid USER ID'
 }

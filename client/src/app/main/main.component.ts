@@ -21,11 +21,11 @@ export class MainComponent implements OnInit {
   reponame: any;
   filenamed: any;
 
-  
+
   languages: any = [];
-  mod: any = 'html'
+  mode: any = 'html'
   githubUser: any;
-  selectedValue: any;
+  selectedValue: any = "html";
   data: any;
   fileData: any;
   selectedfile: any;
@@ -37,7 +37,7 @@ export class MainComponent implements OnInit {
   value: any;
   public modalRef: BsModalRef;
 
-  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,private authenticationservice:AuthenticationService,private router:Router) {
+  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router) {
 
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
@@ -61,7 +61,7 @@ export class MainComponent implements OnInit {
     this.gitService.getRepos()
       .subscribe(repos => {
         this.githubUser = repos;
-        this.mod="Select Mode"
+        this.mode = "html"
 
       })
   }
@@ -91,44 +91,47 @@ export class MainComponent implements OnInit {
   }
 
   show(reponame, filename) {
-    this.reponame=reponame;
-    this.filenamed=filename;
+
+
+    this.reponame = reponame;
+    this.filenamed = filename;
+
     this.gitService.getFile(reponame, filename)
       .subscribe(data => {
         this.fileData = data;
         this.text = this.fileData._body;
         console.log(this.text)
         // this.content.emit(this.text);
-        this.content=this.text;
-        console.log("content data "+ this.content);
+        this.content = this.text;
+        console.log("content data " + this.content);
       })
   }
 
-  mode(event) {
-    this.mod = event;
+  changeMode() {
+    this.mode = this.selectedValue;
   }
 
   getcontent(text) {
     this.content = text;
   }
 
-logout(){ 
- let user = JSON.parse(localStorage.getItem('currentUser'));    
-    let userid = user.userId;
-    user={
-      userid:userid
+  logout() {
+    let user = JSON.parse(localStorage.getItem('currentUser'));
+
+    let userId = user.userId;
+    user = {
+      userId: userId
     }
-     
-    this.authenticationservice.logoutEditor(user).subscribe((data1)=>{
-      if (data1) {
-         swal({
-      timer: 2500,
-      title: "Logged Out Successfully",
-      text:  "",
-      type:  'success',
-      showConfirmButton: false,
-    })
-        }
+    this.authenticationservice.logoutEditor(user).subscribe((data1) => {
+      if (data1.status==200) {
+        swal({
+          timer: 2500,
+          title: "Logged Out Successfully",
+          text: "",
+          type: 'success',
+          showConfirmButton: false,
+        })
+      }
 
     this.router.navigate(["/"]);
      localStorage.removeItem('currentUser');
@@ -155,4 +158,5 @@ createRepo(name,desc){
    .subscribe(data =>{
    })
  }
+
 }
