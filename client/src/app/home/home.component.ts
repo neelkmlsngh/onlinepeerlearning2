@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
       else
         this.router.navigateByUrl('home')
     }, error => {
-      console.log("Error" + error)
+      this.router.navigate(['/']);
     })
   }
 }

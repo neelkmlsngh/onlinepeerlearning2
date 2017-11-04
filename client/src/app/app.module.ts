@@ -215,11 +215,11 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
         component: AuthenticateComponent,
         //canActivate: [AuthoriseGuard]
       },
-      /* {
+       {
         path: 'chome',
         component: ChatHomeComponent
       },
-*/
+
       {
         path: '**',
         component: HomeComponent,

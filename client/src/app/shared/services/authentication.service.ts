@@ -14,7 +14,7 @@ user:any
   git() {
     return this.http
 
-      .get(config.connect.url4 +'/auth/github')
+      .get(config.connect.apiURL +'/api/login/auth/github')
 
       .map(res => res, error => error.json());
   }
@@ -47,7 +47,7 @@ console.log('token',token)
    
      localStorage.removeItem('currentUser');
      return this.http
-      .put(config.connect.url + config.connect.port +'/logout',user)
+      .put(config.connect.apiURL +'/logout',user)
       .map(res => res.json(), error => error.json());
    
 
@@ -63,7 +63,7 @@ console.log('token',token)
   }
 
   getUser(userId){
- return this.http.get(config.connect.url + config.connect.port +'/api/login/'+userId)
+ return this.http.get(config.connect.apiURL +'/api/login/'+userId)
       .map(res => res.json(), error => error.json());
    
   }

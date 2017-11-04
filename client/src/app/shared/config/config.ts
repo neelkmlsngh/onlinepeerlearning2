@@ -1,9 +1,12 @@
 export const config: any = {
 
+  
+
   language: [
     "JAVASCRIPT",
     "HTML/CSS"
   ],
+
   con: {
     title:"Add Snippet",
     button:"Add Snippet"
