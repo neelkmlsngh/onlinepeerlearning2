@@ -15,7 +15,7 @@ export class ProfileService {
   getDataFromDB(userId) {
 
     //url to get details from db
-    const api = config.connect.url + config.connect.port + "/api/users/" + userId
+    const api = config.connect.apiURL+ "/api/users/" + userId
     return this.http
       .get(api)
       .map(res => res.json(), error => error.json());
@@ -30,22 +30,19 @@ export class ProfileService {
       .map(res => res.json(), error => error.json());
 
   }
-
+/*
   uploadChatFile(formData, options) {
    let fileObj={
       "formData": formData,
       "options": options
     }
     this.socketService.sendFile(fileObj)
-    let observable = new Observable(observer => {
-      this.socket.on('chat-list-response', (data) => {
-        console.log(JSON.stringify(data, null, 2));
-        observer.next(data);
-      });
-      return () => {
-        this.socket.disconnect();
-      };
-    })
-    return observable;
   }
+  uploadChatFile(formData, options) {
+   let fileObj={
+      "formData": formData,
+      "options": options
+    }
+    this.socketService.sendFile(fileObj)
+  }*/
 }
