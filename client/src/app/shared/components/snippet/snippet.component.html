@@ -5,12 +5,12 @@
         <br style="clear:both">
         <!-- form title -->
         <h3>{{con.con.title}} </h3>
-        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">{{language}}<span class="caret"></span>
+        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">{{languag}}<span class="caret"></span>
         </button>
 
         <!-- dropdown for language selection -->
-        <select name="carlist" form="carform"  (change)="mode($event)">
-            <option *ng for lng of languages>{{lng}}</option>
+        <select    (change)="mode($event)">
+            <option *ngFor= "let lng of languages">{{lng}}</option>
             </select>
         <div class="form-group">
 
