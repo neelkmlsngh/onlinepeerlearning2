@@ -29,6 +29,7 @@ export class ProfileService {
 
   }
 
+
    uploadChatFile(formData, options) {}
 
 /*  uploadChatFile(formData, options) {
@@ -50,5 +51,6 @@ export class ProfileService {
   }*/
 
   
+
 
 }

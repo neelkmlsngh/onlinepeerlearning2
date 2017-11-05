@@ -1,18 +1,20 @@
 export const config: any = {
-  
+
+
+
   language: [
     "javascript",
     "html",
     "css"
   ],
-
   con: {
+
     title: "Add Snippet",
     button: "Add Snippet"
   },
 
-  connect: {
 
+  connect: {
     apiURL: "https://192.168.252.33:8080",
     vmURL: "https://192.168.252.33:3030"
   },
