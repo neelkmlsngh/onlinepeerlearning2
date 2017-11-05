@@ -28,13 +28,4 @@ export class ProfileService {
       .map(res => res.json(), error => error.json());
 
   }
-  // uploadChatFile(formData, options) {
-  //  // alert('form data '+ JSON.stringify(formData) +' options '+ JSON.stringify(options))
-  //  let fileObj={
-  //     "formData": formData,
-  //     "options": options
-  //   }
-  //   this.socketService.sendFile(fileObj)
-  // }
-
 }
