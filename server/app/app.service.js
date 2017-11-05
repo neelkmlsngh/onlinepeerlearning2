@@ -45,20 +45,6 @@ function loginviagit() {
 			reposUrl: profile._json.repos_url,
 			online: loginconfig.ONLINE
 		}
-
-		// 	clientID: gitId.CLIENT_ID,
-		// 	clientSecret: gitId.CLIENT_SECRET,
-		// 	callbackURL: gitId.CALLBACK_URL
-		// }, function(accessToken, refreshToken, profile, done) {
-		// 	let userInfo = {
-		// 		name: profile._json.login,
-		// 		userId: profile.id,
-		// 		avatarUrl: profile._json.avatar_url,
-		// 		publicRepos: profile._json.public_repos,
-		// 		reposUrl: profile._json.repos_url,
-		// 		online: "Y"
-		// 	}
-
 		//save login credentials in login collection
 		//function called by login controller
 		loginController.saveLoginCredentials(userInfo, done);

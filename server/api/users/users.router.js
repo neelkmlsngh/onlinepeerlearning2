@@ -12,7 +12,6 @@ var storage = multer.diskStorage({
        cb(null, 'server/uploads/')
    },
    filename: function(req, file, cb) {
-       console.log(file);
        cb(null, file.originalname.slice(0, file.originalname.lastIndexOf('.')) + '-' + Date.now() + path.extname(file.originalname))
    }
 })
@@ -91,6 +90,7 @@ var upload = multer({ storage: storage }).any();
  router.put('/image/:userId',function(req,res){
   let getId= req.params.userId;
   let profileInfo = req.body;
+  console.log(profileInfo+"*****************")
    try{
     upload(req, res, function(err) {
      if (err) {
