@@ -3,7 +3,7 @@ import { FormControl, FormGroup, FormBuilder, Validators, NgForm } from '@angula
 import { Headers, RequestOptions } from '@angular/http';
 
 import { ProfileService } from '../../services/profile.service';
-import {config} from '../../config/profile';
+import {config} from '../../config/profileConfig';
 import { errorConfig } from '../../config/errorConfig';
 
 @Component({
@@ -38,10 +38,10 @@ export class ProfileComponent implements OnInit {
     this.profileService.getDataFromDB(this.currentUser.userId)
     .subscribe((res)=>{
       let data={
-        userid:res.userId,
-        public_repos:res.publicRepos,
-        avatar_url:res.avatarUrl,
-        name:res.name
+        userid:res.data.userId,
+        public_repos:res.data.publicRepos,
+        avatar_url:res.data.avatarUrl,
+        name:this.currentUser.userName
       }
       this.imgPath=data.avatar_url;
       this.displayData(data);
@@ -76,7 +76,7 @@ uploadFile(){
   this.profileService.uploadFile(this.currentUser.userId,this.formData,this.options)
   .subscribe(
     res=>{
-      this.imgPath=res.avatarUrl;
+      this.imgPath=res.data.avatarUrl;
     },error=> {{errorConfig.error.UPLOAD}}
     )
 }

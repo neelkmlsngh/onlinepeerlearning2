@@ -1,4 +1,4 @@
-html {
+/* html {
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-size: 14px;
 }
@@ -8,6 +8,10 @@ h5 {
     font-weight: 700;
     line-height: 1.2857em;
     margin: 0;
+}
+
+a{
+    color: black;
 }
 
 .card {
@@ -111,5 +115,14 @@ h5 {
 
 .meta a:hover {
     color: rgba(0, 0, 0, .87);
+}
+ */
+#mainNav{
+    background-color: #1995ad
+}
+
+
+.font{
+    color: #003b46
 }
 
