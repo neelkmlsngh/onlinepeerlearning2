@@ -1,7 +1,5 @@
 export const config: any = {
-
   
-
   language: [
     "javascript",
     "html",
@@ -9,22 +7,16 @@ export const config: any = {
   ],
 
   con: {
-    title:"Add Snippet",
-    button:"Add Snippet"
-    },
+    title: "Add Snippet",
+    button: "Add Snippet"
+  },
 
+  connect: {
 
+    apiURL: "https://192.168.252.33:8080",
+    vmURL: "https://192.168.252.33:3030"
+  },
 
-/*  connect: {
-       "url": "https://192.168.252.152:",
-       "port": "8080"
-   }*/
-
-  connect:
-  {
-    apiURL : "https://192.168.252.33:8080",
-    vmURL : "https://192.168.252.33:3030"
-      },
 
   giturls: {
     HOSTURL: "https://api.github.com/repos/",
@@ -49,15 +41,20 @@ export const config: any = {
     UPDATEBTN: "Update",
     DELETEBTN: "Delete"
   },
-  peerserver:{
- "host":"192.168.252.33",
- "port":"8081",
- "path":"/peerjs"
+  navbar: {
+    "logo": "Logo",
+    "profile": "Profile",
+    "forums": "Forums",
+    "logout": "Logout"
+  },
+  forumConnect: {
+    "APIURL": 'api/forums/',
+    "SEARCHAPIURL": 'api/forums/term/'
+  },
+  peerserver: {
+    "host": "192.168.252.33",
+    "port": "8081",
+    "path": "/peerjs"
 
- }
-
-  
-
-  
-  
+  }
 };

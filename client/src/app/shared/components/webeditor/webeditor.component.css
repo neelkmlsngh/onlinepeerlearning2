@@ -31,8 +31,6 @@ body {
   margin: 0;
   background: linear-gradient(#707070, #555);
   color: white;
-  border-top: 1px solid #8F8F8F;
-  border-bottom: 1px solid #202020;
   z-index: 10;
 }
 /* Output Area */
@@ -59,9 +57,8 @@ body {
   margin: 0;
   background: linear-gradient(#707070, #555);
   color: white;
-  border-top: 1px solid #8F8F8F;
-  border-bottom: 1px solid #202020;
   z-index: 10;
+
 }
 /* code editor area */
 
@@ -78,4 +75,19 @@ body {
 #javascript {
   height: 470px;
   font-size: 12px;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.padding {
+   padding: 1px ;
+   margin: 0 ;
+}
+
+.marg{
+  margin-top: -1%;
+  margin-bottom: -1%
 }

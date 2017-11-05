@@ -18,6 +18,15 @@ export const webEditorConfig: any = {
       <script>
       </script>
       </html>`
+  },
+
+  title: {
+   
+   DOWNLOAD: "download",
+   ZIP: "ZIP" 
+
+
+
   }
 
 };
