@@ -41,7 +41,7 @@ const updateUserProfile = function(profileInfo, getId) {
     let userId = getId + "";
     return new Promise((resolve, reject) => {
 
-        ProfileUser.updateOne({ "userId": userId }, {
+        UserModel.updateOne({ "userId": userId }, {
             $set: {
                 firstName: profileInfo.firstName,
                 lastName: profileInfo.lastName,
@@ -66,15 +66,15 @@ const createToken = function(profileInfo, getId) {
 
     return new Promise((resolve, reject) => {
 
-        ProfileUser.updateOne({ "userId": userId }, {
+        UserModel.updateOne({ "userId": userId }, {
             $set: {
-                accessToken: profileInfo.accessToken
+                accessToken: profileInfo
             }
         }, { upsert: true }, (err, data) => {
             if (err) {
                 reject(err);
             } else if (data) {
-                console.log("token=====",JSON.parse(data))
+                console.log("token=====",data)
                 resolve(data);
             }
         })

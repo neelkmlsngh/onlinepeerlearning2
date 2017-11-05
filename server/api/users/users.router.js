@@ -87,7 +87,8 @@ var upload = multer({ storage: storage }).any();
  //route to update personal access token for given userId
  router.put('/token/:userId',function(req,res){
   let getId= req.params.userId;
-  let profileInfo = req.body;
+  let profileInfo = req.body.token;
+  console.log("token122222222222222222",profileInfo,getId)
   try{
       usrCtrl.createToken(profileInfo,getId).then((successResult)=>{
       logger.info('Get successResult successfully and return back');

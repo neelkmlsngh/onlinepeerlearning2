@@ -37,6 +37,7 @@ export class MainComponent implements OnInit {
   accessToken: any;
   public modalRef: BsModalRef;
   currentUser:any;
+  user:{}
 
   constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router,private profileService:ProfileService) {
 
@@ -143,14 +144,14 @@ export class MainComponent implements OnInit {
 }
 
 //method generate personal access token for new user
-createAccessToken(){
+createAccessToken(password){
   let cred={
   "scopes": [
     "repo"
   ],
-  "note": "onlinePeerLearning"
+  "note": "PeerLearning"
 }
-  this.gitService.createToken(cred)
+  this.gitService.createToken(cred,password)
   .subscribe(data=>{
      this.accessToken=data.token;
      console.log("token---------",this.accessToken);
@@ -160,12 +161,15 @@ createAccessToken(){
 
 //method to store personal access token into database
 storeToken(token){
-  console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
- this.currentUser= JSON.parse(localStorage.getItem('currentUser'))
- let userId=this.currentUser.userId;
+  token={
+    "token":token
+  }
+ let currentUser= JSON.parse(localStorage.getItem('currentUser'));
+ let userId=currentUser.userId;
+ console.log("userId=",userId)
 this.profileService.storeAccessToken(userId,token)
 .subscribe(data=>{
-  console.log("accessToken------",data)
+  console.log(data);
 })
 }
   //method to enter new repository name

@@ -160,10 +160,10 @@ export class GitService {
     }
   }
 //method to create user personal access token
-createToken(credentials){
+createToken(credentials,password){
   console.log(credentials,"yyyyyyyyyyyyy");
   if(this.username){
- return this._http.post('https://api.github.com/authorizations',credentials,this.authorizationToken(this.username,this.userpassword))
+ return this._http.post('https://api.github.com/authorizations',credentials,this.authorizationToken(this.username,password))
  .map(res=>res.json())
 }
 }
@@ -184,6 +184,7 @@ createToken(credentials){
 
   //method for authorization for creating personal access token
   private authorizationToken(username,password){
+    console.log(username,password)
     let data=btoa(username + ':'+ password)
     console.log('data-----------------------')
     console.log(data)
