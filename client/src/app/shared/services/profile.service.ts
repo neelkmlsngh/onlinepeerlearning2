@@ -28,7 +28,6 @@ export class ProfileService {
       .map(res => res.json(), error => error.json());
 
   }
-  
   //method store token into database
   storeAccessToken(userId,token){
     const api = config.connect.apiURL+"/api/users/token/"+userId

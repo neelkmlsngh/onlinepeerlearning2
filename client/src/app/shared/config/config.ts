@@ -9,13 +9,12 @@ export const config: any = {
     title: "Add Snippet",
     button: "Add Snippet"
   },
-  connect:
-  {
-    apiURL : "https://192.168.252.190:8080",
-    vmURL : "https://192.168.252.190:3030",
-  
+  connect: {
+    apiURL: "https://192.168.252.152:8080",
+    vmURL: "https://192.168.252.152:3030",
+    peerjsURL: "https://192.168.252.152:8081",
+    CALLBACK_URL:"https://192.168.252.152:8080/api/login/auth/github"
   },
-
 
   giturls: {
     HOSTURL: "https://api.github.com/repos/",
@@ -28,13 +27,6 @@ export const config: any = {
     HOSTURLUSERS: "https://api.github.com/users/"
   },
 
-  
-  navbar: {
-    "logo": "Logo",
-    "profile": "Profile",
-    "forums": "Forums",
-    "logout": "Logout"
-  },
   forumConnect: {
     "APIURL": 'api/forums/',
     "SEARCHAPIURL": 'api/forums/term/'
@@ -45,4 +37,4 @@ export const config: any = {
     "path": "/peerjs"
 
   }
-};
+}

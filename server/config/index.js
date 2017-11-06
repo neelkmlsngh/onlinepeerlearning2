@@ -6,10 +6,10 @@ const chatRouteConfig = require('./chatRouteConfig');
 const coderunnerConfig = require('./coderunnerConfig')
 
 module.exports = {
-    app: app,
-    db: db,
-    loggerConstant: loggerConstant,
-    token: token,
-    chatRouteConfig : chatRouteConfig,
-    coderunnerConfig : coderunnerConfig
+  app: app,
+  db: db,
+  loggerConstant: loggerConstant,
+  token: token,
+  chatRouteConfig : chatRouteConfig,
+  coderunnerConfig : coderunnerConfig
 }
