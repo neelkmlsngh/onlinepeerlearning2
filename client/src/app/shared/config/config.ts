@@ -1,37 +1,22 @@
 export const config: any = {
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> c4c527a729fac50da7e6d63feeda475bd9894021
   language: [
     "javascript",
     "html",
     "css"
   ],
   con: {
-<<<<<<< HEAD
-
-    title: "Add Snippet",
-    button: "Add Snippet"
-  },
-
-=======
     title:"Add Snippet",
     button:"Add Snippet"
     },
   connect:
   {
 
-    apiURL : "https://192.168.252.152:8080",
-    vmURL : "https://192.168.252.152:3030",
-    peerjsURL : "https://192.168.252.152:8081"
->>>>>>> c4c527a729fac50da7e6d63feeda475bd9894021
+    apiURL : "https://192.168.252.57:8080",
+    vmURL : "https://192.168.252.57:3030",
+    peerjsURL : "https://192.168.252.57:8081"
 
-  connect: {
-    apiURL: "https://192.168.252.33:8080",
-    vmURL: "https://192.168.252.33:3030"
+
+
   },
 
 

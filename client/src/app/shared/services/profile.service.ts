@@ -28,13 +28,15 @@ export class ProfileService {
       .map(res => res.json(), error => error.json());
 
   }
-<<<<<<< HEAD
-
+  uploadChatFile(formData, options) {
+  /* let fileObj={
+=======
 
    uploadChatFile(formData, options) {}
 
 /*  uploadChatFile(formData, options) {
    let fileObj={
+>>>>>>> b2ad568e214fd3dfa2c19c68906ac65635f02c48
       "formData": formData,
       "options": options
     }
@@ -49,11 +51,13 @@ export class ProfileService {
       };
     })
     return observable;
-  }*/
-
-  
-
-
-=======
->>>>>>> c4c527a729fac50da7e6d63feeda475bd9894021
+<<<<<<< HEAD
+  */
+}
+  //method store token into database
+  storeAccessToken(userId,token){
+    const api = config.connect.apiURL+"/api/users/token/"+userId
+    return this.http.put(api,token)
+    .map(res=>res.json(),error=>error.json());
+  }
 }
