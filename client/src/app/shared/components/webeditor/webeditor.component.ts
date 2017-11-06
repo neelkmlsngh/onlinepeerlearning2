@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, NgZone, TemplateRef } from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { FormsModule } from '@angular/forms'
 import { AceEditorDirective } from 'ng2-ace-editor'
 import { AceEditorModule } from 'ng2-ace-editor'
@@ -13,7 +15,10 @@ import { webEditorConfig } from '../../config/webEditor.config';
 })
 export class WebeditorComponent implements OnInit {
 
-  constructor(private snippet: SnippetService) {}
+  constructor(private snippet: SnippetService, private zone: NgZone, private modalService: BsModalService) {
+    this.methodToExport = this.calledFromOutside;
+    window['angularComponentRef'] = { component: this, zone: zone };
+  }
   config = webEditorConfig;
 
   @Input() content: any;
@@ -31,6 +36,10 @@ export class WebeditorComponent implements OnInit {
   caretPos: any;
   caretText: any;
   obj: any;
+  windowRef: any;
+  methodToExport: any;
+  link: string = '';
+  public modalRef: BsModalRef;
 
   /*variable for snippet used in css*/
   comments: any;
@@ -46,6 +55,16 @@ export class WebeditorComponent implements OnInit {
   classSelector: any;
   idSelector: any;
   mediaQueries: any;
+
+  public openModal(template: TemplateRef < any > ) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  calledFromOutside(url: string) {
+    this.zone.run(() => {
+      this.link = url;
+    });
+  }
 
   ngOnInit() {
     this.onChange(this.code)

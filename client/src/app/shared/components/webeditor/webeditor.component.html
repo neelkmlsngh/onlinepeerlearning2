@@ -1,6 +1,7 @@
 <!-- <div class="container"> -->
   <div class="row ">
     <div class="col-md-7 padding">
+    <div class="navbar">
       <!-- pills to select language -->
       <ul class="nav nav-pills marg " id="pills-tab" role="tablist">
         <li class="nav-item ">
@@ -13,6 +14,23 @@
           <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" title={{config.webEditor.JS}}><i class="fa fa-code" aria-hidden="true"></i></a>
         </li>
       </ul>
+      <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn  btn-secondary text-right" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="Share Your Screen With Your Friend" (click)="openModal(template)"> Share Your Screen</button>
+      </div>
+      <div id="togetherjs-dock-participants"></div>
+              <template #template>
+                <div class="modal-header">
+                  <h4 class="modal-title pull-left">Modal</h4>
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Copy this URL and send to your friend
+                  <div *ngIf="link!==''">
+                    <p><a target="_blank" [attr.href]="link" (click)="redirect()">{{link}}</a></p>
+                  </div>
+                </div>
+              </template>
       <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
           <div id="wrap">
