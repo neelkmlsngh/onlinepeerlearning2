@@ -15,6 +15,7 @@ export const config: any = {
     peerjsURL: "https://192.168.252.152:8081",
     CALLBACK_URL:"https://192.168.252.152:8080/api/login/auth/github"
   },
+
   giturls: {
     HOSTURL: "https://api.github.com/repos/",
     SUBURL: "/git/refs/heads/master",
@@ -26,13 +27,6 @@ export const config: any = {
     HOSTURLUSERS: "https://api.github.com/users/"
   },
 
-  
-  navbar: {
-    "logo": "Logo",
-    "profile": "Profile",
-    "forums": "Forums",
-    "logout": "Logout"
-  },
   forumConnect: {
     "APIURL": 'api/forums/',
     "SEARCHAPIURL": 'api/forums/term/'

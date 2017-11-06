@@ -27,33 +27,6 @@ describe('chatService ,(mockBackend)', () => {
    });
  });
 
-it('GetMessages method should return messages',
-    inject([chatservice, XHRBackend], (chatservice, mockBackend) => {
-      const mockResponse = { params:'username',call:"true, 'HTTP fail."};
-      mockBackend.connections.subscribe((connection) => {
-        connection.mockRespond(new Response(new ResponseOptions({
-          body: JSON.stringify(mockResponse)
-        })));
-      });
-
-      chatservice.getMessages("username","true, 'HTTP fail.").subscribe((user) => {
-        expect(user.params).toEqual('username');
-        //expect(user.callback()).toEqual("true, 'HTTP fail.");
-
-      });
-
-   
-}));
-
-
-
-
-
-
-
-
-
-
  /*Testcase to check whether service is injected or not*/
  it('can instantiate service when inject service',
    inject([chatservice], (service: chatservice) => {
