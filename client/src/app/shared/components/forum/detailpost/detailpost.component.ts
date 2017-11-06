@@ -18,10 +18,9 @@ import * as $ from 'jquery'
 //forum questions details class
 export class DetailpostComponent implements OnInit, AfterViewInit {
 
-  constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {
-
-  }
-
+  constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {}
+  answerText:string;
+  addSnippet:any;
   name: string;
   editor: string;
   obj: any = {};
@@ -55,22 +54,32 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
   }
   //method to load editor to postAnswer
   ngAfterViewInit() {
-    var config = {
+    var configuration = {
       extraPlugins: 'codesnippet',
       codeSnippet_theme: 'monokai_sublime',
       height: 356,
-      removeButtons: 'About',
+      removeButtons:forumConfig.NEWPOST.CKEDITOR.REMOVED_BUTTONS,
+      removePlugins:forumConfig.NEWPOST.CKEDITOR.REMOVED_PLUGINS,
+    };
+    CKEDITOR.replace('addSnippet', configuration);
+    CKEDITOR.instances.addSnippet.setData("");
+
+    var answerTextConfig = {
+      codeSnippet_theme: 'monokai_sublime',
+      height: 356,
+      removeButtons: 'About'
 
     };
-    CKEDITOR.replace('editor', config);
-    CKEDITOR.instances.editor.setData("");
+    CKEDITOR.replace('answerText', answerTextConfig);
+    CKEDITOR.instances.answerText.setData("");
   }
 
   //method to postAnswer
   postAnswer() {
     this.obj = {
       username: "prashant",
-      answer: CKEDITOR.instances.editor.getData(),
+      answer:CKEDITOR.instances.answerText.getData(),
+      codeSnippet: CKEDITOR.instances.addSnippet.getData(),
       date: this.date
     }
     this.forum.saveAnswer(this.data._id, this.obj)

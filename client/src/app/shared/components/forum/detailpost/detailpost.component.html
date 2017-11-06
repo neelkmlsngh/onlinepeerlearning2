@@ -102,7 +102,9 @@
         </div>
         <div class="answer mt-3">
           <label class="h5">{{forumConfig.DETAILPOST.YOUR_ANSWERS}}</label>
-          <ckeditor id="editor" class="editor" name="editor" [(ngModel)]="editor"></ckeditor>
+          <ckeditor id="answerText" class="answerText" name="answerText" [(ngModel)]="answerText"></ckeditor>
+          <br>
+          <ckeditor id="addSnippet" class="addSnippet" name="addSnippet" [(ngModel)]="addSnippet"></ckeditor>
         </div>
         <hr>
         <div class="login">
