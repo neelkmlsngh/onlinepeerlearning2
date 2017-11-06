@@ -78,9 +78,12 @@ export class WebeditorComponent implements OnInit {
       })
   }
 
-  show(code) {
-    this.htmlValue = code;
-    this.cssValue = code;
+  showHtml(code) {
+    this.htmlValue += " " + code;
+  }
+
+ showCss(code) {
+     this.cssValue+= " " + code;
   }
 
   /*Giving the basic syntax of an HTMl page on Iframe*/
