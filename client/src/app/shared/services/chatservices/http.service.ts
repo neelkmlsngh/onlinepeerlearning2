@@ -21,14 +21,14 @@ export class HttpService {
   
   //Method for checking if username exists 
   public checkUserSession(params) {
-    return this.http.post(this.config.connect.apiURL+ '/api/chat/checkUserSession', JSON.stringify(params), this.headerOptions)
+    return this.http.post(this.config.connect.apiURL + '/api/chat/checkUserSession', JSON.stringify(params), this.headerOptions)
       .map((response: Response) => response.json())
       .catch((error: any) => Observable.throw(error.json().error || `Server error`));
   }
 
   //Method for getting chat messages
   public getMessages(params) {
-    return this.http.post(this.config.connect.apiURL + this.config.connect.port + '/api/chat/getMessages', JSON.stringify(params), this.headerOptions)
+    return this.http.post(this.config.connect.apiURL + '/api/chat/getMessages', JSON.stringify(params), this.headerOptions)
       .map((response: Response) => response.json())
       .catch((error: any) => Observable.throw(error.json().error || `Server error`));
   }

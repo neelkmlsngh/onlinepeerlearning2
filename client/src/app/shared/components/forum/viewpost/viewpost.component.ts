@@ -63,8 +63,8 @@ export class ViewpostComponent implements OnInit {
       });
   }
   //method to navigate to questions detail
-  getQuestionDetail(value): any {
-    this.router.navigate(['/questiondetail', value])
+  getPostDetail(value): any {
+    this.router.navigate(['/forums' ,value])
   }
   //method for likes
   like() {

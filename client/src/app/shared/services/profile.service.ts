@@ -28,9 +28,15 @@ export class ProfileService {
       .map(res => res.json(), error => error.json());
 
   }
-
   uploadChatFile(formData, options) {
   /* let fileObj={
+=======
+
+   uploadChatFile(formData, options) {}
+
+/*  uploadChatFile(formData, options) {
+   let fileObj={
+>>>>>>> b2ad568e214fd3dfa2c19c68906ac65635f02c48
       "formData": formData,
       "options": options
     }
@@ -45,6 +51,7 @@ export class ProfileService {
       };
     })
     return observable;
+<<<<<<< HEAD
   */
 }
   //method store token into database
