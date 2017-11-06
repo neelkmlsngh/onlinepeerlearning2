@@ -4,12 +4,6 @@ import {
   MockConnection
 } from '@angular/http/testing';
 import { HttpModule, Http, XHRBackend, Response, ResponseOptions, RequestMethod } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/toPromise';
-
 import { SnippetService } from './snippet.service';
 
 describe('snippetservice ,(mockBackend)', () => {
