@@ -67,11 +67,11 @@ const createToken = function(profileInfo, getId) {
 
     return new Promise((resolve, reject) => {
 
-        UserModel.updateOne({ "userId": userId }, {
+        UserModel.findOneAndUpdate({ "userId": userId }, {
             $set: {
                 accessToken: profileInfo
             }
-        }, { upsert: true }, (err, data) => {
+        }, { new: true }, (err, data) => {
             if (err) {
                 reject(err);
             } else if (data) {

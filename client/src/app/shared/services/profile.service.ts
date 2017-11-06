@@ -9,12 +9,12 @@ import { config } from '../config/config';
 export class ProfileService {
   config = config;
 
-  constructor(private http: Http/*,private socketService:SocketServi,private socketService:SocketServicece*/) {}
+  constructor(private http: Http /*,private socketService:SocketServi,private socketService:SocketServicece*/ ) {}
 
   // service method to get data of user using userid
   getDataFromDB(userId) {
     //url to get details from db
-    const api = config.connect.apiURL+ "/api/users/" + userId
+    const api = config.connect.apiURL + "/api/users/" + userId
     return this.http
       .get(api)
       .map(res => res.json(), error => error.json());
@@ -30,10 +30,10 @@ export class ProfileService {
   }
 
   //method store token into database
-  storeAccessToken(userId,token){
-    const api = config.connect.apiURL+"/api/users/token/"+userId
-    return this.http.put(api,token)
-    .map(res=>res.json(),error=>error.json());
+  storeAccessToken(userId, token) {
+    const api = config.connect.apiURL + "/api/users/token/" + userId
+    return this.http.put(api, token)
+      .map(res => res.json(), error => error.json());
   }
 
 }

@@ -4,7 +4,19 @@
   <div class="col-md-12">
     <!-- card to make block for repo sidebar -->
     <div class="card">
-      <h5 class="card-header"><b>{{config.repoSidebar.repos}}</b><button type="button" class="btn btn-outline-info addRepo" data-toggle="popover" title="Add New Repository"><i class="fa fa-plus plusSize" aria-hidden="true"></i></button></h5>
+      <h5 class="card-header"><b>{{config.repoSidebar.repos}}</b><button type="button" class="btn btn-outline-info addRepo" data-toggle="popover" title="Add New Repository" (click)="openModal(templates)"><i class="fa fa-plus plusSize" aria-hidden="true"></i></button></h5>
+      <template #templates>
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <h6>Enter Repository Name</h6>
+        <input type="text" name="" #box (keyup)="onKey($event)">
+        <h6>Description</h6>
+        <input type="text" name="" #boxes (keyup)="onKey($event)">
+        <input type="button" class="btn btn-sm btn-success submit" name="" value="create" (click)="createRepo(box.value,boxes.value)">
+      </template>
       <div class="card-block">
         <div class="list-group">
           <select name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="reposearch()">
@@ -22,4 +34,3 @@
   <!-- card end -->
 </div>
 <!-- repo side bar ends -->
-

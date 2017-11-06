@@ -11,9 +11,9 @@ export const config: any = {
   },
   connect:
   {
-    apiURL : "https://192.168.252.152:8080",
-    vmURL : "https://192.168.252.152:3030",
-    CALLBACK_URL:"https://192.168.252.152:8080/api/login/auth/github",
+    apiURL : "https://192.168.252.204:8080",
+    vmURL : "https://192.168.252.204:3030",
+    CALLBACK_URL:"https://192.168.252.204:8080/api/login/auth/github",
     CLIENT_ID : 'eda558d85f4b8157078f',
     CLIENT_SECRET : '2456afab849c7fd43d4977de7f1187b8d5e74329'
   },
@@ -27,7 +27,7 @@ export const config: any = {
     CONTENTURL: "/contents/",
     CREATEREPOS: "https://api.github.com/user/repos",
     HOSTURLUSERS: "https://api.github.com/users/",
-    AUTHORIZATION: "Basic dGFudXByZWV0X3NpbmdoQHlhaG9vLmNvbTphYzBlZTRmMjk3ZjBhMzQyMmJmN2RiZmNiNzIyODA3NmZhOGVmNzFm"
+    AUTHORIZATION: "Basic dGFudXByZWV0X3NpbmdoQHlhaG9vLmNvbTo4NTI3NDc5MDMyMGZiMzNmYzkxNzhmZTA4NWE4YTA2NjVmZDNiNTU4"
   },
 
   forumConnect: {
@@ -35,7 +35,7 @@ export const config: any = {
     "SEARCHAPIURL": 'api/forums/term/'
   },
   peerserver: {
-    "host": "192.168.252.152",
+    "host": "192.168.252.204",
     "port": "8081",
     "path": "/peerjs"
 

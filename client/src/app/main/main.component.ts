@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, NgZone, TemplateRef} from '@angular/core';
+import { Component, OnInit, Input, NgZone, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
@@ -8,7 +8,7 @@ import { GitService } from '../shared/services/git.service'
 import { AuthenticationService } from '../shared/services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import {ProfileService} from '../shared/services/profile.service';
+import { ProfileService } from '../shared/services/profile.service';
 import { mainConfig } from '../shared/config/main.config';
 
 @Component({
@@ -38,11 +38,12 @@ export class MainComponent implements OnInit {
   value: any;
   accessToken: any;
   public modalRef: BsModalRef;
-  currentUser:any;
-  user:{}
-  config=mainConfig;
+  currentUser: any;
+  user: {}
+  config = mainConfig;
+  personalAccessToken: string;
 
-  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router,private profileService:ProfileService) {
+  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router, private profileService: ProfileService) {
 
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
@@ -142,42 +143,46 @@ export class MainComponent implements OnInit {
           showConfirmButton: false,
         })
       }
-    this.router.navigate(["/"]);
-     localStorage.removeItem('currentUser');
-})
-}
+      this.router.navigate(["/"]);
+      localStorage.removeItem('currentUser');
+    })
+  }
 
-onKey(event) {
+  onKey(event) {
     this.value += event
   }
-  
-//method generate personal access token for new user
-createAccessToken(password){
-  let cred={
-  "scopes": [
-    "repo"
-  ],
-  "note": "PeerLearning"
-}
-  this.gitService.createToken(cred,password)
-  .subscribe(data=>{
-     this.accessToken=data.token;
-     console.log("token---------",this.accessToken);
-    this.storeToken(this.accessToken)
-  })
-}
 
-//method to store personal access token into database
-storeToken(token){
-  token={
-    "token":token
+  //method generate personal access token for new user
+  createAccessToken(password, tokenName) {
+    let cred = {
+      "scopes": [
+        "repo"
+      ],
+      "note": tokenName
+    }
+    this.gitService.createToken(cred, password)
+      .subscribe(data => {
+        this.accessToken = data.token;
+        console.log("token---------", this.accessToken);
+        this.storeToken(this.accessToken)
+      })
   }
- let currentUser= JSON.parse(localStorage.getItem('currentUser'));
- let userId=currentUser.userId;
- console.log("userId=",userId)
-this.profileService.storeAccessToken(userId,token)
-.subscribe(data=>{
-  console.log(data);
-})
-}
+
+  //method to store personal access token into database
+  storeToken(token) {
+    let accessToken = {
+      "token": token
+    }
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let userId = currentUser.userId;
+    this.profileService.storeAccessToken(userId, accessToken)
+      .subscribe(response => {
+        console.log("DATA Object for token")
+        console.log("=============11111111111", response.data.accessToken)
+        if (response.data && response.data.accessToken) {
+          this.personalAccessToken = response.data.accessToken;
+          alert(this.personalAccessToken)
+        }
+      })
+  }
 }
