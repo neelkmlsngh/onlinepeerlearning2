@@ -26,59 +26,6 @@ describe('socketService ,(mockBackend)', () => {
    });
  });
 
-/*it('connectSocket method should create connection.',
-    inject([socketservice, XHRBackend], (socketservice, mockBackend) => {
-      const mockResponse = { userId:'rohan1194'};
-      mockBackend.connections.subscribe((connection) => {
-        connection.mockRespond(new Response(new ResponseOptions({
-          body: JSON.stringify(mockResponse)
-        })));
-      });
-
-      socketservice.connectSocket("username","true, 'HTTP fail.").subscribe((user) => {
-        expect(user.userId).toEqual('rohan1194');
-      });
-   
-}));
-
-it('sendMessage method should send message.',
-    inject([socketservice, XHRBackend], (socketservice, mockBackend) => {
-      const mockResponse = { message:'hello'};
-      mockBackend.connections.subscribe((connection) => {
-        connection.mockRespond(new Response(new ResponseOptions({
-          body: JSON.stringify(mockResponse)
-        })));
-      });
-
-      socketservice.sendMessage("username","true, 'HTTP fail.").subscribe((user) => {
-        expect(user.message).toEqual('hello');
-      });*/
-
-
-
-      /*  it('should xyz, inject([JobService], fakeAsync((service: JobService) => {
-    service.subscribeEvent('/').subscribe(val => {
-      expect(val).toEqual('test message 1');
-    })*/
-   
-/*}));
-
-it('getChatList method should return list of online users.',
-    inject([socketservice, XHRBackend], (socketservice, mockBackend) => {
-      const mockResponse = { userId:'rohan1194'};
-      mockBackend.connections.subscribe((connection) => {
-        connection.mockRespond(new Response(new ResponseOptions({
-          body: JSON.stringify(mockResponse)
-        })));
-      });
-
-      socketservice.getChatList("username","true, 'HTTP fail.").subscribe((user) => {
-        expect(user.userId).toEqual('rohan1194');
-      });
-   
-}));
-
-
  /*Testcase to check whether service is injected or not*/
  it('can instantiate service when inject service',
    inject([socketservice], (service: socketservice) => {
