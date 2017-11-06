@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule,Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import 'hammerjs';
 import { MatTabsModule } from '@angular/material';
 import { MatTabGroup } from '@angular/material';
@@ -50,7 +50,7 @@ import { ProfileService } from './shared/services/profile.service';
 
 import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { SnippetComponent } from './shared/components/snippet/snippet.component';
-import {  SnippetService } from './shared/services/snippet.service';
+import { SnippetService } from './shared/services/snippet.service';
 
 //import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { CoderunnerService } from './shared/services/coderunner.service';
@@ -59,17 +59,17 @@ import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.
 
 import { ErrorpageComponent } from './shared/components/errorpage/errorpage.component';
 
-let apiRoutes:Routes = [
-  { path:'',
-    component:HomeComponent
+let apiRoutes: Routes = [{
+    path: '',
+    component: HomeComponent
   },
   {
-    path:'error',
+    path: 'error',
     component: ErrorpageComponent
   },
   {
-    path:'snippets',
-    component:SnippetComponent
+    path: 'snippets',
+    component: SnippetComponent
   },
   {
     path: 'main',
@@ -77,22 +77,20 @@ let apiRoutes:Routes = [
     /* canActivate: [AuthoriseGuard]*/
   },
   {
-    path: 'forums',
-    component: ForumComponent,
-    children: [{
-        path: 'view',
-        component: ViewpostComponent
-      },
-      {
-        path: 'view/:postId',
-        component: ViewpostComponent
-      },
-      {
-        path: 'add',
-        component: NewpostComponent,
-      },
-    ]
+    path: 'view',
+    component: ViewpostComponent,
+    // canActivate: [AuthoriseGuard]
   },
+  {
+    path: 'forums/:value',
+    component: DetailpostComponent,
+    // canActivate: [AuthoriseGuard]
+  },
+  {
+    path: 'add',
+    component: NewpostComponent,
+  },
+
   {
     path: 'profile',
     component: ProfileComponent,
@@ -107,7 +105,7 @@ let apiRoutes:Routes = [
     path: '**',
     component: HomeComponent,
   },
-]; 
+];
 
 @NgModule({
   declarations: [
@@ -155,9 +153,8 @@ let apiRoutes:Routes = [
     MatFormFieldModule,
     ModalModule.forRoot(),
     RouterModule.forRoot(apiRoutes, { useHash: true })
-    ],
-
-  providers: [GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService,SnippetService],
+  ],
+  providers: [GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, CoderunnerService, ChatService, HttpService, SocketService, SnippetService],
 
   bootstrap: [AppComponent]
 })

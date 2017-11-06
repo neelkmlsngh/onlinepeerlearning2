@@ -8,7 +8,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import 'rxjs/Rx';
 
 import { ForumService } from '../../../services/forum.service';
-import { config } from './../../../config/forum';
+import { forumConfig } from './../../../config/forum.config';
 
 @Component({
   selector: 'app-viewpost',
@@ -27,7 +27,7 @@ export class ViewpostComponent implements OnInit {
   noofanswer: number = 0;
   answerlength: any = [];
   p: number[] = [];
-  config=config;
+  forumConfig=forumConfig;
   public modalRef: BsModalRef;
   public configModal = {
     animated: true,
@@ -63,8 +63,8 @@ export class ViewpostComponent implements OnInit {
       });
   }
   //method to navigate to questions detail
-  getQuestionDetail(value): any {
-    this.router.navigate(['/questiondetail', value])
+  getPostDetail(value): any {
+    this.router.navigate(['/forums' ,value])
   }
   //method for likes
   like() {

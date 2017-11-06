@@ -12,7 +12,6 @@ var storage = multer.diskStorage({
        cb(null, 'server/uploads/')
    },
    filename: function(req, file, cb) {
-       console.log(file);
        cb(null, file.originalname.slice(0, file.originalname.lastIndexOf('.')) + '-' + Date.now() + path.extname(file.originalname))
    }
 })
@@ -52,16 +51,13 @@ var upload = multer({ storage: storage }).any();
   try {
     usrCtrl.getProfile(getId).then((successResult)=>{
       logger.info('Get successResult successfully and return back');
-      /*return res.status(201).send(successResult);*/
       return res.json({status:201,message:'User details successfully retrieved',data:successResult})
     }, (errResult) => {
           logger.error(errResult);
-          /*return res.status(500).send({ error: errResult});*/
           return res.json({status:500,message:'Incorrect credentials',data:errResult})
         });
   } catch (err) {
     logger.fatal('Exception occurred' + err);
-    /*res.send({ error: err });*/
     return res.json({status:false,message:'Exception occurred',data:err})
   }
  })
@@ -87,6 +83,28 @@ var upload = multer({ storage: storage }).any();
    }
  })
 
+ //route to update personal access token for given userId
+ router.put('/token/:userId',function(req,res){
+  let getId= req.params.userId;
+  let profileInfo = req.body.token;
+  console.log("token122222222222222222",profileInfo,getId)
+  try{
+      usrCtrl.createToken(profileInfo,getId).then((successResult)=>{
+      logger.info('Get successResult successfully and return back');
+      /*return res.status(201).send(successResult);*/
+      return res.json({status:201,message:'Token successfully created',data:successResult})
+    }),(errResult)=>{
+        logger.error(errResult);
+        /*return res.status(500).send({ error: errResult});*/
+        return res.json({status:500,message:'Token cannot be created due to some error',data:errResult})
+      }
+   }catch(err){
+    logger.fatal('Exception occurred' + err);
+    /*res.send({ error: err });*/
+    return res.json({status:false,message:'Exception occurred',data:err})
+   }
+ })
+
 //route to update profile image for the given userId
  router.put('/image/:userId',function(req,res){
   let getId= req.params.userId;
@@ -101,7 +119,6 @@ var upload = multer({ storage: storage }).any();
         img:req.files[0].filename
       }
        usrCtrl.updateImage(dataObj,getId).then(successResult=>{
-        /*return res.status(201).send(successResult);*/
         return res.json({status:201,message:'Image successfully updated',data:successResult})
        },error=>{
          return res.json({status:false,message:'Error occurred in updating image',data:error})
@@ -110,7 +127,6 @@ var upload = multer({ storage: storage }).any();
   });
    }catch(err){
     logger.fatal('Exception occurred' + err);
-    /*res.send({ error: err });*/
     return res.json({status:false,message:'Exception occurred',data:err})
    }
  })

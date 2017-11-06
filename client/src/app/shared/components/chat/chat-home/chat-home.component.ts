@@ -32,6 +32,8 @@ export class ChatHomeComponent implements OnInit {
   options: RequestOptions;
   currentUser:any;
   imgPath:string='';
+  showVideoBox: any = false;
+  showAudioBox: any = false;
 
   //chat and message related variables starts
   userId = null;
@@ -54,6 +56,7 @@ export class ChatHomeComponent implements OnInit {
 
   /*method loading various functions*/
   ngOnInit() {
+    this.currentUser= JSON.parse(localStorage.getItem('currentUser'))
     $('.chatbox').hide();
 
     // getting userID from the local storage  
@@ -120,12 +123,12 @@ export class ChatHomeComponent implements OnInit {
 
       }
     });
-    this.openchatbox()
-    this.hidechatbox()
+    this.openChatBox()
+    this.hideChatBox()
   }
 
   //Method for opening chatbox
-  openchatbox(): void {
+  openChatBox(): void {
     //Jquery for handling chatbox opening and closing
     var $chatbox = $('.chatbox'),
       $chatboxTitle = $('.chatbox__title'),
@@ -158,10 +161,22 @@ export class ChatHomeComponent implements OnInit {
   }
 
   //Method for closing chatbox
-  hidechatbox(): void {
+  hideChatBox(): void {
     $('.chatbox').show();
     $('.side').hide();
   }
+  
+  chatBoxToggle(): void{
+  $('.chatbox').toggleClass('chatbox--tray');
+  }
+
+  showVideo() {
+   this.showVideoBox = !this.showVideoBox;
+ }
+
+ showAudio(){
+   this.showAudioBox = !this.showAudioBox;
+ }
 
   isUserSelected(userId: string): boolean {
     if (!this.selectedUserId) {
@@ -205,7 +220,7 @@ export class ChatHomeComponent implements OnInit {
     return this.userId === userId ? false : true;
   }
 
-  removesb() {
+  removesb(): void {
     $('.side').toggle();
   }
 
@@ -225,6 +240,8 @@ export class ChatHomeComponent implements OnInit {
    if(fileList.length > 0) {
     let file: File = fileList[0];
     this.formData.append('uploadFile', file, file.name);
+    this.formData.append('hsdfh', "gfhas");
+
     let headers = new Headers();
     headers.append('enctype', 'multipart/form-data');
     headers.append('Accept', 'application/json');
@@ -232,9 +249,15 @@ export class ChatHomeComponent implements OnInit {
      
    }
 }
+
 // method to be called when Upload button is clicked
-uploadFile(){
-  this.profileService.uploadChatFile(this.formData,this.options)
-   }
+  uploadFile(){
+    this.profileService.uploadFile(this.currentUser.userId,this.formData,this.options)
+  .subscribe(
+    res=>{
+      this.imgPath=res.data.avatarUrl;
+    },error=> 'UPLOAD'
+    )
+  }
 }
 

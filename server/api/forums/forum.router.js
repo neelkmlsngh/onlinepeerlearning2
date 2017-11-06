@@ -13,11 +13,11 @@ router.post('/', function(req, res) {
             return res.json({ status: 201, message: logConfig.POST_FORUM_QUESTION, data: successResult });
         }, (errResult) => {
             logger.error(errResult);
-            return res.send({ status: 200, message: logConfig.POST_FORUM_QUESTION_ERROR, data: errResult });
+            return res.json({ status: 200, message: logConfig.POST_FORUM_QUESTION_ERROR, data: errResult });
         });
     } catch (err) {
         logger.fatal(logConfig.EXCEPTION_FOUND + err);
-        return res.send({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
+        return res.json({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
     }
 });
 
@@ -29,11 +29,11 @@ router.get('/', function(req, res) {
             return res.json({ status: 201, message: logConfig.GET_FORUM_QUESTION, data: successResult });
         }, (errResult) => {
             logger.error(errResult);
-            return res.send({ status: 200, message: logConfig.GET_FORUM_QUESTION_ERROR, data: errResult });
+            return res.json({ status: 200, message: logConfig.GET_FORUM_QUESTION_ERROR, data: errResult });
         });
     } catch (err) {
         logger.fatal(logConfig.EXCEPTION_FOUND + err);
-        return res.send({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
+        return res.json({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
     }
 });
 
@@ -46,11 +46,11 @@ router.get('/term/:searchTerm', function(req, res) {
             return res.json({ status: 201, message: logConfig.SEARCH_FORUM_QUESTION, data: successResult });
         }, (errResult) => {
             logger.error(errResult);
-            return res.send({ status: 200, message: logConfig.SEARCH_FORUM_QUESTION_ERROR, data: errResult });
+            return res.json({ status: 200, message: logConfig.SEARCH_FORUM_QUESTION_ERROR, data: errResult });
         });
     } catch (err) {
         logger.fatal(logConfig.EXCEPTION_FOUND + err);
-        return res.send({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
+        return res.json({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
     }
 });
 
@@ -63,11 +63,11 @@ router.get('/:id', function(req, res) {
             return res.json({ status: 201, message: logConfig.GET_DATA_FROM_ID, data: successResult });
         }, (errResult) => {
             logger.error(errResult);
-            return res.send({ status: 200, message: logConfig.GET_DATA_FROM_ID_ERROR, data: errResult });
+            return res.json({ status: 200, message: logConfig.GET_DATA_FROM_ID_ERROR, data: errResult });
         });
     } catch (err) {
         logger.fatal(logConfig.EXCEPTION_FOUND + err);
-        return res.send({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
+        return res.json({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
     }
 });
 
@@ -81,11 +81,11 @@ router.put('/:question', (req, res) => {
             return res.json({ status: 201, message: logConfig.ADD_ANSWER_ON_QUESTION, data: successResult });
         }, (errResult) => {
             logger.error(errResult);
-            return res.send({ status: 200, message: logConfig.ADD_ANSWER_ON_QUESTION_ERROR, data: errResult });
+            return res.json({ status: 200, message: logConfig.ADD_ANSWER_ON_QUESTION_ERROR, data: errResult });
         });
     } catch (err) {
         logger.fatal(logConfig.EXCEPTION_FOUND + err);
-        return res.send({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
+        return res.json({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
     }
 });
 

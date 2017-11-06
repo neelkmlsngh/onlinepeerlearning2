@@ -1,9 +1,7 @@
 export const config = {
 
-	"profile":{
 		"USER_PROFILE_PAGE":"User Profile Page",
 		"GITHUB_ID":"Github ID",
-		"UPLOAD":"Upload",
 		"LOGIN_NAME":"Login Name",
 
 		"PUBLIC_REPO":"Public Repositories",
@@ -20,5 +18,5 @@ export const config = {
 		"SAVE":"Save",
 		"CANCEL":"Cancel"
 
-	}
+
 }

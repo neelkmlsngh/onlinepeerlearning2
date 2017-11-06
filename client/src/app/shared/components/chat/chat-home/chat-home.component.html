@@ -28,13 +28,13 @@
   </ul>
   <div class="message-typer">
     <textarea class="message form-control" placeholder="Type and hit Enter" [(ngModel)]="message" (keyup)="sendMessage($event)">
-     <div class="card-footer">
-          <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
-          <div class="col-sm-3">
-            <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">{{config.profile.UPLOAD}}</button>
-          </div>
-        </div>
     </textarea>
+    <div class="card-footer">
+      <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
+      <div class="col-sm-3">
+        <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">UPLOAD</button>
+      </div>
+    </div>
   </div>
 </div>
 <!-- Togglable button -->
@@ -77,11 +77,11 @@
     </ul>
   </div>
 </div>
-<!--use template for audio call component -->
+<!-- use template for audio call componen -->t
 <template #template1>
   <app-audio-chat></app-audio-chat>
 </template>
-<!--use template for video call component -->
+<!-- use template for video call component -->
 <template #template2>
   <app-video-chat></app-video-chat>
 </template>
