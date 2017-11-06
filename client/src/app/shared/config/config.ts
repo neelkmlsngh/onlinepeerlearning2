@@ -6,13 +6,13 @@ export const config: any = {
     "css"
   ],
   con: {
-
     title: "Add Snippet",
     button: "Add Snippet"
   },
-  connect: {
-    apiURL: "https://192.168.252.33:8080",
-    vmURL: "https://192.168.252.33:3030"
+  connect:
+  {
+    apiURL : "https://192.168.252.147:8080",
+    vmURL : "https://192.168.252.147:3030",
   },
 
 

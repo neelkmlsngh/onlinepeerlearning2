@@ -40,24 +40,45 @@ const getProfile = function(getId) {
 const updateUserProfile = function(profileInfo, getId) {
 	let userId = getId + "";
 	return new Promise((resolve, reject) => {
-
-		ProfileUser.updateOne({ "userId": userId }, {
-			$set: {
-				firstName: profileInfo.firstName,
-				lastName: profileInfo.lastName,
-				email: profileInfo.email,
-				gender: profileInfo.gender,
-				bio: profileInfo.biodata
-			}
-		}, { upsert: true }, (err, data) => {
-			if (err) {
-				reject(err);
-			} else if (data) {
-				resolve(data);
-			}
-		})
+        UserModel.updateOne({ "userId": userId }, {
+            $set: {
+                firstName: profileInfo.firstName,
+                lastName: profileInfo.lastName,
+                email: profileInfo.email,
+                gender: profileInfo.gender,
+                bio: profileInfo.biodata
+            }
+        }, { upsert: true }, (err, data) => {
+            if (err) {
+                reject(err);
+            } else if (data) {
+                resolve(data);
+            }
+        })
 
 	})
+}
+
+//create personel access token
+const createToken = function(profileInfo, getId) {
+    let userId = getId + "";
+
+    return new Promise((resolve, reject) => {
+
+        UserModel.updateOne({ "userId": userId }, {
+            $set: {
+                accessToken: profileInfo
+            }
+        }, { upsert: true }, (err, data) => {
+            if (err) {
+                reject(err);
+            } else if (data) {
+                console.log("token=====",data)
+                resolve(data);
+            }
+        })
+
+    })
 }
 
 // update profile picture of a user with given userId
@@ -83,8 +104,9 @@ const updateImage = function(dataObj, getId) {
 
 
 module.exports = {
-	saveUserCredentials: saveUserCredentials,
-	getProfile: getProfile,
-	updateUserProfile: updateUserProfile,
-	updateImage: updateImage
+    saveUserCredentials: saveUserCredentials,
+    getProfile: getProfile,
+    updateUserProfile: updateUserProfile,
+    updateImage: updateImage,
+    createToken: createToken
 };
