@@ -129,24 +129,4 @@ var upload = multer({ storage: storage }).any();
    }
  })
 
-function fileUpload(fileObj){
-  upload(req, res, function(err) {
-   if (err) {
-     return res.json({status:false,message:'Error occurred',data:err})  
-   }
-   else {
-    let dataObj={
-      img:req.files[0].filename
-    }
-     usrCtrl.updateImage(dataObj,getId).then(successResult=>{
-      /*return res.status(201).send(successResult);*/
-      return res.json({status:201,message:'Image successfully updated',data:successResult})
-     },error=>{
-       return res.json({status:false,message:'Error occurred in updating image',data:error})
-     }); 
-  }
-  });
- }
-
-
  module.exports = router;
