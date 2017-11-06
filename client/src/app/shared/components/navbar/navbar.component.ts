@@ -37,10 +37,10 @@ export class NavbarComponent implements OnInit {
           type: this.config.navbar.SUCCESS,
           showConfirmButton: false,
         })
-      
-      this.router.navigate(["/"]);
-      localStorage.removeItem('currentUser');
-    }
+
+        this.router.navigate(["/"]);
+        localStorage.removeItem('currentUser');
+      }
     })
   }
- }
+}
