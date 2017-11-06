@@ -11,10 +11,10 @@ export const config: any = {
   },
   connect:
   {
-    apiURL : "https://192.168.252.211:8080",
-    vmURL : "https://192.168.252.211:3030",
+    apiURL : "https://192.168.252.178:8080",
+    vmURL : "https://192.168.252.178:3030",
+    CALLBACK_URL:"https://192.168.252.178:8080/api/login/auth/github"
   },
-
 
   giturls: {
     HOSTURL: "https://api.github.com/repos/",
@@ -27,13 +27,6 @@ export const config: any = {
     HOSTURLUSERS: "https://api.github.com/users/"
   },
 
-  
-  navbar: {
-    "logo": "Logo",
-    "profile": "Profile",
-    "forums": "Forums",
-    "logout": "Logout"
-  },
   forumConnect: {
     "APIURL": 'api/forums/',
     "SEARCHAPIURL": 'api/forums/term/'
@@ -44,4 +37,4 @@ export const config: any = {
     "path": "/peerjs"
 
   }
-};
+}

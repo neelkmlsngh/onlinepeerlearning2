@@ -1,3 +1,5 @@
+/*imports required from angular*/
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -8,13 +10,22 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router, RouterLinkWithHref } from '@angular/router';
 import {HttpModule} from '@angular/http'
 
+/*imports required fro  our project*/
+
 import { HomeComponent } from './home.component';
 import { homeConfig } from '../shared/config/home.config';
 
+/*describe testing block*/
 
 describe('HomeComponent', () => {
+
+  /*component to be tested*/
+
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+
+  /*debug and native elements*/
+
   let button1de:  DebugElement;
   let button1el:  HTMLElement;
 
@@ -24,8 +35,10 @@ describe('HomeComponent', () => {
   let button3de:  DebugElement;
   let button3el:  HTMLElement;
 
-    let buttonSubtitleDe:  DebugElement;
+  let buttonSubtitleDe:  DebugElement;
   let buttonSubtitleEl:  HTMLElement;
+
+  /*before each block for test environment*/
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -36,6 +49,8 @@ describe('HomeComponent', () => {
     })
     .compileComponents();
   }));
+
+  /*before each block for testing the component*/
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
@@ -55,6 +70,8 @@ describe('HomeComponent', () => {
     buttonSubtitleEl = buttonSubtitleDe.nativeElement;
     fixture.detectChanges();
   });
+
+  /*test cases in it block*/
 
   it('home component should be created', () => {
     expect(component).toBeTruthy();
