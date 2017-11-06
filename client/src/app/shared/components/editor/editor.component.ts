@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, ViewChild, OnInit, Input, TemplateRef } from '@angular/core'
 import { FormsModule } from '@angular/forms';
-import { config } from './../../config/config';
+import { config } from './../../config/editor.config';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
