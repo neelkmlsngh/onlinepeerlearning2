@@ -17,7 +17,8 @@ var UserSchema = new mongoose.Schema({
     company: { type: String, default: null },
     website: { type: String, default: null },
     gender: { type: String, default: null },
-    bio: { type: String, default: null }
+    bio: { type: String, default: null },
+    accessToken: { type: String, default: null }
 
 
 

@@ -7,6 +7,7 @@ import { config } from '../shared/config/config';
 import { GitService } from '../shared/services/git.service'
 import { AuthenticationService } from '../shared/services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {ProfileService} from '../shared/services/profile.service';
 
 @Component({
   selector: 'app-main',
@@ -33,9 +34,12 @@ export class MainComponent implements OnInit {
   methodToExport: any;
   link: string = '';
   value: any;
+  accessToken: any;
   public modalRef: BsModalRef;
+  currentUser:any;
+  user:{}
 
-  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router) {
+  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router,private profileService:ProfileService) {
 
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
@@ -117,6 +121,7 @@ export class MainComponent implements OnInit {
 
   }
 
+
   //method for logout
   logout() {
     let user = JSON.parse(localStorage.getItem('currentUser'));
@@ -134,12 +139,40 @@ export class MainComponent implements OnInit {
           showConfirmButton: false,
         })
       }
+    this.router.navigate(["/"]);
+     localStorage.removeItem('currentUser');
+})
+}
 
-      this.router.navigate(["/"]);
-      localStorage.removeItem('currentUser');
-    })
+//method generate personal access token for new user
+createAccessToken(password){
+  let cred={
+  "scopes": [
+    "repo"
+  ],
+  "note": "PeerLearning"
+}
+  this.gitService.createToken(cred,password)
+  .subscribe(data=>{
+     this.accessToken=data.token;
+     console.log("token---------",this.accessToken);
+    this.storeToken(this.accessToken)
+  })
+}
+
+//method to store personal access token into database
+storeToken(token){
+  token={
+    "token":token
   }
-
+ let currentUser= JSON.parse(localStorage.getItem('currentUser'));
+ let userId=currentUser.userId;
+ console.log("userId=",userId)
+this.profileService.storeAccessToken(userId,token)
+.subscribe(data=>{
+  console.log(data);
+})
+}
   //method to enter new repository name
   onKey(event) {
     this.value += event
@@ -156,7 +189,7 @@ export class MainComponent implements OnInit {
       "has_projects": false,
       "has_wiki": false
     }
-    this.gitService.createRepos(repoName)
+    this.gitService.createRepos(repoName,this.accessToken)
       .subscribe(data => {})
   }
 
