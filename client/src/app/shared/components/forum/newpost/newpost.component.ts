@@ -1,8 +1,10 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ForumService } from '../../../services/forum.service';
 import swal from 'sweetalert2';
-import { forumConfig } from './../../../config/forum.config';
+// import * as CKEDITOR from 'cke'
+import { CKEditorModule } from 'ng2-ckeditor';
 
+import { forumConfig } from './../../../config/forum.config';
 @Component({
   selector: 'app-newpost',
   templateUrl: './newpost.component.html',
