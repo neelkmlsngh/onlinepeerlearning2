@@ -9,18 +9,7 @@ export const config: any = {
     title: "Add Snippet",
     button: "Add Snippet"
   },
-<<<<<<< HEAD
   connect: {
-=======
-  connect:
-  {
-    apiURL : "https://192.168.252.190:8080",
-    vmURL : "https://192.168.252.190:3030",
-  
-  },
-
->>>>>>> 33e729f11f00bcb5cffc6e6b5eed06600bd0aaa3
-
     apiURL: "https://192.168.252.152:8080",
     vmURL: "https://192.168.252.152:3030",
     peerjsURL: "https://192.168.252.152:8081",
