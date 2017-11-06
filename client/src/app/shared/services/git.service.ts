@@ -10,25 +10,20 @@ import * as $ from 'jquery';
 
 @Injectable()
 export class GitService {
-  accessToken:any;
-  userName: any = "GauravGupta131220";
-  username: any = "ROZYTYAGI";
-  userpassword: any = "tyagi@96";
-  private clientId: string = '60b9f23dedffbdfc476c';
-  private clientSecret: string = 'd1c186c6373f96571c0bfcf76b84e4dc6fd0c15a';
+  accessToken: any;
+  userName: any;
 
   constructor(private _http: Http) {
-    // console.log('Github Service Ready.');
     let userDetails = JSON.parse(localStorage.getItem('currentUser'));
-    /* this.userName =userDetails.userName ;*/
+    this.userName = userDetails.userName;
   }
 
-  //method to get github username
+  //method to get github userName
   getUser() {
     if (this.userName) {
       return this._http.get(config.giturls.HOSTURLUSERS + this.userName +
-          '?client_id=' + this.clientId +
-          '&client_secret=' + this.clientSecret)
+          '?client_id=' + config.connect.CLIENT_ID +
+          '&client_secret=' + config.connect.CLIENT_SERVICE)
         .map(res => res.json())
         .catch(this.handleError);
     }
@@ -38,8 +33,8 @@ export class GitService {
   getRepos() {
     if (this.userName) {
       return this._http.get(config.giturls.HOSTURLUSERS + this.userName +
-          '/repos?client_id=' + this.clientId +
-          '&client_secret=' + this.clientSecret)
+          '/repos?client_id=' + config.connect.CLIENT_ID +
+          '&client_secret=' + config.connect.CLIENT_SERVICE)
         .map(res => res.json())
         .catch(this.handleError);
     }
@@ -49,8 +44,8 @@ export class GitService {
   getTree(repo) {
     if (this.userName) {
       return this._http.get(config.giturls.HOSTURL + this.userName + "/" +
-          repo + '/contents?client_id=' + this.clientId +
-          '&client_secret=' + this.clientSecret)
+          repo + '/contents?client_id=' + config.connect.CLIENT_ID +
+          '&client_secret=' + config.connect.CLIENT_SERVICE)
         .map(res => res.json())
         .catch(this.handleError);
     }
@@ -62,8 +57,8 @@ export class GitService {
       let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
       let options = new RequestOptions({ headers: headers });
       return this._http.get(config.giturls.HOSTURL + this.userName + "/" +
-          repo + '/contents/' + file + '?client_id=' + this.clientId +
-          '&client_secret=' + this.clientSecret, options)
+          repo + '/contents/' + file + '?client_id=' + config.connect.CLIENT_ID +
+          '&client_secret=' + config.connect.CLIENT_SERVICE, options)
         .map(res => res.json())
     }
   }
@@ -72,8 +67,8 @@ export class GitService {
       let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
       let options = new RequestOptions({ headers: headers });
       return this._http.get(config.giturls.HOSTURL + this.userName + "/" +
-        repo + '/contents/' + file + '?client_id=' + this.clientId +
-        '&client_secret=' + this.clientSecret, options)
+        repo + '/contents/' + file + '?client_id=' + config.connect.CLIENT_ID +
+        '&client_secret=' + config.connect.CLIENT_SERVICE, options)
     }
   }
 
@@ -159,18 +154,18 @@ export class GitService {
         .map(res => res.json())
     }
   }
-//method to create user personal access token
-createToken(credentials,password){
-  console.log(credentials,"yyyyyyyyyyyyy");
-  if(this.username){
- return this._http.post('https://api.github.com/authorizations',credentials,this.authorizationToken(this.username,password))
- .map(res=>res.json())
-}
-}
+  //method to create user personal access token
+  createToken(credentials, password) {
+    console.log(credentials, "yyyyyyyyyyyyy");
+    if (this.userName) {
+      return this._http.post('https://api.github.com/authorizations', credentials, this.authorizationToken(this.userName, password))
+        .map(res => res.json())
+    }
+  }
   //method to create Repository on github
-  createRepos(text,accessToken) {
-    this.accessToken=accessToken
-    if (this.username) {
+  createRepos(text, accessToken) {
+    this.accessToken = accessToken
+    if (this.userName) {
       return this._http.post(config.giturls.CREATEREPOS, text, this.authorization(this.accessToken))
         .map(res => res.json())
     }
@@ -178,17 +173,17 @@ createToken(credentials,password){
 
   //method for authorization for creating new repository
   private authorization(accessToken) {
-    let headers = new Headers({ 'Authorization': "Basic "+accessToken });
+    let headers = new Headers({ 'Authorization': "Basic " + accessToken });
     return new RequestOptions({ headers: headers });
   }
 
   //method for authorization for creating personal access token
-  private authorizationToken(username,password){
-    console.log(username,password)
-    let data=btoa(username + ':'+ password)
+  private authorizationToken(userName, password) {
+    console.log(userName, password)
+    let data = btoa(userName + ':' + password)
     console.log('data-----------------------')
     console.log(data)
-    let headers=new Headers({"Authorization": "Basic "+data});
-    return new RequestOptions({headers: headers})
+    let headers = new Headers({ "Authorization": "Basic " + data });
+    return new RequestOptions({ headers: headers })
   }
 }
