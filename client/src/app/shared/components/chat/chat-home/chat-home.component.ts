@@ -6,21 +6,17 @@ import * as $ from 'jquery';
 import { AuthenticationService } from './../../../services/authentication.service';
 import {chatConfig} from '../../../config/chatConfig';
 import { Headers, RequestOptions } from '@angular/http';
-
 /*importing services*/
 import { SocketService } from './../../../services/chatservices/socket.service';
 import { HttpService } from './../../../services/chatservices/http.service';
 import { ChatService } from './../../../services/chatservices/chat.service';
 import { ProfileService } from './../../../services/profile.service';
-
 @Component({
   selector: 'app-chat-home',
   templateUrl: './chat-home.component.html',
   styleUrls: ['./chat-home.component.css']
 })
-
 export class ChatHomeComponent implements OnInit {
-
   /*ui related variables starts*/
   public modalRef: BsModalRef;
   overlayDisplay = false;
@@ -34,7 +30,6 @@ export class ChatHomeComponent implements OnInit {
   imgPath:string='';
   showVideoBox: any = false;
   showAudioBox: any = false;
-
   //chat and message related variables starts
   userId = null;
   socketId = null;
@@ -42,7 +37,6 @@ export class ChatHomeComponent implements OnInit {
   message = '';
   messages = [];
   data2: any = [];
-
   //constructor initialising various services
   constructor(
     private chatService: ChatService,
@@ -53,12 +47,9 @@ export class ChatHomeComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private profileService:ProfileService
   ) {}
-
   /*method loading various functions*/
   ngOnInit() {
-    this.currentUser= JSON.parse(localStorage.getItem('currentUser'))
     $('.chatbox').hide();
-
     // getting userID from the local storage  
     this.userId = this.authenticationService.getUserId();
     if (this.userId === '' || typeof this.userId == 'undefined') {
@@ -66,15 +57,12 @@ export class ChatHomeComponent implements OnInit {
     } else {
       this.chatService.checkUserSession(this.userId, (error, response) => {
         this.overlayDisplay = true;
-
         // making socket connection by passing UserId.  
         this.socketService.connectSocket(this.userId);
-
         // calling method of service to get the online users list.  
         this.socketService.getChatList(this.userId).subscribe(response => {
           if (!response.error) {
             if (response.singleUser) {
-
               // Removing duplicate user from online users list array.
               if (this.chatListUsers.length > 0) {
                 this.chatListUsers = this.chatListUsers.filter(function(obj) {
@@ -87,7 +75,6 @@ export class ChatHomeComponent implements OnInit {
                 return obj.socketId !== response.socketId;
               });
             } else {
-
               //Updating online userslist if user logs in.
               this.chatListUsers = response.chatList;
             }
@@ -95,7 +82,6 @@ export class ChatHomeComponent implements OnInit {
             alert(`Chat list failure.`);
           }
         });
-
         //method for recieving messages through socket          
         this.socketService.receiveMessages().subscribe(response => {
           if (this.selectedUserId && this.selectedUserId == response.fromUserId) {
@@ -109,24 +95,19 @@ export class ChatHomeComponent implements OnInit {
       });
     }
   }
-
   //Getting the userid when user is selected
   selectedUser(user): void {
-
     this.selectedUserId = user.userId;
     this.selectedSocketId = user.socketId;
     this.selectedUserName = user.userName;
-
     this.chatService.getMessages({ userId: this.userId, toUserId: user.userId }, (error, response) => {
       if (response.status == 200) {
         this.messages = response.data;
-
       }
     });
     this.openChatBox()
     this.hideChatBox()
   }
-
   //Method for opening chatbox
   openChatBox(): void {
     //Jquery for handling chatbox opening and closing
@@ -135,14 +116,11 @@ export class ChatHomeComponent implements OnInit {
       $chatboxTitleClose = $('.chatbox__title__close'),
       $chatboxTitleTray = $('.chatbox__title__tray'),
       $chatboxCredentials = $('.chatbox__credentials');
-
     $chatboxTitle.on('click', function() {
       $chatbox.toggleClass('chatbox--tray');
-
     });
     $chatboxTitleClose.on('click', function(e) {
       $chatbox.hide();
-
     });
     $chatbox.on('transitionend', function() {
       if ($chatbox.hasClass('chatbox--closed'))
@@ -159,7 +137,6 @@ export class ChatHomeComponent implements OnInit {
       $chatbox.toggleClass('chatbox--tray');
     });
   }
-
   //Method for closing chatbox
   hideChatBox(): void {
     $('.chatbox').show();
@@ -169,22 +146,18 @@ export class ChatHomeComponent implements OnInit {
   chatBoxToggle(): void{
   $('.chatbox').toggleClass('chatbox--tray');
   }
-
   showVideo() {
    this.showVideoBox = !this.showVideoBox;
  }
-
  showAudio(){
    this.showAudioBox = !this.showAudioBox;
  }
-
   isUserSelected(userId: string): boolean {
     if (!this.selectedUserId) {
       return false;
     }
     return this.selectedUserId === userId ? true : false;
   }
-
   //Method for sending the messages
   sendMessage(event) {
     if (event.keyCode === 13) {
@@ -215,33 +188,26 @@ export class ChatHomeComponent implements OnInit {
       }
     }
   }
-
   alignMessage(userId) {
     return this.userId === userId ? false : true;
   }
-
   removesb(): void {
     $('.side').toggle();
   }
-
   //Method for audio chat
   audiocall(template1: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template1);
   }
-
   //Method for calling video chat
   videocall(template2: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template2);
   }
-
   fileChange(event) {
       this.formData= new FormData();
    let fileList: FileList = event.target.files;
    if(fileList.length > 0) {
     let file: File = fileList[0];
     this.formData.append('uploadFile', file, file.name);
-    this.formData.append('hsdfh', "gfhas");
-
     let headers = new Headers();
     headers.append('enctype', 'multipart/form-data');
     headers.append('Accept', 'application/json');
@@ -249,8 +215,8 @@ export class ChatHomeComponent implements OnInit {
      
    }
 }
-
 // method to be called when Upload button is clicked
+
   uploadFile(){
     this.profileService.uploadFile(this.currentUser.userId,this.formData,this.options)
   .subscribe(

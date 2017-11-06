@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, TemplateRef } from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 /*import third party libraries*/
 import { EditorService } from '../../services/editor.service';
@@ -23,18 +25,25 @@ export class RepoSidebarComponent implements OnInit {
   selectedfile: any;
   url: any = "";
   text: any = config.repoSidebar.entercode;
+  public modalRef: BsModalRef;
+  value: any;
+  accessToken: any;
 
   @Output() content = new EventEmitter < any > ();
   @Output() repoName = new EventEmitter < any > ();
   @Output() fileName = new EventEmitter < any > ();
 
-  constructor(private editorService: EditorService, private gitService: GitService) {}
+  constructor(private editorService: EditorService, private gitService: GitService, private modalService: BsModalService) {}
 
   ngOnInit() {
     this.gitService.getRepos()
       .subscribe(repos => {
         this.githubUser = repos;
       })
+  }
+
+  public openModal(template: TemplateRef < any > ) {
+    this.modalRef = this.modalService.show(template);
   }
 
   /*calling method to search repositery*/
@@ -77,4 +86,26 @@ export class RepoSidebarComponent implements OnInit {
 
       })
   }
+
+  //method to enter new repository name
+  onKey(event) {
+    this.value += event
+  }
+
+  //method for creating new repository
+  createRepo(name, desc) {
+    this.accessToken = "aaaaaaaa";
+    let repoName = {
+      "name": name,
+      "description": desc,
+      "homepage": "https://github.com",
+      "private": false,
+      "has_issues": false,
+      "has_projects": false,
+      "has_wiki": false
+    }
+    this.gitService.createRepos(repoName, this.accessToken)
+      .subscribe(data => {})
+  }
+
 }

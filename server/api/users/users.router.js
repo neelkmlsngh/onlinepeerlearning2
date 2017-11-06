@@ -6,6 +6,7 @@ const path = require('path');
 const logger = require('../../services/app.logger');
 const usrCtrl = require('./users.controller');
 const appConfig = require('../../config').app;
+const profileConfig = require('../../config/profile.config');
 
 var storage = multer.diskStorage({
    destination: function(req, file, cb) {
@@ -50,15 +51,15 @@ var upload = multer({ storage: storage }).any();
   let getId= req.params.userId;
   try {
     usrCtrl.getProfile(getId).then((successResult)=>{
-      logger.info('Get successResult successfully and return back');
-      return res.json({status:201,message:'User details successfully retrieved',data:successResult})
+      logger.info(profileConfig.SUCCESS_RESULT);
+      return res.json({status:201,message:profileConfig.USER_DETAIL,data:successResult})
     }, (errResult) => {
           logger.error(errResult);
-          return res.json({status:500,message:'Incorrect credentials',data:errResult})
+          return res.json({status:500,message:profileConfig.INCORRECT_CREDENTIALS,data:errResult})
         });
   } catch (err) {
-    logger.fatal('Exception occurred' + err);
-    return res.json({status:false,message:'Exception occurred',data:err})
+    logger.fatal(profileConfig.EXCEPTION_OCCURRED + err);
+    return res.json({status:false,message:profileConfig.EXCEPTION_OCCURRED,data:err})
   }
  })
 
@@ -68,18 +69,18 @@ var upload = multer({ storage: storage }).any();
   let profileInfo = req.body;
   try{
       usrCtrl.updateUserProfile(profileInfo,getId).then((successResult)=>{
-      logger.info('Get successResult successfully and return back');
+      logger.info(profileConfig.SUCCESS_RESULT);
       /*return res.status(201).send(successResult);*/
-      return res.json({status:201,message:'UserProfile successfully updated',data:successResult})
+      return res.json({status:201,message:profileConfig.USER_PROFILE,data:successResult})
     }),(errResult)=>{
         logger.error(errResult);
         /*return res.status(500).send({ error: errResult});*/
-        return res.json({status:500,message:'UserProfile cannot be updated due to some error',data:errResult})
+        return res.json({status:500,message:profileConfig.USER_PROFILE_FAILED,data:errResult})
       }
    }catch(err){
-    logger.fatal('Exception occurred' + err);
+    logger.fatal(profileConfig.EXCEPTION_OCCURRED + err);
     /*res.send({ error: err });*/
-    return res.json({status:false,message:'Exception occurred',data:err})
+    return res.json({status:false,message:profileConfig.EXCEPTION_OCCURRED,data:err})
    }
  })
 
@@ -112,22 +113,22 @@ var upload = multer({ storage: storage }).any();
    try{
     upload(req, res, function(err) {
      if (err) {
-       return res.json({status:false,message:'Error occurred',data:err})  
+       return res.json({status:false,message:profileConfig.EXCEPTION_OCCURRED,data:err})  
      }
      else {
       let dataObj={
         img:req.files[0].filename
       }
        usrCtrl.updateImage(dataObj,getId).then(successResult=>{
-        return res.json({status:201,message:'Image successfully updated',data:successResult})
+        return res.json({status:201,message:profileConfig.IMAGE_ADDED,data:successResult})
        },error=>{
-         return res.json({status:false,message:'Error occurred in updating image',data:error})
+         return res.json({status:false,message:profileConfig.IMAGE_ERROR,data:error})
        }); 
     }
   });
    }catch(err){
-    logger.fatal('Exception occurred' + err);
-    return res.json({status:false,message:'Exception occurred',data:err})
+    logger.fatal(profileConfig.EXCEPTION_OCCURRED + err);
+    return res.json({status:false,message:profileConfig.EXCEPTION_OCCURRED,data:err})
    }
  })
 

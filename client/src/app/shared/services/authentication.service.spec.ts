@@ -13,7 +13,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/toPromise';
 import { AuthenticationService as authenticationService } from './authentication.service';
 
-describe('profileService ,(mockBackend)', () => {
+describe('authenticationService ,(mockBackend)', () => {
 
 
  /*Initial configuration that will run before every testcase*/
