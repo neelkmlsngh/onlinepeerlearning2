@@ -23,11 +23,13 @@ export const forumConfig = {
     "PROBLEM_DESCRIPTION":"problemDescription",
     "LIKES":"Likes",
     "ASKED":"asked",
+    "ANSWER":"Answer",
     "YOUR_ANSWERS":"Your answer",
     "SIGNUP_LOGIN":"Signup or Login",
     "LOGIN_WITH_GITHUB":"Login with github",
     "POST_AS_A_GUEST":"Post as a Guest",
-    "POST_YOUR_ANSWER_BUTTON":"Post your answer"
+    "POST_YOUR_ANSWER_BUTTON":"Post your answer",
+    "POSTED_BY":"Posted by"
  },
  "NEWPOST":
  {

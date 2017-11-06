@@ -1,10 +1,12 @@
-
-<nav class="navbar navbar-expand-lg  fixed-top font" id="mainNav">
-  <a class="navbar-brand" >{{config.navbar.ONLINECODEEDITOR}}</a>
+<!-- navbar starts -->
+<nav class="navbar navbar-expand-lg fixed-top font" id="mainNav">
+<!-- logo -->
+  <a class="navbar-brand">{{config.navbar.ONLINECODEEDITOR}}</a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span><i class="fa fa-chevron-circle-down togglerButton" aria-hidden="true"></i></span>
   </button>
-  <div class="collapse navbar-collapse " id="navbarResponsive">
+  <!-- navbar items -->
+  <div class="collapse navbar-collapse navItem" id="navbarResponsive">
     <ul class="navbar-nav ml-5 ">
       <li class="nav-item">
         <a class="nav-link" routerLink="/forums/list"><i class="fa fa-forumbee forums" ></i> {{config.navbar.FORUMS}} </a>
@@ -19,4 +21,4 @@
     </ul>
   </div>
 </nav>
-
+<!-- end of navbar -->
