@@ -38,12 +38,12 @@
 
 hr {
   border: 0;
-  /*clear: both;*/
   display: block;
   width: 99%;
   background-color: #DBDCDD;
   height: 1px;
 }
+
 body {
   font-family: 'Alegreya Sans', sans-serif;
   padding: 0px 0;

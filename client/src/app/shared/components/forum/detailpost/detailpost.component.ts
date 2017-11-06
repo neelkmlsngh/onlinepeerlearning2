@@ -41,6 +41,7 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
     let year = this.date.getFullYear();
     this.date = day + '/' + month + '/' + year;
 
+// getPostById method get the post by searching its id
     this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostById(this.router.snapshot.params['value']))
       .subscribe((res) => {
@@ -65,16 +66,11 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
     CKEDITOR.instances.editor.setData("");
   }
 
-  editorChange(){
-    $('.codesnippet pre').height('150px');
-  }
   //method to postAnswer
   postAnswer() {
     this.obj = {
       username: "prashant",
       answer: CKEDITOR.instances.editor.getData(),
-      likes: "11",
-      dislikes: "2",
       date: this.date
     }
     this.forum.saveAnswer(this.data._id, this.obj)
