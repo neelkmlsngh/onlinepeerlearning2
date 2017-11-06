@@ -56,7 +56,6 @@ export class ChatHomeComponent implements OnInit {
 
   /*method loading various functions*/
   ngOnInit() {
-    this.currentUser= JSON.parse(localStorage.getItem('currentUser'))
     $('.chatbox').hide();
 
     // getting userID from the local storage  
@@ -240,8 +239,6 @@ export class ChatHomeComponent implements OnInit {
    if(fileList.length > 0) {
     let file: File = fileList[0];
     this.formData.append('uploadFile', file, file.name);
-    this.formData.append('hsdfh', "gfhas");
-
     let headers = new Headers();
     headers.append('enctype', 'multipart/form-data');
     headers.append('Accept', 'application/json');
@@ -249,7 +246,6 @@ export class ChatHomeComponent implements OnInit {
      
    }
 }
-
 // method to be called when Upload button is clicked
   uploadFile(){
     this.profileService.uploadFile(this.currentUser.userId,this.formData,this.options)

@@ -83,6 +83,28 @@ var upload = multer({ storage: storage }).any();
    }
  })
 
+ //route to update personal access token for given userId
+ router.put('/token/:userId',function(req,res){
+  let getId= req.params.userId;
+  let profileInfo = req.body.token;
+  console.log("token122222222222222222",profileInfo,getId)
+  try{
+      usrCtrl.createToken(profileInfo,getId).then((successResult)=>{
+      logger.info('Get successResult successfully and return back');
+      /*return res.status(201).send(successResult);*/
+      return res.json({status:201,message:'Token successfully created',data:successResult})
+    }),(errResult)=>{
+        logger.error(errResult);
+        /*return res.status(500).send({ error: errResult});*/
+        return res.json({status:500,message:'Token cannot be created due to some error',data:errResult})
+      }
+   }catch(err){
+    logger.fatal('Exception occurred' + err);
+    /*res.send({ error: err });*/
+    return res.json({status:false,message:'Exception occurred',data:err})
+   }
+ })
+
 //route to update profile image for the given userId
  router.put('/image/:userId',function(req,res){
   let getId= req.params.userId;

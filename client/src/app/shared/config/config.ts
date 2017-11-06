@@ -1,4 +1,5 @@
 export const config: any = {
+
   language: [
     "javascript",
     "html",
@@ -13,6 +14,7 @@ export const config: any = {
     apiURL: "https://192.168.252.152:8080",
     vmURL: "https://192.168.252.152:3030",
     peerjsURL: "https://192.168.252.152:8081",
+    CALLBACK_URL:"https://192.168.252.152:8080/api/login/auth/github"
   },
   giturls: {
     HOSTURL: "https://api.github.com/repos/",
