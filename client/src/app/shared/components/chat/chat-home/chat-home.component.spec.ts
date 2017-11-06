@@ -1,9 +1,9 @@
-/*import { async, ComponentFixture, TestBed, inject} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject} from '@angular/core/testing';
 
 import { ChatHomeComponent } from './chat-home.component';
 
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router, RouterLinkWithHref } from '@angular/router';
+import { RouterModule, RouterLinkWithHref } from '@angular/router';
 import { By, BrowserModule } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { HttpModule, Http, XHRBackend, ResponseOptions } from '@angular/http';
@@ -14,7 +14,6 @@ import {NO_ERRORS_SCHEMA} from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './../../../services/authentication.service';
 import { ProfileService } from './../../../services/profile.service';
 import {chatConfig} from '../../../config/chatConfig';
@@ -32,12 +31,11 @@ describe('testing chat home component', () => {
   beforeEach(async(() => {
 
    TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpModule,FormsModule, ReactiveFormsModule,MatButtonModule],
+      imports: [RouterTestingModule, HttpModule,FormsModule, ReactiveFormsModule,MatButtonModule,RouterModule],
       declarations: [ChatHomeComponent],
        //declaring component to be tested
       schemas:[NO_ERRORS_SCHEMA],
-      providers: [{provide:Router},
-      {provide:SocketService},
+      providers: [{provide:SocketService},
       {provide:HttpService},
       {provide:ChatService},
       {provide:AuthenticationService},
@@ -59,9 +57,9 @@ describe('testing chat home component', () => {
 /*Testcase to check whether component is created or not*/
 
 
-/*it('should be created', () => {
+it('should be created', () => {
    expect(component).toBeDefined();
   });
 
 
-})*/
+})
