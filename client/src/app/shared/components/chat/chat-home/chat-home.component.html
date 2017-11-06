@@ -13,11 +13,13 @@
     </button>
     <button class="chatbox__title__close">
       <span>
-              <svg viewBox="0 0 12 12" width="12px" height="12px">
-                  <line stroke="#FFFFFF " x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
-                  <line stroke="#FFFFFF " x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
-              </svg>
-          </span>
+             <svg viewBox="0 0 12 12" width="12px" height="12px">
+                 <line stroke="#FFFFFF
+" x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
+                 <line stroke="#FFFFFF
+" x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
+             </svg>
+         </span>
     </button>
   </div>
   <!-- Messages to be displayed in chatbox -->
@@ -31,7 +33,7 @@
       <div class="card-footer">
         <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
         <div class="col-sm-3">
-          <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">{{config.profile.UPLOAD}}</button>
+          <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">Upload</button>
         </div>
       </div>
     </textarea>
@@ -39,10 +41,10 @@
 </div>
 <!-- Togglable button -->
 <span class="done">
-  <button mat-fab class="button-collapse sidebar" (click)="removesb()">
-    <mat-icon>chat
-    </mat-icon>
-  </button>
+ <button mat-fab class="button-collapse sidebar" (click)="removesb()">
+   <mat-icon>chat
+   </mat-icon>
+ </button>
 </span>
 <!-- Side-bar displaying list of online users -->
 <div class="nav-side-menu side">
@@ -59,11 +61,11 @@
   </div>
 </div>
 <span class="done">
-      <button mat-fab class="button-collapse sidebar" (click)="removesb()">
-     <mat-icon>check circle</mat-icon>
-   </button>
-      
-    </span>
+     <button mat-fab class="button-collapse sidebar" (click)="removesb()">
+    <mat-icon>check circle</mat-icon>
+  </button>
+     
+   </span>
 <div class="nav-side-menu side">
   <div class="brand">{{config.chat.TITLE}}</div>
   <div class="menu-list">
