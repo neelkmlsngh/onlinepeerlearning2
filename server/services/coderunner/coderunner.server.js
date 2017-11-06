@@ -23,15 +23,15 @@ app.use(cors())
 /*route to execute a child process*/
 app.post('/execute', function(req, res) {
     const fileName = Date.now().toString() + '.log';
-    const out = fs.openSync('./logs/fileName', 'a');
+    const out = fs.openSync('./logs/'+fileName, 'a');
     const compute = fork('coderunner.vm.js', [], {
         stdio: ['ignore', out, out, 'ipc']
     });
 
     compute.send(req.body.testscript);
     compute.on('message', success => {
-        const output = fs.readFileSync(fileName, "utf8");
-        fs.unlink(fileName);
+        const output = fs.readFileSync('./logs/'+fileName, "utf8");
+        fs.unlink('./logs/'+fileName);
         res.send(output);
     });
 })

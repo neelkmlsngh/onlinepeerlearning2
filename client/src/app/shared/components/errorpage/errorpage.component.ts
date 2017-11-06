@@ -3,27 +3,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { errorConfig } from '../../config/errorConfig'
+import { errorConfig } from '../../config/error.config'
 
 @Component({
-  selector: 'app-errorpage',
-  templateUrl: './errorpage.component.html',
-  styleUrls: ['./errorpage.component.css']
+ selector: 'app-errorpage',
+ templateUrl: './errorpage.component.html',
+ styleUrls: ['./errorpage.component.css']
 })
 
 //error component class starts
 
 export class ErrorpageComponent implements OnInit {
 
-	config = errorConfig;
+    config = errorConfig;
 
-	//constructor
+    //constructor
 
-  constructor(private router: Router) { }
+ constructor(private router: Router) { }
 
-  //ngOnInit
+ //ngOnInit
 
-  ngOnInit() {
-  }
+ ngOnInit() {
+ }
 
 }

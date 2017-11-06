@@ -15,7 +15,7 @@ export const config: any = {
     vmURL : "https://192.168.252.204:3030",
     CALLBACK_URL:"https://192.168.252.204:8080/api/login/auth/github",
     CLIENT_ID : 'eda558d85f4b8157078f',
-    CLIENT_SERVICE : '2456afab849c7fd43d4977de7f1187b8d5e74329'
+    CLIENT_SECRET : '2456afab849c7fd43d4977de7f1187b8d5e74329'
   },
 
   giturls: {
@@ -26,7 +26,8 @@ export const config: any = {
     NEWCOMMITURL: "/git/commits",
     CONTENTURL: "/contents/",
     CREATEREPOS: "https://api.github.com/user/repos",
-    HOSTURLUSERS: "https://api.github.com/users/"
+    HOSTURLUSERS: "https://api.github.com/users/",
+    AUTHORIZATION: "Basic dGFudXByZWV0X3NpbmdoQHlhaG9vLmNvbTphYzBlZTRmMjk3ZjBhMzQyMmJmN2RiZmNiNzIyODA3NmZhOGVmNzFm"
   },
 
   forumConnect: {

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, ViewChild, OnInit, Input, TemplateRef } from '@angular/core'
 import { FormsModule } from '@angular/forms';
-import { config } from './../../config/config';
+import { config } from './../../config/editor.config';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
@@ -56,6 +56,7 @@ export class EditorComponent implements OnInit {
   executecode() {
     this.coderunner.executecode(this.jsValue)
       .subscribe(data => {
+        console.log(data)
         this.codeoutput = data
         this.dataObj = this.codeoutput._body
       })

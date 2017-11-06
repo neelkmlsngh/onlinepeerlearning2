@@ -87,11 +87,11 @@
                   <div class="col-sm-9">
                     <div class="row">
                       <div class="col-sm-6">
-                        <button class="btn text-black btn-outline-success" (click)="like()">
+                        <button class="btn text-black btn-outline-success" (click)="like(result._id)">
                           <i class="fa fa-thumbs-up fa-lg text-black"></i> {{likes}}</button>
                       </div>
                       <div class="col-sm-6">
-                        <button class="btn text-black btn-outline-danger" (click)="dislike()">
+                        <button class="btn text-black btn-outline-danger" (click)="dislike(result._id)">
                           <i class="fa fa-thumbs-down fa-lg text-black"></i> {{dislikes}}</button>
                       </div>
                     </div>
