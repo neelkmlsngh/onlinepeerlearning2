@@ -10,7 +10,7 @@ let forumGetStub = sinon.stub(forumModel, 'find');
 describe('test fetch data of locationchange access card', () => {
     before(() => {
         forumGetStub.yields(null, {
-            questionTitle: 'Employee',
+            questionTitle: 'fvvv',
             problemDescription: 'temp',
             codeSnippet: '50042924',
             tags: 'temp',
@@ -31,7 +31,7 @@ describe('test fetch data of locationchange access card', () => {
     });
 
     //negative test case for fetch location change record  
-    it('validation for negative case of locationchange access type', (done) => {
+    it('validation for negative case of from forum', (done) => {
         supertest(url)
             .get('/locationchange/findlocation')
             .expect(200)
