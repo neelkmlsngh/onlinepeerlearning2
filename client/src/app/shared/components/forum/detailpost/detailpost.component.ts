@@ -7,6 +7,8 @@ import 'rxjs/add/operator/switchMap';
 //Custom Files Imports
 import { ForumService } from '../../../services/forum.service';
 import { forumConfig } from './../../../config/forum.config';
+import * as $ from 'jquery'
+
 @Component({
   selector: 'app-detailpost',
   templateUrl: './detailpost.component.html',
@@ -25,16 +27,25 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
   obj: any = {};
   codeSnippet: string;
   data: any = {};
+  solutions: any = [];
   errors: string;
   answer: string = "";
   questionTitle: string = "";
   userId: any;
+  date:any;
   forumConfig=forumConfig;
   ngOnInit() {
+       this.date = new Date();
+    let day = this.date.getDate();
+    let month = this.date.getMonth() + 1;
+    let year = this.date.getFullYear();
+    this.date = day + '/' + month + '/' + year;
+
     this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostById(this.router.snapshot.params['value']))
       .subscribe((res) => {
         this.data = res.data;
+        this.solutions = this.data.answers;
         console.log(this.data);
       })
     error => {
@@ -53,15 +64,20 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
     CKEDITOR.replace('editor', config);
     CKEDITOR.instances.editor.setData("");
   }
+
+  editorChange(){
+    $('.codesnippet pre').height('150px');
+  }
   //method to postAnswer
   postAnswer() {
     this.obj = {
       username: "prashant",
       answer: CKEDITOR.instances.editor.getData(),
       likes: "11",
-      dislikes: "2"
+      dislikes: "2",
+      date: this.date
     }
-    this.forum.saveAnswer(this.data[0].questionTitle, this.obj)
+    this.forum.saveAnswer(this.data._id, this.obj)
       .subscribe(res => {
         console.log(res);
       })

@@ -88,10 +88,9 @@ export class EditorComponent implements OnInit {
   //method to create a file on git
   save(fileName, commitMessage) {
 
+    console.log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"+ this.reponame + this.filenamed + this.content);
 
-    console.log("qwewqeqew"+this.content);
-    console.log("wqwqeqwe"+this.reponame);
-    console.log("wqdqwdeqwd"+this.filenamed);
+    this.reponame=this.reponame;   
     //hitting the create file api to get sha of the latest commit
     this.gitService.createFile(this.reponame)
       .subscribe(repos => {
@@ -214,6 +213,7 @@ export class EditorComponent implements OnInit {
     //getting the file sha
     this.gitService.getsha(this.reponame, this.filenamed)
       .subscribe(repos => {
+        
         this.filesha = repos.sha;
         this.deletefileobj = {
           "message": commitMessage,

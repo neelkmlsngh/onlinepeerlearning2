@@ -48,10 +48,10 @@ export class ForumService {
       .map(res => res.json());
   }
   //method to save answer
-  saveAnswer(question, answer) {
+  saveAnswer(id, answer) {
     console.log(answer);
     return this.http.
-    put(forumConfig.forumUrls.FORUMURL + config.forumConnect.APIURL + question, answer)
+    put(forumConfig.forumUrls.FORUMURL + config.forumConnect.APIURL + id, answer)
       .map(res => res.json());
 
   }
