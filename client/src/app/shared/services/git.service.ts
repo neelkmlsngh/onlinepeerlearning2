@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 
 @Injectable()
 export class GitService {
-  accessToken:any;
+  accessToken: any;
   userName: any = "GauravGupta131220";
   username: any = "ROZYTYAGI";
   userpassword: any = "tyagi@96";
@@ -78,45 +78,49 @@ export class GitService {
   }
 
   //method to create file on github
+
   createFile(text) {
+
     if (this.userName) {
-      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.SUBURL, this.authorization(this.accessToken))
+      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master', this.authoriZation())
         .map(res => res.json())
     }
+
   }
 
-  //method to create the file and saving the sha-base-tree
+
   commitfile(text, sha) {
     if (this.userName) {
-      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.COMMITFILEURL + sha, this.authorization(this.accessToken))
+      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits/' + sha, this.authoriZation())
         .map(res => res.json())
     }
   }
 
-  //method to create file, sending new file name and saving the sha-new-tree
+
+
   treecommit(text, basetree) {
     if (this.userName) {
-      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.TREECOMMITURL, basetree, this.authorization(this.accessToken))
+      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/trees', basetree, this.authoriZation())
         .map(res => res.json())
     }
   }
 
-  //method to create a file on github and saving sha-new-commit
   newcommit(text, newcommit) {
     if (this.userName) {
-      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.NEWCOMMITURL, newcommit, this.authorization(this.accessToken))
+      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits', newcommit, this.authoriZation())
         .map(res => res.json())
-
     }
   }
+
 
   //method to create a fiel on github 
   lastcommit(text, lastcommit) {
     if (this.userName) {
-      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.SUBURL, lastcommit, this.authorization(this.accessToken))
+      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master', lastcommit, this.authoriZation())
         .map(res => res.json())
     }
   }
+
 
   //method to update the user
   updateUser(userName: string) {
@@ -134,7 +138,7 @@ export class GitService {
   //method to get the sha of the file   
   getsha(text, filename) {
     if (this.userName) {
-      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, this.authorization(this.accessToken))
+      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, this.authoriZation())
         .map(res => res.json())
     }
   }
@@ -142,7 +146,7 @@ export class GitService {
   //method to update the file on github
   updateFile(text, filename, updateobj) {
     if (this.userName) {
-      return this._http.put(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, updateobj, this.authorization(this.accessToken))
+      return this._http.put(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, updateobj, this.authoriZation())
         .map(res => res.json())
     }
   }
@@ -151,7 +155,7 @@ export class GitService {
   deleteFile(text, filename, deletefileobj) {
     if (this.userName) {
       //let head=this.authoriZation();  
-      let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206Y2ZlNTA0ZjVkZDNkMGVmNGQzYmUwOWFlNmJjMTUzMmYyYTlhYzVmYg==" });
+      let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206Mjk5ZDlhOTk4YjQ5Zjg1OThiODdiMGZlYTRlNDMxMDgwYTA5NDAyZA==" });
       return this._http.delete(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, new RequestOptions({
           headers: headers,
           body: deletefileobj
@@ -159,17 +163,19 @@ export class GitService {
         .map(res => res.json())
     }
   }
-//method to create user personal access token
-createToken(credentials,password){
-  console.log(credentials,"yyyyyyyyyyyyy");
-  if(this.username){
- return this._http.post('https://api.github.com/authorizations',credentials,this.authorizationToken(this.username,password))
- .map(res=>res.json())
-}
-}
+
+
+  //method to create user personal access token
+  createToken(credentials, password) {
+    if (this.username) {
+      return this._http.post('https://api.github.com/authorizations', credentials, this.authorizationToken(this.username, password))
+        .map(res => res.json())
+    }
+  }
+
   //method to create Repository on github
-  createRepos(text,accessToken) {
-    this.accessToken=accessToken
+  createRepos(text, accessToken) {
+    this.accessToken = accessToken
     if (this.username) {
       return this._http.post(config.giturls.CREATEREPOS, text, this.authorization(this.accessToken))
         .map(res => res.json())
@@ -178,17 +184,23 @@ createToken(credentials,password){
 
   //method for authorization for creating new repository
   private authorization(accessToken) {
-    let headers = new Headers({ 'Authorization': "Basic "+accessToken });
+    let headers = new Headers({ 'Authorization': "Basic " + accessToken });
+    return new RequestOptions({ headers: headers });
+  }
+
+  //method for authorization
+  private authoriZation() {
+    let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206Mjk5ZDlhOTk4YjQ5Zjg1OThiODdiMGZlYTRlNDMxMDgwYTA5NDAyZA==" });
     return new RequestOptions({ headers: headers });
   }
 
   //method for authorization for creating personal access token
-  private authorizationToken(username,password){
-    console.log(username,password)
-    let data=btoa(username + ':'+ password)
+  private authorizationToken(username, password) {
+    console.log(username, password)
+    let data = btoa(username + ':' + password)
     console.log('data-----------------------')
     console.log(data)
-    let headers=new Headers({"Authorization": "Basic "+data});
-    return new RequestOptions({headers: headers})
+    let headers = new Headers({ "Authorization": "Basic " + data });
+    return new RequestOptions({ headers: headers })
   }
 }

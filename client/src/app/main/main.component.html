@@ -1,43 +1,48 @@
+<!-- main component starts -->
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
+      <!-- navbar selector -->
       <app-navbar></app-navbar>
     </div>
   </div>
-  <div class="row mt-5 py-3">
+  <div class="row mt-5 py-3 backgroundcolor">
     <div class="col-md-12">
       <div class="row ">
-        <div class="col-md-2 backgroundcolor">
+        <div class="col-md-2">
           <!-- first column -->
           <div class="row mt-3 ">
             <div class="col-md-12 ">
               <!-- card to make block for repo sidebar -->
               <div class="card">
-                <h5 class="card-header"><b>Choose Editor Mode</b></h5>
+                <h5 class="card-header"><b>{{config.TITLE}}</b></h5>
                 <div class="card-block">
                   <div class="list-group">
                     <select name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="changeMode()">
-                      <option value="html">Html/Css</option>
-                      <option value="javascript">Javascript</option>
+                      <option value="html">{{config.OPTION1}}</option>
+                      <option value="javascript">{{config.OPTION2}}</option>
                     </select>
                   </div>
                 </div>
               </div>
             </div>
             <!-- card end -->
-            <button type="button" class="btn btn-outline-info btn-sm tokenButtonMargin"><b class='generateTokenButton' (click)="openModal(template)">Generate Token</b></button>
+            <!-- generate token button -->
+            <button type="button" class="btn btn-outline-info btn-sm tokenButtonMargin"><b class='generateTokenButton' (click)="openModal(template)">{{config.TOKENBUTTON}}</b></button>
             <template #template>
               <div class="modal-header">
                 <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <h6>Enter Github Password</h6>
+              <h6>{{config.GITHUBPASSWORD}}</h6>
               <input type="text" name="" #token (keyup)="onKey($event)">
               <input type="button" class="btn btn-sm btn-success submit" name="" value="create" (click)="createAccessToken(token.value)">
             </template>
           </div>
+
           <app-repo-sidebar (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
+
         </div>
         <div *ngIf="mode=='javascript'" class="col-md-10">
           <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-editor>
@@ -50,11 +55,14 @@
   </div>
   <div class="row">
     <div class="col-md-12">
+      <!-- footer selector -->
       <app-footer></app-footer>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
+      <!-- chat component selector -->
       <app-chat-home></app-chat-home>
     </div>
   </div>
+<!-- main component ends -->

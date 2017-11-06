@@ -14,7 +14,7 @@ import { config } from './../../config/repoSidebar.config';
 })
 
 export class RepoSidebarComponent implements OnInit {
-
+  config=config;
   /*declaring all the required variables*/
   githubUser: any;
   selectedValue: any;

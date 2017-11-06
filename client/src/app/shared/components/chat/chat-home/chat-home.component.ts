@@ -4,7 +4,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
 import { AuthenticationService } from './../../../services/authentication.service';
-import {chatConfig} from '../../../config/chatConfig';
+import { chatConfig } from '../../../config/chatConfig';
 import { Headers, RequestOptions } from '@angular/http';
 /*importing services*/
 import { SocketService } from './../../../services/chatservices/socket.service';
@@ -203,9 +203,9 @@ export class ChatHomeComponent implements OnInit {
     this.modalRef = this.modalService.show(template2);
   }
   fileChange(event) {
-      this.formData= new FormData();
-   let fileList: FileList = event.target.files;
-   if(fileList.length > 0) {
+    this.formData= new FormData();
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
     let file: File = fileList[0];
     this.formData.append('uploadFile', file, file.name);
     let headers = new Headers();
@@ -215,6 +215,7 @@ export class ChatHomeComponent implements OnInit {
      
    }
 }
+
 // method to be called when Upload button is clicked
 
   uploadFile(){

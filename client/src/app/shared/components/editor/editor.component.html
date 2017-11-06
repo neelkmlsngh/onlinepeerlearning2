@@ -19,41 +19,41 @@
   <!-- create file modal window when create button is clicked-->
   <template #createfile>
     <div class="modal-header">
-      <h5 class="modal-title pull-left rName">Your current repository is: <b>{{reponame}}</b></h5>
+      <h5 class="modal-title pull-left repoName">{{config.editor.REPONAME}} <b>{{reponame}}</b></h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <h6>enter your file name</h6>
+    <h6>{{config.editor.FILENAME}}</h6>
     <input type="text" name="" #box (keyup)="onKey($event)">
-    <h6>enter your commit message</h6>
+    <h6>{{config.editor.COMMIT}}</h6>
     <input type="text" name="" #boxes (keyup)="onKey($event)">
     <input type="button" class="btn btn-sm btn-success submit" name="" value="submit" (click)="save(box.value,boxes.value)">
   </template>
   <!-- update file modal window when update button is clicked -->
   <template #updatefile>
     <div class="modal-header">
-      <h5 class="modal-title pull-left rName">Your current repository is: <b>{{reponame}}</b></h5>
+      <h5 class="modal-title pull-left repoName">{{config.editor.REPONAME}} <b>{{reponame}}</b></h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <h6>enter your commit message</h6>
+    <h6>{{config.editor.COMMIT}}</h6>
     <input type="text" name="" #box (keyup)="onKey($event)">
-    <h6>Do you want to update the file {{filenamed}}?</h6>
+    <h6>{{config.editor.UPDATE}} {{filenamed}}?</h6>
     <input type="button" class="btn btn-sm btn-success submit" name="" value="yes" (click)="update(box.value)">
   </template>
   <!-- delete file modal window when delete button is clicked -->
   <template #deletefile>
     <div class="modal-header">
-      <h5 class="modal-title pull-left rName">Your current repository is:<b>{{reponame}}</b></h5>
+      <h5 class="modal-title pull-left repoName">{{config.editor.REPONAME}}<b>{{reponame}}</b></h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <h6>enter your commit message</h6>
+    <h6>{{config.editor.COMMIT}}</h6>
     <input type="text" name="" #box (keyup)="onKey($event)">
-    <h6>Do you want to delete the file {{filenamed}}?</h6>
+    <h6>{{config.editor.DELETE}} {{filenamed}}?</h6>
     <input type="button" class="btn btn-sm btn-success submit" name="" value="yes" (click)="delete(box.value)">
   </template>
   <!-- Ace Editor -->
