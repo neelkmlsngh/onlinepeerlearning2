@@ -1,4 +1,6 @@
-
+/**
+ * footer styling
+ */
 
 .footer1 .footer-bottom {
    background-color: #1995ad
@@ -8,10 +10,16 @@
    font-size: 13px;
 }
 
+/**
+ * aligning copyright to center
+ */
 .copyright{
    text-align: center;
 }
 
+/**
+ * making footer responsive
+ */
 @media (max-width: 550px) {
   .footer1 .footer-bottom .pull-left,
   .footer1 .footer-bottom .pull-right {

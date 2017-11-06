@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { config } from '../config/config'; 
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class SnippetService {
