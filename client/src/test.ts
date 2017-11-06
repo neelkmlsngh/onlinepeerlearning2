@@ -26,8 +26,7 @@ getTestBed().initTestEnvironment(
 );
 // Then we find all the tests.
 
-
-const context = require.context('./', true, /snippet.service\.spec\.ts$/);
+const context = require.context('./', true, /navbar.component\.spec\.ts$/);
 
 context.keys().map(context);
 // Finally, start Karma to run the tests.
