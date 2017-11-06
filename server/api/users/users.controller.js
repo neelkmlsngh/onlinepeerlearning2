@@ -1,6 +1,8 @@
 const logger = require('../../services/app.logger');
 const appConstant = require('../../config').app;
 const UserModel = require('./users.entity')
+const profileConfig = require('../../config/profile.config');
+
 //Save new user details
 const saveUserCredentials = function(userInfo, done) {
 	UserModel.findOrCreate({ userId: userInfo.userId }, {
@@ -27,7 +29,7 @@ const getProfile = function(getId) {
 	return new Promise((resolve, reject) => {
 		UserModel.findOne({ userId: getId }, (err, data) => {
 			if (err) {
-				logger.error('Internal error' + err);
+				logger.error(profileConfig.INTERNAL_ERROR + err);
 				reject(err);
 			} else {
 				resolve(data);
