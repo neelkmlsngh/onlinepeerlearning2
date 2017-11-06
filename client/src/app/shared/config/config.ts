@@ -11,8 +11,8 @@ export const config: any = {
   },
   connect:
   {
-    apiURL : "https://192.168.252.33:8080",
-    vmURL : "https://192.168.252.33:3030",
+    apiURL : "https://192.168.252.211:8080",
+    vmURL : "https://192.168.252.211:3030",
    
   },
 
