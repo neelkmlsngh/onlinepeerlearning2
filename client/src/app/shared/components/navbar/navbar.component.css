@@ -1,13 +1,21 @@
+/*css on navbar*/
 
-#mainNav{
-    background-color: #1995ad
+#mainNav {
+  background-color: #1995ad
 }
 
-
-.font a{
-    color: white
+.font a {
+  color: white
 }
 
-.font a:hover{
-    color: black
+.font a:hover {
+  color: black
+}
+
+.navItem {
+  text-align: right;
+}
+
+.togglerButton {
+  color: white;
 }

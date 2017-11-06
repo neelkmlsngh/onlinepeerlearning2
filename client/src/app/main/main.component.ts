@@ -7,7 +7,9 @@ import { config } from '../shared/config/config';
 import { GitService } from '../shared/services/git.service'
 import { AuthenticationService } from '../shared/services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import {ProfileService} from '../shared/services/profile.service';
+import { mainConfig } from '../shared/config/main.config';
 
 @Component({
   selector: 'app-main',
@@ -38,6 +40,7 @@ export class MainComponent implements OnInit {
   public modalRef: BsModalRef;
   currentUser:any;
   user:{}
+  config=mainConfig;
 
   constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router,private profileService:ProfileService) {
 
