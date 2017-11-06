@@ -6,10 +6,10 @@ const chatEntity = require('./chat.entity')
 const chatRouteConfig = require('../../config').chatRouteConfig;
 
 //This route is defined for checking the user information from database that user is valid user or not
-router.post('/userSessionCheck', (request, response) => {
+router.post('/checkUserSession', (request, response) => {
 	let userId = request.body.userId;
 	let sessionCheckResponse = {}
-	helper.userSessionCheck({
+	helper.checkUserSession({
 		userId: userId,
 	}, (error, result) => {
 		if (result === null) {
