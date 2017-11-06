@@ -41,6 +41,16 @@ export const config: any = {
     UPDATEBTN: "Update",
     DELETEBTN: "Delete"
   },
+  navbar: {
+    "logo": "Logo",
+    "profile": "Profile",
+    "forums": "Forums",
+    "logout": "Logout"
+  },
+  forumConnect:{
+    "APIURL":'api/forums/',
+    "SEARCHAPIURL":'api/forums/term/'
+  },
   peerserver:{
  "host":"192.168.252.211",
  "port":"8081",

@@ -149,7 +149,7 @@ export class GitService {
   deleteFile(text, filename, deletefileobj) {
     if (this.userName) {
       //let head=this.authoriZation();  
-      let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206ODk0OWMxOTU3ZTA0Yzg1NmQ3ZGIxMTI5MTY1M2EyYmRmOWQ3MDAwZQ==" });
+      let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206Y2ZlNTA0ZjVkZDNkMGVmNGQzYmUwOWFlNmJjMTUzMmYyYTlhYzVmYg==" });
       return this._http.delete(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, new RequestOptions({
           headers: headers,
           body: deletefileobj
@@ -169,7 +169,7 @@ export class GitService {
 
   //method for authorization for creating new repository
   private authorization() {
-    let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206ODk0OWMxOTU3ZTA0Yzg1NmQ3ZGIxMTI5MTY1M2EyYmRmOWQ3MDAwZQ==" });
+    let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206Y2ZlNTA0ZjVkZDNkMGVmNGQzYmUwOWFlNmJjMTUzMmYyYTlhYzVmYg==" });
     return new RequestOptions({ headers: headers });
   }
 }
