@@ -3,13 +3,13 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { config } from '../config/config';
 
-import {SocketService} from './chatservices/socket.service'
+/*import {SocketService} from './chatservices/socket.service'*/
 
 @Injectable()
 export class ProfileService {
   config = config;
 
-  constructor(private http: Http,private socketService:SocketService) {}
+  constructor(private http: Http/*,private socketService:SocketServi,private socketService:SocketServicece*/) {}
 
   // service method to get data of user using userid
   getDataFromDB(userId) {
@@ -28,12 +28,13 @@ export class ProfileService {
       .map(res => res.json(), error => error.json());
 
   }
-
-  uploadChatFile(formData, options) {
-   let fileObj={
-      "formData": formData,
-      "options": options
-    }
-    this.socketService.sendFile(fileObj)
+  
+  //method store token into database
+  storeAccessToken(userId,token){
+    const api = config.connect.apiURL+"/api/users/token/"+userId
+    return this.http.put(api,token)
+    .map(res=>res.json(),error=>error.json());
   }
+
+
 }

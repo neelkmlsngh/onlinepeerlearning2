@@ -44,10 +44,12 @@ export class ViewpostComponent implements OnInit {
   ngOnInit() {
     this.viewPost();
   }
+
   //open modal window 
   public clickHelpModal(template: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template, Object.assign({}, this.configModal, { class: 'gray modal-lg' }));
   }
+
   //method call posts from service
   viewPost() {
     this.forum.getPost().subscribe((data1) => {
@@ -55,6 +57,7 @@ export class ViewpostComponent implements OnInit {
       console.log(this.data);
     })
   }
+
   //method for search 
   getDetails(searchTerm: any) {
     this.forum.searchEntries(searchTerm.value)
@@ -62,10 +65,12 @@ export class ViewpostComponent implements OnInit {
         this.data = res;
       });
   }
+
   //method to navigate to questions detail
-  getQuestionDetail(value): any {
-    this.router.navigate(['/questiondetail', value])
+  getPostDetail(value): any {
+    this.router.navigate(['/forums' ,value])
   }
+
   //method for likes
   like() {
     if (this.likeflag == false) {
@@ -83,6 +88,7 @@ export class ViewpostComponent implements OnInit {
       this.likeflag = false;
     }
   }
+
   //method for dislikes
   dislike() {
 
@@ -101,6 +107,7 @@ export class ViewpostComponent implements OnInit {
       this.dislikeflag = false;
     }
   }
+  
   //method to navigate to answers
   showAnswers(value) {
     this.router.navigate(['/answers', value])

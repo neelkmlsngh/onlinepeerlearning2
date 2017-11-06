@@ -7,10 +7,10 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link text-white" href="" routerLink="/questions">{{forumConfig.VIEWPOST.HOME}}<span class="sr-only">(current)</span></a>
+        <a class="nav-link text-white" href="" routerLink="/view">{{forumConfig.VIEWPOST.HOME}}<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="" routerLink="/questions">{{forumConfig.VIEWPOST.QUESTIONS}}</a>
+        <a class="nav-link text-white" href="" routerLink="/view">{{forumConfig.VIEWPOST.QUESTIONS}}</a>
       </li>
       <li class="nav-item">
         <li class="nav-item">
@@ -50,7 +50,7 @@
           {{forumConfig.VIEWPOST.ALL_QUESTIONS}}
         </div>
         <div class="col-sm-6 justify-content-right mt-4 ">
-          <a class="btn postquestion text-white float-right" href="" routerLink="/addquestion">
+          <a class="btn postquestion text-white float-right" href="" routerLink="/add">
                  <i class="fa fa-question-circle fa-lg text-white"></i>{{forumConfig.VIEWPOST.ASK_QUESTION}}</a>
         </div>
       </div>
@@ -72,7 +72,7 @@
           </div>
           <div class="col-sm-9">
             <div class="questionTitle">
-              <a class="question" (click)="getQuestionDetail(result._id)">{{result.questionTitle }}</a>
+              <a class="question" (click)="getPostDetail(result._id)">{{result.questionTitle }}</a>
             </div>
             <div class="problemDescription">
               {{result.problemDescription | truncate : 200}}
@@ -90,7 +90,7 @@
                         <button class="btn text-black btn-outline-success" (click)="like()">
                           <i class="fa fa-thumbs-up fa-lg text-black"></i> {{likes}}</button>
                       </div>
-                      <div class="row">
+                      <div class="col-sm-6">
                         <button class="btn text-black btn-outline-danger" (click)="dislike()">
                           <i class="fa fa-thumbs-down fa-lg text-black"></i> {{dislikes}}</button>
                       </div>
