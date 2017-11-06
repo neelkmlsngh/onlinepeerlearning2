@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed, inject} from '@angular/core/testing';
 import { ChatHomeComponent } from './chat-home.component';
 
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router, RouterLinkWithHref } from '@angular/router';
+import { RouterModule, RouterLinkWithHref } from '@angular/router';
 import { By, BrowserModule } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { HttpModule, Http, XHRBackend, ResponseOptions } from '@angular/http';
@@ -31,12 +31,11 @@ describe('testing chat home component', () => {
   beforeEach(async(() => {
 
    TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpModule,FormsModule, ReactiveFormsModule,MatButtonModule],
+      imports: [RouterTestingModule, HttpModule,FormsModule, ReactiveFormsModule,MatButtonModule,RouterModule],
       declarations: [ChatHomeComponent],
        //declaring component to be tested
       schemas:[NO_ERRORS_SCHEMA],
-      providers: [{provide:Router},
-      {provide:SocketService},
+      providers: [{provide:SocketService},
       {provide:HttpService},
       {provide:ChatService},
       {provide:AuthenticationService},
