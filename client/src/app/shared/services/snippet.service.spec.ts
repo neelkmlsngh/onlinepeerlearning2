@@ -76,7 +76,6 @@ describe('snippetservice ,(mockBackend)', () => {
       });
 
       SnippetService.getSnippet().subscribe((snippet) => {
-
         expect(snippet[1].title).toEqual('javascript');
       });
     }));
@@ -84,7 +83,6 @@ describe('snippetservice ,(mockBackend)', () => {
   //testcase for addsnippet method
   it('test addsnippet method',
     inject([SnippetService, XHRBackend], (SnippetService, mockBackend) => {
-
       const mockResponse = [{ title: 'html', code: '<title></title>' },
         { title: 'javascript', code: '<html></html>' },
       ];
@@ -96,7 +94,6 @@ describe('snippetservice ,(mockBackend)', () => {
       });
 
       SnippetService.addSnippet().subscribe((snippet) => {
-
         expect(snippet[1].title).toEqual('javascript');
 
       });
