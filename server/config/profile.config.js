@@ -7,7 +7,8 @@ module.exports={
 	USER_PROFILE:'UserProfile successfully updated',
 	USER_PROFILE_FAILED:'UserProfile cannot be updated due to some error',
 	IMAGE_ADDED:'Image successfully updated',
-	IMAGE_ERROR:'Error occurred in updating image'
+	IMAGE_ERROR:'Error occurred in updating image',
+	INTERNAL_ERROR:'Internal error'
 
 
 
