@@ -14,6 +14,7 @@ import { errorConfig } from '../../config/errorConfig';
 
 export class ProfileComponent implements OnInit {
   userInfo:FormGroup;
+  personalInfo:FormGroup;
   currentUser:any;
   imgPath:string='';
   formData: FormData;
@@ -29,6 +30,16 @@ export class ProfileComponent implements OnInit {
       public_repos: ['', [Validators.required]],
       avatar_url: ['', [Validators.required]],
       name: ['', [Validators.required]]
+    }); 
+    // initialising personal details to be displayed
+    this.personalInfo = fb.group({
+      firstName: '', 
+      lastName: '',
+      email: '',
+      company: '',
+      website: '',
+      bio: '',
+      gender: ''
     }); 
 
   }
@@ -79,6 +90,12 @@ uploadFile(){
       this.imgPath=res.data.avatarUrl;
     },error=> {{errorConfig.error.UPLOAD}}
     )
+}
+
+updateInfo(personalInfo){
+  
+  console.log("========"+personalInfo)
+  console.log(personalInfo.firstName)
 }
 }
 
