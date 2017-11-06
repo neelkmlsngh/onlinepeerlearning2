@@ -28,10 +28,12 @@ export class ProfileService {
       .map(res => res.json(), error => error.json());
 
   }
+<<<<<<< HEAD
 
-   
 
-  uploadChatFile(formData, options) {
+   uploadChatFile(formData, options) {}
+
+/*  uploadChatFile(formData, options) {
    let fileObj={
       "formData": formData,
       "options": options
@@ -47,8 +49,11 @@ export class ProfileService {
       };
     })
     return observable;
-  }
+  }*/
 
   
 
+
+=======
+>>>>>>> c4c527a729fac50da7e6d63feeda475bd9894021
 }

@@ -97,7 +97,7 @@ audioboxtoggle(){
     let n = < any > navigator;
 
     n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
-    n.getUserMedia({ video: false, audio: true,type:'remote' }, function(stream) {
+    n.getUserMedia({ video: false, audio: true }, function(stream) {
       let call = localvar.call(fname, stream);
       call.on('stream', function(remotestream) {
         audio.src = URL.createObjectURL(remotestream);
@@ -113,7 +113,7 @@ audioboxtoggle(){
     let n = < any > navigator;
 
     n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
-    n.getUserMedia({ video: false, audio: true,type:'remote' }, function(stream) {
+    n.getUserMedia({ video: false, audio: true }, function(stream) {
       let call = localvar.call(fname, stream);
       call.on('stream', function(remotestream) {
         audio.src = URL.createObjectURL(remotestream);
