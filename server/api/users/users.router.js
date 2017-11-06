@@ -52,14 +52,14 @@ var upload = multer({ storage: storage }).any();
   try {
     usrCtrl.getProfile(getId).then((successResult)=>{
       logger.info(profileConfig.SUCCESS_RESULT);
-      return res.json({status:201,message:profileConfig.USER_DETAIL,data:successResult})
+      return res.status(201).json({status:true,message:profileConfig.USER_DETAIL,data:successResult})
     }, (errResult) => {
           logger.error(errResult);
-          return res.json({status:500,message:profileConfig.INCORRECT_CREDENTIALS,data:errResult})
+          return res.status(500).json({status:false,message:profileConfig.INCORRECT_CREDENTIALS,data:errResult})
         });
   } catch (err) {
     logger.fatal(profileConfig.EXCEPTION_OCCURRED + err);
-    return res.json({status:false,message:profileConfig.EXCEPTION_OCCURRED,data:err})
+    return res.status(500).json({status:false,message:profileConfig.EXCEPTION_OCCURRED,data:err})
   }
  })
 
@@ -70,17 +70,14 @@ var upload = multer({ storage: storage }).any();
   try{
       usrCtrl.updateUserProfile(profileInfo,getId).then((successResult)=>{
       logger.info(profileConfig.SUCCESS_RESULT);
-      /*return res.status(201).send(successResult);*/
-      return res.json({status:201,message:profileConfig.USER_PROFILE,data:successResult})
+      return res.status(201).json({status:true,message:profileConfig.USER_PROFILE,data:successResult})
     }),(errResult)=>{
         logger.error(errResult);
-        /*return res.status(500).send({ error: errResult});*/
-        return res.json({status:500,message:profileConfig.USER_PROFILE_FAILED,data:errResult})
+        return res.status(500).json({status:false,message:profileConfig.USER_PROFILE_FAILED,data:errResult})
       }
    }catch(err){
     logger.fatal(profileConfig.EXCEPTION_OCCURRED + err);
-    /*res.send({ error: err });*/
-    return res.json({status:false,message:profileConfig.EXCEPTION_OCCURRED,data:err})
+    return res.status(500).json({status:false,message:profileConfig.EXCEPTION_OCCURRED,data:err})
    }
  })
 
@@ -113,16 +110,16 @@ var upload = multer({ storage: storage }).any();
    try{
     upload(req, res, function(err) {
      if (err) {
-       return res.json({status:false,message:profileConfig.EXCEPTION_OCCURRED,data:err})  
+       return res.status(500).json({status:false,message:profileConfig.EXCEPTION_OCCURRED,data:err})  
      }
      else {
       let dataObj={
         img:req.files[0].filename
       }
        usrCtrl.updateImage(dataObj,getId).then(successResult=>{
-        return res.json({status:201,message:profileConfig.IMAGE_ADDED,data:successResult})
+        return res.status(201).json({status:true,message:profileConfig.IMAGE_ADDED,data:successResult})
        },error=>{
-         return res.json({status:false,message:profileConfig.IMAGE_ERROR,data:error})
+         return res.status(500).json({status:false,message:profileConfig.IMAGE_ERROR,data:error})
        }); 
     }
   });

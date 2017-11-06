@@ -19,9 +19,6 @@ var UserSchema = new mongoose.Schema({
     gender: { type: String, default: null },
     bio: { type: String, default: null },
     accessToken: { type: String, default: null }
-
-
-
 });
 UserSchema.statics.findOrCreate = require("find-or-create");
 module.exports = mongoose.model("user", UserSchema);

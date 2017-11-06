@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { config } from '../../config/config';
+import { chatConfig } from '../../config/chatConfig';
 import * as io from 'socket.io-client';
 
 @Injectable()
 export class SocketService {
 
-  config = config;
+  config = chatConfig;
   private socket;
 
   constructor() {}
