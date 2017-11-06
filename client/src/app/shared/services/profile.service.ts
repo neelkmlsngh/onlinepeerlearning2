@@ -36,4 +36,9 @@ export class ProfileService {
       .map(res => res.json(), error => error.json());
   }
 
+  updatePersonalInfo(userId,personalInfo){
+   const api = config.connect.apiURL+"/api/users/profileInfo/"+userId
+   return this.http.put(api,personalInfo)
+   .map(res=>res.json(),error=>error.json())
+ }
 }
