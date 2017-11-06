@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { chatConfig } from '../../config/chatConfig';
+import { config } from '../../config/config';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class HttpService {
 
-  config = chatConfig;
+  config = config;
 
   /* 
    * Setting the Request headers.
