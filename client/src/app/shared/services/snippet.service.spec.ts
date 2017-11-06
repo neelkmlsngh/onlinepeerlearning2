@@ -44,6 +44,28 @@ describe('snippetservice ,(mockBackend)', () => {
     expect(service instanceof SnippetService).toBe(true, 'new service should be ok');
   }));
 
+    //testcase for addsnippet method
+  it('test addsnippet method',
+    inject([SnippetService, XHRBackend], (SnippetService, mockBackend) => {
+      const mockResponse = [{ title: 'html',language: 'html', code: '<title></title>' },
+        { title: 'style',language: 'css', code: 'color:black' },
+      ];
+
+      mockBackend.connections.subscribe((connection) => {
+        connection.mockRespond(new Response(new ResponseOptions({
+          body: JSON.stringify(mockResponse)
+        })));
+      });
+
+      SnippetService.addSnippet().subscribe((snippet) => {
+        expect(snippet[1].title).toEqual('style');
+        expect(snippet[1].language).toEqual('css');
+        expect(snippet[1].code).toEqual('color:black');
+
+
+      });
+    }));
+
   //Testcase for update snippet
   it('Snippet Should be updated',
     inject([SnippetService, XHRBackend], (SnippetService, mockBackend) => {
@@ -80,22 +102,21 @@ describe('snippetservice ,(mockBackend)', () => {
       });
     }));
 
-  //testcase for addsnippet method
-  it('test addsnippet method',
+    //Testcase for getsnippet method
+  it('test getsnippet method',
     inject([SnippetService, XHRBackend], (SnippetService, mockBackend) => {
-      const mockResponse = [{ title: 'html', code: '<title></title>' },
-        { title: 'javascript', code: '<html></html>' },
-      ];
-
+      const mockResponse = [{ ok: '1', n: '1'  } ];
       mockBackend.connections.subscribe((connection) => {
         connection.mockRespond(new Response(new ResponseOptions({
           body: JSON.stringify(mockResponse)
         })));
       });
 
-      SnippetService.addSnippet().subscribe((snippet) => {
-        expect(snippet[1].title).toEqual('javascript');
-
+      SnippetService.deleteSnippet().subscribe((snippet) => {
+        expect(snippet[0].ok).toEqual('1');
+        expect(snippet[0].n).toEqual('1');
       });
     }));
+
+
 })
