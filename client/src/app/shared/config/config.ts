@@ -11,8 +11,10 @@ export const config: any = {
   },
   connect:
   {
-    apiURL : "https://192.168.252.147:8080",
-    vmURL : "https://192.168.252.147:3030",
+    apiURL : "https://192.168.252.57:8080",
+    vmURL : "https://192.168.252.57:3030",
+    peerjsURL : "https://192.168.252.57:8081"
+
   },
 
 
