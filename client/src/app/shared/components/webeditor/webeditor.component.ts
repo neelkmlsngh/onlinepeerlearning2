@@ -78,10 +78,12 @@ export class WebeditorComponent implements OnInit {
       })
   }
 
+/*snippet show in html editor*/
   showHtml(code) {
     this.htmlValue += " " + code;
   }
 
+/*snippet show in css editor*/
  showCss(code) {
      this.cssValue+= " " + code;
   }
