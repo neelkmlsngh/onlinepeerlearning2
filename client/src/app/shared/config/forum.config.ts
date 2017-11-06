@@ -23,15 +23,17 @@ export const forumConfig = {
     "PROBLEM_DESCRIPTION":"problemDescription",
     "LIKES":"Likes",
     "ASKED":"asked",
+    "ANSWER":"Answer",
     "YOUR_ANSWERS":"Your answer",
     "SIGNUP_LOGIN":"Signup or Login",
     "LOGIN_WITH_GITHUB":"Login with github",
     "POST_AS_A_GUEST":"Post as a Guest",
     "POST_YOUR_ANSWER_BUTTON":"Post your answer",
+    "POSTED_BY":"Posted by",
  "CKEDITOR":{
     "REMOVED_BUTTONS":"Link,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript,addFile,Image,Table,Styles,Format,Maximize,HorizontalRule,Unlink,Blockquote,Indent,Outdent,RemoveFormat,Spell",
     "REMOVED_PLUGINS":"list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize"
-           }   
+           }
  },
  "NEWPOST":
  {

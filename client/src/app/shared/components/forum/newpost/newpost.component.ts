@@ -24,7 +24,9 @@ export class NewpostComponent implements OnInit, AfterViewInit{
     obj:any={};
     addSnippet:any;
 
-  constructor(private forum: ForumService) {}
+  constructor(private forum: ForumService) {
+    
+  }
 
   ngOnInit() {
     this.date = new Date();
@@ -33,6 +35,7 @@ export class NewpostComponent implements OnInit, AfterViewInit{
     let year = this.date.getFullYear();
     this.date = day + '/' + month + '/' + year;
   }
+
   //method to call problemDescriptionConfigEditor
   ngAfterViewInit() {
     var configuration = {
