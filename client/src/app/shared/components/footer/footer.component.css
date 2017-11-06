@@ -1,12 +1,13 @@
 /*css on footer*/
 
 .footer1 .footer-bottom {
-   background-color: #1995ad
-;
+   background-color: #1995ad;
    padding: 20px 0;
    color: #DDD;
    font-size: 13px;
 }
+
+/* aligning copyright to center */
 
 .copyright{
    text-align: center;

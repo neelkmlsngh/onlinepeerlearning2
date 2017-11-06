@@ -3,13 +3,13 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { config } from '../config/config';
 
-import {SocketService} from './chatservices/socket.service'
+/*import {SocketService} from './chatservices/socket.service'*/
 
 @Injectable()
 export class ProfileService {
   config = config;
 
-  constructor(private http: Http,private socketService:SocketService) {}
+  constructor(private http: Http/*,private socketService:SocketServi,private socketService:SocketServicece*/) {}
 
   // service method to get data of user using userid
   getDataFromDB(userId) {
@@ -28,36 +28,12 @@ export class ProfileService {
       .map(res => res.json(), error => error.json());
 
   }
-  uploadChatFile(formData, options) {
-  /* let fileObj={
-=======
-
-   uploadChatFile(formData, options) {}
-
-/*  uploadChatFile(formData, options) {
-   let fileObj={
->>>>>>> b2ad568e214fd3dfa2c19c68906ac65635f02c48
-      "formData": formData,
-      "options": options
-    }
-    this.socketService.sendFile(fileObj)
-    let observable = new Observable(observer => {
-      this.socket.on('chat-list-response', (data) => {
-        console.log(JSON.stringify(data, null, 2));
-        observer.next(data);
-      });
-      return () => {
-        this.socket.disconnect();
-      };
-    })
-    return observable;
-<<<<<<< HEAD
-  */
-}
   //method store token into database
   storeAccessToken(userId,token){
     const api = config.connect.apiURL+"/api/users/token/"+userId
     return this.http.put(api,token)
     .map(res=>res.json(),error=>error.json());
   }
+
+
 }

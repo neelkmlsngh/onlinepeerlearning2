@@ -7,6 +7,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import {AuthenticationService} from '../shared/services/authentication.service'
 
 import { homeConfig } from '../shared/config/home.config';
+import { config } from '../shared/config/config'
+
 
 //component decorator
 
@@ -29,7 +31,10 @@ export class HomeComponent implements OnInit {
    backdrop: true,
    ignoreBackdropClick: false
    };
-   config=homeConfig;
+   
+   apiURLConfig = config;
+   homeConfig=homeConfig;
+
 
   //constructor having modal service and router
 
@@ -47,17 +52,5 @@ export class HomeComponent implements OnInit {
    this.modalRef = this.modalService.show(template, Object.assign({}, this.configModal, { class: 'gray modal-lg' }));
   }
 
-  //login via git method
 
-  loginByGit() {
-    this.authenticationservice.git()
-    .subscribe((res) => {
-      if (res)
-        this.router.navigate(["/"]).then(result => { window.location.href = res.url; });
-      else
-        this.router.navigateByUrl('home')
-    }, error => {
-      this.router.navigate(['/']);
-    })
-  }
 }
