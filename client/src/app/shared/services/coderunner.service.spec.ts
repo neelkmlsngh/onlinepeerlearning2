@@ -12,7 +12,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/toPromise';
 import { CoderunnerService as coderunnerService } from './coderunner.service';
 
-describe('profileService ,(mockBackend)', () => {
+describe('coderunnerService ,(mockBackend)', () => {
 
 
  /*Initial configuration that will run before every testcase*/

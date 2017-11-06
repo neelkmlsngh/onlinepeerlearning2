@@ -85,7 +85,7 @@ const getSearch = function(getValue) {
 const saveAnswer = function(getValue, updateValue) {
     return new Promise((resolve, reject) => {
         forumModel.update({
-            'questionTitle': getValue
+            '_id': getValue
         }, {
             $push: { 'answers': updateValue }
         }, { upsert: true }, (err, data) => {

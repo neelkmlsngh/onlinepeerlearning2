@@ -12,7 +12,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/toPromise';
 import { EditorService as editorService } from './editor.service';
 
-describe('gitService ,(mockBackend)', () => {
+describe('editorService ,(mockBackend)', () => {
 
 
  /*Initial configuration that will run before every testcase*/
