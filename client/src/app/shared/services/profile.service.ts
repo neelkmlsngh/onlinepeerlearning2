@@ -28,9 +28,10 @@ export class ProfileService {
       .map(res => res.json(), error => error.json());
 
   }
+
   uploadChatFile(formData, options) {
   /* let fileObj={
-=======
+>>>>>>> 160bf878047e4d5dcb20983edeaf0bfe1ff1a904
 
    uploadChatFile(formData, options) {}
 
@@ -52,7 +53,7 @@ export class ProfileService {
     })
     return observable;
 <<<<<<< HEAD
-  */
+  }*/
 }
   //method store token into database
   storeAccessToken(userId,token){
@@ -60,4 +61,5 @@ export class ProfileService {
     return this.http.put(api,token)
     .map(res=>res.json(),error=>error.json());
   }
+
 }
