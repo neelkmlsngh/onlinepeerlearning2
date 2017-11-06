@@ -117,29 +117,6 @@ export class MainComponent implements OnInit {
 
   }
 
-  //method for logout
-  logout() {
-    let user = JSON.parse(localStorage.getItem('currentUser'));
-    let userId = user.userId;
-    user = {
-      userId: userId
-    }
-    this.authenticationservice.logoutEditor(user).subscribe((data1) => {
-      if (data1.status == 200) {
-        swal({
-          timer: 2500,
-          title: "Logged Out Successfully",
-          text: "",
-          type: 'success',
-          showConfirmButton: false,
-        })
-      }
-
-      this.router.navigate(["/"]);
-      localStorage.removeItem('currentUser');
-    })
-  }
-
   //method to enter new repository name
   onKey(event) {
     this.value += event
