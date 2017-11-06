@@ -47,17 +47,5 @@ export class HomeComponent implements OnInit {
    this.modalRef = this.modalService.show(template, Object.assign({}, this.configModal, { class: 'gray modal-lg' }));
   }
 
-  //login via git method
 
-  loginByGit() {
-    this.authenticationservice.git()
-    .subscribe((res) => {
-      if (res)
-        this.router.navigate(["/"]).then(result => { window.location.href = res.url; });
-      else
-        this.router.navigateByUrl('home')
-    }, error => {
-      this.router.navigate(['/']);
-    })
-  }
 }

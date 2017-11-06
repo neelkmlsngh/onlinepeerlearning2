@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthenticationService } from '../../../shared/services/authentication.service'
 import swal from 'sweetalert2';
-import { config } from '../../config/navConfig';
+import { config } from '../../config/nav.config';
 
 @Component({
   selector: 'app-navbar',
@@ -37,9 +37,10 @@ export class NavbarComponent implements OnInit {
           type: this.config.navbar.SUCCESS,
           showConfirmButton: false,
         })
-      }
+      
       this.router.navigate(["/"]);
       localStorage.removeItem('currentUser');
+    }
     })
   }
-}
+ }

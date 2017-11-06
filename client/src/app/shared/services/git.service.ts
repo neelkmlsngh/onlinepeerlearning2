@@ -6,12 +6,14 @@ import { config } from '../config/config';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import * as $ from 'jquery';
 
 @Injectable()
 export class GitService {
-
+  accessToken:any;
   userName: any = "GauravGupta131220";
-  username: any = "ROZYTYAGI"
+  username: any = "ROZYTYAGI";
+  userpassword: any = "tyagi@96";
   private clientId: string = '60b9f23dedffbdfc476c';
   private clientSecret: string = 'd1c186c6373f96571c0bfcf76b84e4dc6fd0c15a';
 
@@ -78,7 +80,7 @@ export class GitService {
   //method to create file on github
   createFile(text) {
     if (this.userName) {
-      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.SUBURL, this.authorization())
+      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.SUBURL, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
@@ -86,7 +88,7 @@ export class GitService {
   //method to create the file and saving the sha-base-tree
   commitfile(text, sha) {
     if (this.userName) {
-      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.COMMITFILEURL + sha, this.authorization())
+      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.COMMITFILEURL + sha, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
@@ -94,7 +96,7 @@ export class GitService {
   //method to create file, sending new file name and saving the sha-new-tree
   treecommit(text, basetree) {
     if (this.userName) {
-      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.TREECOMMITURL, basetree, this.authorization())
+      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.TREECOMMITURL, basetree, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
@@ -102,7 +104,7 @@ export class GitService {
   //method to create a file on github and saving sha-new-commit
   newcommit(text, newcommit) {
     if (this.userName) {
-      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.NEWCOMMITURL, newcommit, this.authorization())
+      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.NEWCOMMITURL, newcommit, this.authorization(this.accessToken))
         .map(res => res.json())
 
     }
@@ -111,7 +113,7 @@ export class GitService {
   //method to create a fiel on github 
   lastcommit(text, lastcommit) {
     if (this.userName) {
-      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.SUBURL, lastcommit, this.authorization())
+      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.SUBURL, lastcommit, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
@@ -132,7 +134,7 @@ export class GitService {
   //method to get the sha of the file   
   getsha(text, filename) {
     if (this.userName) {
-      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, this.authorization())
+      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
@@ -140,7 +142,7 @@ export class GitService {
   //method to update the file on github
   updateFile(text, filename, updateobj) {
     if (this.userName) {
-      return this._http.put(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, updateobj, this.authorization())
+      return this._http.put(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, updateobj, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
@@ -149,7 +151,7 @@ export class GitService {
   deleteFile(text, filename, deletefileobj) {
     if (this.userName) {
       //let head=this.authoriZation();  
-      let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206ODk0OWMxOTU3ZTA0Yzg1NmQ3ZGIxMTI5MTY1M2EyYmRmOWQ3MDAwZQ==" });
+      let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206Y2ZlNTA0ZjVkZDNkMGVmNGQzYmUwOWFlNmJjMTUzMmYyYTlhYzVmYg==" });
       return this._http.delete(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, new RequestOptions({
           headers: headers,
           body: deletefileobj
@@ -157,19 +159,36 @@ export class GitService {
         .map(res => res.json())
     }
   }
-
+//method to create user personal access token
+createToken(credentials,password){
+  console.log(credentials,"yyyyyyyyyyyyy");
+  if(this.username){
+ return this._http.post('https://api.github.com/authorizations',credentials,this.authorizationToken(this.username,password))
+ .map(res=>res.json())
+}
+}
   //method to create Repository on github
-  createRepos(text) {
-
+  createRepos(text,accessToken) {
+    this.accessToken=accessToken
     if (this.username) {
-      return this._http.post(config.giturls.CREATEREPOS, text, this.authorization())
+      return this._http.post(config.giturls.CREATEREPOS, text, this.authorization(this.accessToken))
         .map(res => res.json())
     }
   }
 
   //method for authorization for creating new repository
-  private authorization() {
-    let headers = new Headers({ 'Authorization': "Basic Z3J2Z3VwdGExMkBnbWFpbC5jb206ODk0OWMxOTU3ZTA0Yzg1NmQ3ZGIxMTI5MTY1M2EyYmRmOWQ3MDAwZQ==" });
+  private authorization(accessToken) {
+    let headers = new Headers({ 'Authorization': "Basic "+accessToken });
     return new RequestOptions({ headers: headers });
+  }
+
+  //method for authorization for creating personal access token
+  private authorizationToken(username,password){
+    console.log(username,password)
+    let data=btoa(username + ':'+ password)
+    console.log('data-----------------------')
+    console.log(data)
+    let headers=new Headers({"Authorization": "Basic "+data});
+    return new RequestOptions({headers: headers})
   }
 }
