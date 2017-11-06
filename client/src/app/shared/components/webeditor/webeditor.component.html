@@ -1,6 +1,7 @@
 <!-- <div class="container"> -->
   <div class="row ">
     <div class="col-md-7 padding">
+    <div class="navbar">
       <!-- pills to select language -->
       <ul class="nav nav-pills marg " id="pills-tab" role="tablist">
         <li class="nav-item ">
@@ -13,6 +14,23 @@
           <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" title={{config.webEditor.JS}}><i class="fa fa-file-code-o" aria-hidden="true"></i></a>
         </li>
       </ul>
+      <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn  btn-secondary text-right" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="Share Your Screen With Your Friend" (click)="openModal(template)"> Share Your Screen</button>
+      </div>
+      <div id="togetherjs-dock-participants"></div>
+              <template #template>
+                <div class="modal-header">
+                  <h4 class="modal-title pull-left">Modal</h4>
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Copy this URL and send to your friend
+                  <div *ngIf="link!==''">
+                    <p><a target="_blank" [attr.href]="link" (click)="redirect()">{{link}}</a></p>
+                  </div>
+                </div>
+              </template>
       <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
           <div id="wrap">
@@ -23,7 +41,7 @@
                   <div class="dropdown">
                     <button class="btn btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  title={{config.webEditor.ADD}}><i class="fa fa-code" aria-hidden="true"></i></button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" *ngFor="let data of html" (click)="show(data.code)">{{data.title}}</a>
+                      <a class="dropdown-item" *ngFor="let data of html" (click)="showHtml(data.code)">{{data.title}}</a>
                     </div>
                   </div>
                   &nbsp;
@@ -47,7 +65,7 @@
                 <form class="form-inline">
                   <button class="btn btn-outline-primary" type="button" id="dropdownMenuButon1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title={{config.webEditor.ADD}}><i class="fa fa-code" aria-hidden="true"></i>  </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <a class="dropdown-item" *ngFor="let data of css" (click)="show(data.code)">{{data.title}}</a>
+                    <a class="dropdown-item" *ngFor="let data of css" (click)="showCss(data.code)">{{data.title}}</a>
                   </div>
                   &nbsp;
                   <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" href="javascript:void(0);" (click)="downloadCssFile()" data-toggle="tooltip" data-placement="top" title="Download"><i class="fa fa-download" aria-hidden="true"></i></button>

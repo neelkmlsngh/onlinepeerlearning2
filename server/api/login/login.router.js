@@ -65,22 +65,22 @@ router.put('/logout', (req, res) => {
 
 //get userName w.r.t userId
 router.get('/:userId', (req, res) => {
-            let userId = req.params.userId;
-            try {
-                if (!userId) {
-                    logger.error(loginConfig.USER_ID)
-                } else if (userId) {
-                    usrCtrl.getUser(userId).then(successResult => {
-                        res.json({ status: 200, message: loginConfig.USERNAME_FIND_SUCCESSFULLY, data: successResult });
+    let userId = req.params.userId;
+    try {
+        if (!userId) {
+            logger.error(loginConfig.USER_ID)
+        } else if (userId) {
+            usrCtrl.getUser(userId).then(successResult => {
+                res.json({ status: 200, message: loginConfig.USERNAME_FIND_SUCCESSFULLY, data: successResult });
 
-                    }, error => {
-                        logger.error(error);
-                        return res.json({ status: 404, message: loginConfig.USER_ID, error: error });
-                    })
-                }
-            } catch (err) {
-                logger.err(+err)
-                res.json({ status: 404, message: loginConfig.USER_ID, err: err });
+            }, error => {
+                logger.error(error);
+                return res.json({ status: 404, message: loginConfig.USER_ID, error: error });
+            })
+        }
+    } catch (err) {
+        logger.err(+err)
+        res.json({ status: 404, message: loginConfig.USER_ID, err: err });
     }
 });
 

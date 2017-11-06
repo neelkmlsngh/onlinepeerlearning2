@@ -13,44 +13,44 @@ import { config } from '../shared/config/config'
 //component decorator
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+ selector: 'app-home',
+ templateUrl: './home.component.html',
+ styleUrls: ['./home.component.css']
 })
 
 //home component class starts
 
 export class HomeComponent implements OnInit {
 
-  //modal config object
-  
-  public modalRef: BsModalRef;
-  public configModal = {
-   animated: true,
-   keyboard: true,
-   backdrop: true,
-   ignoreBackdropClick: false
-   };
-   
-   apiURLConfig = config;
-   homeConfig=homeConfig;
+ //modal config object
+ 
+ public modalRef: BsModalRef;
+ public configModal = {
+  animated: true,
+  keyboard: true,
+  backdrop: true,
+  ignoreBackdropClick: false
+  };
+ 
+  apiURLConfig = config;
+  homeConfig=homeConfig;
 
 
-  //constructor having modal service and router
+ //constructor having modal service and router
 
-  constructor(private modalService: BsModalService, private router: Router,private authenticationservice:AuthenticationService) {
-  }
+ constructor(private modalService: BsModalService, private router: Router,private authenticationservice:AuthenticationService) {
+ }
 
-  //ngOnInit 
+ //ngOnInit
 
-  ngOnInit() {
-  }
+ ngOnInit() {
+ }
 
-  //open modal window 
+ //open modal window
 
-  public openModalWithClass(template: TemplateRef < any > ) {
-   this.modalRef = this.modalService.show(template, Object.assign({}, this.configModal, { class: 'gray modal-lg' }));
-  }
+ public openModalWithClass(template: TemplateRef < any > ) {
+  this.modalRef = this.modalService.show(template, Object.assign({}, this.configModal, { class: 'gray modal-lg' }));
+ }
 
 
 }

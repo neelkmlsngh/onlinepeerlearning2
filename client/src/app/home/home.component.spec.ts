@@ -1,4 +1,4 @@
-/*imports required from angular*/
+//imports required from angular
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -10,90 +10,96 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router, RouterLinkWithHref } from '@angular/router';
 import {HttpModule} from '@angular/http'
 
-/*imports required fro  our project*/
+//imports required fro  our project
 
 import { HomeComponent } from './home.component';
 import { homeConfig } from '../shared/config/home.config';
 
-/*describe testing block*/
+//describe testing block
 
 describe('HomeComponent', () => {
 
-  /*component to be tested*/
+ //component to be tested
 
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+ let component: HomeComponent;
+ let fixture: ComponentFixture<HomeComponent>;
 
-  /*debug and native elements*/
+ //debug and native elements
 
-  let button1de:  DebugElement;
-  let button1el:  HTMLElement;
+ let button1De, button2De, button3De, buttonSubtitleDe, titleDe, tagLineDe :  DebugElement;
+ let button1El, button2El, button3El, buttonSubtitleEl, titleEl, tagLineEl :  HTMLElement;
 
-  let button2de:  DebugElement;
-  let button2el:  HTMLElement;
+ //before each block for test environment
 
-  let button3de:  DebugElement;
-  let button3el:  HTMLElement;
+ beforeEach(async(() => {
+   TestBed.configureTestingModule({
+     imports:[RouterTestingModule, HttpModule],      
+     declarations: [ HomeComponent ],
+     providers: [{provide: BsModalService}, AuthenticationService]
+   })
+   .compileComponents();
+ }));
 
-  let buttonSubtitleDe:  DebugElement;
-  let buttonSubtitleEl:  HTMLElement;
+ //before each block for testing the component
 
-  /*before each block for test environment*/
+ beforeEach(() => {
+   fixture = TestBed.createComponent(HomeComponent);
+   component = fixture.componentInstance;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      
-      imports:[RouterTestingModule, HttpModule],       
-      declarations: [ HomeComponent ],
-      providers: [{provide: BsModalService}, AuthenticationService]
-    })
-    .compileComponents();
-  }));
+   button1De = fixture.debugElement.query(By.css('.buttonTest1'));
+   button1El = button1De.nativeElement;
 
-  /*before each block for testing the component*/
+   button2De = fixture.debugElement.query(By.css('.buttonTest2'));
+   button2El = button2De.nativeElement;
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    
+   button3De = fixture.debugElement.query(By.css('.buttonTest3'));
+   button3El = button3De.nativeElement;
 
-    button1de = fixture.debugElement.query(By.css('.buttonTest1'));
-    button1el = button1de.nativeElement;
+   buttonSubtitleDe = fixture.debugElement.query(By.css('.buttonTest3'));
+   buttonSubtitleEl = buttonSubtitleDe.nativeElement;
 
-    button2de = fixture.debugElement.query(By.css('.buttonTest2'));
-    button2el = button2de.nativeElement;
+   titleDe = fixture.debugElement.query(By.css('h1'));
+   titleEl = titleDe.nativeElement;
 
-    button3de = fixture.debugElement.query(By.css('.buttonTest3'));
-    button3el = button3de.nativeElement;
+   tagLineDe = fixture.debugElement.query(By.css('h3'));
+   tagLineEl = tagLineDe.nativeElement;
 
-        buttonSubtitleDe = fixture.debugElement.query(By.css('.buttonTest3'));
-    buttonSubtitleEl = buttonSubtitleDe.nativeElement;
-    fixture.detectChanges();
-  });
+   fixture.detectChanges();
+ });
 
-  /*test cases in it block*/
+ //test cases in it block
 
-  it('home component should be created', () => {
-    expect(component).toBeTruthy();
-  });
+ it('home component should be created', () => {
+   expect(component).toBeTruthy();
+ });
 
-  it('button 1 should contain title', () => {
-    fixture.detectChanges();
-    expect(button1el.textContent).toContain(homeConfig.BUTTON1);
-  });
+ it('button 1 should contain text', () => {
+   fixture.detectChanges();
+   expect(button1El.textContent).toContain(homeConfig.BUTTON1);
+ });
 
-  it('button 2 should contain title', () => {
-    fixture.detectChanges();
-    expect(button2el.textContent).toContain(homeConfig.BUTTON2);
-  });
+ it('button 2 should contain text', () => {
+   fixture.detectChanges();
+   expect(button2El.textContent).toContain(homeConfig.BUTTON2);
+ });
 
-    it('button 3 should contain title', () => {
-    fixture.detectChanges();
-    expect(button3el.textContent).toContain(homeConfig.BUTTON3);
-  });
+   it('button 3 should contain text', () => {
+   fixture.detectChanges();
+   expect(button3El.textContent).toContain(homeConfig.BUTTON3);
+ });
 
-        it('button 3 subtitle should contain title', () => {
-    fixture.detectChanges();
-    expect(buttonSubtitleEl.textContent).toContain(homeConfig.BUTTONSUBTITLE);
-  });
+   it('button 3 subtitle should contain text', () => {
+   fixture.detectChanges();
+   expect(buttonSubtitleEl.textContent).toContain(homeConfig.BUTTONSUBTITLE);
+ });
+
+   it('heading title should contain title', () => {
+   fixture.detectChanges();
+   expect(titleEl.textContent).toContain(homeConfig.TITLE);
+ });
+
+   it('tagline should contain text', () => {
+   fixture.detectChanges();
+   expect(tagLineEl.textContent).toContain(homeConfig.TAGLINE);
+ });
 });

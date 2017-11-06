@@ -20,7 +20,6 @@ const getUserInfo = function(userId, callback) {
 //This is for getting the Online users from database
 const getChatList = function(userId, callback) {
 	loginModel.find({ 'online': 'Y', 'socketId': { $ne: userId } }, (err, result) => {
-		console.log(JSON.stringify(result, null, 2));
 		callback(err, result);
 	});
 }

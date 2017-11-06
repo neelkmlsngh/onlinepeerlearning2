@@ -4,7 +4,7 @@ import { Headers, RequestOptions } from '@angular/http';
 
 import { ProfileService } from '../../services/profile.service';
 import {config} from '../../config/profileConfig';
-import { errorConfig } from '../../config/errorConfig';
+import { errorConfig } from '../../config/error.config';
 
 @Component({
   selector: 'app-profile',
