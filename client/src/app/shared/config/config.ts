@@ -11,9 +11,9 @@ export const config: any = {
   },
   connect:
   {
-    apiURL : "https://192.168.252.33:8080",
-    vmURL : "https://192.168.252.33:3030",
-   
+    apiURL : "https://192.168.252.190:8080",
+    vmURL : "https://192.168.252.190:3030",
+  
   },
 
 
@@ -51,7 +51,7 @@ export const config: any = {
     "SEARCHAPIURL": 'api/forums/term/'
   },
   peerserver: {
-    "host": "192.168.252.33",
+    "host": "192.168.252.190",
     "port": "8081",
     "path": "/peerjs"
 
