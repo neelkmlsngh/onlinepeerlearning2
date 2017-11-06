@@ -72,8 +72,8 @@ router.get('/:id', function(req, res) {
 });
 
 //add answers to paticular forum question
-router.put('/:question', (req, res) => {
-    let getValue = req.params.question;
+router.put('/:id', (req, res) => {
+    let getValue = req.params.id;
     let forumUpdate = req.body;
     try {
         forumCtrl.saveAnswer(getValue, forumUpdate).then((successResult) => {
