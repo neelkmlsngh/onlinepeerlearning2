@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, NgZone, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, NgZone, TemplateRef} from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
@@ -143,6 +143,10 @@ export class MainComponent implements OnInit {
 })
 }
 
+onKey(event) {
+    this.value += event
+  }
+  
 //method generate personal access token for new user
 createAccessToken(password){
   let cred={
@@ -172,24 +176,4 @@ this.profileService.storeAccessToken(userId,token)
   console.log(data);
 })
 }
-  //method to enter new repository name
-  onKey(event) {
-    this.value += event
-  }
-
-  //methd for creating new repository
-  createRepo(name, desc) {
-    let repoName = {
-      "name": name,
-      "description": desc,
-      "homepage": "https://github.com",
-      "private": false,
-      "has_issues": false,
-      "has_projects": false,
-      "has_wiki": false
-    }
-    this.gitService.createRepos(repoName,this.accessToken)
-      .subscribe(data => {})
-  }
-
 }
