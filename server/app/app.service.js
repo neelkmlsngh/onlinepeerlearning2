@@ -34,10 +34,9 @@ function loginviagit() {
         done(null, obj);
     });
     passport.use(new GitHubStrategy({
-
         clientID: gitId.CLIENT_ID,
         clientSecret: gitId.CLIENT_SECRET,
-				 callbackURL: gitId.CALLBACK_URL
+				callbackURL: gitId.CALLBACK_URL
     }, function(accessToken, refreshToken, profile, done) {
         let userInfo = {
             name: profile._json.login,
