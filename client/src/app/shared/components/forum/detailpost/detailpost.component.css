@@ -30,6 +30,9 @@
 .views {
   color: #6A1B9A;
 }
+.codesnippet{
+  background-color: #f39c12;
+}
 
 .ans {
   padding-left: 11px;
@@ -48,3 +51,23 @@
 .example-full-width {
 width: 100%;
 }
+
+hr {
+  border: 0;
+  /*clear: both;*/
+  display: block;
+  width: 99%;
+  background-color: #DBDCDD;
+  height: 1px;
+}
+
+
+.codesnippet{
+  height: 250px;
+  overflow-y: auto;
+  overflow-x: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+} 

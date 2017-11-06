@@ -23,7 +23,7 @@ import 'ace-builds/src-min-noconflict/snippets/html';
 
 export class EditorComponent implements OnInit {
 
-  @Input() content: any = "enter code here";
+  @Input() content: any = "";
   @Input() reponame: any;
   @Input() filenamed: any;
 
@@ -88,6 +88,9 @@ export class EditorComponent implements OnInit {
   //method to create a file on git
   save(fileName, commitMessage) {
 
+    console.log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"+ this.reponame + this.filenamed + this.content);
+
+    this.reponame=this.reponame;   
     //hitting the create file api to get sha of the latest commit
     this.gitService.createFile(this.reponame)
       .subscribe(repos => {
@@ -210,6 +213,7 @@ export class EditorComponent implements OnInit {
     //getting the file sha
     this.gitService.getsha(this.reponame, this.filenamed)
       .subscribe(repos => {
+        
         this.filesha = repos.sha;
         this.deletefileobj = {
           "message": commitMessage,

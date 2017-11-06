@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import 'hammerjs';
 import { MatTabsModule } from '@angular/material';
 import { MatTabGroup } from '@angular/material';
@@ -50,15 +50,61 @@ import { ProfileService } from './shared/services/profile.service';
 
 import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { SnippetComponent } from './shared/components/snippet/snippet.component';
-import {  SnippetService } from './shared/services/snippet.service';
+import { SnippetService } from './shared/services/snippet.service';
 
 //import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { CoderunnerService } from './shared/services/coderunner.service';
-import { AnswersComponent } from './shared/components/forum/answers/answers.component';
 import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
 
 import { ErrorpageComponent } from './shared/components/errorpage/errorpage.component';
 
+let apiRoutes: Routes = [{
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'error',
+    component: ErrorpageComponent
+  },
+  {
+    path: 'snippets',
+    component: SnippetComponent
+  },
+  {
+    path: 'main',
+    component: MainComponent,
+    /* canActivate: [AuthoriseGuard]*/
+  },
+  {
+    path: 'view',
+    component: ViewpostComponent,
+    // canActivate: [AuthoriseGuard]
+  },
+  {
+    path: 'forums/:value',
+    component: DetailpostComponent,
+    // canActivate: [AuthoriseGuard]
+  },
+  {
+    path: 'add',
+    component: NewpostComponent,
+  },
+
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    //canActivate: [AuthoriseGuard]
+  },
+  {
+    path: 'auth/:userId/:token',
+    component: AuthenticateComponent,
+    //canActivate: [AuthoriseGuard]
+  },
+  {
+    path: '**',
+    component: HomeComponent,
+  },
+];
 
 @NgModule({
   declarations: [
@@ -67,9 +113,7 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
     EditorComponent,
     NavbarComponent,
     RepoSidebarComponent,
-
     FooterComponent,
-
     WebeditorComponent,
     ProfileComponent,
     MainComponent,
@@ -81,16 +125,11 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
     AuthenticateComponent,
     AudioChatComponent,
     VideoChatComponent,
-
     SnippetComponent,
-    AnswersComponent,
-
     ChatHomeComponent,
-
     ErrorpageComponent
-
-
   ],
+
   imports: [
     BrowserModule,
     NgxPaginationModule,
@@ -105,129 +144,15 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
     MatRadioModule,
     TruncateModule,
     TagInputModule,
-
-
     AngularFontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTabsModule,
     MatFormFieldModule,
-
     ModalModule.forRoot(),
-    RouterModule.forRoot([
-
-
-    {
-       path:'home',
-       component:HomeComponent
-     },
-         {
-       path:'error',
-       component: ErrorpageComponent
-     },
-       {
-       path:'snippet',
-       component:SnippetComponent
-     },
-     {
-        path: 'main',
-        component: MainComponent,
-        /* canActivate: [AuthoriseGuard]*/
-      },
-      {
-        path: 'Forum',
-        component: ForumComponent,
-        children: [{
-            path: 'questions',
-            component: ViewpostComponent
-          },
-          {
-            path: 'questiondetail/:value',
-            component: ViewpostComponent
-          },
-          {
-            path: 'addquestion',
-            component: NewpostComponent,
-          },
-
-          {
-            path: 'answers/:value',
-            component: AnswersComponent,
-            // canActivate: [AuthoriseGuard]
-          },
-        ]
-
-      },
-      {
-        path: 'questions',
-        component: ViewpostComponent,
-        // canActivate: [AuthoriseGuard]
-      },
-
-      {
-        path: 'video',
-        component: VideoChatComponent,
-        //canActivate: [AuthoriseGuard]
-      },
-      {
-
-        path: 'audio',
-        component: AudioChatComponent,
-        //canActivate: [AuthoriseGuard]
-      },
-
-      // {
-      //   path: 'onlinepeerlearning/:id',
-      //   component: DisplayComponent
-      // },
-      /*  {
-        path:'',redirectTo:'/onlinepeerlearning',pathMatch:'full'
-      }*/
-      {
-        path: 'questiondetail/:value',
-        component: DetailpostComponent,
-        // canActivate: [AuthoriseGuard]
-      },
-      {
-        path: 'answers/:value',
-        component: AnswersComponent,
-        // canActivate: [AuthoriseGuard]
-      },
-      {
-        path: 'addquestion',
-        component: NewpostComponent,
-      },
-      {
-        path: 'webeditor',
-        component: WebeditorComponent,
-
-        /*   canActivate: [AuthoriseGuard]*/
-
-
-      },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-        //canActivate: [AuthoriseGuard]
-      },
-      {
-        path: 'auth/:userId/:token',
-        component: AuthenticateComponent,
-        //canActivate: [AuthoriseGuard]
-      },
-       {
-        path: 'chome',
-        component: ChatHomeComponent
-      },
-
-      {
-        path: '**',
-        component: HomeComponent,
-
-      },
-    ], { useHash: true })
+    RouterModule.forRoot(apiRoutes, { useHash: true })
   ],
-  providers: [GitService,EditorService,ChatService, ForumService,AuthenticationService,ProfileService,CoderunnerService,ChatService,HttpService,SocketService,SnippetService],
+  providers: [GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, CoderunnerService, ChatService, HttpService, SocketService, SnippetService],
 
   bootstrap: [AppComponent]
 })

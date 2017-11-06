@@ -11,13 +11,7 @@ export class AuthenticationService {
 
 user:any
 
-  git() {
-    return this.http
 
-      .get(config.connect.apiURL +'/api/login/auth/github')
-
-      .map(res => res, error => error.json());
-  }
 
   setUserInfo(obj) {
      this.user=obj;
@@ -43,16 +37,14 @@ console.log('token',token)
  getUserId(): any {
     return JSON.parse(localStorage.getItem('currentUser'))['userId'];
   }
+
   logoutEditor(user) {
    
      localStorage.removeItem('currentUser');
      return this.http
-      .put(config.connect.apiURL +'/logout',user)
+      .put(config.connect.apiURL +'api/login/logout',user)
       .map(res => res.json(), error => error.json());
-   
-
-    
-  }
+    }
 
   private authoriZation() {
     let token = this.getToken()

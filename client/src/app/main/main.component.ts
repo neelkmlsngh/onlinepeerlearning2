@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, NgZone, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, NgZone, TemplateRef} from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
@@ -7,6 +7,7 @@ import { config } from '../shared/config/config';
 import { GitService } from '../shared/services/git.service'
 import { AuthenticationService } from '../shared/services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {ProfileService} from '../shared/services/profile.service';
 
 @Component({
   selector: 'app-main',
@@ -16,7 +17,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class MainComponent implements OnInit {
 
- 
+
   content: any;
   reponame: any;
   filenamed: any;
@@ -33,9 +34,12 @@ export class MainComponent implements OnInit {
   methodToExport: any;
   link: string = '';
   value: any;
+  accessToken: any;
   public modalRef: BsModalRef;
+  currentUser:any;
+  user:{}
 
-  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router) {
+  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router,private profileService:ProfileService) {
 
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
@@ -107,6 +111,17 @@ export class MainComponent implements OnInit {
     this.content = text;
   }
 
+  getfilename(filename) {
+    this.filenamed = filename;
+  }
+
+
+  getreponame(reponame) {
+    this.reponame = reponame;
+
+  }
+
+
   //method for logout
   logout() {
     let user = JSON.parse(localStorage.getItem('currentUser'));
@@ -124,30 +139,42 @@ export class MainComponent implements OnInit {
           showConfirmButton: false,
         })
       }
+    this.router.navigate(["/"]);
+     localStorage.removeItem('currentUser');
+})
+}
 
-      this.router.navigate(["/"]);
-      localStorage.removeItem('currentUser');
-    })
-  }
-
-  //method to enter new repository name
-  onKey(event) {
+onKey(event) {
     this.value += event
   }
+  
+//method generate personal access token for new user
+createAccessToken(password){
+  let cred={
+  "scopes": [
+    "repo"
+  ],
+  "note": "PeerLearning"
+}
+  this.gitService.createToken(cred,password)
+  .subscribe(data=>{
+     this.accessToken=data.token;
+     console.log("token---------",this.accessToken);
+    this.storeToken(this.accessToken)
+  })
+}
 
-  //methd for creating new repository
-  createRepo(name, desc) {
-    let repoName = {
-      "name": name,
-      "description": desc,
-      "homepage": "https://github.com",
-      "private": false,
-      "has_issues": false,
-      "has_projects": false,
-      "has_wiki": false
-    }
-    this.gitService.createRepos(repoName)
-      .subscribe(data => {})
+//method to store personal access token into database
+storeToken(token){
+  token={
+    "token":token
   }
-
+ let currentUser= JSON.parse(localStorage.getItem('currentUser'));
+ let userId=currentUser.userId;
+ console.log("userId=",userId)
+this.profileService.storeAccessToken(userId,token)
+.subscribe(data=>{
+  console.log(data);
+})
+}
 }
