@@ -102,8 +102,8 @@ describe('snippetservice ,(mockBackend)', () => {
       });
     }));
 
-    //Testcase for getsnippet method
-  it('test getsnippet method',
+    //Testcase for deletesnippet method
+  it('test deletesnippet method',
     inject([SnippetService, XHRBackend], (SnippetService, mockBackend) => {
       const mockResponse = [{ ok: '1', n: '1'  } ];
       mockBackend.connections.subscribe((connection) => {
