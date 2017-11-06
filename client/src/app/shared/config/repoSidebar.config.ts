@@ -1,7 +1,7 @@
 export const config: any = {
 
 repoSidebar: {
-    "repos": "Repos",
+    "repos": "Repository",
     "entercode":"enter code here"
   }
 };

@@ -6,12 +6,11 @@ const chatRoutes = require('./chat');
 const snippetRoutes = require('./snippets');
 
 module.exports = {
-
-    userRoutes: userRoutes,
-    forumRoutes: forumRoutes,
-    loginRoutes: loginRoutes,
-    authtokenRoutes: authtokenRoutes,
-    chatRoutes: chatRoutes,
-    snippetRoutes: snippetRoutes,
+  userRoutes: userRoutes,
+  forumRoutes: forumRoutes,
+  loginRoutes: loginRoutes,
+  authtokenRoutes: authtokenRoutes,
+  chatRoutes: chatRoutes,
+  snippetRoutes: snippetRoutes,
 }
 

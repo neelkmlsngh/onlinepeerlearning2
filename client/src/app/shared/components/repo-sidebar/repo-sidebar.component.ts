@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, TemplateRef  } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
@@ -33,7 +33,7 @@ export class RepoSidebarComponent implements OnInit {
   @Output() repoName = new EventEmitter < any > ();
   @Output() fileName = new EventEmitter < any > ();
 
-  constructor(private editorService: EditorService, private gitService: GitService,private modalService: BsModalService) {}
+  constructor(private editorService: EditorService, private gitService: GitService, private modalService: BsModalService) {}
 
   ngOnInit() {
     this.gitService.getRepos()
@@ -86,14 +86,15 @@ export class RepoSidebarComponent implements OnInit {
 
       })
   }
+
   //method to enter new repository name
   onKey(event) {
     this.value += event
   }
 
-  //methd for creating new repository
+  //method for creating new repository
   createRepo(name, desc) {
-    this.accessToken="aaaaaaaa";
+    this.accessToken = "aaaaaaaa";
     let repoName = {
       "name": name,
       "description": desc,
@@ -103,7 +104,7 @@ export class RepoSidebarComponent implements OnInit {
       "has_projects": false,
       "has_wiki": false
     }
-    this.gitService.createRepos(repoName,this.accessToken)
+    this.gitService.createRepos(repoName, this.accessToken)
       .subscribe(data => {})
   }
 
