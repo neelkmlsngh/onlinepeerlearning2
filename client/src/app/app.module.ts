@@ -54,7 +54,6 @@ import { SnippetService } from './shared/services/snippet.service';
 
 //import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { CoderunnerService } from './shared/services/coderunner.service';
-import { AnswersComponent } from './shared/components/forum/answers/answers.component';
 import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
 
 import { ErrorpageComponent } from './shared/components/errorpage/errorpage.component';
@@ -127,7 +126,6 @@ let apiRoutes: Routes = [{
     AudioChatComponent,
     VideoChatComponent,
     SnippetComponent,
-    AnswersComponent,
     ChatHomeComponent,
     ErrorpageComponent
   ],

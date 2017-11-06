@@ -9,7 +9,17 @@ export const config: any = {
     title: "Add Snippet",
     button: "Add Snippet"
   },
+<<<<<<< HEAD
   connect: {
+=======
+  connect:
+  {
+    apiURL : "https://192.168.252.190:8080",
+    vmURL : "https://192.168.252.190:3030",
+  
+  },
+
+>>>>>>> 33e729f11f00bcb5cffc6e6b5eed06600bd0aaa3
 
     apiURL: "https://192.168.252.152:8080",
     vmURL: "https://192.168.252.152:3030",
@@ -27,18 +37,7 @@ export const config: any = {
     HOSTURLUSERS: "https://api.github.com/users/"
   },
 
-  editor: {
-    JAVASCRIPTNAME: "Javascript File",
-    REPONAME: "Your current repository is:",
-    FILENAME: "enter your file name",
-    COMMIT: "enter your commit message",
-    UPDATE: "Do you want to update the file ",
-    DELETE: "Do you want to delete the file",
-    EXECUTEBTN: "Execute",
-    CREATEBTN: "Create",
-    UPDATEBTN: "Update",
-    DELETEBTN: "Delete"
-  },
+  
   navbar: {
     "logo": "Logo",
     "profile": "Profile",
@@ -50,7 +49,7 @@ export const config: any = {
     "SEARCHAPIURL": 'api/forums/term/'
   },
   peerserver: {
-    "host": "192.168.252.33",
+    "host": "192.168.252.190",
     "port": "8081",
     "path": "/peerjs"
 
