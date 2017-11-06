@@ -121,6 +121,7 @@ export class MainComponent implements OnInit {
 
   }
 
+
   //method for logout
   logout() {
     let user = JSON.parse(localStorage.getItem('currentUser'));
