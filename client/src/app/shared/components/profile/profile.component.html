@@ -55,51 +55,51 @@
         <!-- Personal Information -->
         <mat-tab label="Personal Info">
           <div class="card-block">
-            <form class="form" role="form" autocomplete="off">
+            <form class="form" role="form" autocomplete="off" [formGroup]="personalInfo">
               <div class="form-group ">
                 <label class="col-lg-3 col-form-label form-control-label">{{config.FIRST_NAME}}</label>
                 <div class="col-lg-9">
-                  <input class="form-control" type="text" value="">
+                  <input class="form-control" type="text" formControlName="firstName">
                 </div>
               </div>
               <div class="form-group ">
                 <label class="col-lg-3 col-form-label form-control-label">{{config.LAST_NAME}}</label>
                 <div class="col-lg-9">
-                  <input class="form-control" type="text" value="">
+                  <input class="form-control" type="text" formControlName="lastName">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-lg-3 col-form-label form-control-label">{{config.EMAIL}}</label>
                 <div class="col-lg-9">
-                  <input class="form-control" type="email" value="">
+                  <input class="form-control" type="email" formControlName="email">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-lg-3 col-form-label form-control-label">{{config.COMPANY}}</label>
                 <div class="col-lg-9">
-                  <input class="form-control" type="text" value="">
+                  <input class="form-control" type="text" formControlName="company">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-lg-3 col-form-label form-control-label">{{config.WEBSITE}}</label>
                 <div class="col-lg-9">
-                  <input class="form-control" type="url" value="">
+                  <input class="form-control" type="url" formControlName="website">
                 </div>
               </div>
               <div class="form-group">
                 <label class=" col-lg-3 col-form-label form-control-label" for="exampleTextarea">{{config.BIO}}</label>
                 <div class="col-lg-9">
-                  <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                  <textarea class="form-control" id="exampleTextarea" rows="3" formControlName="bio"></textarea>
                 </div>
               </div>
               <div class="form-group ">
-                <label class="col-lg-3 col-form-label form-control-label">{{config.GENDER}}</label>
+                <label class="col-lg-3 col-form-label form-control-label" >{{config.GENDER}}</label>
                 <div class="col-lg-9 gender">
                   <div class="row">
                     <mat-radio-group>
-                      <mat-radio-button value="1">{{config.MALE}}</mat-radio-button>
-                      <mat-radio-button value="2">{{config.FEMALE}}</mat-radio-button>
-                      <mat-radio-button value="3">{{config.OTHER}}</mat-radio-button>
+                      <mat-radio-button  formControlName="gender" value="male" ngDefaultControl>{{config.MALE}}</mat-radio-button>
+                      <mat-radio-button  formControlName="gender" value="female" ngDefaultControl>{{config.FEMALE}}</mat-radio-button>
+                      <mat-radio-button  formControlName="gender" value="other" ngDefaultControl>{{config.OTHER}}</mat-radio-button>
                     </mat-radio-group>
                   </div>
                 </div>
@@ -107,7 +107,7 @@
               <div class="form-group">
                 <label class="col-lg-3 col-form-label form-control-label"></label>
                 <div class="col-lg-9">
-                  <button type="button" class="btn btn-secondary save">{{config.SAVE}}</button>
+                  <button type="button" class="btn btn-secondary save" (click)="updateInfo(personalInfo)">{{config.SAVE}}</button>
                   <button type="button" class="btn btn-secondary cancel">{{config.CANCEL}}</button>
                 </div>
               </div>
