@@ -26,7 +26,7 @@ const gitId = config.app;
 
 //login function of git called by app.js
 function loginviagit() {
-<<<<<<< HEAD
+
     passport.serializeUser(function(user, done) {
         done(null, user);
     });
