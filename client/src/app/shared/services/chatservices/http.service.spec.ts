@@ -1,15 +1,80 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { async, inject, TestBed } from '@angular/core/testing';
+import {
+ MockBackend,
+ MockConnection
+} from '@angular/http/testing';
 
-import { HttpService } from './http.service';
+import { HttpModule, Http, XHRBackend, Response, ResponseOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { HttpService as httpservice } from './http.service';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/toPromise';
 
-describe('HttpService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [HttpService]
-    });
-  });
+describe('httpService ,(mockBackend)', () => {
 
-  it('should be created', inject([HttpService], (service: HttpService) => {
-    expect(service).toBeTruthy();
-  }));
-});
+
+ /*Initial configuration that will run before every testcase*/
+ beforeEach(() => {
+   TestBed.configureTestingModule({
+     imports: [HttpModule],
+     providers: [
+       httpservice,HttpModule,
+       { provide: XHRBackend, useClass: MockBackend }
+     ]
+   });
+ });
+
+/*Testcase for hitting socket service by username*/
+it('checkUserSession method should return userslist.',
+    inject([httpservice, XHRBackend], (httpservice, mockBackend) => {
+      const mockResponse = { params:'username'};
+      mockBackend.connections.subscribe((connection) => {
+        connection.mockRespond(new Response(new ResponseOptions({
+          body: JSON.stringify(mockResponse)
+        })));
+      });
+
+      httpservice.checkUserSession("username","true, 'HTTP fail.").subscribe((user) => {
+        expect(user.params).toEqual('username');
+      });
+   
+}));
+
+/*Testcase for getting messages by passing username to socketservice*/
+it('getMessages method should return messages.',
+    inject([httpservice, XHRBackend], (httpservice, mockBackend) => {
+      const mockResponse = { params:'username'};
+      mockBackend.connections.subscribe((connection) => {
+        connection.mockRespond(new Response(new ResponseOptions({
+          body: JSON.stringify(mockResponse)
+        })));
+      });
+
+      httpservice.getMessages("username","true, 'HTTP fail.").subscribe((user) => {
+        expect(user.params).toEqual('username');
+      });
+   
+}));
+
+ /*Testcase to check whether service is injected or not*/
+ it('can instantiate service when inject service',
+   inject([httpservice], (service: httpservice) => {
+     expect(service instanceof httpservice).toBe(true);
+   }));
+
+ /*Testcase to check whether mockdata is used instead of real database */
+ it('can provide the mockBackend as XHRBackend',
+   inject([XHRBackend], (backend: MockBackend) => {
+     expect(backend).not.toBeNull('backend should be provided');
+   }));
+
+ /*Testcase to check whether instance of service is created or not*/
+ it('can instantiate service with "new"', inject([Http], ( http: Http) => {
+   expect(http).not.toBeNull('http should be provided');
+   let service = new httpservice(http);
+   expect(service instanceof httpservice).toBe(true, 'new service should be ok');
+ }));
+
+})
