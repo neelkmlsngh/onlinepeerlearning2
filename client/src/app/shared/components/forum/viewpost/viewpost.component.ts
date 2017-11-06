@@ -72,7 +72,7 @@ export class ViewpostComponent implements OnInit {
   }
 
   //method for likes
-  like() {
+  like(value):any {
     if (this.likeflag == false) {
       if (this.dislikeflag == true) {
         this.likes++;
