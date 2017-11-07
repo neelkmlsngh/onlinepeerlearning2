@@ -3,24 +3,18 @@ import {
  MockBackend,
  MockConnection
 } from '@angular/http/testing';
-
 import { HttpModule, Http, XHRBackend, Response, ResponseOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/toPromise';
-import { ProfileService as profileService } from './profile.service';
+
+import { ProfileService } from './profile.service';
 
 describe('profileService ,(mockBackend)', () => {
-
 
  /*Initial configuration that will run before every testcase*/
  beforeEach(() => {
    TestBed.configureTestingModule({
      imports: [HttpModule],
      providers: [
-       profileService,
+       ProfileService,
        { provide: XHRBackend, useClass: MockBackend }
      ]
    });
@@ -28,8 +22,8 @@ describe('profileService ,(mockBackend)', () => {
 
  /*Testcase to check whether service is injected or not*/
  it('can instantiate service when inject service',
-   inject([profileService], (service: profileService) => {
-     expect(service instanceof profileService).toBe(true);
+   inject([ProfileService], (service: ProfileService) => {
+     expect(service instanceof ProfileService).toBe(true);
    }));
 
  /*Testcase to check whether mockdata is used instead of real database */
