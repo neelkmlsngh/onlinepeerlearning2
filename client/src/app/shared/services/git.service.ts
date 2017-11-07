@@ -311,11 +311,16 @@ export class GitService {
   }
 
   //method for authorization for creating personal access token
+<<<<<<< HEAD
 
   private authorizationToken(userName, password) {
 
     let data = btoa(userName + ':' + password)
 
+=======
+  private authorizationToken(username, password) {
+    let data = btoa(username + ':' + password)
+>>>>>>> bb971ea9fa76a12426ce67a6e0e276f813d0704f
     let headers = new Headers({ "Authorization": "Basic " + data });
 
     return new RequestOptions({ headers: headers })
@@ -325,9 +330,13 @@ export class GitService {
   //method for authorization
 
   private authoriZation() {
+<<<<<<< HEAD
 
     let headers = new Headers({ 'Authorization': config.giturls.AUTHORIZATION });
 
+=======
+    let headers = new Headers({ 'Authorization': config.giturls.AUTHORIZATION });
+>>>>>>> bb971ea9fa76a12426ce67a6e0e276f813d0704f
     return new RequestOptions({ headers: headers });
 
   }

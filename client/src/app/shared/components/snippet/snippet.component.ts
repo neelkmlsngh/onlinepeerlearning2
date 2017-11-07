@@ -33,7 +33,7 @@ export class SnippetComponent implements OnInit {
    CKEDITOR.replace('editor1', configurations);
    CKEDITOR.instances.editor1.setData("");
    this.code = CKEDITOR.instances.editor1.getData();
-   console.log(this.code)
+
   }
 
    // method to add code to snippet
@@ -44,7 +44,7 @@ export class SnippetComponent implements OnInit {
   		language: this.languag,
   		code: CKEDITOR.instances.editor1.getData()
   	}
-    console.log(obj);
+
   	this.snippet.addSnippet(obj)
   	.subscribe(res=>console.log(res))
   }
@@ -52,7 +52,6 @@ export class SnippetComponent implements OnInit {
    // method to set the prefered language
    mode(event) {
    this.languag = event.target.value;
-   console.log(this.languag);
    }
 
 

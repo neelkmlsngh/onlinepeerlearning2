@@ -217,14 +217,15 @@ export class ChatHomeComponent implements OnInit {
 }
 
 // method to be called when Upload button is clicked
-
   uploadFile(){
     this.profileService.uploadFile(this.currentUser.userId,this.formData,this.options)
   .subscribe(
     res=>{
       this.imgPath=res.data.avatarUrl;
-    },error=> 'UPLOAD'
+
+      },error=> 'UPLOAD'
     )
+
   }
 }
 
