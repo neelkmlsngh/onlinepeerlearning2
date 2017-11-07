@@ -38,6 +38,5 @@ export const config: any = {
     "host": "192.168.252.209",
     "port": "8081",
     "path": "/peerjs"
-
   }
 }

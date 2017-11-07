@@ -36,7 +36,7 @@
                 </button>
               </div>
               <h6>{{config.GITHUBPASSWORD}}</h6>
-              <input type="text" name="" #token (keyup)="onKey($event)">
+              <input type="password" name="" #token (keyup)="onKey($event)">
               <h6>{{config.ACCESSTOKEN}}</h6>
               <input type="text" name="" #tokenName (keyup)="onKey($event)">
               <input type="button" class="btn btn-sm btn-success submit" name="" value="create" (click)="createAccessToken(token.value,tokenName.value)">

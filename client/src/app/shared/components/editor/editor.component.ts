@@ -54,9 +54,8 @@ export class EditorComponent implements OnInit {
 
   /*execute the code and return output*/
   executecode() {
-    this.coderunner.executecode(this.jsValue)
+    this.coderunner.executecode(this.content)
       .subscribe(data => {
-        console.log(data)
         this.codeoutput = data
         this.dataObj = this.codeoutput._body
       })
@@ -69,7 +68,7 @@ export class EditorComponent implements OnInit {
   /*download Javascript file*/
   downloadJsFile() {
     let downloadLink = document.createElement("a");
-    let blob = new Blob([this.jsValue]);
+    let blob = new Blob([this.content]);
     let url = URL.createObjectURL(blob);
     downloadLink.href = url;
     downloadLink.download = "script.js";
@@ -85,7 +84,6 @@ export class EditorComponent implements OnInit {
     this.value += event
   }
 
-
   //method to create a file on git
   save(fileName, commitMessage) {
 
@@ -93,7 +91,6 @@ export class EditorComponent implements OnInit {
     //hitting the create file api to get sha of the latest commit
     this.gitService.createFile(this.reponame)
       .subscribe(repos => {
-        console.log(this.reponame);
         this.latestcommit = repos.object.sha;
 
         //hitting the commit file api to get sha of the tree commit
@@ -159,10 +156,8 @@ export class EditorComponent implements OnInit {
       })
   }
 
-
   //method to get the file and update the content on git
   update(commitMessage) {
-
     //getting the file sha
     this.gitService.getsha(this.reponame, this.filenamed)
       .subscribe(repos => {
@@ -202,8 +197,6 @@ export class EditorComponent implements OnInit {
           })
       })
   }
-
-
 
   //method to get the file and delete the content on git
   delete(commitMessage) {
