@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../shared/services/profile.service';
 import { mainConfig } from '../shared/config/main.config';
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -43,7 +44,8 @@ export class MainComponent implements OnInit {
   config = mainConfig;
   personalAccessToken: string;
 
-  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router, private profileService: ProfileService) {
+  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,
+   private authenticationService: AuthenticationService, private router: Router, private profileService: ProfileService) {
 
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
@@ -100,10 +102,7 @@ export class MainComponent implements OnInit {
       .subscribe(data => {
         this.fileData = data;
         this.text = this.fileData._body;
-        console.log(this.text)
-        // this.content.emit(this.text);
         this.content = this.text;
-        console.log("content data " + this.content);
       })
   }
 
@@ -133,7 +132,7 @@ export class MainComponent implements OnInit {
     user = {
       userId: userId
     }
-    this.authenticationservice.logoutEditor(user).subscribe((data1) => {
+    this.authenticationService.logoutEditor(user).subscribe((data1) => {
       if (data1.status == 200) {
         swal({
           timer: 2500,
@@ -163,7 +162,7 @@ export class MainComponent implements OnInit {
     this.gitService.createToken(cred, password)
       .subscribe(data => {
         this.accessToken = data.token;
-        console.log("token---------", this.accessToken);
+        this.authenticationService.pacToken=data.token;
         this.storeToken(this.accessToken)
       })
   }
@@ -177,12 +176,6 @@ export class MainComponent implements OnInit {
     let userId = currentUser.userId;
     this.profileService.storeAccessToken(userId, accessToken)
       .subscribe(response => {
-        console.log("DATA Object for token")
-        console.log("=============11111111111", response.data.accessToken)
-        if (response.data && response.data.accessToken) {
-          this.personalAccessToken = response.data.accessToken;
-          alert(this.personalAccessToken)
-        }
       })
   }
 }
