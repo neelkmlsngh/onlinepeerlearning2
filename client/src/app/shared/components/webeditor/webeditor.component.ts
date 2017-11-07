@@ -21,12 +21,12 @@ export class WebeditorComponent implements OnInit {
   }
   config = webEditorConfig;
 
-  @Input() content: any = this.config.webEditor.HTMLTEMP;
+  @Input() content: any;
   @Input() reponame: any;
   @Input() filenamed: any;
 
   cssValue: any = this.config.webEditor.CSSTEMP;
-  jsValue: any = "";
+  jsValue: any = this.config.webEditor.JSSTEMP;
   code: any;
   cssblob: any;
   htmlblob: any;
