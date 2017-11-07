@@ -168,15 +168,15 @@ export class GitService {
   }
 
   //method for authorization for creating personal access token
-  private authorizationToken(userName, password) {
-    let data = btoa(userName + ':' + password)
+  private authorizationToken(username, password) {
+    let data = btoa(username + ':' + password)
     let headers = new Headers({ "Authorization": "Basic " + data });
     return new RequestOptions({ headers: headers })
   }
 
   //method for authorization
   private authoriZation() {
-    let headers = new Headers({ 'Authorization': config.giturls.AUTHORIZATION});
+    let headers = new Headers({ 'Authorization': config.giturls.AUTHORIZATION });
     return new RequestOptions({ headers: headers });
   }
 }

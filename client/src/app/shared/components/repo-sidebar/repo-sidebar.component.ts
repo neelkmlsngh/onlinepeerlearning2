@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, TemplateRef } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
@@ -6,6 +6,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { EditorService } from '../../services/editor.service';
 import { GitService } from '../../services/git.service';
 import { config } from './../../config/repoSidebar.config';
+import { ProfileService } from '../../services/profile.service'
 
 @Component({
   selector: 'app-repo-sidebar',
@@ -14,7 +15,7 @@ import { config } from './../../config/repoSidebar.config';
 })
 
 export class RepoSidebarComponent implements OnInit {
-  config=config;
+  config = config;
   /*declaring all the required variables*/
   githubUser: any;
   selectedValue: any;
@@ -28,17 +29,30 @@ export class RepoSidebarComponent implements OnInit {
   public modalRef: BsModalRef;
   value: any;
   accessToken: any;
+  data1: any;
+  currentUser: any;
 
+  @Input() personalAccessToken;
   @Output() content = new EventEmitter < any > ();
   @Output() repoName = new EventEmitter < any > ();
   @Output() fileName = new EventEmitter < any > ();
 
-  constructor(private editorService: EditorService, private gitService: GitService, private modalService: BsModalService) {}
+  constructor(private editorService: EditorService, private gitService: GitService, private modalService: BsModalService, private profileService: ProfileService) {}
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
+    this.profileService.getDataFromDB(this.currentUser.userId)
+      .subscribe((res) => {
+        this.data1 = {
+          accessToken: res.data.accessToken
+        }
+        this.data1 = this.data1.accessToken
+      })
+
     this.gitService.getRepos()
       .subscribe(repos => {
         this.githubUser = repos;
+
       })
   }
 
@@ -48,7 +62,6 @@ export class RepoSidebarComponent implements OnInit {
 
   /*calling method to search repositery*/
   reposearch() {
-    console.log(this.selectedValue);
     this.reponamed = this.selectedValue;
     this.gitService.getTree(this.selectedValue)
       .subscribe(data => {
@@ -64,7 +77,6 @@ export class RepoSidebarComponent implements OnInit {
 
   /*method used to show repositery name and file name*/
   showFile(reponame, filename) {
-    console.log("bbbbbbbbbbbbbbbb")
     this.reponamed = this.selectedValue;
     this.gitService.openFolder(reponame, filename)
       .subscribe(
@@ -99,7 +111,6 @@ export class RepoSidebarComponent implements OnInit {
 
   //method for creating new repository
   createRepo(name, desc) {
-    this.accessToken = "aaaaaaaa";
     let repoName = {
       "name": name,
       "description": desc,
@@ -109,7 +120,13 @@ export class RepoSidebarComponent implements OnInit {
       "has_projects": false,
       "has_wiki": false
     }
-    this.gitService.createRepos(repoName, this.accessToken)
+    if (this.data1 == null) {
+      this.data1 = this.personalAccessToken;
+    } else {
+      this.data1 == this.data1;
+    }
+
+    this.gitService.createRepos(repoName, this.data1)
       .subscribe(data => {})
   }
 
