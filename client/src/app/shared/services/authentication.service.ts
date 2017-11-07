@@ -10,7 +10,8 @@ export class AuthenticationService {
   constructor(private http: Http, private router: Router) {}
 
 user:any
-
+// variable to hold github personal access token
+public pacToken:String;
 
 
   setUserInfo(obj) {
@@ -59,4 +60,20 @@ console.log('token',token)
       .map(res => res.json(), error => error.json());
    
   }
+
+// service method to get github personal access token of user using userid
+  getPersonalAccessToken(userId) {
+    const api = config.connect.apiURL + "/api/users/" + userId
+    return this.http
+      .get(api)
+      .map(res => res.json(), error => error.json());
+  }
+
+  //function to add personal access token in request header for github api
+  addPersonalAccessToken() {
+    console.log("inside addPersonalAccessToken")
+    let headers = new Headers({ 'Authorization': "Basic " + this.pacToken });
+    return new RequestOptions({ headers: headers });
+  }
+
 }

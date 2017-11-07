@@ -99,11 +99,51 @@ const saveAnswer = function(getValue, updateValue) {
     });
 };
 
+//save answer of question
+const saveLike = function(getValue, updateValue) {
+    return new Promise((resolve, reject) => {
+      console.log(typeof(updateValue));
+        forumModel.update({
+            '_id': getValue
+        }, {
+            $set: { 'likes': updateValue }
+        }, { upsert: true }, (err, data) => {
+            if (err) {
+                logger.error(logConfig.INTERNAL_ERROR + err);
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        })
+    });
+};
+
+//save dislike of question
+const saveDislike = function(getValue, updateValue) {
+    return new Promise((resolve, reject) => {
+      console.log(typeof(updateValue));
+        forumModel.update({
+            '_id': getValue
+        }, {
+            $set: { 'dislikes': updateValue }
+        }, { upsert: true }, (err, data) => {
+            if (err) {
+                logger.error(logConfig.INTERNAL_ERROR + err);
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        })
+    });
+};
+
 
 module.exports = {
     addPost: addPost,
     getPost: getPost,
     getSearch: getSearch,
     getPostById: getPostById,
-    saveAnswer: saveAnswer
+    saveAnswer: saveAnswer,
+    saveLike: saveLike,
+    saveDislike : saveDislike
 };

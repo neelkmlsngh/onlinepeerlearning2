@@ -55,8 +55,6 @@ describe('snippetservice ,(mockBackend)', () => {
         expect(snippet[1].title).toEqual('style');
         expect(snippet[1].language).toEqual('css');
         expect(snippet[1].code).toEqual('color:black');
-
-
       });
     }));
 

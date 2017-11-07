@@ -3,15 +3,9 @@ import {
  MockBackend,
  MockConnection
 } from '@angular/http/testing';
-
 import { HttpModule, Http, XHRBackend, Response, ResponseOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/toPromise';
-import { AuthenticationService as authenticationService } from './authentication.service';
+
+import { AuthenticationService } from './authentication.service';
 
 describe('authenticationService ,(mockBackend)', () => {
 
@@ -21,7 +15,7 @@ describe('authenticationService ,(mockBackend)', () => {
    TestBed.configureTestingModule({
      imports: [HttpModule],
      providers: [
-       authenticationService,
+       AuthenticationService,
        { provide: XHRBackend, useClass: MockBackend }
      ]
    });
@@ -29,8 +23,8 @@ describe('authenticationService ,(mockBackend)', () => {
 
  /*Testcase to check whether service is injected or not*/
  it('can instantiate service when inject service',
-   inject([authenticationService], (service: authenticationService) => {
-     expect(service instanceof authenticationService).toBe(true);
+   inject([AuthenticationService], (service: AuthenticationService) => {
+     expect(service instanceof AuthenticationService).toBe(true);
    }));
 
  /*Testcase to check whether mockdata is used instead of real database */
