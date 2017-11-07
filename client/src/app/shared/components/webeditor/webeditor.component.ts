@@ -115,10 +115,8 @@ export class WebeditorComponent implements OnInit {
   /*To return value in iframe*/
   render() {
     let source = this.prepareSource();
-    console.log("Source " + source)
-
     let iframe = document.querySelector('#output iframe')
-    console.log(iframe);
+    
     let iframe_doc = iframe['contentDocument'];
 
     iframe_doc.open();
