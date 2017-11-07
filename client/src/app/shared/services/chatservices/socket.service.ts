@@ -40,7 +40,6 @@ export class SocketService {
     this.socket.emit('chat-list', { userId: userId });
     let observable = new Observable(observer => {
       this.socket.on('chat-list-response', (data) => {
-        console.log(JSON.stringify(data, null, 2));
         observer.next(data);
       });
       return () => {
