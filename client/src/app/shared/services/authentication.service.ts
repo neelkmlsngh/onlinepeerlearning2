@@ -42,7 +42,7 @@ console.log('token',token)
    
      localStorage.removeItem('currentUser');
      return this.http
-      .put(config.connect.apiURL +'api/login/logout',user)
+      .put(config.connect.apiURL +'/api/login/logout',user)
       .map(res => res.json(), error => error.json());
     }
 

@@ -1,8 +1,10 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ForumService } from '../../../services/forum.service';
 import swal from 'sweetalert2';
-import { forumConfig } from './../../../config/forum.config';
+// import * as CKEDITOR from 'cke'
+import { CKEditorModule } from 'ng2-ckeditor';
 
+import { forumConfig } from './../../../config/forum.config';
 @Component({
   selector: 'app-newpost',
   templateUrl: './newpost.component.html',
@@ -22,7 +24,9 @@ export class NewpostComponent implements OnInit, AfterViewInit{
     obj:any={};
     addSnippet:any;
 
-  constructor(private forum: ForumService) {}
+  constructor(private forum: ForumService) {
+    
+  }
 
   ngOnInit() {
     this.date = new Date();
@@ -31,6 +35,7 @@ export class NewpostComponent implements OnInit, AfterViewInit{
     let year = this.date.getFullYear();
     this.date = day + '/' + month + '/' + year;
   }
+
   //method to call problemDescriptionConfigEditor
   ngAfterViewInit() {
     var configuration = {
