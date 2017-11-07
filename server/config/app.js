@@ -12,4 +12,3 @@ module.exports = {
   URL: "https://192.168.252.158:8080/"
 }
 
-
