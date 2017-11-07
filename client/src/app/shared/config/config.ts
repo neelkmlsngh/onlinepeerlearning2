@@ -1,14 +1,19 @@
 export const config: any = {
 
-  language: [
-    "javascript",
-    "html",
-    "css"
-  ],
-  con: {
-    title: "Add Snippet",
-    button: "Add Snippet"
-  },
+ language: [
+   "Javascript",
+   "Html",
+   "CSS"
+ ],
+ con: {
+   title: "Add Snippet",
+   DROP: "Select Language to Add Snippet",
+   button: "Add Snippet",
+   CKEDITOR:{
+    "REMOVED_BUTTONS":"Link,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript,addFile,Image,Table,Styles,Format,Maximize,HorizontalRule,Unlink,Blockquote,Indent,Outdent,RemoveFormat,Spell",
+    "REMOVED_PLUGINS":"list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize"
+           }
+ },
   connect:
   {
     apiURL : "https://192.168.252.207:8080",
@@ -40,5 +45,3 @@ export const config: any = {
     "path": "/peerjs"
   }
 }
-
-

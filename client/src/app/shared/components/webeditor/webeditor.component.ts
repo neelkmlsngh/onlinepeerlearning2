@@ -80,8 +80,8 @@ export class WebeditorComponent implements OnInit {
     this.snippet.getSnippet()
       .subscribe(res => {
 
-        this.html = res.filter(ele => ele.language === 'html');
-        this.css = res.filter(ele => ele.language === 'css');
+        this.html = res.filter(ele => ele.language === 'Html');
+        this.css = res.filter(ele => ele.language === 'CSS');
 
       })
   }
