@@ -26,7 +26,7 @@
       this.peer = new Peer({ host: config.peerserver.host, port: config.peerserver.port, path: config.peerserver.path }); //peer server connection
       setTimeout(() => {
         this.mypeerid = this.peer.id;
-        this.socketService.sendPeerId(this.mypeerid);
+        this.socketService.sendPeerId(this.peer.id);
       }, 3000);
 
       //on peer connection 
@@ -58,7 +58,6 @@ audioboxtoggle(){
   }
     //establish the peer connection
     connect() {
-      alert(this.socketService.getPeerId())
       let conn = this.peer.connect(this.socketService.getPeerId());
       conn.on('open', function() {
         conn.send('Message from that id');
@@ -70,7 +69,7 @@ audioboxtoggle(){
       let audio = this.myAudio.nativeElement;
       let localvar = this.peer;
       let fname = this.socketService.getPeerId()/*this.anotherid*/;
-
+      
       let n = < any > navigator;
 
       n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
