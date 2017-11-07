@@ -3,15 +3,10 @@ import {
  MockBackend,
  MockConnection
 } from '@angular/http/testing';
-
 import { HttpModule, Http, XHRBackend, Response, ResponseOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/toPromise';
+
 import { AuthenticationService} from './authentication.service';
-import { ForumService as forumService } from './forum.service';
+import { ForumService } from './forum.service';
 
 describe('forumService ,(mockBackend)', () => {
 
@@ -20,7 +15,7 @@ describe('forumService ,(mockBackend)', () => {
    TestBed.configureTestingModule({
      imports: [HttpModule],
      providers: [
-       forumService,AuthenticationService,
+       ForumService,AuthenticationService,
        { provide: XHRBackend, useClass: MockBackend }
      ]
    });
@@ -28,8 +23,8 @@ describe('forumService ,(mockBackend)', () => {
 
  /*Testcase to check whether service is injected or not*/
  it('can instantiate service when inject service',
-   inject([forumService], (service: forumService) => {
-     expect(service instanceof forumService).toBe(true);
+   inject([ForumService], (service: ForumService) => {
+     expect(service instanceof ForumService).toBe(true);
    }));
 
  /*Testcase to check whether mockdata is used instead of real database */
