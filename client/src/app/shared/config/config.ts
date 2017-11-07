@@ -26,7 +26,8 @@ export const config: any = {
     NEWCOMMITURL: "/git/commits",
     CONTENTURL: "/contents/",
     CREATEREPOS: "https://api.github.com/user/repos",
-    HOSTURLUSERS: "https://api.github.com/users/"
+    HOSTURLUSERS: "https://api.github.com/users/",
+    AUTHORIZATION: "Basic 450b330333db090ea1ff44a0c5ea2467524b652b"
   },
 
   forumConnect: {
@@ -40,3 +41,4 @@ export const config: any = {
 
   }
 }
+

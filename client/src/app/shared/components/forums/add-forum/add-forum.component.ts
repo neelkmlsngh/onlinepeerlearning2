@@ -5,15 +5,16 @@ import swal from 'sweetalert2';
 import { CKEditorModule } from 'ng2-ckeditor';
 
 import { forumConfig } from './../../../config/forum.config';
-@Component({
-  selector: 'app-newpost',
-  templateUrl: './newpost.component.html',
-  styleUrls: ['./newpost.component.css'],
-  providers: [ForumService]
-})
 
-export class NewpostComponent implements OnInit, AfterViewInit{
-    forumConfig=forumConfig;
+@Component({
+  selector: 'app-add-forum',
+  templateUrl: './add-forum.component.html',
+  styleUrls: ['./add-forum.component.css'],
+   providers: [ForumService]
+})
+export class AddForumComponent implements OnInit, AfterViewInit {
+
+forumConfig=forumConfig;
     ckeditorContent:any;
     date:any;
     userName:any;
@@ -31,9 +32,9 @@ export class NewpostComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit() {
-   this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
-   this.userName=this.currentUser.userName;
-   console.log(this.userName);
+   // this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
+   // this.userName=this.currentUser.userName;
+   // console.log(this.userName);
 
     this.date = new Date();
     let day = this.date.getDate();
@@ -44,15 +45,15 @@ export class NewpostComponent implements OnInit, AfterViewInit{
 
   //method to call problemDescriptionConfigEditor
   ngAfterViewInit() {
-    var configuration = {
-      extraPlugins: 'codesnippet',
-      codeSnippet_theme: 'monokai_sublime',
-      height: 356,
-      removeButtons:forumConfig.NEWPOST.CKEDITOR.REMOVED_BUTTONS,
-      removePlugins:forumConfig.NEWPOST.CKEDITOR.REMOVED_PLUGINS,
-    };
-    CKEDITOR.replace('addSnippet', configuration);
-    CKEDITOR.instances.addSnippet.setData("");
+    // var configuration = {
+    //   extraPlugins: 'codesnippet',
+    //   codeSnippet_theme: 'monokai_sublime',
+    //   height: 356,
+    //   removeButtons:forumConfig.NEWPOST.CKEDITOR.REMOVED_BUTTONS,
+    //   removePlugins:forumConfig.NEWPOST.CKEDITOR.REMOVED_PLUGINS,
+    // };
+    // CKEDITOR.replace('addSnippet', configuration);
+    // CKEDITOR.instances.addSnippet.setData("");
 
     var problemDescriptionConfig = {
       codeSnippet_theme: 'monokai_sublime',
@@ -60,17 +61,17 @@ export class NewpostComponent implements OnInit, AfterViewInit{
       removeButtons: 'About'
 
     };
-    CKEDITOR.replace('problemDescription', problemDescriptionConfig);
-    CKEDITOR.instances.problemDescription.setData("");
+    // CKEDITOR.replace('problemDescription', problemDescriptionConfig);
+    // CKEDITOR.instances.problemDescription.setData("");
   }
   //method to add post on forum
-  insertPost(data) {
+  insertPost() {
     // let user = JSON.parse(localStorage.getItem('currentUser'));
     // let userName=user.userName
     this.obj = {
       questionTitle: this.questionTitle,
-      codeSnippet: CKEDITOR.instances.addSnippet.getData(),
-      problemDescription: CKEDITOR.instances.problemDescription.getData(),
+      // codeSnippet: CKEDITOR.instances.addSnippet.getData(),
+      // problemDescription: CKEDITOR.instances.problemDescription.getData(),
       tags: this.tags,
       date: this.date,
      // userName:userName
@@ -97,4 +98,5 @@ export class NewpostComponent implements OnInit, AfterViewInit{
       }
     })
   }
+
 }

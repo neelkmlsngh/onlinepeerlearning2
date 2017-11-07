@@ -39,6 +39,7 @@ export class WebeditorComponent implements OnInit {
   windowRef: any;
   methodToExport: any;
   link: string = '';
+  showModalBox:boolean = false;
   public modalRef: BsModalRef;
 
   /*variable for snippet used in css*/
@@ -57,9 +58,15 @@ export class WebeditorComponent implements OnInit {
   mediaQueries: any;
 
   public openModal(template: TemplateRef < any > ) {
+    if(this.showModalBox==false){
     this.modalRef = this.modalService.show(template);
   }
+    this.showModal();
+  }
 
+  showModal() {
+   this.showModalBox = !this.showModalBox;
+ }
   calledFromOutside(url: string) {
     this.zone.run(() => {
       this.link = url;
@@ -78,9 +85,14 @@ export class WebeditorComponent implements OnInit {
       })
   }
 
-  show(code) {
-    this.htmlValue = code;
-    this.cssValue = code;
+/*snippet show in html editor*/
+  showHtml(code) {
+    this.htmlValue += " " + code;
+  }
+
+/*snippet show in css editor*/
+ showCss(code) {
+     this.cssValue+= " " + code;
   }
 
   /*Giving the basic syntax of an HTMl page on Iframe*/

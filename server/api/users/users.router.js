@@ -145,5 +145,4 @@ function fileUpload(fileObj) {
     });
 }
 
-
 module.exports = router;
