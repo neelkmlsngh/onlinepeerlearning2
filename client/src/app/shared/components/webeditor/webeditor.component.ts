@@ -21,9 +21,10 @@ export class WebeditorComponent implements OnInit {
   }
   config = webEditorConfig;
 
-  @Input() content: any;
+  @Input() content: any = this.config.webEditor.HTMLTEMP;
+  @Input() reponame: any;
+  @Input() filenamed: any;
 
-  htmlValue: any = this.config.webEditor.HTMLTEMP;
   cssValue: any = this.config.webEditor.CSSTEMP;
   jsValue: any = "";
   code: any;
@@ -87,7 +88,7 @@ export class WebeditorComponent implements OnInit {
 
 /*snippet show in html editor*/
   showHtml(code) {
-    this.htmlValue += " " + code;
+    this.content += " " + code;
   }
 
 /*snippet show in css editor*/
@@ -103,7 +104,7 @@ export class WebeditorComponent implements OnInit {
     let css = '';
     let js = '';
     // HTML
-    src = this.base_tpl.replace('</body>', this.htmlValue + '</body>');
+    src = this.base_tpl.replace('</body>', this.content + '</body>');
     // CSS
     css = '<style>' + this.cssValue + '</style>';
     src = src.replace('</head>', css + '</head>');
@@ -115,10 +116,8 @@ export class WebeditorComponent implements OnInit {
   /*To return value in iframe*/
   render() {
     let source = this.prepareSource();
-    console.log("Source " + source)
-
     let iframe = document.querySelector('#output iframe')
-    console.log(iframe);
+    
     let iframe_doc = iframe['contentDocument'];
 
     iframe_doc.open();
@@ -138,24 +137,24 @@ export class WebeditorComponent implements OnInit {
   };
   /*HTML snippet methods start*/
   comment() {
-    this.htmlValue += " " + this.comments;
+    this.content += " " + this.comments;
   }
 
   table() {
-    this.htmlValue += " " + this.tabels;
+    this.content += " " + this.tabels;
   }
 
   unodered() {
-    this.htmlValue += " " + this.unordered;
+    this.content += " " + this.unordered;
   }
   form() {
-    this.htmlValue += " " + this.forms;
+    this.content += " " + this.forms;
   }
   includeJS() {
-    this.htmlValue += " " + this.includeJs;
+    this.content += " " + this.includeJs;
   }
   includeCSS() {
-    this.htmlValue += " " + this.includeCss;
+    this.content += " " + this.includeCss;
   }
   /*HTML snippet methods ends*/
 
@@ -199,7 +198,7 @@ export class WebeditorComponent implements OnInit {
   downloadHtmlFile() {
     var downloadLink = document.createElement("a");
 
-    var blob = new Blob([this.htmlValue]);
+    var blob = new Blob([this.content]);
     this.htmlblob = blob;
     var url = URL.createObjectURL(blob);
     downloadLink.href = url;
@@ -245,7 +244,7 @@ export class WebeditorComponent implements OnInit {
   /*download Zip file*/
   downloadZip() {
     var zip = new JSZip();
-    zip.file("index.html", this.htmlValue);
+    zip.file("index.html", this.content);
     zip.file("style.css", this.cssValue);
     zip.file("script.js", this.jsValue);
     zip.generateAsync({ type: "blob" })

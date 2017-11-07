@@ -45,15 +45,15 @@ forumConfig=forumConfig;
 
   //method to call problemDescriptionConfigEditor
   ngAfterViewInit() {
-    // var configuration = {
-    //   extraPlugins: 'codesnippet',
-    //   codeSnippet_theme: 'monokai_sublime',
-    //   height: 356,
-    //   removeButtons:forumConfig.NEWPOST.CKEDITOR.REMOVED_BUTTONS,
-    //   removePlugins:forumConfig.NEWPOST.CKEDITOR.REMOVED_PLUGINS,
-    // };
-    // CKEDITOR.replace('addSnippet', configuration);
-    // CKEDITOR.instances.addSnippet.setData("");
+    var configuration = {
+      extraPlugins: 'codesnippet',
+      codeSnippet_theme: 'monokai_sublime',
+      height: 356,
+      removeButtons:forumConfig.NEWPOST.CKEDITOR.REMOVED_BUTTONS,
+      removePlugins:forumConfig.NEWPOST.CKEDITOR.REMOVED_PLUGINS,
+    };
+    CKEDITOR.replace('addSnippet', configuration);
+    CKEDITOR.instances.addSnippet.setData("");
 
     var problemDescriptionConfig = {
       codeSnippet_theme: 'monokai_sublime',
@@ -61,8 +61,8 @@ forumConfig=forumConfig;
       removeButtons: 'About'
 
     };
-    // CKEDITOR.replace('problemDescription', problemDescriptionConfig);
-    // CKEDITOR.instances.problemDescription.setData("");
+    CKEDITOR.replace('problemDescription', problemDescriptionConfig);
+    CKEDITOR.instances.problemDescription.setData("");
   }
   //method to add post on forum
   insertPost() {
@@ -70,8 +70,8 @@ forumConfig=forumConfig;
     // let userName=user.userName
     this.obj = {
       questionTitle: this.questionTitle,
-      // codeSnippet: CKEDITOR.instances.addSnippet.getData(),
-      // problemDescription: CKEDITOR.instances.problemDescription.getData(),
+      codeSnippet: CKEDITOR.instances.addSnippet.getData(),
+      problemDescription: CKEDITOR.instances.problemDescription.getData(),
       tags: this.tags,
       date: this.date,
      // userName:userName
@@ -79,7 +79,7 @@ forumConfig=forumConfig;
     this.forum.savePost(this.obj).subscribe((res) => {
 
       if (res) {
-        console.log(res)
+        // console.log(res)
         swal({ //alert message for success
           timer: 2200,
           title: "Posted Successfully",
