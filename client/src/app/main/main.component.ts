@@ -100,10 +100,7 @@ export class MainComponent implements OnInit {
       .subscribe(data => {
         this.fileData = data;
         this.text = this.fileData._body;
-        console.log(this.text)
-        // this.content.emit(this.text);
         this.content = this.text;
-        console.log("content data " + this.content);
       })
   }
 
@@ -163,7 +160,6 @@ export class MainComponent implements OnInit {
     this.gitService.createToken(cred, password)
       .subscribe(data => {
         this.accessToken = data.token;
-        console.log("token---------", this.accessToken);
         this.storeToken(this.accessToken)
       })
   }
@@ -177,11 +173,8 @@ export class MainComponent implements OnInit {
     let userId = currentUser.userId;
     this.profileService.storeAccessToken(userId, accessToken)
       .subscribe(response => {
-        console.log("DATA Object for token")
-        console.log("=============11111111111", response.data.accessToken)
         if (response.data && response.data.accessToken) {
           this.personalAccessToken = response.data.accessToken;
-          alert(this.personalAccessToken)
         }
       })
   }
