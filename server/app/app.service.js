@@ -195,6 +195,12 @@ function socketEvents(io) {
 		socket.on('send-file', (fileObj) => {
 			fileUploader.fileUpload(fileObj);
 		})
+
+		socket.on('send-peer-id', (mypeerid) => {
+			console.log(mypeerid);
+			io.to(toSocketId).emit(`send-peer-id-response`, mypeerid);
+		})
+
 	});
 }
 module.exports = {
