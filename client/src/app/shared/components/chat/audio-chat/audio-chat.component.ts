@@ -4,6 +4,8 @@
   import * as $ from 'jquery';
   import { SocketService } from '../../../services/chatservices/socket.service'
 
+  import { ChatHomeComponent } from '../chat-home/chat-home.component'
+
  @Component({
     selector: 'app-audio-chat',
     templateUrl: './audio-chat.component.html',
@@ -18,7 +20,7 @@
     mypeerid;
     flag: boolean = false;
 
-    constructor(private router: Router,private compiler :Compiler, private socketService:SocketService) {}
+    constructor(private router: Router,private compiler :Compiler, private socketService:SocketService, private chatHome : ChatHomeComponent) {}
 
     ngOnInit() {
       let audio = this.myAudio.nativeElement; //audio tag native element
@@ -26,7 +28,8 @@
       this.peer = new Peer({ host: config.peerserver.host, port: config.peerserver.port, path: config.peerserver.path }); //peer server connection
       setTimeout(() => {
         this.mypeerid = this.peer.id;
-        this.socketService.sendPeerId(this.peer.id);
+        let selectedUserId = this.chatHome.sendSelectedUserId();
+        this.socketService.sendPeerId(this.peer.id,selectedUserId);
       }, 3000);
 
       //on peer connection 
@@ -58,7 +61,8 @@ audioboxtoggle(){
   }
     //establish the peer connection
     connect() {
-      let conn = this.peer.connect(this.socketService.getPeerId());
+      this.anotherid = this.peer.connect(this.socketService.getPeerId());
+      let conn = this.anotherid
       conn.on('open', function() {
         conn.send('Message from that id');
       });
@@ -66,10 +70,19 @@ audioboxtoggle(){
 
     //audio call connect
     audioConnect() {
+      console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+     // console.log('====================================='+ JSON.stringify(this.socketService.getPeerId()));
       let audio = this.myAudio.nativeElement;
       let localvar = this.peer;
-      let fname = this.socketService.getPeerId()/*this.anotherid*/;
-      
+      this.socketService.getPeerId().subscribe(data=>{
+        console.log("Inside subscribe")
+        console.log(data)
+
+      },error=>{
+
+      })
+      let fname = this.peer.connect();
+
       let n = < any > navigator;
 
       n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);

@@ -7,7 +7,7 @@ module.exports = {
   SUCCESS_REDIRECT: 'https://192.168.252.152:8080/#/auth/',
   FAILURE_REDIRECT: 'https://192.168.252.152:8080/#',
   CLIENT_ID: 'd800be26e1dd031f7308',
-  CLIENT_SECRET: '666fc86271db872db67ed4a8ca50f4b5a2b95c8b',
+  CLIENT_SECRET: '4f34a102e4b2d71b77246520afee60d692da9b5a',
   CALLBACK_URL: "https://192.168.252.152:8080/api/login/auth/github/callback",
   URL: "https://192.168.252.152:8080/"
 }

@@ -53,13 +53,24 @@ export class SocketService {
     this.socket.emit('send-file', fileObj)
   }
 
-   sendPeerId(mypeerid){
-    this.socket.emit('send-peer-id', mypeerid)
+   sendPeerId(mypeerid,selectedUserId){
+    this.socket.emit('send-peer-id', mypeerid,selectedUserId)
+
+     /*this.socket.on('send-peer-id-response', (data) => {
+       alert(data)
+        return data
+      });*/
     }
 
     getPeerId(){
+      /*this.socket.on('send-peer-id-response', (data) => {
+        return data
+      });*/
+      console.log('Function called++++++++++++++++++++');
       let observable = new Observable(observer => {
-      this.socket.on('send-peer-id-response', (data) => {
+      this.socket.on('peer-id-response', (data) => {
+        console.log("inside observavle")
+        console.log(JSON.stringify(data));
         observer.next(data);
       });
       return () => {
