@@ -16,6 +16,8 @@ import { AuthenticationService } from '../../services/authentication.service'
 })
 
 export class RepoSidebarComponent implements OnInit {
+
+  @Input() mode:String;
   config = config;
   /*declaring all the required variables*/
   githubUser: any;
@@ -84,6 +86,10 @@ export class RepoSidebarComponent implements OnInit {
 
   /*method used to show repositery name and file name*/
   showFile(reponame, filename) {
+    console.log('mode--------------');
+    console.log(this.mode);
+    console.log('filename--------------');
+    console.log(filename);
     this.reponamed = this.selectedValue;
     this.gitService.openFolder(reponame, filename)
       .subscribe(
