@@ -87,11 +87,14 @@ export class ViewpostComponent implements OnInit {
       this.likes--;
       this.likeflag = false;
     }
+    this.forum.updateLike(value,this.likes)
+     .subscribe(res => {
+       console.log(res);
+      })
   }
 
   //method for dislikes
-  dislike() {
-
+  dislike(value):any {
     if (this.dislikeflag == false) {
       if (this.likeflag == true) {
         this.dislikes++;
@@ -106,6 +109,10 @@ export class ViewpostComponent implements OnInit {
       this.dislikes--;
       this.dislikeflag = false;
     }
+    this.forum.updateLike(value,this.dislikes)
+     .subscribe(res => {
+       console.log(res);
+      })
   }
   
   //method to navigate to answers

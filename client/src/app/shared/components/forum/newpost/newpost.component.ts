@@ -16,10 +16,12 @@ export class NewpostComponent implements OnInit, AfterViewInit{
     forumConfig=forumConfig;
     ckeditorContent:any;
     date:any;
+    userName:any;
     questionTitle:string;
     problemDescription:string;
     tags:string;
     dateCurr:any;
+    currentUser:any;
     codeSnippet:string;
     obj:any={};
     addSnippet:any;
@@ -29,6 +31,10 @@ export class NewpostComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit() {
+   this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
+   this.userName=this.currentUser.userName;
+   console.log(this.userName);
+
     this.date = new Date();
     let day = this.date.getDate();
     let month = this.date.getMonth() + 1;

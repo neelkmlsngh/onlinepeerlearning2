@@ -55,6 +55,25 @@ export class ForumService {
       .map(res => res.json());
 
   }
+
+   //method to update like
+  updateLike(id, value) {
+    console.log(value);
+    return this.http.
+    put('https://localhost:8080/api/forums/term/'+ id, value)
+      .map(res => res.json());
+  }
+
+  //method to update dislike
+    updateDislike(id, value) {
+    console.log(value);
+    return this.http.
+    put('https://localhost:8080/api/forums/term/'+ id, value)
+      .map(res => res.json());
+  }
+
+
+
   //method to give access to authorise user
   private authoriZation() {
     let token = this.autheticationservice.getToken();
