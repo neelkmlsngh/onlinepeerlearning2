@@ -3,5 +3,6 @@ export const mainConfig: any = {
 	OPTION1: "Html/Css",
 	OPTION2: "Javascript",
 	TOKENBUTTON: "Generate Token",
-	GITHUBPASSWORD: "Enter Github Password"	
+	GITHUBPASSWORD: "Enter Github Password",
+	ACCESSTOKEN: "Enter Token Name"
 };

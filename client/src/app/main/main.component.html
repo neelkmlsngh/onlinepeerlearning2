@@ -37,14 +37,16 @@
               </div>
               <h6>{{config.GITHUBPASSWORD}}</h6>
               <input type="text" name="" #token (keyup)="onKey($event)">
-              <input type="button" class="btn btn-sm btn-success submit" name="" value="create" (click)="createAccessToken(token.value)">
+              <h6>{{config.ACCESSTOKEN}}</h6>
+              <input type="text" name="" #tokenName (keyup)="onKey($event)">
+              <input type="button" class="btn btn-sm btn-success submit" name="" value="create" (click)="createAccessToken(token.value,tokenName.value)">
             </template>
           </div>
           <!-- repository side bar selector -->
-          <app-repo-sidebar (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
+          <app-repo-sidebar [personalAccessToken]="personalAccessToken" (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
         </div>
         <div *ngIf="mode=='javascript'" class="col-md-10">
-         <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-editor>
+          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-editor>
         </div>
         <div *ngIf="mode=='html'" class="col-md-10">
           <app-webeditor [content]="content"></app-webeditor>
@@ -64,4 +66,7 @@
       <app-chat-home></app-chat-home>
     </div>
   </div>
+  </div>
+  
 <!-- main component ends -->
+

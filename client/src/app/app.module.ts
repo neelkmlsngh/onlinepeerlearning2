@@ -75,14 +75,24 @@ let apiRoutes: Routes = [{
     component: MainComponent,
     /* canActivate: [AuthoriseGuard]*/
   },
+  // {
+  //   path: 'main/editor',
+  //   component: MainComponent,
+  //   /* canActivate: [AuthoriseGuard]*/
+  // },
   {
     path: 'view',
     component: ViewpostComponent,
     // canActivate: [AuthoriseGuard]
   },
   {
-    path: 'forums/:value',
-    component: DetailpostComponent,
+    // path: 'forums/:value',
+    path: 'forums',
+    component: ForumComponent,
+    // children:[{
+    //   path:'list',
+    //   component: DetailpostComponent
+    // }]
     // canActivate: [AuthoriseGuard]
   },
   {
@@ -127,7 +137,8 @@ let apiRoutes: Routes = [{
     VideoChatComponent,
     SnippetComponent,
     ChatHomeComponent,
-    ErrorpageComponent
+    ErrorpageComponent,
+    
   ],
 
   imports: [
