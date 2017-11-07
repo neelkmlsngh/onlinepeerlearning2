@@ -1,4 +1,6 @@
-<section id="code_editors">
+<!-- <section id="code_editors"> -->
+<div class="row">
+  <div class="col-md-12">
   <a href="javascript:void(0);" (click)="downloadJsFile()">config.editor.JAVASCRIPTNAME
               <i class="fa fa-download" aria-hidden="true" data-toggle="popover" title="Download JS File"></i>  </a>
   <div id="jsDiv"></div>
@@ -56,13 +58,23 @@
     <h6>{{config.editor.DELETE}} {{filenamed}}?</h6>
     <input type="button" class="btn btn-sm btn-success submit" name="" value="yes" (click)="delete(box.value)">
   </template>
+  </div>
+  </div>
   <!-- Ace Editor -->
+  <div class="row">
+  <div class="col-md-6">
   <div ace-editor [(text)]="content" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" class="code_box" id="javascript">
   </div>
-</section>
+  </div>
+
+  <div class="col-md-6">Output:
+    <div id="output">{{dataObj}}</div>
+  </div>
+</div>
+<!-- </section> -->
 <!-- Output section -->
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-12">Output:
     <div class="output">{{dataObj}}</div>
   </div>
-</div>
+</div> -->

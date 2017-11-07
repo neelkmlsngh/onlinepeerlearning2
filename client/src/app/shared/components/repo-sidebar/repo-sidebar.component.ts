@@ -52,8 +52,13 @@ export class RepoSidebarComponent implements OnInit {
     this.reponamed = this.selectedValue;
     this.gitService.getTree(this.selectedValue)
       .subscribe(data => {
+        console.log('data------------------')
+        console.log(data)
         this.data = data;
         this.repoName.emit(this.reponamed);
+      }, err =>{
+        console.log('err------------------')
+        console.log(err)
       })
   }
 

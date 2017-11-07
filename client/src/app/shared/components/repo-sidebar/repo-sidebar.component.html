@@ -8,6 +8,7 @@
       <div class="card-block">
         <div class="list-group">
           <select name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="reposearch()">
+            <option value=""> Select Your Repository</option>
             <option *ngFor="let repo of githubUser">{{repo.name}}</option>
           </select>
           <!-- making drop down containing the list of repositeries -->
