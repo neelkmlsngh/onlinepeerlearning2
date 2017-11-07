@@ -3,6 +3,7 @@ export const webEditorConfig: any = {
     HTML: "HTML",
     CSS: "CSS",
     JS: "JavaScript",
+    SCREENSHARE: "Share Your Screen",
     ADD: "Add Snippet",
     HTMLTEMP: "<h1>Hello World</h1>",
     CSSTEMP: "body{color:red}",

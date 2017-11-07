@@ -89,4 +89,42 @@ router.put('/:id', (req, res) => {
     }
 });
 
+//add likes to paticular question post
+router.put('/term/:id', (req, res) => {
+    let getValue = req.params.id;
+    let forumUpdate = req.body.likes;
+    console.log(forumUpdate);
+    try {
+        forumCtrl.saveLike(getValue, forumUpdate).then((successResult) => {
+            logger.info(logConfig.ADD_ANSWER_ON_QUESTION);
+            return res.json({ status: 201, message: logConfig.ADD_ANSWER_ON_QUESTION, data: successResult });
+        }, (errResult) => {
+            logger.error(errResult);
+            return res.json({ status: 200, message: logConfig.ADD_ANSWER_ON_QUESTION_ERROR, data: errResult });
+        });
+    } catch (err) {
+        logger.fatal(logConfig.EXCEPTION_FOUND + err);
+        return res.json({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
+    }
+});
+
+//add dislikes to paticular question post
+router.put('/dislike/:id', (req, res) => {
+    let getValue = req.params.id;
+    let forumUpdate = req.body.dislikes;
+    console.log(forumUpdate);
+    try {
+        forumCtrl.saveDislike(getValue, forumUpdate).then((successResult) => {
+            logger.info(logConfig.ADD_ANSWER_ON_QUESTION);
+            return res.json({ status: 201, message: logConfig.ADD_ANSWER_ON_QUESTION, data: successResult });
+        }, (errResult) => {
+            logger.error(errResult);
+            return res.json({ status: 200, message: logConfig.ADD_ANSWER_ON_QUESTION_ERROR, data: errResult });
+        });
+    } catch (err) {
+        logger.fatal(logConfig.EXCEPTION_FOUND + err);
+        return res.json({ status: 500, message: logConfig.EXCEPTION_FOUND, data: err });
+    }
+});
+
 module.exports = router;

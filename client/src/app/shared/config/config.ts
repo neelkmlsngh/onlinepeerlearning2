@@ -35,9 +35,9 @@ export const config: any = {
     "SEARCHAPIURL": 'api/forums/term/'
   },
   peerserver: {
-    "host": "192.168.253.1",
+    "host": "192.168.252.160",
     "port": "8081",
     "path": "/peerjs"
-
   }
 }
+

@@ -10,14 +10,11 @@ import { forumConfig } from './../../../config/forum.config';
 import * as $ from 'jquery'
 
 @Component({
-  selector: 'app-detailpost',
-  templateUrl: './detailpost.component.html',
-  styleUrls: ['./detailpost.component.css']
+  selector: 'app-view-forum',
+  templateUrl: './view-forum.component.html',
+  styleUrls: ['./view-forum.component.css']
 })
-
-//forum questions details class
-export class DetailpostComponent implements OnInit, AfterViewInit {
-
+export class ViewForumComponent implements OnInit {
   constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {}
   answerText:string;
   addSnippet:any;
@@ -33,6 +30,7 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
   userId: any;
   date:any;
   forumConfig=forumConfig;
+
   ngOnInit() {
        this.date = new Date();
     let day = this.date.getDate();
@@ -54,15 +52,15 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
   }
   //method to load editor to postAnswer
   ngAfterViewInit() {
-    var configuration = {
-      extraPlugins: 'codesnippet',
-      codeSnippet_theme: 'monokai_sublime',
-      height: 356,
-      removeButtons:forumConfig.NEWPOST.CKEDITOR.REMOVED_BUTTONS,
-      removePlugins:forumConfig.NEWPOST.CKEDITOR.REMOVED_PLUGINS,
-    };
-    CKEDITOR.replace('addSnippet', configuration);
-    CKEDITOR.instances.addSnippet.setData("");
+    // var configuration = {
+    //   extraPlugins: 'codesnippet',
+    //   codeSnippet_theme: 'monokai_sublime',
+    //   height: 356,
+    //   removeButtons:forumConfig.NEWPOST.CKEDITOR.REMOVED_BUTTONS,
+    //   removePlugins:forumConfig.NEWPOST.CKEDITOR.REMOVED_PLUGINS,
+    // };
+    // CKEDITOR.replace('addSnippet', configuration);
+    // CKEDITOR.instances.addSnippet.setData("");
 
     var answerTextConfig = {
       codeSnippet_theme: 'monokai_sublime',
@@ -70,16 +68,16 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
       removeButtons: 'About'
 
     };
-    CKEDITOR.replace('answerText', answerTextConfig);
-    CKEDITOR.instances.answerText.setData("");
+    // CKEDITOR.replace('answerText', answerTextConfig);
+    // CKEDITOR.instances.answerText.setData("");
   }
 
   //method to postAnswer
   postAnswer() {
     this.obj = {
       username: "prashant",
-      answer:CKEDITOR.instances.answerText.getData(),
-      codeSnippet: CKEDITOR.instances.addSnippet.getData(),
+      // answer:CKEDITOR.instances.answerText.getData(),
+      // codeSnippet: CKEDITOR.instances.addSnippet.getData(),
       date: this.date
     }
     this.forum.saveAnswer(this.data._id, this.obj)
@@ -87,4 +85,5 @@ export class DetailpostComponent implements OnInit, AfterViewInit {
         console.log(res);
       })
   }
+
 }
