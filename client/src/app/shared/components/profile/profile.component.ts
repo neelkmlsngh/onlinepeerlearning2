@@ -39,7 +39,7 @@ export class ProfileComponent implements OnInit {
  }
  // method to be called when the component loads
  ngOnInit() {
-   this.currentUser= JSON.parse(localStorage.getItem('currentUser'))
+/*   this.currentUser= JSON.parse(localStorage.getItem('currentUser'))
    this.profileService.getDataFromDB(this.currentUser.userId)
    .subscribe((res)=>{
      this.data={
@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
      }
      this.imgPath=this.data.avatar_url;
      this.displayData(this.data);
-   })
+   })*/
  }
  // method to display data when the component loads---method called in ngOnInit()
  displayData(data:any){
