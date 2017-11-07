@@ -24,9 +24,12 @@
             <option *ngFor="let repo of githubUser">{{repo.name}}</option>
           </select>
           <!-- making drop down containing the list of repositeries -->
+          <div *ngIf="isTree">
           <a *ngFor="let repo of data" type="button" class="list-group-item list-group-item-action" (click)="showFile(selectedValue, repo.name)">
             <h6 class="list-group-item-heading">{{repo.name}}</h6>
           </a>
+          </div>
+          <div *ngIf="!isTree"> {{emptyRepo}}</div>
           <!-- end of drop down -->
         </div>
       </div>
