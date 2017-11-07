@@ -31,10 +31,6 @@ import { HttpService } from './shared/services/chatservices/http.service';
 import { ChatService } from './shared/services/chatservices/chat.service';
 
 import { MainComponent } from './main/main.component';
-import { ForumComponent } from './shared/components/forum/forum.component';
-import { ViewpostComponent } from './shared/components/forum/viewpost/viewpost.component';
-import { DetailpostComponent } from './shared/components/forum/detailpost/detailpost.component';
-import { NewpostComponent } from './shared/components/forum/newpost/newpost.component';
 import { ForumService } from './shared/services/forum.service';
 import { CKEditorModule } from 'ng2-ckeditor';
 
@@ -57,6 +53,9 @@ import { CoderunnerService } from './shared/services/coderunner.service';
 import { ChatHomeComponent } from './shared/components/chat/chat-home/chat-home.component';
 
 import { ErrorpageComponent } from './shared/components/errorpage/errorpage.component';
+import { ForumsComponent } from './shared/components/forums/forums.component';
+import { AddForumComponent } from './shared/components/forums/add-forum/add-forum.component';
+import { ViewForumComponent } from './shared/components/forums/view-forum/view-forum.component';
 
 let apiRoutes: Routes = [{
     path: '',
@@ -75,32 +74,25 @@ let apiRoutes: Routes = [{
     component: MainComponent,
     /* canActivate: [AuthoriseGuard]*/
   },
-  // {
-  //   path: 'main/editor',
-  //   component: MainComponent,
-  //   /* canActivate: [AuthoriseGuard]*/
-  // },
-  {
-    path: 'view',
-    component: ViewpostComponent,
-    // canActivate: [AuthoriseGuard]
-  },
-  {
+   {
     // path: 'forums/:value',
     path: 'forums',
-    component: ForumComponent,
-    // children:[{
-    //   path:'list',
-    //   component: DetailpostComponent
-    // }]
+    // component: ForumsComponent,
+    children:[
+    {
+      path:'',
+      component: ForumsComponent
+    },{
+      path:'add',
+      component: AddForumComponent
+    },
+    {
+      path:'view',
+      component: ViewForumComponent
+    }]
     // canActivate: [AuthoriseGuard]
   },
-  {
-    path: 'add',
-    component: NewpostComponent,
-  },
-
-  {
+   {
     path: 'profile',
     component: ProfileComponent,
     //canActivate: [AuthoriseGuard]
@@ -127,10 +119,6 @@ let apiRoutes: Routes = [{
     WebeditorComponent,
     ProfileComponent,
     MainComponent,
-    ViewpostComponent,
-    DetailpostComponent,
-    NewpostComponent,
-    ForumComponent,
     WebeditorComponent,
     AuthenticateComponent,
     AudioChatComponent,
@@ -138,6 +126,9 @@ let apiRoutes: Routes = [{
     SnippetComponent,
     ChatHomeComponent,
     ErrorpageComponent,
+    ForumsComponent,
+    AddForumComponent,
+    ViewForumComponent,
     
   ],
 
