@@ -1,27 +1,28 @@
 export const config: any = {
 
- language: [
-   "Javascript",
-   "Html",
-   "CSS"
- ],
- con: {
-   title: "Add Snippet",
-   DROP: "Select Language to Add Snippet",
-   button: "Add Snippet",
-   CKEDITOR:{
-    "REMOVED_BUTTONS":"Link,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript,addFile,Image,Table,Styles,Format,Maximize,HorizontalRule,Unlink,Blockquote,Indent,Outdent,RemoveFormat,Spell",
-    "REMOVED_PLUGINS":"list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize"
-           }
- },
-  connect:
-  {
+  language: [
+    "Javascript",
+    "Html",
+    "CSS"
+  ],
+  con: {
+    title: "Add Snippet",
+    DROP: "Select Language to Add Snippet",
+    button: "Add Snippet",
+    TEXTAREA: "Enter your code Snippet here",
+    ADDSNIPP: "Add Title for Snippet",
+    CKEDITOR: {
+      "REMOVED_BUTTONS": "Link,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript,addFile,Image,Table,Styles,Format,Maximize,HorizontalRule,Unlink,Blockquote,Indent,Outdent,RemoveFormat,Spell",
+      "REMOVED_PLUGINS": "list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize"
+    }
+  },
+  connect: {
 
-    apiURL : "https://192.168.252.204:8080",
-    vmURL : "https://192.168.252.204:3030",
-    CALLBACK_URL:"https://192.168.252.204:8080/api/login/auth/github",
-    CLIENT_ID : 'eda558d85f4b8157078f',
-    CLIENT_SECRET : '2456afab849c7fd43d4977de7f1187b8d5e74329'
+    apiURL: "https://192.168.252.204:8080",
+    vmURL: "https://192.168.252.204:3030",
+    CALLBACK_URL: "https://192.168.252.204:8080/api/login/auth/github",
+    CLIENT_ID: 'eda558d85f4b8157078f',
+    CLIENT_SECRET: '2456afab849c7fd43d4977de7f1187b8d5e74329'
 
   },
 
