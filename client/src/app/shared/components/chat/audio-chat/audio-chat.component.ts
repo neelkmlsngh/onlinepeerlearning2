@@ -61,7 +61,12 @@ audioboxtoggle(){
   }
     //establish the peer connection
     connect() {
-      this.anotherid = this.peer.connect(this.socketService.getPeerId());
+      this.anotherid = this.peer.connect(this.socketService.getPeerId().subscribe(data=>{
+          return data
+      },error=>{
+
+      }));
+      
       let conn = this.anotherid
       conn.on('open', function() {
         conn.send('Message from that id');
@@ -70,18 +75,14 @@ audioboxtoggle(){
 
     //audio call connect
     audioConnect() {
-      console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-     // console.log('====================================='+ JSON.stringify(this.socketService.getPeerId()));
       let audio = this.myAudio.nativeElement;
       let localvar = this.peer;
-      this.socketService.getPeerId().subscribe(data=>{
-        console.log("Inside subscribe")
-        console.log(data)
-
+      let getPeerId = this.socketService.getPeerId().subscribe(data=>{
+          return data
       },error=>{
 
       })
-      let fname = this.peer.connect();
+      let fname = this.peer.connect(getPeerId);
 
       let n = < any > navigator;
 

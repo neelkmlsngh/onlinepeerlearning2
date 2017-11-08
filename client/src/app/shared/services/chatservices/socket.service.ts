@@ -63,15 +63,9 @@ export class SocketService {
     }
 
     getPeerId(){
-      /*this.socket.on('send-peer-id-response', (data) => {
-        return data
-      });*/
-      console.log('Function called++++++++++++++++++++');
       let observable = new Observable(observer => {
       this.socket.on('peer-id-response', (data) => {
-        console.log("inside observavle")
-        console.log(JSON.stringify(data));
-        observer.next(data);
+        observer.next(data.id);
       });
       return () => {
         this.socket.disconnect();

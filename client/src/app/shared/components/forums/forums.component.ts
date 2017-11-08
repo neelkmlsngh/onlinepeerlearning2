@@ -7,17 +7,17 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import 'rxjs/Rx';
 
-import { ForumService } from '../../../services/forum.service';
-import { forumConfig } from './../../../config/forum.config';
+import { ForumService } from '../../services/forum.service';
+import { forumConfig } from './../../config/forum.config';
+
 
 @Component({
-  selector: 'app-viewpost',
-  templateUrl: './viewpost.component.html',
-  styleUrls: ['./viewpost.component.css'],
-  providers: [ForumService]
+  selector: 'app-forums',
+  templateUrl: './forums.component.html',
+  styleUrls: ['./forums.component.css']
 })
+export class ForumsComponent implements OnInit {
 
-export class ViewpostComponent implements OnInit {
   likes = 0;
   likeflag = false;
   dislikeflag = false;
@@ -28,27 +28,15 @@ export class ViewpostComponent implements OnInit {
   answerlength: any = [];
   p: number[] = [];
   forumConfig=forumConfig;
-  public modalRef: BsModalRef;
-  public configModal = {
-    animated: true,
-    keyboard: true,
-    backdrop: true,
-    ignoreBackdropClick: false
-  };
 
-  constructor(private forum: ForumService, private router: Router, private modalService: BsModalService) {
+  constructor(private forum: ForumService, private router: Router) { }
 
-  }
-  
-  // method to show posts on forum
+ // method to show posts on forum
   ngOnInit() {
     this.viewPost();
   }
 
-  //open modal window 
-  public clickHelpModal(template: TemplateRef < any > ) {
-    this.modalRef = this.modalService.show(template, Object.assign({}, this.configModal, { class: 'gray modal-lg' }));
-  }
+
 
   //method call posts from service
   viewPost() {
@@ -68,7 +56,7 @@ export class ViewpostComponent implements OnInit {
 
   //method to navigate to questions detail
   getPostDetail(value): any {
-    this.router.navigate(['/forums' ,value])
+    this.router.navigate(['forums','view' ,value])
   }
 
   //method for likes
@@ -87,11 +75,14 @@ export class ViewpostComponent implements OnInit {
       this.likes--;
       this.likeflag = false;
     }
+    this.forum.updateLike(value,this.likes)
+     .subscribe(res => {
+       console.log(res);
+      })
   }
 
   //method for dislikes
-  dislike() {
-
+  dislike(value):any {
     if (this.dislikeflag == false) {
       if (this.likeflag == true) {
         this.dislikes++;
@@ -106,6 +97,10 @@ export class ViewpostComponent implements OnInit {
       this.dislikes--;
       this.dislikeflag = false;
     }
+    this.forum.updateLike(value,this.dislikes)
+     .subscribe(res => {
+       console.log(res);
+      })
   }
   
   //method to navigate to answers

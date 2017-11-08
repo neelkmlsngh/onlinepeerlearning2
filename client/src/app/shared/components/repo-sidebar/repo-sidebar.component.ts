@@ -7,6 +7,7 @@ import { EditorService } from '../../services/editor.service';
 import { GitService } from '../../services/git.service';
 import { config } from './../../config/repoSidebar.config';
 import { ProfileService } from '../../services/profile.service'
+import { AuthenticationService } from '../../services/authentication.service'
 
 @Component({
   selector: 'app-repo-sidebar',
@@ -15,6 +16,8 @@ import { ProfileService } from '../../services/profile.service'
 })
 
 export class RepoSidebarComponent implements OnInit {
+
+  @Input() mode:String;
   config = config;
   /*declaring all the required variables*/
   githubUser: any;
@@ -31,22 +34,27 @@ export class RepoSidebarComponent implements OnInit {
   accessToken: any;
   data1: any;
   currentUser: any;
+  isTree : Boolean = true;
+  public emptyRepo: String;
 
-  @Input() personalAccessToken;
+  // @Input() personalAccessToken;
   @Output() content = new EventEmitter < any > ();
   @Output() repoName = new EventEmitter < any > ();
   @Output() fileName = new EventEmitter < any > ();
 
-  constructor(private editorService: EditorService, private gitService: GitService, private modalService: BsModalService, private profileService: ProfileService) {}
+  constructor(private editorService: EditorService, private gitService: GitService, 
+    private modalService: BsModalService, private profileService: ProfileService,
+    private authenticationService:AuthenticationService) {}
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
-    this.profileService.getDataFromDB(this.currentUser.userId)
+    this.authenticationService.getPersonalAccessToken(this.currentUser.userId)
       .subscribe((res) => {
-        this.data1 = {
-          accessToken: res.data.accessToken
-        }
-        this.data1 = this.data1.accessToken
+        this.authenticationService.pacToken=res.data.accessToken;
+        // this.data1 = {
+        //   accessToken: res.data.accessToken
+        // }
+        // this.data1 = this.data1.accessToken
       })
 
     this.gitService.getRepos()
@@ -65,18 +73,23 @@ export class RepoSidebarComponent implements OnInit {
     this.reponamed = this.selectedValue;
     this.gitService.getTree(this.selectedValue)
       .subscribe(data => {
-        console.log('data------------------')
-        console.log(data)
+        this.isTree=true;
         this.data = data;
         this.repoName.emit(this.reponamed);
       }, err =>{
-        console.log('err------------------')
-        console.log(err)
+        this.isTree=false;
+        if(err === 404)
+        this.emptyRepo= "Empty repository. Please add new file."
+        
       })
   }
 
   /*method used to show repositery name and file name*/
   showFile(reponame, filename) {
+    console.log('mode--------------');
+    console.log(this.mode);
+    console.log('filename--------------');
+    console.log(filename);
     this.reponamed = this.selectedValue;
     this.gitService.openFolder(reponame, filename)
       .subscribe(
@@ -120,13 +133,13 @@ export class RepoSidebarComponent implements OnInit {
       "has_projects": false,
       "has_wiki": false
     }
-    if (this.data1 == null) {
-      this.data1 = this.personalAccessToken;
-    } else {
-      this.data1 == this.data1;
-    }
+    // if (this.data1 == null) {
+    //   this.data1 = this.personalAccessToken;
+    // } else {
+    //   this.data1 == this.data1;
+    // }
 
-    this.gitService.createRepos(repoName, this.data1)
+    this.gitService.createRepos(repoName)
       .subscribe(data => {})
   }
 

@@ -1,8 +1,8 @@
-<!-- <div class="heading">
+<div class="heading">
   <hr>
   <h1 class="text-center display-4">{{config.USER_PROFILE_PAGE}}</h1>
   <hr>
-</div> -->
+</div>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -16,12 +16,12 @@
       <div class="card card-inverse card-info">
         <img class="card-img-top" [src]="imgPath">
         <div class="card-block">
-          <h4 class="card-title mt-3"> LOGIN NAME:{{data.name}}</h4>
+          <h6 class="card-title mt-3">{{data.name}}</h6>
           <div class="meta card-text">
           </div>
           <div class="card-text">
-            USER ID:{{data.userid}}
-            <br> PUBLIC REPOSITORIES:{{data.public_repos}}
+            User ID: {{data.userid}}
+            <br> Repositories:{{data.public_repos}}
           </div>
         </div>
         <!-- Upload profile Image Button -->
@@ -37,25 +37,31 @@
       <!-- Nav pills tab -->
       <mat-tab-group>
         <!-- GitHub information -->
-        <mat-tab label="GitHub Info">
+        <mat-tab label="Personal Info">
           <div class="col-sm-9 personalinfocard">
             <div class="card card-inverse card-info">
               <div class="card-block">
-                <h4 class="card-title mt-3">Personal Info</h4>
+                <h4 class="card-title mt-3">Who Am I</h4>
                 <div class="meta card-text">
-                  <a>dasfasfasfasfasfasf</a>
+                  <a></a>
                 </div>
                 <div class="card-text">
+                  Name:{{data.firstName}} {{data.lastName}}
+                  <br> Email:{{data.email}}
+                  <br> Company:{{data.company}}
+                  <br> Website:{{data.website}}
+                  <br> Bio:{{data.bio}}
+                  <br> Gender:{{data.gender}}
+                  <br>
                 </div>
               </div>
-              <!-- Upload profile Image Button -->
               <div class="card-footer">
               </div>
             </div>
           </div>
         </mat-tab>
         <!-- Personal Information -->
-        <mat-tab label="Personal Info">
+        <mat-tab label="Edit Info">
           <div class="card-block">
             <form class="form" role="form" autocomplete="off" [formGroup]="personalInfo">
               <div class="form-group ">

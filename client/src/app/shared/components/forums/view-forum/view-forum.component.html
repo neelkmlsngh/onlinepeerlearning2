@@ -1,47 +1,14 @@
-<!-- starting of nvabar -->
-<form #postSubmit='ngForm'>
-  <!-- <nav class="navbar navbar-expand-lg navbar-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand text-white" href="">{{forumConfig.DETAILPOST.KNOWLEDGE_BASE}}</a>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link text-white" href="" routerLink="/view">{{forumConfig.DETAILPOST.HOME}}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="" routerLink="/view">{{forumConfig.DETAILPOST.QUESTIONS}}</a>
-        </li>
-       
-        <li class="nav-item">
-          <a class="nav-link disabled text-white" href="#"></a>
-        </li>
-      </ul>
-      <span class="navbar-text white-text">
-              <a class="text-white" href="#">
-                 <i class="fa fa-question-circle fa-lg text-white"></i>{{forumConfig.DETAILPOST.HELP}}</a>
-        </span>
-      <span class="navbar-text white-text ml-4 mr-2">
-            <a class="text-white" href="#">
-                 <i class="fa fa-sign-in fa-lg text-white"></i>{{forumConfig.DETAILPOST.LOGIN}}</a>
-        </span>
-    </div>
-  </nav> -->
-  <!-- end of navbar -->
-  <!-- start of container -->
-  <!-- <div class="container-fluid bg-light"> -->
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
       <!-- navbar selector -->
       <app-navbar></app-navbar>
     </div>
   </div>
-    <div class="row">
-      <div class="col-sm-2">
-      </div>
-      <div class="col-sm-8">
-        <div class="heading h4 mt-4">
+  <div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-12">
+    <div class="heading h4 mt-4">
           {{forumConfig.DETAILPOST.ALL_QUESTIONS}}
         </div>
         <hr>
@@ -146,14 +113,12 @@
         </div>
         <!-- end of container -->
       </div>
-      <div class="col-sm-2">
-      </div>
     </div>
-    <div class="row">
+    </div>
+ <div class="row">
     <div class="col-md-12">
       <!-- footer selector -->
       <app-footer></app-footer>
     </div>
   </div>
-  <!-- </div> -->
-</form>
+  </div>

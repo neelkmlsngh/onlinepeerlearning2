@@ -179,9 +179,6 @@ function socketEvents(io) {
 				delete data.toSocketId;
 				data.timestamp = Math.floor(new Date() / 1000);
 				helper.insertMessages(data, (error, response) => {
-					console.log("Message ==========");
-					console.log(data);
-					console.log(toSocketId);
 					io.to(toSocketId).emit(`add-message-response`, data);
 				});
 			}
@@ -200,8 +197,6 @@ function socketEvents(io) {
 		})
 
 		socket.on('send-peer-id', (mypeerid,selectedUserId) => {
-			console.log("==============================="+selectedUserId+"**************************************** "+mypeerid);
-			
 			io.to(selectedUserId).emit(`peer-id-response`, {id: mypeerid});
 		})
 

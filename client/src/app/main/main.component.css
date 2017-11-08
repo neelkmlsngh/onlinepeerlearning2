@@ -7,11 +7,16 @@ html {
 
 .backgroundcolor {
   background-color: #f1f1f2;
+  font-size: 12px;
 }
 
 .card {
   height: 80%;
   background-color: #a1d6e2;
+}
+
+.main{
+  font-size: 10px;
 }
 
 select {
