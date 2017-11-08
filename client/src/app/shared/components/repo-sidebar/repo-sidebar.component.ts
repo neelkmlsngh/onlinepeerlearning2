@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import swal from 'sweetalert2';
 
 /*import third party libraries*/
 import { EditorService } from '../../services/editor.service';
@@ -17,7 +18,7 @@ import { AuthenticationService } from '../../services/authentication.service'
 
 export class RepoSidebarComponent implements OnInit {
 
-  @Input() mode:String;
+  @Input() mode: String;
   config = config;
   /*declaring all the required variables*/
   githubUser: any;
@@ -34,10 +35,10 @@ export class RepoSidebarComponent implements OnInit {
   accessToken: any;
   data1: any;
   currentUser: any;
-  isTree : Boolean = true;
+  isTree: Boolean = true;
   public emptyRepo: String;
   extension: any;
-  confirm : any;  
+  confirm: any;
 
   // @Input() personalAccessToken;
   @Output() content = new EventEmitter < any > ();
@@ -45,15 +46,15 @@ export class RepoSidebarComponent implements OnInit {
   @Output() fileName = new EventEmitter < any > ();
   @Output() editorMode = new EventEmitter < any > ();
 
-  constructor(private editorService: EditorService, private gitService: GitService, 
+  constructor(private editorService: EditorService, private gitService: GitService,
     private modalService: BsModalService, private profileService: ProfileService,
-    private authenticationService:AuthenticationService) {}
+    private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
     this.authenticationService.getPersonalAccessToken(this.currentUser.userId)
       .subscribe((res) => {
-        this.authenticationService.pacToken=res.data.accessToken;
+        this.authenticationService.pacToken = res.data.accessToken;
         // this.data1 = {
         //   accessToken: res.data.accessToken
         // }
@@ -76,14 +77,14 @@ export class RepoSidebarComponent implements OnInit {
     this.reponamed = this.selectedValue;
     this.gitService.getTree(this.selectedValue)
       .subscribe(data => {
-        this.isTree=true;
+        this.isTree = true;
         this.data = data;
         this.repoName.emit(this.reponamed);
-      }, err =>{
-        this.isTree=false;
-        if(err === 404)
-        this.emptyRepo= "Empty repository. Please add new file."
-        
+      }, err => {
+        this.isTree = false;
+        if (err === 404)
+          this.emptyRepo = "Empty repository. Please add new file."
+
       })
   }
 
@@ -96,14 +97,14 @@ export class RepoSidebarComponent implements OnInit {
         this.mode = "html"
         this.editorMode.emit(this.mode);
 
-     }
+      }
     } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css") {
       this.confirm = confirm("Would You Like to change your mode to JAVASCRIPT Mode to access Javascript file")
       if (this.confirm === true) {
         this.mode = "javascript"
         this.editorMode.emit(this.mode);
 
-     }
+      }
     }
     this.reponamed = this.selectedValue;
     this.gitService.openFolder(reponame, filename)
@@ -149,14 +150,27 @@ export class RepoSidebarComponent implements OnInit {
       "has_projects": false,
       "has_wiki": false
     }
-    // if (this.data1 == null) {
-    //   this.data1 = this.personalAccessToken;
-    // } else {
-    //   this.data1 == this.data1;
-    // }
 
     this.gitService.createRepos(repoName)
-      .subscribe(data => {})
+      .subscribe(data => {
+        if (data) {
+          swal({
+            timer: 2500,
+            title: "Repository Successfully created",
+            text: "",
+            type: 'success',
+            showConfirmButton: false,
+          })
+        } else {
+          swal({
+            timer: 2500,
+            title: "Repository is not created",
+            text: "",
+            type: 'error',
+            showConfirmButton: false,
+          })
+        }
+      })
   }
 
 }
