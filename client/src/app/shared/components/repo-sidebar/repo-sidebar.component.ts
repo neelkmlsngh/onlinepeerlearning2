@@ -123,6 +123,7 @@ export class RepoSidebarComponent implements OnInit {
       "description": desc,
       "homepage": "https://github.com",
       "private": false,
+      "auto_init": true,
       "has_issues": false,
       "has_projects": false,
       "has_wiki": false
