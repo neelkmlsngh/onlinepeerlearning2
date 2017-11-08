@@ -5,8 +5,8 @@ html {
 
 h1 {
 
-  font-family: "Times New Roman", Times, serif;
-  color: #607D8B
+ font-family: "Times New Roman", Times, serif;
+  color: #607D8B 
 }
 
 h5 {
@@ -25,7 +25,7 @@ h5 {
   padding: 0;
   border: none;
   border-radius: .28571429rem;
-  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  box-shadow: 0 1px 3px 0 #d4d4d5 , 0 0 0 1px #d4d4d5 ;
 }
 
 .card-block {
@@ -49,12 +49,14 @@ h5 {
   font-size: 1.28571429em;
   font-weight: 700;
   line-height: 1.2857em;
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 .card-text {
   clear: both;
   margin-top: .5em;
   color: rgba(0, 0, 0, .68);
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 .card-footer {
@@ -127,7 +129,8 @@ h5 {
 /*/profile card class*/
 
 .heading {
-  background-color: #F3E5F5;
+  background-color: #F3E5F5 ;
+  margin-top: 3%;
 }
 
 
@@ -144,7 +147,7 @@ h5 {
 /*save button*/
 
 .save {
-  background-color: #BA68C8;
+  background-color: #BA68C8 ;
 }
 
 
@@ -152,7 +155,7 @@ h5 {
 
 .upload {
   margin-top: 10%;
-  background-color: #BA68C8;
+  background-color: #BA68C8 ;
 }
 
 
@@ -167,4 +170,8 @@ h5 {
 
 .gender {
   margin-left: 2%
+}
+
+.personalinfocard{
+  margin-top: 10%;
 }

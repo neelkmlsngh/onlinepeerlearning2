@@ -4,7 +4,8 @@ import { Headers, RequestOptions } from '@angular/http';
 
 import { ProfileService } from '../../services/profile.service';
 import {config} from '../../config/profileConfig';
-/*import { errorConfig } from '../../config/errorConfig';*/
+import swal from 'sweetalert2';
+import { errorConfig } from '../../config/error.config';
 
 @Component({
  selector: 'app-profile',
@@ -19,12 +20,12 @@ export class ProfileComponent implements OnInit {
  formData: FormData;
  options: RequestOptions;
  config=config;
- /*errorConfig= errorConfig;*/
+ errorConfig= errorConfig;
  data:any={};
  gender:any;
 
- constructor(@Inject(FormBuilder) private fb: FormBuilder,private profileService:ProfileService) {
-   
+constructor(@Inject(FormBuilder) private fb: FormBuilder,private profileService:ProfileService) {
+  
    // initialising personal details to be displayed
    this.personalInfo = fb.group({
      firstName: [''],
@@ -36,7 +37,7 @@ export class ProfileComponent implements OnInit {
      gender: ['']
    });
 
- }
+}
  // method to be called when the component loads
  ngOnInit() {
 /*   this.currentUser= JSON.parse(localStorage.getItem('currentUser'))
@@ -82,7 +83,7 @@ export class ProfileComponent implements OnInit {
    headers.append('enctype', 'multipart/form-data');
    headers.append('Accept', 'application/json');
    this.options = new RequestOptions({ headers: headers });
-   
+  
   }
 }
 
@@ -92,7 +93,7 @@ uploadFile(){
  .subscribe(
    res=>{
      this.imgPath=res.data.avatarUrl;
-   }/*,error=> {{errorConfig.UPLOAD}}*/
+   },error=> {{errorConfig.UPLOAD}}
    )
 }
 
@@ -100,9 +101,26 @@ updatePersonalInfo(personalInfo){
  let dataObj= personalInfo.value;
  this.profileService.updatePersonalInfo(this.data.userid,dataObj)
  .subscribe(res=>{
-  
- })
- 
-}
-}
+    if (res) {
+         swal({
+     timer: 2500,
+     title: "Profile Updated",
+     text:  "",
+     type:  'success',
+     showConfirmButton: false,
+   })
+       }
 
+else {
+         swal({
+     timer: 2500,
+     title: "Profile not updated",
+     text:  "declined",
+     type: 'error',
+     showConfirmButton: false,
+   })
+       }
+ })
+
+}
+}

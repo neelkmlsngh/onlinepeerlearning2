@@ -26,6 +26,7 @@ forumConfig=forumConfig;
     codeSnippet:string;
     obj:any={};
     addSnippet:any;
+    data : any;
 
   constructor(private forum: ForumService) {
     
@@ -79,8 +80,8 @@ forumConfig=forumConfig;
     this.forum.savePost(this.obj).subscribe((res) => {
 
       if (res) {
-        // console.log(res)
-        swal({ //alert message for success
+          this.data = res;
+          swal({ //alert message for success
           timer: 2200,
           title: "Posted Successfully",
           text: "",
