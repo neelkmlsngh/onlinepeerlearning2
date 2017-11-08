@@ -60,6 +60,7 @@ export class SocketService {
   getPeerId() {
     let observable = new Observable(observer => {
       this.socket.on('peer-id-response', (data) => {
+        console.log("Data ============= ********************* ======= ",data)
         observer.next(data);
       });
       return () => {
@@ -70,3 +71,4 @@ export class SocketService {
   }
 
 }
+

@@ -1,4 +1,4 @@
-  import { Component, OnInit, ViewChild,Compiler } from '@angular/core';
+  import { Component, OnInit, ViewChild,Compiler,Input } from '@angular/core';
   import { Router } from '@angular/router'
   import { config } from '../../../config/config';
   import * as $ from 'jquery';
@@ -15,6 +15,7 @@
   export class AudioChatComponent implements OnInit {
 
     @ViewChild('myaudio') myAudio: any; // id for audio tag
+    @Input()userPeerId;
     peer;
     anotherid;
     mypeerid;
@@ -51,7 +52,7 @@
           })
         }, function(err) {})
       })
-    }
+      }
 audioboxtoggle(){
     $('.audiobox').toggleClass('audiobox--tray');
   }
@@ -61,33 +62,25 @@ audioboxtoggle(){
   }
     //establish the peer connection
     connect() {
-      this.anotherid = this.peer.connect(this.socketService.getPeerId().subscribe(data=>{
-          return  
-      },error=>{
-
-      }));
-      let conn = this.anotherid
+      let conn = this.peer.connect(this.userPeerId);
       conn.on('open', function() {
-        conn.send('Message from that id');
-      });
+      conn.send('Message from that id');
+    });
+      
     }
 
     //audio call connect
     audioConnect() {
       let audio = this.myAudio.nativeElement;
       let localvar = this.peer;
-      let getPeerId = this.socketService.getPeerId().subscribe(data=>{
-        return data
-      },error=>{
-
-      })
-      let fname = this.peer.connect(getPeerId);
-
+      let fname = this.userPeerId;
       let n = < any > navigator;
 
       n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
-
+console.log("================ After =======================")
       n.getUserMedia({ video: false, audio: true }, function(stream) {
+console.log("================ inside get userMedia  =======================")
+
         let call = localvar.call(fname, stream);
         call.on('stream', function(remotestream) {
           audio.src = URL.createObjectURL(remotestream);

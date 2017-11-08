@@ -82,7 +82,7 @@
 </div>
 <!-- use template for audio call componen -->
 <div *ngIf="showAudioBox==true">
-  <app-audio-chat></app-audio-chat>
+  <app-audio-chat [userPeerId]="peerId"></app-audio-chat>
 </div>
 <!--use template for video call component -->
 <div *ngIf="showVideoBox==true">

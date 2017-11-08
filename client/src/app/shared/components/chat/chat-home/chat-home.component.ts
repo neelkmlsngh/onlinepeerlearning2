@@ -40,6 +40,7 @@ export class ChatHomeComponent implements OnInit {
   message = '';
   messages = [];
   data2: any = [];
+  peerId:string;
   //constructor initialising various services
   constructor(
     private chatService: ChatService,
@@ -96,9 +97,13 @@ export class ChatHomeComponent implements OnInit {
             }, 100);
           }
         });
+
         this.socketService.getPeerId().subscribe(data => {
           this.showAudioBox = true;
-          return data
+          if(data['mypeerid']){
+            this.peerId=data['mypeerid'];
+          }
+         // return data;
         }, error => {
 
         })
