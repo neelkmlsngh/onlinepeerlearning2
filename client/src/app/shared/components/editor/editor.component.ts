@@ -7,8 +7,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import swal from 'sweetalert2';
 
 import { EditorService } from '../../services/editor.service';
-import { GitService } from '../../services/git.service'
-import { CoderunnerService } from '../../services/coderunner.service'
+import { GitService } from '../../services/git.service';
+import { CoderunnerService } from '../../services/coderunner.service';
 
 import 'brace';
 import 'brace/ext/language_tools';
@@ -27,7 +27,7 @@ export class EditorComponent implements OnInit {
   @Input() reponame: any;
   @Input() filenamed: any;
 
-  config = config
+  config = config;
 
   jsValue: any = "";
   data: any;
@@ -56,6 +56,7 @@ export class EditorComponent implements OnInit {
   executecode() {
     this.coderunner.executecode(this.content)
       .subscribe(data => {
+        console.log("fdfff",data)
         this.codeoutput = data
         this.dataObj = this.codeoutput._body
       })
@@ -238,5 +239,5 @@ export class EditorComponent implements OnInit {
             }
           })
       })
+    }
   }
-}

@@ -18,7 +18,7 @@
         </nav>
         <!-- serach bar ends -->
         <div class="row">
-          <div class="col-sm-6 heading h5 mt-4">
+          <div class="col-sm-6 heading h5 mt-4 forom">
             {{forumConfig.VIEWPOST.ALL_QUESTIONS}}
           </div>
           <div class="col-sm-6 justify-content-right mt-4 ">
@@ -44,7 +44,7 @@
             </div>
             <div class="col-sm-9">
               <div class="questionTitle">
-                <a class="question" (click)="getPostDetail(result._id)">{{result.questionTitle }}</a>
+                <a class="question" (click)="getPostDetail(result._id)">{{result.questionTitle}}</a>
               </div>
               <div class="problemDescription">
                 {{result.problemDescription | truncate : 200}}
@@ -93,3 +93,4 @@
     </div>
   </div>
 </div>
+
