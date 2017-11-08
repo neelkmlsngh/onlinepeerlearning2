@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WebeditorComponent } from './webeditor.component';
 import { AceEditorDirective } from 'ng2-ace-editor'
 import { AceEditorModule } from 'ng2-ace-editor'
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { NO_ERRORS_SCHEMA }          from '@angular/core';
 import { SnippetService} from '../../services/snippet.service';
 
@@ -26,7 +28,7 @@ describe('Settings component Testing', () => {
       declarations: [WebeditorComponent],
     schemas:      [ NO_ERRORS_SCHEMA ],
      //declaring component to be tested
-     providers: [SnippetService]
+     providers: [SnippetService, BsModalService]
     }).compileComponents();
   })
 /*Initial configuration that will run before every testcase*/
