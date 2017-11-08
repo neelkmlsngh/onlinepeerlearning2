@@ -16,11 +16,13 @@ export const config: any = {
  },
   connect:
   {
-    apiURL : "https://192.168.252.204:8080",
-    vmURL : "https://192.168.252.204:3030",
-    CALLBACK_URL:"https://192.168.252.204:8080/api/login/auth/github",
-    CLIENT_ID : 'eda558d85f4b8157078f',
-    CLIENT_SECRET : '2456afab849c7fd43d4977de7f1187b8d5e74329'
+
+    apiURL : "https://192.168.252.209:8080",
+    vmURL : "https://192.168.252.209:3930",
+    CALLBACK_URL:"https://192.168.252.209:8080/api/login/auth/github",
+    CLIENT_ID : '0c5e4d981e5db1ee5bb4',
+    CLIENT_SECRET : '50d37ae458e50eb456de66aea66573c80869ea0d'
+
   },
 
   giturls: {
@@ -32,7 +34,7 @@ export const config: any = {
     CONTENTURL: "/contents/",
     CREATEREPOS: "https://api.github.com/user/repos",
     HOSTURLUSERS: "https://api.github.com/users/",
-    AUTHORIZATION: "Basic 450b330333db090ea1ff44a0c5ea2467524b652b"
+    AUTHORIZATION: "Basic YWFzdGhhd2FkaHdhMDFAZ21haWwuY29tOmM0NDBhNTgxZGYwOTQzYjY0ODcxZDZiM2FjZjE4ZTI2ZjE5YTFkMWM="
   },
 
   forumConnect: {
@@ -40,7 +42,7 @@ export const config: any = {
     "SEARCHAPIURL": 'api/forums/term/'
   },
   peerserver: {
-    "host": "192.168.252.204",
+    "host": "192.168.252.209",
     "port": "8081",
     "path": "/peerjs"
   }

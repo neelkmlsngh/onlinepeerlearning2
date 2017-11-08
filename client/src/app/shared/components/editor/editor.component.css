@@ -14,33 +14,19 @@ body {
   height: 100%;
 }
 
-#wrap {
-  margin-top: 10%;
-  width: 100%;
-  height: 100%;
-}
-
-
 /* reponame text color*/
-.rName b{
+.repoName b{
   color: #A9A9A9;
 }
 
-/* Code Editors */
-
-#code_editors {
-  height: 500px;
-  margin-top: 0%;
-  width: 50%;
-}
 
 
 #output h3 {
-  font-size: 13px;
-  height: 30px;
+  font-size: 12px;
+  height: 40px;
   padding: 5px 10px;
   margin: 0;
-  background: linear-gradient(#707070, #555);
+  background: linear-gradient(#1995ad, #555);
   color: white;
   border-top: 1px solid #8F8F8F;
   border-bottom: 1px solid #202020;
@@ -54,23 +40,46 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  border: 5px solid #444;
+  border: 3px solid #444;
   border-left-width: 10px;
   overflow: hidden;
-  height: 300px;
-  background-color: white;
-  color: red;
-  font-size: 18px;
-  height: 500px;
-  margin-top: 0%;
-  width: 100%;
+  height: 666px;
+
+}
+
+#mainNav {
+   background: linear-gradient(#1995ad, #555); 
+  height: 40px;
+}
+
+.font a {
+  color: white
+}
+
+.font a:hover {
+  color: black
+}
+
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.padding {
+   padding: 1px ;
+   margin: 0 ;
 }
 
 #javascript {
-  height: 470px;
-  font-size: 18px;
+  height: 624px;
+  font-size: 12px;
 }
 
 .code_box{
   margin-top:2px;
+}
+
+.downloadbtn{
+  color: black;
 }

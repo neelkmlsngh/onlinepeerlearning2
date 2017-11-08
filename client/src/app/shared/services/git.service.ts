@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { config } from '../config/config';
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
@@ -13,7 +12,7 @@ export class GitService {
   accessToken: any;
   userName: any;
 
-  constructor(private _http: Http, private authenticationService:AuthenticationService) {
+  constructor(private _http: Http, private authenticationService: AuthenticationService) {
     let userDetails = JSON.parse(localStorage.getItem('currentUser'));
     this.userName = userDetails.userName;
   }
@@ -51,7 +50,7 @@ export class GitService {
     }
   }
 
-  //method to open the rpository and show all the files
+  //method to open the rpository and show all the file
   openFolder(repo, file) {
     if (this.userName) {
       let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
@@ -59,9 +58,10 @@ export class GitService {
       return this._http.get(config.giturls.HOSTURL + this.userName + "/" +
           repo + '/contents/' + file + '?client_id=' + config.connect.CLIENT_ID +
           '&client_secret=' + config.connect.CLIENT_SECRET, options)
-          .map(res => res.json())
+        .map(res => res.json())
     }
   }
+
 
   getFile(repo, file) {
     if (this.userName) {
@@ -80,8 +80,10 @@ export class GitService {
         .map(res => res.json())
     }
   }
-  
+
+
   //method to create file on github
+
   commitfile(text, sha) {
     if (this.userName) {
       return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits/' + sha, this.authenticationService.addPersonalAccessToken())
@@ -90,6 +92,7 @@ export class GitService {
   }
 
   //method to create file on github
+
   treecommit(text, basetree) {
     if (this.userName) {
       return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/trees', basetree, this.authenticationService.addPersonalAccessToken())
@@ -98,13 +101,14 @@ export class GitService {
   }
 
   //method to create file on github
+
   newcommit(text, newcommit) {
     if (this.userName) {
       return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits', newcommit, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
   }
-  
+
   //method to create a fiel on github 
   lastcommit(text, lastcommit) {
     if (this.userName) {
@@ -130,7 +134,9 @@ export class GitService {
   //method to get the sha of the file   
   getsha(text, filename) {
     if (this.userName) {
+
       return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, this.authenticationService.addPersonalAccessToken())
+
         .map(res => res.json())
     }
   }
@@ -142,11 +148,13 @@ export class GitService {
         .map(res => res.json())
     }
   }
+
   //method to delete the file on github
   deleteFile(text, filename, deletefileobj) {
     console.log(this.authenticationService.addPersonalAccessToken());
     console.log(this.authenticationService.pacToken);
     if (this.userName) {
+
       let headers = new Headers({ 'Authorization': "Basic " + this.authenticationService.pacToken });
       return this._http.delete(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, new RequestOptions({
           headers: headers,
@@ -155,6 +163,7 @@ export class GitService {
         .map(res => res.json())
     }
   }
+
   //method to create user personal access token
   createToken(credentials, password) {
     if (this.userName) {
@@ -162,12 +171,20 @@ export class GitService {
         .map(res => res.json())
     }
   }
+
   //method to create Repository on github
   createRepos(text) {
     if (this.userName) {
       return this._http.post(config.giturls.CREATEREPOS, text, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
+  }
+
+
+  //method for authorization for creating new repository
+  private authorization(accessToken) {
+    let headers = new Headers({ 'Authorization': "Basic " + accessToken });
+    return new RequestOptions({ headers: headers });
   }
 
   //method for authorization for creating personal access token
