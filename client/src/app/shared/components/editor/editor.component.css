@@ -19,8 +19,6 @@ body {
   color: #A9A9A9;
 }
 
-
-
 #output h3 {
   font-size: 12px;
   height: 40px;
@@ -30,6 +28,7 @@ body {
   color: white;
   border-top: 1px solid #8F8F8F;
   border-bottom: 1px solid #202020;
+  text-align: center;
 }
 
 
@@ -82,4 +81,8 @@ body {
 
 .downloadbtn{
   color: black;
+}
+
+#repoCrud{
+  margin-left: 450px;
 }
