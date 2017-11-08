@@ -29,7 +29,7 @@ export class RepoSidebarComponent implements OnInit {
   fileData: any;
   selectedfile: any;
   url: any = "";
-  text: any = config.repoSidebar.entercode;
+  text: any = config.repoSidebar.ENTER_CODE;
   public modalRef: BsModalRef;
   value: any;
   accessToken: any;
@@ -64,7 +64,6 @@ export class RepoSidebarComponent implements OnInit {
     this.gitService.getRepos()
       .subscribe(repos => {
         this.githubUser = repos;
-
       })
   }
 
@@ -83,27 +82,26 @@ export class RepoSidebarComponent implements OnInit {
       }, err => {
         this.isTree = false;
         if (err === 404)
-          this.emptyRepo = "Empty repository. Please add new file."
-
+          this.emptyRepo = config.repoSidebar.EMPTY_REPO;
       })
   }
 
   /*method used to show repositery name and file name*/
   showFile(reponame, filename) {
-    this.extension = filename.split('.').pop();
-    if (this.mode === "javascript" && this.extension !== "js") {
-      this.confirm = confirm("Would You Like to change your mode to Web Development Mode to access HTMl file")
-      if (this.confirm === true) {
-        this.mode = "html"
-        this.editorMode.emit(this.mode);
-
-      }
-    } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css") {
-      this.confirm = confirm("Would You Like to change your mode to JAVASCRIPT Mode to access Javascript file")
-      if (this.confirm === true) {
-        this.mode = "javascript"
-        this.editorMode.emit(this.mode);
-
+    this.extension = filename.split('.');
+    if (this.extension.length > 1) {
+      if (this.mode === "javascript" && this.extension !== "js") {
+        this.confirm = confirm(config.repoSidebar.HTML_MODE)
+        if (this.confirm === true) {
+          this.mode = "html"
+          this.editorMode.emit(this.mode);
+        }
+      } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css") {
+        this.confirm = confirm(config.repoSidebar.JAVASCRIPT_MODE)
+        if (this.confirm === true) {
+          this.mode = "javascript"
+          this.editorMode.emit(this.mode);
+        }
       }
     }
     this.reponamed = this.selectedValue;
@@ -129,7 +127,6 @@ export class RepoSidebarComponent implements OnInit {
         this.content.emit(this.text);
         this.repoName.emit(this.reponamed);
         this.fileName.emit(this.filenamed);
-
       })
   }
 
@@ -156,7 +153,7 @@ export class RepoSidebarComponent implements OnInit {
         if (data) {
           swal({
             timer: 2500,
-            title: "Repository Successfully created",
+            title: config.repoSidebar.REPO_CREATED,
             text: "",
             type: 'success',
             showConfirmButton: false,
@@ -164,7 +161,7 @@ export class RepoSidebarComponent implements OnInit {
         } else {
           swal({
             timer: 2500,
-            title: "Repository is not created",
+            title: config.repoSidebar.REPO_NOT_CREATED,
             text: "",
             type: 'error',
             showConfirmButton: false,
