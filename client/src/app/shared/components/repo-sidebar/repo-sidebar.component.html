@@ -4,13 +4,13 @@
   <div class="col-md-12">
     <!-- card to make block for repo sidebar -->
     <div class="card">
-      <h5 class="card-header"><b>{{config.repoSidebar.repos}}</b><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#repoModal" ><i class="fa fa-plus plusSize" aria-hidden="true"></i></button></h5>
+      <h5 class="card-header"><b>{{config.repoSidebar.REPOS}}</b><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#repoModal" ><i class="fa fa-plus plusSize" aria-hidden="true"></i></button></h5>
       <!--  -->
       <div class="modal fade" id="repoModal" tabindex="-1" role="dialog" aria-labelledby="repoModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header modalColor">
-              <h6 class="modal-title" id="repoModalLabel">Create New Repository</h6>
+              <h6 class="modal-title" id="repoModalLabel">{{config.repoSidebar.NEW_REPOS}}</h6>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -18,17 +18,17 @@
             <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <label for="recipient-name" class="form-control-label">Enter Repository Name</label>
+                  <label for="recipient-name" class="form-control-label">{{config.repoSidebar.REPOS_NAME}}</label>
                   <input type="text" class="form-control" id="recipient-name" #name (keyup)="onKey($event)">
                 </div>
                 <div class="form-group">
-                  <label for="message-text" class="form-control-label">Description for README.md</label>
+                  <label for="message-text" class="form-control-label">{{config.repoSidebar.README}}</label>
                   <textarea class="form-control" id="message-text" #desc (keyup)="onKey($event)"></textarea>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createRepo(name.value,desc.value)">Create</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createRepo(name.value,desc.value)">{{config.repoSidebar.CREATE}}</button>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
       <div class="card-block">
         <div class="list-group">
           <select name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="reposearch()">
-            <option value=""> Select Your Repository</option>
+            <option value=""> {{config.repoSidebar.SELECT}}</option>
             <option *ngFor="let repo of githubUser">{{repo.name}}</option>
           </select>
           <!-- making drop down containing the list of repositeries -->
