@@ -87,7 +87,7 @@ let apiRoutes: Routes = [{
       component: AddForumComponent
     },
     {
-      path:'view',
+      path:'view/:value',
       component: ViewForumComponent
     }]
     // canActivate: [AuthoriseGuard]

@@ -56,6 +56,7 @@ export class EditorComponent implements OnInit {
   executecode() {
     this.coderunner.executecode(this.content)
       .subscribe(data => {
+        console.log("fdfff",data)
         this.codeoutput = data
         this.dataObj = this.codeoutput._body
       })

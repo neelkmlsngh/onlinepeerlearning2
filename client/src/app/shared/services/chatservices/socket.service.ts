@@ -40,7 +40,6 @@ export class SocketService {
     this.socket.emit('chat-list', { userId: userId });
     let observable = new Observable(observer => {
       this.socket.on('chat-list-response', (data) => {
-        console.log(JSON.stringify(data, null, 2));
         observer.next(data);
       });
       return () => {
@@ -53,6 +52,27 @@ export class SocketService {
   sendFile(fileObj){
     this.socket.emit('send-file', fileObj)
   }
+
+   sendPeerId(mypeerid,selectedUserId){
+    this.socket.emit('send-peer-id', mypeerid,selectedUserId)
+
+     /*this.socket.on('send-peer-id-response', (data) => {
+       alert(data)
+        return data
+      });*/
+    }
+
+    getPeerId(){
+      let observable = new Observable(observer => {
+      this.socket.on('peer-id-response', (data) => {
+        observer.next(data.id);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+    }
 
 }
 

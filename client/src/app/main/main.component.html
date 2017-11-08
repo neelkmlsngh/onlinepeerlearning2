@@ -1,12 +1,12 @@
 <!-- main component starts -->
-<div class="container-fluid">
+<div class="container-fluid backgroundcolor">
   <div class="row">
     <div class="col-md-12">
       <!-- navbar selector -->
       <app-navbar></app-navbar>
     </div>
   </div>
-  <div class="row mt-5 py-3 backgroundcolor">
+  <div class="row mt-5 py-3 ">
     <div class="col-md-12">
       <div class="row ">
         <div class="col-md-2">
@@ -15,7 +15,7 @@
             <div class="col-md-12 ">
               <!-- card to make block for repo sidebar -->
               <div class="card">
-                <h5 class="card-header"><b>{{config.TITLE}}</b></h5>
+                <h5 class="card-header "><b>{{config.TITLE}}</b></h5>
                 <div class="card-block">
                   <div class="list-group">
                     <select name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="changeMode()">
@@ -44,14 +44,14 @@
           </div>
 
           <!-- repository side bar selector -->
-          <app-repo-sidebar [personalAccessToken]="personalAccessToken" (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
+          <app-repo-sidebar  [mode]="mode" (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
         </div>
         <div *ngIf="mode=='javascript'" class="col-md-10">
           <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-editor>
 
         </div>
         <div *ngIf="mode=='html'" class="col-md-10">
-          <app-webeditor [content]="content"></app-webeditor>
+          <app-webeditor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-webeditor>
         </div>
       </div>
     </div>

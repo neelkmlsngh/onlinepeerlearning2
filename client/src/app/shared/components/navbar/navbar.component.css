@@ -1,7 +1,8 @@
 /*css on navbar*/
 
 #mainNav {
-  background-color: #1995ad
+  background-color: #1995ad; 
+  height: 40px;
 }
 
 .font a {
@@ -14,8 +15,15 @@
 
 .navItem {
   text-align: right;
+  font-size: 10px;
 }
 
 .togglerButton {
   color: white;
+}
+
+.editor {
+	font-size: 12px;
+
+
 }

@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../shared/services/profile.service';
 import { mainConfig } from '../shared/config/main.config';
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -20,7 +21,7 @@ import { mainConfig } from '../shared/config/main.config';
 export class MainComponent implements OnInit {
 
 
-  content: any;
+  content: any ="<h1> Enter your HTML code Here <h1>";
   reponame: any;
   filenamed: any;
   languages: any = [];
@@ -43,7 +44,8 @@ export class MainComponent implements OnInit {
   config = mainConfig;
   personalAccessToken: string;
 
-  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService, private authenticationservice: AuthenticationService, private router: Router, private profileService: ProfileService) {
+  constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,
+   private authenticationService: AuthenticationService, private router: Router, private profileService: ProfileService) {
 
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
@@ -130,7 +132,7 @@ export class MainComponent implements OnInit {
     user = {
       userId: userId
     }
-    this.authenticationservice.logoutEditor(user).subscribe((data1) => {
+    this.authenticationService.logoutEditor(user).subscribe((data1) => {
       if (data1.status == 200) {
         swal({
           timer: 2500,
@@ -160,6 +162,7 @@ export class MainComponent implements OnInit {
     this.gitService.createToken(cred, password)
       .subscribe(data => {
         this.accessToken = data.token;
+        this.authenticationService.pacToken=data.token;
         this.storeToken(this.accessToken)
       })
   }
@@ -173,9 +176,6 @@ export class MainComponent implements OnInit {
     let userId = currentUser.userId;
     this.profileService.storeAccessToken(userId, accessToken)
       .subscribe(response => {
-        if (response.data && response.data.accessToken) {
-          this.personalAccessToken = response.data.accessToken;
-        }
       })
   }
 }
