@@ -16,11 +16,13 @@ export const config: any = {
  },
   connect:
   {
+
     apiURL : "https://192.168.252.209:8080",
     vmURL : "https://192.168.252.209:3930",
     CALLBACK_URL:"https://192.168.252.209:8080/api/login/auth/github",
     CLIENT_ID : '0c5e4d981e5db1ee5bb4',
     CLIENT_SECRET : '50d37ae458e50eb456de66aea66573c80869ea0d'
+
   },
 
   giturls: {

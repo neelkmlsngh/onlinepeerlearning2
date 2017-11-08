@@ -62,11 +62,10 @@ audioboxtoggle(){
     //establish the peer connection
     connect() {
       this.anotherid = this.peer.connect(this.socketService.getPeerId().subscribe(data=>{
-          return data
+          return  
       },error=>{
 
       }));
-      
       let conn = this.anotherid
       conn.on('open', function() {
         conn.send('Message from that id');
@@ -78,7 +77,7 @@ audioboxtoggle(){
       let audio = this.myAudio.nativeElement;
       let localvar = this.peer;
       let getPeerId = this.socketService.getPeerId().subscribe(data=>{
-          return data
+        return data
       },error=>{
 
       })

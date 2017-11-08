@@ -1,12 +1,19 @@
 const { VM, NodeVM, VMScript } = require('vm2');
 
 //method to execute the script using VM
-function execute(testscript) {
+function execute(testscript, err) {
     const vm = new NodeVM();
-    let script = new VMScript(testscript);
-    vm.run(script);
+    let script;
+    script = new VMScript(testscript);
+    try {
+        eval(vm.run(script));
+        process.send('completed')
+    } catch (error) {
+        console.log(error.message);
+        process.send('error')
+    }
 }
-process.on('message', (testscript) => {
+
+process.on('message', (testscript, err) => {
     execute(testscript)
-    process.send('completed');
 })
