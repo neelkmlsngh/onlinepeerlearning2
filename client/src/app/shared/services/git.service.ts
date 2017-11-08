@@ -59,9 +59,10 @@ export class GitService {
       return this._http.get(config.giturls.HOSTURL + this.userName + "/" +
           repo + '/contents/' + file + '?client_id=' + config.connect.CLIENT_ID +
           '&client_secret=' + config.connect.CLIENT_SECRET, options)
-        .map(res => res.json())
+          .map(res => res.json())
     }
   }
+
   getFile(repo, file) {
     if (this.userName) {
       let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
@@ -79,24 +80,31 @@ export class GitService {
         .map(res => res.json())
     }
   }
+  
+  //method to create file on github
   commitfile(text, sha) {
     if (this.userName) {
       return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits/' + sha, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
   }
+
+  //method to create file on github
   treecommit(text, basetree) {
     if (this.userName) {
       return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/trees', basetree, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
   }
+
+  //method to create file on github
   newcommit(text, newcommit) {
     if (this.userName) {
       return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits', newcommit, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
   }
+  
   //method to create a fiel on github 
   lastcommit(text, lastcommit) {
     if (this.userName) {
@@ -109,6 +117,7 @@ export class GitService {
   updateUser(userName: string) {
     this.userName = userName;
   }
+
   //method to handle error
   private handleError(error: any) {
     if (error.status === 401) {
@@ -135,8 +144,10 @@ export class GitService {
   }
   //method to delete the file on github
   deleteFile(text, filename, deletefileobj) {
+    console.log(this.authenticationService.addPersonalAccessToken());
+    console.log(this.authenticationService.pacToken);
     if (this.userName) {
-      let headers = new Headers({ 'Authorization': config.giturls.AUTHORIZATION });
+      let headers = new Headers({ 'Authorization': "Basic " + this.authenticationService.pacToken });
       return this._http.delete(config.giturls.HOSTURL + this.userName + '/' + text + config.giturls.CONTENTURL + filename, new RequestOptions({
           headers: headers,
           body: deletefileobj

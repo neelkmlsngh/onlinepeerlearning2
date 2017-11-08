@@ -5,22 +5,91 @@
       <app-navbar></app-navbar>
     </div>
   </div>
-  <h1>Forums</h1>
-  <h1>Forums</h1>
-  <h1>Forums</h1>
-  <h1>Forums</h1>
-  <h1>Forums</h1>
-  <h1>Forums</h1>
-  <h1>Forums</h1>
-  <a routerLink="/forums/view"> View Forums</a>
-  <a routerLink="/forums/add"> Add Forums</a>
-<p>
-  forums works!
-</p>
- <div class="row">
+  <!-- start of container -->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- serach bar -->
+        <nav class="col-lg-12 col-lg-offset-12 col-md-6 col-md-offset-3 col-sm-8 navbar      col-sm-offset-2 col-xs-10 col-xs-offset-1 mt-4">
+          <div class="input-group input-group-md">
+            <input id="search" #value value="" type="search($event)" class="form-control mr-sm-2 bg-white" placeholder="search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0 detail" (click)="getDetails(value)" type="submit">{{forumConfig.VIEWPOST.SEARCH}}</button>
+          </div>
+        </nav>
+        <!-- serach bar ends -->
+        <div class="row">
+          <div class="col-sm-6 heading h5 mt-4">
+            {{forumConfig.VIEWPOST.ALL_QUESTIONS}}
+          </div>
+          <div class="col-sm-6 justify-content-right mt-4 ">
+            <a class="btn postquestion text-white float-right" href="" routerLink='add'>
+                 <i class="fa fa-question-circle fa-lg text-white"></i>{{forumConfig.VIEWPOST.ASK_QUESTION}}</a>
+          </div>
+        </div>
+        <hr>
+        <!-- showing questions -->
+        <div class="questionsumary">
+          <div class="row" *ngFor="let result of data.data| paginate: { itemsPerPage:4, currentPage: p }">
+            <div class="statuscontainer col-sm-3">
+              <div class="vote h5">
+                {{result.votes}} {{forumConfig.VIEWPOST.VOTES}}
+              </div>
+              <div class="answeraccepted h5  border py-2 text-white mt-4">
+                <strong class="pl-4">{{result.answers.length}}</strong>
+                <br><small class="ans">{{forumConfig.VIEWPOST.ANSWERS}}</small>
+              </div>
+              <div class="views h6  mt-4">
+                1.5 million views
+              </div>
+            </div>
+            <div class="col-sm-9">
+              <div class="questionTitle">
+                <a class="question" (click)="getPostDetail(result._id)">{{result.questionTitle }}</a>
+              </div>
+              <div class="problemDescription">
+                {{result.problemDescription | truncate : 200}}
+              </div>
+              <div class="text-white mt-3 mb-3">
+                <div class="tags d-inline border py-1">Angularjs</div>
+                <div class="tags d-inline boredr py-1">Nodejs</div>
+              </div>
+              <div class="row">
+                <div class="col-sm-5 postedDate small">
+                  <div class="row">
+                    <div class="col-sm-9">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <button class="btn text-black btn-outline-success" (click)="like(result._id)">
+                            <i class="fa fa-thumbs-up fa-lg text-black"></i> {{likes}}</button>
+                        </div>
+                        <div class="col-sm-6">
+                          <button class="btn text-black btn-outline-danger" (click)="dislike(result._id)">
+                            <i class="fa fa-thumbs-down fa-lg text-black"></i> {{dislikes}}</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      {{forumConfig.VIEWPOST.ASKED}} {{result.date}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-7 user text-right">
+                  <span><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></span> posted by prashant
+                </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end of container  -->
+  <div class="row">
     <div class="col-md-12">
       <!-- footer selector -->
       <app-footer></app-footer>
     </div>
   </div>
-  </div>
+</div>

@@ -21,7 +21,7 @@ import { mainConfig } from '../shared/config/main.config';
 export class MainComponent implements OnInit {
 
 
-  content: any;
+  content: any ="<h1> Enter your HTML code Here <h1>";
   reponame: any;
   filenamed: any;
   languages: any = [];
@@ -124,6 +124,9 @@ export class MainComponent implements OnInit {
 
   }
 
+  getMode(editorMode){
+    this.selectedValue=editorMode;
+  }
 
   //method for logout
   logout() {

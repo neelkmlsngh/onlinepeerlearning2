@@ -2,6 +2,9 @@
   import { Router } from '@angular/router'
   import { config } from '../../../config/config';
   import * as $ from 'jquery';
+  import { SocketService } from '../../../services/chatservices/socket.service'
+
+  import { ChatHomeComponent } from '../chat-home/chat-home.component'
 
  @Component({
     selector: 'app-audio-chat',
@@ -17,13 +20,16 @@
     mypeerid;
     flag: boolean = false;
 
-    constructor(private router: Router,private compiler :Compiler) {}
+    constructor(private router: Router,private compiler :Compiler, private socketService:SocketService, private chatHome : ChatHomeComponent) {}
 
     ngOnInit() {
       let audio = this.myAudio.nativeElement; //audio tag native element
+
       this.peer = new Peer({ host: config.peerserver.host, port: config.peerserver.port, path: config.peerserver.path }); //peer server connection
       setTimeout(() => {
         this.mypeerid = this.peer.id;
+        let selectedUserId = this.chatHome.sendSelectedUserId();
+        this.socketService.sendPeerId(this.peer.id,selectedUserId);
       }, 3000);
 
       //on peer connection 
@@ -55,7 +61,12 @@ audioboxtoggle(){
   }
     //establish the peer connection
     connect() {
-      let conn = this.peer.connect(this.anotherid);
+      this.anotherid = this.peer.connect(this.socketService.getPeerId().subscribe(data=>{
+          return  
+      },error=>{
+
+      }));
+      let conn = this.anotherid
       conn.on('open', function() {
         conn.send('Message from that id');
       });
@@ -65,7 +76,12 @@ audioboxtoggle(){
     audioConnect() {
       let audio = this.myAudio.nativeElement;
       let localvar = this.peer;
-      let fname = this.anotherid;
+      let getPeerId = this.socketService.getPeerId().subscribe(data=>{
+        return data
+      },error=>{
+
+      })
+      let fname = this.peer.connect(getPeerId);
 
       let n = < any > navigator;
 

@@ -30,6 +30,7 @@
   </ul>
   <div class="message-typer">
     <textarea class="message form-control" placeholder="Type and hit Enter" [(ngModel)]="message" (keyup)="sendMessage($event)">
+      <!-- <button (click)='audioRecieve()'></button> -->
       <div class="card-footer">
         <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
         <div class="col-sm-3">
