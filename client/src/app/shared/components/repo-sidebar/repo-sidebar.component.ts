@@ -39,6 +39,7 @@ export class RepoSidebarComponent implements OnInit {
   public emptyRepo: String;
   extension: any;
   confirm: any;
+  folder : any;
 
   // @Input() personalAccessToken;
   @Output() content = new EventEmitter < any > ();
@@ -88,8 +89,9 @@ export class RepoSidebarComponent implements OnInit {
 
   /*method used to show repositery name and file name*/
   showFile(reponame, filename) {
-    this.extension = filename.split('.');
-    if (this.extension.length > 1) {
+    this.extension = filename.split('.').pop();
+    this.folder = filename.split('.');
+    if (this.folder.length > 1) {
       if (this.mode === "javascript" && this.extension !== "js") {
         this.confirm = confirm(config.repoSidebar.HTML_MODE)
         if (this.confirm === true) {

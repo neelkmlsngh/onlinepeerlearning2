@@ -5,10 +5,10 @@ navbar: {
     "ONLINECODEEDITOR" : "Online Code Editor",
     "EDITOR": "Editor",
     "PROFILE": "Profile",
-    "SNIPPETS":"snippets",
+    "SNIPPETS":"Snippets",
     "FORUMS": "Forums",
     "LOGOUT": "Logout",
-    "SUCCESS" : "success",
+    "SUCCESS" : "Success",
     "LOGOUTSUCCESS" : "Logged Out Successfully"
   }
 };
