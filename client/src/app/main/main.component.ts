@@ -124,6 +124,9 @@ export class MainComponent implements OnInit {
 
   }
 
+  getMode(editorMode){
+    this.selectedValue=editorMode;
+  }
 
   //method for logout
   logout() {

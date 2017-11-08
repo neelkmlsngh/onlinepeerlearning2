@@ -59,7 +59,7 @@
             </div>
           </div>
           <!-- repository side bar selector -->
-          <app-repo-sidebar [mode]="mode" (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
+          <app-repo-sidebar [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
         </div>
         <div *ngIf="mode=='javascript'" class="col-md-10">
           <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-editor>
