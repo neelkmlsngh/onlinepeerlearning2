@@ -197,7 +197,7 @@ function socketEvents(io) {
 		})
 
 		socket.on('send-peer-id', (mypeerid,selectedUserId) => {
-			io.to(selectedUserId).emit(`peer-id-response`, {id: mypeerid});
+			io.to(selectedUserId).emit(`peer-id-response`,mypeerid);
 		})
 
 	});
