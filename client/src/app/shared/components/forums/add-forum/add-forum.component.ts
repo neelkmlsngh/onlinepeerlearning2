@@ -80,7 +80,7 @@ forumConfig=forumConfig;
     this.forum.savePost(this.obj).subscribe((res) => {
 
       if (res) {
-          this.data = res;
+          // this.data = res;
           swal({ //alert message for success
           timer: 2200,
           title: "Posted Successfully",
