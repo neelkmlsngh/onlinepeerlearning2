@@ -21,7 +21,7 @@ import { mainConfig } from '../shared/config/main.config';
 export class MainComponent implements OnInit {
 
 
-  content: any ="<h1> Enter your HTML code Here <h1>";
+  content: any = "";
   reponame: any;
   filenamed: any;
   languages: any = [];
@@ -45,7 +45,7 @@ export class MainComponent implements OnInit {
   personalAccessToken: string;
 
   constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,
-   private authenticationService: AuthenticationService, private router: Router, private profileService: ProfileService) {
+    private authenticationService: AuthenticationService, private router: Router, private profileService: ProfileService) {
 
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
@@ -124,6 +124,10 @@ export class MainComponent implements OnInit {
 
   }
 
+  getMode(editorMode) {
+    this.selectedValue = editorMode;
+    this.changeMode();
+  }
 
   //method for logout
   logout() {
@@ -161,8 +165,25 @@ export class MainComponent implements OnInit {
     }
     this.gitService.createToken(cred, password)
       .subscribe(data => {
+        if (data) {
+          swal({
+            timer: 2500,
+            title: "Personal Access Token Successfully created",
+            text: "",
+            type: 'success',
+            showConfirmButton: false,
+          })
+        } else {
+          swal({
+            timer: 2500,
+            title: "Personal Access Token is not created",
+            text: "",
+            type: 'error',
+            showConfirmButton: false,
+          })
+        }
         this.accessToken = data.token;
-        this.authenticationService.pacToken=data.token;
+        this.authenticationService.pacToken = data.token;
         this.storeToken(this.accessToken)
       })
   }
@@ -175,7 +196,6 @@ export class MainComponent implements OnInit {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let userId = currentUser.userId;
     this.profileService.storeAccessToken(userId, accessToken)
-      .subscribe(response => {
-      })
+      .subscribe(response => {})
   }
 }

@@ -1,50 +1,51 @@
-<div class="container">
- <div class="row">
-   <div class="col-md-12">
-     <!-- navbar selector -->
-     <app-navbar></app-navbar>
-   </div>
- </div>
- <div class="row">
-   <div class="col-md-12">
-     <div class="form-area">
-       <form role="form">
-         <br style="clear:both">
-         <!-- form title -->
-         <h3>{{con.con.title}} </h3>
-         <!-- <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">{{languag}}<span class="caret"></span>
-       </button> -->
-         <!-- dropdown for language selection -->
-         <div class="card">
-           <h5 class="card-header"><b>{{con.con.DROP}}</b></h5>
-           <div class="card-block">
-             <div class="list-group">
-               <select class="drop" (change)="mode($event)">
-                 <option *ngFor="let lng of languages">{{lng}}</option>
-               </select>
-             </div>
-           </div>
-         </div>
-         <br>
-         <div class="form-group">
-           <!-- two way binding of 'title' -->
-           <input type="text" class="form-control" id="title" name="title" placeholder="Title for Snippet" required [(ngModel)]="title">
-         </div>
-         <!-- text area of ck editor -->
-         <ckeditor id="editor1" class="editor1" name="editor1" [(ngModel)]="editor1"></ckeditor>
-         <!-- submit button for code snippet -->
-         <br>
-         <div class="text-center">
-           <a type="button " id="submit " name="submit " class="btn btn-primary" (click)="submit() " [routerLink]="'/main'">{{con.con.button}}t</a>
-         </div>
-       </form>
-     </div>
-   </div>
- </div>
- <div class="row">
-   <div class="col-md-12">
-     <!-- footer selector -->
-     <app-footer></app-footer>
-   </div>
- </div>
+<div class="back">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- navbar selector -->
+        <app-navbar></app-navbar>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-area">
+          <form role="form">
+            <br style="clear:both">
+            <!-- form title -->
+            <h3><b>{{con.con.title}} </b></h3>
+            <!-- dropdown for language selection -->
+            <div class="row">
+              <div class="col-md-6">
+                <h5 class="card-header">{{con.con.DROP}} :</h5>
+              </div>
+              <div class="col-md-6">
+                <select class="col-md-12 drop" (change)="mode($event)">
+                  <option *ngFor="let lng of languages"> {{lng}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="row marg">
+              <div class="col-md-12">
+                <!-- two way binding of 'title' -->
+                <input type="text" class="form-control" id="title" name="title" placeholder={{con.con.ADDSNIPP}} required [(ngModel)]="title">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <!-- text area  -->
+                <textarea id="editor1" class="editor1" name="editor1" placeholder={{con.con.TEXTAREA}} [(ngModel)]="editor1"></textarea>
+                <!-- submit button for code snippet -->
+              </div>
+            </div>
+            <br>
+            <div class="text-center">
+              <a type="button " id="submit " name="submit " class="btn btn-primary" (click)="submit() " [routerLink]="'/main'">{{con.con.button}}</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- footer selector -->
+  <app-footer></app-footer>
 </div>

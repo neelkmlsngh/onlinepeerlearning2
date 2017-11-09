@@ -21,12 +21,13 @@ body {
   color: #A9A9A9;
 }
 
+
 #output h3 {
   font-size: 12px;
   height: 40px;
   padding: 5px 10px;
   margin: 0;
-  background: linear-gradient(#1995ad, #555);
+  background: #C5CAE9;
   color: white;
   border-top: 1px solid #8F8F8F;
   border-bottom: 1px solid #202020;
@@ -46,15 +47,16 @@ body {
   border: 3px solid #444;
   border-left-width: 10px;
   overflow: hidden;
-  height: 666px;
+  height: 555px;
 }
 
 #mainNav {
-  background: linear-gradient(#1995ad, #555);
+   background: #C5CAE9;
   height: 40px;
 }
 
 .font a {
+
   color: #1995ad
 }
 
@@ -71,10 +73,13 @@ body {
 .padding {
   padding: 1px;
   margin: 0;
+
 }
 
+
+
 #javascript {
-  height: 624px;
+  height: 524px;
   font-size: 12px;
 }
 
@@ -143,4 +148,12 @@ body {
   .custom-thr {
     width: 146px;
   }
+}
+
+.downloadbtn{
+  color: black;
+}
+
+#repoCrud{
+  margin-left: 450px;
 }

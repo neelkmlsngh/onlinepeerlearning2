@@ -28,6 +28,7 @@
                 </div>
               </div>
             </div>
+
             <div class="card">
               <div class="card-header" role="tab" id="headingTwo">
                 <h5 class="mb-0">
@@ -38,7 +39,7 @@
               </div>
               <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body">
-                  <app-repo-sidebar [mode]="mode" (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
+                     <app-repo-sidebar [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
                 </div>
               </div>
             </div>
@@ -65,13 +66,21 @@
                 <option value="html">{{config.OPTION1}}</option>
                 <option value="javascript">{{config.OPTION2}}</option>
               </select>
+
+            <!-- card end -->
+            <!-- generate token button -->
+    
             </div>
           </div>
+
           <!-- repository side bar selector -->
-          <app-repo-sidebar [mode]="mode" (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
+
+      
+
         </div>
         <div *ngIf="mode=='javascript'" class="col-md-10">
           <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-editor>
+
         </div>
         <div *ngIf="mode=='html'" class="col-md-10">
           <app-webeditor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-webeditor>

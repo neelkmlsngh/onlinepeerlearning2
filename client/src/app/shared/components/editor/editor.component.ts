@@ -58,7 +58,7 @@ export class EditorComponent implements OnInit {
 
     this.snippet.getSnippet()
       .subscribe(res => {
-        this.javascript = res.filter(ele => ele.language === 'Javascript');
+        this.javascript = res.filter(ele => ele.language === 'javascript');
       })
   }
 
@@ -72,7 +72,6 @@ export class EditorComponent implements OnInit {
   executecode() {
     this.coderunner.executecode(this.content)
       .subscribe(data => {
-        console.log("fdfff", data)
         this.codeoutput = data
         this.dataObj = this.codeoutput._body
       })
@@ -110,7 +109,6 @@ export class EditorComponent implements OnInit {
       this.gitService.createFile(this.reponame)
         .subscribe(repos => {
             this.latestcommit = repos.object.sha;
-
             //hitting the commit file api to get sha of the tree commit
             this.gitService.commitfile(this.reponame, this.latestcommit)
               .subscribe(repos => {
@@ -124,6 +122,8 @@ export class EditorComponent implements OnInit {
                       "content": this.content
                     }]
                   }
+                })
+            })
 
                   //hitting the create file api to get sha of the new tree commit
                   this.gitService.treecommit(this.reponame, this.basetree)
@@ -134,6 +134,7 @@ export class EditorComponent implements OnInit {
                           "tree": this.newtree,
                           "message": commitMessage
                         }
+                      })
 
                         //hitting the create file api to get sha of the new commit
                         this.gitService.newcommit(this.reponame, this.newcommitobj)
@@ -142,10 +143,12 @@ export class EditorComponent implements OnInit {
                               this.lastcommit = {
                                 "sha": this.newcommit
                               }
+                            })
 
                               //hitting final api to create the file
                               this.gitService.lastcommit(this.reponame, this.lastcommit)
                                 .subscribe(repos => {})
+                              }
 
                               //method to get the file and update the content on git
                               update(commitMessage) {
@@ -231,3 +234,5 @@ export class EditorComponent implements OnInit {
                                   })
                               }
                             }
+
+

@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WebeditorComponent } from './webeditor.component';
 import { AceEditorDirective } from 'ng2-ace-editor'
 import { AceEditorModule } from 'ng2-ace-editor'
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { NO_ERRORS_SCHEMA }          from '@angular/core';
 import { SnippetService} from '../../services/snippet.service';
 import { webEditorConfig } from '../../config/webEditor.config';
@@ -17,7 +19,6 @@ describe('Settings component Testing', () => {
  /*config= webEditorConfig;*/
  let comp: WebeditorComponent;
  let fixture: ComponentFixture < WebeditorComponent > ;
-
  let button1de:  DebugElement;
  let button1el:  HTMLElement;
  
@@ -34,6 +35,8 @@ beforeEach(async() => {
     providers: [SnippetService]
    }).compileComponents();
  })
+
+
 /*Initial configuration that will run before every testcase*/
  beforeEach(() => {
    fixture = TestBed.createComponent(WebeditorComponent);

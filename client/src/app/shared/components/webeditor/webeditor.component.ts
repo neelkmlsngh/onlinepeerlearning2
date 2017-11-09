@@ -21,10 +21,11 @@ export class WebeditorComponent implements OnInit {
   }
   config = webEditorConfig;
 
-  @Input() content: any;
+  @Input() content: any
   @Input() reponame: any;
   @Input() filenamed: any;
 
+  htmlValue: any  = this.config.webEditor.HTMLTEMP;
   cssValue: any = this.config.webEditor.CSSTEMP;
   jsValue: any = this.config.webEditor.JSSTEMP;
   code: any;
@@ -75,6 +76,7 @@ export class WebeditorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.content=this.htmlValue;
     this.onChange(this.code)
 
     this.snippet.getSnippet()
