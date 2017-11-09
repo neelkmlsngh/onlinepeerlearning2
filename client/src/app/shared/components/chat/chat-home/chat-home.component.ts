@@ -42,6 +42,8 @@ export class ChatHomeComponent implements OnInit {
   data2: any = [];
   peerId:string;
   peerIdVideo:string;
+  userName :string;
+
   //constructor initialising various services
   constructor(
     private chatService: ChatService,
@@ -104,11 +106,15 @@ export class ChatHomeComponent implements OnInit {
             }, 100);
           }
         });
+        
+        // this.userName = JSON.parse(localStorage.getItem('currentUser'))['userName'];
+        // this.userNameForVideo = JSON.parse(localStorage.getItem('currentUser'))['userName'];
 
         this.socketService.getPeerId().subscribe(data => {
           this.showAudioBox = true;
           if(data['mypeerid']){
             this.peerId=data['mypeerid'];
+            this.userName=data['userName']
           }
          // return data;
         }, error => {
@@ -119,6 +125,7 @@ export class ChatHomeComponent implements OnInit {
           this.showVideoBox = true;
           if(data['mypeerid']){
             this.peerIdVideo = data['mypeerid']
+            this.userName=data['userName']
           }
         }, error=>{
 
