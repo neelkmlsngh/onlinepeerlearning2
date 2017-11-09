@@ -16,11 +16,13 @@
 
     @ViewChild('myaudio') myAudio: any; // id for audio tag
     @Input() userPeerId;
+    @Input() callUserName;
+    @Input() selectedUserName;
+    
     peer;
     anotherid;
     mypeerid;
-    n: any = navigator;
-
+   
     constructor(private router: Router, private compiler: Compiler, private socketService: SocketService, private chatHome: ChatHomeComponent) {}
 
     ngOnInit() {
