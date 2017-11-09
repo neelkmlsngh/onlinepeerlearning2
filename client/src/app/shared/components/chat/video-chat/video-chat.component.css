@@ -161,6 +161,12 @@
   width: 30px;
 }
 
+.ridge {
+  border-style: ridge;
+  height: 65%;
+  width: 100%;
+}
+
 .range {
   width: 100%;
   height: 100%;
