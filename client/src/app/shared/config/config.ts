@@ -1,6 +1,6 @@
 export const config: any = {
 
-  language: [
+ language: [
     "Javascript",
     "Html",
     "CSS"

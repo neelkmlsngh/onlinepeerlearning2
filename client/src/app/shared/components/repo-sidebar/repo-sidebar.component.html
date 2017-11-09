@@ -63,7 +63,31 @@
         </div>
       </div>
     </div>
+    <div *ngIf="!isTree"> {{emptyRepo}}</div>
+    <!-- end of drop down -->
   </div>
-  <!-- card end -->
-</div>
-<!-- repo side bar ends -->
+  <!-- repo side bar ends -->
+  <template #templates>
+    <div class="modal-header">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <h6>Enter Repository Name</h6>
+    <input type="text" name="" #box (keyup)="onKey($event)">
+    <h6>Description</h6>
+    <input type="text" name="" #boxes (keyup)="onKey($event)">
+    <input type="button" class="btn btn-sm btn-success submit" name="" value="create" (click)="createRepo(box.value,boxes.value)">
+  </template>
+  <template #template>
+    <div class="modal-header">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <h6>{{config.repoSidebar.GITHUBPASSWORD}}</h6>
+    <input type="password" name="" #token (keyup)="onKey($event)">
+    <h6>{{config.repoSidebar.ACCESSTOKEN}}</h6>
+    <input type="text" name="" #tokenName (keyup)="onKey($event)">
+    <input type="button" class="btn btn-sm btn-success submit" name="" value="create" (click)="createAccessToken(token.value,tokenName.value)">
+  </template>

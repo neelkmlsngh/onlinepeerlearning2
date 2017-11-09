@@ -12,7 +12,10 @@ export const config: any = {
     REPOS_NAME: "Enter Repository Name",
     README: "Description of ReadMe",
     CREATE: "Create",
-    SELECT: "Select Your Repository"
+    SELECT: "Select Your Repository",
+    TOKENBUTTON: "Generate Token",
+	GITHUBPASSWORD: "Enter Github Password",
+
 
   }
 };
