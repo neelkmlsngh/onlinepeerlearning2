@@ -3,10 +3,10 @@
     <!--head section-->
     <h5 id="myhead"><a>Audio Call</a></h5>
     <div>
-       <button class="audiobox__title__tray" (click)="audioboxtoggle()">
+      <button class="audiobox__title__tray" (click)="audioBoxToggle()">
         <span></span>
       </button>
-      <button class="audiobox__title__close" (click)="hideaudiochatbox()">
+      <button class="audiobox__title__close" (click)="hideAudioChatBox()">
         <span>
               <svg viewBox="0 0 12 12" width="12px" height="12px">
                   <line stroke="#FFFFFF " x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
@@ -16,12 +16,6 @@
       </button>
     </div>
   </div>
-  <div>
-    <!--user peer id for audio call -->
-    <input class="form-control bg-white" type="text" value={{mypeerid}} readonly ngModel>
-    <!--another user peer id for audio call -->
-    <input type="text" class="form-control bg-white" placeholder="Enter Your Connection" value={{anotherid}}>
-  </div><!-- [(ngModel)]="anotherid -->
   <div class="ridge">
     <img src="https://www.adjust.com/new-assets/images/site-images/interface/user.svg" class="img-responsive myimg">
     <!-- audio call -->
@@ -34,7 +28,7 @@
        </i>
     </button>
     <!-- mute audio button -->
-    <button class="btn btn-outline-success btn-lg ml-2 ml-2" data-toggle="popover" title="Mute" (click)="audio()"  vi-controls-pause>
+    <button class="btn btn-outline-success btn-lg ml-2 ml-2" data-toggle="popover" title="Mute" vi-controls-pause>
       <i class="fa fa-volume-off" aria-hidden="true"></i>
     </button>
     <!-- disconnect audio button -->
