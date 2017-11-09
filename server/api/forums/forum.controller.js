@@ -102,39 +102,133 @@ const saveAnswer = function(getValue, updateValue) {
 //save answer of question
 const saveLike = function(getValue, updateValue) {
     return new Promise((resolve, reject) => {
-      console.log(typeof(updateValue));
-        forumModel.update({
-            '_id': getValue
-        }, {
-            $set: { 'likes': updateValue }
-        }, { upsert: true }, (err, data) => {
+        // console.log(updateValue.userId);
+        forumModel.findOne({ _id: getValue }, (err, data) => {
             if (err) {
                 logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                resolve(data);
+                console.log('update value', updateValue.userId);
+                forumModel.findOneAndUpdate({ 'likes.userId': updateValue.userId }, {
+                    $pull: {
+                        likes: {
+                            'userId': updateValue.userId
+                        }
+                    }
+                }, { 'new': true }, (err, data) => {
+                    if (err) {
+                        logger.error(logConfig.INTERNAL_ERROR + err);
+                        reject(err);
+                    } else {
+                        if (data) {
+                            resolve(data);
+                        } else {
+                            forumModel.findOneAndUpdate({
+                                '_id': getValue
+                            }, {
+                                // console.log(likes.userId);
+                                $push: {
+                                    likes: { 'userId': updateValue.userId }
+                                }
+                            }, { upsert: true }, (err, data) => {
+                                if (err) {
+                                    logger.error(logConfig.INTERNAL_ERROR + err);
+                                    reject(err);
+                                } else {
+                                    if (data) {
+                                        resolve(data);
+                                    } else {
+                                        forumModel.findOneAndUpdate({
+                                            'dislikes.userId': updateValue.userId 
+                                        }, {
+                                            // console.log(likes.userId);
+                                            $pull: {
+                                                dislikes: { 'userId': updateValue.userId }
+                                            }
+                                        }, { upsert: true }, (err, data) => {
+                                            if (err) {
+                                                logger.error(logConfig.INTERNAL_ERROR + err);
+                                                reject(err);
+                                            } else {
+                                                resolve(data);
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    }
+
+                })
+
             }
         })
-    });
-};
+    })
+}
 
 //save dislike of question
 const saveDislike = function(getValue, updateValue) {
-    return new Promise((resolve, reject) => {
-      console.log(typeof(updateValue));
-        forumModel.update({
-            '_id': getValue
-        }, {
-            $set: { 'dislikes': updateValue }
-        }, { upsert: true }, (err, data) => {
+  return new Promise((resolve, reject) => {
+        // console.log(updateValue.userId);
+        forumModel.findOne({ _id: getValue }, (err, data) => {
             if (err) {
                 logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                resolve(data);
+                //console.log('update value', updateValue.userId);
+                forumModel.findOneAndUpdate({ 'dislikes.userId': updateValue.userId }, {
+                    $pull: {
+                        dislikes: {
+                            'userId': updateValue.userId
+                        }
+                    }
+                }, { 'new': true }, (err, data) => {
+                    if (err) {
+                        logger.error(logConfig.INTERNAL_ERROR + err);
+                        reject(err);
+                    } else {
+                        if (data) {
+                            resolve(data);
+                        } else {
+                            forumModel.findOneAndUpdate({
+                                '_id': getValue
+                            }, {
+                                $push: {
+                                    dislikes: { 'userId': updateValue.userId }
+                                }
+                            }, { upsert: true }, (err, data) => {
+                                if (err) {
+                                    logger.error(logConfig.INTERNAL_ERROR + err);
+                                    reject(err);
+                                } else {
+                                    if (data) {
+                                        resolve(data);
+                                    } else {
+                                        forumModel.findOneAndUpdate({
+                                           'userId': updateValue.userId
+                                        }, {
+                                            $pull: {
+                                                likes: { 'userId': updateValue.userId }
+                                            }
+                                        }, { upsert: true }, (err, data) => {
+                                            if (err) {
+                                                logger.error(logConfig.INTERNAL_ERROR + err);
+                                                reject(err);
+                                            } else {
+                                                resolve(data);
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    }
+
+                })
+
             }
         })
-    });
+    })
 };
 
 
@@ -145,5 +239,5 @@ module.exports = {
     getPostById: getPostById,
     saveAnswer: saveAnswer,
     saveLike: saveLike,
-    saveDislike : saveDislike
+    saveDislike: saveDislike
 };

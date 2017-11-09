@@ -22,8 +22,12 @@ export class ForumsComponent implements OnInit {
   likeflag = false;
   dislikeflag = false;
   dislikes = 0;
-  data: any = {};
+  data: any = [];
+  currentUser:any;
+  userName:any;
+  userId:any ={};
   answer: any = {};
+  tags:any=[];
   noofanswer: number = 0;
   answerlength: any = [];
   p: number[] = [];
@@ -33,16 +37,19 @@ export class ForumsComponent implements OnInit {
 
  // method to show posts on forum
   ngOnInit() {
+       this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
+       this.userName=this.currentUser.userName;
+       console.log(this.userName);
     this.viewPost();
+    //this.like(value):any;
   }
-
-
 
   //method call posts from service
   viewPost() {
     this.forum.getPost().subscribe((data1) => {
-      this.data = data1;
-      console.log(this.data);
+      this.data = data1.data;
+      this.tags=this.data.tags;
+      console.log(this.tags);
     })
   }
 
@@ -59,23 +66,13 @@ export class ForumsComponent implements OnInit {
     this.router.navigate(['forums','view' ,value])
   }
 
+
   //method for likes
   like(value):any {
-    if (this.likeflag == false) {
-      if (this.dislikeflag == true) {
-        this.likes++;
-        this.likeflag = true;
-        this.dislikes--;
-        this.dislikeflag = false;
-      } else {
-        this.likes++;
-        this.likeflag = true;
-      }
-    } else {
-      this.likes--;
-      this.likeflag = false;
+    this.userId = {
+      userId:this.userName,
     }
-    this.forum.updateLike(value,this.likes)
+    this.forum.updateLike(value,this.userId)
      .subscribe(res => {
        console.log(res);
       })
@@ -83,21 +80,10 @@ export class ForumsComponent implements OnInit {
 
   //method for dislikes
   dislike(value):any {
-    if (this.dislikeflag == false) {
-      if (this.likeflag == true) {
-        this.dislikes++;
-        this.dislikeflag = true;
-        this.likes--;
-        this.likeflag = false;
-      } else {
-        this.dislikes++;
-        this.dislikeflag = true;
-      }
-    } else {
-      this.dislikes--;
-      this.dislikeflag = false;
+     this.userId = {
+      userId:this.userName,
     }
-    this.forum.updateLike(value,this.dislikes)
+    this.forum.updateDislike(value,this.userId )
      .subscribe(res => {
        console.log(res);
       })
