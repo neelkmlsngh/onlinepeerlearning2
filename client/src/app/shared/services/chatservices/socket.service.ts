@@ -70,5 +70,22 @@ export class SocketService {
     return observable;
   }
 
+   sendPeerIdVideo(mypeerid, selectedUserId) {
+    this.socket.emit('send-peer-id-video', mypeerid, selectedUserId)
+  }
+
+  getPeerIdForVideo() {
+    let observable = new Observable(observer => {
+      this.socket.on('peer-id-response-video', (data) => {
+        console.log("Data ============= ********************* ======= ",data)
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }
+
 }
 

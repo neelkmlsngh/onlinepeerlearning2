@@ -1,9 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,Input } from '@angular/core';
 import { Router } from '@angular/router'
 import { Compiler } from '@angular/core';
 import * as $ from 'jquery';
 
 import { config } from '../../../config/config'
+import { SocketService } from '../../../services/chatservices/socket.service'
+
+  import { ChatHomeComponent } from '../chat-home/chat-home.component'
 
 @Component({
   selector: 'app-video-chat',
@@ -14,12 +17,13 @@ import { config } from '../../../config/config'
 export class VideoChatComponent implements OnInit {
 
   @ViewChild('myvideo') myVideo: any; // id for video tag
+  @Input()userPeerId;
   peer;
   anotherid;
   mypeerid;
   flag:boolean=false;
 
-  constructor(private router: Router, private compiler: Compiler) {}
+  constructor(private router: Router,private chatHome:ChatHomeComponent ,private compiler: Compiler,private socketService:SocketService) {}
 
   ngOnInit() {
 
@@ -27,6 +31,9 @@ export class VideoChatComponent implements OnInit {
     this.peer = new Peer({ host: config.peerserver.host, port: config.peerserver.port, path: config.peerserver.path }); //peer server connection
     setTimeout(() => {
       this.mypeerid = this.peer.id;
+      let selectedUserId = this.chatHome.sendSelectedUserId();
+       this.socketService.sendPeerIdVideo(this.peer.id,selectedUserId);
+
     }, 3000);
 
     //on peer server
@@ -61,7 +68,7 @@ export class VideoChatComponent implements OnInit {
 
   //establish the peer connection
   connect() {
-    let conn = this.peer.connect(this.anotherid);
+    let conn = this.peer.connect(this.userPeerId);
     conn.on('open', function() {
       conn.send('Message from that id');
     });
@@ -70,7 +77,7 @@ export class VideoChatComponent implements OnInit {
   videoConnect() {
     let video = this.myVideo.nativeElement;
     let localvar = this.peer;
-    let fname = this.anotherid;
+    let fname = this.userPeerId;
 
     let n = < any > navigator;
     n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
@@ -86,19 +93,16 @@ export class VideoChatComponent implements OnInit {
 
   // video call disconnect
   videoDisconnect() {
-    let conn = this.peer.destroy(this.anotherid);
+    let conn = this.peer.destroy(this.userPeerId);
     this.compiler.clearCache();
     this.hidevideochatbox();
     this.router.navigate(["/main"]);
-    conn.on('close', function() {
-      conn.send('End Call');
-    });
-  }
+     }
   // video call mute
    videoMute() {
     let video = this.myVideo.nativeElement;
     let localvar = this.peer;
-    let fname = this.anotherid;
+    let fname = this.userPeerId;
     let n = < any > navigator;
 
     n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
@@ -114,7 +118,7 @@ export class VideoChatComponent implements OnInit {
     videoUnmute() {
     let video = this.myVideo.nativeElement;
     let localvar = this.peer;
-    let fname = this.anotherid;
+    let fname = this.userPeerId;
     let n = < any > navigator;
 
     n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);

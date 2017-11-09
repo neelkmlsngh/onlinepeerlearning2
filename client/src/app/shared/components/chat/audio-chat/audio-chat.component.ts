@@ -77,36 +77,31 @@ audioboxtoggle(){
       let n = < any > navigator;
 
       n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
-console.log("================ After =======================")
       n.getUserMedia({ video: false, audio: true }, function(stream) {
-console.log("================ inside get userMedia  =======================")
-
-        let call = localvar.call(fname, stream);
+       let call = localvar.call(fname, stream);
         call.on('stream', function(remotestream) {
-          audio.src = URL.createObjectURL(remotestream);
-          audio.play();
-        })
+        audio.src = URL.createObjectURL(remotestream);
+        audio.play();
+      })
       }, function(err) {})
     }
 
     //audio call disconnect
    audioDisconnect() {
-    let conn = this.peer.destroy(this.anotherid);
+    let conn = this.peer.destroy(this.userPeerId);
     this.compiler.clearCache();
+    this.hideaudiochatbox();
     this.router.navigate(["/main"]);
-    conn.on('close', function() {
-      conn.send('End Call');
-    });
   }
 
    audioMute() {
     let audio = this.myAudio.nativeElement;
     let localvar = this.peer;
-    let fname = this.anotherid;
+    let fname = this.userPeerId;
     let n = < any > navigator;
 
     n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
-    n.getUserMedia({ video: false, audio: true,type:'remote' }, function(stream) {
+    n.getUserMedia({ video: false, audio: true }, function(stream) {
       let call = localvar.call(fname, stream);
       call.on('stream', function(remotestream) {
         audio.src = URL.createObjectURL(remotestream);
@@ -118,11 +113,11 @@ console.log("================ inside get userMedia  =======================")
     audioUnmute() {
     let audio = this.myAudio.nativeElement;
     let localvar = this.peer;
-    let fname = this.anotherid;
+    let fname = this.userPeerId;
     let n = < any > navigator;
 
     n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
-    n.getUserMedia({ video: false, audio: true,type:'remote' }, function(stream) {
+    n.getUserMedia({ video: false, audio: true }, function(stream) {
       let call = localvar.call(fname, stream);
       call.on('stream', function(remotestream) {
         audio.src = URL.createObjectURL(remotestream);

@@ -41,6 +41,7 @@ export class ChatHomeComponent implements OnInit {
   messages = [];
   data2: any = [];
   peerId:string;
+  peerIdVideo:string;
   //constructor initialising various services
   constructor(
     private chatService: ChatService,
@@ -105,6 +106,15 @@ export class ChatHomeComponent implements OnInit {
           }
          // return data;
         }, error => {
+
+        })
+
+        this.socketService.getPeerIdForVideo().subscribe(data=>{
+          this.showVideoBox = true;
+          if(data['mypeerid']){
+            this.peerIdVideo = data['mypeerid']
+          }
+        }, error=>{
 
         })
       });

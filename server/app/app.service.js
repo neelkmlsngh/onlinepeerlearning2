@@ -201,6 +201,11 @@ function socketEvents(io) {
 			io.to(selectedUserId).emit(`peer-id-response`,{mypeerid: mypeerid});
 		})
 
+		socket.on('send-peer-id-video', (mypeerid,selectedUserId) => {
+			console.log(selectedUserId+" Event emit "+mypeerid)
+			io.to(selectedUserId).emit(`peer-id-response-video`,{mypeerid: mypeerid});
+		})
+
 	});
 }
 module.exports = {
