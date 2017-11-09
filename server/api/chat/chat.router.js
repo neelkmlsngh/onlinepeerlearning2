@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const logger = require('../../services/app.logger');
 const helper = require('./chat.controller');
 const appConfig = require('../../config').app;
 const chatEntity = require('./chat.entity')

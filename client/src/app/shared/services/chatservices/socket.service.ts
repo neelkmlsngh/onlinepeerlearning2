@@ -49,8 +49,42 @@ export class SocketService {
     return observable;
   }
 
-  sendFile(fileObj){
+  sendFile(fileObj) {
     this.socket.emit('send-file', fileObj)
+  }
+
+  sendPeerId(mypeerid, selectedUserId) {
+    this.socket.emit('send-peer-id', mypeerid, selectedUserId)
+  }
+
+  getPeerId() {
+    let observable = new Observable(observer => {
+      this.socket.on('peer-id-response', (data) => {
+        console.log("Data ============= ********************* ======= ",data)
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }
+
+   sendPeerIdVideo(mypeerid, selectedUserId) {
+    this.socket.emit('send-peer-id-video', mypeerid, selectedUserId)
+  }
+
+  getPeerIdForVideo() {
+    let observable = new Observable(observer => {
+      this.socket.on('peer-id-response-video', (data) => {
+        console.log("Data ============= ********************* ======= ",data)
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
   }
 
 }

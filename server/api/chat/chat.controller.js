@@ -1,4 +1,3 @@
-const logger = require('../../services/app.logger');
 const appConstant = require('../../config').app;
 const loginModel = require('../login/login.entity')
 const chatMsgModel = require('./chat.entity')

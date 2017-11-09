@@ -4,7 +4,6 @@ html {
 }
 
 h1 {
-
   font-family: "Times New Roman", Times, serif;
   color: #607D8B
 }
@@ -49,12 +48,14 @@ h5 {
   font-size: 1.28571429em;
   font-weight: 700;
   line-height: 1.2857em;
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 .card-text {
   clear: both;
   margin-top: .5em;
   color: rgba(0, 0, 0, .68);
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 .card-footer {
@@ -124,12 +125,13 @@ h5 {
 }
 
 
+
 /*/profile card class*/
 
 .heading {
   background-color: #F3E5F5;
+  margin-top: 3%;
 }
-
 
 .example-container {
   display: flex;
@@ -167,4 +169,16 @@ h5 {
 
 .gender {
   margin-left: 2%
+}
+
+.personalinfocard {
+  margin-top: 10%;
+}
+
+.profileinfo {
+  margin-top: 5%
+}
+
+.name {
+  margin-top: 3%;
 }
