@@ -26,11 +26,8 @@ forumConfig=forumConfig;
     codeSnippet:string;
     obj:any={};
     addSnippet:any;
-<<<<<<< HEAD
     items:any=[];
-=======
     data : any;
->>>>>>> 62f694c8c1d9c676390b1ac348f9aacb7e772777
 
   constructor(private forum: ForumService) {
     
