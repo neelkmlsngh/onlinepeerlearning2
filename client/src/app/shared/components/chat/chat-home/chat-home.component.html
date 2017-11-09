@@ -23,11 +23,11 @@
     </button>
   </div>
   <!-- Messages to be displayed in chatbox -->
-  <ul class="message-thread" #scroll>
-    <li *ngFor="let message of messages" [class.align-right]="alignMessage(message.toUserId)">
-      {{ message.message}}
-    </li>
-  </ul>
+  <ul class="message-thread">
+   <li class="" *ngFor="let message of messages" [class.align-right]="alignMessage(message.toUserId)" [class.msgcolour]="!alignMessage(message.toUserId)">
+     {{ message.message}}
+   </li>
+ </ul>
   <div class="message-typer">
     <textarea class="message form-control" placeholder="Type and hit Enter" [(ngModel)]="message" (keyup)="sendMessage($event)">
       <!-- <button (click)='audioRecieve()'></button> -->
