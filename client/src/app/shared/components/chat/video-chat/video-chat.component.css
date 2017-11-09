@@ -4,7 +4,7 @@
   right: 30px;
   width: 300px;
   height: 400px;
-  background-color: #fff;
+  background-color: #c6ffff;
   font-family: 'Lato', sans-serif;
   -webkit-transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
@@ -15,7 +15,7 @@
 }
 
 .videobox--tray {
-  bottom: -330px;
+  bottom: -270px;
 }
 
 .videobox--closed {
@@ -130,71 +130,13 @@
   box-shadow: none;
 }
 
-.videobox__body {
-  overflow-y: auto;
-}
-
-.videobox__body__message {
-  position: relative;
-}
-
-.videobox__body__message p {
-  padding: 15px;
-  border-radius: 4px;
-  font-size: 14px;
-  background-color: #fff;
-  -webkit-box-shadow: 1px 1px rgba(100, 100, 100, 0.1);
-  box-shadow: 1px 1px rgba(100, 100, 100, 0.1);
-}
-
-.videobox__body__message img {
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
-  border: 2px solid #fcfcfc;
-  position: absolute;
-  top: 15px;
-}
-
-.videobox__body__message--left p {
-  margin-left: 15px;
-  padding-left: 30px;
-  text-align: left;
-}
-
-.videobox__body__message--left img {
-  left: -5px;
-}
-
-.videobox__body__message--right p {
-  margin-right: 15px;
-  padding-right: 30px;
-  text-align: right;
-}
-
-.videobox__body__message--right img {
-  right: -5px;
-}
-
-.videobox__message {
-  padding: 15px;
-  min-height: 50px;
-  outline: 0;
-  resize: none;
-  border: none;
-  font-size: 12px;
-  border: 1px solid #ddd;
-  border-bottom: none;
-  background-color: #fefefe;
-}
-
 .videobox--empty {
-  height: 380px;
-  margin-right: 62%;
+  height: 320px;
+  margin-right: 26.3%;
 }
 
 .videobox--empty.video--tray {
-  bottom: -330px;
+  bottom: -270px;
 }
 
 .videobox--empty.video--closed {
@@ -217,21 +159,6 @@
 .btns {
   height: 30px;
   width: 30px;
-}
-
-.lgbtn {
-  height: 30px;
-  width: 30px;
-}
-
-.audiocall {
-  background-image: url("https://sassets.evoice.com/evoiceImages/contact_sales.png")
-}
-
-.ridge {
-  border-style: ridge;
-  height: 50%;
-  width: 100%;
 }
 
 .range {

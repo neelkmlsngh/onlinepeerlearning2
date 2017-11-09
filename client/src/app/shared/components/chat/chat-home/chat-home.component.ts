@@ -57,6 +57,12 @@ export class ChatHomeComponent implements OnInit {
   /*method loading various functions*/
   ngOnInit() {
     $('.chatbox').hide();
+
+    $(function() {
+      var div = $("#scroll");
+      div.scrollTop(div.prop('scrollHeight'));
+    }); 
+
     // getting userID from the local storage  
     this.userId = this.authenticationService.getUserId();
     if (this.userId === '' || typeof this.userId == 'undefined') {
@@ -133,6 +139,7 @@ export class ChatHomeComponent implements OnInit {
     });
     this.openChatBox()
     this.hideChatBox()
+
   }
   //Method for opening chatbox
   openChatBox(): void {
@@ -167,6 +174,9 @@ export class ChatHomeComponent implements OnInit {
   hideChatBox(): void {
     $('.chatbox').show();
     $('.side').hide();
+    setTimeout(()=>{
+    $('.message-thread')[0].scrollTop = $('.message-thread')[0]['scrollHeight'];
+    },30)
   }
 
   chatBoxToggle(): void {

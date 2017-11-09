@@ -23,7 +23,7 @@
     </button>
   </div>
   <!-- Messages to be displayed in chatbox -->
-  <ul class="message-thread">
+  <ul class="message-thread" #scroll>
     <li *ngFor="let message of messages" [class.align-right]="alignMessage(message.toUserId)">
       {{ message.message}}
     </li>
