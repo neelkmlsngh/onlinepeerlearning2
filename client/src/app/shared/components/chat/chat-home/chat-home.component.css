@@ -127,7 +127,7 @@
 
   .done {
     position: fixed;
-    bottom: 20px;
+    bottom: 90px;
     right: 20px;
     color: white;
   }
@@ -504,6 +504,7 @@
 
   .chatbox--empty.chatbox--tray {
     bottom: -350px;
+    display: none;
   }
 
   .chatbox--empty.chatbox--closed {

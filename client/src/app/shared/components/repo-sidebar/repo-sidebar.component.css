@@ -1,27 +1,46 @@
 /*css on repo side bar*/
 
-.card {
-  height: 80%;
-  background-color: #a1d6e2;
+select {
+  width: 100%;
+  text-align: center;
+  background-color: #C5CAE9;
+  color: black;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
 }
 
-h5 {
-  font-size: 14px;
-  color: white;
+.gitRepo {
+  width: 100%;
+  text-align: center;
+  color: black;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
 }
 
-.card-header {
-  height: 80%;
+option {
+  color: black;
+  background-color: #D1C4E9;
+}
+
+select .lt {
+  text-align: center;
 }
 
 select {
-  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  text-indent: 5px;
 }
 
-.addRepo {
-  margin-left: 50px;
-  height: 120%;
+.buttons {
+  float: right;
+  width: 20%;
 }
+
+h5 {
+  font-size: 11px;
+  color: white;
+}
+
+
 
 /*media queries*/
 

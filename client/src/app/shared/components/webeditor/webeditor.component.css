@@ -6,6 +6,15 @@
   box-sizing: border-box;
 }
 
+.toolbarColor{
+  background-color: #C5CAE9; 
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #FFC107;
+}
+
 html,
 body {
   width: 100%;
@@ -42,6 +51,7 @@ body {
   border-left-width: 10px;
   overflow: hidden;
   height: 100%;
+  background-color: #FFFFFF;
 }
 
 #output iframe {
@@ -94,4 +104,8 @@ body {
 
 .rightalign{
   float: right;
+}
+
+.tabHeight{
+  margin-top: -15px;
 }
