@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, NgZone, TemplateRef,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, Input, NgZone, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
@@ -20,8 +20,7 @@ import { mainConfig } from '../shared/config/main.config';
 
 export class MainComponent implements OnInit {
 
-  @ViewChild('token') token: ElementRef;
-  
+
   content: any = "";
   reponame: any;
   filenamed: any;
@@ -152,11 +151,9 @@ export class MainComponent implements OnInit {
     })
   }
 
-  generateToken(form){
-   this.createAccessToken(form.value.pass,form.value.tokenName);
-   this.token.nativeElement.click();
-   form.reset();
- }
+  onKey(event) {
+    this.value += event
+  }
 
   //method generate personal access token for new user
   createAccessToken(password, tokenName) {

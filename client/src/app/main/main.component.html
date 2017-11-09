@@ -28,47 +28,6 @@
                 </div>
               </div>
             </div>
-            <!-- card end -->
-            <!-- generate token button -->
-            <button type="button" class="btn btn-outline-info btn-sm tokenButtonMargin" data-toggle="modal" data-target="#tokenModal"><b class='generateTokenButton'>{{config.TOKENBUTTON}}</b></button>
-            <!--  -->
-            <div class="modal fade" id="tokenModal" tabindex="-1" role="dialog" aria-labelledby="tokenModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header modalColor">
-                    <h6 class="modal-title" id="tokenModalLabel">Generate Token</h6>
-                    <button type="button" class="close" data-dismiss="modal" #token aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form #companyForm="ngForm" (ngSubmit)="generateToken(companyForm.form);">
-                      <label for="recipient-name" class="form-control-label">Enter Github Password</label>
-                      <input type="password" class="form-control" name="pass" ngModel #nameField="ngModel" required minlength="3">
-                      <div *ngIf="nameField.touched && nameField.errors">
-                        <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                          The password is required
-                        </div>
-                        <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                          The password should be at least 3 characters long
-                        </div>
-                      </div>
-                      <h6></h6>
-                      <label for="recipient-name" class="form-control-label">Enter Personal Access Token Name</label>
-                      <input type="text" class="form-control" name="tokenName" ngModel #nameField="ngModel" required minlength="3">
-                      <div *ngIf="nameField.touched && nameField.errors">
-                        <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                          The token name is required
-                        </div>
-                        <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                          The token name should be at least 5 characters long
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button class="btn btn-primary" [disabled]="!companyForm.valid">Ok</button>
-                      </div>
-                    </form>
-                  </div>
 
             <div class="card">
               <div class="card-header" role="tab" id="headingTwo">
@@ -99,7 +58,7 @@
               </div>
             </div>
           </div>
-                    <!-- first column -->
+          <!-- first column -->
           <div class="row mt-3">
             <div class="col-md-12 ">
               <select class="btn btn-outline-warning listOption" name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="changeMode()">
@@ -113,6 +72,7 @@
     
             </div>
           </div>
+
           <!-- repository side bar selector -->
 
       
@@ -120,6 +80,7 @@
         </div>
         <div *ngIf="mode=='javascript'" class="col-md-10">
           <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-editor>
+
         </div>
         <div *ngIf="mode=='html'" class="col-md-10">
           <app-webeditor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-webeditor>

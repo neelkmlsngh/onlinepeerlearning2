@@ -3,65 +3,17 @@
 <div class="row mt-3 background">
   <div class="col-md-12">
     <!-- card to make block for repo sidebar -->
-    <div class="card">
-      <h5 class="card-header"><b>{{config.repoSidebar.REPOS}}</b><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#repoModal" ><i class="fa fa-plus plusSize" aria-hidden="true"></i></button></h5>
-      <!--  -->
-      <div class="modal fade" id="repoModal" tabindex="-1" role="dialog" aria-labelledby="tokenModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header modalColor">
-              <h6 class="modal-title" id="tokenModalLabel">Create New Repository</h6>
-              <button type="button" class="close" data-dismiss="modal" #newRepository aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form #companyForm="ngForm" (ngSubmit)="creteNewRepo(companyForm.form);">
-                <label for="recipient-name" class="form-control-label">Enter Repository Name</label>
-                <input type="text" class="form-control" name="repositoryName" ngModel #nameField="ngModel" required minlength="3">
-                <div *ngIf="nameField.touched && nameField.errors">
-                  <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                    The repository name is required
-                  </div>
-                  <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                    The repository name should be at least 5 characters long
-                  </div>
-                </div>
-                <h6></h6>
-                <label for="recipient-name" class="form-control-label">Description for README.md</label>
-                <input type="text" class="form-control" name="description" ngModel #nameField="ngModel" required minlength="3">
-                <div *ngIf="nameField.touched && nameField.errors">
-                  <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                    The description is required
-                  </div>
-                  <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                    Description is needed
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-primary" [disabled]="!companyForm.valid">Ok</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card-block">
-        <div class="list-group">
-          <select name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="reposearch()">
-            <option value=""> {{config.repoSidebar.SELECT}}</option>
-            <option *ngFor="let repo of githubUser">{{repo.name}}</option>
-          </select>
-          <!-- making drop down containing the list of repositeries -->
-          <div *ngIf="isTree">
-            <a *ngFor="let repo of data" type="button" class="list-group-item list-group-item-action" (click)="showFile(selectedValue, repo.name)">
-              <h6 class="list-group-item-heading">{{repo.name}}</h6>
-            </a>
-          </div>
-          <div *ngIf="!isTree"> {{emptyRepo}}</div>
-          <!-- end of drop down -->
-        </div>
-      </div>
+    <!--   <i class="fa fa-plus plusSize" aria-hidden="true" data-toggle="popover" title="Add New Repository" (click)="openRepoModal(templates)"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <i class="fa fa-key" aria-hidden="true" data-toggle="popover" title="Generate Token" (click)="openTokenModal(template)"></i> -->
+    <select class="btn btn-outline-warning listOption" name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="reposearch()">
+      <option *ngFor="let repo of githubUser">{{repo.name}}</option>
+    </select>
+    <!-- </div> -->
+    <!-- making drop down containing the list of repositeries -->
+    <div *ngIf="isTree">
+      <a *ngFor="let repo of data" type="button" class="list-group-item list-group-item-action" (click)="showFile(selectedValue, repo.name)">
+        <h6 class="list-group-item-heading gitRepo" data-spy="scroll">{{repo.name}}</h6>
+      </a>
     </div>
     <div *ngIf="!isTree"> {{emptyRepo}}</div>
     <!-- end of drop down -->

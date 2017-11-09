@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter, TemplateRef,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import swal from 'sweetalert2';
@@ -17,8 +17,6 @@ import { AuthenticationService } from '../../services/authentication.service'
 })
 
 export class RepoSidebarComponent implements OnInit {
-
-  @ViewChild('newRepository') newRepository: ElementRef;
 
   @Input() mode: String;
   config = config;
@@ -137,11 +135,10 @@ export class RepoSidebarComponent implements OnInit {
       })
   }
 
-  creteNewRepo(form){
-   this.newRepository.nativeElement.click();
-   this.createRepo(form.value.repositoryName,form.value.description);
-   form.reset();
- }
+  //method to enter new repository name
+  onKey(event) {
+    this.value += event
+  }
 
   //method for creating new repository
   createRepo(name, desc) {
