@@ -57,18 +57,18 @@ export class ForumService {
   }
 
    //method to update like
-  updateLike(id, value) {
-    console.log(value);
+  updateLike(id, userName) {
+    
     return this.http.
-    put('https://localhost:8080/api/forums/term/'+ id, value)
+    put('https://localhost:8080/api/forums/term/'+ id, userName)
       .map(res => res.json());
   }
 
   //method to update dislike
-    updateDislike(id, value) {
-    console.log(value);
+    updateDislike(id, userName) {
+   console.log("service..................",userName);
     return this.http.
-    put('https://localhost:8080/api/forums/term/'+ id, value)
+    put('https://localhost:8080/api/forums/dislike/'+ id,userName)
       .map(res => res.json());
   }
 

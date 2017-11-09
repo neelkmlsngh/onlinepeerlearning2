@@ -3,36 +3,36 @@
   background-color: #00695C;
 }
 
-.problemDescription{
-	font-size: 15px;
+.problemDescription {
+  font-size: 15px;
 }
 
-.tags{
-	background-color: #CE93D8;
+.tags {
+  background-color: #CE93D8;
 }
 
-.postquestion{
+.postquestion {
   background-color: #00695C;
 }
 
-.questionTitle{
-	color: #6A1B9A;
+.questionTitle {
+  color: #6A1B9A;
 }
 
-.user{
-	color: #00695C;
+.user {
+  color: #00695C;
 }
 
-.views{
-	color:  #6A1B9A;
+.views {
+  color: #6A1B9A;
 }
 
-.ans{
-	  padding-left: 11px;
+.ans {
+  padding-left: 11px;
 }
 
-.navbar{
-	background-color: #00695C;
+.navbar {
+  background-color: #00695C;
 }
 
 hr {
@@ -41,4 +41,100 @@ hr {
   width: 99%;
   background-color: #DBDCDD;
   height: 1px;
+}
+
+/*// Extra small devices (portrait phones, less than 576px)*/
+
+@media (max-width: 575px) {
+
+  .text-right {
+    text-align: left;
+  }
+  .problemDescription {
+    font-size: 12px;
+  }
+  .questionTitle {
+    font-size: 13px;
+  }
+  .search {
+    margin-top: 8px;
+    margin-bottom: 7px;
+  }
+  .user {
+    font-size: 12px;
+  }
+  .h5 {
+    font-size: 15px;
+  }
+  .h4 {
+    font-size: 16px;
+  }
+  .pagination{
+     padding-left:0px;
+    font-size: 10px;
+  }
+}
+/*// Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767px) {
+
+}
+
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991px) {
+  .postquestion {
+    float: right;
+  }
+  .user {
+    text-align: right;
+    font-size: 13px;
+  }
+  .problemDescription {
+    font-size: 13px;
+  }
+  .questionTitle {
+    font-size: 14px;
+  }
+
+  .h5 {
+    font-size: 16px;
+  }
+  .h4 {
+    font-size: 17px;
+  }
+}
+
+
+
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199px) {
+
+  .postquestion {
+    float: right;
+  }
+  .user {
+    text-align: right;
+  }
+
+  .problemDescription {
+    font-size: 14px;
+  }
+  .questionTitle {
+    font-size: 15px;
+  }
+}
+
+/*// Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+  .postquestion {
+    float: right;
+  }
+  .user {
+    text-align: right;
+  }
+  .problemDescription {
+    font-size: 14px;
+  }
+  .questionTitle {
+    font-size: 15px;
+  }
 }
