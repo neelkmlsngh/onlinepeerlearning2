@@ -101,15 +101,9 @@ export class ChatHomeComponent implements OnInit {
         this.socketService.receiveMessages().subscribe(response => {
           if (this.selectedUserId && this.selectedUserId == response.fromUserId) {
             this.messages.push(response);
-            setTimeout(() => {
-              document.querySelector(`.message-thread`).scrollTop = document.querySelector(`.message-thread`).scrollHeight;
-            }, 100);
-          }
+            }
         });
         
-        // this.userName = JSON.parse(localStorage.getItem('currentUser'))['userName'];
-        // this.userNameForVideo = JSON.parse(localStorage.getItem('currentUser'))['userName'];
-
         this.socketService.getPeerId().subscribe(data => {
           this.showAudioBox = true;
           if(data['mypeerid']){
