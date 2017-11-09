@@ -134,13 +134,21 @@
 
 
 
-  .align-right {
+.align-right {
+   float: right !important;
+   text-align: right;
+   background-color: #8BC34A
+!important;
+   font-family: 'Roboto', sans-serif;
+   font-size: 14px;
+ }
 
-    float: right !important;
-
-    text-align: right;
-
-  }
+ .msgcolour {
+   background-color: #2196F3
+!important;
+   font-family: 'Roboto', sans-serif;
+   font-size: 14px;
+ }
 
 
 
