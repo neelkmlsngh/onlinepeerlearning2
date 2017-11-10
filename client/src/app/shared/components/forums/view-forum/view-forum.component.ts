@@ -34,28 +34,32 @@ export class ViewForumComponent implements OnInit {
   forumConfig=forumConfig;
 
   ngOnInit() {
-   //    this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
-   // this.userName=this.currentUser.userName;
+   this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
+   this.userName=this.currentUser.userName;
    // console.log(this.userName);
 
-       this.date = new Date();
+    this.date = new Date();
     let day = this.date.getDate();
     let month = this.date.getMonth() + 1;
     let year = this.date.getFullYear();
     this.date = day + '/' + month + '/' + year;
 
 // getPostById method get the post by searching its id
-    this.router.paramMap
+    this.viewQuestionDetail();
+  }
+
+  //view question detail
+  viewQuestionDetail(){
+        this.router.paramMap
       .switchMap((params: ParamMap) => this.forum.getPostById(this.router.snapshot.params['value']))
       .subscribe((res) => {
         this.data = res.data;
         this.solutions = this.data.answers;
         console.log(this.data);
       })
-    error => {
-      this.errors = error;
-    };
   }
+
+
   //method to load editor to postAnswer
   ngAfterViewInit() {
     var configuration = {
@@ -81,7 +85,7 @@ export class ViewForumComponent implements OnInit {
   //method to postAnswer
   postAnswer() {
     this.obj = {
-      username: "prashant",
+      username: this.userName,
       answer:CKEDITOR.instances.answerText.getData(),
       codeSnippet: CKEDITOR.instances.addSnippet.getData(),
       date: this.date
@@ -89,7 +93,11 @@ export class ViewForumComponent implements OnInit {
     this.forum.saveAnswer(this.data._id, this.obj)
       .subscribe(res => {
         console.log(res);
+      this.viewQuestionDetail();
+      CKEDITOR.instances.answerText.setData("");
+      CKEDITOR.instances.addSnippet.setData("");
       })
+
   }
 
 }

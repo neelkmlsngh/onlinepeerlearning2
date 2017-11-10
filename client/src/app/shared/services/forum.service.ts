@@ -58,9 +58,8 @@ export class ForumService {
 
    //method to update like
   updateLike(id, userName) {
-    
     return this.http.
-    put('https://localhost:8080/api/forums/term/'+ id, userName)
+    put(forumConfig.forumUrls.FORUMURL + config.forumConnect.LIKEURL+ id,userName)
       .map(res => res.json());
   }
 
@@ -68,7 +67,7 @@ export class ForumService {
     updateDislike(id, userName) {
    console.log("service..................",userName);
     return this.http.
-    put('https://localhost:8080/api/forums/dislike/'+ id,userName)
+    put(forumConfig.forumUrls.FORUMURL + config.forumConnect.DISLIKEURL+ id,userName)
       .map(res => res.json());
   }
 

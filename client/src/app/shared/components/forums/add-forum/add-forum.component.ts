@@ -68,7 +68,6 @@ forumConfig=forumConfig;
   }
   //method to add post on forum
   insertPost() {
-    console.log("prashnt");
     // let user = JSON.parse(localStorage.getItem('currentUser'));
     // let userName=user.userName
     this.obj = {
@@ -87,22 +86,14 @@ forumConfig=forumConfig;
      console.log(res);
       if (res) {
           // this.data = res;
-          swal({ //alert message for success
-          timer: 2200,
-          title: "Posted Successfully",
-          text: "",
-          type: 'success',
-          showConfirmButton: false,
-        })
-      } else {
-        swal({ //alert message for error
-          timer: 2200,
-          title: "Error occured",
-          text: "",
-          type: 'error',
-          showConfirmButton: false,
-        })
-      }
+        swal("Successfully Logged Out", "", "success");
+        this.questionTitle='';
+        CKEDITOR.instances.addSnippet.setData("");
+        CKEDITOR.instances.problemDescription.setData("");
+        this.items='';
+
+        }
+       
     })
   }
 

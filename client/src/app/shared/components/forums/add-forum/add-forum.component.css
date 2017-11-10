@@ -19,10 +19,6 @@
   background-color: #00695C;
 }
 
-.questionTitle {
-  color: #6A1B9A;
-}
-
 .user {
   color: #00695C;
 }
@@ -55,4 +51,8 @@
 
 .example-full-width {
   width: 100%;
+}
+
+.main{
+  margin-top: 3%;
 }

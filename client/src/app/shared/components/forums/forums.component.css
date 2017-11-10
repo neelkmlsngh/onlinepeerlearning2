@@ -1,26 +1,33 @@
 .answeraccepted {
   width: 86px;
-  background-color: #00695C;
+  background-color: #3F51B5;
 }
 
 .problemDescription {
   font-size: 15px;
+  color: #757575;
 }
 
 .tags {
-  background-color: #CE93D8;
+  background-color: #757575;
 }
 
 .postquestion {
-  background-color: #00695C;
+  background-color: #3F51B5;
 }
 
 .questionTitle {
-  color: #6A1B9A;
+  color: #212121;
+}
+.like{
+  background-color: #BDBDBD;
+}
+.dislike{
+  background-color: #BDBDBD;
 }
 
 .user {
-  color: #00695C;
+  color: #616161;
 }
 
 .views {
@@ -32,7 +39,7 @@
 }
 
 .navbar {
-  background-color: #00695C;
+  background-color: #C5CAE9;
 }
 
 .main {

@@ -1,7 +1,7 @@
 /*css on footer*/
 
  .footer-bottom {
-  background-color: #303F9F;
+  background-color: #1976D2;
    padding: 20px 0;
    color: #DDD;
    font-size: 13px;
@@ -13,6 +13,7 @@
 
 .copyright{
    text-align: center;
+   font-family:  'Open Sans', sans-serif;
 }
 
 /*media queries*/
