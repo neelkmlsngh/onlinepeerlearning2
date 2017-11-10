@@ -23,14 +23,17 @@ body {
 
 
 #output h3 {
-  font-size: 12px;
+  
   height: 40px;
-  padding: 5px 10px;
+  padding: 10px 10px;
   margin: 0;
   background: #C5CAE9;
-  color: white;
+  color: black;
   border-top: 1px solid #8F8F8F;
   border-bottom: 1px solid #202020;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700; 
+  font-size: 14px;
   text-align: center;
 }
 
@@ -47,7 +50,7 @@ body {
   border: 3px solid #444;
   border-left-width: 10px;
   overflow: hidden;
-  height: 555px;
+  height: 565px;
 }
 
 #mainNav {
@@ -109,7 +112,7 @@ body {
 
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  .custom-fst {
+/*  .custom-fst {
     width: 167px;
   }
   .custom-mid {
@@ -117,6 +120,15 @@ body {
   }
   .custom-thr {
     width: 146px;
+  }*/
+/* .custom-fst {
+    width: 40%;
+    height: 50%;
+  }*/
+
+  .iconClass{
+    width: 12%;
+    height: 12%;
   }
 }
 

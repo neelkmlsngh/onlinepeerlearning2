@@ -5,18 +5,18 @@
       <nav class="navbar navbar-light font nopadding" id="mainNav">
         <form class="row col-md-12 col-sm-12 form-inline pd-0">
           <!--     button to add snippet -->
-          <div class="col-md-4 col-sm-4 custom-fst">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <i class="fa fa-code fa-2x" aria-hidden="true" id="dropdownMenuButton" data-toggle="dropdown" title="Add snippet"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="col-md-4 col-sm-4 ">
+          <div class="btn-group custom-fst" role="group" aria-label="Basic example">
+            <i class="fa fa-code fa-2x iconClass" aria-hidden="true" id="dropdownMenuButton" data-toggle="dropdown" title="Add snippet"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item color" *ngFor="let data of javascript" (click)="showJavascript(data.code)">{{data.title}}</a>
             </div>
             <!-- Execute function to run code -->
-            <i class=" fa fa-play-circle-o fa-2x" aria-hidden="true" title="Execute File" (click)="executecode()"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class=" fa fa-play-circle-o fa-2x iconClass" aria-hidden="true" title="Execute File" (click)="executecode()"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <!--     Download icon -->
             <a href="javascript:void(0);" (click)="downloadJsFile()">
 
-            <i class="fa fa-download fa-2x downloadbtn" aria-hidden="true" data-toggle="popover" title="Download JS File"></i>  </a>
+            <i class="fa fa-download fa-2x downloadbtn iconClass" aria-hidden="true" data-toggle="popover" title="Download JS File"></i>  </a>
             <div id="jsDiv"></div>
           </div>
           </div>
@@ -24,14 +24,14 @@
           </div>
           <div class="col-md-3 col-sm-3 pd-0 custom-thr">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <div id="repoCrud2">
+            
               <!--  button to create the file -->
               <i class="fa fa-plus-square-o fa-2x" aria-hidden="true" title="Create new file" (click)="openModal(createfile)"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <!--     button to update the file -->
               <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" title="Update File" (click)="openModal(updatefile)"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <!--    button to delete the file -->
               <i class="fa fa-trash-o fa-2x" aria-hidden="true" title="Delete File" (click)="openModal(deletefile)"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </div>
+            
           </div>
           </div>
           <template #createfile>
