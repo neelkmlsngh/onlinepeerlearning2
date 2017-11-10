@@ -43,6 +43,7 @@ import { AudioChatComponent } from './shared/components/chat/audio-chat/audio-ch
 import { VideoChatComponent } from './shared/components/chat/video-chat/video-chat.component';
 import { AuthenticationService } from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
+import { SpeechRecognitionService } from './shared/services/speech-recognition.service';
 
 import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { SnippetComponent } from './shared/components/snippet/snippet.component';
@@ -170,7 +171,7 @@ let apiRoutes: Routes = [{
     ModalModule.forRoot(),
     RouterModule.forRoot(apiRoutes, { useHash: true })
   ],
-  providers: [GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, CoderunnerService, ChatService, HttpService, SocketService, SnippetService],
+  providers: [GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, CoderunnerService, ChatService, HttpService, SocketService, SnippetService,SpeechRecognitionService],
 
   bootstrap: [AppComponent]
 })

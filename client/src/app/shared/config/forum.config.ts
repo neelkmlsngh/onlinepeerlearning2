@@ -78,6 +78,6 @@ export const forumConfig = {
  },
 
  "forumUrls":{
-        "FORUMURL":'https://localhost:8080/',
+        "FORUMURL":'https://192.168.252.204:8080/',
  }
 }
