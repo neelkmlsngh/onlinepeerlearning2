@@ -3,33 +3,38 @@
   <div class="col-md-7 padding">
     <section>
       <nav class="navbar navbar-light font nopadding" id="mainNav">
-        <form class="row col-md-12 col-sm-12 form-inline pd-0">
+        <form class="row col-md-12 col-sm-12 form-inline ">
+
           <!--     button to add snippet -->
-          <div class="col-md-4 col-sm-4 custom-fst">
-            <i class="fa fa-code fa-2x" aria-hidden="true" id="dropdownMenuButton" data-toggle="dropdown" title="Add snippet"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button class="btn btn-outline-primary">
+            <i class="fa fa-code " aria-hidden="true" id="dropdownMenuButton" data-toggle="dropdown" title="Add snippet"></i>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item color" *ngFor="let data of javascript" (click)="showJavascript(data.code)">{{data.title}}</a>
             </div>
-            <!-- Execute function to run code -->
-            <i class=" fa fa-play-circle-o fa-2x" aria-hidden="true" title="Execute File" (click)="executecode()"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <!--     Download icon -->
-            <a href="javascript:void(0);" (click)="downloadJsFile()">
+          </button>&nbsp;
 
-            <i class="fa fa-download fa-2x downloadbtn" aria-hidden="true" data-toggle="popover" title="Download JS File"></i>  </a>
-            <div id="jsDiv"></div>
-          </div>
-          <div class="col-md-5 col-sm-0 custom-mid">
-          </div>
-          <div class="col-md-3 col-sm-3 pd-0 custom-thr">
-            <div id="repoCrud2">
-              <!--  button to create the file -->
-              <i class="fa fa-plus-square-o fa-2x" aria-hidden="true" title="Create new file" (click)="openModal(createfile)"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <!--     button to update the file -->
-              <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" title="Update File" (click)="openModal(updatefile)"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <!--    button to delete the file -->
-              <i class="fa fa-trash-o fa-2x" aria-hidden="true" title="Delete File" (click)="openModal(deletefile)"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </div>
-          </div>
+          <!-- Execute function to run code -->
+          <button class="btn btn-outline-primary">
+            <i class=" fa fa-play-circle-o " aria-hidden="true" title="Execute File" (click)="executecode()"></i></button>&nbsp;
+
+          <!--     Download icon -->
+          <button class="btn btn-outline-primary">
+            <a href="javascript:void(0);" (click)="downloadJsFile()">
+            <i class="fa fa-download " aria-hidden="true" title="Download JS File"></i>  </a>
+          </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div id="jsDiv"></div>
+          
+          <!--  button to create the file -->
+          <button class="btn btn-outline-success">
+            <i class="fa fa-plus-square-o " aria-hidden="true" title="Create new file" (click)="openModal(createfile)"></i></button>&nbsp;
+
+          <!--  button to update the file -->
+          <button class="btn btn-outline-success">
+            <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update File" (click)="openModal(updatefile)"></i></button>&nbsp;
+
+          <!--  button to delete the file -->
+          <button class="btn btn-outline-success">
+            <i class="fa fa-trash-o" aria-hidden="true" title="Delete File" (click)="openModal(deletefile)"></i></button>&nbsp;
           <template #createfile>
             <div class="modal-header">
               <h5 class="modal-title pull-left repoName">{{config.editor.REPONAME}} <b>{{reponame}}</b></h5>
@@ -42,6 +47,26 @@
             <h6 class="commit">{{config.editor.COMMIT}}</h6>
             <input type="text" name="" #boxes (keyup)="onKey($event)">
             <input type="button" class="btn btn-sm btn-success submit" name="" value="submit" (click)="save(box.value,boxes.value)">
+          </template>
+
+          <!-- screen share button -->
+          <button class="btn btn-outline-success">
+            <i class="fa fa-desktop screen" aria-hidden="true" onclick="TogetherJS(this); return false;" title="Share Your Screen" (click)="openModals(templates)"></i></button>
+          <template #templates>
+            <div *ngIf="showModalBox==true">
+              <div class="modal-header">
+                <h4 class="modal-title pull-left">Modal</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Copy this URL and send to your friend
+                <div *ngIf="link!==''">
+                  <p><a target="_blank" [attr.href]="link" (click)="redirect()">{{link}}</a></p>
+                </div>
+              </div>
+            </div>
           </template>
           <!--    update file modal window when update button is clicked -->
           <template #updatefile>
@@ -83,5 +108,4 @@
     </section>
     <!-- <div id="output">{{dataObj}}</div> -->
   </div>
-
 </div>

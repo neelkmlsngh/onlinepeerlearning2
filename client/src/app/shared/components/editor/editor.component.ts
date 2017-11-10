@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild, OnInit, Input, TemplateRef } from '@angular/core'
+import { Component, EventEmitter, Output, ViewChild, OnInit, Input, NgZone, TemplateRef } from '@angular/core'
 import { FormsModule } from '@angular/forms';
 import { config } from './../../config/editor.config';
 import { AceEditorModule } from 'ng2-ace-editor';
@@ -43,6 +43,9 @@ export class EditorComponent implements OnInit {
   filesha: any;
   value: any;
   javascript: any;
+  methodToExport: any;
+  link: string = '';
+  showModalBox:boolean = false;
 
   public modalRef: BsModalRef;
   basetree: any = {};
@@ -51,10 +54,28 @@ export class EditorComponent implements OnInit {
   updatefileobj: any = {};
   deletefileobj: any = {};
 
-  constructor(private snippet: SnippetService, private coderunner: CoderunnerService, private gitService: GitService, private modalService: BsModalService) {}
+  constructor(private snippet: SnippetService, private coderunner: CoderunnerService, private gitService: GitService,private zone: NgZone, private modalService: BsModalService) {
+    this.methodToExport = this.calledFromOutside;
+    window['angularComponentRef'] = { component: this, zone: zone };
+  }
+
+ public openModals(template: TemplateRef < any > ) {
+    if(this.showModalBox==false){
+    this.modalRef = this.modalService.show(template);
+  }
+    this.showModal();
+  }
+
+  showModal() {
+   this.showModalBox = !this.showModalBox;
+ }
+  calledFromOutside(url: string) {
+    this.zone.run(() => {
+      this.link = url;
+    });
+  }
 
   ngOnInit() {
-
 
     this.snippet.getSnippet()
       .subscribe(res => {
