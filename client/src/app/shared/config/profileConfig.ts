@@ -21,6 +21,6 @@ export const config = {
   "REPO": "Repositories",
   "WHO": "Who Am I..",
   "USER_NAME": "User Name",
-  "NAME": "Name"
-
+  "NAME": "Name",
+  "ACCESS_TOKEN":"Access Token"
 }
