@@ -117,7 +117,7 @@
 
   background-color: #8BC34A!important;
 
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
 
   font-size: 14px;
 }
@@ -126,7 +126,7 @@
 
   background-color: #2196F3!important;
 
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
 
   font-size: 14px;
 }
@@ -213,7 +213,7 @@ body {
 
   margin: 0;
 
-  font-family: 'Open Sans', sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
 .done {
@@ -241,7 +241,7 @@ body {
 
   overflow: auto;
 
-  font-family: 'Open Sans', sans-serif;
+  font-family: verdana;
 
   font-size: 12px;
 
@@ -309,7 +309,7 @@ body {
 
 .nav-side-menu li :not(collapsed) .arrow:before {
 
-  font-family: 'Open Sans', sans-serif;
+  font-family: FontAwesome;
 
   content: "\f078";
 
@@ -373,7 +373,7 @@ body {
 
 .nav-side-menu li .sub-menu li:before {
 
-  font-family: 'Open Sans', sans-serif;
+  font-family: FontAwesome;
 
   content: "\f105";
 
@@ -513,7 +513,7 @@ img {
 
   position: fixed;
 
-  bottom: 0;
+  bottom: 85px;
 
   right: 30px;
 
@@ -523,7 +523,7 @@ img {
 
   background-color: #fff;
 
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
 
   -webkit-transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
 
@@ -550,9 +550,29 @@ img {
   bottom: -400px;
 }
 
+.speechOn {
+
+  background-color: #b2ff59;
+}
+
+.speechOff {
+
+  background-color: #eeff41;
+}
+
 .chatbox .form-control:focus {
 
   border-color: #1f2836;
+}
+
+.bottomGap {
+
+  margin-bottom: 20px;
+}
+
+.marginGap {
+
+  margin-top: 15px;
 }
 
 .chatbox__title,
@@ -825,7 +845,7 @@ img {
 
 .chatbox--empty.chatbox--tray {
 
-  bottom: -350px;
+  bottom: -282px;
 }
 
 .chatbox--empty.chatbox--closed {
