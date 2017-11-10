@@ -193,9 +193,10 @@ export class ChatHomeComponent implements OnInit {
     });
   }
   //Method for closing chatbox
-  hideChatBox(): void {
+  hideChatBox(){
     $('.chatbox').show();
     $('.side').hide();
+    this.stop();
     setTimeout(() => {
       $('.message-thread')[0].scrollTop = $('.message-thread')[0]['scrollHeight'];
     }, 30)
@@ -309,7 +310,7 @@ export class ChatHomeComponent implements OnInit {
           }
         });
   }
-  Stop() {
+  stop() {
     this.speechRecognitionService.stopspeech()
     this.showSearchButton = true;
     this.showStopButton = false;

@@ -24,37 +24,29 @@
   </div>
   <!-- Messages to be displayed in chatbox -->
   <ul class="message-thread">
-   <li class="" *ngFor="let message of messages" [class.align-right]="alignMessage(message.toUserId)" [class.msgcolour]="!alignMessage(message.toUserId)">
-     {{ message.message}}
-   </li>
- </ul>
-
-  <div class="row">
+    <li class="" *ngFor="let message of messages" [class.align-right]="alignMessage(message.toUserId)" [class.msgcolour]="!alignMessage(message.toUserId)">
+      {{ message.message}}
+    </li>
+  </ul>
+  <div class="row bottomGap">
     <div class="col-sm-10">
-  <div class="message-typer">
-    <textarea class="message form-control" placeholder="Type and hit Enter" [(ngModel)]="message" (keyup)="sendMessage($event)">
-     <div class="card-footer">
-        <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
-        <div class="col-sm-3">
-          <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">Upload</button>
-        </div>
+      <div class="message-typer ">
+        <textarea class="message form-control" placeholder="Type and hit Enter" [(ngModel)]="message" (keyup)="sendMessage($event)">
+          <div class="card-footer">
+            <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
+            <div class="col-sm-3">
+              <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">Upload</button>
+            </div>
+          </div>
+        </textarea>
       </div>
-    </textarea>
+    </div>
+     <div>
+    <a *ngIf="showSearchButton==true" class="btn rounded-circle marginGap speechOn" name="btnActivateSpeechSearchMovie"  data-toggle="popover" title="Start Speaking"  id="btnActivateSpeechSearchMovie" (click)="activateSpeechSearchMovie()"> <i class="fa fa-microphone" aria-hidden="true"></i></a>
+    <a *ngIf="showStopButton==true" class="btn rounded-circle marginGap speechOff"  data-toggle="popover" title="Stop Speaking"  (click)="stop()">  <i class="fa fa-microphone-slash" aria-hidden="true"></i> </a>
   </div>
-   </div>
-   
-   <a *ngIf="showSearchButton==true" class="btn" name="btnActivateSpeechSearchMovie" id="btnActivateSpeechSearchMovie" (click)="activateSpeechSearchMovie()"> <i class="fa fa-microphone" aria-hidden="true"></i></a>
-  <a *ngIf="showStopButton==true" class="btn" (click)="Stop()">  <i class="fa fa-microphone-slash" aria-hidden="true"></i> </a>
-  </div>
-
-<!-- <div class="form-group justify-content-center">
-               <input type="text" class="form-control border-input mt-4" name="txtSpeechSearchMovieName" id="txtSpeechSearchMovieName" value="" placeholder="Click below button and then say something!!!" [(ngModel)]="speechData">
-               <a *ngIf="showSearchButton==true" class="mt-1 px-5 padd btn btn-info" name="btnActivateSpeechSearchMovie" id="btnActivateSpeechSearchMovie" (click)="activateSpeechSearchMovie()"> <i class="fa fa-microphone" aria-hidden="true"></i></a>
-               <a *ngIf="showStopButton==true" class="mt-1 px-5 padd btn btn-warning" (click)="Stop()">  <i class="fa fa-microphone-slash" aria-hidden="true"></i> </a>
-             </div> -->
-
-  </div>
-
+</div>
+</div>
 <!-- Togglable button -->
 <span class="done">
  <button mat-fab class="button-collapse sidebar" (click)="removesb()">
