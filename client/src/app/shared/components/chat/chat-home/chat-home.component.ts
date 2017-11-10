@@ -42,6 +42,9 @@ export class ChatHomeComponent implements OnInit {
   data2: any = [];
   peerId:string;
   peerIdVideo:string;
+  userName :string;
+  userNameForVideo :string;
+
   //constructor initialising various services
   constructor(
     private chatService: ChatService,
@@ -95,40 +98,49 @@ export class ChatHomeComponent implements OnInit {
             alert(`Chat list failure.`);
           }
         });
+
         //method for recieving messages through socket          
         this.socketService.receiveMessages().subscribe(response => {
           if (this.selectedUserId && this.selectedUserId == response.fromUserId) {
             this.messages.push(response);
-            setTimeout(() => {
-              document.querySelector(`.message-thread`).scrollTop = document.querySelector(`.message-thread`).scrollHeight;
-            }, 100);
-          }
+            }
         });
-
-        this.socketService.getPeerId().subscribe(data => {
-          this.showAudioBox = true;
-          if(data['mypeerid']){
-            this.peerId=data['mypeerid'];
-          }
-         // return data;
-        }, error => {
-
-        })
+        
+        this.getPeerForAudio();
 
         this.socketService.getPeerIdForVideo().subscribe(data=>{
           this.showVideoBox = true;
           if(data['mypeerid']){
             this.peerIdVideo = data['mypeerid']
+            this.userNameForVideo=data['userName']
           }
         }, error=>{
 
         })
+
       });
 
     }
   }
+
+  getPeerForAudio(){
+    this.socketService.getPeerId().subscribe(data => {
+      this.showAudioBox = true;
+      if(data['mypeerid']){
+        this.peerId=data['mypeerid'];
+        this.userName=data['userName']
+      }
+     // return data;
+    }, error => {
+
+    })
+  }
+
+  
+
   //Getting the userid when user is selected
   selectedUser(user): void {
+    $('.chatbox').removeClass('chatbox--tray');
     this.selectedUserId = user.userId;
     this.selectedSocketId = user.socketId;
     this.selectedUserName = user.userName;
@@ -141,6 +153,7 @@ export class ChatHomeComponent implements OnInit {
     this.hideChatBox()
 
   }
+
   //Method for opening chatbox
   openChatBox(): void {
     //Jquery for handling chatbox opening and closing
