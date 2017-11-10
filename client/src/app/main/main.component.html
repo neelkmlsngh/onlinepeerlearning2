@@ -12,15 +12,15 @@
         <div class="col-md-2 bg">
           <div id="accordion" role="tablist">
             <div class="card">
-              <div class="card-header" role="tab" id="headingOne">
-                <h5 class="mb-0">
+              <div class="card-header accordianClass" role="tab" id="headingOne">
+                <h5 class="mb-0 accordionHeading">
         <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           {{config.TITLE}}
         </a>
       </h5>
               </div>
               <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
+                <div class="card-body accordionBody">
                   <select class="btn btn-outline-warning listOption" name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="changeMode()">
                     <option value="html">{{config.OPTION1}}</option>
                     <option value="javascript">{{config.OPTION2}}</option>
@@ -28,59 +28,104 @@
                 </div>
               </div>
             </div>
-
             <div class="card">
-              <div class="card-header" role="tab" id="headingTwo">
-                <h5 class="mb-0">
+              <div class="card-header accordianClass" role="tab" id="headingTwo">
+                <h5 class="mb-0 accordionHeading">
         <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           Select Your Repository
         </a>
       </h5>
               </div>
               <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body">
-                     <app-repo-sidebar [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
+                <div class="card-body accordionBody">
+                  <app-repo-sidebar [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
                 </div>
               </div>
             </div>
             <div class="card">
-              <div class="card-header" role="tab" id="headingThree">
-                <h5 class="mb-0">
+              <div class="card-header accordianClass" role="tab" id="headingThree">
+                <h5 class="mb-0 accordionHeading">
         <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
+         Create new Github Repository
         </a>
       </h5>
               </div>
               <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                <div class="card-body accordionBody">
+                  <form #repositoryForm="ngForm" (ngSubmit)="createNewRepo(repositoryForm.form);">
+                    <label for="recipient-name" class="form-control-label formText">Enter Repository Name</label>
+                    <input type="text" class="form-control" name="repositoryName" ngModel #nameField="ngModel" required minlength="3">
+                    <div *ngIf="nameField.touched && nameField.errors">
+                      <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
+                        The repository name is required
+                      </div>
+                      <div class="alert alert-danger formText" *ngIf="nameField.errors.minlength">
+                        The repository name should be at least 5 characters long
+                      </div>
+                    </div>
+                    <h6></h6>
+                    <label for="recipient-name" class="form-control-label formText">Description for README.md</label>
+                    <textarea type="text" id="description" class="form-control descriptionTextArea" data-spy="scroll" data-target="description" data-offset="0" name="description" ngModel #nameField="ngModel" required minlength="3">
+
+                    <div *ngIf="nameField.touched && nameField.errors">
+                      <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
+                        The description is required
+                      </div>
+                      <div class="alert alert-danger formText" *ngIf="nameField.errors.minlength">
+                        Description is needed
+                      </div>
+                    </div>
+                    </textarea>
+                    <br>
+                    <button class="btn btn-primary btn-lg btn-block formText" [disabled]="!repositoryForm.valid">Ok</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header accordianClass" role="tab" id="headingFour">
+                <h5 class="mb-0 accordionHeading">
+        <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Generate personal access token
+        </a>
+      </h5>
+              </div>
+              <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
+                <div class="card-body accordionBody">
+                  <form #tokenForm="ngForm" (ngSubmit)="generateToken(tokenForm.form);">
+                    <label for="recipient-name" class="form-control-label formText">Enter Github Password</label>
+                    <input type="password" class="form-control" name="pass" ngModel #nameField="ngModel" required minlength="3">
+                    <div *ngIf="nameField.touched && nameField.errors">
+                      <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
+                        The password is required
+                      </div>
+                      <div class="alert alert-danger formText" *ngIf="nameField.errors.minlength">
+                        The password should be at least 3 characters long
+                      </div>
+                    </div>
+                    <h6></h6>
+                    <label for="recipient-name" class="form-control-label formText">Enter Personal Access Token Name</label>
+                    <input type="text" class="form-control" name="tokenName" ngModel #nameField="ngModel" required minlength="3">
+                    <div *ngIf="nameField.touched && nameField.errors">
+                      <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
+                        The token name is required
+                      </div>
+                      <div class="alert alert-danger formText" *ngIf="nameField.errors.minlength">
+                        The token name should be at least 5 characters long
+                      </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-primary btn-lg btn-block formText" [disabled]="!tokenForm.valid">Ok</button>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
           <!-- first column -->
-          <div class="row mt-3">
-            <div class="col-md-12 ">
-              <select class="btn btn-outline-warning listOption" name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="changeMode()">
-                <option value="" class="modeOption">{{config.TITLE}}</option>
-                <option value="html">{{config.OPTION1}}</option>
-                <option value="javascript">{{config.OPTION2}}</option>
-              </select>
-
-            <!-- card end -->
-            <!-- generate token button -->
-    
-            </div>
-          </div>
-
           <!-- repository side bar selector -->
-
-      
-
         </div>
         <div *ngIf="mode=='javascript'" class="col-md-10">
           <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-editor>
-
         </div>
         <div *ngIf="mode=='html'" class="col-md-10">
           <app-webeditor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-webeditor>

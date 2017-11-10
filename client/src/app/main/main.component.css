@@ -5,13 +5,45 @@ html {
   min-height: 100%;
 }
 
+.backgroundcolor{
+  margin-top: -15px;
+}
+
 .main{
   font-size: 10px;
+}
+
+.formText{
+   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700; 
+  font-size: 12px;
+}
+
+.accordionBody{
+  background-color: #EBEBFC;
+}
+
+#accordion{
+  margin-top: 10px;
+}
+
+.accordionHeading{
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700; 
+  font-size: 12px;
+}
+
+.accordianClass{
+  background-color: #C5CAE9;
 }
 
 .modeOption{
   font-size: 15px;
   font-style: italic;
+}
+
+.descriptionTextArea{
+  height: 100px;
 }
 
 select {
