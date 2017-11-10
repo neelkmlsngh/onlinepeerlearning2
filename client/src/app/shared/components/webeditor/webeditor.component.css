@@ -68,25 +68,24 @@ body {
   margin: 0;
   background-color: #C5CAE9;
   z-index: 10;
-   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700; 
+   font-family:  'Open Sans', sans-serif;
   font-size: 18px;
   text-align: center;
 }
 /* code editor area */
 
 #html {
-  height: 470px;
+  height: 520px;
   font-size: 12px;
 }
 
 #css {
-  height: 470px;
+  height: 520px;
   font-size: 12px;
 }
 
 #javascript {
-  height: 470px;
+  height: 520px;
   font-size: 12px;
 }
 
