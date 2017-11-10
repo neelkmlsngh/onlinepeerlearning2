@@ -23,6 +23,7 @@ export class VideoChatComponent implements OnInit {
   peer;
   anotherid;
   mypeerid;
+  muted:boolean=false;
   
   constructor(private router: Router, private chatHome: ChatHomeComponent, private compiler: Compiler, private socketService: SocketService) {}
 
@@ -100,15 +101,17 @@ export class VideoChatComponent implements OnInit {
     this.hideVideoChatBox();
     this.router.navigate(["/main"]);
   }
-  // video call mute
-  videoMute() {
+    videoMute() {
+    this.muted=true;
     let video = this.myVideo.nativeElement;
     let localvar = this.peer;
     let fname = this.userPeerId;
 
+
     let n =<any>  navigator;
     n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
-    n.getUserMedia({ video: true, audio: true }, function(stream) {
+    n.getUserMedia({ video: true, audio: false }, function(stream) {
+
       let call = localvar.call(fname, stream);
       call.on('stream', function(remoteStream) {
         video.src = URL.createObjectURL(remoteStream);
@@ -117,7 +120,8 @@ export class VideoChatComponent implements OnInit {
     }, function(err) {})
   }
 
-  videoUnmute() {
+    videoUnmute() {
+    this.muted=false;
     let video = this.myVideo.nativeElement;
     let localvar = this.peer;
     let fname = this.userPeerId;
@@ -125,6 +129,7 @@ export class VideoChatComponent implements OnInit {
     let n =<any>  navigator;
     n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
     n.getUserMedia({ video: true, audio: true }, function(stream) {
+
       let call = localvar.call(fname, stream);
       call.on('stream', function(remoteStream) {
         video.src = URL.createObjectURL(remoteStream);

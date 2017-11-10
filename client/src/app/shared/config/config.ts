@@ -23,6 +23,7 @@ export const config: any = {
 
 
   connect: {
+
     apiURL: "https://192.168.252.151:8080",
     vmURL: "https://192.168.252.151:3030",
     CALLBACK_URL: "https://192.168.252.151:8080/api/login/auth/github",
@@ -48,7 +49,9 @@ export const config: any = {
     "SEARCHAPIURL": 'api/forums/term/'
   },
   peerserver: {
+
     "host": "192.168.252.151",
+
     "port": "8081",
     "path": "/peerjs"
   }
