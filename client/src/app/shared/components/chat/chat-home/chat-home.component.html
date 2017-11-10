@@ -24,20 +24,18 @@
   </div>
   <!-- Messages to be displayed in chatbox -->
   <ul class="message-thread">
-   <li class="" *ngFor="let message of messages" [class.align-right]="alignMessage(message.toUserId)" [class.msgcolour]="!alignMessage(message.toUserId)">
-     {{ message.message}}
-   </li>
- </ul>
+    <li class="" *ngFor="let message of messages" [class.align-right]="alignMessage(message.toUserId)" [class.msgcolour]="!alignMessage(message.toUserId)">
+      {{ message.message}}
+    </li>
+  </ul>
   <div class="message-typer">
-    <textarea class="message form-control" placeholder="Type and hit Enter" [(ngModel)]="message" (keyup)="sendMessage($event)">
-      <!-- <button (click)='audioRecieve()'></button> -->
-      <div class="card-footer">
-        <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
-        <div class="col-sm-3">
-          <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">Upload</button>
-        </div>
-      </div>
-    </textarea>
+    <!-- <div class="col-sm-12">
+      <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
+      <button type="button" class="btn btn-secondary upload" data-dismiss="modal" (click)="uploadFile()">Upload
+      <i class="fa fa-upload" aria-hidden="true"> </i>
+      </button>
+    </div> -->
+    <textarea class="message form-control" placeholder="Type and hit Enter" [(ngModel)]="message" (keyup)="sendMessage($event)"></textarea>
   </div>
 </div>
 <!-- Togglable button -->

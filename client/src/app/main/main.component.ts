@@ -151,9 +151,10 @@ export class MainComponent implements OnInit {
     })
   }
 
-  onKey(event) {
-    this.value += event
-  }
+generateToken(form){
+  this.createAccessToken(form.value.pass,form.value.tokenName);
+  form.reset();
+}
 
   //method generate personal access token for new user
   createAccessToken(password, tokenName) {
@@ -198,4 +199,49 @@ export class MainComponent implements OnInit {
     this.profileService.storeAccessToken(userId, accessToken)
       .subscribe(response => {})
   }
+
+  //method to enter new repository name
+createNewRepo(form){
+  this.createRepo(form.value.repositoryName,form.value.description);
+  form.reset();
 }
+
+ //method for creating new repository
+ createRepo(name, desc) {
+   let repoName = {
+     "name": name,
+     "description": desc,
+     "homepage": "https://github.com",
+     "private": false,
+     "auto_init": true,
+     "has_issues": false,
+     "has_projects": false,
+     "has_wiki": false
+   }
+
+   this.gitService.createRepos(repoName)
+     .subscribe(data => {
+       if (data) {
+       swal({
+   timer: 2500,
+   title: "Repository Successfully created",
+   text:  "",
+   type:  'success',
+   showConfirmButton: false,
+ })
+     }
+
+else {
+       swal({
+   timer: 2500,
+   title: "Repository is not created",
+   text:  "",
+   type: 'error',
+   showConfirmButton: false,
+ })
+     }
+     })
+ }
+}
+
+

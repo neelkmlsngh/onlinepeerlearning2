@@ -1,11 +1,11 @@
 export const config: any = {
 
  language: [
-    "Javascript",
-    "Html",
-    "CSS"
-  ],
-  con: {
+   "Javascript",
+   "Html",
+   "CSS"
+ ],
+ con: {
     title: "Add Snippet",
     DROP: "Select Language to Add Snippet",
     button: "Add Snippet",
@@ -22,6 +22,7 @@ export const config: any = {
     CALLBACK_URL:"https://localhost:8080/api/login/auth/github",
     CLIENT_ID : '131a383ebca4c5be47cc',
     CLIENT_SECRET : 'e085f91d1776b01564d876c65f8b8262ada117c1'
+
   },
 
   giturls: {

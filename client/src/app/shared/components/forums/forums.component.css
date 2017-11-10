@@ -35,6 +35,10 @@
   background-color: #00695C;
 }
 
+.main {
+  margin-top: 4%;
+}
+
 hr {
   border: 0;
   display: block;
@@ -43,10 +47,10 @@ hr {
   height: 1px;
 }
 
+
 /*// Extra small devices (portrait phones, less than 576px)*/
 
 @media (max-width: 575px) {
-
   .text-right {
     text-align: left;
   }
@@ -69,17 +73,24 @@ hr {
   .h4 {
     font-size: 16px;
   }
-  .pagination{
-     padding-left:0px;
+  .pagination {
+    padding-left: 0px;
     font-size: 10px;
   }
+  .main {
+    margin-top: 20%;
+  }
 }
-/*// Small devices (landscape phones, 576px and up)*/
-@media (min-width: 576px) and (max-width: 767px) {
 
-}
+
+
+/*// Small devices (landscape phones, 576px and up)*/
+
+@media (min-width: 576px) and (max-width: 767px) {}
+
 
 /*// Medium devices (tablets, 768px and up)*/
+
 @media (min-width: 768px) and (max-width: 991px) {
   .postquestion {
     float: right;
@@ -94,18 +105,21 @@ hr {
   .questionTitle {
     font-size: 14px;
   }
-
   .h5 {
     font-size: 16px;
   }
   .h4 {
     font-size: 17px;
   }
+  .main {
+    margin-top: 8%;
+  }
 }
 
 
 
 /*// Large devices (desktops, 992px and up)*/
+
 @media (min-width: 992px) and (max-width: 1199px) {
 
   .postquestion {
@@ -114,14 +128,17 @@ hr {
   .user {
     text-align: right;
   }
-
   .problemDescription {
     font-size: 14px;
   }
   .questionTitle {
     font-size: 15px;
   }
+  .main {
+    margin-top: 7%;
+  }
 }
+
 
 /*// Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
