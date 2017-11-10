@@ -61,11 +61,6 @@ export class ChatHomeComponent implements OnInit {
   ngOnInit() {
     $('.chatbox').hide();
 
-    $(function() {
-      var div = $("#scroll");
-      div.scrollTop(div.prop('scrollHeight'));
-    }); 
-
     // getting userID from the local storage  
     this.userId = this.authenticationService.getUserId();
     if (this.userId === '' || typeof this.userId == 'undefined') {
