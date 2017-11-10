@@ -14,22 +14,27 @@ body {
   height: 100%;
 }
 
+
 /* reponame text color*/
-.repoName b{
+
+.repoName b {
   color: #A9A9A9;
 }
+
 
 #output h3 {
   font-size: 12px;
   height: 40px;
   padding: 5px 10px;
   margin: 0;
-  background: linear-gradient(#1995ad, #555);
+  background: #C5CAE9;
   color: white;
   border-top: 1px solid #8F8F8F;
   border-bottom: 1px solid #202020;
   text-align: center;
 }
+
+
 
 
 
@@ -42,17 +47,17 @@ body {
   border: 3px solid #444;
   border-left-width: 10px;
   overflow: hidden;
-  height: 666px;
-
+  height: 555px;
 }
 
 #mainNav {
-   background: linear-gradient(#1995ad, #555); 
+   background: #C5CAE9;
   height: 40px;
 }
 
 .font a {
-  color: white
+
+  color: #1995ad
 }
 
 .font a:hover {
@@ -61,22 +66,90 @@ body {
 
 
 .nopadding {
-   padding: 0 !important;
-   margin: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .padding {
-   padding: 1px ;
-   margin: 0 ;
+  padding: 1px;
+  margin: 0;
+
 }
 
+
+
 #javascript {
-  height: 624px;
+  height: 524px;
   font-size: 12px;
 }
 
-.code_box{
-  margin-top:2px;
+.code_box {
+  margin-top: 2px;
+}
+
+.downloadbtn {
+  color: black;
+}
+
+#repoCrud {
+  margin-left: 380px;
+}
+
+.font {
+  padding-right: 0px;
+}
+
+.pd-0 {
+  padding-right: 0px;
+}
+
+ .custom-thr {
+   margin-top: 20px;
+  }
+
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .custom-fst {
+    width: 167px;
+  }
+  .custom-mid {
+    width: 0px;
+  }
+  .custom-thr {
+    width: 146px;
+  }
+}
+
+
+@media (width: 320px) {
+
+  .custom-fst {
+    width: 146px;
+  }
+  .custom-mid {
+    width: 0px;
+  }
+  .custom-thr {
+    width: 146px;
+  }
+}
+
+
+
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+  .custom-fst {
+    width: 167px;
+    min-inline-size: 209px;
+    margin-top: 42px;
+  }
+  .custom-mid {
+    width: 0px;
+  }
+  .custom-thr {
+    width: 146px;
+  }
 }
 
 .downloadbtn{

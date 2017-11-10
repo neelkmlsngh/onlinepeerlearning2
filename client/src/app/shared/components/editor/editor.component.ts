@@ -9,6 +9,8 @@ import swal from 'sweetalert2';
 import { EditorService } from '../../services/editor.service';
 import { GitService } from '../../services/git.service';
 import { CoderunnerService } from '../../services/coderunner.service';
+import { SnippetService } from '../../../shared/services/snippet.service';
+
 
 import 'brace';
 import 'brace/ext/language_tools';
@@ -40,6 +42,7 @@ export class EditorComponent implements OnInit {
   filename: any;
   filesha: any;
   value: any;
+  javascript: any;
 
   public modalRef: BsModalRef;
   basetree: any = {};
@@ -48,19 +51,32 @@ export class EditorComponent implements OnInit {
   updatefileobj: any = {};
   deletefileobj: any = {};
 
-  constructor(private coderunner: CoderunnerService, private gitService: GitService, private modalService: BsModalService) {}
+  constructor(private snippet: SnippetService, private coderunner: CoderunnerService, private gitService: GitService, private modalService: BsModalService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+
+    this.snippet.getSnippet()
+      .subscribe(res => {
+        this.javascript = res.filter(ele => ele.language === 'javascript');
+      })
+  }
+
+  /*snippet show in  editor*/
+  showJavascript(code) {
+    this.jsValue += " " + code;
+  }
+
 
   /*execute the code and return output*/
   executecode() {
     this.coderunner.executecode(this.content)
       .subscribe(data => {
-        console.log("fdfff",data)
         this.codeoutput = data
         this.dataObj = this.codeoutput._body
       })
   }
+
 
   public openModal(template: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template);
@@ -88,156 +104,135 @@ export class EditorComponent implements OnInit {
   //method to create a file on git
   save(fileName, commitMessage) {
 
-    this.reponame = this.reponame;
-    //hitting the create file api to get sha of the latest commit
-    this.gitService.createFile(this.reponame)
-      .subscribe(repos => {
-        this.latestcommit = repos.object.sha;
-
-        //hitting the commit file api to get sha of the tree commit
-        this.gitService.commitfile(this.reponame, this.latestcommit)
-          .subscribe(repos => {
-            this.treecommit = repos.sha;
-            this.basetree = {
-              "base_tree": this.treecommit,
-              "tree": [{
-                "path": fileName,
-                "mode": "100644",
-                "type": "blob",
-                "content": this.content
-              }]
-            }
-
-            //hitting the create file api to get sha of the new tree commit
-            this.gitService.treecommit(this.reponame, this.basetree)
+      this.reponame = this.reponame;
+      //hitting the create file api to get sha of the latest commit
+      this.gitService.createFile(this.reponame)
+        .subscribe(repos => {
+            this.latestcommit = repos.object.sha;
+            //hitting the commit file api to get sha of the tree commit
+            this.gitService.commitfile(this.reponame, this.latestcommit)
               .subscribe(repos => {
-                this.newtree = repos.sha;
-                this.newcommitobj = {
-                  "parents": [this.latestcommit],
-                  "tree": this.newtree,
-                  "message": commitMessage
-                }
+                  this.treecommit = repos.sha;
+                  this.basetree = {
+                    "base_tree": this.treecommit,
+                    "tree": [{
+                      "path": fileName,
+                      "mode": "100644",
+                      "type": "blob",
+                      "content": this.content
+                    }]
+                  }
+                })
+            })
 
-                //hitting the create file api to get sha of the new commit
-                this.gitService.newcommit(this.reponame, this.newcommitobj)
-                  .subscribe(repos => {
-                    this.newcommit = repos.sha;
-                    this.lastcommit = {
-                      "sha": this.newcommit
-                    }
-
-                    //hitting final api to create the file
-                    this.gitService.lastcommit(this.reponame, this.lastcommit)
-                      .subscribe(repos => {})
-
-                    //sweet alert on getting response
-                    if (repos) {
-                      swal({
-                        timer: 2200,
-                        title: "file " + fileName + " created successfully!",
-                        text: "",
-                        type: 'success',
-                        showConfirmButton: false,
+                  //hitting the create file api to get sha of the new tree commit
+                  this.gitService.treecommit(this.reponame, this.basetree)
+                    .subscribe(repos => {
+                        this.newtree = repos.sha;
+                        this.newcommitobj = {
+                          "parents": [this.latestcommit],
+                          "tree": this.newtree,
+                          "message": commitMessage
+                        }
                       })
-                    }
 
-                    //sweet alert on getting error
-                    else {
-                      swal({
-                        timer: 2200,
-                        title: "Error occured",
-                        text: "",
-                        type: 'error',
-                        showConfirmButton: false,
-                      })
-                    }
-                  })
-              })
-          })
-      })
-  }
+                        //hitting the create file api to get sha of the new commit
+                        this.gitService.newcommit(this.reponame, this.newcommitobj)
+                          .subscribe(repos => {
+                              this.newcommit = repos.sha;
+                              this.lastcommit = {
+                                "sha": this.newcommit
+                              }
+                            })
 
-  //method to get the file and update the content on git
-  update(commitMessage) {
-    //getting the file sha
-    this.gitService.getsha(this.reponame, this.filenamed)
-      .subscribe(repos => {
-        this.filesha = repos.sha;
-        this.updatefileobj = {
-          "message": commitMessage,
-          "path": this.filenamed,
-          "content": btoa(this.content),
-          "sha": this.filesha
-        }
+                              //hitting final api to create the file
+                              this.gitService.lastcommit(this.reponame, this.lastcommit)
+                                .subscribe(repos => {})
+                              }
 
-        //hitting the update file api to update the file contents
-        this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
-          .subscribe(repos => {
+                              //method to get the file and update the content on git
+                              update(commitMessage) {
+                                //getting the file sha
+                                this.gitService.getsha(this.reponame, this.filenamed)
+                                  .subscribe(repos => {
+                                    this.filesha = repos.sha;
+                                    this.updatefileobj = {
+                                      "message": commitMessage,
+                                      "path": this.filenamed,
+                                      "content": btoa(this.content),
+                                      "sha": this.filesha
+                                    }
 
-            //sweet alert on getting response
-            if (repos) {
-              swal({
-                timer: 2200,
-                title: "file " + this.filenamed + " updated successfully!",
-                text: "",
-                type: 'success',
-                showConfirmButton: false,
-              })
-            }
+                                    //hitting the update file api to update the file contents
+                                    this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
+                                      .subscribe(repos => {
 
-            //sweet alert on getting error
-            else {
-              swal({
-                timer: 2200,
-                title: "Error occured",
-                text: "",
-                type: 'error',
-                showConfirmButton: false,
-              })
-            }
-          })
-      })
-  }
+                                        //sweet alert on getting response
+                                        if (repos) {
+                                          swal({
+                                            timer: 2200,
+                                            title: "file " + this.filenamed + " updated successfully!",
+                                            text: "",
+                                            type: 'success',
+                                            showConfirmButton: false,
+                                          })
+                                        }
 
-  //method to get the file and delete the content on git
-  delete(commitMessage) {
+                                        //sweet alert on getting error
+                                        else {
+                                          swal({
+                                            timer: 2200,
+                                            title: "Error occured",
+                                            text: "",
+                                            type: 'error',
+                                            showConfirmButton: false,
+                                          })
+                                        }
+                                      })
+                                  })
+                              }
 
-    //getting the file sha
-    this.gitService.getsha(this.reponame, this.filenamed)
-      .subscribe(repos => {
+                              //method to get the file and delete the content on git
+                              delete(commitMessage) {
 
-        this.filesha = repos.sha;
-        this.deletefileobj = {
-          "message": commitMessage,
-          "path": this.filenamed,
-          "sha": this.filesha
-        }
+                                //getting the file sha
+                                this.gitService.getsha(this.reponame, this.filenamed)
+                                  .subscribe(repos => {
 
-        //hitting the delete file api to delete the file
-        this.gitService.deleteFile(this.reponame, this.filenamed, this.deletefileobj)
-          .subscribe(repos => {
+                                    this.filesha = repos.sha;
+                                    this.deletefileobj = {
+                                      "message": commitMessage,
+                                      "path": this.filenamed,
+                                      "sha": this.filesha
+                                    }
 
-            //sweet alert on getting response
-            if (repos) {
-              swal({
-                timer: 2200,
-                title: "file " + this.filenamed + " deleted successfully!",
-                text: "",
-                type: 'success',
-                showConfirmButton: false,
-              })
-            } else {
+                                    //hitting the delete file api to delete the file
+                                    this.gitService.deleteFile(this.reponame, this.filenamed, this.deletefileobj)
+                                      .subscribe(repos => {
 
-              //sweet alert on getting error
-              swal({
-                timer: 2200,
-                title: "Error occured",
-                text: "",
-                type: 'error',
-                showConfirmButton: false,
-              })
-            }
-          })
-      })
-    }
-  }
+                                        //sweet alert on getting response
+                                        if (repos) {
+                                          swal({
+                                            timer: 2200,
+                                            title: "file " + this.filenamed + " deleted successfully!",
+                                            text: "",
+                                            type: 'success',
+                                            showConfirmButton: false,
+                                          })
+                                        } else {
+
+                                          //sweet alert on getting error
+                                          swal({
+                                            timer: 2200,
+                                            title: "Error occured",
+                                            text: "",
+                                            type: 'error',
+                                            showConfirmButton: false,
+                                          })
+                                        }
+                                      })
+                                  })
+                              }
+                            }
+
+

@@ -68,7 +68,10 @@ export class RepoSidebarComponent implements OnInit {
       })
   }
 
-  public openModal(template: TemplateRef < any > ) {
+  public openRepoModal(template: TemplateRef < any > ) {
+    this.modalRef = this.modalService.show(template);
+  }
+   public openTokenModal(template: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template);
   }
 

@@ -12,7 +12,7 @@ import { config } from '../../config/config';
 export class SnippetComponent implements OnInit {
 
   constructor(private snippet: SnippetService) {}
-  languag: any;
+  languag: any='javascript';
   title: any;
   language: any;
   code: any;

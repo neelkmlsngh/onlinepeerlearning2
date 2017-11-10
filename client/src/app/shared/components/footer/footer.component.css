@@ -1,10 +1,12 @@
 /*css on footer*/
 
-.footer1 .footer-bottom {
-   background-color: #1995ad;
+ .footer-bottom {
+  background-color: #303F9F;
    padding: 20px 0;
    color: #DDD;
    font-size: 13px;
+   clear: both;
+   width: 100%;
 }
 
 /* aligning copyright to center */
