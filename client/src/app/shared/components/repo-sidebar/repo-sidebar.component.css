@@ -136,3 +136,9 @@ h5 {
     height: 80%;
   }
 }
+
+.scrollable{
+  width: 100px;
+  height: 100px;
+  overflow: scroll;
+}

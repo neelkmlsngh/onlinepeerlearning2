@@ -8,7 +8,7 @@
     </select>
     <!-- </div> -->
     <!-- making drop down containing the list of repositeries -->
-    <div *ngIf="isTree">
+    <div *ngIf="isTree" class="scrollable">
       <a *ngFor="let repo of data" type="button" class="list-group-item list-group-item-action" (click)="showFile(selectedValue, repo.name)">
         <h6 class="list-group-item-heading gitRepo" data-spy="scroll">{{repo.name}}</h6>
       </a>
