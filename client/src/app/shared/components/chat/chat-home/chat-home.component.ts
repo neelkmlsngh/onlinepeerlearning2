@@ -1,11 +1,14 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Headers, RequestOptions } from '@angular/http';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
+import swal from 'sweetalert2';
+
 import { AuthenticationService } from './../../../services/authentication.service';
 import { chatConfig } from '../../../config/chatConfig';
-import { Headers, RequestOptions } from '@angular/http';
+
 /*importing services*/
 import { SocketService } from './../../../services/chatservices/socket.service';
 import { HttpService } from './../../../services/chatservices/http.service';
@@ -59,12 +62,7 @@ export class ChatHomeComponent implements OnInit {
   ) {}
   /*method loading various functions*/
   ngOnInit() {
-    $('.chatbox').hide();
-
-    $(function() {
-      var div = $("#scroll");
-      div.scrollTop(div.prop('scrollHeight'));
-    }); 
+    $('.chatbox').hide();  
 
     // getting userID from the local storage  
     this.userId = this.authenticationService.getUserId();
@@ -95,7 +93,13 @@ export class ChatHomeComponent implements OnInit {
               this.chatListUsers = response.chatList;
             }
           } else {
-            alert(`Chat list failure.`);
+            swal({
+             timer: 2000,
+             title: "Chat List Failure",
+             text:  "Sorry We cannot show online users now",
+             type:  'error',
+             showConfirmButton: false,
+           })
           }
         });
 
@@ -211,14 +215,33 @@ export class ChatHomeComponent implements OnInit {
   sendMessage(event) {
     if (event.keyCode === 13) {
       if (this.message === '' || this.message === null) {
-        alert(`Message can't be empty.`);
+        swal({
+           timer: 2000,
+           title: "Error",
+           text:  "Message can't be empty.",
+           type:  'error',
+           showConfirmButton: false,
+         })
       } else {
         if (this.message === '') {
-          alert(`Message can't be empty.`);
+          swal({
+           timer: 2000,
+           title: "Error",
+           text:  "Message can't be empty.",
+           type:  'error',
+           showConfirmButton: false,
+         })
         } else if (this.userId === '') {
           this.router.navigate(['/']);
         } else if (this.selectedUserId === '') {
           alert(`Select a user to chat.`);
+          swal({
+           timer: 2000,
+           title: "Error",
+           text:  "Select a user to chat.",
+           type:  'error',
+           showConfirmButton: false,
+         })
         } else {
           let data: any = {
             fromUserId: this.userId,

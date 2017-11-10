@@ -27,7 +27,7 @@
               <div id="repoCrud2">
                 <!--  button to create the file -->
                 <i class="fa fa-plus-square-o fa-2x" aria-hidden="true" title="Create new file" data-toggle="modal" data-target="#createModalWindow"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <!-- modal window to update the file -->
+                <!-- modal window to create the file -->
                 <div class="modal fade" id="createModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -60,7 +60,7 @@
                           <div>
                             <h6>{{config.editor.CREATE}}</h6>
                           </div>
-                          <button class="btn btn-primary" [disabled]="!createForm.valid">Create</button>
+                          <button class="btn btn-primary createbtn" [disabled]="!createForm.valid">{{config.editor.CREATEBTN}}</button>
                         </form>
                       </div>
                     </div>
@@ -92,7 +92,7 @@
                           <div>
                             <h6>{{config.editor.UPDATE}}</h6>
                           </div>
-                          <button class="btn btn-primary" [disabled]="!updateForm.valid">Update</button>
+                          <button class="btn btn-primary updatebtn" [disabled]="!updateForm.valid">{{config.editor.UPDATEBTN}}</button>
                         </form>
                       </div>
                     </div>
@@ -124,7 +124,7 @@
                           <div>
                             <h6>{{config.editor.DELETE}}</h6>
                           </div>
-                          <button class="btn btn-primary" [disabled]="!deleteForm.valid">Delete</button>
+                          <button class="btn btn-primary deletebtn" [disabled]="!deleteForm.valid">Delete</button>
                         </form>
                       </div>
                     </div>
@@ -135,14 +135,15 @@
           </div>
         </form>
       </nav>
+      <!-- Ace editor section-->
       <div ace-editor [(text)]="content" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" class="code_box" id="javascript">
       </div>
     </section>
   </div>
+  <!-- output section -->
   <div class="col-md-5 nopadding output">
     <section id="output">
       <h3>OUTPUT</h3> {{dataObj}}
     </section>
-    <!-- <div id="output">{{dataObj}}</div> -->
   </div>
 </div>

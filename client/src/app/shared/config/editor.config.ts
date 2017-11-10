@@ -1,5 +1,4 @@
 export const config: any = {
-
 editor: {
     JAVASCRIPTNAME: "Javascript File",
     CREATINGFILE: "creating file in the current repository:",

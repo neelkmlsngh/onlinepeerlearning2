@@ -54,7 +54,8 @@ constructor(@Inject(FormBuilder) private fb: FormBuilder,private profileService:
        company:res.data.company,
        website:res.data.website,
        bio:res.data.bio,
-       gender:res.data.gender
+       gender:res.data.gender,
+       accessToken:res.data.accessToken
      }
      this.imgPath=this.data.avatar_url;
      this.displayData(this.data);

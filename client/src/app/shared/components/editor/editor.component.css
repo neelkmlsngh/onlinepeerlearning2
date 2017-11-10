@@ -14,6 +14,17 @@ body {
   height: 100%;
 }
 
+.createbtn {
+ margin-left: 395px;
+}
+
+.updatebtn {
+ margin-left: 395px;
+}
+
+.deletebtn {
+ margin-left: 395px;
+}
 
 /* reponame text color*/
 
