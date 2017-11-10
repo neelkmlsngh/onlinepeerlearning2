@@ -28,10 +28,12 @@
      {{ message.message}}
    </li>
  </ul>
+
+  <div class="row">
+    <div class="col-sm-10">
   <div class="message-typer">
     <textarea class="message form-control" placeholder="Type and hit Enter" [(ngModel)]="message" (keyup)="sendMessage($event)">
-      <!-- <button (click)='audioRecieve()'></button> -->
-      <div class="card-footer">
+     <div class="card-footer">
         <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
         <div class="col-sm-3">
           <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">Upload</button>
@@ -39,7 +41,20 @@
       </div>
     </textarea>
   </div>
-</div>
+   </div>
+   
+   <a *ngIf="showSearchButton==true" class="btn" name="btnActivateSpeechSearchMovie" id="btnActivateSpeechSearchMovie" (click)="activateSpeechSearchMovie()"> <i class="fa fa-microphone" aria-hidden="true"></i></a>
+  <a *ngIf="showStopButton==true" class="btn" (click)="Stop()">  <i class="fa fa-microphone-slash" aria-hidden="true"></i> </a>
+  </div>
+
+<!-- <div class="form-group justify-content-center">
+               <input type="text" class="form-control border-input mt-4" name="txtSpeechSearchMovieName" id="txtSpeechSearchMovieName" value="" placeholder="Click below button and then say something!!!" [(ngModel)]="speechData">
+               <a *ngIf="showSearchButton==true" class="mt-1 px-5 padd btn btn-info" name="btnActivateSpeechSearchMovie" id="btnActivateSpeechSearchMovie" (click)="activateSpeechSearchMovie()"> <i class="fa fa-microphone" aria-hidden="true"></i></a>
+               <a *ngIf="showStopButton==true" class="mt-1 px-5 padd btn btn-warning" (click)="Stop()">  <i class="fa fa-microphone-slash" aria-hidden="true"></i> </a>
+             </div> -->
+
+  </div>
+
 <!-- Togglable button -->
 <span class="done">
  <button mat-fab class="button-collapse sidebar" (click)="removesb()">

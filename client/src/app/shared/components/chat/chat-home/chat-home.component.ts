@@ -11,6 +11,7 @@ import { SocketService } from './../../../services/chatservices/socket.service';
 import { HttpService } from './../../../services/chatservices/http.service';
 import { ChatService } from './../../../services/chatservices/chat.service';
 import { ProfileService } from './../../../services/profile.service';
+import { SpeechRecognitionService } from './../../../services/speech-recognition.service';
 /*import {  } from '../audio-chat/audio-chat.component'
  */
 
@@ -33,6 +34,9 @@ export class ChatHomeComponent implements OnInit {
   imgPath: string = '';
   showVideoBox: any = false;
   showAudioBox: any = false;
+  showSearchButton: boolean;
+  showStopButton: boolean
+  speechData: string;
   //chat and message related variables starts
   userId = null;
   socketId = null;
@@ -40,10 +44,10 @@ export class ChatHomeComponent implements OnInit {
   message = '';
   messages = [];
   data2: any = [];
-  peerId:string;
-  peerIdVideo:string;
-  userName :string;
-  userNameForVideo :string;
+  peerId: string;
+  peerIdVideo: string;
+  userName: string;
+  userNameForVideo: string;
 
   //constructor initialising various services
   constructor(
@@ -53,10 +57,15 @@ export class ChatHomeComponent implements OnInit {
     private router: Router,
     private modalService: BsModalService,
     private authenticationService: AuthenticationService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private speechRecognitionService: SpeechRecognitionService
     /*,
-    		private audioComponent:AudioChatComponent*/
-  ) {}
+        private audioComponent:AudioChatComponent*/
+  ) {
+    this.showSearchButton = true;
+    this.showStopButton = false;
+    this.speechData = "";
+  }
   /*method loading various functions*/
   ngOnInit() {
     $('.chatbox').hide();
@@ -64,7 +73,7 @@ export class ChatHomeComponent implements OnInit {
     $(function() {
       var div = $("#scroll");
       div.scrollTop(div.prop('scrollHeight'));
-    }); 
+    });
 
     // getting userID from the local storage  
     this.userId = this.authenticationService.getUserId();
@@ -103,18 +112,18 @@ export class ChatHomeComponent implements OnInit {
         this.socketService.receiveMessages().subscribe(response => {
           if (this.selectedUserId && this.selectedUserId == response.fromUserId) {
             this.messages.push(response);
-            }
+          }
         });
-        
+
         this.getPeerForAudio();
 
-        this.socketService.getPeerIdForVideo().subscribe(data=>{
+        this.socketService.getPeerIdForVideo().subscribe(data => {
           this.showVideoBox = true;
-          if(data['mypeerid']){
+          if (data['mypeerid']) {
             this.peerIdVideo = data['mypeerid']
-            this.userNameForVideo=data['userName']
+            this.userNameForVideo = data['userName']
           }
-        }, error=>{
+        }, error => {
 
         })
 
@@ -123,20 +132,20 @@ export class ChatHomeComponent implements OnInit {
     }
   }
 
-  getPeerForAudio(){
+  getPeerForAudio() {
     this.socketService.getPeerId().subscribe(data => {
       this.showAudioBox = true;
-      if(data['mypeerid']){
-        this.peerId=data['mypeerid'];
-        this.userName=data['userName']
+      if (data['mypeerid']) {
+        this.peerId = data['mypeerid'];
+        this.userName = data['userName']
       }
-     // return data;
+      // return data;
     }, error => {
 
     })
   }
 
-  
+
 
   //Getting the userid when user is selected
   selectedUser(user): void {
@@ -187,9 +196,9 @@ export class ChatHomeComponent implements OnInit {
   hideChatBox(): void {
     $('.chatbox').show();
     $('.side').hide();
-    setTimeout(()=>{
-    $('.message-thread')[0].scrollTop = $('.message-thread')[0]['scrollHeight'];
-    },30)
+    setTimeout(() => {
+      $('.message-thread')[0].scrollTop = $('.message-thread')[0]['scrollHeight'];
+    }, 30)
   }
 
   chatBoxToggle(): void {
@@ -279,8 +288,30 @@ export class ChatHomeComponent implements OnInit {
   sendSelectedUserId(): any {
     return this.selectedSocketId
   }
-  /*
-  	 audioRecieve(){
-  		 this.audioComponent.audioConnect();
-  	 } */
+
+  activateSpeechSearchMovie(): void {
+    this.showSearchButton = false;
+    this.showStopButton = true;
+
+    this.speechRecognitionService.record()
+      .subscribe(
+        //listener
+        (value) => {
+          this.speechData = value;
+          this.message=this.speechData;
+        },
+        //errror
+        (err) => {
+          console.log(err);
+          if (err.error == "no-speech") {
+            console.log("--restatring service--");
+            this.activateSpeechSearchMovie();
+          }
+        });
+  }
+  Stop() {
+    this.speechRecognitionService.stopspeech()
+    this.showSearchButton = true;
+    this.showStopButton = false;
+  }
 }
