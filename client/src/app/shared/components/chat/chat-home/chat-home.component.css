@@ -1,5 +1,4 @@
 .header {
-
   background-color: rgba(80, 208, 193, 0.51);
   margin-bottom: 5px;
   box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.32);
@@ -129,6 +128,7 @@
 }
 
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 body {
@@ -147,10 +147,7 @@ body {
   height: 50%;
   width: auto;
 }
-
-
 /* nav-side bar */
-
 .nav-side-menu {
   overflow: auto;
   font-family: verdana;
@@ -232,8 +229,6 @@ body {
   background-color: #020203;
 }
 
-
-
 .nav-side-menu ul .sub-menu li:before,
 .nav-side-menu li .sub-menu li:before {
   font-family: FontAwesome;
@@ -243,8 +238,6 @@ body {
   padding-right: 10px;
   vertical-align: middle;
 }
-
-
 
 .nav-side-menu li {
   padding-left: 0px;
@@ -327,7 +320,7 @@ img {
 
 .chatbox {
   position: fixed;
-  bottom: 0;
+  bottom: 85px;
   right: 30px;
   width: 300px;
   height: 400px;
@@ -349,21 +342,25 @@ img {
 .chatbox--closed {
   bottom: -400px;
 }
-.speechOn{
+
+.speechOn {
   background-color: #b2ff59;
 }
-.speechOff{
+
+.speechOff {
   background-color: #eeff41;
 }
 
 .chatbox .form-control:focus {
   border-color: #1f2836;
 }
-.bottomGap{
+
+.bottomGap {
   margin-bottom: 20px;
 }
-.marginGap{
-      margin-top: 15px;
+
+.marginGap {
+  margin-top: 15px;
 }
 
 .chatbox__title,
@@ -549,5 +546,3 @@ img {
 .chatbox--empty .chatbox__credentials {
   display: block;
 }
-
-

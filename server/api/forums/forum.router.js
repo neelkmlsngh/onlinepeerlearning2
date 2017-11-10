@@ -90,11 +90,9 @@ router.put('/:id', (req, res) => {
 });
 
 //add likes to paticular question post
-router.put('/term/:id', (req, res) => {
+router.put('/like/:id', (req, res) => {
     let getValue = req.params.id;
-    console.log(getValue);
     let forumUpdate = req.body;
-    console.log(forumUpdate);
     try {
         forumCtrl.saveLike(getValue, forumUpdate).then((successResult) => {
             logger.info(logConfig.ADD_LIKES_ON_QUESTION);
@@ -113,7 +111,6 @@ router.put('/term/:id', (req, res) => {
 router.put('/dislike/:id', (req, res) => {
     let getValue = req.params.id;
     let forumUpdate = req.body;
-    console.log(forumUpdate);
     try {
         forumCtrl.saveDislike(getValue, forumUpdate).then((successResult) => {
             logger.info(logConfig.ADD_DISLIKE_ON_QUESTION);

@@ -38,7 +38,7 @@ export class ForumsComponent implements OnInit {
   ngOnInit() {
        this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
        this.userName=this.currentUser.userName;
-       console.log(this.userName);
+       // console.log(this.userName);
     this.viewPost();
     //this.like(value):any;
   }
@@ -47,8 +47,8 @@ export class ForumsComponent implements OnInit {
   viewPost() {
     this.forum.getPost().subscribe((data1) => {
       this.data = data1.data;
-      this.tags=this.data.tags;
-      console.log(this.tags);
+      // this.tags=this.data.tags;
+      // console.log(this.tags);
     })
   }
 
@@ -56,7 +56,7 @@ export class ForumsComponent implements OnInit {
   getDetails(searchTerm: any) {
     this.forum.searchEntries(searchTerm.value)
       .subscribe(res => {
-        this.data = res;
+        this.data = res.data;
       });
   }
 
@@ -73,6 +73,7 @@ export class ForumsComponent implements OnInit {
     this.forum.updateLike(value,this.userId)
      .subscribe(res => {
        console.log(res);
+       this.viewPost();
       })
   }
 
@@ -84,13 +85,10 @@ export class ForumsComponent implements OnInit {
     this.forum.updateDislike(value,this.userId )
      .subscribe(res => {
        console.log(res);
+       this.viewPost();
       })
   }
   
-  //method to navigate to answers
-  showAnswers(value) {
-    this.router.navigate(['/answers', value])
-
-  }
+ 
 
 }

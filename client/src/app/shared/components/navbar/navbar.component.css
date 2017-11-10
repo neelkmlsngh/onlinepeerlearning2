@@ -1,14 +1,13 @@
 /*css on navbar*/
 
 #mainNav {
-  background-color: #303F9F;
+  background-color: #1976D2;
   height: 55px;
 }
 
 .font a {
   color: white;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 900;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .font a:hover {
@@ -16,8 +15,7 @@
 }
 
 .navItem {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 900;
+  font-family: 'Open Sans', sans-serif;
   font-size: medium;
 }
 

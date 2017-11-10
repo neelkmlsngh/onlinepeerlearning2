@@ -15,7 +15,7 @@
         <div class="questionsumary">
           <div class="row mb-3">
             <div class="statuscontainer col-sm-3">
-              <div class="answeraccepted h5  border py-2 text-white mt-2">
+              <div class="answeraccepted h5  border py-2  text-white mt-2">
                 <strong class="pl-4">{{ solutions.length }}</strong>
                 <br><small class="ans">{{forumConfig.DETAILPOST.ANSWERS}}</small>
               </div>
@@ -27,16 +27,17 @@
               <div class="problemDescription">
                 {{data.problemDescription}}
               </div>
-              <div class="text-white mt-3 mb-3">
-                <div class="tags d-inline border py-1">Angularjs</div>
-                <div class="tags d-inline boredr py-1">Nodejs</div>
-              </div>
+              <!-- <div *ngIf="data.tags.length !== 0 "> -->
+                <div class="text-white d-inline-block mt-3 mb-3" *ngFor="let res of data.tags">
+                  <div class="tags d-inline border py-1 px-1">{{res.value}}</div>
+                </div>
+              <!-- </div> -->
               <div class="row">
                 <div class="col-sm-5 postedDate small">
                   {{forumConfig.DETAILPOST.ASKED}} {{data.date}}
                 </div>
                 <div class="col-sm-7 user mt-2">
-                  <span><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></span> {{forumConfig.DETAILPOST.POSTED_BY}} prashant
+                  <span><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></span> {{forumConfig.DETAILPOST.POSTED_BY}} {{data.userName}}
                 </div>
               </div>
             </div>
@@ -62,9 +63,9 @@
                 {{forumConfig.DETAILPOST.ASKED}} {{result.date}}
               </div>
               <div class="col-sm-9 mt-2">
-                <button class="btn btn-sm text-black btn-outline-success pl-3" (click)="like()">
+                <button class="btn btn-sm text-black like pl-3" (click)="likes()">
                   <i class="fa fa-thumbs-up fa-lg text-black"></i> 0 </button>
-                <button class="btn btn-sm text-black btn-outline-danger pl-3" (click)="dislike()">
+                <button class="btn btn-sm text-black dislike pl-3" (click)="dislike()">
                   <i class="fa fa-thumbs-down fa-lg text-black"></i> 0</button>
               </div>
             </div>
@@ -86,7 +87,7 @@
             <div class="col-sm-6 border py-2">
               <label class="h5">{{forumConfig.DETAILPOST.SIGNUP_LOGIN}}</label>
               <br>
-              <a class="btn btn-sm like text-white mt-2" href="#">
+              <a class="btn btn-sm postans text-white mt-2" href="#">
                  <i class="fa fa-github fa-lg text-white"></i>{{forumConfig.DETAILPOST.LOGIN_WITH_GITHUB}}</a>
             </div>
             <div class="col-sm-6 border py-2">
@@ -108,7 +109,7 @@
           </div>
         </div>
         <div class="postanswer mt-3 mb-3 text-center">
-          <button class="btn like btn-sm text-white" (click)="postAnswer()">{{forumConfig.DETAILPOST.POST_YOUR_ANSWER_BUTTON}}</button>
+          <button class="btn postans btn-sm text-white" (click)="postAnswer()">{{forumConfig.DETAILPOST.POST_YOUR_ANSWER_BUTTON}}</button>
         </div>
         <!-- end of container -->
       </div>
