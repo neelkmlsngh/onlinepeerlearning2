@@ -10,7 +10,6 @@ module.exports = {
   CLIENT_SECRET: '4f34a102e4b2d71b77246520afee60d692da9b5a',
   CALLBACK_URL: "https://192.168.252.152:8080/api/login/auth/github/callback",
   URL: "https://192.168.252.152:8080/"
-
 }
 
 

@@ -31,10 +31,10 @@
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingTwo">
                 <h5 class="mb-0 accordionHeading">
-        <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Select Your Repository
-        </a>
-      </h5>
+                  <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Your Repositories
+                  </a>
+                </h5>
               </div>
               <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body accordionBody">
@@ -66,15 +66,14 @@
                     <h6></h6>
                     <label for="recipient-name" class="form-control-label formText">Description for README.md</label>
                     <textarea type="text" id="description" class="form-control descriptionTextArea" data-spy="scroll" data-target="description" data-offset="0" name="description" ngModel #nameField="ngModel" required minlength="3">
-
-                    <div *ngIf="nameField.touched && nameField.errors">
-                      <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
-                        The description is required
+                      <div *ngIf="nameField.touched && nameField.errors">
+                        <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
+                          The description is required
+                        </div>
+                        <div class="alert alert-danger formText" *ngIf="nameField.errors.minlength">
+                          Description is needed
+                        </div>
                       </div>
-                      <div class="alert alert-danger formText" *ngIf="nameField.errors.minlength">
-                        Description is needed
-                      </div>
-                    </div>
                     </textarea>
                     <br>
                     <button class="btn btn-primary btn-lg btn-block formText" [disabled]="!repositoryForm.valid">Ok</button>

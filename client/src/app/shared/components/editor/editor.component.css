@@ -14,6 +14,7 @@ body {
   height: 100%;
 }
 
+
 /* reponame text color*/
 .repoName b {
   color: #A9A9A9;
@@ -43,7 +44,7 @@ body {
 }
 
 #mainNav {
-   background: #C5CAE9;
+  background: #C5CAE9;
   height: 40px;
 }
 
@@ -64,7 +65,6 @@ body {
 .padding {
   padding: 1px;
   margin: 0;
-
 }
 
 #javascript {
@@ -87,57 +87,6 @@ body {
 .font {
   padding-right: 0px;
 }
-
-.pd-0 {
-  padding-right: 0px;
-}
-
-.custom-thr {
- margin-top: 20px;
-}
-
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  .custom-fst {
-    width: 167px;
-  }
-  .custom-mid {
-    width: 0px;
-  }
-  .custom-thr {
-    width: 146px;
-  }
-}
-
-@media (width: 320px) {
-  .custom-fst {
-    width: 146px;
-  }
-  .custom-mid {
-    width: 0px;
-  }
-  .custom-thr {
-    width: 146px;
-  }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  .custom-fst {
-    width: 167px;
-    min-inline-size: 209px;
-    margin-top: 42px;
-  }
-  .custom-mid {
-    width: 0px;
-  }
-  .custom-thr {
-    width: 146px;
-  }
-}
-
-.downloadbtn{
-  color: black;
-}
-
-#repoCrud{
-  margin-left: 450px;
+.repoicon{
+margin-left:  100px;
 }
