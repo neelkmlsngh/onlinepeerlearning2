@@ -21,12 +21,13 @@ export class WebeditorComponent implements OnInit {
   }
   config = webEditorConfig;
 
-  @Input() content: any = this.config.webEditor.HTMLTEMP;
+  @Input() content: any
   @Input() reponame: any;
   @Input() filenamed: any;
 
+  htmlValue: any  = this.config.webEditor.HTMLTEMP;
   cssValue: any = this.config.webEditor.CSSTEMP;
-  jsValue: any = "";
+  jsValue: any = this.config.webEditor.JSSTEMP;
   code: any;
   cssblob: any;
   htmlblob: any;
@@ -75,13 +76,14 @@ export class WebeditorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.content=this.htmlValue;
     this.onChange(this.code)
 
     this.snippet.getSnippet()
       .subscribe(res => {
 
-        this.html = res.filter(ele => ele.language === 'html');
-        this.css = res.filter(ele => ele.language === 'css');
+        this.html = res.filter(ele => ele.language === 'Html');
+        this.css = res.filter(ele => ele.language === 'CSS');
 
       })
   }

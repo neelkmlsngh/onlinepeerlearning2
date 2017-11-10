@@ -6,7 +6,8 @@ export const webEditorConfig: any = {
     SCREENSHARE: "Share Your Screen",
     ADD: "Add Snippet",
     HTMLTEMP: "<h1>Hello World</h1>",
-    CSSTEMP: "body{color:red}",
+    CSSTEMP: "body{color:red} //Enter Your CSS code Here",
+    JSSTEMP:"//Enter Your JavaScript Code Here",
     OUTPUT:"Output",
     OUTPUTTEMP: `<!doctype html>
       <html>

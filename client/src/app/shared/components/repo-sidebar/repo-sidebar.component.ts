@@ -36,11 +36,14 @@ export class RepoSidebarComponent implements OnInit {
   currentUser: any;
   isTree : Boolean = true;
   public emptyRepo: String;
+  extension: any;
+  confirm : any;  
 
   // @Input() personalAccessToken;
   @Output() content = new EventEmitter < any > ();
   @Output() repoName = new EventEmitter < any > ();
   @Output() fileName = new EventEmitter < any > ();
+  @Output() editorMode = new EventEmitter < any > ();
 
   constructor(private editorService: EditorService, private gitService: GitService, 
     private modalService: BsModalService, private profileService: ProfileService,
@@ -86,10 +89,22 @@ export class RepoSidebarComponent implements OnInit {
 
   /*method used to show repositery name and file name*/
   showFile(reponame, filename) {
-    console.log('mode--------------');
-    console.log(this.mode);
-    console.log('filename--------------');
-    console.log(filename);
+    this.extension = filename.split('.').pop();
+    if (this.mode === "javascript" && this.extension !== "js") {
+      this.confirm = confirm("Would You Like to change your mode to Web Development Mode to access HTMl file")
+      if (this.confirm === true) {
+        this.mode = "html"
+        this.editorMode.emit(this.mode);
+
+     }
+    } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css") {
+      this.confirm = confirm("Would You Like to change your mode to JAVASCRIPT Mode to access Javascript file")
+      if (this.confirm === true) {
+        this.mode = "javascript"
+        this.editorMode.emit(this.mode);
+
+     }
+    }
     this.reponamed = this.selectedValue;
     this.gitService.openFolder(reponame, filename)
       .subscribe(
@@ -129,6 +144,7 @@ export class RepoSidebarComponent implements OnInit {
       "description": desc,
       "homepage": "https://github.com",
       "private": false,
+      "auto_init": true,
       "has_issues": false,
       "has_projects": false,
       "has_wiki": false

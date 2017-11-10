@@ -14,7 +14,7 @@
           <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" title={{config.webEditor.JS}}><i class="fa fa-file-code-o" aria-hidden="true"></i></a>
         </li>
       </ul>
-      <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn  btn-secondary text-right" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="Share Your Screen With Your Friend" (click)="openModal(template)">{{config.webEditor.SCREENSHARE}} </button>
+      <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn  btn-secondary text-right" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="{{config.webEditor.SCREENSHARE}}" (click)="openModal(template)"> <i class="fa fa-desktop" aria-hidden="true"></i></button>
     </div>
     <div id="togetherjs-dock-participants"></div>
     <template #template>

@@ -11,6 +11,9 @@ import { SocketService } from './../../../services/chatservices/socket.service';
 import { HttpService } from './../../../services/chatservices/http.service';
 import { ChatService } from './../../../services/chatservices/chat.service';
 import { ProfileService } from './../../../services/profile.service';
+/*import {  } from '../audio-chat/audio-chat.component'
+ */
+
 @Component({
   selector: 'app-chat-home',
   templateUrl: './chat-home.component.html',
@@ -23,11 +26,11 @@ export class ChatHomeComponent implements OnInit {
   selectedUserId = null;
   selectedSocketId = null;
   selectedUserName = null;
-  config=chatConfig;
+  config = chatConfig;
   formData: FormData;
   options: RequestOptions;
-  currentUser:any;
-  imgPath:string='';
+  currentUser: any;
+  imgPath: string = '';
   showVideoBox: any = false;
   showAudioBox: any = false;
   //chat and message related variables starts
@@ -45,7 +48,9 @@ export class ChatHomeComponent implements OnInit {
     private router: Router,
     private modalService: BsModalService,
     private authenticationService: AuthenticationService,
-    private profileService:ProfileService
+    private profileService: ProfileService
+    /*,
+    		private audioComponent:AudioChatComponent*/
   ) {}
   /*method loading various functions*/
   ngOnInit() {
@@ -91,8 +96,14 @@ export class ChatHomeComponent implements OnInit {
             }, 100);
           }
         });
-        
+        this.socketService.getPeerId().subscribe(data => {
+          this.showAudioBox = true;
+          return data
+        }, error => {
+
+        })
       });
+
     }
   }
   //Getting the userid when user is selected
@@ -142,16 +153,16 @@ export class ChatHomeComponent implements OnInit {
     $('.chatbox').show();
     $('.side').hide();
   }
-  
-  chatBoxToggle(): void{
-  $('.chatbox').toggleClass('chatbox--tray');
+
+  chatBoxToggle(): void {
+    $('.chatbox').toggleClass('chatbox--tray');
   }
   showVideo() {
-   this.showVideoBox = !this.showVideoBox;
- }
- showAudio(){
-   this.showAudioBox = !this.showAudioBox;
- }
+    this.showVideoBox = !this.showVideoBox;
+  }
+  showAudio() {
+    this.showAudioBox = !this.showAudioBox;
+  }
   isUserSelected(userId: string): boolean {
     if (!this.selectedUserId) {
       return false;
@@ -203,29 +214,35 @@ export class ChatHomeComponent implements OnInit {
     this.modalRef = this.modalService.show(template2);
   }
   fileChange(event) {
-    this.formData= new FormData();
+    this.formData = new FormData();
     let fileList: FileList = event.target.files;
-    if(fileList.length > 0) {
-    let file: File = fileList[0];
-    this.formData.append('uploadFile', file, file.name);
-    let headers = new Headers();
-    headers.append('enctype', 'multipart/form-data');
-    headers.append('Accept', 'application/json');
-    this.options = new RequestOptions({ headers: headers });
-     
-   }
-}
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      this.formData.append('uploadFile', file, file.name);
+      let headers = new Headers();
+      headers.append('enctype', 'multipart/form-data');
+      headers.append('Accept', 'application/json');
+      this.options = new RequestOptions({ headers: headers });
 
-// method to be called when Upload button is clicked
-  uploadFile(){
-    this.profileService.uploadFile(this.currentUser.userId,this.formData,this.options)
-  .subscribe(
-    res=>{
-      this.imgPath=res.data.avatarUrl;
-
-      },error=> 'UPLOAD'
-    )
-
+    }
   }
-}
 
+  // method to be called when Upload button is clicked
+  uploadFile() {
+    this.profileService.uploadFile(this.currentUser.userId, this.formData, this.options)
+      .subscribe(
+        res => {
+          this.imgPath = res.data.avatarUrl;
+
+        }, error => 'UPLOAD'
+      )
+  }
+
+  sendSelectedUserId(): any {
+    return this.selectedSocketId
+  }
+  /*
+  	 audioRecieve(){
+  		 this.audioComponent.audioConnect();
+  	 } */
+}

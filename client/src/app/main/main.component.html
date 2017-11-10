@@ -1,12 +1,12 @@
 <!-- main component starts -->
-<div class="container-fluid">
+<div class="container-fluid backgroundcolor">
   <div class="row">
     <div class="col-md-12">
       <!-- navbar selector -->
       <app-navbar></app-navbar>
     </div>
   </div>
-  <div class="row mt-5 py-3 backgroundcolor">
+  <div class="row mt-5 py-3 ">
     <div class="col-md-12">
       <div class="row ">
         <div class="col-md-2">
@@ -15,7 +15,7 @@
             <div class="col-md-12 ">
               <!-- card to make block for repo sidebar -->
               <div class="card">
-                <h5 class="card-header"><b>{{config.TITLE}}</b></h5>
+                <h5 class="card-header "><b>{{config.TITLE}}</b></h5>
                 <div class="card-block">
                   <div class="list-group">
                     <select name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="changeMode()">
@@ -28,22 +28,38 @@
             </div>
             <!-- card end -->
             <!-- generate token button -->
-            <button type="button" class="btn btn-outline-info btn-sm tokenButtonMargin"><b class='generateTokenButton' (click)="openModal(template)">{{config.TOKENBUTTON}}</b></button>
-            <template #template>
-              <div class="modal-header">
-                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+            <button type="button" class="btn btn-outline-info btn-sm tokenButtonMargin" data-toggle="modal" data-target="#tokenModal"><b class='generateTokenButton'>{{config.TOKENBUTTON}}</b></button>
+            <!--  -->
+            <div class="modal fade" id="tokenModal" tabindex="-1" role="dialog" aria-labelledby="tokenModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header modalColor">
+                    <h6 class="modal-title" id="tokenModalLabel">Generate Token</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="recipient-name" class="form-control-label">Enter Github Password</label>
+                        <input type="password" class="form-control" id="recipient-name" #pass (keyup)="onKey($event)">
+                      </div>
+                      <div class="form-group">
+                        <label for="message-text" class="form-control-label">Enter Personal Access Token Name</label>
+                        <input type="text" class="form-control" id="recipient-name" #tokenName (keyup)="onKey($event)">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createAccessToken(pass.value,tokenName.value)">Create</button>
+                  </div>
+                </div>
               </div>
-              <h6>{{config.GITHUBPASSWORD}}</h6>
-              <input type="password" name="" #token (keyup)="onKey($event)">
-              <h6>{{config.ACCESSTOKEN}}</h6>
-              <input type="text" name="" #tokenName (keyup)="onKey($event)">
-              <input type="button" class="btn btn-sm btn-success submit" name="" value="create" (click)="createAccessToken(token.value,tokenName.value)">
-            </template>
+            </div>
           </div>
           <!-- repository side bar selector -->
-          <app-repo-sidebar  [mode]="mode" (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
+          <app-repo-sidebar [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
         </div>
         <div *ngIf="mode=='javascript'" class="col-md-10">
           <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-editor>
@@ -66,7 +82,5 @@
       <app-chat-home></app-chat-home>
     </div>
   </div>
-  </div>
-  
+</div>
 <!-- main component ends -->
-
