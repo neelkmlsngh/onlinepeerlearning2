@@ -14,13 +14,10 @@ body {
   height: 100%;
 }
 
-
 /* reponame text color*/
-
 .repoName b {
   color: #A9A9A9;
 }
-
 
 #output h3 {
   font-size: 12px;
@@ -34,12 +31,7 @@ body {
   text-align: center;
 }
 
-
-
-
-
 /* Output Area */
-
 #output {
   top: 0;
   right: 0;
@@ -64,7 +56,6 @@ body {
   color: black
 }
 
-
 .nopadding {
   padding: 0 !important;
   margin: 0 !important;
@@ -75,8 +66,6 @@ body {
   margin: 0;
 
 }
-
-
 
 #javascript {
   height: 524px;
@@ -103,10 +92,9 @@ body {
   padding-right: 0px;
 }
 
- .custom-thr {
-   margin-top: 20px;
-  }
-
+.custom-thr {
+ margin-top: 20px;
+}
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .custom-fst {
@@ -120,9 +108,7 @@ body {
   }
 }
 
-
 @media (width: 320px) {
-
   .custom-fst {
     width: 146px;
   }
@@ -134,11 +120,7 @@ body {
   }
 }
 
-
-
-
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-
   .custom-fst {
     width: 167px;
     min-inline-size: 209px;
