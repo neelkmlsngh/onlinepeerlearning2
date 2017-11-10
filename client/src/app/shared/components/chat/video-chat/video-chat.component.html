@@ -18,7 +18,7 @@
   </div>
   <div class="ridge">
     <!--video call tag -->
-    <video class="videoWidth" #myvideo autoplay></video>
+    <video class="videoWidth" #myvideo [muted]="muted" autoplay></video>
   </div>
   <div class="btn-group align-self-center mt-2 mt-2">
     <!--connect video call button -->
@@ -27,7 +27,10 @@
     </i>
     </button>
     <!--mute video call button -->
-    <button class="btn btn-outline-success btn-lg ml-2 ml-2" data-toggle="popover" title="Mute" vi-controls-pause>
+    <button class="btn btn-outline-success btn-lg ml-2 ml-2" data-toggle="popover" title="Mute" *ngIf="muted==false" (click)="videoMute">
+    <i class="fa fa-volume-off" aria-hidden="true"></i></button>
+    <button class="btn btn-outline-success btn-lg ml-2 ml-2" data-toggle="popover" title="Mute" *ngIf="muted==true"
+    (click)="videoUnmute">
       <i class="fa fa-volume-off" aria-hidden="true"></i>
     </button>
     <!-- disconnect video call button -->

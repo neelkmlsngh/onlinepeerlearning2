@@ -1,11 +1,11 @@
 export const config: any = {
 
  language: [
-    "Javascript",
-    "Html",
-    "CSS"
-  ],
-  con: {
+   "Javascript",
+   "Html",
+   "CSS"
+ ],
+ con: {
     title: "Add Snippet",
     DROP: "Select Language to Add Snippet",
     button: "Add Snippet",
@@ -43,7 +43,11 @@ export const config: any = {
     "DISLIKEURL": 'api/forums/dislike/',
   },
   peerserver: {
+<<<<<<< HEAD
     "host": "192.168.252.160",
+=======
+    "host": "localhost",
+>>>>>>> 0698ed758fa7a9ff0b4eeaaab4612e497e47ecf7
     "port": "8081",
     "path": "/peerjs"
   }

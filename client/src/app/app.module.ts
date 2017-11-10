@@ -43,6 +43,7 @@ import { AudioChatComponent } from './shared/components/chat/audio-chat/audio-ch
 import { VideoChatComponent } from './shared/components/chat/video-chat/video-chat.component';
 import { AuthenticationService } from './shared/services/authentication.service'
 import { ProfileService } from './shared/services/profile.service';
+import { SpeechRecognitionService } from './shared/services/speech-recognition.service';
 
 import { AuthoriseGuard } from './shared/services/authorise.guard';
 import { SnippetComponent } from './shared/components/snippet/snippet.component';
@@ -56,6 +57,8 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
 import { ForumsComponent } from './shared/components/forums/forums.component';
 import { AddForumComponent } from './shared/components/forums/add-forum/add-forum.component';
 import { ViewForumComponent } from './shared/components/forums/view-forum/view-forum.component';
+import { AddSnippetComponent } from './shared/components/snippet/add-snippet/add-snippet.component';
+import { ViewSnippetComponent } from './shared/components/snippet/view-snippet/view-snippet.component';
 
 let apiRoutes: Routes = [{
     path: '',
@@ -67,7 +70,19 @@ let apiRoutes: Routes = [{
   },
   {
     path: 'snippets',
-    component: SnippetComponent
+    // component: SnippetComponent,
+    children:[
+    {
+      path:'',
+      component: SnippetComponent
+    },{
+      path:'add',
+      component: AddSnippetComponent
+    },
+    {
+      path:'view/:value',
+      component: ViewSnippetComponent
+    }]
   },
   {
     path: 'main',
@@ -129,6 +144,8 @@ let apiRoutes: Routes = [{
     ForumsComponent,
     AddForumComponent,
     ViewForumComponent,
+    AddSnippetComponent,
+    ViewSnippetComponent,
     
   ],
 
@@ -154,7 +171,7 @@ let apiRoutes: Routes = [{
     ModalModule.forRoot(),
     RouterModule.forRoot(apiRoutes, { useHash: true })
   ],
-  providers: [GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, CoderunnerService, ChatService, HttpService, SocketService, SnippetService],
+  providers: [GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, CoderunnerService, ChatService, HttpService, SocketService, SnippetService,SpeechRecognitionService],
 
   bootstrap: [AppComponent]
 })

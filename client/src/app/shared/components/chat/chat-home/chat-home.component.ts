@@ -1,16 +1,20 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Headers, RequestOptions } from '@angular/http';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
+import swal from 'sweetalert2';
+
 import { AuthenticationService } from './../../../services/authentication.service';
 import { chatConfig } from '../../../config/chatConfig';
-import { Headers, RequestOptions } from '@angular/http';
+
 /*importing services*/
 import { SocketService } from './../../../services/chatservices/socket.service';
 import { HttpService } from './../../../services/chatservices/http.service';
 import { ChatService } from './../../../services/chatservices/chat.service';
 import { ProfileService } from './../../../services/profile.service';
+import { SpeechRecognitionService } from './../../../services/speech-recognition.service';
 /*import {  } from '../audio-chat/audio-chat.component'
  */
 
@@ -33,6 +37,9 @@ export class ChatHomeComponent implements OnInit {
   imgPath: string = '';
   showVideoBox: any = false;
   showAudioBox: any = false;
+  showSearchButton: boolean;
+  showStopButton: boolean
+  speechData: string;
   //chat and message related variables starts
   userId = null;
   socketId = null;
@@ -40,10 +47,10 @@ export class ChatHomeComponent implements OnInit {
   message = '';
   messages = [];
   data2: any = [];
-  peerId:string;
-  peerIdVideo:string;
-  userName :string;
-  userNameForVideo :string;
+  peerId: string;
+  peerIdVideo: string;
+  userName: string;
+  userNameForVideo: string;
 
   //constructor initialising various services
   constructor(
@@ -53,19 +60,18 @@ export class ChatHomeComponent implements OnInit {
     private router: Router,
     private modalService: BsModalService,
     private authenticationService: AuthenticationService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private speechRecognitionService: SpeechRecognitionService
     /*,
-    		private audioComponent:AudioChatComponent*/
-  ) {}
+        private audioComponent:AudioChatComponent*/
+  ) {
+    this.showSearchButton = true;
+    this.showStopButton = false;
+    this.speechData = "";
+  }
   /*method loading various functions*/
   ngOnInit() {
-    $('.chatbox').hide();
-
-    $(function() {
-      var div = $("#scroll");
-      div.scrollTop(div.prop('scrollHeight'));
-    }); 
-
+    $('.chatbox').hide();  
     // getting userID from the local storage  
     this.userId = this.authenticationService.getUserId();
     if (this.userId === '' || typeof this.userId == 'undefined') {
@@ -95,40 +101,55 @@ export class ChatHomeComponent implements OnInit {
               this.chatListUsers = response.chatList;
             }
           } else {
-            alert(`Chat list failure.`);
+            swal({
+             timer: 2000,
+             title: "Chat List Failure",
+             text:  "Sorry We cannot show online users now",
+             type:  'error',
+             showConfirmButton: false,
+           })
           }
         });
+
         //method for recieving messages through socket          
         this.socketService.receiveMessages().subscribe(response => {
           if (this.selectedUserId && this.selectedUserId == response.fromUserId) {
             this.messages.push(response);
-            }
-        });
-        
-        this.socketService.getPeerId().subscribe(data => {
-          this.showAudioBox = true;
-          if(data['mypeerid']){
-            this.peerId=data['mypeerid'];
-            this.userName=data['userName']
           }
-         // return data;
+        });
+
+        this.getPeerForAudio();
+
+        this.socketService.getPeerIdForVideo().subscribe(data => {
+          this.showVideoBox = true;
+          if (data['mypeerid']) {
+            this.peerIdVideo = data['mypeerid']
+            this.userNameForVideo = data['userName']
+          }
         }, error => {
 
         })
 
-        this.socketService.getPeerIdForVideo().subscribe(data=>{
-          this.showVideoBox = true;
-          if(data['mypeerid']){
-            this.peerIdVideo = data['mypeerid']
-            this.userNameForVideo=data['userName']
-          }
-        }, error=>{
-
-        })
       });
 
     }
   }
+
+  getPeerForAudio() {
+    this.socketService.getPeerId().subscribe(data => {
+      this.showAudioBox = true;
+      if (data['mypeerid']) {
+        this.peerId = data['mypeerid'];
+        this.userName = data['userName']
+      }
+      // return data;
+    }, error => {
+
+    })
+  }
+
+
+
   //Getting the userid when user is selected
   selectedUser(user): void {
     $('.chatbox').removeClass('chatbox--tray');
@@ -144,6 +165,7 @@ export class ChatHomeComponent implements OnInit {
     this.hideChatBox()
 
   }
+
   //Method for opening chatbox
   openChatBox(): void {
     //Jquery for handling chatbox opening and closing
@@ -174,12 +196,13 @@ export class ChatHomeComponent implements OnInit {
     });
   }
   //Method for closing chatbox
-  hideChatBox(): void {
+  hideChatBox(){
     $('.chatbox').show();
     $('.side').hide();
-    setTimeout(()=>{
-    $('.message-thread')[0].scrollTop = $('.message-thread')[0]['scrollHeight'];
-    },30)
+    this.stop();
+    setTimeout(() => {
+      $('.message-thread')[0].scrollTop = $('.message-thread')[0]['scrollHeight'];
+    }, 30)
   }
 
   chatBoxToggle(): void {
@@ -201,14 +224,33 @@ export class ChatHomeComponent implements OnInit {
   sendMessage(event) {
     if (event.keyCode === 13) {
       if (this.message === '' || this.message === null) {
-        alert(`Message can't be empty.`);
+        swal({
+           timer: 2000,
+           title: "Error",
+           text:  "Message can't be empty.",
+           type:  'error',
+           showConfirmButton: false,
+         })
       } else {
         if (this.message === '') {
-          alert(`Message can't be empty.`);
+          swal({
+           timer: 2000,
+           title: "Error",
+           text:  "Message can't be empty.",
+           type:  'error',
+           showConfirmButton: false,
+         })
         } else if (this.userId === '') {
           this.router.navigate(['/']);
         } else if (this.selectedUserId === '') {
           alert(`Select a user to chat.`);
+          swal({
+           timer: 2000,
+           title: "Error",
+           text:  "Select a user to chat.",
+           type:  'error',
+           showConfirmButton: false,
+         })
         } else {
           let data: any = {
             fromUserId: this.userId,
@@ -269,8 +311,30 @@ export class ChatHomeComponent implements OnInit {
   sendSelectedUserId(): any {
     return this.selectedSocketId
   }
-  /*
-  	 audioRecieve(){
-  		 this.audioComponent.audioConnect();
-  	 } */
+
+  activateSpeechSearchMovie(): void {
+    this.showSearchButton = false;
+    this.showStopButton = true;
+
+    this.speechRecognitionService.record()
+      .subscribe(
+        //listener
+        (value) => {
+          this.speechData = value;
+          this.message=this.speechData;
+        },
+        //errror
+        (err) => {
+          console.log(err);
+          if (err.error == "no-speech") {
+            console.log("--restatring service--");
+            this.activateSpeechSearchMovie();
+          }
+        });
+  }
+  stop() {
+    this.speechRecognitionService.stopspeech()
+    this.showSearchButton = true;
+    this.showStopButton = false;
+  }
 }
