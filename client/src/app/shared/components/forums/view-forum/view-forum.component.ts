@@ -1,7 +1,8 @@
 //@angular Files Imports
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ParamMap } from '@angular/router';
-import { Router, ActivatedRoute, Params, Data } from '@angular/router'
+import { Router, ActivatedRoute, Params, Data } from '@angular/router';
+import swal from 'sweetalert2';
 //Reactive Extensions Library
 import 'rxjs/add/operator/switchMap';
 //Custom Files Imports
@@ -59,7 +60,6 @@ export class ViewForumComponent implements OnInit {
       })
   }
 
-
   //method to load editor to postAnswer
   ngAfterViewInit() {
     var configuration = {
@@ -92,7 +92,7 @@ export class ViewForumComponent implements OnInit {
     }
     this.forum.saveAnswer(this.data._id, this.obj)
       .subscribe(res => {
-        console.log(res);
+       swal("Successfully added answer", "", "success");
       this.viewQuestionDetail();
       CKEDITOR.instances.answerText.setData("");
       CKEDITOR.instances.addSnippet.setData("");

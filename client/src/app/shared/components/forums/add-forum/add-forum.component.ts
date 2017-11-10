@@ -66,10 +66,9 @@ forumConfig=forumConfig;
     CKEDITOR.replace('problemDescription', problemDescriptionConfig);
     CKEDITOR.instances.problemDescription.setData("");
   }
+  
   //method to add post on forum
   insertPost() {
-    // let user = JSON.parse(localStorage.getItem('currentUser'));
-    // let userName=user.userName
     this.obj = {
       questionTitle: this.questionTitle,
       codeSnippet: CKEDITOR.instances.addSnippet.getData(),
@@ -77,16 +76,11 @@ forumConfig=forumConfig;
       tags: this.items,
       date: this.date,
       userName:this.userName,
-
     }
 
-    console.log(this.obj);
-
     this.forum.savePost(this.obj).subscribe((res) => {
-     console.log(res);
       if (res) {
-          // this.data = res;
-        swal("Successfully Logged Out", "", "success");
+        swal("Successfully added question", "", "success");
         this.questionTitle='';
         CKEDITOR.instances.addSnippet.setData("");
         CKEDITOR.instances.problemDescription.setData("");

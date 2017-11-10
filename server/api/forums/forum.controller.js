@@ -64,7 +64,10 @@ const getSearch = function(getValue) {
                     }
                 },
                 {
-                    "tags": {
+                    "tags.display":{
+                        "$regex": getValue,
+                        "$options": "i"
+                    },"tags.value" :{
                         "$regex": getValue,
                         "$options": "i"
                     }
