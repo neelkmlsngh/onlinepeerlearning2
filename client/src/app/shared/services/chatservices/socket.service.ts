@@ -73,7 +73,7 @@ export class SocketService {
 
    sendPeerIdVideo(mypeerid, selectedUserId) {
     this.userName = JSON.parse(localStorage.getItem('currentUser'))['userName'];
-    this.socket.emit('send-peer-id-video', mypeerid, selectedUserId)
+    this.socket.emit('send-peer-id-video', mypeerid, selectedUserId,this.userName)
   }
 
   getPeerIdForVideo() {

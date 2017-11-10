@@ -6,7 +6,7 @@
     </div>
   </div>
   <!-- start of container -->
-  <div class="container mt-6 mb-4">
+  <div class="container main">
     <div class="row">
       <div class="col-sm-12">
         <!-- serach bar -->
@@ -38,13 +38,13 @@
             </div>
             <div class="col-sm-9">
               <div class="questionTitle">
-                <a class="question" (click)="getPostDetail(result._id)">{{result.questionTitle}}</a>
+                <a class="question mb-2" (click)="getPostDetail(result._id)">{{result.questionTitle}}</a>
               </div>
               <div [innerHtml]="result.problemDescription | truncate : 200" class="problemDescription">
                 <!--  <div class="problemDescription">
                 {{result.problemDescription | truncate : 200}} -->
               </div>
-              <div *ngIf="result.tags !== '' ">
+              <div *ngIf="result.tags.length !== 0 ">
                 <div class="text-white d-inline-block mt-3 mb-3" *ngFor="let res of result.tags">
                   <div class="tags d-inline border py-1 px-1">{{res.value}}</div>
                 </div>

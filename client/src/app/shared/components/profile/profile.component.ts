@@ -40,7 +40,7 @@ constructor(@Inject(FormBuilder) private fb: FormBuilder,private profileService:
 }
  // method to be called when the component loads
  ngOnInit() {
-/*   this.currentUser= JSON.parse(localStorage.getItem('currentUser'))
+   this.currentUser= JSON.parse(localStorage.getItem('currentUser'))
    this.profileService.getDataFromDB(this.currentUser.userId)
    .subscribe((res)=>{
      this.data={
@@ -54,11 +54,12 @@ constructor(@Inject(FormBuilder) private fb: FormBuilder,private profileService:
        company:res.data.company,
        website:res.data.website,
        bio:res.data.bio,
-       gender:res.data.gender
+       gender:res.data.gender,
+       accessToken:res.data.accessToken
      }
      this.imgPath=this.data.avatar_url;
      this.displayData(this.data);
-   })*/
+   })
  }
  // method to display data when the component loads---method called in ngOnInit()
  displayData(data:any){
