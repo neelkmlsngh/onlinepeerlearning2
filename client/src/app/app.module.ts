@@ -56,6 +56,8 @@ import { ErrorpageComponent } from './shared/components/errorpage/errorpage.comp
 import { ForumsComponent } from './shared/components/forums/forums.component';
 import { AddForumComponent } from './shared/components/forums/add-forum/add-forum.component';
 import { ViewForumComponent } from './shared/components/forums/view-forum/view-forum.component';
+import { AddSnippetComponent } from './shared/components/snippet/add-snippet/add-snippet.component';
+import { ViewSnippetComponent } from './shared/components/snippet/view-snippet/view-snippet.component';
 
 let apiRoutes: Routes = [{
     path: '',
@@ -67,7 +69,19 @@ let apiRoutes: Routes = [{
   },
   {
     path: 'snippets',
-    component: SnippetComponent
+    // component: SnippetComponent,
+    children:[
+    {
+      path:'',
+      component: SnippetComponent
+    },{
+      path:'add',
+      component: AddSnippetComponent
+    },
+    {
+      path:'view/:value',
+      component: ViewSnippetComponent
+    }]
   },
   {
     path: 'main',
@@ -129,6 +143,8 @@ let apiRoutes: Routes = [{
     ForumsComponent,
     AddForumComponent,
     ViewForumComponent,
+    AddSnippetComponent,
+    ViewSnippetComponent,
     
   ],
 
