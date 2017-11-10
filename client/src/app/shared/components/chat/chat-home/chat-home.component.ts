@@ -43,6 +43,7 @@ export class ChatHomeComponent implements OnInit {
   peerId:string;
   peerIdVideo:string;
   userName :string;
+  userNameForVideo :string;
 
   //constructor initialising various services
   constructor(
@@ -119,7 +120,7 @@ export class ChatHomeComponent implements OnInit {
           this.showVideoBox = true;
           if(data['mypeerid']){
             this.peerIdVideo = data['mypeerid']
-            this.userName=data['userName']
+            this.userNameForVideo=data['userName']
           }
         }, error=>{
 
