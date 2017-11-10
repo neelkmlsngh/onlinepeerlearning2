@@ -140,6 +140,7 @@ export class ChatHomeComponent implements OnInit {
 
   //Getting the userid when user is selected
   selectedUser(user): void {
+    $('.chatbox').removeClass('chatbox--tray');
     this.selectedUserId = user.userId;
     this.selectedSocketId = user.socketId;
     this.selectedUserName = user.userName;
