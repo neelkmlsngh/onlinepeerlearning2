@@ -10,7 +10,6 @@ import 'rxjs/Rx';
 import { ForumService } from '../../services/forum.service';
 import { forumConfig } from './../../config/forum.config';
 
-
 @Component({
   selector: 'app-forums',
   templateUrl: './forums.component.html',
@@ -65,7 +64,6 @@ export class ForumsComponent implements OnInit {
   getPostDetail(value): any {
     this.router.navigate(['forums','view' ,value])
   }
-
 
   //method for likes
   like(value):any {
