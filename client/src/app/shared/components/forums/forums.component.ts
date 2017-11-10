@@ -56,7 +56,6 @@ export class ForumsComponent implements OnInit {
   getDetails(searchTerm: any) {
     this.forum.searchEntries(searchTerm.value)
       .subscribe(res => {
-        console.log(res);
         this.data = res.data;
       });
   }
