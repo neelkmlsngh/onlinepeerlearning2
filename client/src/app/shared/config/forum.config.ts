@@ -23,7 +23,7 @@ export const forumConfig = {
     "PROBLEM_DESCRIPTION":"problemDescription",
     "LIKES":"Likes",
     "ASKED":"asked",
-    "ANSWER":"Answer",
+    "ANSWER":"Answers",
     "YOUR_ANSWERS":"Your answer",
     "SIGNUP_LOGIN":"Signup or Login",
     "LOGIN_WITH_GITHUB":"Login with github",
@@ -78,6 +78,6 @@ export const forumConfig = {
  },
 
  "forumUrls":{
-        "FORUMURL":'https://localhost:8080/',
+        "FORUMURL":'https://192.168.252.160:8080/',
  }
 }
