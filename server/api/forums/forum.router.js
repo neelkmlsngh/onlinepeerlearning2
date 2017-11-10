@@ -92,15 +92,16 @@ router.put('/:id', (req, res) => {
 //add likes to paticular question post
 router.put('/term/:id', (req, res) => {
     let getValue = req.params.id;
-    let forumUpdate = req.body.likes;
+    console.log(getValue);
+    let forumUpdate = req.body;
     console.log(forumUpdate);
     try {
         forumCtrl.saveLike(getValue, forumUpdate).then((successResult) => {
-            logger.info(logConfig.ADD_ANSWER_ON_QUESTION);
-            return res.json({ status: 201, message: logConfig.ADD_ANSWER_ON_QUESTION, data: successResult });
+            logger.info(logConfig.ADD_LIKES_ON_QUESTION);
+            return res.json({ status: 201, message: logConfig.ADD_LIKES_ON_QUESTION, data: successResult });
         }, (errResult) => {
             logger.error(errResult);
-            return res.json({ status: 200, message: logConfig.ADD_ANSWER_ON_QUESTION_ERROR, data: errResult });
+            return res.json({ status: 200, message: logConfig.ADD_LIKES_ON_QUESTION_ERROR, data: errResult });
         });
     } catch (err) {
         logger.fatal(logConfig.EXCEPTION_FOUND + err);
@@ -111,15 +112,15 @@ router.put('/term/:id', (req, res) => {
 //add dislikes to paticular question post
 router.put('/dislike/:id', (req, res) => {
     let getValue = req.params.id;
-    let forumUpdate = req.body.dislikes;
+    let forumUpdate = req.body;
     console.log(forumUpdate);
     try {
         forumCtrl.saveDislike(getValue, forumUpdate).then((successResult) => {
-            logger.info(logConfig.ADD_ANSWER_ON_QUESTION);
-            return res.json({ status: 201, message: logConfig.ADD_ANSWER_ON_QUESTION, data: successResult });
+            logger.info(logConfig.ADD_DISLIKE_ON_QUESTION);
+            return res.json({ status: 201, message: logConfig.ADD_DISLIKE_ON_QUESTION, data: successResult });
         }, (errResult) => {
             logger.error(errResult);
-            return res.json({ status: 200, message: logConfig.ADD_ANSWER_ON_QUESTION_ERROR, data: errResult });
+            return res.json({ status: 200, message: logConfig.ADD_DISLIKE_ON_QUESTION_ERROR, data: errResult });
         });
     } catch (err) {
         logger.fatal(logConfig.EXCEPTION_FOUND + err);

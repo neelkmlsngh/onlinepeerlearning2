@@ -17,6 +17,9 @@ export class VideoChatComponent implements OnInit {
 
   @ViewChild('myvideo') myVideo: any; // id for video tag
   @Input() userPeerId;
+  @Input() callUserName;
+  @Input() selectedUserName;
+  
   peer;
   anotherid;
   mypeerid;

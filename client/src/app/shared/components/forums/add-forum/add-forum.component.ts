@@ -26,6 +26,7 @@ forumConfig=forumConfig;
     codeSnippet:string;
     obj:any={};
     addSnippet:any;
+    items:any=[];
     data : any;
 
   constructor(private forum: ForumService) {
@@ -33,9 +34,9 @@ forumConfig=forumConfig;
   }
 
   ngOnInit() {
-   // this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
-   // this.userName=this.currentUser.userName;
-   // console.log(this.userName);
+   this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
+   this.userName=this.currentUser.userName;
+   console.log(this.userName);
 
     this.date = new Date();
     let day = this.date.getDate();
@@ -67,18 +68,23 @@ forumConfig=forumConfig;
   }
   //method to add post on forum
   insertPost() {
+    console.log("prashnt");
     // let user = JSON.parse(localStorage.getItem('currentUser'));
     // let userName=user.userName
     this.obj = {
       questionTitle: this.questionTitle,
       codeSnippet: CKEDITOR.instances.addSnippet.getData(),
       problemDescription: CKEDITOR.instances.problemDescription.getData(),
-      tags: this.tags,
+      tags: this.items,
       date: this.date,
-     // userName:userName
-    }
-    this.forum.savePost(this.obj).subscribe((res) => {
+      userName:this.userName,
 
+    }
+
+    console.log(this.obj);
+
+    this.forum.savePost(this.obj).subscribe((res) => {
+     console.log(res);
       if (res) {
           // this.data = res;
           swal({ //alert message for success
