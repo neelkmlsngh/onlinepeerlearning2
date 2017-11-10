@@ -1,12 +1,13 @@
 export const config: any = {
-
 editor: {
     JAVASCRIPTNAME: "Javascript File",
-    REPONAME: "Your current repository is:",
+    CREATINGFILE: "creating file in the current repository:",
+    UPDATINGFILE:"updating file in the current repository:",
+    DELETINGFILE:"deleting file in the current repository:",
     FILENAME: "enter your file name",
     COMMIT: "enter your commit message",
-    UPDATE: "Do you want to update the file ",
-    DELETE: "Do you want to delete the file",
+    UPDATE: "Do you really want to update the file?",
+    DELETE: "Do you really want to delete the file?",
     EXECUTEBTN: "Execute",
     CREATEBTN: "Create",
     UPDATEBTN: "Update",
