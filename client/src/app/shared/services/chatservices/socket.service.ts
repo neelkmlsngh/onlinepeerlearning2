@@ -9,6 +9,7 @@ export class SocketService {
 
   config = config;
   private socket;
+  userName : string;
 
   constructor() {}
 
@@ -54,12 +55,30 @@ export class SocketService {
   }
 
   sendPeerId(mypeerid, selectedUserId) {
-    this.socket.emit('send-peer-id', mypeerid, selectedUserId)
+    this.userName = JSON.parse(localStorage.getItem('currentUser'))['userName'];
+    this.socket.emit('send-peer-id', mypeerid, selectedUserId,this.userName)
   }
 
   getPeerId() {
     let observable = new Observable(observer => {
       this.socket.on('peer-id-response', (data) => {
+      observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }
+
+   sendPeerIdVideo(mypeerid, selectedUserId) {
+    this.userName = JSON.parse(localStorage.getItem('currentUser'))['userName'];
+    this.socket.emit('send-peer-id-video', mypeerid, selectedUserId,this.userName)
+  }
+
+  getPeerIdForVideo() {
+    let observable = new Observable(observer => {
+      this.socket.on('peer-id-response-video', (data) => {
         observer.next(data);
       });
       return () => {
@@ -70,3 +89,4 @@ export class SocketService {
   }
 
 }
+

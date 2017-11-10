@@ -6,19 +6,21 @@ export const config: any = {
    "CSS"
  ],
  con: {
-   title: "Add Snippet",
-   DROP: "Select Language to Add Snippet",
-   button: "Add Snippet",
-   CKEDITOR:{
-    "REMOVED_BUTTONS":"Link,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript,addFile,Image,Table,Styles,Format,Maximize,HorizontalRule,Unlink,Blockquote,Indent,Outdent,RemoveFormat,Spell",
-    "REMOVED_PLUGINS":"list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize"
-           }
- },
+    title: "Add Snippet",
+    DROP: "Select Language to Add Snippet",
+    button: "Add Snippet",
+    TEXTAREA: "Enter your code Snippet here",
+    ADDSNIPP: "Add Title for Snippet",
+    CKEDITOR: {
+      "REMOVED_BUTTONS": "Link,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript,addFile,Image,Table,Styles,Format,Maximize,HorizontalRule,Unlink,Blockquote,Indent,Outdent,RemoveFormat,Spell",
+      "REMOVED_PLUGINS": "list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize"
+    }
+  },
   connect:
   {
-    apiURL : "https://192.168.253.1:8080",
-    vmURL : "https://192.168.253.1:3030",
-    CALLBACK_URL:"https://192.168.253.1:8080/api/login/auth/github",
+    apiURL : "https://192.168.253.49:8080",
+    vmURL : "https://192.168.253.49:3030",
+    CALLBACK_URL:"https://192.168.253.49:8080/api/login/auth/github",
     CLIENT_ID : 'f9ea78d1f4ead499cd22',
     CLIENT_SECRET : '5a9f55cb5eaa65140a5949fb6595e0283c667c72'
   },
@@ -32,7 +34,7 @@ export const config: any = {
     CONTENTURL: "/contents/",
     CREATEREPOS: "https://api.github.com/user/repos",
     HOSTURLUSERS: "https://api.github.com/users/",
-    AUTHORIZATION: "Basic 450b330333db090ea1ff44a0c5ea2467524b652b"
+    AUTHORIZATION: "Basic YWFzdGhhd2FkaHdhMDFAZ21haWwuY29tOmM0NDBhNTgxZGYwOTQzYjY0ODcxZDZiM2FjZjE4ZTI2ZjE5YTFkMWM="
   },
 
   forumConnect: {
@@ -40,7 +42,7 @@ export const config: any = {
     "SEARCHAPIURL": 'api/forums/term/'
   },
   peerserver: {
-    "host": "192.168.253.1",
+    "host": "192.168.253.49",
     "port": "8081",
     "path": "/peerjs"
   }

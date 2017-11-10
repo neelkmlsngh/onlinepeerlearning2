@@ -196,8 +196,14 @@ function socketEvents(io) {
 			fileUploader.fileUpload(fileObj);
 		})
 
-		socket.on('send-peer-id', (mypeerid,selectedUserId) => {
-			io.to(selectedUserId).emit(`peer-id-response`,mypeerid);
+		socket.on('send-peer-id', (mypeerid,selectedUserId,userName) => {
+			console.log(selectedUserId+" Event emit "+mypeerid)
+			io.to(selectedUserId).emit(`peer-id-response`,{mypeerid: mypeerid, userName : userName});
+		})
+
+		socket.on('send-peer-id-video', (mypeerid,selectedUserId,userName) => {
+			console.log(selectedUserId+" Event emit "+mypeerid)
+			io.to(selectedUserId).emit(`peer-id-response-video`,{mypeerid: mypeerid, userName : userName});
 		})
 
 	});

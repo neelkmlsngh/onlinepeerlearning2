@@ -5,11 +5,11 @@
       <app-navbar></app-navbar>
     </div>
   </div>
-  <div class="container mt-5">
+  <div class="container">
 <div class="row">
     <div class="col-sm-12">
     <div class="form-group col-sm mt-5 border py-2">
-          <label for="inputState" class="">{{forumConfig.NEWPOST.QUESTION_TITLE}}</label>
+          <label for="inputState" class="questionTitle">{{forumConfig.NEWPOST.QUESTION_TITLE}}</label>
           <input type="text" class="form-control " placeholder="New choice" name="questionTitle" [(ngModel)]="questionTitle">
         </div>
         <div class="form-group col-sm border mt-2 py-3">
@@ -18,7 +18,7 @@
         </div>
         <div class="form-group col-sm mt-2 border py-2">
           <label for="inputState" class="">{{forumConfig.NEWPOST.TAGS}}</label>
-          <input type="text" class="form-control " placeholder="at least one tag such as html,Angular,java,c#" name="tags" [(ngModel)]="tags">
+          <tag-input [(ngModel)]='items' placeholder="at least one tag such as html,Angular,java,c#" name="items" [maxItems]='5'></tag-input>
         </div>
         <div class="border py-2">
           <div class="col-sm-6">
@@ -42,12 +42,11 @@
         </div>
       </div>
     </div>
-    </div>
- <div class="row">
+  </div>
+  <div class="row">
     <div class="col-md-12">
       <!-- footer selector -->
       <app-footer></app-footer>
     </div>
   </div>
-  </div>
-  
+</div>

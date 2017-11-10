@@ -1,8 +1,3 @@
-<div class="heading">
-  <hr>
-  <h1 class="text-center display-4">{{config.USER_PROFILE_PAGE}}</h1>
-  <hr>
-</div>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -10,118 +5,148 @@
       <app-navbar></app-navbar>
     </div>
   </div>
-  <div class="row">
-    <!-- Profile Card -->
-    <div class="col-sm-3">
-      <div class="card card-inverse card-info">
-        <img class="card-img-top" [src]="imgPath">
-        <div class="card-block">
-          <h6 class="card-title mt-3">{{data.name}}</h6>
-          <div class="meta card-text">
-          </div>
-          <div class="card-text">
-            User ID: {{data.userid}}
-            <br> Repositories:{{data.public_repos}}
-          </div>
-        </div>
-        <!-- Upload profile Image Button -->
-        <div class="card-footer">
-          <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
-          <div class="col-sm-3">
-            <button type="button" class="btn btn-secondary upload" (click)="uploadFile()">Upload</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-9">
-      <!-- Nav pills tab -->
-      <mat-tab-group>
-        <!-- GitHub information -->
-        <mat-tab label="Personal Info">
-          <div class="col-sm-9 personalinfocard">
-            <div class="card card-inverse card-info">
-              <div class="card-block">
-                <h4 class="card-title mt-3">Who Am I</h4>
-                <div class="meta card-text">
-                  <a></a>
-                </div>
-                <div class="card-text">
-                  Name:{{data.firstName}} {{data.lastName}}
-                  <br> Email:{{data.email}}
-                  <br> Company:{{data.company}}
-                  <br> Website:{{data.website}}
-                  <br> Bio:{{data.bio}}
-                  <br> Gender:{{data.gender}}
-                  <br>
-                </div>
-              </div>
-              <div class="card-footer">
-              </div>
-            </div>
-          </div>
-        </mat-tab>
-        <!-- Personal Information -->
-        <mat-tab label="Edit Info">
-          <div class="card-block">
-            <form class="form" role="form" autocomplete="off" [formGroup]="personalInfo">
-              <div class="form-group ">
-                <label class="col-lg-3 col-form-label form-control-label">{{config.FIRST_NAME}}</label>
-                <div class="col-lg-9">
-                  <input class="form-control" type="text" formControlName="firstName">
-                </div>
-              </div>
-              <div class="form-group ">
-                <label class="col-lg-3 col-form-label form-control-label">{{config.LAST_NAME}}</label>
-                <div class="col-lg-9">
-                  <input class="form-control" type="text" formControlName="lastName">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-lg-3 col-form-label form-control-label">{{config.EMAIL}}</label>
-                <div class="col-lg-9">
-                  <input class="form-control" type="email" formControlName="email">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-lg-3 col-form-label form-control-label">{{config.COMPANY}}</label>
-                <div class="col-lg-9">
-                  <input class="form-control" type="text" formControlName="company">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-lg-3 col-form-label form-control-label">{{config.WEBSITE}}</label>
-                <div class="col-lg-9">
-                  <input class="form-control" type="url" formControlName="website">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class=" col-lg-3 col-form-label form-control-label" for="exampleTextarea">{{config.BIO}}</label>
-                <div class="col-lg-9">
-                  <textarea class="form-control" id="exampleTextarea" rows="3" formControlName="bio"></textarea>
-                </div>
-              </div>
-              <div class="form-group ">
-                <label class="col-lg-3 col-form-label form-control-label">{{config.GENDER}}</label>
-                <div class="col-lg-9 gender">
-                  <div class="row">
-                    <input type="radio" value='Male' formControlName="gender" [(ngModel)]='gender'>Male
-                    <input type="radio" value='Female' formControlName="gender" [(ngModel)]='gender'>Female
-                    <input type="radio" value='Other' formControlName="gender" [(ngModel)]='gender'>Other
+  <div class="container">
+    <div class="row profileinfo">
+      <!-- Profile Card -->
+      <div class="col-sm-3">
+        <div class="card card-inverse card-info">
+          <img class="card-img-top" [src]="imgPath">
+          <!-- Upload profile Image Button -->
+          <div class="card-footer">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-info btn-sm tokenButtonMargin" data-toggle="modal" data-target="#profileModal"><b class='generateTokenButton'>Change Profile Photo</b></button>
+            <!--  -->
+            <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header modalColor">
+                    <h6 class="modal-title" id="profileModalLabel">Change Profile Photo</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <img class="card-img-top" [src]="imgPath">
+                  </div>
+                  <div class="modal-footer">
+                    <input type="file" id="file" class=" form-control" (change)="fileChange($event)" accept=".jpg,.jpeg,.png">
+                    <div class="col-sm-3">
+                      <button type="button" class="btn btn-secondary upload" data-dismiss="modal" (click)="uploadFile()">Upload</button>
+                    </div>
+                    <!--  -->
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-lg-3 col-form-label form-control-label"></label>
-                <div class="col-lg-9">
-                  <button type="button" class="btn btn-secondary save" (click)="updatePersonalInfo(personalInfo)">{{config.SAVE}}</button>
-                  <button type="button" class="btn btn-secondary cancel">{{config.CANCEL}}</button>
-                </div>
-              </div>
-            </form>
+            </div>
           </div>
-          <!-- /form user info -->
-        </mat-tab>
-      </mat-tab-group>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <!-- Nav pills tab -->
+        <mat-tab-group>
+          <!-- GitHub information -->
+          <mat-tab label="Personal Info">
+            <!-- name -->
+            <div class="card name">
+              <div class="card-header">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{config.WHO}}
+              </div>
+              <div class="card-block">
+                <blockquote class="card-blockquote">
+                <div class="row">
+                <div class="col-sm-6">
+                  <p><i class="fa fa-user" aria-hidden="true"></i> {{config.USER_NAME}} : {{data.name}}</p>
+                  <p><i class="fa fa-user-o" aria-hidden="true"></i> {{config.NAME}} : {{data.firstName}} {{data.lastName}}</p>
+                  <p><i class="fa fa-id-badge" aria-hidden="true"></i> {{config.GITHUB_ID}} : {{data.userid}}</p>
+                  <p><i class="fa fa-briefcase" aria-hidden="true"></i> {{config.NUMBER_PF_REPOSITORIES}} : {{data.public_repos}}</p>
+                  </div>
+                  <div class="col-sm-6">
+                  <p><i class="fa fa-male" aria-hidden="true"></i> <i class="fa fa-female" aria-hidden="true"></i> {{config.GENDER}} : {{data.gender}}</p>
+                  <p><i class="fa fa-envelope" aria-hidden="true"></i> {{config.EMAIL}} : {{data.email}} </p>
+                  <p><i class="fa fa-building" aria-hidden="true"></i> {{config.COMPANY}} : {{data.company}}</p>
+                  <p><i class="fa fa-internet-explorer" aria-hidden="true"></i> {{config.WEBSITE}} : {{data.website}}</p>
+                  </div>
+                  </div>
+                </blockquote>
+              </div>
+            </div>
+            
+            <!-- Bio -->
+            <div class="card name">
+              <div class="card-header">
+                <i class="fa fa-info-circle" aria-hidden="true"></i> {{config.BIO}}
+              </div>
+              <div class="card-block">
+                <blockquote class="card-blockquote">
+                  <p>{{data.bio}}</p>
+                </blockquote>
+              </div>
+            </div>
+            
+          </mat-tab>
+          <!-- Personal Information -->
+          <mat-tab label="Edit Info">
+            <div class="card-block">
+              <form class="form" role="form" autocomplete="off" [formGroup]="personalInfo">
+                <div class="form-group ">
+                  <label class="col-lg-3 col-form-label form-control-label">{{config.FIRST_NAME}}</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" formControlName="firstName">
+                  </div>
+                </div>
+                <div class="form-group ">
+                  <label class="col-lg-3 col-form-label form-control-label">{{config.LAST_NAME}}</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" formControlName="lastName">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 col-form-label form-control-label">{{config.EMAIL}}</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="email" formControlName="email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 col-form-label form-control-label">{{config.COMPANY}}</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" formControlName="company">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 col-form-label form-control-label">{{config.WEBSITE}}</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="url" formControlName="website">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class=" col-lg-3 col-form-label form-control-label" for="exampleTextarea">{{config.BIO}}</label>
+                  <div class="col-lg-9">
+                    <textarea class="form-control" id="exampleTextarea" rows="3" formControlName="bio"></textarea>
+                  </div>
+                </div>
+                <div class="form-group ">
+                  <label class="col-lg-3 col-form-label form-control-label">{{config.GENDER}}</label>
+                  <div class="col-lg-9 gender">
+                    <div class="row">
+                      <input type="radio" value='Male' formControlName="gender" [(ngModel)]='gender'>Male
+                      <input type="radio" value='Female' formControlName="gender" [(ngModel)]='gender'>Female
+                      <input type="radio" value='Other' formControlName="gender" [(ngModel)]='gender'>Other
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 col-form-label form-control-label"></label>
+                  <div class="col-lg-9">
+                    <button type="button" class="btn btn-outline-info btn-sm tokenButtonMargin" (click)="updatePersonalInfo(personalInfo)"><b class='generateTokenButton'>{{config.SAVE}}</b></button>
+                    <button type="button" class="btn btn-outline-info btn-sm tokenButtonMargin"><b class='generateTokenButton'>{{config.CANCEL}}</b></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- /form user info -->
+          </mat-tab>
+        </mat-tab-group>
+      </div>
     </div>
   </div>
   <div class="row">

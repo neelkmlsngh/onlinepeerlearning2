@@ -40,6 +40,11 @@ export class ChatHomeComponent implements OnInit {
   message = '';
   messages = [];
   data2: any = [];
+  peerId:string;
+  peerIdVideo:string;
+  userName :string;
+  userNameForVideo :string;
+
   //constructor initialising various services
   constructor(
     private chatService: ChatService,
@@ -55,6 +60,12 @@ export class ChatHomeComponent implements OnInit {
   /*method loading various functions*/
   ngOnInit() {
     $('.chatbox').hide();
+
+    $(function() {
+      var div = $("#scroll");
+      div.scrollTop(div.prop('scrollHeight'));
+    }); 
+
     // getting userID from the local storage  
     this.userId = this.authenticationService.getUserId();
     if (this.userId === '' || typeof this.userId == 'undefined') {
@@ -87,27 +98,49 @@ export class ChatHomeComponent implements OnInit {
             alert(`Chat list failure.`);
           }
         });
+
         //method for recieving messages through socket          
         this.socketService.receiveMessages().subscribe(response => {
           if (this.selectedUserId && this.selectedUserId == response.fromUserId) {
             this.messages.push(response);
-            setTimeout(() => {
-              document.querySelector(`.message-thread`).scrollTop = document.querySelector(`.message-thread`).scrollHeight;
-            }, 100);
-          }
+            }
         });
-        this.socketService.getPeerId().subscribe(data => {
-          this.showAudioBox = true;
-          return data
-        }, error => {
+        
+        this.getPeerForAudio();
+
+        this.socketService.getPeerIdForVideo().subscribe(data=>{
+          this.showVideoBox = true;
+          if(data['mypeerid']){
+            this.peerIdVideo = data['mypeerid']
+            this.userNameForVideo=data['userName']
+          }
+        }, error=>{
 
         })
+
       });
 
     }
   }
+
+  getPeerForAudio(){
+    this.socketService.getPeerId().subscribe(data => {
+      this.showAudioBox = true;
+      if(data['mypeerid']){
+        this.peerId=data['mypeerid'];
+        this.userName=data['userName']
+      }
+     // return data;
+    }, error => {
+
+    })
+  }
+
+  
+
   //Getting the userid when user is selected
   selectedUser(user): void {
+    $('.chatbox').removeClass('chatbox--tray');
     this.selectedUserId = user.userId;
     this.selectedSocketId = user.socketId;
     this.selectedUserName = user.userName;
@@ -118,7 +151,9 @@ export class ChatHomeComponent implements OnInit {
     });
     this.openChatBox()
     this.hideChatBox()
+
   }
+
   //Method for opening chatbox
   openChatBox(): void {
     //Jquery for handling chatbox opening and closing
@@ -152,6 +187,9 @@ export class ChatHomeComponent implements OnInit {
   hideChatBox(): void {
     $('.chatbox').show();
     $('.side').hide();
+    setTimeout(()=>{
+    $('.message-thread')[0].scrollTop = $('.message-thread')[0]['scrollHeight'];
+    },30)
   }
 
   chatBoxToggle(): void {

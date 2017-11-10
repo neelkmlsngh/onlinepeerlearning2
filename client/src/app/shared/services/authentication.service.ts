@@ -31,7 +31,6 @@ public pacToken:String;
   getToken(): any {
     let userDetails = JSON.parse(localStorage.getItem('currentUser'));
     let token=userDetails.token;
-console.log('token',token)
     return token;
   }
 
@@ -71,7 +70,6 @@ console.log('token',token)
 
   //function to add personal access token in request header for github api
   addPersonalAccessToken() {
-    console.log("inside addPersonalAccessToken")
     let headers = new Headers({ 'Authorization': "Basic " + this.pacToken });
     return new RequestOptions({ headers: headers });
   }

@@ -165,6 +165,23 @@ export class MainComponent implements OnInit {
     }
     this.gitService.createToken(cred, password)
       .subscribe(data => {
+        if (data) {
+          swal({
+            timer: 2500,
+            title: "Personal Access Token Successfully created",
+            text: "",
+            type: 'success',
+            showConfirmButton: false,
+          })
+        } else {
+          swal({
+            timer: 2500,
+            title: "Personal Access Token is not created",
+            text: "",
+            type: 'error',
+            showConfirmButton: false,
+          })
+        }
         this.accessToken = data.token;
         this.authenticationService.pacToken = data.token;
         this.storeToken(this.accessToken)
