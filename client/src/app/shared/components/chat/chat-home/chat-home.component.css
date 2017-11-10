@@ -349,9 +349,21 @@ img {
 .chatbox--closed {
   bottom: -400px;
 }
+.speechOn{
+  background-color: #b2ff59;
+}
+.speechOff{
+  background-color: #eeff41;
+}
 
 .chatbox .form-control:focus {
   border-color: #1f2836;
+}
+.bottomGap{
+  margin-bottom: 20px;
+}
+.marginGap{
+      margin-top: 15px;
 }
 
 .chatbox__title,
