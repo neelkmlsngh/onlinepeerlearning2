@@ -110,7 +110,13 @@ export class EditorComponent implements OnInit {
   createFile(fileName, createCommitMessage) {
 
     if (this.authenticationService.pacToken == null) {
-      alert("generate your token")
+      swal({
+        timer: 2200,
+        title: "You have not generated your token",
+        text: "",
+        type: 'success',
+        showConfirmButton: false,
+      })
 
     } else {
       this.fileName = fileName.value['fileName'];
@@ -157,7 +163,7 @@ export class EditorComponent implements OnInit {
                       //hitting final api to create the file
                       this.gitService.lastcommit(this.reponame, this.lastcommit)
                         .subscribe(repos => {})
-                        
+
 
                       //sweet alert on getting response
                       if (repos) {
@@ -194,7 +200,13 @@ export class EditorComponent implements OnInit {
   updateFile(commitMessage) {
 
     if (this.authenticationService.pacToken == null) {
-      alert("generate your token")
+      swal({
+        timer: 2200,
+        title: "You have not generated your token",
+        text: "",
+        type: 'success',
+        showConfirmButton: false,
+      })
 
     } else {
       this.updateMsg = commitMessage.value['updateMsg'];
@@ -247,7 +259,13 @@ export class EditorComponent implements OnInit {
   deleteFile(commitMessage) {
 
     if (this.authenticationService.pacToken == null) {
-      alert("generate your token")
+      swal({
+        timer: 2200,
+        title: "You have not generated your token",
+        text: "",
+        type: 'success',
+        showConfirmButton: false,
+      })
 
     } else {
       this.deleteMsg = commitMessage.value['deleteMsg'];

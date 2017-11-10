@@ -1,11 +1,14 @@
 export const config: any = {
 
+
   language: [
     "Javascript",
     "Html",
     "CSS"
   ],
+  
   con: {
+
     title: "Add Snippet",
     DROP: "Select Language to Add Snippet",
     button: "Add Snippet",
@@ -17,13 +20,13 @@ export const config: any = {
     }
   },
 
+
   connect: {
     apiURL: "https://192.168.252.151:8080",
     vmURL: "https://192.168.252.151:3030",
     CALLBACK_URL: "https://192.168.252.151:8080/api/login/auth/github",
     CLIENT_ID: '71e507179821e4c52cc6',
     CLIENT_SECRET: 'f5a19047f54acc10db755689779bb23681ec5496'
-
   },
 
   giturls: {
@@ -43,6 +46,7 @@ export const config: any = {
     "SEARCHAPIURL": 'api/forums/term/'
   },
   peerserver: {
+
     "host": "192.168.252.151",
     "port": "8081",
     "path": "/peerjs"
