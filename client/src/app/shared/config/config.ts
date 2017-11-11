@@ -18,9 +18,9 @@ export const config: any = {
   },
   connect:
   {
-    apiURL : "https://192.168.252.152:8080",
-    vmURL : "https://192.168.252.152:3030",
-    CALLBACK_URL:"https://192.168.252.152:8080/api/login/auth/github",
+    apiURL : "https://localhost:8080",
+    vmURL : "https://localhost:3030",
+    CALLBACK_URL:"https://localhost:8080/api/login/auth/github",
     CLIENT_ID : 'd800be26e1dd031f7308',
     CLIENT_SECRET : '4f34a102e4b2d71b77246520afee60d692da9b5a'
   },
