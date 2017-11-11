@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild, OnInit, Input, NgZone, TemplateRef } from '@angular/core'
+import { Component, EventEmitter, Output, ViewChild, OnInit, Input, NgZone, TemplateRef,ElementRef } from '@angular/core'
 import { FormsModule } from '@angular/forms';
 import { config } from './../../config/editor.config';
 import { AceEditorModule } from 'ng2-ace-editor';
@@ -20,6 +20,7 @@ import 'ace-builds/src-min-noconflict/snippets/html';
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent implements OnInit {
+  @ViewChild('txtclose') txtclose: ElementRef;
   @Input() content: any = "";
   @Input() reponame: any;
   @Input() filenamed: any;
@@ -285,6 +286,7 @@ export class EditorComponent implements OnInit {
               }
             })
         })
+        this.txtclose.nativeElement.click();
       commitMessage.reset();
     }
   }
