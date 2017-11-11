@@ -424,7 +424,7 @@ img {
   height: 24px;
   outline: 0;
   border: none;
-  background-color: transparent;
+  background-color: red;
   opacity: 0.5;
   cursor: pointer;
   -webkit-transition: opacity 200ms;

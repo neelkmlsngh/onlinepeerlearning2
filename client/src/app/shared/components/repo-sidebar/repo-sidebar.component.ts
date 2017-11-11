@@ -109,10 +109,13 @@ export class RepoSidebarComponent implements OnInit {
           text: "",
           type: 'error',
           showConfirmButton: true,
+        }).then(() => {
+          this.swelldata(reponame, filename);
+
         })
       }
 
-      if (this.mode === "javascript" && this.extension !== "js" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore") {
+      if (this.mode === "javascript" && this.extension !== "js" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore" && this.extension!=="ts" && this.extension!=="txt") {
         /*this.confirm = confirm(config.repoSidebar.HTML_MODE) 
         if (this.confirm === true) {
           this.mode = "html"
@@ -166,7 +169,7 @@ export class RepoSidebarComponent implements OnInit {
           }
         })
 
-      } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore") {
+      } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore" && this.extension!=="ts" && this.extension!=="txt") {
         /*this.confirm = confirm(config.repoSidebar.JAVASCRIPT_MODE)
         if (this.confirm === true) {
           this.mode = "javascript"
