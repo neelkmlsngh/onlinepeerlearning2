@@ -43,6 +43,7 @@
     "ngx-bootstrap": "^1.9.3",
     "ngx-chips": "^1.5.3",
     "ngx-pagination": "^3.0.3",
+    "ngx-toastr": "^6.5.0",
     "npm": "^5.5.1",
     "peer": "^0.2.8",
     "popper.js": "^1.12.5",

@@ -17,6 +17,9 @@ import { MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
 import { TagInputModule } from 'ngx-chips';
 
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EditorComponent } from './shared/components/editor/editor.component';
@@ -168,6 +171,8 @@ let apiRoutes: Routes = [{
     BrowserAnimationsModule,
     MatTabsModule,
     MatFormFieldModule,
+    CommonModule,
+    ToastrModule.forRoot(),
     ModalModule.forRoot(),
     RouterModule.forRoot(apiRoutes, { useHash: true })
   ],

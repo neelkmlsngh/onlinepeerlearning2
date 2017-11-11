@@ -28,9 +28,9 @@
                 {{data.problemDescription}}
               </div>
               <!-- <div *ngIf="data.tags.length !== 0 "> -->
-                <div class="text-white d-inline-block mt-3 mb-3" *ngFor="let res of data.tags">
-                  <div class="tags d-inline border py-1 px-1">{{res.value}}</div>
-                </div>
+              <div class="text-white d-inline-block mt-3 mb-3" *ngFor="let res of data.tags">
+                <div class="tags d-inline border py-1 px-1">{{res.value}}</div>
+              </div>
               <!-- </div> -->
               <div class="row">
                 <div class="col-sm-5 postedDate small">
@@ -115,7 +115,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-sm-12">
       <!-- footer selector -->
       <app-footer></app-footer>
