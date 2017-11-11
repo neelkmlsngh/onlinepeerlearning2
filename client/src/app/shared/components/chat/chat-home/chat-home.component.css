@@ -565,12 +565,12 @@ img {
 @media (max-width: 425px) {
   .done {
     position: fixed;
-    bottom: 255px;
+    bottom: 257px;
     right: 11px;
   }
 }
 @media (max-width: 425px) {
   .nav-side-menu {
-    top: -27px; 
+    top: -49px; 
   }
 }
