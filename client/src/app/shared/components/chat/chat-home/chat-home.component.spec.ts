@@ -17,12 +17,15 @@ import {
 import 'rxjs/add/observable/of';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from './../../../services/authentication.service';
 import { ProfileService } from './../../../services/profile.service';
 import { chatConfig } from '../../../config/chatConfig';
 import { SocketService } from './../../../services/chatservices/socket.service';
 import { HttpService as httpservice } from './../../../services/chatservices/http.service';
 import { ChatService as chatservice } from './../../../services/chatservices/chat.service';
+import { SpeechRecognitionService as speechrecognitionservice } from './../../../services/speech-recognition.service';
+
 describe('testing chat home component', () => {
   let component: chathome;
   let fixture: ComponentFixture < chathome > ;
@@ -44,7 +47,9 @@ describe('testing chat home component', () => {
         { provide: ProfileService },
         { provide: BsModalService },
         { provide: chathome },
-        { provide: XHRBackend, useClass: MockBackend }
+        { provide: XHRBackend, useClass: MockBackend },
+        { provide : ToastrService},
+        { provide : speechrecognitionservice }
       ]
     }).compileComponents();
   }))
