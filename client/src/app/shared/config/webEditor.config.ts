@@ -7,8 +7,8 @@ export const webEditorConfig: any = {
     ADD: "Add Snippet",
     HTMLTEMP: "<h1>Hello World</h1>",
     CSSTEMP: "body{color:red} //Enter Your CSS code Here",
-    JSSTEMP:"//Enter Your JavaScript Code Here",
-    OUTPUT:"Output",
+    JSSTEMP: "//Enter Your JavaScript Code Here",
+    OUTPUT: "Output",
     OUTPUTTEMP: `<!doctype html>
       <html>
       <head>
@@ -23,12 +23,16 @@ export const webEditorConfig: any = {
   },
 
   title: {
-   
-   DOWNLOAD: "download",
-   ZIP: "ZIP" 
 
+    DOWNLOAD: "download",
+    ZIP: "ZIP"
 
+  },
 
+  download : {
+    HTML_FILE : 'index.html' ,
+    CSS_FILE : 'style.css' ,
+    JAVASCRIPT_FILE : 'script.js' 
   }
 
 };
