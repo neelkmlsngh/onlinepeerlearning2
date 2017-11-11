@@ -64,7 +64,10 @@ const getSearch = function(getValue) {
                     }
                 },
                 {
-                    "tags": {
+                    "tags.display":{
+                        "$regex": getValue,
+                        "$options": "i"
+                    },"tags.value" :{
                         "$regex": getValue,
                         "$options": "i"
                     }
@@ -102,13 +105,11 @@ const saveAnswer = function(getValue, updateValue) {
 //save answer of question
 const saveLike = function(getValue, updateValue) {
     return new Promise((resolve, reject) => {
-        // console.log(updateValue.userId);
         forumModel.findOne({ _id: getValue }, (err, data) => {
             if (err) {
                 logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                console.log('update value', updateValue.userId);
                 forumModel.findOneAndUpdate({ 'likes.userId': updateValue.userId }, {
                     $pull: {
                         likes: {
@@ -169,13 +170,11 @@ const saveLike = function(getValue, updateValue) {
 //save dislike of question
 const saveDislike = function(getValue, updateValue) {
   return new Promise((resolve, reject) => {
-        // console.log(updateValue.userId);
         forumModel.findOne({ _id: getValue }, (err, data) => {
             if (err) {
                 logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                //console.log('update value', updateValue.userId);
                 forumModel.findOneAndUpdate({ 'dislikes.userId': updateValue.userId }, {
                     $pull: {
                         dislikes: {

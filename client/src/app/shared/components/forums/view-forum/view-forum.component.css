@@ -1,18 +1,19 @@
   .answeraccepted {
     width: 86px;
-    background-color: #00695C;
+    background-color: #3F51B5;
   }
 
-  .like {
-    background-color: #00695C;
+  .postans{
+    background-color: #3F51B5;
   }
 
   .problemDescription {
     font-size: 15px;
+    color: #757575;
   }
 
   .tags {
-    background-color: #CE93D8;
+    background-color: #455A64;
   }
 
   .postquestion {
@@ -20,11 +21,11 @@
   }
 
   .questionTitle {
-    color: #6A1B9A;
+    color: #212121;
   }
 
   .user {
-    color: #00695C;
+    color: #616161;
   }
 
   .views {
@@ -32,10 +33,16 @@
   }
 
   .codesnippet {
-    background-color: #f39c12;
+    background-color: #E0E0E0;
     color: white;
   }
 
+  .likes{
+    background-color: #BDBDBD;
+  }
+  .dislikes{
+    background-color: #BDBDBD;
+  }
   .ans {
     padding-left: 11px;
   }
@@ -90,10 +97,10 @@
       font-size: 12px;
     }
     .answer {
-      font-size: 12px;
+      font-size: 13px;
     }
     .h5 {
-      font-size: 15px;
+      font-size: 18px;
     }
     .h4 {
       font-size: 16px;
@@ -113,13 +120,13 @@
       font-size: 13px;
     }
     .h5 {
-      font-size: 16px;
+      font-size: 19px;
     }
     .h4 {
       font-size: 17px;
     }
     .answer {
-      font-size: 13px;
+      font-size: 14px;
     }
     .problemDescription {
       font-size: 13px;
@@ -140,11 +147,11 @@
       font-size: 14px;
     }
     .answer {
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .h5 {
-      font-size: 17px;
+      font-size: 20px;
     }
     .h4 {
       font-size: 18px;
@@ -173,10 +180,10 @@
       font-size: 15px;
     }
     .answer {
-      font-size: 15px;
+      font-size: 17px;
     }
     .h5 {
-      font-size: 18px;
+      font-size: 21px;
     }
     .h4 {
       font-size: 19px;

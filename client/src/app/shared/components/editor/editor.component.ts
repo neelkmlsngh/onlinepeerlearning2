@@ -1,38 +1,3 @@
-
-Skip to content
-This repository
-
-    Pull requests
-    Issues
-    Marketplace
-    Explore
-
-    @GauravGupta131220
-
-7
-0
-
-    0
-
-yogendragitrepo/onlinepeerlearning
-Code
-Issues 0
-Pull requests 0
-Projects 0
-Wiki
-Insights
-onlinepeerlearning/client/src/app/shared/components/editor/editor.component.ts
-52d2e6d 2 hours ago
-@neelkmlsngh neelkmlsngh ui
-@Tanupreet
-@GauravGupta131220
-@suvratagg
-@Shivani-96
-@neelkmlsngh
-@AasthaWadhwa01
-@devendra021288
-@PrakharPandey
-292 lines (285 sloc) 9.61 KB
 import { Component, EventEmitter, Output, ViewChild, OnInit, Input, NgZone, TemplateRef } from '@angular/core'
 import { FormsModule } from '@angular/forms';
 import { config } from './../../config/editor.config';
@@ -78,7 +43,7 @@ export class EditorComponent implements OnInit {
   javascript: any;
   methodToExport: any;
   link: string = '';
-  showModalBox:boolean = false;
+  showModalBox: boolean = false;
 
   public modalRef: BsModalRef;
   basetree: any = {};
@@ -87,21 +52,21 @@ export class EditorComponent implements OnInit {
   updatefileobj: any = {};
   deletefileobj: any = {};
 
-  constructor(private snippet: SnippetService, private authenticationService: AuthenticationService,  private coderunner: CoderunnerService, private gitService: GitService,private zone: NgZone, private modalService: BsModalService) {
+  constructor(private snippet: SnippetService, private authenticationService: AuthenticationService, private coderunner: CoderunnerService, private gitService: GitService, private zone: NgZone, private modalService: BsModalService) {
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
   }
 
- public openModals(template: TemplateRef < any > ) {
-    if(this.showModalBox==false){
-    this.modalRef = this.modalService.show(template);
-  }
+  public openModals(template: TemplateRef < any > ) {
+    if (this.showModalBox == false) {
+      this.modalRef = this.modalService.show(template);
+    }
     this.showModal();
   }
 
   showModal() {
-   this.showModalBox = !this.showModalBox;
- }
+    this.showModalBox = !this.showModalBox;
+  }
   calledFromOutside(url: string) {
     this.zone.run(() => {
       this.link = url;

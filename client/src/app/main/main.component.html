@@ -11,10 +11,11 @@
       <div class="row ">
         <div class="col-md-2 bg">
           <div id="accordion" role="tablist">
+          
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingOne">
                 <h5 class="mb-0 accordionHeading">
-        <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <a class= "accordionTitle" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           {{config.TITLE}}
         </a>
       </h5>
@@ -31,10 +32,10 @@
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingTwo">
                 <h5 class="mb-0 accordionHeading">
-        <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Select Your Repository
-        </a>
-      </h5>
+                  <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Your Repositories
+                  </a>
+                </h5>
               </div>
               <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body accordionBody">
@@ -45,7 +46,7 @@
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingThree">
                 <h5 class="mb-0 accordionHeading">
-        <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
          Create new Github Repository
         </a>
       </h5>
@@ -66,18 +67,17 @@
                     <h6></h6>
                     <label for="recipient-name" class="form-control-label formText">Description for README.md</label>
                     <textarea type="text" id="description" class="form-control descriptionTextArea" data-spy="scroll" data-target="description" data-offset="0" name="description" ngModel #nameField="ngModel" required minlength="3">
-
-                    <div *ngIf="nameField.touched && nameField.errors">
-                      <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
-                        The description is required
+                      <div *ngIf="nameField.touched && nameField.errors">
+                        <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
+                          The description is required
+                        </div>
+                        <div class="alert alert-danger formText" *ngIf="nameField.errors.minlength">
+                          Description is needed
+                        </div>
                       </div>
-                      <div class="alert alert-danger formText" *ngIf="nameField.errors.minlength">
-                        Description is needed
-                      </div>
-                    </div>
                     </textarea>
                     <br>
-                    <button class="btn btn-primary btn-lg btn-block formText" [disabled]="!repositoryForm.valid">Ok</button>
+                    <button class="btn btn-warning btn-lg btn-block formText" [disabled]="!repositoryForm.valid">Ok</button>
                   </form>
                 </div>
               </div>
@@ -85,7 +85,7 @@
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingFour">
                 <h5 class="mb-0 accordionHeading">
-        <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        <a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
           Generate personal access token
         </a>
       </h5>
@@ -115,12 +115,28 @@
                       </div>
                     </div>
                     <br>
-                    <button class="btn btn-primary btn-lg btn-block formText" [disabled]="!tokenForm.valid">Ok</button>
+                    <button class="btn btn-warning btn-lg btn-block formText" [disabled]="!tokenForm.valid">Ok</button>
                   </form>
                 </div>
               </div>
             </div>
+                    <div class="card">
+              <div class="card-header accordianClass" role="tab" id="headingTwo">
+                <h5 class="mb-0 accordionHeading">
+        <a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Select Your Repository
+        </a>
+      </h5>
+              </div>
+              <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body accordionBody">
+                  <app-repo-sidebar [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
+                </div>
+              </div>
+            </div>
+            
           </div>
+          
           <!-- first column -->
           <!-- repository side bar selector -->
         </div>

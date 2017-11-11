@@ -14,8 +14,7 @@ html {
 }
 
 .formText{
-   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700; 
+    font-family:  'Open Sans', sans-serif; 
   font-size: 12px;
 }
 
@@ -28,8 +27,7 @@ html {
 }
 
 .accordionHeading{
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700; 
+     font-family:  'Open Sans', sans-serif;
   font-size: 12px;
 }
 
@@ -37,9 +35,8 @@ html {
   background-color: #C5CAE9;
 }
 
-.modeOption{
-  font-size: 15px;
-  font-style: italic;
+.accordionTitle{
+  color: black;
 }
 
 .descriptionTextArea{
@@ -51,8 +48,7 @@ select {
   text-align:center;
   background-color: #C5CAE9;
   color: black;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+     font-family:  'Open Sans', sans-serif;
 }
 
 option{
@@ -86,21 +82,30 @@ h5 {
   .tokenButtonMargin {
     margin-left: 100px;
   }
+  #accordion{
+    margin-bottom: 10px;
+  }
 }
 
-@media (width: 375px) {
+@media (min-width: 321px) and (max-width: 375px) {
   .tokenButtonMargin {
     margin-left: 130px;
   }
-}
-
-@media (width: 425px) {
-  .tokenButtonMargin {
-    margin-left: 160px;
+    #accordion{
+    margin-bottom: 10px;
   }
 }
 
-@media (width: 768px) {
+@media (min-width: 376px) and (max-width: 425px) {
+  .tokenButtonMargin {
+    margin-left: 160px;
+  }
+    #accordion{
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
   .tokenButtonMargin {
     margin-left: 2.5px;
   }
@@ -112,9 +117,23 @@ h5 {
   h5 {
     font-size: 10px;
   }
+
+  .accordionHeading{
+     font-family:  'Open Sans', sans-serif;
+  font-size: 8px;
 }
 
-@media (width: 1024px) {
+.listOption{
+  font-size: 7px;
+}
+
+.formText, input, textarea { 
+  font-size: 8px;
+}
+
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
   .tokenButtonMargin {
     margin-left: 25px;
     margin-top: 20px;
@@ -130,7 +149,7 @@ h5 {
 }
 
 .bg{
-  background-color: #3F51B5;
+  background-color: #2196F3;
 }
 
 .rowHeight{

@@ -22,6 +22,7 @@ export const config: any = {
 
 
 
+
   connect: {
 
     apiURL: "https://192.168.252.151:8080",
@@ -46,9 +47,12 @@ export const config: any = {
 
   forumConnect: {
     "APIURL": 'api/forums/',
-    "SEARCHAPIURL": 'api/forums/term/'
+    "SEARCHAPIURL": 'api/forums/term/',
+    "LIKEURL": 'api/forums/like/',
+    "DISLIKEURL": 'api/forums/dislike/',
   },
   peerserver: {
+
 
     "host": "192.168.252.151",
 

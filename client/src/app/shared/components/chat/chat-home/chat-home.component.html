@@ -58,7 +58,7 @@
 <div class="nav-side-menu side">
   <div class="brand">Online Users</div>
   <div class="menu-list">
-    <ul class="n">
+    <ul>
       <li *ngFor="let user of chatListUsers">
         {{ user.userName}}
         <button class="btn btn-outline-primary btn-lg callimg mr-6 close" data-toggle="popover" title="Chat" (click)="selectedUser(user)" [class.selected-user]="isUserSelected(user._id)">Chat

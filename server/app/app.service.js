@@ -15,7 +15,6 @@ const jwt = require('jsonwebtoken');
 
 const helper = require('./../api/chat/chat.controller');
 const loginconfig = require('../config/login.config')
-const fileUploader = require('../api/users/users.router')
 const appRoutes = require('./app.router');
 const logger = require('../services/app.logger');
 const config = require('../config');
@@ -191,10 +190,6 @@ function socketEvents(io) {
 				socketId: socket.id
 			});
 		});
-
-		socket.on('send-file', (fileObj) => {
-			fileUploader.fileUpload(fileObj);
-		})
 
 		socket.on('send-peer-id', (mypeerid,selectedUserId,userName) => {
 			console.log(selectedUserId+" Event emit "+mypeerid)

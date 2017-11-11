@@ -5,16 +5,14 @@ select {
   text-align: center;
   background-color: #C5CAE9;
   color: black;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+    font-family:  'Open Sans', sans-serif;;
 }
 
 .gitRepo {
   width: 100%;
   text-align: center;
   color: black;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family:  'Open Sans', sans-serif;
 }
 
 option {
@@ -85,6 +83,10 @@ h5 {
   .plusSize {
     margin-bottom: 25px;
   }
+
+  .listOption{
+    font-size: 7px;
+  }
 }
 
 @media (width: 1024px) {
@@ -133,4 +135,10 @@ h5 {
   .card {
     height: 80%;
   }
+}
+
+.scrollable{
+  width: 184px;
+  height: 261px;
+  overflow: scroll;
 }

@@ -66,11 +66,9 @@ forumConfig=forumConfig;
     CKEDITOR.replace('problemDescription', problemDescriptionConfig);
     CKEDITOR.instances.problemDescription.setData("");
   }
+  
   //method to add post on forum
   insertPost() {
-    console.log("prashnt");
-    // let user = JSON.parse(localStorage.getItem('currentUser'));
-    // let userName=user.userName
     this.obj = {
       questionTitle: this.questionTitle,
       codeSnippet: CKEDITOR.instances.addSnippet.getData(),
@@ -78,31 +76,18 @@ forumConfig=forumConfig;
       tags: this.items,
       date: this.date,
       userName:this.userName,
-
     }
 
-    console.log(this.obj);
-
     this.forum.savePost(this.obj).subscribe((res) => {
-     console.log(res);
       if (res) {
-          // this.data = res;
-          swal({ //alert message for success
-          timer: 2200,
-          title: "Posted Successfully",
-          text: "",
-          type: 'success',
-          showConfirmButton: false,
-        })
-      } else {
-        swal({ //alert message for error
-          timer: 2200,
-          title: "Error occured",
-          text: "",
-          type: 'error',
-          showConfirmButton: false,
-        })
-      }
+        swal("Successfully added question", "", "success");
+        this.questionTitle='';
+        CKEDITOR.instances.addSnippet.setData("");
+        CKEDITOR.instances.problemDescription.setData("");
+        this.items='';
+
+        }
+       
     })
   }
 
