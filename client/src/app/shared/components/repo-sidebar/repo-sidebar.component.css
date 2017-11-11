@@ -139,11 +139,11 @@ h5 {
 
 .scrollable{
   width: 100%;
-  height: 40%;
+  height: 260px;
   overflow: auto;
 }
 
-.listOption option{
+.listOption{
   width: 100%;
   height: 40%; 
 }
