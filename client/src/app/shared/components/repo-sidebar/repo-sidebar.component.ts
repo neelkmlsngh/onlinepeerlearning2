@@ -95,12 +95,11 @@ export class RepoSidebarComponent implements OnInit {
     this.extension = filename.split('.').pop();
     this.folder = filename.split('.');
     if (this.folder.length > 1) {
-      if (this.extension !== "js" && this.extension !== "html" && this.extension !== "css") {
+      /*if (this.extension !== "js" && this.extension !== "html" && this.extension !== "css") {
         alert(config.repoSidebar.NO_EXT)
+     }*/
 
-     }
-
-     if (this.mode === "javascript" && this.extension !== "js" && this.mode !=="md" && this.mode !=="json" && this.mode !=="gitignore") {
+    if (this.mode === "javascript" && this.extension !== "js") {
         this.confirm = confirm(config.repoSidebar.HTML_MODE)
         if (this.confirm === true) {
           this.mode = "html"
@@ -108,7 +107,7 @@ export class RepoSidebarComponent implements OnInit {
         }
       }
 
-     if (this.mode === "javascript" && this.extension == "js") {
+     else if (this.mode === "javascript" && this.extension == "js") {
         this.confirm = confirm(config.repoSidebar.ASK_MODE)
         if (this.confirm === true) {
           this.mode = "javascript"
@@ -118,7 +117,8 @@ export class RepoSidebarComponent implements OnInit {
           this.mode = "html"
           this.editorMode.emit(this.mode);
         }
-      } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css" && this.mode !=="md" && this.mode !=="json" && this.mode !=="gitignore") {
+
+     } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css") {
         this.confirm = confirm(config.repoSidebar.JAVASCRIPT_MODE)
         if (this.confirm === true) {
           this.mode = "javascript"
