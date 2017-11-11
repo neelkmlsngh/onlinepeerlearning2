@@ -546,3 +546,13 @@ img {
 .chatbox--empty .chatbox__credentials {
   display: block;
 }
+@media (max-width: 425px) {
+    .side {
+            margin-left: 0%;
+    }
+}
+@media (max-width: 425px) {
+    .chatbox {
+            margin-right: -9%;
+    }
+}

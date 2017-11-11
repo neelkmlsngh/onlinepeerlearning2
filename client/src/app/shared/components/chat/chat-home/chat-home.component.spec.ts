@@ -32,7 +32,7 @@ describe('testing chat home component', () => {
   let de: DebugElement;
   let el: HTMLElement;
   let debug: DebugElement;
-  let ele: HTMLElement;
+  let ele: HTMLElement; 
   let config = chatConfig;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
