@@ -21,8 +21,8 @@ export const config: any = {
     apiURL : "https://192.168.252.33:8080",
     vmURL : "https://192.168.252.33:3030",
     CALLBACK_URL:"https://192.168.252.33:8080/api/login/auth/github",
-    CLIENT_ID : '131a383ebca4c5be47cc',
-    CLIENT_SECRET : 'e085f91d1776b01564d876c65f8b8262ada117c1'
+    CLIENT_ID : '5f192d7ba0e4bee96c8e',
+    CLIENT_SECRET : '2c823f9d981d53a9300fe64e434fa55cd0b2151c'
   },
 
   giturls: {
