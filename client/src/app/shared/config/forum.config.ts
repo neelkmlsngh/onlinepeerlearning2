@@ -75,9 +75,5 @@ export const forumConfig = {
     "PEER_LEARNING":"Peer Learning",
     "ALL_RIGHTS":"All right reserved",
     "MODAL_TEXT":"visit our website for further suggestions.."
- },
-
- "forumUrls":{
-        "FORUMURL":'https://192.168.252.160:8080/',
  }
 }
