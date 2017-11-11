@@ -13,45 +13,48 @@ import { config } from './../config/config'
 export class ForumService {
   constructor(private http: Http, private autheticationservice: AuthenticationService) {}
   config = config;
-  forumConfig = forumConfig;
 
-  ngOnInit() {} //method is used to hit api on express server and post the data of form in database     
+//method is used to hit api on express server and post the data of form in database   
+  ngOnInit() {
+
+  }   
+
   //method to save post in database
   savePost(data: any) {
     return this.http.
-    post(forumConfig.forumUrls.FORUMURL + config.forumConnect.APIURL, data)
+    post(config.connect.apiURL + config.forumConnect.APIURL, data)
       .map(res => res.json());
   }
   //method to get posts from database
   getPost() {
     return this.http
-      .get(forumConfig.forumUrls.FORUMURL + config.forumConnect.APIURL)
+      .get(config.connect.apiURL + config.forumConnect.APIURL)
       .map(res => res.json());
   }
   //method to serach 
   searchEntries(searchTerm: any) {
     if (searchTerm != "") {
-      var api = forumConfig.forumUrls.FORUMURL + config.forumConnect.SEARCHAPIURL + searchTerm
+      var api = config.connect.apiURL + config.forumConnect.SEARCHAPIURL + searchTerm
       return this.http
         .get(api)
         .map(res => res.json());
     } else {
       return this.http
-        .get(forumConfig.forumUrls.FORUMURL + config.forumConnect.APIURL)
+        .get(config.connect.apiURL + config.forumConnect.APIURL)
         .map(res => res.json());
     }
   }
   /*getEmployeeByID method to fetch details by id used in supervisor component*/
   getPostById(id: string) {
     return this.http.
-    get(forumConfig.forumUrls.FORUMURL + config.forumConnect.APIURL + id)
+    get(config.connect.apiURL + config.forumConnect.APIURL + id)
       .map(res => res.json());
   }
   //method to save answer
   saveAnswer(id, answer) {
     console.log(answer);
     return this.http.
-    put(forumConfig.forumUrls.FORUMURL + config.forumConnect.APIURL + id, answer)
+    put(config.connect.apiURL + config.forumConnect.APIURL + id, answer)
       .map(res => res.json());
 
   }
@@ -59,15 +62,14 @@ export class ForumService {
    //method to update like
   updateLike(id, userName) {
     return this.http.
-    put(forumConfig.forumUrls.FORUMURL + config.forumConnect.LIKEURL+ id,userName)
+    put(config.connect.apiURL + config.forumConnect.LIKEURL+ id,userName)
       .map(res => res.json());
   }
 
   //method to update dislike
     updateDislike(id, userName) {
-   console.log("service..................",userName);
     return this.http.
-    put(forumConfig.forumUrls.FORUMURL + config.forumConnect.DISLIKEURL+ id,userName)
+    put(config.connect.apiURL + config.forumConnect.DISLIKEURL+ id,userName)
       .map(res => res.json());
   }
 

@@ -9,7 +9,7 @@ var forumSchema = new Schema({
     dislikes:[{userId:{type: String,unique: true}}],
     date: { type: String },
     time: { type: String },
-    answers: [{ username: { type: String }, answer: { type: String }, codeSnippet: { type: String }, likes: Number, dislikes: Number, date: { type: String } }],
+    answers: [{ username: { type: String }, answer: { type: String }, codeSnippet: { type: String }, likes: [{userId:{type: String,unique: true}}], dislikes: [{userId:{type: String,unique: true}}], date: { type: String } }],
     votes: { type: String },
     codeSnippet: { type: String },
     tags: [{display:{ type:String},value:{type:String}}],
