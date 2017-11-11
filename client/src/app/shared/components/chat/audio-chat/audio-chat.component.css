@@ -15,7 +15,7 @@
     }
 
     .audiobox--tray {
-      bottom: -328px;
+      bottom: -212px;
     }
 
     .audiobox--closed {
@@ -136,7 +136,7 @@
     }
 
     .audiobox--empty.audiobox--tray {
-      bottom: -210px;
+      bottom: -213px;
     }
 
     .audiobox--empty.audiobox--closed {
