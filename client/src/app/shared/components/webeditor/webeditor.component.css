@@ -6,13 +6,14 @@
   box-sizing: border-box;
 }
 
-.toolbarColor{
-  background-color: #C5CAE9; 
+.toolbarColor {
+  background-color: #C5CAE9;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-    color: #fff;
-    background-color: #FFC107;
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: #FFC107;
 }
 
 html,
@@ -27,7 +28,9 @@ body {
   height: 100%;
 }
 
+
 /* Code Editors */
+
 #code_editors {
   height: 500%;
   margin-top: 0%;
@@ -44,7 +47,9 @@ body {
   z-index: 10;
 }
 
+
 /* Output Area */
+
 #output {
   top: 0;
   right: 0;
@@ -68,10 +73,12 @@ body {
   margin: 0;
   background-color: #C5CAE9;
   z-index: 10;
-   font-family:  'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 18px;
   text-align: center;
 }
+
+
 /* code editor area */
 
 #html {
@@ -90,24 +97,67 @@ body {
 }
 
 .nopadding {
-   padding: 0 !important;
-   margin: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .padding {
-   padding: 1px ;
-   margin: 0 ;
+  padding: 1px;
+  margin: 0;
 }
 
-.marg{
+.marg {
   margin-top: -1%;
   margin-bottom: -1%
 }
 
-.rightalign{
+.rightalign {
   float: right;
 }
 
-.tabHeight{
+.tabHeight {
   margin-top: -15px;
+}
+
+
+
+/*
+margin on buttons
+ */
+
+.createbtn {
+  margin-left: 395px;
+}
+
+
+
+
+/*
+ *margin on buttons
+ */
+
+.updatebtn {
+  margin-left: 395px;
+}
+
+
+
+
+/*
+ *margin on buttons
+ */
+
+.deletebtn {
+  margin-left: 395px;
+}
+
+
+
+
+/**
+ * text area width
+ */
+
+.textAreaWidth {
+  width: 100%;
 }

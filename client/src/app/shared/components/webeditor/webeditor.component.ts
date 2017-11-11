@@ -5,8 +5,12 @@ import { FormsModule } from '@angular/forms'
 import { AceEditorDirective } from 'ng2-ace-editor'
 import { AceEditorModule } from 'ng2-ace-editor'
 import * as JSZip from 'jszip'
+import swal from 'sweetalert2';
 import { SnippetService } from '../../../shared/services/snippet.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { GitService } from '../../services/git.service';
 import { webEditorConfig } from '../../config/webEditor.config';
+import { config } from './../../config/editor.config';
 
 @Component({
   selector: 'app-webeditor',
@@ -15,15 +19,37 @@ import { webEditorConfig } from '../../config/webEditor.config';
 })
 export class WebeditorComponent implements OnInit {
 
-  constructor(private snippet: SnippetService, private zone: NgZone, private modalService: BsModalService) {
+  constructor(private snippet: SnippetService,private authenticationService: AuthenticationService,private gitService: GitService, private zone: NgZone, private modalService: BsModalService) {
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
   }
+
   config = webEditorConfig;
+  editorConfig=config;
 
   @Input() content: any
   @Input() reponame: any;
   @Input() filenamed: any;
+  @ViewChild('createClose') createClose: ElementRef;
+  @ViewChild('updateClose') updateClose: ElementRef;
+  @ViewChild('deleteClose') deleteClose: ElementRef;
+
+  latestcommit: any;
+  treecommit: any;
+   filesha: any;
+  newtree: any;
+  newcommit: any;
+  basetree: any = {};
+  newcommitobj: any = {};
+  lastcommit: any = {};
+  updateMessage: string;
+  updateMsg: string;
+  deleteCommit: string;
+  deleteMsg: string;
+  fileName: string
+  updatefileobj: any = {};
+  deletefileobj: any = {};
+
 
   htmlValue: any  = this.config.webEditor.HTMLTEMP;
   cssValue: any = this.config.webEditor.CSSTEMP;
@@ -87,6 +113,190 @@ export class WebeditorComponent implements OnInit {
 
       })
   }
+
+    //method to create a file on git
+  createFile(fileName, createCommitMessage) {
+    if (this.authenticationService.pacToken == null) {
+      swal({
+        timer: 2200,
+        title: "You have not generated your token",
+        text: "",
+        type: 'success',
+        showConfirmButton: false,
+      })
+    } else {
+      this.fileName = fileName.value['fileName'];
+      this.updateMessage = createCommitMessage.value['createMsg'];
+      this.reponame = this.reponame;
+      //hitting the create file api to get sha of the latest commit
+      this.gitService.createFile(this.reponame)
+        .subscribe(repos => {
+          this.latestcommit = repos.object.sha;
+          //hitting the commit file api to get sha of the tree commit
+          this.gitService.commitfile(this.reponame, this.latestcommit)
+            .subscribe(repos => {
+              this.treecommit = repos.sha;
+              this.basetree = {
+                "base_tree": this.treecommit,
+                "tree": [{
+                  "path": this.fileName,
+                  "mode": "100644",
+                  "type": "blob",
+                  "content": this.content
+                }]
+              }
+              //hitting the create file api to get sha of the new tree commit
+              this.gitService.treecommit(this.reponame, this.basetree)
+                .subscribe(repos => {
+                  this.newtree = repos.sha;
+                  this.newcommitobj = {
+                    "parents": [this.latestcommit],
+                    "tree": this.newtree,
+                    "message": this.updateMessage
+                  }
+                  //hitting the create file api to get sha of the new commit
+                  this.gitService.newcommit(this.reponame, this.newcommitobj)
+                    .subscribe(repos => {
+                      this.newcommit = repos.sha;
+                      this.lastcommit = {
+                        "sha": this.newcommit
+                      }
+                      //hitting final api to create the file
+                      this.gitService.lastcommit(this.reponame, this.lastcommit)
+                        .subscribe(repos => {})
+                      //sweet alert on getting response
+                      if (repos) {
+                        swal({
+                          timer: 2200,
+                          title: "file " + this.fileName + " created successfully!",
+                          text: "",
+                          type: 'success',
+                          showConfirmButton: false,
+                        })
+                      }
+                      //sweet alert on getting error
+                      else {
+                        swal({
+                          timer: 2200,
+                          title: "Error occured",
+                          text: "",
+                          type: 'error',
+                          showConfirmButton: false,
+                        })
+                      }
+                    })
+                })
+            })
+        })
+      this.createClose.nativeElement.click();  
+      fileName.reset();
+      createCommitMessage.reset();
+    }
+  }
+
+  //method to get the file and update the content on git
+  updateFile(commitMessage) {
+    if (this.authenticationService.pacToken == null) {
+      swal({
+        timer: 2200,
+        title: "You have not generated your token",
+        text: "",
+        type: 'success',
+        showConfirmButton: false,
+      })
+    } else {
+      this.updateMsg = commitMessage.value['updateMsg'];
+      //getting the file sha
+      this.gitService.getsha(this.reponame, this.filenamed)
+        .subscribe(repos => {
+          this.filesha = repos.sha;
+          this.updatefileobj = {
+            "message": this.updateMsg,
+            "path": this.filenamed,
+            "content": btoa(this.content),
+            "sha": this.filesha
+          }
+          //hitting the update file api to update the file contents
+          this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
+            .subscribe(repos => {
+              //sweet alert on getting response
+              if (repos) {
+                swal({
+                  timer: 2200,
+                  title: "file " + this.filenamed + " updated successfully!",
+                  text: "",
+                  type: 'success',
+                  showConfirmButton: false,
+                })
+              }
+              //sweet alert on getting error
+              else {
+                swal({
+                  timer: 2200,
+                  title: "Error occured",
+                  text: "",
+                  type: 'error',
+                  showConfirmButton: false,
+                })
+              }
+            })
+        })
+      this.updateClose.nativeElement.click();   
+      commitMessage.reset();
+    }
+  }
+
+
+  //method to get the file and delete the content on git
+  deleteFile(commitMessage) {
+    if (this.authenticationService.pacToken == null) {
+      swal({
+        timer: 2200,
+        title: "You have not generated your token",
+        text: "",
+        type: 'success',
+        showConfirmButton: false,
+      })
+    } else {
+      this.deleteMsg = commitMessage.value['deleteMsg'];
+      //getting the file sha
+      this.gitService.getsha(this.reponame, this.filenamed)
+        .subscribe(repos => {
+          this.filesha = repos.sha;
+          this.deletefileobj = {
+            "message": this.deleteMsg,
+            "path": this.filenamed,
+            "sha": this.filesha
+          }
+          //hitting the delete file api to delete the file
+          this.gitService.deleteFile(this.reponame, this.filenamed, this.deletefileobj)
+            .subscribe(repos => {
+              //sweet alert on getting response
+              if (repos) {
+                swal({
+                  timer: 2200,
+                  title: "file " + this.filenamed + " deleted successfully!",
+                  text: "",
+                  type: 'success',
+                  showConfirmButton: false,
+                })
+              } else {
+                //sweet alert on getting error
+                swal({
+                  timer: 2200,
+                  title: "Error occured",
+                  text: "",
+                  type: 'error',
+                  showConfirmButton: false,
+                })
+              }
+            })
+        })
+      this.deleteClose.nativeElement.click();
+      commitMessage.reset();
+    }
+  }
+  
 
 /*snippet show in html editor*/
   showHtml(code) {
@@ -184,6 +394,8 @@ export class WebeditorComponent implements OnInit {
 
   /*download whole content in single file*/
   downloadFile() {
+
+    console.log(this.content + this.reponame + this.filenamed );
     var downloadLink = document.createElement("a");
     var blob = new Blob([this.textcontent]);
     var url = URL.createObjectURL(blob);

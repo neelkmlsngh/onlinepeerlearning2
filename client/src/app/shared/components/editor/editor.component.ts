@@ -21,6 +21,8 @@ import 'ace-builds/src-min-noconflict/snippets/html';
 })
 export class EditorComponent implements OnInit {
   @ViewChild('txtclose') txtclose: ElementRef;
+  @ViewChild('createClose') createClose: ElementRef;
+  @ViewChild('updateClose') updateClose: ElementRef;
   @Input() content: any = "";
   @Input() reponame: any;
   @Input() filenamed: any;
@@ -187,6 +189,7 @@ export class EditorComponent implements OnInit {
                 })
             })
         })
+      this.createClose.nativeElement.click();  
       fileName.reset();
       createCommitMessage.reset();
     }
@@ -238,6 +241,7 @@ export class EditorComponent implements OnInit {
               }
             })
         })
+      this.updateClose.nativeElement.click();   
       commitMessage.reset();
     }
   }
