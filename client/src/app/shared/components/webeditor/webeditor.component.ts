@@ -204,7 +204,7 @@ export class WebeditorComponent implements OnInit {
     this.htmlblob = blob;
     var url = URL.createObjectURL(blob);
     downloadLink.href = url;
-    downloadLink.download = "index.html";
+    downloadLink.download = this.config.download.HTML_FILE;
     let parent = document.getElementById('myHtmlDiv');
     parent.appendChild(downloadLink);
     downloadLink.click();
@@ -219,7 +219,7 @@ export class WebeditorComponent implements OnInit {
     var blob = new Blob([this.cssValue]);
     var url = URL.createObjectURL(blob);
     downloadLink.href = url;
-    downloadLink.download = "style.css";
+    downloadLink.download = this.config.download.CSS_FILE;
     this.cssblob = blob;
     let parent = document.getElementById('myCssDiv');
     parent.appendChild(downloadLink);
@@ -235,7 +235,7 @@ export class WebeditorComponent implements OnInit {
     var blob = new Blob([this.jsValue]);
     var url = URL.createObjectURL(blob);
     downloadLink.href = url;
-    downloadLink.download = "script.js";
+    downloadLink.download = this.config.download.JAVASCRIPT_FILE;
     let parent = document.getElementById('myJsDiv');
     parent.appendChild(downloadLink);
     downloadLink.click();
@@ -246,9 +246,9 @@ export class WebeditorComponent implements OnInit {
   /*download Zip file*/
   downloadZip() {
     var zip = new JSZip();
-    zip.file("index.html", this.content);
-    zip.file("style.css", this.cssValue);
-    zip.file("script.js", this.jsValue);
+    zip.file(this.config.download.HTML_FILE, this.content);
+    zip.file(this.config.download.CSS_FILE, this.cssValue);
+    zip.file(this.config.download.JAVASCRIPT_FILE, this.jsValue);
     zip.generateAsync({ type: "blob" })
       .then(function(content) {
         var downloadLink = document.createElement("a");

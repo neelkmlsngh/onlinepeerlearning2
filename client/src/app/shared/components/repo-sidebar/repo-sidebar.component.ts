@@ -96,7 +96,13 @@ showFile(reponame, filename) {
     this.folder = filename.split('.');
     if (this.folder.length > 1) {
       if (this.extension !== "js" && this.extension !== "html" && this.extension !== "css") {
-        alert(config.repoSidebar.NO_EXT)
+      swal({
+        timer: 8500,
+        title: config.repoSidebar.NO_EXT,
+        text:  "",
+        type: 'error',
+        showConfirmButton: true,
+       })
      }
 
     if (this.mode === "javascript" && this.extension !== "js" && this.extension !=="md" && this.extension !=="json" && this.extension !=="gitignore") {

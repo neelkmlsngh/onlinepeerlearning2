@@ -57,7 +57,7 @@
   padding: 25px 34px;
   min-width: 160px;
   min-height: 10px;
-  max-width: 350px;
+  max-width: 230px;
   border-radius: 5px;
   box-shadow: 0px 3px 3px rgba(172, 172, 172, 0.73);
   background-color: rgba(255, 255, 255, 0.80);
@@ -147,7 +147,10 @@ body {
   height: 50%;
   width: auto;
 }
+
+
 /* nav-side bar */
+
 .nav-side-menu {
   overflow: auto;
   font-family: verdana;
@@ -545,4 +548,29 @@ img {
 
 .chatbox--empty .chatbox__credentials {
   display: block;
+}
+
+@media (max-width: 425px) {
+  .side {
+    margin-left: 0%;
+  }
+}
+
+@media (max-width: 425px) {
+  .chatbox {
+    margin-right: -9%;
+  }
+}
+
+@media (max-width: 425px) {
+  .done {
+    position: fixed;
+    bottom: 65px;
+    right: 261px;
+  }
+}
+@media (max-width: 425px) {
+  .nav-side-menu {
+    top: -58px; 
+  }
 }

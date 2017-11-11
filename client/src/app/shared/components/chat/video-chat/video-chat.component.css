@@ -1,6 +1,6 @@
 .videobox {
   position: fixed;
-  bottom: 0;
+  bottom: 61px;
   right: 30px;
   width: 300px;
   height: 400px;
@@ -15,7 +15,7 @@
 }
 
 .videobox--tray {
-  bottom: -270px;
+  bottom: -212px;
 }
 
 .icon_minim{
@@ -184,4 +184,9 @@
   border-style: ridge;
   height: 65%;
   width: 100%;
+}
+@media (max-width: 425px) {
+    .videobox--empty {
+            margin-right: 9.3%;
+    }
 }
