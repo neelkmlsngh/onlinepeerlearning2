@@ -19,9 +19,9 @@ import { AuthenticationService } from '../../services/authentication.service'
 export class RepoSidebarComponent implements OnInit {
 
   @Input() mode: String;
+  @Input() githubUser:any;
   config = config;
   /*declaring all the required variables*/
-  githubUser: any;
   selectedValue: any;
   reponamed: any;
   filenamed: any;
@@ -39,7 +39,8 @@ export class RepoSidebarComponent implements OnInit {
   public emptyRepo: String;
   extension: any;
   confirm: any;
-  folder : any;
+  folder: any;
+
 
   // @Input() personalAccessToken;
   @Output() content = new EventEmitter < any > ();
@@ -56,22 +57,14 @@ export class RepoSidebarComponent implements OnInit {
     this.authenticationService.getPersonalAccessToken(this.currentUser.userId)
       .subscribe((res) => {
         this.authenticationService.pacToken = res.data.accessToken;
-        // this.data1 = {
-        //   accessToken: res.data.accessToken
-        // }
-        // this.data1 = this.data1.accessToken
-      })
-
-    this.gitService.getRepos()
-      .subscribe(repos => {
-        this.githubUser = repos;
+        
       })
   }
 
   public openRepoModal(template: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template);
   }
-   public openTokenModal(template: TemplateRef < any > ) {
+  public openTokenModal(template: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template);
   }
 
@@ -90,48 +83,8 @@ export class RepoSidebarComponent implements OnInit {
       })
   }
 
-  /*method used to show repositery name and file name*/
-showFile(reponame, filename) {
-    this.extension = filename.split('.').pop();
-    this.folder = filename.split('.');
-    if (this.folder.length > 1) {
-      if (this.extension !== "js" && this.extension !== "html" && this.extension !== "css") {
-      swal({
-        timer: 8500,
-        title: config.repoSidebar.NO_EXT,
-        text:  "",
-        type: 'error',
-        showConfirmButton: true,
-       })
-     }
-
-    if (this.mode === "javascript" && this.extension !== "js" && this.extension !=="md" && this.extension !=="json" && this.extension !=="gitignore") {
-        this.confirm = confirm(config.repoSidebar.HTML_MODE)
-        if (this.confirm === true) {
-          this.mode = "html"
-          this.editorMode.emit(this.mode);
-        }
-      }
-
-     else if (this.mode === "javascript" && this.extension == "js") {
-        this.confirm = confirm(config.repoSidebar.ASK_MODE)
-        if (this.confirm === true) {
-          this.mode = "javascript"
-          this.editorMode.emit(this.mode);
-        }
-        else{
-          this.mode = "html"
-          this.editorMode.emit(this.mode);
-        }
-
-     } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css" && this.extension !=="md" && this.extension !=="json" && this.extension !=="gitignore") {
-        this.confirm = confirm(config.repoSidebar.JAVASCRIPT_MODE)
-        if (this.confirm === true) {
-          this.mode = "javascript"
-          this.editorMode.emit(this.mode);
-        }
-      }
-    }
+  /*Method to send data after swell executes to editor*/
+  swelldata(reponame, filename) {
     this.reponamed = this.selectedValue;
     this.gitService.openFolder(reponame, filename)
       .subscribe(
@@ -142,6 +95,105 @@ showFile(reponame, filename) {
           this.show(reponame, this.url + filename)
           this.url = "";
         })
+  }
+
+  /*method used to show repositery name and file name*/
+  showFile(reponame, filename) {
+    this.extension = filename.split('.').pop();
+    this.folder = filename.split('.');
+    if (this.folder.length > 1) {
+      if (this.extension !== "js" && this.extension !== "html" && this.extension !== "css") {
+        swal({
+          timer: 8500,
+          title: config.repoSidebar.NO_EXT,
+          text: "",
+          type: 'error',
+          showConfirmButton: true,
+        })
+      }
+
+      if (this.mode === "javascript" && this.extension !== "js" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore") {
+        /*this.confirm = confirm(config.repoSidebar.HTML_MODE) 
+        if (this.confirm === true) {
+          this.mode = "html"
+          this.editorMode.emit(this.mode);
+        }*/
+        swal({
+          text: config.repoSidebar.HTML_MODE,
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'OK',
+          cancelButtonText: 'CANCEL',
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger',
+          buttonsStyling: false
+        }).then(() => {
+
+          this.mode = "html"
+          this.editorMode.emit(this.mode);
+          this.swelldata(reponame, filename);
+
+        })
+      } else if (this.mode === "javascript" && this.extension == "js") {
+        /* this.confirm = confirm(config.repoSidebar.ASK_MODE)
+        if (this.confirm === true) {
+          this.mode = "javascript"
+          this.editorMode.emit(this.mode);
+        } else {
+          this.mode = "html"
+          this.editorMode.emit(this.mode);
+        }
+*/
+        swal({
+          text: config.repoSidebar.ASK_MODE,
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'OK',
+          cancelButtonText: 'CANCEL'
+        }).then(() => {
+          this.mode = "javascript"
+          this.editorMode.emit(this.mode);
+          this.swelldata(reponame, filename);
+
+        }, function(dismiss) {
+          // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+          if (dismiss === 'cancel') {
+            this.mode = "html"
+            this.editorMode.emit(this.mode);
+            this.swelldata(reponame, filename);
+          }
+        })
+
+      } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore") {
+        /*this.confirm = confirm(config.repoSidebar.JAVASCRIPT_MODE)
+        if (this.confirm === true) {
+          this.mode = "javascript"
+          this.editorMode.emit(this.mode);
+        }*/
+        swal({
+          text: config.repoSidebar.JAVASCRIPT_MODE,
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'OK',
+          cancelButtonText: 'CANCEL',
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger',
+          buttonsStyling: false
+        }).then(() => {
+
+          this.mode = "javascript"
+          this.editorMode.emit(this.mode);
+          this.swelldata(reponame, filename);
+
+        })
+
+      }
+    }
+    this.swelldata(reponame, filename);
   }
 
   //method used to show content of file present in repository
@@ -158,44 +210,5 @@ showFile(reponame, filename) {
       })
   }
 
-  //method to enter new repository name
-  onKey(event) {
-    this.value += event
-  }
-
-  //method for creating new repository
-  createRepo(name, desc) {
-    let repoName = {
-      "name": name,
-      "description": desc,
-      "homepage": "https://github.com",
-      "private": false,
-      "auto_init": true,
-      "has_issues": false,
-      "has_projects": false,
-      "has_wiki": false
-    }
-
-    this.gitService.createRepos(repoName)
-      .subscribe(data => {
-        if (data) {
-          swal({
-            timer: 2500,
-            title: config.repoSidebar.REPO_CREATED,
-            text: "",
-            type: 'success',
-            showConfirmButton: false,
-          })
-        } else {
-          swal({
-            timer: 2500,
-            title: config.repoSidebar.REPO_NOT_CREATED,
-            text: "",
-            type: 'error',
-            showConfirmButton: false,
-          })
-        }
-      })
-  }
 
 }
