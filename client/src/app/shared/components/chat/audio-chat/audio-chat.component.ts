@@ -101,37 +101,5 @@
       this.router.navigate(["/main"]);
     }
 
-        audioMute() {
-     let audio = this.myAudio.nativeElement;
-    let localvar = this.peer;
-    let fname = this.userPeerId;
-    let n = < any > navigator;
-
-    n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
-    n.getUserMedia({ video: false, audio: true }, function(stream) {
-      let call = localvar.call(fname, stream);
-      call.on('stream', function(remotestream) {
-        audio.src = URL.createObjectURL(remotestream);
-      audio.pause();
-      })
-    }, function(err) {})
-
-
+  
 }
-
-    audioUnmute() {
-    let audio = this.myAudio.nativeElement;
-    let localvar = this.peer;
-    let fname = this.userPeerId;
-    let n = < any > navigator;
-
-    n.getUserMedia = (n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia);
-    n.getUserMedia({ video: false, audio: true }, function(stream) {
-      let call = localvar.call(fname, stream);
-      call.on('stream', function(remotestream) {
-        audio.src = URL.createObjectURL(remotestream);
-      audio.play();
-      })
-    }, function(err) {})
-  }
-  }

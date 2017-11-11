@@ -19,17 +19,13 @@
   <div>
     <img src="https://www.adjust.com/new-assets/images/site-images/interface/user.svg" class="img-responsive myimg">
     <!-- audio call -->
-    <audio #myaudio autoplay></audio>
+    <audio #myaudio controls muted></audio>
 </div>
   <div class="btn-group align-self-center mt-2 mt-2">
     <!-- audio call button -->
     <button class="btn btn-outline-success btn-lg" (click)="audioConnect()" data-toggle="popover" title="Recieve Audio Call" vi-controls-play>
       <i class="fa fa-phone" aria-hidden="true">
        </i>
-    </button>
-    <!-- mute audio button -->
-    <button class="btn btn-outline-success btn-lg ml-2 ml-2" data-toggle="popover" title="Mute" vi-controls-pause>
-      <i class="fa fa-volume-off" aria-hidden="true"></i>
     </button>
     <!-- disconnect audio button -->
     <button class="btn btn-outline-danger btn-lg ml-2 ml-2" data-toggle="popover" (click)="audioDisconnect()" title="End Call">
