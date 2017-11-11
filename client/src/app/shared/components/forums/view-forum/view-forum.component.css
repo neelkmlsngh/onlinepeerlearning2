@@ -3,7 +3,7 @@
     background-color: #3F51B5;
   }
 
-  .postans{
+  .postans {
     background-color: #3F51B5;
   }
 
@@ -37,12 +37,14 @@
     color: white;
   }
 
-  .likes{
+  .likes {
     background-color: #BDBDBD;
   }
-  .dislikes{
+
+  .dislikes {
     background-color: #BDBDBD;
   }
+
   .ans {
     padding-left: 11px;
   }
