@@ -125,9 +125,11 @@ export class WebeditorComponent implements OnInit {
         showConfirmButton: false,
       })
     } else {
+
       this.fileName = fileName.value['fileName'];
       this.updateMessage = createCommitMessage.value['createMsg'];
       this.reponame = this.reponame;
+      
       //hitting the create file api to get sha of the latest commit
       this.gitService.createFile(this.reponame)
         .subscribe(repos => {
@@ -206,6 +208,7 @@ export class WebeditorComponent implements OnInit {
       })
     } else {
       this.updateMsg = commitMessage.value['updateMsg'];
+
       //getting the file sha
       this.gitService.getsha(this.reponame, this.filenamed)
         .subscribe(repos => {
@@ -395,7 +398,6 @@ export class WebeditorComponent implements OnInit {
   /*download whole content in single file*/
   downloadFile() {
 
-    console.log(this.content + this.reponame + this.filenamed );
     var downloadLink = document.createElement("a");
     var blob = new Blob([this.textcontent]);
     var url = URL.createObjectURL(blob);

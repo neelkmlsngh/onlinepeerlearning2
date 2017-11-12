@@ -1,1 +1,117 @@
-<a routerLink="/snippets/add"> Add new Snippet</a>
+<app-navbar></app-navbar>
+<div class="container marg">
+  <div class="row justify-content-center">
+    <h2>Snippets</h2>
+  </div>
+  <div class="row text-center form-group">
+    <div class="col-sm-6">
+      <select class="form-control" [(ngModel)]="selectedValue" (click)="mode()">
+        <option selected>All</option>
+        <option>Html </option>
+        <option>Css</option>
+        <option>Javascript</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <button type="button" class="btn btn-info form-control" (click)="openModalAdd(addtemplate)">Add Snippet</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 mt-2" *ngFor="let data of snippets">
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{data.title}}</h5>
+            <small><button type="button" (click)="openModal(template, data)"><i class="fa fa-pencil-square fa-2x" title="Edit/View" aria-hidden="true"></i></button> <button type="button" (click)="deleteSnip(data.title)"><i class="fa fa-trash-o fa-2x" title="Delete"></i></button></small>
+          </div>
+          <p class="mb-1">{{data.language}}</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">View/Edit Snippet</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal" role="form">
+      <div class="row form-group">
+        <label class="col-sm-2 control-label mt-2 font-weight-bold">Title</label>
+        <div class="col-sm-10">
+          <input name="title" class="form-control" [(ngModel)]="title" placeholder={{title}} />
+        </div>
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-2 control-label mt-2 font-weight-bold">Language</label>
+        <div class="col-sm-10">
+          <select class="form-control" name="language" [(ngModel)]="language">
+            <option>Html</option>
+            <option>Css</option>
+            <option>Javascript</option>
+          </select>
+        </div>
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-2 control-label mt-2 font-weight-bold">Code</label>
+        <div class="col-sm-10">
+          <textarea name="code" class="form-control" [(ngModel)]="code" placeholder={{code}} rows="5"></textarea>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-3">
+          <button class="btn btn-primary form-control" (click)="edit()">Save</button>
+        </div>
+        <div class="col-sm-3">
+          <button class="btn btn-danger form-control" (click)="modalRef.hide()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<ng-template #addtemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add Snippet</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal" role="form">
+      <div class="row form-group">
+        <label class="col-sm-2 control-label mt-2 font-weight-bold">Title</label>
+        <div class="col-sm-10">
+          <input name="title" class="form-control" [(ngModel)]="title" placeholder={{title}} />
+        </div>
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-2 control-label mt-2 font-weight-bold">Language</label>
+        <div class="col-sm-10">
+          <select class="form-control" name="language" [(ngModel)]="language">
+            <option>Html</option>
+            <option>Css</option>
+            <option>Javascript</option>
+          </select>
+        </div>
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-2 control-label mt-2 font-weight-bold">Code</label>
+        <div class="col-sm-10">
+          <textarea name="code" class="form-control" [(ngModel)]="code" placeholder={{code}} rows="5"></textarea>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-3">
+          <button class="btn btn-primary form-control" (click)="add()">Save</button>
+        </div>
+        <div class="col-sm-3">
+          <button class="btn btn-danger form-control" (click)="modalRef.hide()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

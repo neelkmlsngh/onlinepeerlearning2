@@ -1,26 +1,21 @@
 <div class="audiobox audiobox--tray audiobox--empty">
   <div class="audiobox__title">
     <!--head section-->
-    <h5 id="myhead"><a>{{callUserName}} Calling {{selectedUserName}}</a></h5>
-    <div>
-      <button class="audiobox__title__tray" (click)="audioBoxToggle()">
-        <span></span>
-      </button>
-      <button class="audiobox__title__close" (click)="hideAudioChatBox()">
-        <span>
-              <svg viewBox="0 0 12 12" width="12px" height="12px">
-                  <line stroke="#FFFFFF " x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
-                  <line stroke="#FFFFFF " x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
-              </svg>
-          </span>
-      </button>
-    </div>
+    <h5 id="myhead"><a (click)="audioBoxToggle()" data-toggle="popover" title="Click Here To Expand">{{callUserName}} Calling {{selectedUserName}}</a></h5>
+    <button class="audiobox__title__close" (click)="hideAudioChatBox()" data-toggle="popover" title="Close Window">
+      <span>
+               <svg viewBox="0 0 12 12" width="12px" height="12px">
+                   <line stroke="#FFFFFF " x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
+                   <line stroke="#FFFFFF " x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
+               </svg>
+           </span>
+    </button>
   </div>
   <div>
     <img src="https://www.adjust.com/new-assets/images/site-images/interface/user.svg" class="img-responsive myimg">
     <!-- audio call -->
     <audio #myaudio controls muted></audio>
-</div>
+  </div>
   <div class="btn-group align-self-center mt-2 mt-2">
     <!-- audio call button -->
     <button class="btn btn-outline-success btn-lg" (click)="audioConnect()" data-toggle="popover" title="Recieve Audio Call" vi-controls-play>

@@ -8,7 +8,6 @@ export const config: any = {
   ],
   
   con: {
-
     title: "Add Snippet",
     DROP: "Select Language to Add Snippet",
     button: "Add Snippet",
@@ -19,14 +18,13 @@ export const config: any = {
       "REMOVED_PLUGINS": "list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize"
     }
   },
-  connect: {
 
+  connect: {
     apiURL: "https://192.168.252.151:8080",
     vmURL: "https://192.168.252.151:3030",
     CALLBACK_URL: "https://192.168.252.151:8080/api/login/auth/github",
     CLIENT_ID: '71e507179821e4c52cc6',
     CLIENT_SECRET: 'f5a19047f54acc10db755689779bb23681ec5496'
-
   },
 
   giturls: {

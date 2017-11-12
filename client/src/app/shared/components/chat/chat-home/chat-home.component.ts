@@ -280,8 +280,11 @@ export class ChatHomeComponent implements OnInit {
   alignMessage(userId) {
     return this.userId === userId ? false : true;
   }
-  removesb(): void {
+  removesb() {
     $('.side').toggle();
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    return false;
+   
   }
   //Method for audio chat
   audiocall(template1: TemplateRef < any > ) {
