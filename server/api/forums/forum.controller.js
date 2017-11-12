@@ -116,7 +116,7 @@ const saveLike = function(getValue, updateValue) {
                             'userId': updateValue.userId
                         }
                     }
-                }, { 'new': true }, (err, data) => {
+                }, { upsert: true }, (err, data) => {
                     if (err) {
                         logger.error(logConfig.INTERNAL_ERROR + err);
                         reject(err);

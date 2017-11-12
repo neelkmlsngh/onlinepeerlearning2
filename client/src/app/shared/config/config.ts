@@ -19,10 +19,6 @@ export const config: any = {
       "REMOVED_PLUGINS": "list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize"
     }
   },
-
-
-
-
   connect: {
 
     apiURL: "https://192.168.252.151:8080",
@@ -46,16 +42,13 @@ export const config: any = {
   },
 
   forumConnect: {
-    "APIURL": 'api/forums/',
-    "SEARCHAPIURL": 'api/forums/term/',
-    "LIKEURL": 'api/forums/like/',
-    "DISLIKEURL": 'api/forums/dislike/',
+    "APIURL": '/api/forums/',
+    "SEARCHAPIURL": '/api/forums/term/',
+    "LIKEURL": '/api/forums/like/',
+    "DISLIKEURL": '/api/forums/dislike/',
   },
   peerserver: {
-
-
     "host": "192.168.252.151",
-
     "port": "8081",
     "path": "/peerjs"
   }

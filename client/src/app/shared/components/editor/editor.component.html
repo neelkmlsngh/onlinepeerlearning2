@@ -42,7 +42,7 @@
                   </div>
                   <div class="modal-body">
                     <form #createForm="ngForm" (ngSubmit)="createFile(createForm.form,createForm.form);">
-                      <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #nameField="ngModel" required minlength="5" placeholder="enter your file name"></textarea>
+                      <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your file name"></textarea>
                       <div *ngIf="nameField.touched && nameField.errors">
                         <div class="alert alert-danger" *ngIf="nameField.errors.required">
                           file name is required
@@ -51,7 +51,7 @@
                           The commit message should be at least 5 characters long
                         </div>
                       </div>
-                      <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #commitField="ngModel" required minlength="5" placeholder="enter your commit message"></textarea>
+                      <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #commitField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
                       <div *ngIf="commitField.touched && commitField.errors">
                         <div class="alert alert-danger" *ngIf="commitField.errors.required">
                           commit message is required
@@ -86,7 +86,7 @@
                   </div>
                   <div class="modal-body">
                     <form #updateForm="ngForm" (ngSubmit)="updateFile(updateForm.form);">
-                      <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #nameField="ngModel" required minlength="5" placeholder="enter your commit message"></textarea>
+                      <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
                       <div *ngIf="nameField.touched && nameField.errors">
                         <div class="alert alert-danger" *ngIf="nameField.errors.required">
                           commit message is required
@@ -115,7 +115,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h6 class="modal-title" id=""><strong class="modalHeader">{{config.editor.DELETINGFILE}}</strong><b>{{reponame}}</b></h6>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" #txtclose>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" #deleteclose>
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>

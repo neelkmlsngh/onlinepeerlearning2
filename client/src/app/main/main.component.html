@@ -11,14 +11,13 @@
       <div class="row ">
         <div class="col-md-2 bg">
           <div id="accordion" role="tablist">
-          
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingOne">
                 <h5 class="mb-0 accordionHeading">
-        <a class= "accordionTitle" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          {{config.TITLE}}
-        </a>
-      </h5>
+									<a class= "accordionTitle" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+										{{config.TITLE}}
+									</a>
+								</h5>
               </div>
               <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body accordionBody">
@@ -32,10 +31,10 @@
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingTwo">
                 <h5 class="mb-0 accordionHeading">
-                  <a class="collapsed yourRepo" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Your Repositories
-                  </a>
-                </h5>
+									<a class="collapsed yourRepo" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+										Your Repositories
+									</a>
+								</h5>
               </div>
               <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body accordionBody">
@@ -46,16 +45,16 @@
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingThree">
                 <h5 class="mb-0 accordionHeading">
-        <a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-         Create new Github Repository
-        </a>
-      </h5>
+				<a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				 {{config.NEWREPOSITORY}}
+				</a>
+			</h5>
               </div>
               <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body accordionBody">
                   <form #repositoryForm="ngForm" (ngSubmit)="createNewRepo(repositoryForm.form);">
-                    <label for="recipient-name" class="form-control-label formText">Enter Repository Name</label>
-                    <input type="text" class="form-control" name="repositoryName" ngModel #nameField="ngModel" required minlength="3">
+                    <label for="recipient-name" class="form-control-label formText">{{config.REPOSITORYNAME}}</label>
+                    <input type="text" class="form-control" name="repositoryName" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*">
                     <div *ngIf="nameField.touched && nameField.errors">
                       <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
                         The repository name is required
@@ -65,8 +64,8 @@
                       </div>
                     </div>
                     <h6></h6>
-                    <label for="recipient-name" class="form-control-label formText">Description for README.md</label>
-                    <textarea type="text" id="description" class="form-control descriptionTextArea" data-spy="scroll" data-target="description" data-offset="0" name="description" ngModel #nameField="ngModel" required minlength="3">
+                    <label for="recipient-name" class="form-control-label formText">{{ config.DESCRIPTION}}</label>
+                    <textarea type="text" id="description" class="form-control descriptionTextArea" data-spy="scroll" data-target="description" data-offset="0" name="description" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*">
                       <div *ngIf="nameField.touched && nameField.errors">
                         <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
                           The description is required
@@ -85,16 +84,16 @@
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingFour">
                 <h5 class="mb-0 accordionHeading">
-        <a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-          Generate personal access token
-        </a>
-      </h5>
+				<a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+				 {{config.PACGENERATE}}
+				</a>
+			</h5>
               </div>
               <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
                 <div class="card-body accordionBody">
                   <form #tokenForm="ngForm" (ngSubmit)="generateToken(tokenForm.form);">
-                    <label for="recipient-name" class="form-control-label formText">Enter Github Password</label>
-                    <input type="password" class="form-control" name="pass" ngModel #nameField="ngModel" required minlength="3">
+                    <label for="recipient-name" class="form-control-label formText">{{config.PASSWORD}}</label>
+                    <input type="password" class="form-control" name="pass" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*">
                     <div *ngIf="nameField.touched && nameField.errors">
                       <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
                         The password is required
@@ -104,8 +103,8 @@
                       </div>
                     </div>
                     <h6></h6>
-                    <label for="recipient-name" class="form-control-label formText">Enter Personal Access Token Name</label>
-                    <input type="text" class="form-control" name="tokenName" ngModel #nameField="ngModel" required minlength="3">
+                    <label for="recipient-name" class="form-control-label formText">{{config.PACNAME}}</label>
+                    <input type="text" class="form-control" name="tokenName" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*">
                     <div *ngIf="nameField.touched && nameField.errors">
                       <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
                         The token name is required
@@ -120,23 +119,7 @@
                 </div>
               </div>
             </div>
-                    <div class="card">
-              <div class="card-header accordianClass" role="tab" id="headingTwo">
-                <h5 class="mb-0 accordionHeading">
-        <a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Select Your Repository
-        </a>
-      </h5>
-              </div>
-              <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body accordionBody">
-                  <app-repo-sidebar [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
-                </div>
-              </div>
-            </div>
-            
           </div>
-          
           <!-- first column -->
           <!-- repository side bar selector -->
         </div>
@@ -150,15 +133,15 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
-      <!-- footer selector -->
-      <app-footer></app-footer>
-    </div>
-  </div>
-  <div class="row">
     <div class="col-md-12 backgroundcolor">
       <!-- chat component selector -->
       <app-chat-home></app-chat-home>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- footer selector -->
+      <app-footer></app-footer>
     </div>
   </div>
 </div>

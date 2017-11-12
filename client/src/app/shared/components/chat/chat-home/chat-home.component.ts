@@ -6,6 +6,10 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
 import swal from 'sweetalert2';
 
+import { ToastrService } from 'ngx-toastr';
+import { ViewChild } from '@angular/core';
+import { ToastrModule, ToastContainerModule,ToastContainerDirective } from 'ngx-toastr';
+
 import { AuthenticationService } from './../../../services/authentication.service';
 import { chatConfig } from '../../../config/chatConfig';
 
@@ -24,6 +28,8 @@ import { SpeechRecognitionService } from './../../../services/speech-recognition
   styleUrls: ['./chat-home.component.css']
 })
 export class ChatHomeComponent implements OnInit {
+
+  @ViewChild(ToastContainerDirective) toastContainer: ToastContainerDirective;
   /*ui related variables starts*/
   public modalRef: BsModalRef;
   overlayDisplay = false;
@@ -61,7 +67,8 @@ export class ChatHomeComponent implements OnInit {
     private modalService: BsModalService,
     private authenticationService: AuthenticationService,
     private profileService: ProfileService,
-    private speechRecognitionService: SpeechRecognitionService
+    private speechRecognitionService: SpeechRecognitionService,
+    private toastrService: ToastrService
     /*,
         private audioComponent:AudioChatComponent*/
   ) {
@@ -71,6 +78,7 @@ export class ChatHomeComponent implements OnInit {
   }
   /*method loading various functions*/
   ngOnInit() {
+    this.toastrService.overlayContainer = this.toastContainer;
     $('.chatbox').hide();  
     // getting userID from the local storage  
     this.userId = this.authenticationService.getUserId();
@@ -114,6 +122,7 @@ export class ChatHomeComponent implements OnInit {
         //method for recieving messages through socket          
         this.socketService.receiveMessages().subscribe(response => {
           if (this.selectedUserId && this.selectedUserId == response.fromUserId) {
+            this.toastrService.success(response.message + ' from ' + this.selectedUserId);
             this.messages.push(response);
           }
         });
@@ -180,6 +189,7 @@ export class ChatHomeComponent implements OnInit {
     });
     $chatbox.on('transitionend', function() {
       if ($chatbox.hasClass('chatbox--closed'))
+       
         $chatbox.hide();
     });
     $chatboxCredentials.on('submit', function(e) {
@@ -197,10 +207,10 @@ export class ChatHomeComponent implements OnInit {
   hideChatBox(){
     $('.chatbox').show();
     $('.side').hide();
-    this.stop();
     setTimeout(() => {
       $('.message-thread')[0].scrollTop = $('.message-thread')[0]['scrollHeight'];
     }, 30)
+    this.stop();
   }
 
   chatBoxToggle(): void {

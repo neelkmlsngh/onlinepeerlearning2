@@ -144,6 +144,5 @@ h5 {
 }
 
 .listOption{
-  width: 100%;
-  height: 40%; 
+word-wrap: break-word;
 }

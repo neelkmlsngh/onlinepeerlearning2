@@ -1,5 +1,6 @@
 module.exports = {
 
+
     APPNAME: 'Onlinepeerlearning',
     SECRET: 'secretkey',
     EXPIRETIME: 86400,
@@ -10,5 +11,5 @@ module.exports = {
     CLIENT_ID: '71e507179821e4c52cc6',
     CLIENT_SECRET: 'f5a19047f54acc10db755689779bb23681ec5496',
     CALLBACK_URL: "https://192.168.252.151:8080/api/login/auth/github/callback",
-    URL: "https://192.168.252.152:8080/"
+    URL: "https://192.168.252.151:8080/"
 }

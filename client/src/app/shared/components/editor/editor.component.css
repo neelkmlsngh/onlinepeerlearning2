@@ -1,14 +1,11 @@
 .CodeMirror-lines {
   all: revert;
 }
-
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
-
 
 /* style for setting width and height of the editor */
 
@@ -18,14 +15,10 @@ body {
   height: 100%;
 }
 
-
-
 /* reponame text color*/
-
 .repoName b {
   color: #A9A9A9;
 }
-
 
 /**
  * output section 
@@ -43,10 +36,7 @@ body {
   text-align: center;
 }
 
-
-
 /* Output Area */
-
 #output {
   top: 0;
   right: 0;
@@ -57,7 +47,6 @@ body {
   height: 555px;
 }
 
-
 /**
  * nav 
  */
@@ -66,6 +55,7 @@ body {
   background: #C5CAE9;
   height: 40px;
 }
+
 
 
 /**
@@ -86,6 +76,19 @@ body {
 }
 
 
+
+/**
+ * font color
+ */
+.font a {
+  color: #1995ad
+}
+/**
+ * hover on buttons
+ */
+.font a:hover {
+  color: black
+}
 /**
  * no padding
  */
@@ -94,7 +97,6 @@ body {
   padding: 0 !important;
   margin: 0 !important;
 }
-
 
 /**
  * padding
@@ -106,6 +108,8 @@ body {
 }
 
 
+
+
 /**
  * javascript
  */
@@ -114,6 +118,7 @@ body {
   height: 524px;
   font-size: 12px;
 }
+
 
 
 /**
@@ -193,6 +198,55 @@ margin on buttons
 
 
 
+
+/**
+ * code box
+ */
+.code_box {
+  margin-top: 2px;
+}
+/**
+ * download button
+ */
+.downloadbtn {
+  color: black;
+}
+/**
+ * repocrud styling
+ */
+#repoCrud {
+  margin-left: 380px;
+}
+/**
+ * font styling
+ */
+.font {
+  padding-right: 0px;
+}
+/**
+ * left button styling
+ */
+.leftbutton {
+  font-size: 0px;
+}
+/*
+margin on buttons
+ */
+.createbtn {
+  margin-left: 395px;
+}
+/*
+ *margin on buttons
+ */
+.updatebtn {
+  margin-left: 395px;
+}
+/*
+ *margin on buttons
+ */
+.deletebtn {
+  margin-left: 395px;
+}
 /**
  * text area width
  */

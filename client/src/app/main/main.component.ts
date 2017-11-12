@@ -200,9 +200,20 @@ generateToken(form){
       .subscribe(response => {})
   }
 
-  //method to enter new repository name
+//method to create new repository
 createNewRepo(form){
+  if(this.authenticationService.pacToken==null){
+    swal({
+   timer: 8500,
+   title: mainConfig.PACMSG,
+   text:  "",
+   type: 'error',
+   showConfirmButton: true,
+ })
+  }
+  else{
   this.createRepo(form.value.repositoryName,form.value.description);
+}
   form.reset();
 }
 
