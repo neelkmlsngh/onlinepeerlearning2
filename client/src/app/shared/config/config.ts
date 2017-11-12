@@ -44,7 +44,7 @@ export const config: any = {
     "DISLIKEURL": '/api/forums/dislike/',
   },
   peerserver: {
-    "host": "192.168.252.152",
+    "host": "192.168.252.160",
     "port": "8081",
     "path": "/peerjs"
   }

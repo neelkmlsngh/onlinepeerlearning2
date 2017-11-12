@@ -176,7 +176,7 @@ let apiRoutes: Routes = [{
     ModalModule.forRoot(),
     RouterModule.forRoot(apiRoutes, { useHash: true })
   ],
-  providers: [GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, CoderunnerService, ChatService, HttpService, SocketService, SnippetService,SpeechRecognitionService],
+  providers: [GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, CoderunnerService, ChatService, HttpService, SocketService, SnippetService,SpeechRecognitionService,AuthoriseGuard],
 
   bootstrap: [AppComponent]
 })

@@ -33,16 +33,10 @@ export class ForumService {
   }
   //method to serach 
   searchEntries(searchTerm: any) {
-    if (searchTerm != "") {
       var api = config.connect.apiURL + config.forumConnect.SEARCHAPIURL + searchTerm
       return this.http
         .get(api)
         .map(res => res.json());
-    } else {
-      return this.http
-        .get(config.connect.apiURL + config.forumConnect.APIURL)
-        .map(res => res.json());
-    }
   }
   /*getEmployeeByID method to fetch details by id used in supervisor component*/
   getPostById(id: string) {

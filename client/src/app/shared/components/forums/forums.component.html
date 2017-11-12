@@ -24,33 +24,35 @@
           <div class="col-sm-6  mt-4 askquestion">
             <a class="btn btn-sm postquestion text-white" href="" routerLink='add'>
                  <i class="fa fa-question-circle fa-lg text-white"></i>{{forumConfig.VIEWPOST.ASK_QUESTION}}</a>
+            <a id="viewQue" class="btn btn-sm postquestion text-white" (click)="viewPost()">
+              {{forumConfig.VIEWPOST.VIEW_QUESTION}}</a>     
           </div>
         </div>
         <hr>
         <!-- showing questions -->
         <div class="questionsumary">
           <div class="row" *ngFor="let result of data| paginate: { itemsPerPage:4, currentPage: p }">
-            <div class="statuscontainer col-sm-3">
+            <div class="statuscontainer col-sm-2">
               <div class="answeraccepted h5  border py-2 text-white mt-2">
                 <strong class="pl-4">{{result.answers.length}}</strong>
                 <br><small class="ans">{{forumConfig.VIEWPOST.ANSWERS}}</small>
               </div>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-10">
               <div class="questionTitle">
                 <a class="question mb-2" (click)="getPostDetail(result._id)">{{result.questionTitle}}</a>
               </div>
               <div [innerHtml]="result.problemDescription | truncate : 200" class="problemDescription">
               </div>
               <div *ngIf="result.tags.length !== 0 ">
-                <div class="text-white d-inline-block mt-3 mb-3" *ngFor="let res of result.tags">
+                <div class="text-white d-inline-block mt-1 mb-3" *ngFor="let res of result.tags">
                   <div class="tags d-inline border py-1 px-1">{{res.value}}</div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-5 postedDate small">
+                <div class="col-sm-8 postedDate small">
                   <div class="row">
-                    <div class="col-sm-9">
+                    <div class="col-sm-7">
                       <div class="row">
                         <div class="col-xs-6 pl-3">
                           <button class="btn btn-sm like text-black" (click)="like(result._id)">
@@ -62,13 +64,13 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-3 mt-2">
-                      {{forumConfig.VIEWPOST.ASKED}} {{result.date}}
+                    <div class="col-sm-5 mt-2 postedDate">
+                     <i class="fa fa-clock-o fa-lg text-black"></i> {{forumConfig.VIEWPOST.ASKED}} {{result.date}}
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-7 user mt-2">
-                  <span><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></span> posted by {{result.userName}}
+                <div class="col-sm-4 user mt-2">
+                  <span><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i></span> posted by {{result.userName}}
                 </div>
               </div>
             </div>
