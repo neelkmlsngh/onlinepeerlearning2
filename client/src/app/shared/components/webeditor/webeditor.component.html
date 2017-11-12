@@ -1,3 +1,4 @@
+<ngx-loading [show]="loading"></ngx-loading>
 <!-- <div class="container"> -->
 <div class="row ">
   <div class="col-md-7 padding">
@@ -48,12 +49,9 @@
                 &nbsp;
                 <button href="javascript:void(0);" class="btn btn-outline-warning align-middle btn-warning" type="button" (click)="downloadHtmlFile()" data-toggle="tooltip" data-placement="Top" title="Download"><i class="fa fa-download" aria-hidden="true"></i></button>
                 &nbsp;
-<<<<<<< HEAD
                 <button type="button" class="btn btn-outline-warning" href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
                 &nbsp;
                 <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn btn-outline-warning text-right" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="{{config.webEditor.SCREENSHARE}}" (click)="openModal(template)"> <i class="fa fa-desktop" aria-hidden="true"></i></button>
-=======
-                <button type="button" class="btn btn-outline-success" href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
                 <!--  button to create the file -->
                 <button class="btn btn-outline-primary">
                   <a href="javascript:void(0);"> 
@@ -165,7 +163,6 @@
                     </div>
                   </div>
                 </div>
->>>>>>> 05e0245082b3b8993d92aa10ec372edc51dbad56
                 <div id="myDiv"></div>
               </form>
             </nav>
@@ -188,10 +185,7 @@
                 &nbsp;
                 <button href="javascript:void(0);" class="btn btn-outline-warning align-middle btn-outlin-secondary" type="button" href="javascript:void(0);" (click)="downloadCssFile()" data-toggle="tooltip" data-placement="top" title="Download"><i class="fa fa-download" aria-hidden="true"></i></button>
                 &nbsp;
-<<<<<<< HEAD
                 <button type="button" class="btn btn-outline-warning" href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
-=======
-                <button type="button" class="btn btn-outline-success" href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
                 <!--  butons to create file on github -->
                 <button class="btn btn-outline-primary align-middle btn-outlin-secondary">
                   <a href="javascript:void(0);"> 
@@ -202,7 +196,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.CREATINGFILE}}</strong><b>{{reponame}}</b></h6>
-                        <button type="button" class="close" data-dismiss="modal" #createClose aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" #cssCreateClose aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -245,7 +239,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.UPDATINGFILE}}</strong><b>{{reponame}}</b></h6>
-                        <button type="button" class="close" data-dismiss="modal" #updateClose aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" #cssUpdateClose aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -273,13 +267,13 @@
                 <button class="btn btn-outline-primary">
                   <a href="javascript:void(0);">
                 <i class="fa fa-trash-o" aria-hidden="true" title="Delete File" data-toggle="modal" data-target="#cssDeleteModalWindow"></i></a></button>
-                modal window to delete the file
+                <!--modal window to delete the file -->
                 <div class="modal fade" id="cssDeleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.DELETINGFILE}}</strong><b>{{reponame}}</b></h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #deleteClose>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #cssDeleteClose>
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -302,8 +296,7 @@
                       </div>
                     </div>
                   </div>
-                </div> -->
->>>>>>> 05e0245082b3b8993d92aa10ec372edc51dbad56
+                </div>
                 <div id="myCssDiv"></div>
               </form>
             </nav>
@@ -317,19 +310,13 @@
           <section id="code_editors">
             <nav class="navbar navbar-light bg-dark">
               <form class="form-inline">
-<<<<<<< HEAD
                 <button href="javascript:void(0);" class="btn btn-outline-warning align-middle btn-outlin-secondary" type="button" href="javascript:void(0);" (click)="downloadJsFile()" data-toggle="tooltip" data-placement="top" title="Download"><i class="fa fa-download" aria-hidden="true"></i></button>
                 &nbsp;
                 <button type="button" class="btn btn-outline-warning " href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
-=======
-                <button class="btn btn-outline-primary" type="button" id="dropdownMenuButon2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title={{config.webEditor.ADD}}><i class="fa fa-code" aria-hidden="true"></i> </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                   <a class="dropdown-item" *ngFor="let data of javascript" (click)="insertAtJavascriptPos(data.code)">{{data.title}}</a>
                 </div>
-                &nbsp;
-                <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" href="javascript:void(0);" (click)="downloadJsFile()" data-toggle="tooltip" data-placement="top" title="Download"><i class="fa fa-download" aria-hidden="true"></i></button>
-                &nbsp;
-                <button type="button" class="btn btn-outline-success " href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
+                &nbsp; &nbsp;
                 <!--  butons to create file on github -->
                 <button class="btn btn-outline-primary">
                   <a href="javascript:void(0);"> 
@@ -340,7 +327,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.CREATINGFILE}}</strong><b>{{reponame}}</b></h6>
-                        <button type="button" class="close" data-dismiss="modal" #createClose aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" #jsCreateClose aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -383,7 +370,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.UPDATINGFILE}}</strong><b>{{reponame}}</b></h6>
-                        <button type="button" class="close" data-dismiss="modal" #updateClose aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" #jsUpdateClose aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -417,7 +404,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.DELETINGFILE}}</strong><b>{{reponame}}</b></h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #deleteClose>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #jsDeleteClose>
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -441,7 +428,6 @@
                     </div>
                   </div>
                 </div>
->>>>>>> 05e0245082b3b8993d92aa10ec372edc51dbad56
                 <div id="myJsDiv"></div>
               </form>
             </nav>

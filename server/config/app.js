@@ -11,5 +11,3 @@ module.exports = {
   CALLBACK_URL: "https://localhost:8080/api/login/auth/github/callback",
   URL: "https://localhost:4200/"
 }
-
-

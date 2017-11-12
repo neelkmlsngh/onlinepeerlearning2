@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild, OnInit, Input, NgZone, TemplateRef,ElementRef } from '@angular/core'
+import { Component, EventEmitter, Output, ViewChild, OnInit, Input, NgZone, TemplateRef, ElementRef } from '@angular/core'
 import { FormsModule } from '@angular/forms';
 import { config } from './../../config/editor.config';
 import { AceEditorModule } from 'ng2-ace-editor';
@@ -23,13 +23,20 @@ import 'ace-builds/src-min-noconflict/snippets/html';
 
 export class EditorComponent implements OnInit {
 
-  @ViewChild('txtclose') txtclose: ElementRef;
-  @ViewChild('updateclose') updateclose: ElementRef;
-  @ViewChild('deleteclose') deleteclose: ElementRef;
 
+  //to close modals on button click
+  @ViewChild('createClose') createClose: ElementRef;
+  @ViewChild('updateClose') updateClose: ElementRef;
+  @ViewChild('deleteclose') deleteClose: ElementRef;
+  /*=======
+    @ViewChild('txtclose') txtclose: ElementRef;
+    @ViewChild('updateclose') updateclose: ElementRef;
+    @ViewChild('deleteclose') deleteclose: ElementRef;
+  */
   @Output() repoNameForFileUpdate = new EventEmitter < any > ();
 
   @ViewChild('editor') editor;
+
 
   @Input() content: any = "";
   @Input() reponame: any;
@@ -55,7 +62,8 @@ export class EditorComponent implements OnInit {
   javascript: any;
   methodToExport: any;
   link: string = '';
-  showModalBox:boolean = false;
+  showModalBox: boolean = false;
+  loading: boolean;
 
   public modalRef: BsModalRef;
   basetree: any = {};
@@ -64,21 +72,21 @@ export class EditorComponent implements OnInit {
   updatefileobj: any = {};
   deletefileobj: any = {};
 
-  constructor(private snippet: SnippetService, private authenticationService: AuthenticationService,  private coderunner: CoderunnerService, private gitService: GitService,private zone: NgZone, private modalService: BsModalService) {
+  constructor(private snippet: SnippetService, private authenticationService: AuthenticationService, private coderunner: CoderunnerService, private gitService: GitService, private zone: NgZone, private modalService: BsModalService) {
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
   }
 
- public openModals(template: TemplateRef < any > ) {
-    if(this.showModalBox==false){
-    this.modalRef = this.modalService.show(template);
-  }
+  public openModals(template: TemplateRef < any > ) {
+    if (this.showModalBox == false) {
+      this.modalRef = this.modalService.show(template);
+    }
     this.showModal();
   }
 
   showModal() {
-   this.showModalBox = !this.showModalBox;
- }
+    this.showModalBox = !this.showModalBox;
+  }
   calledFromOutside(url: string) {
     this.zone.run(() => {
       this.link = url;
@@ -131,10 +139,11 @@ export class EditorComponent implements OnInit {
         timer: 2200,
         title: "You have not generated your token",
         text: "",
-        type: 'success',
+        type: 'error',
         showConfirmButton: false,
       })
     } else {
+      this.loading = true;
       this.fileName = fileName.value['fileName'];
       this.updateMessage = createCommitMessage.value['createMsg'];
       this.reponame = this.reponame;
@@ -176,9 +185,11 @@ export class EditorComponent implements OnInit {
                         .subscribe(repos => {})
                       //sweet alert on getting response
                       if (repos) {
-                        
+                        this.loading = false;
+
+
                         this.repoNameForFileUpdate.emit(this.reponame)
-                        
+
                         swal({
                           timer: 2200,
                           title: "file " + this.fileName + " created successfully!",
@@ -189,6 +200,7 @@ export class EditorComponent implements OnInit {
                       }
                       //sweet alert on getting error
                       else {
+                        this.loading = false;
                         swal({
                           timer: 2200,
                           title: "Error occured",
@@ -201,7 +213,9 @@ export class EditorComponent implements OnInit {
                 })
             })
         })
-      this.txtclose.nativeElement.click(); 
+
+      //to close modal on button click 
+      this.createClose.nativeElement.click();
       fileName.reset();
       createCommitMessage.reset();
     }
@@ -213,12 +227,12 @@ export class EditorComponent implements OnInit {
         timer: 2200,
         title: "You have not generated your token",
         text: "",
-        type: 'success',
+        type: 'error',
         showConfirmButton: false,
       })
     } else {
 
-      console.log(this.filenamed + "ewqwqewqewqe" + commitMessage)
+      this.loading = true;
       this.updateMsg = commitMessage.value['updateMsg'];
       //getting the file sha
       this.gitService.getsha(this.reponame, this.filenamed)
@@ -233,8 +247,10 @@ export class EditorComponent implements OnInit {
           //hitting the update file api to update the file contents
           this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
             .subscribe(repos => {
+              this.loading = false;
               //sweet alert on getting response
               if (repos) {
+                this.loading = false;
                 swal({
                   timer: 2200,
                   title: "file " + this.filenamed + " updated successfully!",
@@ -245,6 +261,7 @@ export class EditorComponent implements OnInit {
               }
               //sweet alert on getting error
               else {
+                this.loading = false;
                 swal({
                   timer: 2200,
                   title: "Error occured",
@@ -255,7 +272,9 @@ export class EditorComponent implements OnInit {
               }
             })
         })
-     this.updateclose.nativeElement.click();  
+
+      //to close modal on button click  
+      this.updateClose.nativeElement.click();
       commitMessage.reset();
     }
   }
@@ -266,10 +285,11 @@ export class EditorComponent implements OnInit {
         timer: 2200,
         title: "You have not generated your token",
         text: "",
-        type: 'success',
+        type: 'error',
         showConfirmButton: false,
       })
     } else {
+      this.loading = true;
       this.deleteMsg = commitMessage.value['deleteMsg'];
       //getting the file sha
       this.gitService.getsha(this.reponame, this.filenamed)
@@ -285,6 +305,7 @@ export class EditorComponent implements OnInit {
             .subscribe(repos => {
               //sweet alert on getting response
               if (repos) {
+                this.loading = false;
                 swal({
                   timer: 2200,
                   title: "file " + this.filenamed + " deleted successfully!",
@@ -293,6 +314,7 @@ export class EditorComponent implements OnInit {
                   showConfirmButton: false,
                 })
               } else {
+                this.loading = false;
                 //sweet alert on getting error
                 swal({
                   timer: 2200,
@@ -304,12 +326,13 @@ export class EditorComponent implements OnInit {
               }
             })
         })
-      this.deleteclose.nativeElement.click();  
+      //to close modal on button click  
+      this.deleteClose.nativeElement.click();
       commitMessage.reset();
     }
   }
-    //function to insert a snippet at cursor position
-    insertAtPos(data: any) {
+  //function to insert a snippet at cursor position
+  insertAtPos(data: any) {
     this.editor.getEditor().session.insert(this.editor.getEditor().getCursorPosition(), data)
 
   }

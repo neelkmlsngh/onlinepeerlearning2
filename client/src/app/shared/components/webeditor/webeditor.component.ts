@@ -11,32 +11,53 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { GitService } from '../../services/git.service';
 import { webEditorConfig } from '../../config/webEditor.config';
 import { config } from './../../config/editor.config';
+
 @Component({
   selector: 'app-webeditor',
   templateUrl: './webeditor.component.html',
   styleUrls: ['./webeditor.component.css']
 })
 export class WebeditorComponent implements OnInit {
-  constructor(private snippet: SnippetService, private authenticationService: AuthenticationService, private gitService: GitService, private zone: NgZone, private modalService: BsModalService) {
+
+  constructor(private snippet: SnippetService,private authenticationService: AuthenticationService,private gitService: GitService, private zone: NgZone, private modalService: BsModalService) {
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
   }
+
   config = webEditorConfig;
-  editorConfig = config;
+  editorConfig=config;
+
   @Input() content: any
   @Input() reponame: any;
   @Input() filenamed: any;
 
+  //for html
   @ViewChild('htmleditor') htmleditor;
   @ViewChild('csseditor') csseditor;
   @ViewChild('jseditor') jseditor;
+
+
   @ViewChild('createClose') createClose: ElementRef;
   @ViewChild('updateClose') updateClose: ElementRef;
   @ViewChild('deleteClose') deleteClose: ElementRef;
 
+
+
+  //for css
+  @ViewChild('cssCreateClose') cssCreateClose: ElementRef;
+  @ViewChild('cssUpdateClose') cssUpdateClose: ElementRef;
+  @ViewChild('cssDeleteClose') cssDeleteClose: ElementRef;
+
+
+  //for java script
+  @ViewChild('jsCreateClose') jsCreateClose: ElementRef;
+  @ViewChild('jsUpdateClose') jsUpdateClose: ElementRef;
+  @ViewChild('jsDeleteClose') jsDeleteClose: ElementRef;
+
+
   latestcommit: any;
   treecommit: any;
-  filesha: any;
+   filesha: any;
   newtree: any;
   newcommit: any;
   basetree: any = {};
@@ -49,7 +70,9 @@ export class WebeditorComponent implements OnInit {
   fileName: string
   updatefileobj: any = {};
   deletefileobj: any = {};
-  htmlValue: any = this.config.webEditor.HTMLTEMP;
+
+
+  htmlValue: any  = this.config.webEditor.HTMLTEMP;
   cssValue: any = this.config.webEditor.CSSTEMP;
   jsValue: any = this.config.webEditor.JSSTEMP;
   code: any;
@@ -66,8 +89,10 @@ export class WebeditorComponent implements OnInit {
   windowRef: any;
   methodToExport: any;
   link: string = '';
-  showModalBox: boolean = false;
+  showModalBox:boolean = false;
+  loading:boolean;
   public modalRef: BsModalRef;
+
   /*variable for snippet used in css*/
   comments: any;
   tabels: string;
@@ -75,51 +100,59 @@ export class WebeditorComponent implements OnInit {
   forms: any;
   includeJs: any;
   includeCss: any;
+
   /*variable for snippet used in css*/
   commentsCss: any;
   elementSelector: any;
   classSelector: any;
   idSelector: any;
   mediaQueries: any;
+
   public openModal(template: TemplateRef < any > ) {
-    if (this.showModalBox == false) {
-      this.modalRef = this.modalService.show(template);
-    }
+    if(this.showModalBox==false){
+    this.modalRef = this.modalService.show(template);
+  }
     this.showModal();
   }
+
   showModal() {
-    this.showModalBox = !this.showModalBox;
-  }
+   this.showModalBox = !this.showModalBox;
+ }
   calledFromOutside(url: string) {
     this.zone.run(() => {
       this.link = url;
     });
   }
+
   ngOnInit() {
-    this.content = this.htmlValue;
+    this.content=this.htmlValue;
     this.onChange(this.code)
+
     this.snippet.getSnippet()
       .subscribe(res => {
+
         this.html = res.filter(ele => ele.language === 'Html');
         this.css = res.filter(ele => ele.language === 'Css');
         this.javascript = res.filter(ele => ele.language === 'Javascript');
       })
   }
-  //method to create a file on git
+
+    //method to create a file on git
   createFile(fileName, createCommitMessage) {
     if (this.authenticationService.pacToken == null) {
       swal({
-        timer: 2200,
+        timer: 7500,
         title: "You have not generated your token",
         text: "",
-        type: 'success',
+        type: 'error',
         showConfirmButton: false,
       })
     } else {
+      this.loading = true;
       this.fileName = fileName.value['fileName'];
       this.updateMessage = createCommitMessage.value['createMsg'];
       this.reponame = this.reponame;
-
+      
       //hitting the create file api to get sha of the latest commit
       this.gitService.createFile(this.reponame)
         .subscribe(repos => {
@@ -158,6 +191,7 @@ export class WebeditorComponent implements OnInit {
                         .subscribe(repos => {})
                       //sweet alert on getting response
                       if (repos) {
+                        this.loading = false;
                         swal({
                           timer: 2200,
                           title: "file " + this.fileName + " created successfully!",
@@ -168,6 +202,7 @@ export class WebeditorComponent implements OnInit {
                       }
                       //sweet alert on getting error
                       else {
+                        this.loading = false;
                         swal({
                           timer: 2200,
                           title: "Error occured",
@@ -180,23 +215,30 @@ export class WebeditorComponent implements OnInit {
                 })
             })
         })
-      this.createClose.nativeElement.click();
+
+      //to close modal on button click  
+      this.createClose.nativeElement.click();  
+      this.cssCreateClose.nativeElement.click(); 
+      this.jsCreateClose.nativeElement.click(); 
       fileName.reset();
       createCommitMessage.reset();
     }
   }
+
   //method to get the file and update the content on git
   updateFile(commitMessage) {
     if (this.authenticationService.pacToken == null) {
       swal({
-        timer: 2200,
+        timer: 7500,
         title: "You have not generated your token",
         text: "",
-        type: 'success',
+        type: 'error',
         showConfirmButton: false,
       })
     } else {
+      this.loading = true;
       this.updateMsg = commitMessage.value['updateMsg'];
+
       //getting the file sha
       this.gitService.getsha(this.reponame, this.filenamed)
         .subscribe(repos => {
@@ -212,6 +254,7 @@ export class WebeditorComponent implements OnInit {
             .subscribe(repos => {
               //sweet alert on getting response
               if (repos) {
+                this.loading = false;
                 swal({
                   timer: 2200,
                   title: "file " + this.filenamed + " updated successfully!",
@@ -222,6 +265,7 @@ export class WebeditorComponent implements OnInit {
               }
               //sweet alert on getting error
               else {
+                this.loading = false;
                 swal({
                   timer: 2200,
                   title: "Error occured",
@@ -232,21 +276,27 @@ export class WebeditorComponent implements OnInit {
               }
             })
         })
-      this.updateClose.nativeElement.click();
+      //to close modal on button click  
+      this.updateClose.nativeElement.click();   
+      this.cssUpdateClose.nativeElement.click();   
+      this.jsUpdateClose.nativeElement.click();   
       commitMessage.reset();
     }
   }
+
+
   //method to get the file and delete the content on git
   deleteFile(commitMessage) {
     if (this.authenticationService.pacToken == null) {
       swal({
-        timer: 2200,
+        timer: 7500,
         title: "You have not generated your token",
         text: "",
-        type: 'success',
+        type: 'error',
         showConfirmButton: false,
       })
     } else {
+      this.loading = true;
       this.deleteMsg = commitMessage.value['deleteMsg'];
       //getting the file sha
       this.gitService.getsha(this.reponame, this.filenamed)
@@ -262,6 +312,7 @@ export class WebeditorComponent implements OnInit {
             .subscribe(repos => {
               //sweet alert on getting response
               if (repos) {
+                this.loading = false;
                 swal({
                   timer: 2200,
                   title: "file " + this.filenamed + " deleted successfully!",
@@ -270,6 +321,7 @@ export class WebeditorComponent implements OnInit {
                   showConfirmButton: false,
                 })
               } else {
+                this.loading = false;
                 //sweet alert on getting error
                 swal({
                   timer: 2200,
@@ -281,22 +333,29 @@ export class WebeditorComponent implements OnInit {
               }
             })
         })
+
+      //to close modal on button click  
       this.deleteClose.nativeElement.click();
+      this.cssUpdateClose.nativeElement.click();
+      this.jsUpdateClose.nativeElement.click();
       commitMessage.reset();
     }
   }
+  
 
-  /*snippet show in html editor*/
+/*snippet show in html editor*/
   showHtml(code) {
     this.content += " " + code;
   }
-  /*snippet show in css editor*/
-  showCss(code) {
-    this.cssValue += " " + code;
+
+/*snippet show in css editor*/
+ showCss(code) {
+     this.cssValue+= " " + code;
   }
+
   /*Giving the basic syntax of an HTMl page on Iframe*/
   base_tpl: string = this.config.webEditor.OUTPUTTEMP;
-
+  
   prepareSource() {
     let src = '';
     let css = '';
@@ -310,20 +369,24 @@ export class WebeditorComponent implements OnInit {
     src = src.replace('</script>', this.jsValue + '</script>');
     return src;
   };
+
   /*To return value in iframe*/
   render() {
     let source = this.prepareSource();
     let iframe = document.querySelector('#output iframe')
-
+    
     let iframe_doc = iframe['contentDocument'];
+
     iframe_doc.open();
     iframe_doc.write(source);
     iframe_doc.close();
   };
+
   /*Method to pass the value directly into iframe*/
   onChange(code) {
     this.render();
   }
+
   cm_opt: any = {
     mode: 'text/html',
     gutter: true,
@@ -333,9 +396,11 @@ export class WebeditorComponent implements OnInit {
   comment() {
     this.content += " " + this.comments;
   }
+
   table() {
     this.content += " " + this.tabels;
   }
+
   unodered() {
     this.content += " " + this.unordered;
   }
@@ -349,25 +414,32 @@ export class WebeditorComponent implements OnInit {
     this.content += " " + this.includeCss;
   }
   /*HTML snippet methods ends*/
+
   /*css snippet methods start*/
   commentCss() {
     this.cssValue += " " + this.commentsCss;
   }
+
   elementsSelector() {
     this.cssValue += " " + this.elementSelector;
   }
+
   class() {
     this.cssValue += " " + this.classSelector;
   }
+
   id() {
     this.cssValue += " " + this.idSelector;
   }
+
   mediaQuery() {
     this.cssValue += " " + this.mediaQueries;
   }
   /*css snippet methods ends*/
+
   /*download whole content in single file*/
   downloadFile() {
+
     var downloadLink = document.createElement("a");
     var blob = new Blob([this.textcontent]);
     var url = URL.createObjectURL(blob);
@@ -379,9 +451,11 @@ export class WebeditorComponent implements OnInit {
     parent.removeChild(downloadLink);
     return false;
   }
+
   /*download html file*/
   downloadHtmlFile() {
     var downloadLink = document.createElement("a");
+
     var blob = new Blob([this.content]);
     this.htmlblob = blob;
     var url = URL.createObjectURL(blob);
@@ -393,9 +467,11 @@ export class WebeditorComponent implements OnInit {
     parent.removeChild(downloadLink);
     return false;
   }
+
   /*download css file*/
   downloadCssFile() {
     var downloadLink = document.createElement("a");
+
     var blob = new Blob([this.cssValue]);
     var url = URL.createObjectURL(blob);
     downloadLink.href = url;
@@ -407,9 +483,11 @@ export class WebeditorComponent implements OnInit {
     parent.removeChild(downloadLink);
     return false;
   }
+
   /*download Javascript file*/
   downloadJsFile() {
     var downloadLink = document.createElement("a");
+
     var blob = new Blob([this.jsValue]);
     var url = URL.createObjectURL(blob);
     downloadLink.href = url;
@@ -420,6 +498,7 @@ export class WebeditorComponent implements OnInit {
     parent.removeChild(downloadLink);
     return false;
   }
+
   /*download Zip file*/
   downloadZip() {
     var zip = new JSZip();
@@ -429,6 +508,7 @@ export class WebeditorComponent implements OnInit {
     zip.generateAsync({ type: "blob" })
       .then(function(content) {
         var downloadLink = document.createElement("a");
+
         var blob = new Blob([content]);
         var url = URL.createObjectURL(blob);
         downloadLink.href = url;
@@ -456,5 +536,6 @@ export class WebeditorComponent implements OnInit {
   //Function to insert a javascript snippet at cursor position
   insertAtJavascriptPos(data: any) {
     this.jseditor.getEditor().session.insert(this.jseditor.getEditor().getCursorPosition(), data)
+
   }
 }

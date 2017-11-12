@@ -14,5 +14,3 @@ editor: {
     DELETEBTN: "Delete"
   }
 };
-
-

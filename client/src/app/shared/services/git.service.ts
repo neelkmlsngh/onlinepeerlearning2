@@ -76,7 +76,8 @@ export class GitService {
   //method to create file on github
   createFile(text) {
     if (this.userName) {
-      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master', this.authenticationService.addPersonalAccessToken())
+      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master' + '?client_id=' + config.connect.CLIENT_ID +
+          '&client_secret=' + config.connect.CLIENT_SECRET, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
   }
@@ -86,7 +87,8 @@ export class GitService {
 
   commitfile(text, sha) {
     if (this.userName) {
-      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits/' + sha, this.authenticationService.addPersonalAccessToken())
+      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits/' + sha + '?client_id=' + config.connect.CLIENT_ID +
+          '&client_secret=' + config.connect.CLIENT_SECRET, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
   }
@@ -95,7 +97,8 @@ export class GitService {
 
   treecommit(text, basetree) {
     if (this.userName) {
-      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/trees', basetree, this.authenticationService.addPersonalAccessToken())
+      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/trees' + '?client_id=' + config.connect.CLIENT_ID +
+          '&client_secret=' + config.connect.CLIENT_SECRET, basetree, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
   }
@@ -104,7 +107,8 @@ export class GitService {
 
   newcommit(text, newcommit) {
     if (this.userName) {
-      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits', newcommit, this.authenticationService.addPersonalAccessToken())
+      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits' + '?client_id=' + config.connect.CLIENT_ID +
+          '&client_secret=' + config.connect.CLIENT_SECRET, newcommit, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
   }
@@ -112,7 +116,8 @@ export class GitService {
   //method to create a fiel on github 
   lastcommit(text, lastcommit) {
     if (this.userName) {
-      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master', lastcommit, this.authenticationService.addPersonalAccessToken())
+      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master' + '?client_id=' + config.connect.CLIENT_ID +
+          '&client_secret=' + config.connect.CLIENT_SECRET, lastcommit, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
   }
