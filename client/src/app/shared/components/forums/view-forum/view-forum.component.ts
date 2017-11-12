@@ -7,6 +7,7 @@ import swal from 'sweetalert2';
 import 'rxjs/add/operator/switchMap';
 //Custom Files Imports
 import { ForumService } from '../../../services/forum.service';
+import { AuthoriseGuard  } from '../../../services/authorise.guard';
 import { forumConfig } from './../../../config/forum.config';
 import * as $ from 'jquery'
 
@@ -16,7 +17,7 @@ import * as $ from 'jquery'
   styleUrls: ['./view-forum.component.css']
 })
 export class ViewForumComponent implements OnInit {
-  constructor(private forum: ForumService, private router: ActivatedRoute, private route: Router) {}
+  constructor(private forum: ForumService, private authorise:AuthoriseGuard, private router: ActivatedRoute, private route: Router) {}
   answerText:string;
   addSnippet:any;
   name: string;
@@ -34,11 +35,11 @@ export class ViewForumComponent implements OnInit {
   date:any;
   forumConfig=forumConfig;
 
+   public check: boolean;
+
   ngOnInit() {
    this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
    this.userName=this.currentUser.userName;
-   // console.log(this.userName);
-
     this.date = new Date();
     let day = this.date.getDate();
     let month = this.date.getMonth() + 1;
@@ -47,8 +48,13 @@ export class ViewForumComponent implements OnInit {
 
 // getPostById method get the post by searching its id
     this.viewQuestionDetail();
+
+    this.check=this.authorise.canActivate();
+    console.log(this.check);
   }
 
+ 
+  
   //view question detail
   viewQuestionDetail(){
         this.router.paramMap
@@ -97,7 +103,6 @@ export class ViewForumComponent implements OnInit {
       CKEDITOR.instances.answerText.setData("");
       CKEDITOR.instances.addSnippet.setData("");
       })
-
   }
 
 }
