@@ -29,20 +29,6 @@
               </div>
             </div>
             <div class="card">
-              <div class="card-header accordianClass" role="tab" id="headingTwo">
-                <h5 class="mb-0 accordionHeading">
-									<a class="collapsed yourRepo" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-										Your Repositories
-									</a>
-								</h5>
-              </div>
-              <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body accordionBody">
-                  <app-repo-sidebar [githubUser]="githubUser" [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
-                </div>
-              </div>
-            </div>
-            <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingThree">
                 <h5 class="mb-0 accordionHeading">
 				<a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -116,6 +102,20 @@
                     <br>
                     <button class="btn btn-warning btn-lg btn-block formText" [disabled]="!tokenForm.valid">Ok</button>
                   </form>
+                </div>
+              </div>
+            </div>
+                        <div class="card">
+              <div class="card-header accordianClass" role="tab" id="headingTwo">
+                <h5 class="mb-0 accordionHeading">
+                  <a class="collapsed yourRepo" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Your Repositories
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body accordionBody">
+                  <app-repo-sidebar [githubUser]="githubUser" [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
                 </div>
               </div>
             </div>

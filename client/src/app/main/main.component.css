@@ -48,7 +48,8 @@ select {
   text-align:center;
   background-color: #C5CAE9;
   color: black;
-     font-family:  'Open Sans', sans-serif;
+  font-family:  'Open Sans', sans-serif;
+  font-size: 12px;
 }
 
 option{
@@ -85,6 +86,9 @@ h5 {
   #accordion{
     margin-bottom: 10px;
   }
+  .bg{
+    margin-top: -5px;
+  }
 }
 
 @media (min-width: 321px) and (max-width: 375px) {
@@ -94,6 +98,9 @@ h5 {
     #accordion{
     margin-bottom: 10px;
   }
+    .bg{
+    margin-top: -5px;
+  }
 }
 
 @media (min-width: 376px) and (max-width: 425px) {
@@ -102,6 +109,9 @@ h5 {
   }
     #accordion{
     margin-bottom: 10px;
+  }
+    .bg{
+    margin-top: -5px;
   }
 }
 
@@ -130,7 +140,9 @@ h5 {
 .formText, input, textarea { 
   font-size: 8px;
 }
-
+.pt-3, .py-3 {
+    padding-top: 0.5rem!important;
+}
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
