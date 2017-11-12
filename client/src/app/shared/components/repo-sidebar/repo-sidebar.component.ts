@@ -86,82 +86,6 @@ export class RepoSidebarComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  /*calling method to search repositery*/
-  // reposearch() {
-  //   this.reponamed = this.selectedValue;
-  //   this.gitService.getTree(this.selectedValue)
-  //     .subscribe(data => {
-  //       this.isTree = true;
-  //       this.data = data;
-  //       this.repoName.emit(this.reponamed);
-  //     }, err => {
-  //       this.isTree = false;
-  //       if (err === 404)
-  //         this.emptyRepo = config.repoSidebar.EMPTY_REPO;
-  //     })
-  // }
-
-  // showFile(reponame, filename,path) {
-  //     this.extension = filename.split('.').pop();
-  //     this.folder = filename.split('.');
-  //     if (this.folder.length > 1) {
-  //       if (this.extension !== "js" && this.extension !== "html" && this.extension !== "css") {
-  //         alert(config.repoSidebar.NO_EXT)
-  //      }
-
-  //   if (this.mode === "javascript" && this.extension !== "js" && this.extension !=="md" && this.extension !=="json" && this.extension !=="gitignore") {
-  //         this.confirm = confirm(config.repoSidebar.HTML_MODE)
-  //         if (this.confirm === true) {
-  //           this.mode = "html"
-  //           this.editorMode.emit(this.mode);
-  //         }
-  //       }
-
-  //    else if (this.mode === "javascript" && this.extension == "js") {
-  //         this.confirm = confirm(config.repoSidebar.ASK_MODE)
-  //         if (this.confirm === true) {
-  //           this.mode = "javascript"
-  //           this.editorMode.emit(this.mode);
-  //         }
-  //         else{
-  //           this.mode = "html"
-  //           this.editorMode.emit(this.mode);
-  //         }
-
-  //    } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css" && this.extension !=="md" && this.extension !=="json" && this.extension !=="gitignore") {
-  //         this.confirm = confirm(config.repoSidebar.JAVASCRIPT_MODE)
-  //         if (this.confirm === true) {
-  //           this.mode = "javascript"
-  //           this.editorMode.emit(this.mode);
-  //         }
-  //       }
-  //     }
-  //     this.reponamed = this.selectedValue;
-  //     this.gitService.openFolder(reponame, path)// change file name to path 
-  //       .subscribe(
-  //         data => {
-  //           this.data = data
-  //           this.url = this.url + filename + "/"
-  //         }, err => {
-  //           this.show(reponame, this.url + filename)
-  //           this.url = "";
-  //         })
-  //   }
-
-  //method used to show content of file present in repository
-  // show(reponame, filename) {
-  //   this.reponamed = reponame;
-  //   this.filenamed = filename;
-  //   this.gitService.getFile(reponame, filename)
-  //     .subscribe(data => {
-  //       this.fileData = data;
-  //       this.text = this.fileData._body;
-  //       this.content.emit(this.text);
-  //       this.repoName.emit(this.reponamed);
-  //       this.fileName.emit(this.filenamed);
-  //     })
-  // }
-
   getDirectoryContent() {
     this.reponamed = this.selectedValue;
     this.gitService.getFolderContents(this.reponamed)
@@ -212,9 +136,6 @@ export class RepoSidebarComponent implements OnInit {
 
     this.filename = $event.target.dataset.filename;
     let path = $event.target.dataset.path;
-
-
-    // this.showFile(this.reponamed,fileName,path)
 
     this.gitService.getFileData(path, this.reponamed).subscribe(data => {
 

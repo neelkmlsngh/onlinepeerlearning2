@@ -116,7 +116,7 @@ const saveLike = function(getValue, updateValue) {
                             'userId': updateValue.userId
                         }
                     }
-                }, { upsert: true }, (err, data) => {
+                }, { 'new': true }, (err, data) => {
                     if (err) {
                         logger.error(logConfig.INTERNAL_ERROR + err);
                         reject(err);
@@ -131,7 +131,7 @@ const saveLike = function(getValue, updateValue) {
                                 $push: {
                                     likes: { 'userId': updateValue.userId }
                                 }
-                            }, { upsert: true }, (err, data) => {
+                            }, { 'new': true }, (err, data) => {
                                 if (err) {
                                     logger.error(logConfig.INTERNAL_ERROR + err);
                                     reject(err);
@@ -146,7 +146,7 @@ const saveLike = function(getValue, updateValue) {
                                             $pull: {
                                                 dislikes: { 'userId': updateValue.userId }
                                             }
-                                        }, { upsert: true }, (err, data) => {
+                                        }, { 'new': true }, (err, data) => {
                                             if (err) {
                                                 logger.error(logConfig.INTERNAL_ERROR + err);
                                                 reject(err);

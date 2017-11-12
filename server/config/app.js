@@ -1,4 +1,5 @@
 module.exports = {
+
     APPNAME: 'Onlinepeerlearning',
     SECRET: 'secretkey',
     EXPIRETIME: 86400,

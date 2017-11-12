@@ -1,5 +1,5 @@
   .answeraccepted {
-    width: 86px;
+    width: 79px;
     background-color: #3F51B5;
   }
 
@@ -14,6 +14,10 @@
 
   .tags {
     background-color: #455A64;
+    font-size: 12px;
+  }
+  .postedDate{
+    color: #757575;
   }
 
   .postquestion {
@@ -26,6 +30,7 @@
 
   .user {
     color: #616161;
+    font-size: 13px;
   }
 
   .views {
@@ -37,17 +42,23 @@
     color: white;
   }
 
-  .likes {
+  .like{
     background-color: #BDBDBD;
+    font-size: 12px;
   }
 
-  .dislikes {
+  .dislike {
     background-color: #BDBDBD;
+    font-size: 12px;
   }
 
   .ans {
     padding-left: 11px;
   }
+   .answer {
+       font-size: 15px;
+    color: #757575;
+    }
 
   .navbar {
     background-color: #00695C;
@@ -99,7 +110,7 @@
       font-size: 12px;
     }
     .answer {
-      font-size: 13px;
+      font-size: 12px;
     }
     .h5 {
       font-size: 18px;
@@ -128,7 +139,7 @@
       font-size: 17px;
     }
     .answer {
-      font-size: 14px;
+      font-size: 13px;
     }
     .problemDescription {
       font-size: 13px;
@@ -149,7 +160,7 @@
       font-size: 14px;
     }
     .answer {
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .h5 {
@@ -182,7 +193,7 @@
       font-size: 15px;
     }
     .answer {
-      font-size: 17px;
+      font-size: 15px;
     }
     .h5 {
       font-size: 21px;
