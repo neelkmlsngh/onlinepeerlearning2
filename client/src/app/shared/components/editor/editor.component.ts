@@ -33,6 +33,8 @@ export class EditorComponent implements OnInit {
     @ViewChild('updateclose') updateclose: ElementRef;
     @ViewChild('deleteclose') deleteclose: ElementRef;
   */
+
+  //emitting reponame for updating file list
   @Output() repoNameForFileUpdate = new EventEmitter < any > ();
 
   @ViewChild('editor') editor;
@@ -188,7 +190,7 @@ export class EditorComponent implements OnInit {
                         this.loading = false;
 
 
-                        this.repoNameForFileUpdate.emit(this.reponame)
+                        this.repoNameForFileUpdate.emit(this.reponame)//for upadtion of file-list  when new file created
 
                         swal({
                           timer: 2200,

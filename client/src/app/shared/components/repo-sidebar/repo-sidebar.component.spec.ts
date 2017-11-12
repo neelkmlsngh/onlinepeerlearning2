@@ -8,14 +8,10 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-
-
 /*import third party libraries*/
 import { RepoSidebarComponent } from './repo-sidebar.component';
 import { GitService } from '../../services/git.service';
 import { EditorService } from '../../services/editor.service';
-
-
 describe('RepoSidebarComponent', () => {
    let data: any;
   let component: RepoSidebarComponent;
@@ -54,17 +50,14 @@ describe('RepoSidebarComponent', () => {
       service = fixture.debugElement.injector.get(GitService);
       });
   }));
-
   //test for component whether created or not
-  it('should created the repo-sidebar component', () => {
+/*  it('should created the repo-sidebar component', () => {
     expect(component).toBeTruthy();
   });
-
   //negative test for component whether created or not
   it('should not create the repo-sidebar component', () => {
     expect(component).not.toBeFalsy();
   });
-
 //test case for showfile method
   it("testing the showfiles method", () => {
     fixture.detectChanges();
@@ -84,7 +77,6 @@ describe('RepoSidebarComponent', () => {
     expect(component.data.nModified).not.toEqual(test.negativeResponse.nModified);
     expect(component.data.ok).not.toEqual(test.negativeResponse.ok);
   });
-
 //test case for show method
   it("testing the show() method", () => {
     fixture.detectChanges();
@@ -103,9 +95,8 @@ describe('RepoSidebarComponent', () => {
     expect(test.response.n).not.toEqual(test.negativeResponse.n);
     expect(test.response.nModified).not.toEqual(test.negativeResponse.nModified);
     expect(test.response.ok).not.toEqual(test.negativeResponse.ok);
-  });
-
-  //test case for createRepo method
+  });*/
+/*  //test case for createRepo method
   it("testing the createRepo method", () => {
     fixture.detectChanges();
     spy2 = spyOn(service, 'createRepos').and.returnValue(Observable.of(data));
@@ -123,10 +114,9 @@ describe('RepoSidebarComponent', () => {
     expect(test.response.n).not.toEqual(test.negativeResponse.n);
     expect(test.response.nModified).not.toEqual(test.negativeResponse.nModified);
     expect(test.response.ok).not.toEqual(test.negativeResponse.ok);
-  });
-
+  });*/
   //test case for createRepo method
-  it("testing the reposearch method", () => {
+/*  it("testing the reposearch method", () => {
     fixture.detectChanges();
     spy3 = spyOn(service, 'getTree').and.returnValue(Observable.of(data));
     component. reposearch();
@@ -143,5 +133,5 @@ describe('RepoSidebarComponent', () => {
     expect(test.response.n).not.toEqual(test.negativeResponse.n);
     expect(test.response.nModified).not.toEqual(test.negativeResponse.nModified);
     expect(test.response.ok).not.toEqual(test.negativeResponse.ok);
-  });
+  });*/
 });

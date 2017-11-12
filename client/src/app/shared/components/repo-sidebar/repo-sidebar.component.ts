@@ -22,6 +22,7 @@ export class RepoSidebarComponent implements OnInit {
 
   @Input() mode: String;
   @Input() githubUser: any;
+
   @Input() repoNameForFileUpdate: string;
 
   config = config;
@@ -60,17 +61,9 @@ export class RepoSidebarComponent implements OnInit {
     private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
+    
     console.log("===========++++++++++++++++++++++" + this.repoNameForFileUpdate)
-    this.gitService.getTree(this.repoNameForFileUpdate)
-      .subscribe(data => {
-        this.isTree = true;
-        this.data = data;
-        this.repoName.emit(this.repoNameForFileUpdate);
-      }, err => {
-        this.isTree = false;
-        if (err === 404)
-          this.emptyRepo = config.repoSidebar.EMPTY_REPO;
-      })
+    
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
     this.authenticationService.getPersonalAccessToken(this.currentUser.userId)
       .subscribe((res) => {
