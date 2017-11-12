@@ -24,7 +24,7 @@ export const config: any = {
     vmURL : "https://localhost:3030",
     CALLBACK_URL:"https://localhost:8080/api/login/auth/github",
     CLIENT_ID : '96cb5f2d1d9fdce76884',
-    CLIENT_SECRET : '41aab272f81b7a881635739e1c0d27335b753d00'4c
+    CLIENT_SECRET : '41aab272f81b7a881635739e1c0d27335b753d00'
   },
 
   giturls: {

@@ -53,9 +53,8 @@
                 &nbsp;
                 <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn btn-outline-warning text-right" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="{{config.webEditor.SCREENSHARE}}" (click)="openModal(template)"> <i class="fa fa-desktop" aria-hidden="true"></i></button>
                 <!--  button to create the file -->
-                <button class="btn btn-outline-primary">
-                  <a href="javascript:void(0);"> 
-                  <i class="fa fa-plus-square-o" aria-hidden="true" title="Create new file" data-toggle="modal" data-target="#HTMLCeateModalWindow"></i></a></button>
+                <button class="btn btn-outline-warning" href="javascript:void(0);">
+                  <i class="fa fa-plus-square-o" aria-hidden="true" title="Create new file" data-toggle="modal" data-target="#HTMLCeateModalWindow"></i></button>
                 <!-- modal window to create the file -->
                 <div class="modal fade" id="HTMLCeateModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -89,16 +88,15 @@
                           <div>
                             <h6>{{editorConfig.editor.CREATE}}</h6>
                           </div>
-                          <button class="btn btn-primary createbtn" [disabled]="!createForm.valid">{{editorConfig.editor.CREATEBTN}}</button>
+                          <button class="btn btn-outline-warning createbtn" [disabled]="!createForm.valid">{{editorConfig.editor.CREATEBTN}}</button>
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
                 <!--  button to update the file -->
-                <button class="btn btn-outline-primary">
-                  <a href="javascript:void(0);">
-                  <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update File" data-toggle="modal" data-target="#updatedModalWindow"></i></a></button>
+                <button class="btn btn-outline-warning" href="javascript:void(0);">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update File" data-toggle="modal" data-target="#updatedModalWindow"></i></button>
                 <!-- modal window to update the file -->
                 <div class="modal fade" id="updatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -123,16 +121,15 @@
                           <div>
                             <h6>{{editorConfig.editor.UPDATE}}</h6>
                           </div>
-                          <button class="btn btn-primary updatebtn" [disabled]="!updateForm.valid">{{editorConfig.editor.UPDATEBTN}}</button>
+                          <button class="btn btn-outline-warning updatebtn" [disabled]="!updateForm.valid">{{editorConfig.editor.UPDATEBTN}}</button>
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
                 <!--  button to delete the file -->
-                <button class="btn btn-outline-primary">
-                  <a href="javascript:void(0);">
-                  <i class="fa fa-trash-o" aria-hidden="true" title="Delete File" data-toggle="modal" data-target="#deleteModalWindow"></i></a></button>
+                <button class="btn btn-outline-warning" href="javascript:void(0);">
+                  <i class="fa fa-trash-o" aria-hidden="true" title="Delete File" data-toggle="modal" data-target="#deleteModalWindow"></i></button>
                 <!-- modal window to delete the file -->
                 <div class="modal fade" id="deleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -157,7 +154,7 @@
                           <div>
                             <h6>{{editorConfig.editor.DELETE}}</h6>
                           </div>
-                          <button class="btn btn-primary deletebtn" [disabled]="!deleteForm.valid">Delete</button>
+                          <button class="btn btn-outline-warning deletebtn" [disabled]="!deleteForm.valid">Delete</button>
                         </form>
                       </div>
                     </div>
@@ -187,7 +184,7 @@
                 &nbsp;
                 <button type="button" class="btn btn-outline-warning" href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
                 <!--  butons to create file on github -->
-                <button class="btn btn-outline-primary align-middle btn-outlin-secondary">
+                <button class="btn btn-outline-warning align-middle btn-outlin-secondary">
                   <a href="javascript:void(0);"> 
                  <i class="fa fa-plus-square-o" aria-hidden="true" title="Create new file" data-toggle="modal" data-target="#cssCreateModalWindow"></i></a></button>
                 <!-- modal window to create the file -->
@@ -223,14 +220,14 @@
                           <div>
                             <h6>{{editorConfig.editor.CREATE}}</h6>
                           </div>
-                          <button class="btn btn-primary createbtn" [disabled]="!cssCreateForm.valid">{{editorConfig.editor.CREATEBTN}}</button>
+                          <button class="btn btn-outline-warning createbtn" [disabled]="!cssCreateForm.valid">{{editorConfig.editor.CREATEBTN}}</button>
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
                 <!-- button to update the file -->
-                <button class="btn btn-outline-primary">
+                <button class="btn btn-outline-warning">
                   <a href="javascript:void(0);">
                 <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update File" data-toggle="modal" data-target="#cssUpdatedModalWindow"></i></a></button>
                 <!--  modal window to update the file -->
@@ -257,14 +254,14 @@
                           <div>
                             <h6>{{editorConfig.editor.UPDATE}}</h6>
                           </div>
-                          <button class="btn btn-primary updatebtn" [disabled]="!cssUpdateForm.valid">{{editorConfig.editor.UPDATEBTN}}</button>
+                          <button class="btn btn-outline-warning updatebtn" [disabled]="!cssUpdateForm.valid">{{editorConfig.editor.UPDATEBTN}}</button>
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
                 <!-- button to delete the file -->
-                <button class="btn btn-outline-primary">
+                <button class="btn btn-outline-warning">
                   <a href="javascript:void(0);">
                 <i class="fa fa-trash-o" aria-hidden="true" title="Delete File" data-toggle="modal" data-target="#cssDeleteModalWindow"></i></a></button>
                 <!--modal window to delete the file -->
@@ -291,7 +288,7 @@
                           <div>
                             <h6>{{editorConfig.editor.DELETE}}</h6>
                           </div>
-                          <button class="btn btn-primary deletebtn" [disabled]="!cssDeleteForm.valid">Delete</button>
+                          <button class="btn btn-outline-warning deletebtn" [disabled]="!cssDeleteForm.valid">Delete</button>
                         </form>
                       </div>
                     </div>
@@ -318,7 +315,7 @@
                 </div>
                 &nbsp; &nbsp;
                 <!--  butons to create file on github -->
-                <button class="btn btn-outline-primary">
+                <button class="btn btn-outline-warning">
                   <a href="javascript:void(0);"> 
                  <i class="fa fa-plus-square-o" aria-hidden="true" title="Create new file" data-toggle="modal" data-target="#jsCreateModalWindow"></i></a></button>
                 <!-- modal window to create the file -->
@@ -354,14 +351,14 @@
                           <div>
                             <h6>{{editorConfig.editor.CREATE}}</h6>
                           </div>
-                          <button class="btn btn-primary createbtn" [disabled]="!jsCreateForm.valid">{{editorConfig.editor.CREATEBTN}}</button>
+                          <button class="btn btn-outline-warning createbtn" [disabled]="!jsCreateForm.valid">{{editorConfig.editor.CREATEBTN}}</button>
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
                 <!-- button to update the file -->
-                <button class="btn btn-outline-primary">
+                <button class="btn btn-outline-warning">
                   <a href="javascript:void(0);">
                 <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update File" data-toggle="modal" data-target="#jsUpdatedModalWindow"></i></a></button>
                 <!-- modal window to update the file -->
@@ -388,14 +385,14 @@
                           <div>
                             <h6>{{editorConfig.editor.UPDATE}}</h6>
                           </div>
-                          <button class="btn btn-primary updatebtn" [disabled]="!jsUpdateForm.valid">{{editorConfig.editor.UPDATEBTN}}</button>
+                          <button class="btn btn-outline-warning updatebtn" [disabled]="!jsUpdateForm.valid">{{editorConfig.editor.UPDATEBTN}}</button>
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
                 <!--button to delete the file -->
-                <button class="btn btn-outline-primary">
+                <button class="btn btn-outline-warning">
                   <a href="javascript:void(0);">
                 <i class="fa fa-trash-o" aria-hidden="true" title="Delete File" data-toggle="modal" data-target="#jsDeleteModalWindow"></i></a></button>
                 <!-- modal window to delete the file -->
@@ -422,7 +419,7 @@
                           <div>
                             <h6>{{editorConfig.editor.DELETE}}</h6>
                           </div>
-                          <button class="btn btn-primary deletebtn" [disabled]="!jsDeleteForm.valid">Delete</button>
+                          <button class="btn btn-outline-warning deletebtn" [disabled]="!jsDeleteForm.valid">Delete</button>
                         </form>
                       </div>
                     </div>
