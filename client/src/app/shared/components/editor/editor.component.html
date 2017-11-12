@@ -1,3 +1,6 @@
+<!-- loader-->
+<ngx-loading [show]="loading"></ngx-loading>
+
 <!-- Ace Editor -->
 <div class="row">
   <div class="col-md-7 padding">
@@ -28,8 +31,8 @@
           <div class="leftbutton">
             <!--  button to create the file -->
             <button class="btn btn-outline-primary">
-              <a href="javascript:void(0);"> 
-        <i class="fa fa-plus-square-o" aria-hidden="true" title="Create new file" data-toggle="modal" data-target="#createModalWindow"></i></a></button>
+            <a href="javascript:void(0);"> 
+            <i class="fa fa-plus-square-o" aria-hidden="true" title="Create new file" data-toggle="modal" data-target="#createModalWindow"></i></a></button>
             <!-- modal window to create the file -->
             <div class="modal fade" id="createModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -69,11 +72,12 @@
                 </div>
               </div>
             </div>
+
             <!--  button to update the file -->
             <button class="btn btn-outline-primary">
               <a href="javascript:void(0);">
-            <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update File" data-toggle="modal" data-target="#updatedModalWindow"></i>
-        </a></button>
+            <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update File" data-toggle="modal" data-target="#updatedModalWindow"></i></a></button>
+           
             <!-- modal window to update the file -->
             <div class="modal fade" id="updatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
               <div class="modal-dialog" role="document">

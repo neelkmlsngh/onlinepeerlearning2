@@ -1,6 +1,7 @@
 /* editor box */
 
 * {
+
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -28,7 +29,6 @@ body {
   height: 100%;
 }
 
-
 /* Code Editors */
 
 #code_editors {
@@ -47,7 +47,6 @@ body {
   z-index: 10;
 }
 
-
 /* Output Area */
 
 #output {
@@ -58,106 +57,147 @@ body {
   border-left-width: 10px;
   overflow: hidden;
   height: 100%;
+
   background-color: #FFFFFF;
+
 }
 
 #output iframe {
+
   width: 100%;
+
   height: 100%;
+
   border: 0;
+
 }
 
 #output h3 {
-  height: 50px;
-  padding: 12px 20px;
-  margin: 0;
-  background-color: #C5CAE9;
-  z-index: 10;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
-  text-align: center;
-}
 
+  height: 50px;
+
+  padding: 12px 20px;
+
+  margin: 0;
+
+  background-color: #C5CAE9;
+
+  z-index: 10;
+
+  font-family: 'Open Sans', sans-serif;
+
+  font-size: 18px;
+
+  text-align: center;
+
+}
 
 /* code editor area */
 
 #html {
+
   height: 520px;
+
   font-size: 12px;
+
 }
 
 #css {
+
   height: 520px;
+
   font-size: 12px;
+
 }
 
 #javascript {
+
   height: 520px;
+
   font-size: 12px;
+
 }
 
 .nopadding {
+
   padding: 0 !important;
+
   margin: 0 !important;
+
 }
 
 .padding {
+
   padding: 1px;
+
   margin: 0;
+
 }
 
 .marg {
+
   margin-top: -1%;
+
   margin-bottom: -1%
+
 }
 
 .rightalign {
+
   float: right;
+
 }
 
 .tabHeight {
+
   margin-top: -15px;
+
 }
 
-
-
 /*
+
 margin on buttons
+
  */
 
 .createbtn {
+
   margin-left: 395px;
+
 }
 
-
-
-
 /*
+
  *margin on buttons
+
  */
 
 .updatebtn {
+
   margin-left: 395px;
+
 }
 
-
-
-
 /*
+
  *margin on buttons
+
  */
 
 .deletebtn {
+
   margin-left: 395px;
+
 }
 
-
-
-
 /**
+
  * text area width
+
  */
 
 .textAreaWidth {
+
   width: 100%;
+
 }

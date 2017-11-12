@@ -18,7 +18,6 @@ export const config: any = {
       "REMOVED_PLUGINS": "list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize"
     }
   },
-
   connect: {
     apiURL: "https://192.168.252.151:8080",
     vmURL: "https://192.168.252.151:3030",

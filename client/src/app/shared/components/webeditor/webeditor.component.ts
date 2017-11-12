@@ -30,9 +30,23 @@ export class WebeditorComponent implements OnInit {
   @Input() content: any
   @Input() reponame: any;
   @Input() filenamed: any;
+
+  //for html
   @ViewChild('createClose') createClose: ElementRef;
   @ViewChild('updateClose') updateClose: ElementRef;
   @ViewChild('deleteClose') deleteClose: ElementRef;
+
+
+  //for css
+  @ViewChild('cssCreateClose') cssCreateClose: ElementRef;
+  @ViewChild('cssUpdateClose') cssUpdateClose: ElementRef;
+  @ViewChild('cssDeleteClose') cssDeleteClose: ElementRef;
+
+
+  //for java script
+  @ViewChild('jsCreateClose') jsCreateClose: ElementRef;
+  @ViewChild('jsUpdateClose') jsUpdateClose: ElementRef;
+  @ViewChild('jsDeleteClose') jsDeleteClose: ElementRef;
 
   latestcommit: any;
   treecommit: any;
@@ -68,6 +82,7 @@ export class WebeditorComponent implements OnInit {
   methodToExport: any;
   link: string = '';
   showModalBox:boolean = false;
+  loading:boolean;
   public modalRef: BsModalRef;
 
   /*variable for snippet used in css*/
@@ -118,14 +133,14 @@ export class WebeditorComponent implements OnInit {
   createFile(fileName, createCommitMessage) {
     if (this.authenticationService.pacToken == null) {
       swal({
-        timer: 2200,
+        timer: 7500,
         title: "You have not generated your token",
         text: "",
-        type: 'success',
+        type: 'error',
         showConfirmButton: false,
       })
     } else {
-
+      this.loading = true;
       this.fileName = fileName.value['fileName'];
       this.updateMessage = createCommitMessage.value['createMsg'];
       this.reponame = this.reponame;
@@ -168,6 +183,7 @@ export class WebeditorComponent implements OnInit {
                         .subscribe(repos => {})
                       //sweet alert on getting response
                       if (repos) {
+                        this.loading = false;
                         swal({
                           timer: 2200,
                           title: "file " + this.fileName + " created successfully!",
@@ -178,6 +194,7 @@ export class WebeditorComponent implements OnInit {
                       }
                       //sweet alert on getting error
                       else {
+                        this.loading = false;
                         swal({
                           timer: 2200,
                           title: "Error occured",
@@ -190,7 +207,11 @@ export class WebeditorComponent implements OnInit {
                 })
             })
         })
+
+      //to close modal on button click  
       this.createClose.nativeElement.click();  
+      this.cssCreateClose.nativeElement.click(); 
+      this.jsCreateClose.nativeElement.click(); 
       fileName.reset();
       createCommitMessage.reset();
     }
@@ -200,13 +221,14 @@ export class WebeditorComponent implements OnInit {
   updateFile(commitMessage) {
     if (this.authenticationService.pacToken == null) {
       swal({
-        timer: 2200,
+        timer: 7500,
         title: "You have not generated your token",
         text: "",
-        type: 'success',
+        type: 'error',
         showConfirmButton: false,
       })
     } else {
+      this.loading = true;
       this.updateMsg = commitMessage.value['updateMsg'];
 
       //getting the file sha
@@ -224,6 +246,7 @@ export class WebeditorComponent implements OnInit {
             .subscribe(repos => {
               //sweet alert on getting response
               if (repos) {
+                this.loading = false;
                 swal({
                   timer: 2200,
                   title: "file " + this.filenamed + " updated successfully!",
@@ -234,6 +257,7 @@ export class WebeditorComponent implements OnInit {
               }
               //sweet alert on getting error
               else {
+                this.loading = false;
                 swal({
                   timer: 2200,
                   title: "Error occured",
@@ -244,7 +268,10 @@ export class WebeditorComponent implements OnInit {
               }
             })
         })
+      //to close modal on button click  
       this.updateClose.nativeElement.click();   
+      this.cssUpdateClose.nativeElement.click();   
+      this.jsUpdateClose.nativeElement.click();   
       commitMessage.reset();
     }
   }
@@ -254,13 +281,14 @@ export class WebeditorComponent implements OnInit {
   deleteFile(commitMessage) {
     if (this.authenticationService.pacToken == null) {
       swal({
-        timer: 2200,
+        timer: 7500,
         title: "You have not generated your token",
         text: "",
-        type: 'success',
+        type: 'error',
         showConfirmButton: false,
       })
     } else {
+      this.loading = true;
       this.deleteMsg = commitMessage.value['deleteMsg'];
       //getting the file sha
       this.gitService.getsha(this.reponame, this.filenamed)
@@ -276,6 +304,7 @@ export class WebeditorComponent implements OnInit {
             .subscribe(repos => {
               //sweet alert on getting response
               if (repos) {
+                this.loading = false;
                 swal({
                   timer: 2200,
                   title: "file " + this.filenamed + " deleted successfully!",
@@ -284,6 +313,7 @@ export class WebeditorComponent implements OnInit {
                   showConfirmButton: false,
                 })
               } else {
+                this.loading = false;
                 //sweet alert on getting error
                 swal({
                   timer: 2200,
@@ -295,7 +325,11 @@ export class WebeditorComponent implements OnInit {
               }
             })
         })
+
+      //to close modal on button click  
       this.deleteClose.nativeElement.click();
+      this.cssUpdateClose.nativeElement.click();
+      this.jsUpdateClose.nativeElement.click();
       commitMessage.reset();
     }
   }
