@@ -44,6 +44,7 @@ export class MainComponent implements OnInit {
   config = mainConfig;
   personalAccessToken: string;
   repoNameForFileUpdate:string;
+  loading : boolean;
 
   constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,
     private authenticationService: AuthenticationService, private router: Router, private profileService: ProfileService) {
@@ -64,6 +65,25 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+    var i = 0;
+     
+     $('#dragbar').mousedown(function(e){
+       
+        e.preventDefault();
+        $('#mousestatus').html("mousedown" + i++);
+        $(document).mousemove(function(e){
+          $('#position').html(e.pageX +', '+ e.pageY);
+          $('#sidebar').css("width",e.pageX+2);
+          $('#main').css("left",e.pageX+2);
+       })
+       console.log("leaving mouseDown");
+    });
+   $(document).mouseup(function(e){
+       $('#clickevent').html('in another mouseUp event' + i++);
+       $(document).unbind('mousemove');
+       });
+
     this.languages = config.language;
     this.mode = "html"
     this.gitService.getRepos()
@@ -155,6 +175,7 @@ export class MainComponent implements OnInit {
   }
 
 generateToken(form){
+  this.loading=true;
   this.createAccessToken(form.value.pass,form.value.tokenName);
   form.reset();
 }
@@ -169,6 +190,7 @@ generateToken(form){
     }
     this.gitService.createToken(cred, password)
       .subscribe(data => {
+        this.loading=false;
         if (data) {
           swal({
             timer: 2500,
@@ -178,6 +200,7 @@ generateToken(form){
             showConfirmButton: false,
           })
         } else {
+          this.loading=false;
           swal({
             timer: 2500,
             title: "Personal Access Token is not created",
@@ -215,6 +238,7 @@ createNewRepo(form){
  })
   }
   else{
+    this.loading=true;
   this.createRepo(form.value.repositoryName,form.value.description);
 }
   form.reset();
@@ -235,6 +259,7 @@ createNewRepo(form){
 
  this.gitService.createRepos(repoName)
      .subscribe(data => {
+       this.loading=false;
        if (data) {
          this.githubUser.push(data);
          swal({
@@ -247,6 +272,7 @@ createNewRepo(form){
      }
 
 else {
+  this.loading=false;
        swal({
    timer: 2500,
    title: mainConfig.REPONOTCREATE,

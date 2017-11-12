@@ -1,4 +1,5 @@
 <!-- main component starts -->
+<ngx-loading [show]="loading"></ngx-loading>
 <div class="container-fluid backgroundcolor">
   <div class="row rowHeight">
     <div class="col-md-12">
@@ -8,7 +9,7 @@
   </div>
   <div class="row mt-5 py-3">
     <div class="col-md-12">
-      <div class="row ">
+      <div class="row">
         <div class="col-md-2 bg">
           <div id="accordion" role="tablist">
             <div class="card">
@@ -84,7 +85,7 @@
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingFour">
                 <h5 class="mb-0 accordionHeading">
-                  <a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  <a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour"title="To access or Modified repository Pesonal Access Token is needed"title="To access or Modified repository Pesonal Access Token is needed"title="To access or Modified repository Pesonal Access Token is needed"title="To access or Modified repository Pesonal Access Token is needed" title="To access or Modified repository Pesonal Access Token is needed">
                     {{config.PACGENERATE}}
                   </a>
                 </h5>
@@ -119,20 +120,6 @@
                 </div>
               </div>
             </div>
-                        <div class="card">
-              <div class="card-header accordianClass" role="tab" id="headingTwo">
-                <h5 class="mb-0 accordionHeading">
-                  <a class="collapsed yourRepo" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Your Repositories
-                  </a>
-                </h5>
-              </div>
-              <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body accordionBody">
-                  <app-repo-sidebar [githubUser]="githubUser" [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
-                </div>
-              </div>
-            </div>
           </div>
           <!-- first column -->
           <!-- repository side bar selector -->
@@ -160,3 +147,8 @@
   </div>
 </div>
 <!-- main component ends -->
+<!-- <div id="sidebar">
+  <div id="dragbar"></div>
+  sidebar
+</div>
+ -->

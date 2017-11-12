@@ -178,3 +178,22 @@ h5 {
      text-decoration:none; 
      cursor:pointer;  
 } */
+
+
+/* #sidebar{
+   background-color: IndianRed;
+   width:200px;
+   float: left;
+   position: absolute;
+   top:100px;
+   bottom: 38px;
+   overflow-y: hidden;
+}
+
+#dragbar{
+   background-color:black;
+   height:100%;
+   float: right;
+   width: 3px;
+   cursor: col-resize;
+} */
