@@ -16,6 +16,7 @@ h5 {
 }
 
 
+
 /*Profile Card classes*/
 
 .card {
@@ -143,11 +144,13 @@ h5 {
 }
 
 
+
 /*save button*/
 
 .save {
   background-color: #BA68C8;
 }
+
 
 
 /*Upload button*/
@@ -158,32 +161,42 @@ h5 {
 }
 
 
+
 /*Cancel Button*/
 
 .cancel {
-  background-color: red;
+  margin-left: 1%;
 }
+
 
 
 /*Gender radio buttons*/
-
-.gender {
-  margin-left: 2%
-}
 
 .personalinfocard {
   margin-top: 10%;
 }
 
 .profileinfo {
-  margin-top: 10%
+  margin-top: 10%;
 }
 
 .name {
   margin-top: 3%;
 }
 
-.profilepic{
-  height:200px;
-  width:300px;
+.profilepic {
+  height: 200px;
+  width: 300px;
+}
+
+.inputfield {
+  margin-top: 4%;
+}
+
+.female {
+  margin-left: 1%;
+}
+
+.other {
+  margin-left: 1%;
 }
