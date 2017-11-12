@@ -18,11 +18,11 @@ export const config: any = {
   },
   connect:
   {
-    apiURL : "https://192.168.252.211:8080",
-    vmURL : "https://192.168.252.211:3030",
-    CALLBACK_URL:"https://192.168.252.211:8080/api/login/auth/github",
-    CLIENT_ID : '131a383ebca4c5be47cc',
-    CLIENT_SECRET : 'e085f91d1776b01564d876c65f8b8262ada117c1'
+    apiURL : "https://192.168.252.204:8080",
+    vmURL : "https://192.168.252.204:3030",
+    CALLBACK_URL:"https://192.168.252.204:8080/api/login/auth/github",
+    CLIENT_ID: 'eda558d85f4b8157078f',
+    CLIENT_SECRET: '2456afab849c7fd43d4977de7f1187b8d5e74329'
   },
 
   giturls: {
@@ -44,7 +44,7 @@ export const config: any = {
     "DISLIKEURL": '/api/forums/dislike/',
   },
   peerserver: {
-    "host": "192.168.252.33",
+    "host": "192.168.252.204",
     "port": "8081",
     "path": "/peerjs"
   }
