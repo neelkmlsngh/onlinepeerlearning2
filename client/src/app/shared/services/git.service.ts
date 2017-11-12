@@ -51,7 +51,7 @@ export class GitService {
   }
 
   //method to open the rpository and show all the file
-  openFolder(repo, file) {
+ /* openFolder(repo, file) {
     if (this.userName) {
       let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
       let options = new RequestOptions({ headers: headers });
@@ -61,7 +61,7 @@ export class GitService {
         .map(res => res.json())
     }
   }
-
+*/
 
   getFile(repo, file) {
     if (this.userName) {
@@ -181,6 +181,34 @@ export class GitService {
   }
 
 
+
+  getFolderContents(repodetails:string) {
+    repodetails=repodetails.trim();
+      return this._http.get('https://api.github.com/repos/'+this.userName+'/'+repodetails+'/contents?client_id=' + "f9ea78d1f4ead499cd22" +
+          '&client_secret=' + "5a9f55cb5eaa65140a5949fb6595e0283c667c72")
+        .map(res => res.json())
+        
+   }
+
+
+
+   openFolder(value,reponamed) {
+   let val=value;
+      return this._http.get("https://api.github.com/repos/"+this.userName+"/"+reponamed+"/contents/"+val+ '?client_id=' + "f9ea78d1f4ead499cd22" +
+          '&client_secret=' + "5a9f55cb5eaa65140a5949fb6595e0283c667c72")
+        .map(res => res.json())
+    }
+
+
+   getFileData(path,reponamed){
+      let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
+      let options = new RequestOptions({ headers: headers });
+  return this._http.get("https://api.github.com/repos/"+this.userName+"/"+reponamed+"/contents/"+path+ '?client_id=' + "f9ea78d1f4ead499cd22" +
+          '&client_secret=' + "5a9f55cb5eaa65140a5949fb6595e0283c667c72")
+        .map(res => res.json())
+        
+   }
+
   //method for authorization for creating new repository
   private authorization(accessToken) {
     let headers = new Headers({ 'Authorization': "Basic " + accessToken });
@@ -194,3 +222,5 @@ export class GitService {
     return new RequestOptions({ headers: headers })
   }
 }
+
+

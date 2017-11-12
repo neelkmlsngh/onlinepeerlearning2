@@ -106,7 +106,7 @@ forumConfig=forumConfig;
  title: '!!OOPS!!',
  html: $('<div>')
    .addClass('some-class')
-   .text('!!Question Title & ProblemDescription Are Mandatory Please Cooperate!!'),
+   .text('!!Question Title & Problem Description Are Mandatory Please Cooperate!!'),
  animation: false,
  customClass: 'animated tada'
 })

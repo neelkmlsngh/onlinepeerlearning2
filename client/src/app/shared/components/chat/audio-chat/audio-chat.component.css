@@ -4,7 +4,7 @@
       right: 30px;
       width: 300px;
       height: 400px;
-      background-color: #c6ffff;
+      background-color: beige;
       font-family: 'Lato', sans-serif;
       -webkit-transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
       transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
@@ -15,7 +15,7 @@
     }
 
     .audiobox--tray {
-      bottom: -328px;
+      bottom: -212px;
     }
 
     .audiobox--closed {
@@ -84,7 +84,7 @@
       height: 24px;
       outline: 0;
       border: none;
-      background-color: transparent;
+      background-color: red;
       opacity: 0.5;
       cursor: pointer;
       -webkit-transition: opacity 200ms;
@@ -136,7 +136,7 @@
     }
 
     .audiobox--empty.audiobox--tray {
-      bottom: -210px;
+      bottom: -213px;
     }
 
     .audiobox--empty.audiobox--closed {
@@ -164,9 +164,9 @@
   }
 
   .myimg {
-    height: 70%;
-    width: 70%;
-    margin-left: 45px;
+    height: 55%;
+    width: 55%;
+    margin-left: 65px;
 }
 @media (max-width: 425px) {
     .audiobox {

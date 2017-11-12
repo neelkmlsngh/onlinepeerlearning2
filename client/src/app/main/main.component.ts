@@ -43,6 +43,7 @@ export class MainComponent implements OnInit {
   user: {}
   config = mainConfig;
   personalAccessToken: string;
+  repoNameForFileUpdate:string;
 
   constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,
     private authenticationService: AuthenticationService, private router: Router, private profileService: ProfileService) {
@@ -64,12 +65,11 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.languages = config.language;
+    this.mode = "html"
     this.gitService.getRepos()
       .subscribe(repos => {
         this.githubUser = repos;
-        this.mode = "html"
-
-      })
+    })
   }
 
   reposearch(selected) {
@@ -118,15 +118,18 @@ export class MainComponent implements OnInit {
     this.filenamed = filename;
   }
 
-
   getreponame(reponame) {
     this.reponame = reponame;
-
   }
 
   getMode(editorMode) {
     this.selectedValue = editorMode;
     this.changeMode();
+  }
+
+  getRepoNameForFileUpdate(repoNameForFileUpdate){
+    this.repoNameForFileUpdate = repoNameForFileUpdate
+    console.log('====================='+this.repoNameForFileUpdate)
   }
 
   //method for logout
@@ -230,29 +233,30 @@ createNewRepo(form){
      "has_wiki": false
    }
 
-   this.gitService.createRepos(repoName)
+ this.gitService.createRepos(repoName)
      .subscribe(data => {
        if (data) {
-       swal({
-   timer: 2500,
-   title: "Repository Successfully created",
-   text:  "",
-   type:  'success',
-   showConfirmButton: false,
- })
+         this.githubUser.push(data);
+         swal({
+           timer: 2500,
+           title: mainConfig.REPOCREATE,
+           text:  "",
+           type:  'success',
+           showConfirmButton: false,
+       })
      }
 
 else {
        swal({
    timer: 2500,
-   title: "Repository is not created",
+   title: mainConfig.REPONOTCREATE,
    text:  "",
    type: 'error',
    showConfirmButton: false,
  })
      }
      })
- }
+}
 }
 
 
