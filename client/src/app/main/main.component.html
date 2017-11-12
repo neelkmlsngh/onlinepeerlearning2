@@ -38,7 +38,7 @@
               </div>
               <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body accordionBody">
-                  <app-repo-sidebar [githubUser]="githubUser" [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event)></app-repo-sidebar>
+                  <app-repo-sidebar [githubUser]="githubUser" [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event) [repoNameForFileUpdate]="repoNameForFileUpdate"></app-repo-sidebar>
                 </div>
               </div>
             </div>
@@ -124,7 +124,7 @@
           <!-- repository side bar selector -->
         </div>
         <div *ngIf="mode=='javascript'" class="col-md-10">
-          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-editor>
+          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed" (repoNameForFileUpdate)=getRepoNameForFileUpdate($event) ></app-editor>
         </div>
         <div *ngIf="mode=='html'" class="col-md-10">
           <app-webeditor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-webeditor>

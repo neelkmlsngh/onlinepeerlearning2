@@ -43,6 +43,7 @@ export class MainComponent implements OnInit {
   user: {}
   config = mainConfig;
   personalAccessToken: string;
+  repoNameForFileUpdate:string;
 
   constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,
     private authenticationService: AuthenticationService, private router: Router, private profileService: ProfileService) {
@@ -126,6 +127,10 @@ export class MainComponent implements OnInit {
   getMode(editorMode) {
     this.selectedValue = editorMode;
     this.changeMode();
+  }
+
+  getRepoNameForFileUpdate(repoNameForFileUpdate){
+    this.repoNameForFileUpdate = repoNameForFileUpdate
   }
 
   //method for logout

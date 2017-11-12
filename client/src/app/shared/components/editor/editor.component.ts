@@ -23,9 +23,13 @@ export class EditorComponent implements OnInit {
   @ViewChild('txtclose') txtclose: ElementRef;
   @ViewChild('updateclose') updateclose: ElementRef;
   @ViewChild('deleteclose') deleteclose: ElementRef;
+
+  @Output() repoNameForFileUpdate = new EventEmitter < any > ();
+
   @Input() content: any = "";
   @Input() reponame: any;
   @Input() filenamed: any;
+
   config = config;
   updateMessage: string;
   fileName: string
@@ -167,6 +171,7 @@ export class EditorComponent implements OnInit {
                         .subscribe(repos => {})
                       //sweet alert on getting response
                       if (repos) {
+                        this.repoNameForFileUpdate.emit(this.reponame)
                         swal({
                           timer: 2200,
                           title: "file " + this.fileName + " created successfully!",
