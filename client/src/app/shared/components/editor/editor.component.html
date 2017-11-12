@@ -11,11 +11,11 @@
           </div>
           <div class="leftbutton">
             <!--     button to add snippet -->
-            <button class="btn btn-outline-primary">
+            <button class="btn btn-outline-primary" id="dropdownMenuButton" data-toggle="dropdown">
               <a href="javascript:void(0);">
-            <i class="fa fa-code " aria-hidden="true" id="dropdownMenuButton" data-toggle="dropdown" title="Add snippet"></i></a>
+            <i class="fa fa-code " aria-hidden="true" title="Add snippet"></i></a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item color" *ngFor="let data of javascript" (click)="showJavascript(data.code)">{{data.title}}</a>
+                <a class="dropdown-item color" *ngFor="let data of javascript" (click)="insertAtPos(data.code)">{{data.title}}</a>
               </div>
             </button>
             <!-- Execute function to run code -->
@@ -167,8 +167,7 @@
         </form>
       </nav>
       <!-- Ace Editor-->
-      <div ace-editor [(text)]="content" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" class="code_box" id="javascript">
-      </div>
+      <ace-editor [(text)]="content" #editor [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" class="code_box" id="javascript"></ace-editor>
     </section>
   </div>
   <!-- Output section -->

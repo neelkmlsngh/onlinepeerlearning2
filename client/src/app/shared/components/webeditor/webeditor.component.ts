@@ -32,9 +32,15 @@ export class WebeditorComponent implements OnInit {
   @Input() filenamed: any;
 
   //for html
+  @ViewChild('htmleditor') htmleditor;
+  @ViewChild('csseditor') csseditor;
+  @ViewChild('jseditor') jseditor;
+
+
   @ViewChild('createClose') createClose: ElementRef;
   @ViewChild('updateClose') updateClose: ElementRef;
   @ViewChild('deleteClose') deleteClose: ElementRef;
+
 
 
   //for css
@@ -47,6 +53,7 @@ export class WebeditorComponent implements OnInit {
   @ViewChild('jsCreateClose') jsCreateClose: ElementRef;
   @ViewChild('jsUpdateClose') jsUpdateClose: ElementRef;
   @ViewChild('jsDeleteClose') jsDeleteClose: ElementRef;
+
 
   latestcommit: any;
   treecommit: any;
@@ -75,6 +82,7 @@ export class WebeditorComponent implements OnInit {
   textcontent: any;
   html: any;
   css: any;
+  javascript: any;
   caretPos: any;
   caretText: any;
   obj: any;
@@ -124,8 +132,8 @@ export class WebeditorComponent implements OnInit {
       .subscribe(res => {
 
         this.html = res.filter(ele => ele.language === 'Html');
-        this.css = res.filter(ele => ele.language === 'CSS');
-
+        this.css = res.filter(ele => ele.language === 'Css');
+        this.javascript = res.filter(ele => ele.language === 'Javascript');
       })
   }
 
@@ -513,26 +521,21 @@ export class WebeditorComponent implements OnInit {
       });
   }
 
-  getCaretPos(oField) {
-    if (oField.selectionStart || oField.selectionStart == '0') {
-      this.caretPos = oField.selectionStart;
-      this.obj = oField;
-    }
+  //Function to insert an html snippet at cursor position
+  insertAtHtmlPos(data: any) {
+    this.htmleditor.getEditor().session.insert(this.htmleditor.getEditor().getCursorPosition(), data)
+
   }
 
-  add() {
-    this.insertAtCursor(this.obj, this.caretText)
+  //Function to insert a css snippet at cursor position
+  insertAtCssPos(data: any) {
+    this.csseditor.getEditor().session.insert(this.csseditor.getEditor().getCursorPosition(), data)
+
   }
 
-  insertAtCursor(myField, myValue) {
-    if (myField.selectionStart || myField.selectionStart == '0') {
-      var startPos = myField.selectionStart;
-      var endPos = myField.selectionEnd;
-      myField.value = myField.value.substring(0, startPos) +
-        myValue +
-        myField.value.substring(endPos, myField.value.length);
-    } else {
-      myField.value += myValue;
-    }
+  //Function to insert a javascript snippet at cursor position
+  insertAtJavascriptPos(data: any) {
+    this.jseditor.getEditor().session.insert(this.jseditor.getEditor().getCursorPosition(), data)
+
   }
 }

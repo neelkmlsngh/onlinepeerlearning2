@@ -14,20 +14,34 @@ import 'brace';
 import 'brace/ext/language_tools';
 import 'brace/mode/html';
 import 'ace-builds/src-min-noconflict/snippets/html';
+
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.css']
 })
+
 export class EditorComponent implements OnInit {
+
 
   //to close modals on button click
   @ViewChild('createClose') createClose: ElementRef;
   @ViewChild('updateClose') updateClose: ElementRef;
   @ViewChild('deleteclose') deleteClose: ElementRef;
+  /*=======
+    @ViewChild('txtclose') txtclose: ElementRef;
+    @ViewChild('updateclose') updateclose: ElementRef;
+    @ViewChild('deleteclose') deleteclose: ElementRef;
+  */
+  @Output() repoNameForFileUpdate = new EventEmitter < any > ();
+
+  @ViewChild('editor') editor;
+
+
   @Input() content: any = "";
   @Input() reponame: any;
   @Input() filenamed: any;
+
   config = config;
   updateMessage: string;
   fileName: string
@@ -83,12 +97,12 @@ export class EditorComponent implements OnInit {
 
     this.snippet.getSnippet()
       .subscribe(res => {
-        this.javascript = res.filter(ele => ele.language === 'javascript');
+        this.javascript = res.filter(ele => ele.language === 'Javascript');
       })
   }
   /*snippet show in  editor*/
   showJavascript(code) {
-    this.jsValue += " " + code;
+    this.content += " " + code;
   }
   /*execute the code and return output*/
   executecode() {
@@ -172,6 +186,10 @@ export class EditorComponent implements OnInit {
                       //sweet alert on getting response
                       if (repos) {
                         this.loading = false;
+
+
+                        this.repoNameForFileUpdate.emit(this.reponame)
+
                         swal({
                           timer: 2200,
                           title: "file " + this.fileName + " created successfully!",
@@ -213,6 +231,7 @@ export class EditorComponent implements OnInit {
         showConfirmButton: false,
       })
     } else {
+
       this.loading = true;
       this.updateMsg = commitMessage.value['updateMsg'];
       //getting the file sha
@@ -311,5 +330,10 @@ export class EditorComponent implements OnInit {
       this.deleteClose.nativeElement.click();
       commitMessage.reset();
     }
+  }
+  //function to insert a snippet at cursor position
+  insertAtPos(data: any) {
+    this.editor.getEditor().session.insert(this.editor.getEditor().getCursorPosition(), data)
+
   }
 }

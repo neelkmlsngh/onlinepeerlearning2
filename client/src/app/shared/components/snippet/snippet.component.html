@@ -22,7 +22,7 @@
         <a class="list-group-item list-group-item-action flex-column align-items-start">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{{data.title}}</h5>
-            <small><button type="button" (click)="openModal(template, data)"><i class="fa fa-pencil-square fa-2x" title="Edit/View" aria-hidden="true"></i></button> <button type="button" (click)="deleteSnip(data.title)"><i class="fa fa-trash-o fa-2x" title="Delete"></i></button></small>
+            <small><button type="button" class="mt-1" (click)="openModal(template, data)"><i class="fa fa-pencil-square fa-2x" title="Edit/View" aria-hidden="true"></i></button> <button type="button" class="mt-1" (click)="deleteSnip(data.title)"><i class="fa fa-trash-o fa-2x" title="Delete"></i></button></small>
           </div>
           <p class="mb-1">{{data.language}}</p>
         </a>
