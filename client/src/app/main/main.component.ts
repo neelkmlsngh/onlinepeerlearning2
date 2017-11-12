@@ -118,10 +118,8 @@ export class MainComponent implements OnInit {
     this.filenamed = filename;
   }
 
-
   getreponame(reponame) {
     this.reponame = reponame;
-
   }
 
   getMode(editorMode) {
@@ -131,6 +129,7 @@ export class MainComponent implements OnInit {
 
   getRepoNameForFileUpdate(repoNameForFileUpdate){
     this.repoNameForFileUpdate = repoNameForFileUpdate
+    console.log('====================='+this.repoNameForFileUpdate)
   }
 
   //method for logout

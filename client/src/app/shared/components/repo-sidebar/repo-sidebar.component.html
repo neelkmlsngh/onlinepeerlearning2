@@ -2,19 +2,31 @@
 <!-- first column -->
 <div class="row mt-3 background">
   <div class="col-md-12">
-    <select class="btn btn-outline-warning listOption" name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="reposearch()">
+    <select class="btn btn-outline-warning listOption" name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="getDirectoryContent()">
+    <!-- (change)="reposearch()" -->
       <option selected>Select your repository</option>
       <option *ngFor="let repo of githubUser">{{repo.name}}</option>
     </select>
     <!-- </div> -->
     <!-- making drop down containing the list of repositeries -->
-    <div *ngIf="isTree" class="scrollable">
-      <a *ngFor="let repo of data" type="button" class="list-group-item list-group-item-action" (click)="showFile(selectedValue, repo.name)">
-        <h6 class="list-group-item-heading gitRepo" data-spy="scroll">{{repo.name}}</h6>
-      </a>
-    </div>
-    <div *ngIf="!isTree"> {{emptyRepo}}</div>
+   <!--  <div *ngIf="isTree" class="scrollable">
+     <a *ngFor="let repo of data" type="button" class="list-group-item list-group-item-action" (click)="showFile(selectedValue, repo.name)">
+       <h6 class="list-group-item-heading gitRepo" data-spy="scroll">{{repo.name}}</h6>
+     </a>
+   </div> -->
+   <!--  <div *ngIf="!isTree"> {{emptyRepo}}</div> -->
     <!-- end of drop down -->
+
+<div *ngFor="let data of folderDetails; let i=index;" >
+  <ol id="dir{{i}}" *ngIf="data.type==='dir'" style="margin-right=1px;" [attr.data-path]="data.path"  (click)="getFolderInfo($event)">
+    <i class="fa fa-caret-down" aria-hidden="true"></i>&nbsp;<i class="fa fa-folder-open" aria-hidden="true"></i> &nbsp;{{data.name}}
+  </ol>
+    <li *ngIf="data.type==='file'"  (click)="getFile($event)" [attr.data-path]="data.path" [attr.data-filename]="data.name" style="list-style-type:none;">
+      <i class="fa fa-caret-down" aria-hidden="true"></i>&nbsp;<i class="fa fa-file" aria-hidden="true"></i> &nbsp;{{data.name}}
+    </li>
+   
+</div>
+
   </div>
   <!-- repo side bar ends -->
 </div>

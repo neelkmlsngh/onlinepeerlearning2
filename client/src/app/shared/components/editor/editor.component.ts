@@ -171,7 +171,9 @@ export class EditorComponent implements OnInit {
                         .subscribe(repos => {})
                       //sweet alert on getting response
                       if (repos) {
+                        
                         this.repoNameForFileUpdate.emit(this.reponame)
+                        
                         swal({
                           timer: 2200,
                           title: "file " + this.fileName + " created successfully!",
@@ -210,6 +212,8 @@ export class EditorComponent implements OnInit {
         showConfirmButton: false,
       })
     } else {
+
+      console.log(this.filenamed + "ewqwqewqewqe" + commitMessage)
       this.updateMsg = commitMessage.value['updateMsg'];
       //getting the file sha
       this.gitService.getsha(this.reponame, this.filenamed)
