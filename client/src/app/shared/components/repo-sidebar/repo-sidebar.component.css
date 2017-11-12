@@ -137,11 +137,11 @@ h5 {
   }
 }
 
-/* .scrollable{
+.scrollable{
   width: 100%;
   height: 260px;
   overflow: auto;
-} */
+}
 
 .listOption{
 word-wrap: break-word;
