@@ -1,3 +1,4 @@
+<ngx-loading [show]="loading"></ngx-loading>
 <!-- <div class="container"> -->
 <div class="row ">
   <div class="col-md-7 padding">
@@ -194,7 +195,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.CREATINGFILE}}</strong><b>{{reponame}}</b></h6>
-                        <button type="button" class="close" data-dismiss="modal" #createClose aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" #cssCreateClose aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -237,7 +238,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.UPDATINGFILE}}</strong><b>{{reponame}}</b></h6>
-                        <button type="button" class="close" data-dismiss="modal" #updateClose aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" #cssUpdateClose aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -265,13 +266,13 @@
                 <button class="btn btn-outline-primary">
                   <a href="javascript:void(0);">
                 <i class="fa fa-trash-o" aria-hidden="true" title="Delete File" data-toggle="modal" data-target="#cssDeleteModalWindow"></i></a></button>
-                modal window to delete the file
+                <!--modal window to delete the file -->
                 <div class="modal fade" id="cssDeleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.DELETINGFILE}}</strong><b>{{reponame}}</b></h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #deleteClose>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #cssDeleteClose>
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -294,7 +295,7 @@
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div> 
                 <div id="myCssDiv"></div>
               </form>
             </nav>
@@ -326,7 +327,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.CREATINGFILE}}</strong><b>{{reponame}}</b></h6>
-                        <button type="button" class="close" data-dismiss="modal" #createClose aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" #jsCreateClose aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -369,7 +370,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.UPDATINGFILE}}</strong><b>{{reponame}}</b></h6>
-                        <button type="button" class="close" data-dismiss="modal" #updateClose aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" #jsUpdateClose aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -403,7 +404,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.DELETINGFILE}}</strong><b>{{reponame}}</b></h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #deleteClose>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #jsDeleteClose>
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>

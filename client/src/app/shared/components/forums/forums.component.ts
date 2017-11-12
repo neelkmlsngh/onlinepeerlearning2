@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable'
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import 'rxjs/Rx';
+import swal from 'sweetalert2';
 
 import { ForumService } from '../../services/forum.service';
 import { forumConfig } from './../../config/forum.config';
@@ -50,14 +51,25 @@ export class ForumsComponent implements OnInit {
   }
 
   //method for search 
-  getDetails(searchTerm: any) {
-    this.forum.searchEntries(searchTerm.value)
-      .subscribe(res => {
-        console.log(res);
-        this.data = res.data;
-      });
-  }
+getDetails(searchTerm: any) {
+   if (searchTerm.value !== ""){
+   this.forum.searchEntries(searchTerm.value)
+     .subscribe(res => {
+       console.log(res);
+       this.data = res.data;
+     });
+   }else{
+      swal({
+ title: '!!OOPS!!',
+ html: $('<div>')
+   .addClass('some-class')
+   .text('Enter Something First!!'),
+ animation: false,
+ customClass: 'animated tada'
+})
+}
 
+ }
   //method to navigate to questions detail
   getPostDetail(value): any {
     this.router.navigate(['forums','view' ,value])

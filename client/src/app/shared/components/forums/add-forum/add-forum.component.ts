@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ForumService } from '../../../services/forum.service';
+
+import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 // import * as CKEDITOR from 'cke'
 import { CKEditorModule } from 'ng2-ckeditor';
@@ -29,7 +31,7 @@ forumConfig=forumConfig;
     items:any=[];
     data : any;
 
-  constructor(private forum: ForumService) {
+  constructor(private forum: ForumService,private router: Router) {
     
   }
 
@@ -68,27 +70,51 @@ forumConfig=forumConfig;
   }
   
   //method to add post on forum
-  insertPost() {
-    this.obj = {
-      questionTitle: this.questionTitle,
-      codeSnippet: CKEDITOR.instances.addSnippet.getData(),
-      problemDescription: CKEDITOR.instances.problemDescription.getData(),
-      tags: this.items,
-      date: this.date,
-      userName:this.userName,
-    }
+ insertPost() {
+     if (this.questionTitle&&CKEDITOR.instances.problemDescription.getData()){
+       console.log(this.questionTitle)
+   this.obj = {
+     questionTitle: this.questionTitle,
+     codeSnippet: CKEDITOR.instances.addSnippet.getData(),
+     problemDescription: CKEDITOR.instances.problemDescription.getData(),
+     tags: this.items,
+     date: this.date,
+     userName:this.userName,
+   }
+   
+   this.forum.savePost(this.obj).subscribe((res) => {
+     if (res) {
+      // swal("Successfully added question", "", "success");
+       swal({
+           timer: 2000,
+           title: "Question Added Successfully",
+           type: 'success',
+           showConfirmButton: false,
+         }).then(() => {},
+           (dismiss) => {
 
-    this.forum.savePost(this.obj).subscribe((res) => {
-      if (res) {
-        swal("Successfully added question", "", "success");
-        this.questionTitle='';
-        CKEDITOR.instances.addSnippet.setData("");
-        CKEDITOR.instances.problemDescription.setData("");
-        this.items='';
+            if (dismiss === 'timer') {
+               //navigate here
+               this.router.navigateByUrl('forums');
+             }
+           });
+       }
+   })
+}else
+{
+  swal({
+ title: '!!OOPS!!',
+ html: $('<div>')
+   .addClass('some-class')
+   .text('!!Question Title & Problem Description Are Mandatory Please Cooperate!!'),
+ animation: false,
+ customClass: 'animated tada'
+})
+}
 
-        }
-       
-    })
-  }
+ }
+ cancel(){
+   this.router.navigateByUrl('forums');
+ }
 
 }

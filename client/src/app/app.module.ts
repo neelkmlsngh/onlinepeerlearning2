@@ -16,6 +16,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awes
 import { MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
 import { TagInputModule } from 'ngx-chips';
+import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
@@ -172,11 +173,19 @@ let apiRoutes: Routes = [{
     MatTabsModule,
     MatFormFieldModule,
     CommonModule,
+    LoadingModule,
+    LoadingModule.forRoot({
+      animationType: ANIMATION_TYPES.wanderingCubes,
+      backdropBackgroundColour: 'rgba(255,255,0)',
+      backdropBorderRadius: '100px',
+      primaryColour: '#ffc107',
+      secondaryColour: '#ffc107',
+      tertiaryColour: '#ffc107'}),
     ToastrModule.forRoot(),
     ModalModule.forRoot(),
     RouterModule.forRoot(apiRoutes, { useHash: true })
   ],
-  providers: [GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, CoderunnerService, ChatService, HttpService, SocketService, SnippetService,SpeechRecognitionService],
+  providers: [GitService, EditorService, ChatService, ForumService, AuthenticationService, ProfileService, CoderunnerService, ChatService, HttpService, SocketService, SnippetService,SpeechRecognitionService,AuthoriseGuard],
 
   bootstrap: [AppComponent]
 })
