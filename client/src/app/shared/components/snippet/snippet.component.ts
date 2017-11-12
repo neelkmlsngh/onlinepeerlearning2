@@ -39,6 +39,9 @@ export class SnippetComponent implements OnInit {
  }
 
  openModalAdd(template: TemplateRef<any>) {
+   this.title = "";
+     this.code = "";
+     this.language = "";
    this.modalRef = this.modalService.show(template);
  }
 
@@ -48,9 +51,6 @@ export class SnippetComponent implements OnInit {
  }
 
  add() {
-   /*this.code = "";
-   this.language = "";
-   this.title = "";*/
    let obj = {
      "title": this.title,
      "language": this.language,

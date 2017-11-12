@@ -50,6 +50,117 @@
                 <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" (click)="downloadHtmlFile()" data-toggle="tooltip" data-placement="Top" title="Download"><i class="fa fa-download" aria-hidden="true"></i></button>
                 &nbsp;
                 <button type="button" class="btn btn-outline-success" href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
+                <!--  button to create the file -->
+                <button class="btn btn-outline-primary">
+                  <a href="javascript:void(0);"> 
+                  <i class="fa fa-plus-square-o" aria-hidden="true" title="Create new file" data-toggle="modal" data-target="#HTMLCeateModalWindow"></i></a></button>
+                <!-- modal window to create the file -->
+                <div class="modal fade" id="HTMLCeateModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.CREATINGFILE}}</strong><b>{{reponame}}</b></h6>
+                        <button type="button" class="close" data-dismiss="modal" #createClose aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form #createForm="ngForm" (ngSubmit)="createFile(createForm.form,createForm.form);">
+                          <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your file name"></textarea>
+                          <div *ngIf="nameField.touched && nameField.errors">
+                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
+                              file name is required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
+                              The commit message should be at least 5 characters long
+                            </div>
+                          </div>
+                          <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #commitField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
+                          <div *ngIf="commitField.touched && commitField.errors">
+                            <div class="alert alert-danger" *ngIf="commitField.errors.required">
+                              commit message is required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="commitField.errors.minlength">
+                              The commit message should be at least 5 characters long
+                            </div>
+                          </div>
+                          <div>
+                            <h6>{{editorConfig.editor.CREATE}}</h6>
+                          </div>
+                          <button class="btn btn-primary createbtn" [disabled]="!createForm.valid">{{editorConfig.editor.CREATEBTN}}</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--  button to update the file -->
+                <button class="btn btn-outline-primary">
+                  <a href="javascript:void(0);">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update File" data-toggle="modal" data-target="#updatedModalWindow"></i></a></button>
+                <!-- modal window to update the file -->
+                <div class="modal fade" id="updatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.UPDATINGFILE}}</strong><b>{{reponame}}</b></h6>
+                        <button type="button" class="close" data-dismiss="modal" #updateClose aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form #updateForm="ngForm" (ngSubmit)="updateFile(updateForm.form);">
+                          <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #nameField="ngModel" required minlength="5" placeholder="enter your commit message"></textarea>
+                          <div *ngIf="nameField.touched && nameField.errors">
+                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
+                              commit message is required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
+                              The commit message should be at least 5 characters long
+                            </div>
+                          </div>
+                          <div>
+                            <h6>{{editorConfig.editor.UPDATE}}</h6>
+                          </div>
+                          <button class="btn btn-primary updatebtn" [disabled]="!updateForm.valid">{{editorConfig.editor.UPDATEBTN}}</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--  button to delete the file -->
+                <button class="btn btn-outline-primary">
+                  <a href="javascript:void(0);">
+                  <i class="fa fa-trash-o" aria-hidden="true" title="Delete File" data-toggle="modal" data-target="#deleteModalWindow"></i></a></button>
+                <!-- modal window to delete the file -->
+                <div class="modal fade" id="deleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.DELETINGFILE}}</strong><b>{{reponame}}</b></h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #deleteClose>
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form #deleteForm="ngForm" (ngSubmit)="deleteFile(deleteForm.form);">
+                          <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
+                          <div *ngIf="nameField.touched && nameField.errors">
+                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
+                              commit message is required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
+                              The commit message should be at least 5 characters long
+                            </div>
+                          </div>
+                          <div>
+                            <h6>{{editorConfig.editor.DELETE}}</h6>
+                          </div>
+                          <button class="btn btn-primary deletebtn" [disabled]="!deleteForm.valid">Delete</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div id="myDiv"></div>
               </form>
             </nav>
@@ -59,6 +170,7 @@
           </section>
         </div>
       </div>
+      <!-- Css editor section -->
       <!-- Buttons to download and add CSS code -->
       <div class="tab-pane fade" id="pills-css" role="tabpanel" aria-labelledby="pills-profile-tab">
         <div id="wrap">
@@ -73,10 +185,121 @@
                 <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" href="javascript:void(0);" (click)="downloadCssFile()" data-toggle="tooltip" data-placement="top" title="Download"><i class="fa fa-download" aria-hidden="true"></i></button>
                 &nbsp;
                 <button type="button" class="btn btn-outline-success" href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
+                <!--  butons to create file on github -->
+                <button class="btn btn-outline-primary align-middle btn-outlin-secondary">
+                  <a href="javascript:void(0);"> 
+                 <i class="fa fa-plus-square-o" aria-hidden="true" title="Create new file" data-toggle="modal" data-target="#cssCreateModalWindow"></i></a></button>
+                <!-- modal window to create the file -->
+                <div class="modal fade" id="cssCreateModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.CREATINGFILE}}</strong><b>{{reponame}}</b></h6>
+                        <button type="button" class="close" data-dismiss="modal" #createClose aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form #cssCreateForm="ngForm" (ngSubmit)="createFile(cssCreateForm.form,cssCreateForm.form);">
+                          <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #nameField="ngModel" required minlength="5" placeholder="enter your file name"></textarea>
+                          <div *ngIf="nameField.touched && nameField.errors">
+                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
+                              file name is required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
+                              The commit message should be at least 5 characters long
+                            </div>
+                          </div>
+                          <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #commitField="ngModel" required minlength="5" placeholder="enter your commit message"></textarea>
+                          <div *ngIf="commitField.touched && commitField.errors">
+                            <div class="alert alert-danger" *ngIf="commitField.errors.required">
+                              commit message is required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="commitField.errors.minlength">
+                              The commit message should be at least 5 characters long
+                            </div>
+                          </div>
+                          <div>
+                            <h6>{{editorConfig.editor.CREATE}}</h6>
+                          </div>
+                          <button class="btn btn-primary createbtn" [disabled]="!cssCreateForm.valid">{{editorConfig.editor.CREATEBTN}}</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- button to update the file -->
+                <button class="btn btn-outline-primary">
+                  <a href="javascript:void(0);">
+                <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update File" data-toggle="modal" data-target="#cssUpdatedModalWindow"></i></a></button>
+                <!--  modal window to update the file -->
+                <div class="modal fade" id="cssUpdatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.UPDATINGFILE}}</strong><b>{{reponame}}</b></h6>
+                        <button type="button" class="close" data-dismiss="modal" #updateClose aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form #cssUpdateForm="ngForm" (ngSubmit)="updateFile(cssUpdateForm.form);">
+                          <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #nameField="ngModel" required minlength="5" placeholder="enter your commit message"></textarea>
+                          <div *ngIf="nameField.touched && nameField.errors">
+                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
+                              commit message is required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
+                              The commit message should be at least 5 characters long
+                            </div>
+                          </div>
+                          <div>
+                            <h6>{{editorConfig.editor.UPDATE}}</h6>
+                          </div>
+                          <button class="btn btn-primary updatebtn" [disabled]="!cssUpdateForm.valid">{{editorConfig.editor.UPDATEBTN}}</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- button to delete the file -->
+                <button class="btn btn-outline-primary">
+                  <a href="javascript:void(0);">
+                <i class="fa fa-trash-o" aria-hidden="true" title="Delete File" data-toggle="modal" data-target="#cssDeleteModalWindow"></i></a></button>
+                modal window to delete the file
+                <div class="modal fade" id="cssDeleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.DELETINGFILE}}</strong><b>{{reponame}}</b></h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #deleteClose>
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form #cssDeleteForm="ngForm" (ngSubmit)="deleteFile(cssDeleteForm.form);">
+                          <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
+                          <div *ngIf="nameField.touched && nameField.errors">
+                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
+                              commit message is required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
+                              The commit message should be at least 5 characters long
+                            </div>
+                          </div>
+                          <div>
+                            <h6>{{editorConfig.editor.DELETE}}</h6>
+                          </div>
+                          <button class="btn btn-primary deletebtn" [disabled]="!cssDeleteForm.valid">Delete</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
                 <div id="myCssDiv"></div>
               </form>
             </nav>
-            <div ace-editor [(text)]="cssValue" [mode]="'css'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="css">
+            <div ace-editor [(text)]="content" [mode]="'css'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="css">
             </div>
           </section>
         </div>
@@ -90,10 +313,121 @@
                 <button href="javascript:void(0);" class="btn btn-outline-primary align-middle btn-outlin-secondary" type="button" href="javascript:void(0);" (click)="downloadJsFile()" data-toggle="tooltip" data-placement="top" title="Download"><i class="fa fa-download" aria-hidden="true"></i></button>
                 &nbsp;
                 <button type="button" class="btn btn-outline-success " href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
+                <!--  butons to create file on github -->
+                <button class="btn btn-outline-primary">
+                  <a href="javascript:void(0);"> 
+                 <i class="fa fa-plus-square-o" aria-hidden="true" title="Create new file" data-toggle="modal" data-target="#jsCreateModalWindow"></i></a></button>
+                <!-- modal window to create the file -->
+                <div class="modal fade" id="jsCreateModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.CREATINGFILE}}</strong><b>{{reponame}}</b></h6>
+                        <button type="button" class="close" data-dismiss="modal" #createClose aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form #jsCreateForm="ngForm" (ngSubmit)="createFile(jsCreateForm.form,jsCreateForm.form);">
+                          <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #nameField="ngModel" required minlength="5" placeholder="enter your file name"></textarea>
+                          <div *ngIf="nameField.touched && nameField.errors">
+                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
+                              file name is required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
+                              The commit message should be at least 5 characters long
+                            </div>
+                          </div>
+                          <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #commitField="ngModel" required minlength="5" placeholder="enter your commit message"></textarea>
+                          <div *ngIf="commitField.touched && commitField.errors">
+                            <div class="alert alert-danger" *ngIf="commitField.errors.required">
+                              commit message is required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="commitField.errors.minlength">
+                              The commit message should be at least 5 characters long
+                            </div>
+                          </div>
+                          <div>
+                            <h6>{{editorConfig.editor.CREATE}}</h6>
+                          </div>
+                          <button class="btn btn-primary createbtn" [disabled]="!jsCreateForm.valid">{{editorConfig.editor.CREATEBTN}}</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- button to update the file -->
+                <button class="btn btn-outline-primary">
+                  <a href="javascript:void(0);">
+                <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update File" data-toggle="modal" data-target="#jsUpdatedModalWindow"></i></a></button>
+                <!-- modal window to update the file -->
+                <div class="modal fade" id="jsUpdatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.UPDATINGFILE}}</strong><b>{{reponame}}</b></h6>
+                        <button type="button" class="close" data-dismiss="modal" #updateClose aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form #jsUpdateForm="ngForm" (ngSubmit)="updateFile(jsUpdateForm.form);">
+                          <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #nameField="ngModel" required minlength="5" placeholder="enter your commit message"></textarea>
+                          <div *ngIf="nameField.touched && nameField.errors">
+                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
+                              commit message is required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
+                              The commit message should be at least 5 characters long
+                            </div>
+                          </div>
+                          <div>
+                            <h6>{{editorConfig.editor.UPDATE}}</h6>
+                          </div>
+                          <button class="btn btn-primary updatebtn" [disabled]="!jsUpdateForm.valid">{{editorConfig.editor.UPDATEBTN}}</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--button to delete the file -->
+                <button class="btn btn-outline-primary">
+                  <a href="javascript:void(0);">
+                <i class="fa fa-trash-o" aria-hidden="true" title="Delete File" data-toggle="modal" data-target="#jsDeleteModalWindow"></i></a></button>
+                <!-- modal window to delete the file -->
+                <div class="modal fade" id="jsDeleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h6 class="modal-title" id=""><strong class="modalHeader">{{editorConfig.editor.DELETINGFILE}}</strong><b>{{reponame}}</b></h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #deleteClose>
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form #jsDeleteForm="ngForm" (ngSubmit)="deleteFile(jsDeleteForm.form);">
+                          <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
+                          <div *ngIf="nameField.touched && nameField.errors">
+                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
+                              commit message is required
+                            </div>
+                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
+                              The commit message should be at least 5 characters long
+                            </div>
+                          </div>
+                          <div>
+                            <h6>{{editorConfig.editor.DELETE}}</h6>
+                          </div>
+                          <button class="btn btn-primary deletebtn" [disabled]="!jsDeleteForm.valid">Delete</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div id="myJsDiv"></div>
               </form>
             </nav>
-            <div ace-editor [(text)]="jsValue" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" (textChanged)="onChange($event)" class="code_box" id="javascript">
+            <div ace-editor [(text)]="content" [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" (textChanged)="onChange($event)" class="code_box" id="javascript">
             </div>
           </section>
         </div>
