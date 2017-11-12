@@ -14,10 +14,10 @@
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingOne">
                 <h5 class="mb-0 accordionHeading">
-									<a class= "accordionTitle" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-										{{config.TITLE}}
-									</a>
-								</h5>
+                  <a class= "accordionTitle" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    {{config.TITLE}}
+                  </a>
+                </h5>
               </div>
               <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body accordionBody">
@@ -29,12 +29,26 @@
               </div>
             </div>
             <div class="card">
+              <div class="card-header accordianClass" role="tab" id="headingTwo">
+                <h5 class="mb-0 accordionHeading">
+                  <a class="collapsed yourRepo" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Your Repositories
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body accordionBody">
+                  <app-repo-sidebar [githubUser]="githubUser" [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event) [repoNameForFileUpdate]="repoNameForFileUpdate"></app-repo-sidebar>
+                </div>
+              </div>
+            </div>
+            <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingThree">
                 <h5 class="mb-0 accordionHeading">
-				<a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-				 {{config.NEWREPOSITORY}}
-				</a>
-			</h5>
+                  <a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    {{config.NEWREPOSITORY}}
+                  </a>
+                </h5>
               </div>
               <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body accordionBody">
@@ -70,10 +84,10 @@
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingFour">
                 <h5 class="mb-0 accordionHeading">
-				<a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-				 {{config.PACGENERATE}}
-				</a>
-			</h5>
+                  <a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    {{config.PACGENERATE}}
+                  </a>
+                </h5>
               </div>
               <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
                 <div class="card-body accordionBody">
@@ -124,7 +138,7 @@
           <!-- repository side bar selector -->
         </div>
         <div *ngIf="mode=='javascript'" class="col-md-10">
-          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-editor>
+          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed" (repoNameForFileUpdate)=getRepoNameForFileUpdate($event)></app-editor>
         </div>
         <div *ngIf="mode=='html'" class="col-md-10">
           <app-webeditor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-webeditor>

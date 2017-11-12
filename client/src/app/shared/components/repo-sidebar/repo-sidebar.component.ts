@@ -3,6 +3,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import swal from 'sweetalert2';
 
+import * as $ from 'jquery';
+
 /*import third party libraries*/
 import { EditorService } from '../../services/editor.service';
 import { GitService } from '../../services/git.service';
@@ -19,7 +21,9 @@ import { AuthenticationService } from '../../services/authentication.service'
 export class RepoSidebarComponent implements OnInit {
 
   @Input() mode: String;
-  @Input() githubUser:any;
+  @Input() githubUser: any;
+  @Input() repoNameForFileUpdate: string;
+
   config = config;
   /*declaring all the required variables*/
   selectedValue: any;
@@ -40,6 +44,9 @@ export class RepoSidebarComponent implements OnInit {
   extension: any;
   confirm: any;
   folder: any;
+  filename: string
+
+  folderDetails: string;
 
 
   // @Input() personalAccessToken;
@@ -53,11 +60,22 @@ export class RepoSidebarComponent implements OnInit {
     private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
+    console.log("===========++++++++++++++++++++++" + this.repoNameForFileUpdate)
+    this.gitService.getTree(this.repoNameForFileUpdate)
+      .subscribe(data => {
+        this.isTree = true;
+        this.data = data;
+        this.repoName.emit(this.repoNameForFileUpdate);
+      }, err => {
+        this.isTree = false;
+        if (err === 404)
+          this.emptyRepo = config.repoSidebar.EMPTY_REPO;
+      })
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
     this.authenticationService.getPersonalAccessToken(this.currentUser.userId)
       .subscribe((res) => {
         this.authenticationService.pacToken = res.data.accessToken;
-        
+
       })
   }
 
@@ -68,149 +86,97 @@ export class RepoSidebarComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  /*calling method to search repositery*/
-  reposearch() {
+  getDirectoryContent() {
     this.reponamed = this.selectedValue;
-    this.gitService.getTree(this.selectedValue)
-      .subscribe(data => {
-        this.isTree = true;
-        this.data = data;
+    this.gitService.getFolderContents(this.reponamed)
+      .subscribe(repo => {
+        this.folderDetails = repo;
         this.repoName.emit(this.reponamed);
-      }, err => {
-        this.isTree = false;
-        if (err === 404)
-          this.emptyRepo = config.repoSidebar.EMPTY_REPO;
       })
   }
 
-  /*Method to send data after swell executes to editor*/
-  swelldata(reponame, filename) {
-    this.reponamed = this.selectedValue;
-    this.gitService.openFolder(reponame, filename)
-      .subscribe(
-        data => {
-          this.data = data
-          this.url = this.url + filename + "/"
-        }, err => {
-          this.show(reponame, this.url + filename)
-          this.url = "";
-        })
-  }
+  getFolderInfo($event: any) {
+    let eleId = $event.target.id;
+    if (eleId) {
+      $('#' + eleId + ' ol').remove()
+      $('#' + eleId + ' li').remove()
 
-  /*method used to show repositery name and file name*/
-  showFile(reponame, filename) {
-    this.extension = filename.split('.').pop();
-    this.folder = filename.split('.');
-    if (this.folder.length > 1) {
-      if (this.extension !== "js" && this.extension !== "html" && this.extension !== "css") {
-        swal({
-          timer: 8500,
-          title: config.repoSidebar.NO_EXT,
-          text: "",
-          type: 'error',
-          showConfirmButton: true,
-        }).then(() => {
-          this.swelldata(reponame, filename);
-
-        })
-      }
-
-      if (this.mode === "javascript" && this.extension !== "js" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore" && this.extension!=="ts" && this.extension!=="txt") {
-        /*this.confirm = confirm(config.repoSidebar.HTML_MODE) 
-        if (this.confirm === true) {
-          this.mode = "html"
-          this.editorMode.emit(this.mode);
-        }*/
-        swal({
-          text: config.repoSidebar.HTML_MODE,
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'OK',
-          cancelButtonText: 'CANCEL',
-          confirmButtonClass: 'btn btn-success',
-          cancelButtonClass: 'btn btn-danger',
-          buttonsStyling: false
-        }).then(() => {
-
-          this.mode = "html"
-          this.editorMode.emit(this.mode);
-          this.swelldata(reponame, filename);
-
-        })
-      } else if (this.mode === "javascript" && this.extension == "js") {
-        /* this.confirm = confirm(config.repoSidebar.ASK_MODE)
-        if (this.confirm === true) {
-          this.mode = "javascript"
-          this.editorMode.emit(this.mode);
-        } else {
-          this.mode = "html"
-          this.editorMode.emit(this.mode);
-        }
-*/
-        swal({
-          text: config.repoSidebar.ASK_MODE,
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'OK',
-          cancelButtonText: 'CANCEL'
-        }).then(() => {
-          this.mode = "javascript"
-          this.editorMode.emit(this.mode);
-          this.swelldata(reponame, filename);
-
-        }, function(dismiss) {
-          // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
-          if (dismiss === 'cancel') {
-            this.mode = "html"
-            this.editorMode.emit(this.mode);
-            this.swelldata(reponame, filename);
+      let folderValue = $event.target.innerText
+      let path = $event.target.dataset.path;
+      this.gitService.openFolder(path, this.reponamed).subscribe(folder => {
+        folder.map((ele, index) => {
+          if (ele.type === 'dir') {
+            return this.appendDir(ele.name, eleId, index, ele.path);
+          } else if (ele.type === 'file') {
+            return this.appendFile(ele.name, eleId, index, ele.path);
           }
         })
+      })
+    } else {
 
-      } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore" && this.extension!=="ts" && this.extension!=="txt") {
-        /*this.confirm = confirm(config.repoSidebar.JAVASCRIPT_MODE)
-        if (this.confirm === true) {
-          this.mode = "javascript"
-          this.editorMode.emit(this.mode);
-        }*/
-        swal({
-          text: config.repoSidebar.JAVASCRIPT_MODE,
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'OK',
-          cancelButtonText: 'CANCEL',
-          confirmButtonClass: 'btn btn-success',
-          cancelButtonClass: 'btn btn-danger',
-          buttonsStyling: false
-        }).then(() => {
-
-          this.mode = "javascript"
-          this.editorMode.emit(this.mode);
-          this.swelldata(reponame, filename);
-
-        })
-
-      }
+      this.getFile($event);
     }
-    this.swelldata(reponame, filename);
+
   }
 
-  //method used to show content of file present in repository
-  show(reponame, filename) {
-    this.reponamed = reponame;
-    this.filenamed = filename;
-    this.gitService.getFile(reponame, filename)
-      .subscribe(data => {
-        this.fileData = data;
-        this.text = this.fileData._body;
-        this.content.emit(this.text);
-        this.repoName.emit(this.reponamed);
-        this.fileName.emit(this.filenamed);
-      })
+  appendDir(name, id, index, path) {
+
+    $('#' + id).append(`<ol id= ${name}${index} data-path=${path} (click)="getInfo($event)" style="list-style-type:none;">
+    <i class="fa fa-caret-down" aria-hidden="true"></i>&nbsp;<i class="fa fa-folder-open" aria-hidden="true"></i> &nbsp; ${name} </ol>`);
+  }
+
+  appendFile(name, id, index, path) {
+    $('#' + id).append(`<li (click)="getFile($event)" data-path=${path} data-filename=${name} style="list-style-type:none;">
+      <i class="fa fa-file" aria-hidden="true"></i> &nbsp; ${name}
+    </li>`);
+
+  }
+
+  getFile($event) {
+
+    this.filename = $event.target.dataset.filename;
+    let path = $event.target.dataset.path;
+
+    this.gitService.getFileData(path, this.reponamed).subscribe(data => {
+
+      this.extension = this.filename.split('.').pop();
+      this.folder = this.filename.split('.');
+      if (this.folder.length > 1) {
+        if (this.extension !== "js" && this.extension !== "html" && this.extension !== "css") {
+          alert(config.repoSidebar.NO_EXT)
+        } else if (this.mode === "javascript" && this.extension !== "js" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore" && this.extension !== "ts" && this.extension !== "txt") {
+          this.confirm = confirm(config.repoSidebar.HTML_MODE)
+          if (this.confirm === true) {
+            this.mode = "html"
+            this.editorMode.emit(this.mode);
+          }
+        } else if (this.mode === "javascript" && this.extension == "js") {
+          this.confirm = confirm(config.repoSidebar.ASK_MODE)
+          if (this.confirm === true) {
+            this.mode = "javascript"
+            this.editorMode.emit(this.mode);
+          } else {
+            this.mode = "html"
+            this.editorMode.emit(this.mode);
+          }
+
+        } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore" && this.extension !== "ts" && this.extension !== "txt") {
+          this.confirm = confirm(config.repoSidebar.JAVASCRIPT_MODE)
+          if (this.confirm === true) {
+            this.mode = "javascript"
+            this.editorMode.emit(this.mode);
+          }
+        }
+      }
+
+      this.fileData = data;
+      this.text = atob(data.content);
+      this.content.emit(this.text);
+      this.repoName.emit(this.reponamed);
+      this.fileName.emit(this.filename);
+
+
+    })
   }
 
 
