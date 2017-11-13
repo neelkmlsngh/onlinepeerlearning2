@@ -6,10 +6,9 @@
     <section>
       <nav class="navbar navbar-light font nopadding" id="mainNav">
         <form class="row col-md-12 col-sm-12 form-inline ">
-           &nbsp; &nbsp;
+          &nbsp; &nbsp;
           <div class="leftbutton">
             <!--     button to add snippet -->
-           
             <button class="btn btn-outline-warning" href="javascript:void(0);" id="dropdownMenuButton" data-toggle="dropdown" title={{config.editor.SNIPPET}}>
               <i class="fa fa-code " aria-hidden="true"></i>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -17,14 +16,14 @@
               </div>
             </button>
             &nbsp;
+            <!--  Execute function to run code   -->
+            <button class="btn btn-outline-warning" href="javascript:void(0);" title=" Run the code" (click)="executecode()">
+              <i class=" fa fa-play-circle-o " aria-hidden="true"></i></button>
+            &nbsp;
             <!-- Download icon -->
             <button class="btn btn-outline-warning" href="javascript:void(0);" (click)="downloadJsFile()" title="Download JS File">
               <i class="fa fa-download " aria-hidden="true"></i>
             </button>
-            &nbsp;
-            <!--  Execute function to run code   -->
-            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Execute File" (click)="executecode()">
-              <i class=" fa fa-play-circle-o " aria-hidden="true"></i></button>
             &nbsp;
           </div>
           <div id="jsDiv"></div>

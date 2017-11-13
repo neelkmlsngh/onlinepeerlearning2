@@ -1,6 +1,6 @@
 export const config: any = {
 editor: {
-    SNIPPET: "Insert your code snippet",
+    SNIPPET: "Insert code snippet",
     JAVASCRIPTNAME: "Javascript File",
     CREATINGFILE: "creating file in the current repository:",
     UPDATINGFILE:"updating file in the current repository:",

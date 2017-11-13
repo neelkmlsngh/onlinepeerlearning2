@@ -25,8 +25,13 @@
 .oeditor {
   font-size: medium;
   font-weight: 700;
+  cursor: pointer;
 }
 
 ul li {
   margin-left: 18px;
+}
+
+.logout{
+  cursor: pointer;
 }

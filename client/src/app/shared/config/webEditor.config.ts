@@ -4,7 +4,7 @@ export const webEditorConfig: any = {
     CSS: "CSS",
     JS: "JavaScript",
     SCREENSHARE: "Share Your Screen",
-    ADD: "Insert your code snippet",
+    ADD: "Insert code snippet",
     ZIP: "Download project as zip",
     DOWNLOADHTML: "Download HTML file",
     DOWNLOADCSS: "Download CSS file",
