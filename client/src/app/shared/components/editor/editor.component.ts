@@ -35,7 +35,8 @@ export class EditorComponent implements OnInit {
   */
 
   //emitting reponame for updating file list
-  @Output() repoNameForFileUpdate = new EventEmitter < any > ();
+  // @Output() repoNameForFileUpdate = new EventEmitter < any > ();
+   @Output() repoNameForFileUpdate: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('editor') editor;
 
@@ -188,7 +189,6 @@ export class EditorComponent implements OnInit {
                       //sweet alert on getting response
                       if (repos) {
                         this.loading = false;
-
 
                         this.repoNameForFileUpdate.emit(this.reponame)//for upadtion of file-list  when new file created
 

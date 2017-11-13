@@ -51,7 +51,6 @@
                 &nbsp;
                 <button type="button" class="btn btn-outline-warning" href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="Zip Project"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
                 &nbsp;
-                <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn btn-outline-warning text-right" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="{{config.webEditor.SCREENSHARE}}" (click)="openModal(template)"> <i class="fa fa-desktop" aria-hidden="true"></i></button>
                 <!--  button to create the file -->
                 <button class="btn btn-outline-warning" href="javascript:void(0);">
                   <i class="fa fa-plus-square-o" aria-hidden="true" title="Create new file" data-toggle="modal" data-target="#HTMLCeateModalWindow"></i></button>
@@ -160,6 +159,7 @@
                     </div>
                   </div>
                 </div>
+                <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn btn-outline-warning text-right" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="{{config.webEditor.SCREENSHARE}}" (click)="openModal(template)"> <i class="fa fa-desktop" aria-hidden="true"></i></button>
                 <div id="myDiv"></div>
               </form>
             </nav>

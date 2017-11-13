@@ -120,13 +120,16 @@
                 </div>
               </div>
             </div>
+            <!-- first column -->
+            <!-- repository side bar selector -->
           </div>
-          <!-- first column -->
-          <!-- repository side bar selector -->
         </div>
+        <!-- side bar div end here -->
+        <!-- editor div start here -->
         <div *ngIf="mode=='javascript'" class="col-md-10">
-          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed" (repoNameForFileUpdate)=getRepoNameForFileUpdate($event)></app-editor>
+          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed" (repoNameForFileUpdate)="getRepoNameForFileUpdate($event)"></app-editor>
         </div>
+        <!-- editor  div end here -->
         <div *ngIf="mode=='html'" class="col-md-10">
           <app-webeditor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-webeditor>
         </div>
@@ -148,7 +151,5 @@
 </div>
 <!-- main component ends -->
 <!-- <div id="sidebar">
-  <div id="dragbar"></div>
-  sidebar
-</div>
- -->
+          <div id="dragbar"></div> -->
+<!-- </div> -->
