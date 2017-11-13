@@ -139,9 +139,10 @@ export class WebeditorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.content=this.htmlValue;
+    if(!this.content){
+      this.content=this.htmlValue;
+    }
     this.onChange(this.code)
-
     this.snippet.getSnippet()
       .subscribe(res => {
 
