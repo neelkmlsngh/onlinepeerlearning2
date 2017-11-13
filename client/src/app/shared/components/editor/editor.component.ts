@@ -189,7 +189,6 @@ export class EditorComponent implements OnInit {
                       if (repos) {
                         this.loading = false;
 
-
                         this.repoNameForFileUpdate.emit(this.reponame)//for upadtion of file-list  when new file created
 
                         swal({
