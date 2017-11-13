@@ -36,7 +36,7 @@ export class EditorComponent implements OnInit {
 
 	//emitting reponame for updating file list
 	// @Output() repoNameForFileUpdate = new EventEmitter < any > ();
-	@Output() repoNameForFileUpdate: EventEmitter<any> = new EventEmitter();
+	@Output() repoNameForFileUpdateAtCreate: EventEmitter<any> = new EventEmitter();
 	@Output() repoNameForFileUpdateAtUpdate: EventEmitter<any> = new EventEmitter();
 	@Output() repoNameForFileUpdateAtDelete: EventEmitter<any> = new EventEmitter();
 
@@ -193,7 +193,7 @@ export class EditorComponent implements OnInit {
 											this.gitService.lastcommit(this.reponame, this.lastcommit)
 												.subscribe(repos => {
     										  
-    										  this.repoNameForFileUpdate.emit({repoName:this.reponame,sha:repos.object.sha})
+    										  this.repoNameForFileUpdateAtCreate.emit({repoName:this.reponame,sha:repos.object.sha})
 													
 													if (repos) {
 																this.loading = false;
@@ -256,9 +256,7 @@ export class EditorComponent implements OnInit {
 					//hitting the update file api to update the file contents
 					this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
 						.subscribe(repos => {
-							debugger;
-							console.log(repos+'=============================================');
-							console.log(repos);
+    					this.repoNameForFileUpdateAtUpdate.emit({repoName:this.reponame,sha:repos.commit.sha})
 							this.loading = false;
 							//sweet alert on getting response
 							if (repos) {
@@ -315,6 +313,7 @@ export class EditorComponent implements OnInit {
 					//hitting the delete file api to delete the file
 					this.gitService.deleteFile(this.reponame, this.filenamed, this.deletefileobj)
 						.subscribe(repos => {
+    					this.repoNameForFileUpdateAtDelete.emit({repoName:this.reponame,sha:repos.commit.sha})
 							//sweet alert on getting response
 							if (repos) {
 								this.loading = false;

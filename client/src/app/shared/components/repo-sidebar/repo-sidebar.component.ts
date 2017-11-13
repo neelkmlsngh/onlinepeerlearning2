@@ -18,7 +18,7 @@ export class RepoSidebarComponent implements OnInit, OnChanges {
   
   @Input() mode: String;
   @Input() githubUser: any;
-  @Input() xyz: any;
+  @Input() repoNameForFileListUpdate: any;
   
   config = config;
   /*declaring all the required variables*/
@@ -58,8 +58,8 @@ export class RepoSidebarComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: {[property:string]:SimpleChange}){
-    if(this.xyz){
-     this.getDirectoryContentAfterChanges(this.xyz.repoName,this.xyz.sha);
+    if(this.repoNameForFileListUpdate){
+     this.getDirectoryContentAfterChanges(this.repoNameForFileListUpdate.repoName,this.repoNameForFileListUpdate.sha);
     }
     // } 
   }
