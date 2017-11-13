@@ -25,12 +25,25 @@
             <a class="btn btn-sm postquestion text-white" href="" routerLink='add'>
                  <i class="fa fa-question-circle fa-lg text-white"></i>{{forumConfig.VIEWPOST.ASK_QUESTION}}</a>
             <a id="viewQue" class="btn btn-sm postquestion text-white" (click)="viewPost()">
-              {{forumConfig.VIEWPOST.VIEW_QUESTION}}</a>     
+              {{forumConfig.VIEWPOST.VIEW_QUESTION}}</a>
           </div>
         </div>
         <hr>
         <!-- showing questions -->
         <div class="questionsumary">
+          <div *ngIf="data.length === 0">
+            <div class="jumbotron jumbotron-billboard">
+              <div class="img"></div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h1>!!OPPS!!</h1>
+                    <h1>Search Result Not Found</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row" *ngFor="let result of data| paginate: { itemsPerPage:4, currentPage: p }">
             <div class="statuscontainer col-sm-2">
               <div class="answeraccepted h5  border py-2 text-white mt-2">
@@ -65,7 +78,7 @@
                       </div>
                     </div>
                     <div class="col-sm-5 mt-2 postedDate">
-                     <i class="fa fa-clock-o fa-lg text-black"></i> {{forumConfig.VIEWPOST.ASKED}} {{result.date}}
+                      <i class="fa fa-clock-o fa-lg text-black"></i> {{forumConfig.VIEWPOST.ASKED}} {{result.date}}
                     </div>
                   </div>
                 </div>

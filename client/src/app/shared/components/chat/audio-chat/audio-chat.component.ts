@@ -6,6 +6,8 @@
   import { SocketService } from '../../../services/chatservices/socket.service'
   import { ChatHomeComponent } from '../chat-home/chat-home.component'
 
+  import { audioChat } from '../../../config/audioConfig';
+
   @Component({
     selector: 'app-audio-chat',
     templateUrl: './audio-chat.component.html',
@@ -22,9 +24,8 @@
     peer;
     anotherid;
     mypeerid;
-    muted:boolean=false;
-
-
+    config = audioChat;
+    
     constructor(private router: Router, private compiler: Compiler, private socketService: SocketService, private chatHome: ChatHomeComponent) {}
 
     ngOnInit() {

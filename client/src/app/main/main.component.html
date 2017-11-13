@@ -106,7 +106,7 @@
                 </div>
               </div>
             </div>
-                        <div class="card">
+            <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingTwo">
                 <h5 class="mb-0 accordionHeading">
                   <a class="collapsed yourRepo" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -116,7 +116,7 @@
               </div>
               <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body accordionBody">
-                  <app-repo-sidebar [githubUser]="githubUser" [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event) [repoNameForFileUpdate]="repoNameForFileUpdate"></app-repo-sidebar>
+                  <app-repo-sidebar [githubUser]="githubUser" [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event) [repoNameForFileListUpdate]="repoNameForUpdate"></app-repo-sidebar>
                 </div>
               </div>
             </div>
@@ -127,7 +127,10 @@
         <!-- side bar div end here -->
         <!-- editor div start here -->
         <div *ngIf="mode=='javascript'" class="col-md-10">
-          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed" (repoNameForFileUpdate)="getRepoNameForFileUpdate($event)"></app-editor>
+          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed" (repoNameForFileUpdateAtCreate)="getRepoNameForFileUpdate($event)"
+          (repoNameForFileUpdateAtUpdate)="getRepoNameForFileUpdate($event)"
+          (repoNameForFileUpdateAtDelete)="getRepoNameForFileUpdate($event)"
+          ></app-editor>
         </div>
         <!-- editor  div end here -->
         <div *ngIf="mode=='html'" class="col-md-10">

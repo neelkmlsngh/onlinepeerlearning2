@@ -20,7 +20,6 @@ import { config } from './../../config/editor.config';
 export class WebeditorComponent implements OnInit {
 
   constructor(private snippet: SnippetService,private authenticationService: AuthenticationService,private gitService: GitService, private zone: NgZone, private modalService: BsModalService) {
-    this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
   }
 
@@ -107,27 +106,43 @@ export class WebeditorComponent implements OnInit {
   classSelector: any;
   idSelector: any;
   mediaQueries: any;
+  templateRef:any;
 
-  public openModal(template: TemplateRef < any > ) {
-    if(this.showModalBox==false){
-    this.modalRef = this.modalService.show(template);
-  }
-    this.showModal();
-  }
+ /*it will open a modal when user will click on screen share button*/
+  public openModals(template: TemplateRef < any > ) {
+    this.methodToExport = this.calledFromOutside;
+    if (this.showModalBox == false) {
+      this.loading = true;
+      this.templateRef = template;
+    } else {
+      swal({
+        timer: 2000,
+        title: webEditorConfig.screenShare.TITLE,
+        text: webEditorConfig.screenShare.TEXT,
+        type: webEditorConfig.screenShare.INFO,
+        showConfirmButton: false,
+      }).then()
+    }
 
-  showModal() {
-   this.showModalBox = !this.showModalBox;
+   /*varialbe to toggle sharing status on/off*/
+    this.showModalBox = !this.showModalBox;
+
  }
+
+ /*will get the link generate from index.html*/
   calledFromOutside(url: string) {
     this.zone.run(() => {
+      this.loading = false;
       this.link = url;
+      this.modalRef = this.modalService.show(this.templateRef);
     });
   }
 
   ngOnInit() {
-    this.content=this.htmlValue;
+    if(!this.content){
+      this.content=this.htmlValue;
+    }
     this.onChange(this.code)
-
     this.snippet.getSnippet()
       .subscribe(res => {
 
@@ -146,7 +161,7 @@ export class WebeditorComponent implements OnInit {
         text: "",
         type: 'error',
         showConfirmButton: false,
-      })
+      }).then()
     } else {
       this.loading = true;
       this.fileName = fileName.value['fileName'];
@@ -198,7 +213,7 @@ export class WebeditorComponent implements OnInit {
                           text: "",
                           type: 'success',
                           showConfirmButton: false,
-                        })
+                        }).then()
                       }
                       //sweet alert on getting error
                       else {
@@ -209,7 +224,7 @@ export class WebeditorComponent implements OnInit {
                           text: "",
                           type: 'error',
                           showConfirmButton: false,
-                        })
+                        }).then()
                       }
                     })
                 })
@@ -234,7 +249,7 @@ export class WebeditorComponent implements OnInit {
         text: "",
         type: 'error',
         showConfirmButton: false,
-      })
+      }).then()
     } else {
       this.loading = true;
       this.updateMsg = commitMessage.value['updateMsg'];
@@ -261,7 +276,7 @@ export class WebeditorComponent implements OnInit {
                   text: "",
                   type: 'success',
                   showConfirmButton: false,
-                })
+                }).then()
               }
               //sweet alert on getting error
               else {
@@ -272,7 +287,7 @@ export class WebeditorComponent implements OnInit {
                   text: "",
                   type: 'error',
                   showConfirmButton: false,
-                })
+                }).then()
               }
             })
         })
@@ -294,7 +309,7 @@ export class WebeditorComponent implements OnInit {
         text: "",
         type: 'error',
         showConfirmButton: false,
-      })
+      }).then()
     } else {
       this.loading = true;
       this.deleteMsg = commitMessage.value['deleteMsg'];
@@ -319,7 +334,7 @@ export class WebeditorComponent implements OnInit {
                   text: "",
                   type: 'success',
                   showConfirmButton: false,
-                })
+                }).then()
               } else {
                 this.loading = false;
                 //sweet alert on getting error
@@ -329,7 +344,7 @@ export class WebeditorComponent implements OnInit {
                   text: "",
                   type: 'error',
                   showConfirmButton: false,
-                })
+                }).then()
               }
             })
         })

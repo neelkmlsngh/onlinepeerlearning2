@@ -45,6 +45,11 @@ export const webEditorConfig: any = {
     HTML_FILE : 'index.html' ,
     CSS_FILE : 'style.css' ,
     JAVASCRIPT_FILE : 'script.js' 
-  }
+  },
 
+  screenShare : {
+    TITLE: "Click again to enable Screen Sharing",
+    TEXT: "Your screen was already shared. You clicked to disable it",
+    INFO:"info"
+  }
 };
