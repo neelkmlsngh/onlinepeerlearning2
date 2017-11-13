@@ -154,3 +154,11 @@ h5 {
 .tree-view li {
   margin-left: 12px;
 }
+
+ol{
+  cursor: pointer;
+}
+
+li{
+  cursor: pointer;
+}

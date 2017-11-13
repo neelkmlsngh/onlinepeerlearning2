@@ -38,7 +38,6 @@ forumConfig=forumConfig;
   ngOnInit() {
    this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
    this.userName=this.currentUser.userName;
-   console.log(this.userName);
 
     this.date = new Date();
     let day = this.date.getDate();
@@ -72,7 +71,6 @@ forumConfig=forumConfig;
   //method to add post on forum
  insertPost() {
      if (this.questionTitle&&CKEDITOR.instances.problemDescription.getData()){
-       console.log(this.questionTitle)
    this.obj = {
      questionTitle: this.questionTitle,
      codeSnippet: CKEDITOR.instances.addSnippet.getData(),
@@ -84,7 +82,6 @@ forumConfig=forumConfig;
    
    this.forum.savePost(this.obj).subscribe((res) => {
      if (res) {
-      // swal("Successfully added question", "", "success");
        swal({
            timer: 2000,
            title: "Question Added Successfully",
