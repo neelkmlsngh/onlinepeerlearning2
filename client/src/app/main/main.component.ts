@@ -65,6 +65,8 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    console.log('++++++++++++++++++++++++++++++++++ repoNameForFileUpdate ' + this.repoNameForFileUpdate);
     
     var i = 0;
      
