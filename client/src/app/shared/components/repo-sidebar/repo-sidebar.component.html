@@ -9,12 +9,13 @@
     </select>
     <!-- making drop down containing the list of repositeries -->
     <!-- end of drop down -->
-    <div *ngFor="let data of folderDetails; let i=index">
-      <ol id="dir{{i}}" *ngIf="data.type==='dir'" style="margin-right=1px;" [attr.data-path]="data.path" (click)="getFolderInfo($event)">
-        <i class="fa fa-caret-down" aria-hidden="true"></i>&nbsp;<i class="fa fa-folder-open" aria-hidden="true"></i> &nbsp;{{data.name}}
+    <div class="tree-view" *ngFor="let data of folderDetails; let i=index; ">
+      <ol id="dir{{i}}" *ngIf="data.type==='dir'" class="dir" style="margin-right=1px;" [attr.data-path]="data.path" (click)="getFolderInfo($event)">
+        <i class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;<i class="fa fa-folder-open" aria-hidden="true"></i> &nbsp;{{data.name}}
       </ol>
-      <li *ngIf="data.type==='file'" (click)="getFile($event)" [attr.data-path]="data.path" [attr.data-filename]="data.name" style="list-style-type:none;">
-        <i class="fa fa-caret-down" aria-hidden="true"></i>&nbsp;<i class="fa fa-file" aria-hidden="true"></i> &nbsp;{{data.name}}
+      <li *ngIf="data.type==='file'" class="file" (click)="getFile($event)" [attr.data-path]="data.path" [attr.data-filename]="data.name" style="list-style-type:none;">
+        <!-- <i aria-hidden="true"></i>&nbsp; -->
+        <i class="fa fa-file" aria-hidden="true"></i> &nbsp;{{data.name}}
       </li>
     </div>
   </div>

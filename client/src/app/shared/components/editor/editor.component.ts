@@ -35,7 +35,8 @@ export class EditorComponent implements OnInit {
   */
 
   //emitting reponame for updating file list
-  @Output() repoNameForFileUpdate = new EventEmitter < any > ();
+  // @Output() repoNameForFileUpdate = new EventEmitter < any > ();
+   @Output() repoNameForFileUpdate: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('editor') editor;
 
