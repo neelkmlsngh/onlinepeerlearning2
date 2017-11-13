@@ -5,12 +5,12 @@ select {
   text-align: center;
   background-color: #C5CAE9;
   color: black;
-    font-family:  'Open Sans', sans-serif;;
+  font-family:  'Open Sans', sans-serif;
+  font-size: 12px;
 }
 
 .gitRepo {
   width: 100%;
-
   color: black;
   font-family:  'Open Sans', sans-serif;
 }
@@ -139,7 +139,7 @@ h5 {
 
 .scrollable{
   width: 100%;
-  height: 260px;
+  height: 400px;
   overflow: auto;
 }
 

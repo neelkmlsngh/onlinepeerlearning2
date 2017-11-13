@@ -9,6 +9,7 @@
 }
 
 
+
 /* style for setting width and height of the editor */
 
 html,
@@ -18,11 +19,13 @@ body {
 }
 
 
+
 /* reponame text color*/
 
 .repoName b {
   color: #A9A9A9;
 }
+
 
 
 /**
@@ -34,7 +37,7 @@ body {
 }
 
 #output h3 {
-  height: 50px;
+  height: 45px;
   padding: 12px 20px;
   margin: 0;
   background-color: #C5CAE9;
@@ -44,6 +47,7 @@ body {
   font-size: 18px;
   text-align: center;
 }
+
 
 
 /* Output Area */
@@ -60,6 +64,7 @@ body {
 }
 
 
+
 /**
  * nav 
  */
@@ -69,9 +74,6 @@ body {
   height: 50px;
 }
 
-
-
-
 /**
  * font color
  */
@@ -79,8 +81,6 @@ body {
 .font a {
   color: #1995ad
 }
-
-
 
 /**
  * hover on buttons
@@ -90,9 +90,6 @@ body {
   color: black
 }
 
-
-
-
 /**
  * font color
  */
@@ -101,7 +98,6 @@ body {
   color: #1995ad
 }
 
-
 /**
  * hover on buttons
  */
@@ -109,6 +105,7 @@ body {
 .font a:hover {
   color: black
 }
+
 
 
 /**
@@ -119,6 +116,7 @@ body {
   padding: 0 !important;
   margin: 0 !important;
 }
+
 
 
 /**
@@ -134,13 +132,14 @@ body {
 
 
 
+
 /**
  * javascript
  */
 
 #javascript {
   font-size: 12px;
-  height: 560px;
+  height: 640px;
   margin-top: 0px;
 }
 
@@ -149,6 +148,100 @@ body {
 
 
 
+
+/**
+ * code box
+ */
+
+.code_box {
+  margin-top: 2px;
+}
+
+
+
+
+/**
+ * download button
+ */
+
+.downloadbtn {
+  color: black;
+}
+
+
+
+
+/**
+ * repocrud styling
+ */
+
+#repoCrud {
+  margin-left: 380px;
+}
+
+
+
+
+/**
+ * font styling
+ */
+
+.font {
+  padding-right: 0px;
+}
+
+
+
+
+
+/**
+ * left button styling
+ */
+
+.leftbutton {
+  font-size: 0px;
+}
+
+
+
+
+
+/*
+margin on buttons
+ */
+
+.createbtn {
+  margin-left: 395px;
+}
+
+
+
+
+
+/*
+ *margin on buttons
+ */
+
+.updatebtn {
+  margin-left: 395px;
+}
+
+
+
+
+
+/*
+ *margin on buttons
+ */
+
+.deletebtn {
+  margin-left: 395px;
+}
+
+
+
+
+
 /**
  * code box
  */
@@ -189,7 +282,6 @@ body {
 
 
 
-
 /**
  * left button styling
  */
@@ -197,7 +289,6 @@ body {
 .leftbutton {
   font-size: 0px;
 }
-
 
 
 
@@ -211,7 +302,6 @@ margin on buttons
 
 
 
-
 /*
  *margin on buttons
  */
@@ -219,7 +309,6 @@ margin on buttons
 .updatebtn {
   margin-left: 395px;
 }
-
 
 
 
@@ -231,79 +320,6 @@ margin on buttons
   margin-left: 395px;
 }
 
-
-
-
-/**
- * code box
- */
-
-.code_box {
-  margin-top: 2px;
-}
-
-
-/**
- * download button
- */
-
-.downloadbtn {
-  color: black;
-}
-
-
-/**
- * repocrud styling
- */
-
-#repoCrud {
-  margin-left: 380px;
-}
-
-
-/**
- * font styling
- */
-
-.font {
-  padding-right: 0px;
-}
-
-
-/**
- * left button styling
- */
-
-.leftbutton {
-  font-size: 0px;
-}
-
-
-/*
-margin on buttons
- */
-
-.createbtn {
-  margin-left: 395px;
-}
-
-
-/*
- *margin on buttons
- */
-
-.updatebtn {
-  margin-left: 395px;
-}
-
-
-/*
- *margin on buttons
- */
-
-.deletebtn {
-  margin-left: 395px;
-}
 
 
 /**

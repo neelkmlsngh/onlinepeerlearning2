@@ -1,23 +1,5 @@
 export const config: any = {
-
-
-  language: [
-    "Javascript",
-    "Html",
-    "CSS"
-  ],
   
-  con: {
-    title: "Add Snippet",
-    DROP: "Select Language to Add Snippet",
-    button: "Add Snippet",
-    TEXTAREA: "Enter your code Snippet here",
-    ADDSNIPP: "Add Title for Snippet",
-    CKEDITOR: {
-      "REMOVED_BUTTONS": "Link,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript,addFile,Image,Table,Styles,Format,Maximize,HorizontalRule,Unlink,Blockquote,Indent,Outdent,RemoveFormat,Spell",
-      "REMOVED_PLUGINS": "list,basicstyles,wsc,scayt,about,specialchar,scayt,spellchecker,elementspath,resize"
-    }
-  },
   connect: {
     apiURL: "https://192.168.252.152:8080",
     vmURL: "https://192.168.252.152:3030",

@@ -6,29 +6,33 @@
     <section>
       <nav class="navbar navbar-light font nopadding" id="mainNav">
         <form class="row col-md-12 col-sm-12 form-inline ">
-          <!--       <div class="col-md-3">
-          </div> -->
+           &nbsp; &nbsp;
           <div class="leftbutton">
             <!--     button to add snippet -->
-            <button class="btn btn-outline-warning" href="javascript:void(0);">
-              <i class="fa fa-code " aria-hidden="true" id="dropdownMenuButton" data-toggle="dropdown" title="Add snippet"></i>
+           
+            <button class="btn btn-outline-warning" href="javascript:void(0);" id="dropdownMenuButton" data-toggle="dropdown" title={{config.editor.SNIPPET}}>
+              <i class="fa fa-code " aria-hidden="true"></i>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item color" *ngFor="let data of javascript" (click)="insertAtPos(data.code)">{{data.title}}</a>
               </div>
             </button>
+            &nbsp;
             <!-- Download icon -->
-            <button class="btn btn-outline-warning" href="javascript:void(0);" (click)="downloadJsFile()">
-              <i class="fa fa-download " aria-hidden="true" title="Download JS File"></i>
+            <button class="btn btn-outline-warning" href="javascript:void(0);" (click)="downloadJsFile()" title="Download JS File">
+              <i class="fa fa-download " aria-hidden="true"></i>
             </button>
+            &nbsp;
             <!--  Execute function to run code   -->
-            <button class="btn btn-outline-warning" href="javascript:void(0);">
-              <i class=" fa fa-play-circle-o " aria-hidden="true" title="Execute File" (click)="executecode()"></i></button>
+            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Execute File" (click)="executecode()">
+              <i class=" fa fa-play-circle-o " aria-hidden="true"></i></button>
+            &nbsp;
           </div>
           <div id="jsDiv"></div>
           <div class="leftbutton">
             <!--  button to create the file -->
-            <button class="btn btn-outline-warning" href="javascript:void(0);">
-              <i class="fa fa-plus-square-o" aria-hidden="true" title="Create new file" data-toggle="modal" data-target="#createModalWindow"></i></button>
+            &nbsp;
+            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Create new file" data-toggle="modal" data-target="#createModalWindow">
+              <i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
             <!-- modal window to create the file -->
             <div class="modal fade" id="createModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -69,8 +73,9 @@
               </div>
             </div>
             <!--  button to update the file -->
-            <button class="btn btn-outline-warning" href="javascript:void(0);">
-              <i class="fa fa-pencil-square-o" aria-hidden="true" title="Update File" data-toggle="modal" data-target="#updatedModalWindow"></i>
+            &nbsp;
+            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Update File" data-toggle="modal" data-target="#updatedModalWindow">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </button>
             <!-- modal window to update the file -->
             <div class="modal fade" id="updatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
@@ -103,8 +108,9 @@
               </div>
             </div>
             <!--  button to delete the file -->
-            <button class="btn btn-outline-warning" href="javascript:void(0);">
-              <i class="fa fa-trash-o" aria-hidden="true" title="Delete File" data-toggle="modal" data-target="#deleteModalWindow"></i>
+            &nbsp;
+            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Delete File" data-toggle="modal" data-target="#deleteModalWindow">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
             <!-- modal window to delete the file -->
             <div class="modal fade" id="deleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
@@ -137,8 +143,9 @@
               </div>
             </div>
             <!-- screen share button -->
-            <button class="btn btn-outline-warning" href="javascript:void(0);">
-              <i class="fa fa-desktop screen" aria-hidden="true" onclick="TogetherJS(this); return false;" title="Share Your Screen" (click)="openModals(templates)"></i></button>
+            &nbsp;
+            <button class="btn btn-outline-warning" href="javascript:void(0);" onclick="TogetherJS(this); return false;" title="Share Your Screen" (click)="openModals(templates)">
+              <i class="fa fa-desktop screen" aria-hidden="true"></i></button>
             <template #templates>
               <div *ngIf="showModalBox==true">
                 <div class="modal-header">

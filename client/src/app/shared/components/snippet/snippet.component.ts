@@ -2,7 +2,10 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import swal from 'sweetalert2';
+import 'rxjs/add/observable/of';
+import 'rxjs/Rx';
 import { SnippetService } from '../../../shared/services/snippet.service'; 
+import { config } from '../../config/snippet.config';
 
 @Component({
  selector: 'app-snippet',
@@ -12,22 +15,31 @@ import { SnippetService } from '../../../shared/services/snippet.service';
 
 export class SnippetComponent implements OnInit {
 
- constructor(private snippetService: SnippetService, private modalService: BsModalService) {}
- 
+constructor(private snippetService: SnippetService, private modalService: BsModalService) {}
+
+//variable declarations
  snippets: any;
- title: any;
- oldtitle: any
- selectedValue: any = "All";
+ title: any="Snippet";
+ oldtitle: any;
+ languages:any='All';
+ languages1:any= 'Select Your Language';
+ selectedValue: any = "Select Your Language";
  code: any;
  oldcode: any;
- language: any = "Html";
+ language: any = "Select Your Language";
  oldlanguage: any;
- modalRef: BsModalRef;
 
+modalRef: BsModalRef;
+ config=config;
+
+//ngOnInit method
  ngOnInit() {
+   this.languages= config.language;
+   this.languages1 = config.language1;
   this.show();
  }
 
+//modal to edit sniippet
  openModal(template: TemplateRef<any>, data: any) {
      this.title = data.title;
    this.oldtitle = data.title;
@@ -38,18 +50,21 @@ export class SnippetComponent implements OnInit {
    this.modalRef = this.modalService.show(template);
  }
 
+//modal to add new snippet
  openModalAdd(template: TemplateRef<any>) {
    this.title = "";
      this.code = "";
-     this.language = "";
+     this.language = "Select Your Language";
    this.modalRef = this.modalService.show(template);
  }
 
+//method to display snippets
  show() {
      this.snippetService.getSnippet()
   .subscribe(res=> this.snippets = res)
  }
 
+//method to add new snippet
  add() {
    let obj = {
      "title": this.title,
@@ -71,6 +86,7 @@ export class SnippetComponent implements OnInit {
    this.modalRef.hide();
  }
 
+//method to modify snippet
  edit() {
    if(this.oldtitle!=this.title || this.oldlanguage!=this.language || this.oldcode!=this.code)
    {
@@ -81,7 +97,7 @@ export class SnippetComponent implements OnInit {
          "code": this.code
      }
 
-     this.snippetService.updateSnippet(obj)
+    this.snippetService.updateSnippet(obj)
      .subscribe(res=> {
      if (res) {
          swal({ //alert message for success
@@ -97,6 +113,7 @@ export class SnippetComponent implements OnInit {
 this.modalRef.hide()
  }
 
+//method to delete snippet
  deleteSnip(title: any) {
      this.snippetService.deleteSnippet(title)
      .subscribe(res=> {
@@ -112,6 +129,7 @@ this.modalRef.hide()
    })
 }
 
+//method to show snippets of particular language
  mode() {
    if(this.selectedValue!="All"){
    this.snippetService.getSnippet()

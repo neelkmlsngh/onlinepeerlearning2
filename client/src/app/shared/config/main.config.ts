@@ -1,6 +1,6 @@
 export const mainConfig: any = {
   TITLE: "Choose Editor Mode",
-  OPTION1: "Html/Css",
+  OPTION1: "Web Editor",
   OPTION2: "Javascript",
   ACCESSTOKEN: "Enter Token Name",
   NEWREPOSITORY: "Create new Github Repository",
