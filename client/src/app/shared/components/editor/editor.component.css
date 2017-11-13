@@ -34,6 +34,7 @@ body {
 
 .btn-outline-warning {
   border-color: #343a40;
+  cursor: pointer;
 }
 
 #output h3 {

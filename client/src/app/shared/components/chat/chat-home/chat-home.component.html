@@ -61,7 +61,7 @@
     <ul class="n">
       <li *ngFor="let user of chatListUsers">
         {{ user.userName}}
-        <button class="btn btn-outline-primary btn-lg callimg mr-6 close" data-toggle="popover" title="Chat" (click)="selectedUser(user)" [class.selected-user]="isUserSelected(user._id)">Chat
+        <button class="btn btn-outline-primary btn-lg callimg mr-6 close" data-toggle="popover" title="Chat" (click)="selectedUser(user)" [class.selected-user]="isUserSelected(user._id)">
           <i class="fa fa-envelope" aria-hidden="true"></i>
         </button>
       </li>

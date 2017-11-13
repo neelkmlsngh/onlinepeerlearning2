@@ -13,6 +13,7 @@
 
 .btn-outline-warning {
   border-color: #343a40;
+  cursor: pointer;
 }
 
 .nav-pills .nav-link.active,
