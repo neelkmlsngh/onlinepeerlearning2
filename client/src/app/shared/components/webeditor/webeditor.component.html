@@ -53,10 +53,10 @@
                 <button type="button" class="btn btn-outline-warning" href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="{{config.webEditor.ZIP}}"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
                 &nbsp;
                 <!--  button to create the file -->
-                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.CREATEFILE}} data-toggle="modal" data-target="#HTMLCeateModalWindow">
+                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.CREATEFILE}} data-toggle="modal" data-target="#HTMLCeateModalWindow" (click)="isRepoSelected()">
                   <i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
                 <!-- modal window to create the file -->
-                <div class="modal fade" id="HTMLCeateModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+                <div *ngIf="ifRepo" class="modal fade" id="HTMLCeateModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -95,10 +95,10 @@
                   </div>
                 </div>
                 <!--  button to update the file -->
-                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.UPDATEFILE}} data-toggle="modal" data-target="#updatedModalWindow">
+                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.UPDATEFILE}} data-toggle="modal" data-target="#updatedModalWindow" (click)="isRepoSelected()">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                 <!-- modal window to update the file -->
-                <div class="modal fade" id="updatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
+                <div *ngIf="ifRepo" class="modal fade" id="updatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -128,10 +128,10 @@
                   </div>
                 </div>
                 <!--  button to delete the file -->
-                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.DELETEFILE}} data-toggle="modal" data-target="#deleteModalWindow">
+                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.DELETEFILE}} data-toggle="modal" data-target="#deleteModalWindow" (click)="isRepoSelected()">
                   <i class="fa fa-trash-o" aria-hidden="true"></i></button>
                 <!-- modal window to delete the file -->
-                <div class="modal fade" id="deleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                <div *ngIf="ifRepo" class="modal fade" id="deleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -185,10 +185,10 @@
                 &nbsp;
                 <button type="button" class="btn btn-outline-warning" href="javascript:void(0);" (click)="downloadZip()" data-toggle="tooltip" data-placement="top" title="{{config.webEditor.ZIP}}"><i class="fa fa-file-archive-o" aria-hidden="true"></i></button>
                 <!--  butons to create file on github -->
-                <button class="btn btn-outline-warning align-middle" href="javascript:void(0);" title={{config.webEditor.CREATEFILE}} data-toggle="modal" data-target="#cssCreateModalWindow">
+                <button class="btn btn-outline-warning align-middle" href="javascript:void(0);" title={{config.webEditor.CREATEFILE}} data-toggle="modal" data-target="#cssCreateModalWindow" (click)="isRepoSelected()">
                   <i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
                 <!-- modal window to create the file -->
-                <div class="modal fade" id="cssCreateModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+                <div *ngIf="ifRepo" class="modal fade" id="cssCreateModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -227,10 +227,10 @@
                   </div>
                 </div>
                 <!-- button to update the file -->
-                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.UPDATEFILE}} data-toggle="modal" data-target="#cssUpdatedModalWindow">
+                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.UPDATEFILE}} data-toggle="modal" data-target="#cssUpdatedModalWindow" (click)="isRepoSelected()" >
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                 <!--  modal window to update the file -->
-                <div class="modal fade" id="cssUpdatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
+                <div *ngIf="ifRepo" class="modal fade" id="cssUpdatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -260,10 +260,10 @@
                   </div>
                 </div>
                 <!-- button to delete the file -->
-                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.DELETEFILE}} data-toggle="modal" data-target="#cssDeleteModalWindow">
+                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.DELETEFILE}} data-toggle="modal" data-target="#cssDeleteModalWindow" (click)="isRepoSelected()"> 
                   <i class="fa fa-trash-o" aria-hidden="true"></i></button>
                 <!--modal window to delete the file -->
-                <div class="modal fade" id="cssDeleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                <div *ngIf="ifRepo" class="modal fade" id="cssDeleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -318,10 +318,10 @@
                 </div>
                 &nbsp;
                 <!--  butons to create file on github -->
-                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.CREATEFILE}} data-toggle="modal" data-target="#jsCreateModalWindow">
+                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.CREATEFILE}} data-toggle="modal" data-target="#jsCreateModalWindow" (click)="isRepoSelected()">
                   <i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
                 <!-- modal window to create the file -->
-                <div class="modal fade" id="jsCreateModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+                <div *ngIf="ifRepo" class="modal fade" id="jsCreateModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -360,10 +360,10 @@
                   </div>
                 </div>
                 <!-- button to update the file -->
-                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.UPDATEFILE}} data-toggle="modal" data-target="#jsUpdatedModalWindow">
+                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.UPDATEFILE}} data-toggle="modal" data-target="#jsUpdatedModalWindow" (click)="isRepoSelected()">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                 <!-- modal window to update the file -->
-                <div class="modal fade" id="jsUpdatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
+                <div *ngIf="ifRepo" class="modal fade" id="jsUpdatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -393,10 +393,10 @@
                   </div>
                 </div>
                 <!--button to delete the file -->
-                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.DELETEFILE}} data-toggle="modal" data-target="#jsDeleteModalWindow">
+                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.DELETEFILE}} data-toggle="modal" data-target="#jsDeleteModalWindow" (click)="isRepoSelected()">
                   <i class="fa fa-trash-o" aria-hidden="true"></i></button>
                 <!-- modal window to delete the file -->
-                <div class="modal fade" id="jsDeleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                <div *ngIf="ifRepo" class="modal fade" id="jsDeleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">

@@ -30,9 +30,9 @@
           <div class="leftbutton">
             <!--  button to create the file -->
             &nbsp;
-            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Create new file" data-toggle="modal" data-target="#createModalWindow"><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
+            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Create new file" data-toggle="modal" data-target="#createModalWindow" (click)="isRepoSelected()"><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
             <!-- modal window to create the file -->
-            <div class="modal fade" id="createModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
+            <div *ngIf="ifRepo" class="modal fade" id="createModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -72,11 +72,11 @@
             </div>
             <!--  button to update the file -->
             &nbsp;
-            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Update File" data-toggle="modal" data-target="#updatedModalWindow">
+            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Update File" data-toggle="modal" data-target="#updatedModalWindow" (click)="isRepoSelected()">
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </button>
             <!-- modal window to update the file -->
-            <div class="modal fade" id="updatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
+            <div *ngIf="ifRepo" class="modal fade" id="updatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -107,11 +107,11 @@
             </div>
             <!--  button to delete the file -->
             &nbsp;
-            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Delete File" data-toggle="modal" data-target="#deleteModalWindow">
+            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Delete File" data-toggle="modal" data-target="#deleteModalWindow" (click)="isRepoSelected()">
               <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
             <!-- modal window to delete the file -->
-            <div class="modal fade" id="deleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+            <div *ngIf="ifRepo" class="modal fade" id="deleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">

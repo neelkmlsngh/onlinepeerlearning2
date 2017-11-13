@@ -30,6 +30,8 @@ export class WebeditorComponent implements OnInit {
   @Input() reponame: any;
   @Input() filenamed: any;
 
+
+
   //for html
   @ViewChild('htmleditor') htmleditor;
   @ViewChild('csseditor') csseditor;
@@ -66,7 +68,8 @@ export class WebeditorComponent implements OnInit {
   updateMsg: string;
   deleteCommit: string;
   deleteMsg: string;
-  fileName: string
+  fileName: string;
+  ifRepo:boolean=false;
   updatefileobj: any = {};
   deletefileobj: any = {};
 
@@ -151,6 +154,23 @@ export class WebeditorComponent implements OnInit {
         this.javascript = res.filter(ele => ele.language === 'Javascript');
       })
   }
+
+    //method to check whether repository is selected or not
+  isRepoSelected(){
+   if(this.reponame){
+     this.ifRepo = true;
+
+   }else{
+     swal({
+       timer: 2500,
+       title: "Please select your repository",
+       text: "",
+       type: 'error',
+       showConfirmButton: false,
+     })
+    this.ifRepo = false;
+   }
+ }
 
     //method to create a file on git
   createFile(fileName, createCommitMessage) {

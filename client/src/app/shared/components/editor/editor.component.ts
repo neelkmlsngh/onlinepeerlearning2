@@ -48,6 +48,7 @@ export class EditorComponent implements OnInit {
 	@Input() filenamed: any;
 
 	config = config;
+	ifRepo:boolean=false;
 	updateMessage: string;
 	fileName: string
 	deleteCommit: string;
@@ -141,6 +142,25 @@ export class EditorComponent implements OnInit {
 	onKey(event) {
 		this.value += event
 	}
+
+	//method to check whether repository is selected or not
+	isRepoSelected(){
+   if(this.reponame){
+     this.ifRepo = true;
+
+   }else{
+     swal({
+       timer: 2500,
+       title: "Please select your repository",
+       text: "",
+       type: 'error',
+       showConfirmButton: false,
+     })
+    this.ifRepo = false;
+   }
+ }
+
+
 	//method to create a file on git
 	createFile(fileName, createCommitMessage) {
 		if (this.authenticationService.pacToken == null) {
