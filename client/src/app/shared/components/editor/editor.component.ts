@@ -36,7 +36,9 @@ export class EditorComponent implements OnInit {
 
 	//emitting reponame for updating file list
 	// @Output() repoNameForFileUpdate = new EventEmitter < any > ();
-	 @Output() repoNameForFileUpdate: EventEmitter<any> = new EventEmitter();
+	@Output() repoNameForFileUpdate: EventEmitter<any> = new EventEmitter();
+	@Output() repoNameForFileUpdateAtUpdate: EventEmitter<any> = new EventEmitter();
+	@Output() repoNameForFileUpdateAtDelete: EventEmitter<any> = new EventEmitter();
 
 	@ViewChild('editor') editor;
 
@@ -190,8 +192,10 @@ export class EditorComponent implements OnInit {
 											//hitting final api to create the file
 											this.gitService.lastcommit(this.reponame, this.lastcommit)
 												.subscribe(repos => {
+    										  
     										  this.repoNameForFileUpdate.emit({repoName:this.reponame,sha:repos.object.sha})
-													 if (repos) {
+													
+													if (repos) {
 																this.loading = false;
 																swal({
 																	timer: 2200,
@@ -252,6 +256,9 @@ export class EditorComponent implements OnInit {
 					//hitting the update file api to update the file contents
 					this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
 						.subscribe(repos => {
+							debugger;
+							console.log(repos+'=============================================');
+							console.log(repos);
 							this.loading = false;
 							//sweet alert on getting response
 							if (repos) {

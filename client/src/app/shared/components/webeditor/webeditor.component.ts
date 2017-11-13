@@ -121,7 +121,7 @@ export class WebeditorComponent implements OnInit {
         text: webEditorConfig.screenShare.TEXT,
         type: webEditorConfig.screenShare.INFO,
         showConfirmButton: false,
-      })
+      }).then()
     }
 
    /*varialbe to toggle sharing status on/off*/
@@ -161,7 +161,7 @@ export class WebeditorComponent implements OnInit {
         text: "",
         type: 'error',
         showConfirmButton: false,
-      })
+      }).then()
     } else {
       this.loading = true;
       this.fileName = fileName.value['fileName'];
@@ -213,7 +213,7 @@ export class WebeditorComponent implements OnInit {
                           text: "",
                           type: 'success',
                           showConfirmButton: false,
-                        })
+                        }).then()
                       }
                       //sweet alert on getting error
                       else {
@@ -224,7 +224,7 @@ export class WebeditorComponent implements OnInit {
                           text: "",
                           type: 'error',
                           showConfirmButton: false,
-                        })
+                        }).then()
                       }
                     })
                 })
@@ -249,7 +249,7 @@ export class WebeditorComponent implements OnInit {
         text: "",
         type: 'error',
         showConfirmButton: false,
-      })
+      }).then()
     } else {
       this.loading = true;
       this.updateMsg = commitMessage.value['updateMsg'];
@@ -276,7 +276,7 @@ export class WebeditorComponent implements OnInit {
                   text: "",
                   type: 'success',
                   showConfirmButton: false,
-                })
+                }).then()
               }
               //sweet alert on getting error
               else {
@@ -287,7 +287,7 @@ export class WebeditorComponent implements OnInit {
                   text: "",
                   type: 'error',
                   showConfirmButton: false,
-                })
+                }).then()
               }
             })
         })
@@ -309,7 +309,7 @@ export class WebeditorComponent implements OnInit {
         text: "",
         type: 'error',
         showConfirmButton: false,
-      })
+      }).then()
     } else {
       this.loading = true;
       this.deleteMsg = commitMessage.value['deleteMsg'];
@@ -334,7 +334,7 @@ export class WebeditorComponent implements OnInit {
                   text: "",
                   type: 'success',
                   showConfirmButton: false,
-                })
+                }).then()
               } else {
                 this.loading = false;
                 //sweet alert on getting error
@@ -344,7 +344,7 @@ export class WebeditorComponent implements OnInit {
                   text: "",
                   type: 'error',
                   showConfirmButton: false,
-                })
+                }).then()
               }
             })
         })

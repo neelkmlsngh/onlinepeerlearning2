@@ -77,13 +77,6 @@ let apiRoutes: Routes = [{
     {
       path:'',
       component: SnippetComponent
-    },{
-      path:'add',
-      component: AddSnippetComponent
-    },
-    {
-      path:'view/:value',
-      component: ViewSnippetComponent
     }]
   },
   {
