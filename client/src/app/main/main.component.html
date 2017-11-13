@@ -41,24 +41,24 @@
                 <div class="card-body accordionBody">
                   <form #repositoryForm="ngForm" (ngSubmit)="createNewRepo(repositoryForm.form);">
                     <label for="recipient-name" class="form-control-label formText">{{config.REPOSITORYNAME}}</label>
-                    <input type="text" class="form-control" name="repositoryName" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*">
-                    <div *ngIf="nameField.touched && nameField.errors">
-                      <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
-                        The repository name is required
+                    <input type="text" class="form-control" name="repositoryName" ngModel #repoCreateField="ngModel" required minlength="5" pattern=".*\S+.*" title="empty field not allowed">
+                    <div *ngIf="repoCreateField.touched && repoCreateField.errors">
+                      <div class="alert alert-danger formText" *ngIf="repoCreateField.errors.required">
+                        <h6>The repository name is required</h6>
                       </div>
-                      <div class="alert alert-danger formText" *ngIf="nameField.errors.minlength">
-                        The repository name should be at least 5 characters long
+                      <div class="alert alert-danger formText" *ngIf="repoCreateField.errors.minlength">
+                        <h6>The repository name should be at least 5 characters long</h6>
                       </div>
                     </div>
                     <h6></h6>
                     <label for="recipient-name" class="form-control-label formText">{{ config.DESCRIPTION}}</label>
-                    <textarea type="text" id="description" class="form-control descriptionTextArea" data-spy="scroll" data-target="description" data-offset="0" name="description" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*">
-                      <div *ngIf="nameField.touched && nameField.errors">
-                        <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
-                          The description is required
+                    <textarea type="text" id="description" class="form-control descriptionTextArea" data-spy="scroll" data-target="description" data-offset="0" name="description" ngModel #repoDescriptionField="ngModel" required minlength="5" pattern=".*\S+.*" title="empty field not allowed">
+                      <div *ngIf="repoDescriptionField.touched && repoDescriptionField.errors">
+                        <div class="alert alert-danger formText" *ngIf="repoDescriptionField.errors.required">
+                          <h6>The description is required</h6>
                         </div>
-                        <div class="alert alert-danger formText" *ngIf="nameField.errors.minlength">
-                          Description is needed
+                        <div class="alert alert-danger formText" *ngIf="repoDescriptionField.errors.minlength">
+                          <h6>Description is needed</h6>
                         </div>
                       </div>
                     </textarea>
@@ -80,23 +80,23 @@
                 <div class="card-body accordionBody">
                   <form #tokenForm="ngForm" (ngSubmit)="generateToken(tokenForm.form);">
                     <label for="recipient-name" class="form-control-label formText">{{config.PASSWORD}}</label>
-                    <input type="password" class="form-control" name="pass" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*">
-                    <div *ngIf="nameField.touched && nameField.errors">
-                      <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
+                    <input type="password" class="form-control" name="pass" ngModel #tokenPasswordField="ngModel" required minlength="5" pattern=".*\S+.*" title="empty field not allowed">
+                    <div *ngIf="tokenPasswordField.touched && tokenPasswordField.errors">
+                      <div class="alert alert-danger formText" *ngIf="tokenPasswordField.errors.required">
                         The password is required
                       </div>
-                      <div class="alert alert-danger formText" *ngIf="nameField.errors.minlength">
+                      <div class="alert alert-danger formText" *ngIf="tokenPasswordField.errors.minlength">
                         The password should be at least 3 characters long
                       </div>
                     </div>
                     <h6></h6>
                     <label for="recipient-name" class="form-control-label formText">{{config.PACNAME}}</label>
-                    <input type="text" class="form-control" name="tokenName" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*">
-                    <div *ngIf="nameField.touched && nameField.errors">
-                      <div class="alert alert-danger formText" *ngIf="nameField.errors.required">
+                    <input type="text" class="form-control" name="tokenName" ngModel #tokenNameField="ngModel" required minlength="5" pattern=".*\S+.*" title="empty field not allowed">
+                    <div *ngIf="tokenNameField.touched && tokenNameField.errors">
+                      <div class="alert alert-danger formText" *ngIf="tokenNameField.errors.required">
                         The token name is required
                       </div>
-                      <div class="alert alert-danger formText" *ngIf="nameField.errors.minlength">
+                      <div class="alert alert-danger formText" *ngIf="tokenNameField.errors.minlength">
                         The token name should be at least 5 characters long
                       </div>
                     </div>

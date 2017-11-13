@@ -6,10 +6,9 @@
     <section>
       <nav class="navbar navbar-light font nopadding" id="mainNav">
         <form class="row col-md-12 col-sm-12 form-inline ">
-           &nbsp; &nbsp;
+          &nbsp; &nbsp;
           <div class="leftbutton">
             <!--     button to add snippet -->
-           
             <button class="btn btn-outline-warning" href="javascript:void(0);" id="dropdownMenuButton" data-toggle="dropdown" title={{config.editor.SNIPPET}}>
               <i class="fa fa-code " aria-hidden="true"></i>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -31,8 +30,7 @@
           <div class="leftbutton">
             <!--  button to create the file -->
             &nbsp;
-            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Create new file" data-toggle="modal" data-target="#createModalWindow">
-              <i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
+            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Create new file" data-toggle="modal" data-target="#createModalWindow"><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
             <!-- modal window to create the file -->
             <div class="modal fade" id="createModalWindow" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -45,22 +43,22 @@
                   </div>
                   <div class="modal-body">
                     <form #createForm="ngForm" (ngSubmit)="createFile(createForm.form,createForm.form);">
-                      <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your file name"></textarea>
-                      <div *ngIf="nameField.touched && nameField.errors">
-                        <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                          file name is required
+                      <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #createField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your file name" title="empty field not allowed"></textarea>
+                      <div *ngIf="createField.touched && createField.errors">
+                        <div class="alert alert-danger" *ngIf="createField.errors.required">
+                          <h6>{{config.editor.FILENAMEREQ}}</h6>
                         </div>
-                        <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                          The commit message should be at least 5 characters long
+                        <div class="alert alert-danger" *ngIf="createField.errors.minlength">
+                          <h6>{{config.editor.MINLENGTH}}</h6>
                         </div>
                       </div>
-                      <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #commitField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
+                      <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #commitField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message" title="empty field not allowed"></textarea>
                       <div *ngIf="commitField.touched && commitField.errors">
                         <div class="alert alert-danger" *ngIf="commitField.errors.required">
-                          commit message is required
+                          <h6>commit message is required</h6>
                         </div>
                         <div class="alert alert-danger" *ngIf="commitField.errors.minlength">
-                          The commit message should be at least 5 characters long
+                          <h6>{{config.editor.MINLENGTH}}</h6>
                         </div>
                       </div>
                       <div>
@@ -89,13 +87,13 @@
                   </div>
                   <div class="modal-body">
                     <form #updateForm="ngForm" (ngSubmit)="updateFile(updateForm.form);">
-                      <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
-                      <div *ngIf="nameField.touched && nameField.errors">
-                        <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                          commit message is required
+                      <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #updateField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message" title="empty field not allowed"></textarea>
+                      <div *ngIf="updateField.touched && updateField.errors">
+                        <div class="alert alert-danger" *ngIf="updateField.errors.required">
+                          <h6>commit message is required</h6>
                         </div>
-                        <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                          The commit message should be at least 5 characters long
+                        <div class="alert alert-danger" *ngIf="updateField.errors.minlength">
+                          <h6>{{config.editor.MINLENGTH}}</h6>
                         </div>
                       </div>
                       <div>
@@ -124,13 +122,13 @@
                   </div>
                   <div class="modal-body">
                     <form #deleteForm="ngForm" (ngSubmit)="deleteFile(deleteForm.form);">
-                      <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
-                      <div *ngIf="nameField.touched && nameField.errors">
-                        <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                          commit message is required
+                      <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #deleteField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message" title="empty field not allowed"></textarea>
+                      <div *ngIf="deleteField.touched && deleteField.errors">
+                        <div class="alert alert-danger" *ngIf="deleteField.errors.required">
+                          <h6>commit message is required</h6>
                         </div>
-                        <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                          The commit message should be at least 5 characters long
+                        <div class="alert alert-danger" *ngIf="deleteField.errors.minlength">
+                          <h6>{{config.editor.MINLENGTH}}</h6>
                         </div>
                       </div>
                       <div>

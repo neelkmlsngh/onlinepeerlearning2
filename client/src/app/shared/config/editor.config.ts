@@ -2,6 +2,8 @@ export const config: any = {
 editor: {
     SNIPPET: "Insert your code snippet",
     JAVASCRIPTNAME: "Javascript File",
+    FILENAMEREQ: "file name is required",
+    MINLENGTH: "The commit message should be at least 5 characters long",
     CREATINGFILE: "creating file in the current repository:",
     UPDATINGFILE:"updating file in the current repository:",
     DELETINGFILE:"deleting file in the current repository:",

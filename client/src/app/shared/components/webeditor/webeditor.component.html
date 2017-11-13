@@ -67,22 +67,22 @@
                       </div>
                       <div class="modal-body">
                         <form #createForm="ngForm" (ngSubmit)="createFile(createForm.form,createForm.form);">
-                          <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your file name"></textarea>
-                          <div *ngIf="nameField.touched && nameField.errors">
-                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                              file name is required
+                          <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #htmlCreateField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder={{config.webEditor.ENTERFILENAME}} title={{config.webEditor.FILENAMEREQ}}></textarea>
+                          <div *ngIf="htmlCreateField.touched && htmlCreateField.errors">
+                            <div class="alert alert-danger" *ngIf="htmlCreateField.errors.required">
+                              <h6>{{config.webEditor.FILENAMEREQ}}</h6>
                             </div>
-                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                              The commit message should be at least 5 characters long
+                            <div class="alert alert-danger" *ngIf="htmlCreateField.errors.minlength">
+                              <h6>{{config.webEditor.MINLENGTH}}</h6>
                             </div>
                           </div>
-                          <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #commitField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
-                          <div *ngIf="commitField.touched && commitField.errors">
-                            <div class="alert alert-danger" *ngIf="commitField.errors.required">
-                              commit message is required
+                          <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #htmlCommitField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
+                          <div *ngIf="htmlCommitField.touched && htmlCommitField.errors">
+                            <div class="alert alert-danger" *ngIf="htmlCommitField.errors.required">
+                              <h6>{{config.webEditor.FILENAMEREQ}}</h6>
                             </div>
-                            <div class="alert alert-danger" *ngIf="commitField.errors.minlength">
-                              The commit message should be at least 5 characters long
+                            <div class="alert alert-danger" *ngIf="htmlCommitField.errors.minlength">
+                              <h6>{{config.webEditor.MINLENGTH}}</h6>
                             </div>
                           </div>
                           <div>
@@ -109,13 +109,13 @@
                       </div>
                       <div class="modal-body">
                         <form #updateForm="ngForm" (ngSubmit)="updateFile(updateForm.form);">
-                          <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #nameField="ngModel" required minlength="5" placeholder="enter your commit message"></textarea>
-                          <div *ngIf="nameField.touched && nameField.errors">
-                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                              commit message is required
+                          <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #htmlUpdateField="ngModel" required minlength="5" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
+                          <div *ngIf="htmlUpdateField.touched && htmlUpdateField.errors">
+                            <div class="alert alert-danger" *ngIf="htmlUpdateField.errors.required">
+                              <h6>{{config.webEditor.FILENAMEREQ}}</h6>
                             </div>
-                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                              The commit message should be at least 5 characters long
+                            <div class="alert alert-danger" *ngIf="htmlUpdateField.errors.minlength">
+                              <h6>{{config.webEditor.MINLENGTH}}</h6>
                             </div>
                           </div>
                           <div>
@@ -142,13 +142,13 @@
                       </div>
                       <div class="modal-body">
                         <form #deleteForm="ngForm" (ngSubmit)="deleteFile(deleteForm.form);">
-                          <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
-                          <div *ngIf="nameField.touched && nameField.errors">
-                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                              commit message is required
+                          <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #htmlDeleteField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
+                          <div *ngIf="htmlDeleteField.touched && htmlDeleteField.errors">
+                            <div class="alert alert-danger" *ngIf="htmlDeleteField.errors.required">
+                              <h6>{{config.webEditor.FILENAMEREQ}}</h6>
                             </div>
-                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                              The commit message should be at least 5 characters long
+                            <div class="alert alert-danger" *ngIf="htmlDeleteField.errors.minlength">
+                              <h6>{{config.webEditor.MINLENGTH}}</h6>
                             </div>
                           </div>
                           <div>
@@ -198,22 +198,22 @@
                       </div>
                       <div class="modal-body">
                         <form #cssCreateForm="ngForm" (ngSubmit)="createFile(cssCreateForm.form,cssCreateForm.form);">
-                          <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #nameField="ngModel" required minlength="5" placeholder="enter your file name"></textarea>
-                          <div *ngIf="nameField.touched && nameField.errors">
-                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                              file name is required
+                          <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #cssCreateField="ngModel" required minlength="5" placeholder={{config.webEditor.ENTERFILENAME}} title={{config.webEditor.FILENAMEREQ}}></textarea>
+                          <div *ngIf="cssCreateField.touched && cssCreateField.errors">
+                            <div class="alert alert-danger" *ngIf="cssCreateField.errors.required">
+                              {{config.webEditor.FILENAMEREQ}}
                             </div>
-                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                              The commit message should be at least 5 characters long
+                            <div class="alert alert-danger" *ngIf="cssCreateField.errors.minlength">
+                              {{config.webEditor.MINLENGTH}}
                             </div>
                           </div>
-                          <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #commitField="ngModel" required minlength="5" placeholder="enter your commit message"></textarea>
-                          <div *ngIf="commitField.touched && commitField.errors">
-                            <div class="alert alert-danger" *ngIf="commitField.errors.required">
-                              commit message is required
+                          <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #cssCommitField="ngModel" required minlength="5" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
+                          <div *ngIf="cssCommitField.touched && cssCommitField.errors">
+                            <div class="alert alert-danger" *ngIf="cssCommitField.errors.required">
+                              <h6>{{config.webEditor.FILENAMEREQ}}</h6>
                             </div>
-                            <div class="alert alert-danger" *ngIf="commitField.errors.minlength">
-                              The commit message should be at least 5 characters long
+                            <div class="alert alert-danger" *ngIf="cssCommitField.errors.minlength">
+                              <h6>{{config.webEditor.MINLENGTH}}</h6>
                             </div>
                           </div>
                           <div>
@@ -240,13 +240,13 @@
                       </div>
                       <div class="modal-body">
                         <form #cssUpdateForm="ngForm" (ngSubmit)="updateFile(cssUpdateForm.form);">
-                          <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #nameField="ngModel" required minlength="5" placeholder="enter your commit message"></textarea>
-                          <div *ngIf="nameField.touched && nameField.errors">
-                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                              commit message is required
+                          <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #cssUpdateField="ngModel" required minlength="5" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
+                          <div *ngIf="cssUpdateField.touched && cssUpdateField.errors">
+                            <div class="alert alert-danger" *ngIf="cssUpdateField.errors.required">
+                              <h6>{{config.webEditor.FILENAMEREQ}}</h6>
                             </div>
-                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                              The commit message should be at least 5 characters long
+                            <div class="alert alert-danger" *ngIf="cssUpdateField.errors.minlength">
+                              <h6>{{config.webEditor.MINLENGTH}}</h6>
                             </div>
                           </div>
                           <div>
@@ -273,13 +273,13 @@
                       </div>
                       <div class="modal-body">
                         <form #cssDeleteForm="ngForm" (ngSubmit)="deleteFile(cssDeleteForm.form);">
-                          <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
-                          <div *ngIf="nameField.touched && nameField.errors">
-                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                              commit message is required
+                          <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #cssDeleteField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
+                          <div *ngIf="cssDeleteField.touched && cssDeleteField.errors">
+                            <div class="alert alert-danger" *ngIf="cssDeleteField.errors.required">
+                              <h6>{{config.webEditor.FILENAMEREQ}}</h6>
                             </div>
-                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                              The commit message should be at least 5 characters long
+                            <div class="alert alert-danger" *ngIf="cssDeleteField.errors.minlength">
+                              <h6>{{config.webEditor.MINLENGTH}}</h6>
                             </div>
                           </div>
                           <div>
@@ -294,7 +294,7 @@
                 <div id="myCssDiv"></div>
               </form>
             </nav>
-            <ace-editor [(text)]="cssValue" #csseditor [mode]="'css'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="css"></ace-editor>
+            <ace-editor [(text)]="content" #csseditor [mode]="'css'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="css"></ace-editor>
           </section>
         </div>
       </div>
@@ -331,22 +331,22 @@
                       </div>
                       <div class="modal-body">
                         <form #jsCreateForm="ngForm" (ngSubmit)="createFile(jsCreateForm.form,jsCreateForm.form);">
-                          <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #nameField="ngModel" required minlength="5" placeholder="enter your file name"></textarea>
-                          <div *ngIf="nameField.touched && nameField.errors">
-                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                              file name is required
+                          <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #jsCreateField="ngModel" required minlength="5" placeholder={{config.webEditor.ENTERFILENAME}} title={{config.webEditor.FILENAMEREQ}}></textarea>
+                          <div *ngIf="jsCreateField.touched && jsCreateField.errors">
+                            <div class="alert alert-danger" *ngIf="jsCreateField.errors.required">
+                              <h6>{{config.webEditor.FILENAMEREQ}}</h6>
                             </div>
-                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                              The commit message should be at least 5 characters long
+                            <div class="alert alert-danger" *ngIf="jsCreateField.errors.minlength">
+                              <h6>{{config.webEditor.MINLENGTH}}</h6>
                             </div>
                           </div>
-                          <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #commitField="ngModel" required minlength="5" placeholder="enter your commit message"></textarea>
-                          <div *ngIf="commitField.touched && commitField.errors">
-                            <div class="alert alert-danger" *ngIf="commitField.errors.required">
-                              commit message is required
+                          <textarea type="text" class="form-control textAreaWidth" name="createMsg" ngModel #jsCommitField="ngModel" required minlength="5" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
+                          <div *ngIf="jsCommitField.touched && jsCommitField.errors">
+                            <div class="alert alert-danger" *ngIf="jsCommitField.errors.required">
+                              <h6>{{config.webEditor.FILENAMEREQ}}</h6>
                             </div>
-                            <div class="alert alert-danger" *ngIf="commitField.errors.minlength">
-                              The commit message should be at least 5 characters long
+                            <div class="alert alert-danger" *ngIf="jsCommitField.errors.minlength">
+                              <h6>{{config.webEditor.MINLENGTH}}</h6>
                             </div>
                           </div>
                           <div>
@@ -373,13 +373,13 @@
                       </div>
                       <div class="modal-body">
                         <form #jsUpdateForm="ngForm" (ngSubmit)="updateFile(jsUpdateForm.form);">
-                          <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #nameField="ngModel" required minlength="5" placeholder="enter your commit message"></textarea>
-                          <div *ngIf="nameField.touched && nameField.errors">
-                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                              commit message is required
+                          <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #jsUpdateField="ngModel" required minlength="5" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
+                          <div *ngIf="jsUpdateField.touched && jsUpdateField.errors">
+                            <div class="alert alert-danger" *ngIf="jsUpdateField.errors.required">
+                              <h6>{{config.webEditor.FILENAMEREQ}}</h6>
                             </div>
-                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                              The commit message should be at least 5 characters long
+                            <div class="alert alert-danger" *ngIf="jsUpdateField.errors.minlength">
+                              <h6>{{config.webEditor.MINLENGTH}}</h6>
                             </div>
                           </div>
                           <div>
@@ -406,13 +406,13 @@
                       </div>
                       <div class="modal-body">
                         <form #jsDeleteForm="ngForm" (ngSubmit)="deleteFile(jsDeleteForm.form);">
-                          <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #nameField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder="enter your commit message"></textarea>
-                          <div *ngIf="nameField.touched && nameField.errors">
-                            <div class="alert alert-danger" *ngIf="nameField.errors.required">
-                              commit message is required
+                          <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #jsDeleteField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
+                          <div *ngIf="jsDeleteField.touched && jsDeleteField.errors">
+                            <div class="alert alert-danger" *ngIf="jsDeleteField.errors.required">
+                              <h6>{{config.webEditor.FILENAMEREQ}}</h6>
                             </div>
-                            <div class="alert alert-danger" *ngIf="nameField.errors.minlength">
-                              The commit message should be at least 5 characters long
+                            <div class="alert alert-danger" *ngIf="jsDeleteField.errors.minlength">
+                              <h6>{{config.webEditor.MINLENGTH}}</h6>
                             </div>
                           </div>
                           <div>
@@ -427,7 +427,7 @@
                 <div id="myJsDiv"></div>
               </form>
             </nav>
-            <ace-editor [(text)]="jsValue" #jseditor [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" (textChanged)="onChange($event)" class="code_box" id="javascript"></ace-editor>
+            <ace-editor [(text)]="content" #jseditor [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" (textChanged)="onChange($event)" class="code_box" id="javascript"></ace-editor>
           </section>
         </div>
       </div>
