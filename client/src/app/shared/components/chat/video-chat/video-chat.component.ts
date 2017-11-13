@@ -6,6 +6,7 @@ import * as $ from 'jquery';
 import { config } from '../../../config/config'
 import { SocketService } from '../../../services/chatservices/socket.service'
 import { ChatHomeComponent } from '../chat-home/chat-home.component'
+import { videoChat } from '../../../config/videoConfig';
 
 @Component({
   selector: 'app-video-chat',
@@ -23,6 +24,7 @@ export class VideoChatComponent implements OnInit {
   peer;
   anotherid;
   mypeerid;
+  config = videoChat;
   
   constructor(private router: Router, private chatHome: ChatHomeComponent, private compiler: Compiler, private socketService: SocketService) {}
 

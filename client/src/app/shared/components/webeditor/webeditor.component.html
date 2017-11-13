@@ -15,7 +15,7 @@
           <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-javascript" role="tab" aria-controls="pills-contact" aria-selected="false" title={{config.webEditor.JS}}><i class="fa fa-file-code-o" aria-hidden="true"></i></a>
         </li>
       </ul>
-      <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn btn-warning text-right" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="{{config.webEditor.SCREENSHARE}}" (click)="openModal(template)"> <i class="fa fa-desktop" aria-hidden="true"></i></button>
+      <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn btn-warning text-right" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="{{config.webEditor.SCREENSHARE}}" (click)="openModals(template)"> <i class="fa fa-desktop" aria-hidden="true"></i></button>
     </div>
     <div id="togetherjs-dock-participants"></div>
     <template #template>
@@ -160,6 +160,7 @@
                     </div>
                   </div>
                 </div>
+                <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn btn-outline-warning text-right" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="{{config.webEditor.SCREENSHARE}}" (click)="openModals(template)"> <i class="fa fa-desktop" aria-hidden="true"></i></button>
                 <div id="myDiv"></div>
               </form>
             </nav>

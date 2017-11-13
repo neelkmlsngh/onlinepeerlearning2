@@ -49,20 +49,7 @@ export class GitService {
         .catch(this.handleError);
     }
   }
-
-  //method to open the rpository and show all the file
- /* openFolder(repo, file) {
-    if (this.userName) {
-      let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
-      let options = new RequestOptions({ headers: headers });
-      return this._http.get(config.giturls.HOSTURL + this.userName + "/" +
-          repo + '/contents/' + file + '?client_id=' + config.connect.CLIENT_ID +
-          '&client_secret=' + config.connect.CLIENT_SECRET, options)
-        .map(res => res.json())
-    }
-  }
-*/
-
+  //method to display files
   getFile(repo, file) {
     if (this.userName) {
       let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
@@ -84,7 +71,6 @@ export class GitService {
 
 
   //method to create file on github
-
   commitfile(text, sha) {
     if (this.userName) {
       return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits/' + sha + '?client_id=' + config.connect.CLIENT_ID +
@@ -94,7 +80,6 @@ export class GitService {
   }
 
   //method to create file on github
-
   treecommit(text, basetree) {
     if (this.userName) {
       return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/trees' + '?client_id=' + config.connect.CLIENT_ID +
@@ -104,7 +89,6 @@ export class GitService {
   }
 
   //method to create file on github
-
   newcommit(text, newcommit) {
     if (this.userName) {
       return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits' + '?client_id=' + config.connect.CLIENT_ID +
@@ -185,31 +169,30 @@ export class GitService {
     }
   }
 
-
-
+//method to get Folders inside the repository
   getFolderContents(repodetails:string) {
     repodetails=repodetails.trim();
-      return this._http.get('https://api.github.com/repos/'+this.userName+'/'+repodetails+'/contents?client_id=' + "f9ea78d1f4ead499cd22" +
-          '&client_secret=' + "5a9f55cb5eaa65140a5949fb6595e0283c667c72")
+      return this._http.get('https://api.github.com/repos/'+this.userName+'/'+repodetails+'/contents?client_id=' + config.connect.CLIENT_ID +
+          '&client_secret=' +  config.connect.CLIENT_SECRET)
+
         .map(res => res.json())
         
    }
 
-
-
+//method to get files inside the folder
    openFolder(value,reponamed) {
    let val=value;
-      return this._http.get("https://api.github.com/repos/"+this.userName+"/"+reponamed+"/contents/"+val+ '?client_id=' + "f9ea78d1f4ead499cd22" +
-          '&client_secret=' + "5a9f55cb5eaa65140a5949fb6595e0283c667c72")
+      return this._http.get("https://api.github.com/repos/"+this.userName+"/"+reponamed+"/contents/"+val+ '?client_id=' + config.connect.CLIENT_ID +
+          '&client_secret=' + config.connect.CLIENT_SECRET)
         .map(res => res.json())
     }
 
-
+//method to get file data and pass to editor
    getFileData(path,reponamed){
       let headers = new Headers({ 'accept': "application/vnd.github.VERSION.raw" });
       let options = new RequestOptions({ headers: headers });
-  return this._http.get("https://api.github.com/repos/"+this.userName+"/"+reponamed+"/contents/"+path+ '?client_id=' + "f9ea78d1f4ead499cd22" +
-          '&client_secret=' + "5a9f55cb5eaa65140a5949fb6595e0283c667c72")
+  return this._http.get("https://api.github.com/repos/"+this.userName+"/"+reponamed+"/contents/"+path+ '?client_id=' + config.connect.CLIENT_ID+
+          '&client_secret=' +  config.connect.CLIENT_SECRET)
         .map(res => res.json())
         
    }
@@ -225,6 +208,13 @@ export class GitService {
     let data = btoa(username + ':' + password)
     let headers = new Headers({ "Authorization": "Basic " + data });
     return new RequestOptions({ headers: headers })
+  }
+
+  getLatestRepoTree(reponame,sha){
+    console.log('getLatestRepoTree')
+    return this._http.get('https://api.github.com/repos/'+this.userName+'/'+reponame+'/contents/?ref='+sha+'&client_id=' + config.connect.CLIENT_ID +
+          '&client_secret=' +  config.connect.CLIENT_SECRET)
+      .map(res => res.json());
   }
 }
 

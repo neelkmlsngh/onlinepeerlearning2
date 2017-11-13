@@ -43,7 +43,7 @@ export class MainComponent implements OnInit {
   user: {}
   config = mainConfig;
   personalAccessToken: string;
-  repoNameForFileUpdate:string;
+  repoNameForUpdate:string;
   loading : boolean;
 
   constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,
@@ -66,7 +66,6 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('++++++++++++++++++++++++++++++++++ repoNameForFileUpdate ' + this.repoNameForFileUpdate);
     
     var i = 0;
      
@@ -150,8 +149,7 @@ export class MainComponent implements OnInit {
   }
 
   getRepoNameForFileUpdate(repoNameForFileUpdate){
-    this.repoNameForFileUpdate = repoNameForFileUpdate
-    console.log('====================='+this.repoNameForFileUpdate)
+    this.repoNameForUpdate = repoNameForFileUpdate
   }
 
   //method for logout
@@ -261,6 +259,8 @@ createNewRepo(form){
 
  this.gitService.createRepos(repoName)
      .subscribe(data => {
+       console.log("data---------------------")
+       console.log(data)
        this.loading=false;
        if (data) {
          this.githubUser.push(data);
