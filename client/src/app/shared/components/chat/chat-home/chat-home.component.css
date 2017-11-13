@@ -148,7 +148,8 @@ body {
   width: auto;
 }
 
-.mat-fab.mat-accent[_ngcontent-c6], .mat-mini-fab.mat-accent[_ngcontent-c6], .mat-raised-button.mat-accent[_ngcontent-c6] {
+
+.mat-fab.mat-accent[_ngcontent-c7]  {
     background-color: #FFC107;
 }
 
