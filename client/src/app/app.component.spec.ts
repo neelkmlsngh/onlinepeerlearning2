@@ -1,8 +1,14 @@
-import { TestBed, async } from '@angular/core/testing';
-
+import { fakeAsync, async, inject, TestBed, getTestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { Component } from '@angular/core';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 
-describe('AppComponent', () => {
+
+/*describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -28,5 +34,32 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
+  }));
+});
+*/
+describe('component: AppComponent', () => {
+  let location, router;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes([
+        { path: 'main', component: HomeComponent }
+      ])],
+      declarations: [AppComponent, HomeComponent]
+    });
+  });
+
+  beforeEach(inject([Router, Location], (_router: Router, _location: Location) => {
+    location = _location;
+    router = _router;
+  }));
+
+  it('should go main', async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    router.navigate(['/main']).then(() => {
+      expect(location.path()).toBe('/main');
+      console.log('after expect');
+    });
   }));
 });
