@@ -20,7 +20,6 @@ import { config } from './../../config/editor.config';
 export class WebeditorComponent implements OnInit {
 
   constructor(private snippet: SnippetService,private authenticationService: AuthenticationService,private gitService: GitService, private zone: NgZone, private modalService: BsModalService) {
-    this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
   }
 
@@ -107,20 +106,35 @@ export class WebeditorComponent implements OnInit {
   classSelector: any;
   idSelector: any;
   mediaQueries: any;
+  templateRef:any;
 
-  public openModal(template: TemplateRef < any > ) {
-    if(this.showModalBox==false){
-    this.modalRef = this.modalService.show(template);
-  }
-    this.showModal();
-  }
+ /*it will open a modal when user will click on screen share button*/
+  public openModals(template: TemplateRef < any > ) {
+    this.methodToExport = this.calledFromOutside;
+    if (this.showModalBox == false) {
+      this.loading = true;
+      this.templateRef = template;
+    } else {
+      swal({
+        timer: 2000,
+        title: webEditorConfig.screenShare.TITLE,
+        text: webEditorConfig.screenShare.TEXT,
+        type: webEditorConfig.screenShare.INFO,
+        showConfirmButton: false,
+      })
+    }
 
-  showModal() {
-   this.showModalBox = !this.showModalBox;
+   /*varialbe to toggle sharing status on/off*/
+    this.showModalBox = !this.showModalBox;
+
  }
+
+ /*will get the link generate from index.html*/
   calledFromOutside(url: string) {
     this.zone.run(() => {
+      this.loading = false;
       this.link = url;
+      this.modalRef = this.modalService.show(this.templateRef);
     });
   }
 

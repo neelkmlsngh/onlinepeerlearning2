@@ -286,14 +286,7 @@ export class ChatHomeComponent implements OnInit {
     return false;
    
   }
-  //Method for audio chat
-  audiocall(template1: TemplateRef < any > ) {
-    this.modalRef = this.modalService.show(template1);
-  }
-  //Method for calling video chat
-  videocall(template2: TemplateRef < any > ) {
-    this.modalRef = this.modalService.show(template2);
-  }
+ 
   fileChange(event) {
     this.formData = new FormData();
     let fileList: FileList = event.target.files;

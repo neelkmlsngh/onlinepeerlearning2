@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter, TemplateRef } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, TemplateRef,OnChanges, SimpleChange } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import swal from 'sweetalert2';
@@ -14,10 +14,12 @@ import { AuthenticationService } from '../../services/authentication.service'
   templateUrl: './repo-sidebar.component.html',
   styleUrls: ['./repo-sidebar.component.css']
 })
-export class RepoSidebarComponent implements OnInit {
+export class RepoSidebarComponent implements OnInit, OnChanges {
+  
   @Input() mode: String;
   @Input() githubUser: any;
-  @Input() repoNameForFileUpdate: string;
+  @Input() xyz: any;
+  
   config = config;
   /*declaring all the required variables*/
   selectedValue: any;
@@ -45,12 +47,24 @@ export class RepoSidebarComponent implements OnInit {
   @Output() repoName = new EventEmitter < any > ();
   @Output() fileName = new EventEmitter < any > ();
   @Output() editorMode = new EventEmitter < any > ();
-  constructor(private editorService: EditorService, private gitService: GitService,
-    private modalService: BsModalService, private profileService: ProfileService,
-    private authenticationService: AuthenticationService) {}
+  constructor(
+    private editorService: EditorService, 
+    private gitService: GitService,
+    private modalService: BsModalService, 
+    private profileService: ProfileService,
+    private authenticationService: AuthenticationService
+    ) {
+   
+  }
+
+  ngOnChanges(changes: {[property:string]:SimpleChange}){
+    if(this.xyz){
+     this.getDirectoryContentAfterChanges(this.xyz.repoName,this.xyz.sha);
+    }
+    // } 
+  }
+
   ngOnInit() {
-    console.log("===========++++++++++++++++++++++" + this.repoNameForFileUpdate)
-    
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
     this.authenticationService.getPersonalAccessToken(this.currentUser.userId)
     .subscribe((res) => {
@@ -63,6 +77,7 @@ export class RepoSidebarComponent implements OnInit {
   public openTokenModal(template: TemplateRef < any > ) {
     this.modalRef = this.modalService.show(template);
   }
+
   getDirectoryContent() {
     this.reponamed = this.selectedValue;
     this.gitService.getFolderContents(this.reponamed)
@@ -72,6 +87,16 @@ export class RepoSidebarComponent implements OnInit {
       this.repoName.emit(this.reponamed);
     })
   }
+  
+  getDirectoryContentAfterChanges(repoName,SHA){
+    this.gitService.getLatestRepoTree(repoName,SHA)
+      .subscribe((data)=>{
+        this.folderDetails = data;
+        this.folderDetails=this.folderDetails.sort(this.sortBy("type"));
+        this.repoName.emit(this.reponamed);
+      });
+   }
+  
   getFolderInfo($event: any) {
     let eleId = $event.target.id;
     if (eleId) {
