@@ -23,8 +23,8 @@
               <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body accordionBody">
                   <select class="btn btn-outline-warning listOption" name="carlist" form="carform" [(ngModel)]="selectedValue" (change)="changeMode()">
-                    <option value="html">{{config.OPTION1}}</option>
-                    <option value="javascript">{{config.OPTION2}}</option>
+                    <option class="option1" value="html">{{config.OPTION1}}</option>
+                    <option class="option2" value="javascript">{{config.OPTION2}}</option>
                   </select>
                 </div>
               </div>
@@ -32,7 +32,7 @@
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingThree">
                 <h5 class="mb-0 accordionHeading">
-                  <a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <a class="collapsed accordionTitle newrepo" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                     {{config.NEWREPOSITORY}}
                   </a>
                 </h5>
@@ -40,7 +40,7 @@
               <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body accordionBody">
                   <form #repositoryForm="ngForm" (ngSubmit)="createNewRepo(repositoryForm.form);">
-                    <label for="recipient-name" class="form-control-label formText">{{config.REPOSITORYNAME}}</label>
+                    <label for="recipient-name" class="form-control-label formText reponame">{{config.REPOSITORYNAME}}</label>
                     <input type="text" class="form-control" name="repositoryName" ngModel #repoCreateField="ngModel" required minlength="5" pattern=".*\S+.*" title="empty field not allowed">
                     <div *ngIf="repoCreateField.touched && repoCreateField.errors">
                       <div class="alert alert-danger formText" *ngIf="repoCreateField.errors.required">
@@ -51,7 +51,7 @@
                       </div>
                     </div>
                     <h6></h6>
-                    <label for="recipient-name" class="form-control-label formText">{{ config.DESCRIPTION}}</label>
+                    <label for="recipient-name" class="form-control-label formText description">{{ config.DESCRIPTION}}</label>
                     <textarea type="text" id="description" class="form-control descriptionTextArea" data-spy="scroll" data-target="description" data-offset="0" name="description" ngModel #repoDescriptionField="ngModel" required minlength="5" pattern=".*\S+.*" title="empty field not allowed">
                       <div *ngIf="repoDescriptionField.touched && repoDescriptionField.errors">
                         <div class="alert alert-danger formText" *ngIf="repoDescriptionField.errors.required">
@@ -71,7 +71,7 @@
             <div class="card">
               <div class="card-header accordianClass" role="tab" id="headingFour">
                 <h5 class="mb-0 accordionHeading">
-                  <a class="collapsed accordionTitle" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour"title="To access or Modified repository Pesonal Access Token is needed"title="To access or Modified repository Pesonal Access Token is needed"title="To access or Modified repository Pesonal Access Token is needed"title="To access or Modified repository Pesonal Access Token is needed" title="To access or Modified repository Pesonal Access Token is needed">
+                  <a class="collapsed accordionTitle pac" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour"title="To access or Modified repository Pesonal Access Token is needed"title="To access or Modified repository Pesonal Access Token is needed"title="To access or Modified repository Pesonal Access Token is needed"title="To access or Modified repository Pesonal Access Token is needed" title="To access or Modified repository Pesonal Access Token is needed">
                     {{config.PACGENERATE}}
                   </a>
                 </h5>

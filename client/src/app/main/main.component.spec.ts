@@ -36,9 +36,14 @@ import {
 //describe testing block
 describe('MainComponent', () => {
   //component to be tested
-  let component: mainhome;
+  let component: any;
   let fixture: ComponentFixture<mainhome>;
   let spy: jasmine.Spy;
+  let spy1: jasmine.Spy;
+  let spy2: jasmine.Spy;
+  let spy3: jasmine.Spy;
+  /*let spy4: jasmine.Spy;*/
+  let spy5: jasmine.Spy;
    //debug and native elements
   let dehead,deoption1,deoption2,denewrepo,dereponame,dedescription,depac: DebugElement;
   let elhead,eloption1,eloption2,elnewrepo,elreponame,eldescription,elpac: HTMLElement;
@@ -73,12 +78,25 @@ describe('MainComponent', () => {
   }));
    //before each block for testing the component
   beforeEach(() => {
+  spyOn(localStorage, 'getItem').and.callFake(function (key) {
+    return JSON.stringify({"test":"test"});
+  });
+ 
     fixture = TestBed.createComponent(mainhome);
     component = fixture.componentInstance;
     gitService = fixture.debugElement.injector.get(GitService);
-
     spy = spyOn(gitService, 'getRepos')
           .and.returnValue(Observable.of(testQuote));
+    spy1 = spyOn(gitService, 'getTree')
+          .and.returnValue(Observable.of(testQuote));
+    spy2 = spyOn(gitService, 'openFolder')
+          .and.returnValue(Observable.of(testQuote));
+    spy3 = spyOn(gitService, 'getFile')
+          .and.returnValue(Observable.of(testQuote)); 
+    /*spy4 = spyOn(gitService, 'createToken')
+          .and.returnValue(Observable.of(testQuote));*/
+  /*  spy5 = spyOn(gitService, 'createRepos')
+          .and.returnValue(Observable.of(testQuote)); */
     dehead = fixture.debugElement.query(By.css('.accordionTitle'));
     elhead = dehead.nativeElement;
     
@@ -101,7 +119,7 @@ describe('MainComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
- /*it('heading h5 should contain text', () => {
+ it('heading h5 should contain text', () => {
    fixture.detectChanges();
    expect(elhead.textContent).toContain(config.TITLE);
  });
@@ -236,30 +254,54 @@ it('getfilename method should not return filename if null.',
       });
       component.getMode(" ")
       expect(mockResponse.editormode).toEqual(' ');
-    }));*/
- // positive testcase for onKey method
-  /* it('onKey method should return value of event  in value.',
+    }));
+ // positive test case for getRepoNameForFileUpdat
+  it('getRepoNameForFileUpdatee method should return value.',
     inject([mainhome, XHRBackend], (mainhome, mockBackend) => {
-      const mockResponse = { event: 'abc' };
+      const mockResponse = { repoNameForFileUpdate: 'js' };
       mockBackend.connections.subscribe((connection) => {
         connection.mockRespond(new Response(new ResponseOptions({
           body: JSON.stringify(mockResponse)
         })));
       });
-      component.onKey("event")
-      expect(mockResponse.event).toEqual('abc');
-       }));
-    // negative testcase for onKey method
-     it('onKey method should not return value if event is null',
+      component.getRepoNameForFileUpdate("repoNameForFileUpdate")
+      expect(mockResponse.repoNameForFileUpdate).toEqual('js');
+    }));
+ // negative testcase for getRepoNameForFileUpdat
+  it('getRepoNameForFileUpdate method should not return selectedvalue if repoNameForFileUpdate is null ',
     inject([mainhome, XHRBackend], (mainhome, mockBackend) => {
-      const mockResponse = { event: ' ' };
+      const mockResponse = { repoNameForFileUpdate: ' ' };
       mockBackend.connections.subscribe((connection) => {
         connection.mockRespond(new Response(new ResponseOptions({
           body: JSON.stringify(mockResponse)
         })));
       });
-      component.onKey(" ")
-      expect(mockResponse.event).toEqual(' ');
-    }));*/
+      component.getRepoNameForFileUpdate(" ")
+      expect(mockResponse.repoNameForFileUpdate).toEqual(' ');
+    }));
+ it('reposearch should work', () => {
+   let user = fixture.debugElement.injector.get(GitService);
+   component.reposearch()
+ });
+ it(' showFile should work', () => {
+   let user = fixture.debugElement.injector.get(GitService);
+   component. showFile()
+ 
+ });
+ it(' show should work', () => {
+   let user = fixture.debugElement.injector.get(GitService);
+   component. show()
+ 
+ });
+ /*it(' createtoken should work', () => {
+   let user = fixture.debugElement.injector.get(GitService);
+   component. createAccessToken()
+ 
+ });*/
    
+    /*t(' show should work', () => {
+   let user = fixture.debugElement.injector.get(GitService);
+   component.  createRepo()
+ 
+ });*/
 });
