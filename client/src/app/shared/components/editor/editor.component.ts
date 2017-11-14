@@ -155,7 +155,7 @@ export class EditorComponent implements OnInit {
        text: "",
        type: 'error',
        showConfirmButton: false,
-     }).then()
+     }).catch(swal.noop);
     this.ifRepo = false;
    }
  }
@@ -170,7 +170,7 @@ export class EditorComponent implements OnInit {
 				text: "",
 				type: 'error',
 				showConfirmButton: false,
-			}).then()
+			}).catch(swal.noop);
 		} else {      
 			this.loading = true;
 			this.fileName = fileName.value['fileName'];
@@ -221,8 +221,7 @@ export class EditorComponent implements OnInit {
 																	text: "",
 																	type: 'success',
 																	showConfirmButton: false,
-																}).then()
-															}
+																}).catch(swal.noop);															}
 															//sweet alert on getting error
 															else {
 																this.loading = false;
@@ -232,7 +231,7 @@ export class EditorComponent implements OnInit {
 																	text: "",
 																	type: 'error',
 																	showConfirmButton: false,
-																}).then()
+																}).catch(swal.noop);
 															}
 												})
 											 //sweet alert on getting response
@@ -256,7 +255,7 @@ export class EditorComponent implements OnInit {
 				text: "",
 				type: 'error',
 				showConfirmButton: false,
-			}).then()
+			}).catch(swal.noop);
 		} else {
 
 			this.loading = true;
@@ -285,7 +284,7 @@ export class EditorComponent implements OnInit {
 									text: "",
 									type: 'success',
 									showConfirmButton: false,
-								}).then()
+								}).catch(swal.noop);
 							}
 							//sweet alert on getting error
 							else {
@@ -296,7 +295,7 @@ export class EditorComponent implements OnInit {
 									text: "",
 									type: 'error',
 									showConfirmButton: false,
-								}).then()
+								}).catch(swal.noop);
 							}
 						})
 				})
@@ -315,7 +314,7 @@ export class EditorComponent implements OnInit {
 				text: "",
 				type: 'error',
 				showConfirmButton: false,
-			}).then()
+			}).catch(swal.noop);
 		} else {
 			this.loading = true;
 			this.deleteMsg = commitMessage.value['deleteMsg'];
@@ -341,7 +340,7 @@ export class EditorComponent implements OnInit {
 									text: "",
 									type: 'success',
 									showConfirmButton: false,
-								}).then()
+								}).catch(swal.noop);
 							} else {
 								this.loading = false;
 								//sweet alert on getting error
@@ -351,7 +350,7 @@ export class EditorComponent implements OnInit {
 									text: "",
 									type: 'error',
 									showConfirmButton: false,
-								}).then()
+								}).catch(swal.noop);
 							}
 						})
 				})

@@ -167,7 +167,7 @@ export class MainComponent implements OnInit {
           text: "",
           type: 'success',
           showConfirmButton: false,
-        }).then()
+        }).catch(swal.noop);
       }
       this.router.navigate(["/"]);
       localStorage.removeItem('currentUser');
@@ -198,7 +198,7 @@ generateToken(form){
             text: "",
             type: 'success',
             showConfirmButton: false,
-          }).then()
+          }).catch(swal.noop);
         } else {
           this.loading=false;
           swal({
@@ -207,7 +207,7 @@ generateToken(form){
             text: "",
             type: 'error',
             showConfirmButton: false,
-          }).then()
+          }).catch(swal.noop);
         }
         this.accessToken = data.token;
         this.authenticationService.pacToken = data.token;
@@ -235,7 +235,7 @@ createNewRepo(form){
    text:  "",
    type: 'error',
    showConfirmButton: true,
- }).then()
+ }).catch(swal.noop);
   }
   else{
     this.loading=true;
@@ -268,19 +268,19 @@ createNewRepo(form){
            text:  "",
            type:  'success',
            showConfirmButton: false,
-       }).then()
+       }).catch(swal.noop);
      }
 
-else {
-  this.loading=false;
-       swal({
-   timer: 2500,
-   title: mainConfig.REPONOTCREATE,
-   text:  "",
-   type: 'error',
-   showConfirmButton: false,
- }).then()
-     }
+      else {
+        this.loading=false;
+             swal({
+         timer: 2500,
+         title: mainConfig.REPONOTCREATE,
+         text:  "",
+         type: 'error',
+         showConfirmButton: false,
+       }).catch(swal.noop);
+           }
      })
 }
 }

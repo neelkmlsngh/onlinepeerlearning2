@@ -115,7 +115,7 @@ export class ChatHomeComponent implements OnInit {
              text:  "Sorry We cannot show online users now",
              type:  'error',
              showConfirmButton: false,
-           }).then()
+           }).catch(swal.noop);
           }
         });
 
@@ -238,7 +238,7 @@ export class ChatHomeComponent implements OnInit {
            text:  "Message can't be empty.",
            type:  'error',
            showConfirmButton: false,
-         }).then()
+         }).catch(swal.noop);
       } else {
         if (this.message === '') {
           swal({
@@ -247,7 +247,7 @@ export class ChatHomeComponent implements OnInit {
            text:  "Message can't be empty.",
            type:  'error',
            showConfirmButton: false,
-         }).then()
+         }).catch(swal.noop);
         } else if (this.userId === '') {
           this.router.navigate(['/']);
         } else if (this.selectedUserId === '') {
@@ -258,7 +258,7 @@ export class ChatHomeComponent implements OnInit {
            text:  "Select a user to chat.",
            type:  'error',
            showConfirmButton: false,
-         }).then()
+         }).catch(swal.noop);
         } else {
           let data: any = {
             fromUserId: this.userId,

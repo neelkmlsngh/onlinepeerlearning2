@@ -2,6 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter, TemplateRef,OnChanges, 
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import * as $ from 'jquery';
+import swal from 'sweetalert2'
 /*import third party libraries*/
 import { EditorService } from '../../services/editor.service';
 import { GitService } from '../../services/git.service';
@@ -137,6 +138,7 @@ export class RepoSidebarComponent implements OnInit, OnChanges {
       <i class="fa fa-file" aria-hidden="true"></i> &nbsp; ${name}
       </li>`);
   }
+
   getFile($event) {
     this.filename = $event.target.dataset.filename;
     let path = $event.target.dataset.path;
@@ -145,28 +147,64 @@ export class RepoSidebarComponent implements OnInit, OnChanges {
       this.folder = this.filename.split('.');
       if (this.folder.length > 1) {
         if (this.extension !== "js" && this.extension !== "html" && this.extension !== "css") {
-          alert(config.repoSidebar.NO_EXT)
-        } else if (this.mode === "javascript" && this.extension !== "js" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore" && this.extension !== "ts" && this.extension !== "txt") {
-          this.confirm = confirm(config.repoSidebar.HTML_MODE)
-          if (this.confirm === true) {
+          swal({
+            timer: 8500,
+            text: config.repoSidebar.NO_EXT,
+            type: 'error',
+            showConfirmButton: true,
+          }).catch(swal.noop);
+        } else if (this.mode === "javascript" && this.extension !== "js" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore" && this.extension !== "ts" && this.extension !== "txt" && this.extension !== "jpg" && this.extension !== "png") {
+          swal({
+            text: config.repoSidebar.HTML_MODE,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'OK',
+            cancelButtonText: 'No, cancel!',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger'
+          }).then(() => {
             this.mode = "html"
             this.editorMode.emit(this.mode);
-          }
+          })
         } else if (this.mode === "javascript" && this.extension == "js") {
-          this.confirm = confirm(config.repoSidebar.ASK_MODE)
-          if (this.confirm === true) {
+          swal({
+            text: config.repoSidebar.ASK_MODE,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel!',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger'
+          }).then(() => {
             this.mode = "javascript"
             this.editorMode.emit(this.mode);
-          } else {
-            this.mode = "html"
-            this.editorMode.emit(this.mode);
-          }
-        } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore" && this.extension !== "ts" && this.extension !== "txt") {
-          this.confirm = confirm(config.repoSidebar.JAVASCRIPT_MODE)
-          if (this.confirm === true) {
+          }, ((dismiss) => {
+            // dismiss can be 'cancel', 'overlay',
+            if (dismiss === 'cancel') {
+              this.mode = "html"
+              this.editorMode.emit(this.mode);
+            }
+          }))
+        } else if (this.mode === "html" && this.extension !== "html" && this.extension !== "css" && this.extension !== "md" && this.extension !== "json" && this.extension !== "gitignore" && this.extension !== "ts" && this.extension !== "txt" && this.extension !== "jpg" && this.extension !== "png") {
+          swal({
+            text: config.repoSidebar.JAVASCRIPT_MODE,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'OK',
+            cancelButtonText: 'No, cancel!',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger'
+          }).then(() => {
             this.mode = "javascript"
             this.editorMode.emit(this.mode);
-          }
+          })
+
         }
       }
       this.fileData = data;

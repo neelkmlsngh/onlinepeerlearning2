@@ -127,7 +127,7 @@ export class ProfileComponent implements OnInit {
             text: "",
             type: 'success',
             showConfirmButton: false,
-          }).then()
+          }).catch(swal.noop);
         } else {
           swal({
             timer: 2500,
@@ -135,7 +135,7 @@ export class ProfileComponent implements OnInit {
             text: "declined",
             type: 'error',
             showConfirmButton: false,
-          }).then()
+          }).catch(swal.noop);
         }
       })
   }
