@@ -100,13 +100,13 @@ forumConfig=forumConfig;
 }else
 {
   swal({
- title: '!!OOPS!!',
- html: $('<div>')
-   .addClass('some-class')
-   .text('!!Question Title & Problem Description Are Mandatory Please Cooperate!!'),
- animation: false,
- customClass: 'animated tada'
-})
+   title: '!!OOPS!!',
+   html: $('<div>')
+     .addClass('some-class')
+     .text('!!Question Title & Problem Description Are Mandatory Please Cooperate!!'),
+   animation: false,
+   customClass: 'animated tada'
+  })
 }
 
  }

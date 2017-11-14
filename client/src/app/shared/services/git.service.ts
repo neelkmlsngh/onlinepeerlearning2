@@ -63,7 +63,7 @@ export class GitService {
   //method to create file on github
   createFile(text) {
     if (this.userName) {
-      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master' + '?client_id=' + config.connect.CLIENT_ID +
+      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + '/git/refs/heads/master' + '?client_id=' + config.connect.CLIENT_ID +
           '&client_secret=' + config.connect.CLIENT_SECRET, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
@@ -73,7 +73,7 @@ export class GitService {
   //method to create file on github
   commitfile(text, sha) {
     if (this.userName) {
-      return this._http.get('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits/' + sha + '?client_id=' + config.connect.CLIENT_ID +
+      return this._http.get(config.giturls.HOSTURL + this.userName + '/' + text + '/git/commits/' + sha + '?client_id=' + config.connect.CLIENT_ID +
           '&client_secret=' + config.connect.CLIENT_SECRET, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
@@ -82,7 +82,7 @@ export class GitService {
   //method to create file on github
   treecommit(text, basetree) {
     if (this.userName) {
-      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/trees' + '?client_id=' + config.connect.CLIENT_ID +
+      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + '/git/trees' + '?client_id=' + config.connect.CLIENT_ID +
           '&client_secret=' + config.connect.CLIENT_SECRET, basetree, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
@@ -91,7 +91,7 @@ export class GitService {
   //method to create file on github
   newcommit(text, newcommit) {
     if (this.userName) {
-      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/commits' + '?client_id=' + config.connect.CLIENT_ID +
+      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + '/git/commits' + '?client_id=' + config.connect.CLIENT_ID +
           '&client_secret=' + config.connect.CLIENT_SECRET, newcommit, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
@@ -100,7 +100,7 @@ export class GitService {
   //method to create a fiel on github 
   lastcommit(text, lastcommit) {
     if (this.userName) {
-      return this._http.post('https://api.github.com/repos/' + this.userName + '/' + text + '/git/refs/heads/master' + '?client_id=' + config.connect.CLIENT_ID +
+      return this._http.post(config.giturls.HOSTURL + this.userName + '/' + text + '/git/refs/heads/master' + '?client_id=' + config.connect.CLIENT_ID +
           '&client_secret=' + config.connect.CLIENT_SECRET, lastcommit, this.authenticationService.addPersonalAccessToken())
         .map(res => res.json())
     }
@@ -172,7 +172,7 @@ export class GitService {
 //method to get Folders inside the repository
   getFolderContents(repodetails:string) {
     repodetails=repodetails.trim();
-      return this._http.get('https://api.github.com/repos/'+this.userName+'/'+repodetails+'/contents?client_id=' + config.connect.CLIENT_ID +
+      return this._http.get(config.giturls.HOSTURL+this.userName+'/'+repodetails+'/contents?client_id=' + config.connect.CLIENT_ID +
           '&client_secret=' +  config.connect.CLIENT_SECRET)
 
         .map(res => res.json())
@@ -182,7 +182,7 @@ export class GitService {
 //method to get files inside the folder
    openFolder(value,reponamed) {
    let val=value;
-      return this._http.get("https://api.github.com/repos/"+this.userName+"/"+reponamed+"/contents/"+val+ '?client_id=' + config.connect.CLIENT_ID +
+      return this._http.get(config.giturls.HOSTURL+this.userName+"/"+reponamed+"/contents/"+val+ '?client_id=' + config.connect.CLIENT_ID +
           '&client_secret=' + config.connect.CLIENT_SECRET)
         .map(res => res.json())
     }
@@ -212,7 +212,7 @@ export class GitService {
 
   getLatestRepoTree(reponame,sha){
     console.log('getLatestRepoTree')
-    return this._http.get('https://api.github.com/repos/'+this.userName+'/'+reponame+'/contents/?ref='+sha+'&client_id=' + config.connect.CLIENT_ID +
+    return this._http.get(config.giturls.HOSTURL+this.userName+'/'+reponame+'/contents/?ref='+sha+'&client_id=' + config.connect.CLIENT_ID +
           '&client_secret=' +  config.connect.CLIENT_SECRET)
       .map(res => res.json());
   }

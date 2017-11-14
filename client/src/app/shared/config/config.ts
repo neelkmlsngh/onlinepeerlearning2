@@ -2,10 +2,10 @@ export const config: any = {
   
   connect: {
     apiURL: "https://localhost:8080",
-    vmURL: "https://192.168.252.151:3030",
-    CALLBACK_URL: "https://192.168.252.151:8080/api/login/auth/github/callback",
-    CLIENT_ID: '71e507179821e4c52cc6',
-    CLIENT_SECRET: 'f5a19047f54acc10db755689779bb23681ec5496'
+    vmURL: "https://192.168.252.152:3030",
+    CALLBACK_URL: "https://192.168.252.152:8080/api/login/auth/github/callback",
+    CLIENT_ID: 'd800be26e1dd031f7308',
+    CLIENT_SECRET: '4f34a102e4b2d71b77246520afee60d692da9b5a'
   },
 
   giturls: {
@@ -27,8 +27,9 @@ export const config: any = {
     "DISLIKEURL": '/api/forums/dislike/',
   },
   peerserver: {
-    "host": "192.168.252.151",
+    "host": "192.168.252.152",
     "port": "8081",
     "path": "/peerjs"
   }
 }
+

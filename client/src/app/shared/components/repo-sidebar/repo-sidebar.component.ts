@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter, TemplateRef,OnChanges, SimpleChange } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import swal from 'sweetalert2';
 import * as $ from 'jquery';
 /*import third party libraries*/
 import { EditorService } from '../../services/editor.service';

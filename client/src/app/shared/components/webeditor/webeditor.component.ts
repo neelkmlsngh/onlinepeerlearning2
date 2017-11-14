@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, NgZone, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, NgZone, TemplateRef, Output,EventEmitter} from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { FormsModule } from '@angular/forms'
@@ -55,6 +55,9 @@ export class WebeditorComponent implements OnInit {
   @ViewChild('jsUpdateClose') jsUpdateClose: ElementRef;
   @ViewChild('jsDeleteClose') jsDeleteClose: ElementRef;
 
+  @Output() repoNameForFileUpdateAtCreate: EventEmitter<any> = new EventEmitter();
+  @Output() repoNameForFileUpdateAtUpdate: EventEmitter<any> = new EventEmitter();
+  @Output() repoNameForFileUpdateAtDelete: EventEmitter<any> = new EventEmitter();
 
   latestcommit: any;
   treecommit: any;
@@ -148,7 +151,6 @@ export class WebeditorComponent implements OnInit {
     this.onChange(this.code)
     this.snippet.getSnippet()
       .subscribe(res => {
-
         this.html = res.filter(ele => ele.language === 'Html');
         this.css = res.filter(ele => ele.language === 'Css');
         this.javascript = res.filter(ele => ele.language === 'Javascript');
@@ -167,7 +169,7 @@ export class WebeditorComponent implements OnInit {
        text: "",
        type: 'error',
        showConfirmButton: false,
-     })
+     }).then()
     this.ifRepo = false;
    }
  }
@@ -223,29 +225,33 @@ export class WebeditorComponent implements OnInit {
                       }
                       //hitting final api to create the file
                       this.gitService.lastcommit(this.reponame, this.lastcommit)
-                        .subscribe(repos => {})
-                      //sweet alert on getting response
-                      if (repos) {
-                        this.loading = false;
-                        swal({
-                          timer: 2200,
-                          title: "file " + this.fileName + " created successfully!",
-                          text: "",
-                          type: 'success',
-                          showConfirmButton: false,
-                        }).then()
-                      }
-                      //sweet alert on getting error
-                      else {
-                        this.loading = false;
-                        swal({
-                          timer: 2200,
-                          title: "Error occured",
-                          text: "",
-                          type: 'error',
-                          showConfirmButton: false,
-                        }).then()
-                      }
+                        .subscribe(repos => {
+                          this.repoNameForFileUpdateAtCreate.emit({repoName:this.reponame,sha:repos.object.sha})
+
+                          //sweet alert on getting response
+                          if (repos) {
+                            this.loading = false;
+                            swal({
+                              timer: 2200,
+                              title: "file " + this.fileName + " created successfully!",
+                              text: "",
+                              type: 'success',
+                              showConfirmButton: false,
+                            }).then()
+                          }
+                          //sweet alert on getting error
+                          else {
+                            this.loading = false;
+                            swal({
+                              timer: 2200,
+                              title: "Error occured",
+                              text: "",
+                              type: 'error',
+                              showConfirmButton: false,
+                            }).then()
+                          }
+                        })
+                    
                     })
                 })
             })
@@ -287,6 +293,7 @@ export class WebeditorComponent implements OnInit {
           //hitting the update file api to update the file contents
           this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
             .subscribe(repos => {
+              this.repoNameForFileUpdateAtUpdate.emit({repoName:this.reponame,sha:repos.commit.sha})
               //sweet alert on getting response
               if (repos) {
                 this.loading = false;
@@ -345,6 +352,7 @@ export class WebeditorComponent implements OnInit {
           //hitting the delete file api to delete the file
           this.gitService.deleteFile(this.reponame, this.filenamed, this.deletefileobj)
             .subscribe(repos => {
+              this.repoNameForFileUpdateAtDelete.emit({repoName:this.reponame,sha:repos.commit.sha})
               //sweet alert on getting response
               if (repos) {
                 this.loading = false;

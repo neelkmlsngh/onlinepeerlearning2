@@ -127,14 +127,21 @@
         <!-- side bar div end here -->
         <!-- editor div start here -->
         <div *ngIf="mode=='javascript'" class="col-md-10">
-          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed" (repoNameForFileUpdateAtCreate)="getRepoNameForFileUpdate($event)"
+          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed" 
+          (repoNameForFileUpdateAtCreate)="getRepoNameForFileUpdate($event)"
           (repoNameForFileUpdateAtUpdate)="getRepoNameForFileUpdate($event)"
           (repoNameForFileUpdateAtDelete)="getRepoNameForFileUpdate($event)"
           ></app-editor>
         </div>
         <!-- editor  div end here -->
         <div *ngIf="mode=='html'" class="col-md-10">
-          <app-webeditor [content]="content" [reponame]="reponame" [filenamed]="filenamed"></app-webeditor>
+          <app-webeditor [content]="content" 
+          [reponame]="reponame" 
+          [filenamed]="filenamed"
+          (repoNameForFileUpdateAtCreate)="getRepoNameForFileUpdate($event)"
+          (repoNameForFileUpdateAtUpdate)="getRepoNameForFileUpdate($event)"
+          (repoNameForFileUpdateAtDelete)="getRepoNameForFileUpdate($event)"
+          ></app-webeditor>
         </div>
       </div>
     </div>

@@ -60,13 +60,13 @@ getDetails(searchTerm: any) {
      });
    }else{
       swal({
- title: '!!OOPS!!',
- html: $('<div>')
-   .addClass('some-class')
-   .text('Enter Something First!!'),
- animation: false,
- customClass: 'animated tada'
-})
+        title: '!!OOPS!!',
+         html: $('<div>')
+           .addClass('some-class')
+           .text('Enter Something First!!'),
+         animation: false,
+         customClass: 'animated tada'
+    })
 }
 
  }

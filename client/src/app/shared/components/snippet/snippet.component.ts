@@ -79,7 +79,7 @@ modalRef: BsModalRef;
          title: "Snippet Added Successfully",
          type: 'success',
          showConfirmButton: false,
-       })
+       }).then()
      }
      this.mode();
    })
@@ -105,7 +105,7 @@ modalRef: BsModalRef;
          title: "Snippet Edited Successfully",
          type: 'success',
          showConfirmButton: false,
-       })
+       }).then()
      }
      this.mode()
    })
@@ -123,7 +123,7 @@ this.modalRef.hide()
          title: "Deleted Successfully",
          type: 'success',
          showConfirmButton: false,
-       })
+       }).then()
      }
      this.mode()
    })
