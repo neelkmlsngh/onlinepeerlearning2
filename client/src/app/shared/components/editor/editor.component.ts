@@ -151,7 +151,7 @@ export class EditorComponent implements OnInit {
    }else{
      swal({
        timer: 2500,
-       title: "Please select your repository",
+       title: config.editor.SELECTREPOSITORY,
        text: "",
        type: 'error',
        showConfirmButton: false,
@@ -166,7 +166,7 @@ export class EditorComponent implements OnInit {
 		if (this.authenticationService.pacToken == null) {
 			swal({
 				timer: 2200,
-				title: "You have not generated your token",
+				title: config.editor.NOTREGISTERED,
 				text: "",
 				type: 'error',
 				showConfirmButton: false,
@@ -251,7 +251,7 @@ export class EditorComponent implements OnInit {
 		if (this.authenticationService.pacToken == null) {
 			swal({
 				timer: 2200,
-				title: "You have not generated your token",
+				title: config.editor.NOTREGISTERED,
 				text: "",
 				type: 'error',
 				showConfirmButton: false,
@@ -310,7 +310,7 @@ export class EditorComponent implements OnInit {
 		if (this.authenticationService.pacToken == null) {
 			swal({
 				timer: 2200,
-				title: "You have not generated your token",
+				title: config.editor.NOTREGISTERED,
 				text: "",
 				type: 'error',
 				showConfirmButton: false,

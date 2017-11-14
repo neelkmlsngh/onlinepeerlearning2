@@ -1,7 +1,7 @@
 export const config: any = {
   
   connect: {
-    apiURL: "https://localhost:8080",
+    apiURL: "https://192.168.252.152:8080",
     vmURL: "https://192.168.252.152:3030",
     CALLBACK_URL: "https://192.168.252.152:8080/api/login/auth/github/callback",
     CLIENT_ID: 'd800be26e1dd031f7308',

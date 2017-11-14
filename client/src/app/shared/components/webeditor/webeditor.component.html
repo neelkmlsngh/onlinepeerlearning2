@@ -295,7 +295,7 @@
                 <div id="myCssDiv"></div>
               </form>
             </nav>
-            <ace-editor [(text)]="content" #csseditor [mode]="'css'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="css"></ace-editor>
+            <ace-editor [(text)]="cssValue" #csseditor [mode]="'css'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="css"></ace-editor>
           </section>
         </div>
       </div>
@@ -428,7 +428,7 @@
                 <div id="myJsDiv"></div>
               </form>
             </nav>
-            <ace-editor [(text)]="content" #jseditor [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" (textChanged)="onChange($event)" class="code_box" id="javascript"></ace-editor>
+            <ace-editor [(text)]="jsValue" #jseditor [mode]="'javascript'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" [durationBeforeCallback]="2000" (textChanged)="onChange($event)" class="code_box" id="javascript"></ace-editor>
           </section>
         </div>
       </div>
