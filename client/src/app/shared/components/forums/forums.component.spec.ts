@@ -30,11 +30,11 @@ describe('ForumsComponent', () => {
   let de, dforums: DebugElement;
   let el, eforums: HTMLElement;
   let service;
-  let spy, spy1, spy2, spy3, spy4: jasmine.Spy;
+  let spy, spy1, spy2, spy3, spy4,spy5 ,spy6: jasmine.Spy;
   let forumdata = { questionTitle: 'what??', problemDescription: 'because.' };
   let event = { data: { tags: "helllll" } };
   let userName = { currentUser: { userName: "Nishtha" } };
-  let localStore = {};
+  let store = {};
   //creating the stub data
   let test = {
     "response": { "n": 1, "ok": 1, "nModified": 1 },
@@ -66,11 +66,18 @@ describe('ForumsComponent', () => {
         fixture = TestBed.createComponent(forum);
         component = fixture.componentInstance;
         service = fixture.debugElement.injector.get(forumservice);
-        spy = spyOn(service, 'getPost').and.returnValue(Observable.of(event));
+        spy  = spyOn(service, 'getPost').and.returnValue(Observable.of(event));
         spy1 = spyOn(service, 'searchEntries').and.returnValue(Observable.of(data));
         spy2 = spyOn(service, 'updateLike').and.returnValue(Observable.of(data));
         spy3 = spyOn(service, 'updateDislike').and.returnValue(Observable.of(data));
-        spy4 = spyOn(component, 'viewPost').and.returnValue(Observable.of(userName))
+        spy4 = spyOn(component, 'viewPost').and.returnValue(Observable.of(userName));
+        spy5 = spyOn(localStorage, 'getItem').and.callFake((key: string): String => {
+               return store[key] || null;
+        });
+        spy6=spyOn(localStorage, 'setItem').and.callFake((key: string, value: string): string => {
+               return store[key] = < string > value;
+        });
+        
       });
   }));
   //test for component creation
@@ -257,18 +264,6 @@ describe('ForumsComponent', () => {
       component.getDetails("")
       expect(mockResponse.searchTerm).toEqual('');
     }));
-});
-describe('feat(localStorage Mock): ', function() {
-  // Mock localStorage
-  beforeEach(() => {
-    var store = {};
-    spyOn(localStorage, 'getItem').and.callFake((key: string): String => {
-      return store[key] || null;
-    });
-    spyOn(localStorage, 'setItem').and.callFake((key: string, value: string): string => {
-      return store[key] = < string > value;
-    });
-  });
   // it should set and get an item 
   it('should set and get an Item', () => {
     expect < any > (localStorage.setItem('currentUser', 'VidushiSharma')).toBe('VidushiSharma');
