@@ -9,7 +9,7 @@ export const webEditorConfig: any = {
     MINLENGTH: "The commit message should be at least 5 characters long",
     NOEMPTYFIELD:"empty field not allowed",
     SCREENSHARE: "Share Your Screen",
-    ADD: "Insert your code snippet",
+    ADD: "Insert code snippet",
     ZIP: "Download project as zip",
     DOWNLOADHTML: "Download HTML file",
     DOWNLOADCSS: "Download CSS file",

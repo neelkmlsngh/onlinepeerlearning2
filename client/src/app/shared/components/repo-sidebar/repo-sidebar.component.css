@@ -7,6 +7,7 @@ select {
   color: black;
   font-family:  'Open Sans', sans-serif;
   font-size: 12px;
+  cursor: pointer;
 }
 
 .gitRepo {
@@ -18,6 +19,7 @@ select {
 option {
   color: black;
   background-color: #D1C4E9;
+  cursor: pointer;
 }
 
 select .lt {
@@ -153,4 +155,12 @@ h5 {
 
 .tree-view li {
   margin-left: 12px;
+}
+
+ol{
+  cursor: pointer;
+}
+
+li{
+  cursor: pointer;
 }

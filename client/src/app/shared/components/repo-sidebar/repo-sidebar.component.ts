@@ -61,7 +61,6 @@ export class RepoSidebarComponent implements OnInit, OnChanges {
     if(this.repoNameForFileListUpdate){
      this.getDirectoryContentAfterChanges(this.repoNameForFileListUpdate.repoName,this.repoNameForFileListUpdate.sha);
     }
-    // } 
   }
 
   ngOnInit() {
@@ -101,7 +100,7 @@ export class RepoSidebarComponent implements OnInit, OnChanges {
     let eleId = $event.target.id;
     if (eleId) {
       
-      if($('#' + eleId + ' ol')[0]){
+      if($('#' + eleId + ' ol')[0] || $('#' + eleId + ' li')[0]){
         $('#' + eleId + ' ol').remove();
         $('#' + eleId + ' li').remove();
         $event.target.firstElementChild.removeAttribute('class');
@@ -183,9 +182,9 @@ export class RepoSidebarComponent implements OnInit, OnChanges {
     let prtMrg=$('#'+id)[0]['parentElement'].style.marginLeft;
     let margin=(prtMrg)? prtMrg.substr(0,prtMrg.length-2) : 0;
     if(type==='file'){
-      return +margin+34+'px';
+      return +14  +'px';
     }
-    return +margin+12+'px';
+    return +12+'px';
   }
   // for sorting any string keys
   sortBy(prop){

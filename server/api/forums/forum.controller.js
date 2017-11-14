@@ -64,10 +64,11 @@ const getSearch = function(getValue) {
                     }
                 },
                 {
-                    "tags.display":{
+                    "tags.display": {
                         "$regex": getValue,
                         "$options": "i"
-                    },"tags.value" :{
+                    },
+                    "tags.value": {
                         "$regex": getValue,
                         "$options": "i"
                     }
@@ -102,7 +103,7 @@ const saveAnswer = function(getValue, updateValue) {
     });
 };
 
-//save answer of question
+//save likes on a  question
 const saveLike = function(getValue, updateValue) {
     return new Promise((resolve, reject) => {
         forumModel.findOne({ _id: getValue }, (err, data) => {
@@ -110,7 +111,8 @@ const saveLike = function(getValue, updateValue) {
                 logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                forumModel.findOneAndUpdate({ 'likes.userId': updateValue.userId }, {
+                resolve(data);
+                forumModel.findOneAndUpdate({ _id: getValue, 'likes.userId': updateValue.userId }, {
                     $pull: {
                         likes: {
                             'userId': updateValue.userId
@@ -127,7 +129,6 @@ const saveLike = function(getValue, updateValue) {
                             forumModel.findOneAndUpdate({
                                 '_id': getValue
                             }, {
-                                // console.log(likes.userId);
                                 $push: {
                                     likes: { 'userId': updateValue.userId }
                                 }
@@ -137,12 +138,10 @@ const saveLike = function(getValue, updateValue) {
                                     reject(err);
                                 } else {
                                     if (data) {
-                                        resolve(data);
-                                    } else {
                                         forumModel.findOneAndUpdate({
-                                            'dislikes.userId': updateValue.userId 
+                                            _id: getValue,
+                                            'dislikes.userId': updateValue.userId
                                         }, {
-                                            // console.log(likes.userId);
                                             $pull: {
                                                 dislikes: { 'userId': updateValue.userId }
                                             }
@@ -154,28 +153,30 @@ const saveLike = function(getValue, updateValue) {
                                                 resolve(data);
                                             }
                                         })
+                                    } else {
+                                        resolve(data);
                                     }
                                 }
                             })
                         }
                     }
 
-                })
+               })
 
-            }
+           }
         })
     })
 }
 
 //save dislike of question
 const saveDislike = function(getValue, updateValue) {
-  return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         forumModel.findOne({ _id: getValue }, (err, data) => {
             if (err) {
                 logger.error(logConfig.INTERNAL_ERROR + err);
                 reject(err);
             } else {
-                forumModel.findOneAndUpdate({ 'dislikes.userId': updateValue.userId }, {
+                forumModel.findOneAndUpdate({ _id: getValue, 'dislikes.userId': updateValue.userId }, {
                     $pull: {
                         dislikes: {
                             'userId': updateValue.userId
@@ -195,21 +196,20 @@ const saveDislike = function(getValue, updateValue) {
                                 $push: {
                                     dislikes: { 'userId': updateValue.userId }
                                 }
-                            }, { upsert: true }, (err, data) => {
+                            }, { 'new': true }, (err, data) => {
                                 if (err) {
                                     logger.error(logConfig.INTERNAL_ERROR + err);
                                     reject(err);
                                 } else {
                                     if (data) {
-                                        resolve(data);
-                                    } else {
                                         forumModel.findOneAndUpdate({
-                                           'userId': updateValue.userId
+                                            _id: getValue,
+                                            'likes.userId': updateValue.userId
                                         }, {
                                             $pull: {
                                                 likes: { 'userId': updateValue.userId }
                                             }
-                                        }, { upsert: true }, (err, data) => {
+                                        }, { 'new': true }, (err, data) => {
                                             if (err) {
                                                 logger.error(logConfig.INTERNAL_ERROR + err);
                                                 reject(err);
@@ -217,14 +217,14 @@ const saveDislike = function(getValue, updateValue) {
                                                 resolve(data);
                                             }
                                         })
+                                    } else {
+                                        resolve(data);
                                     }
                                 }
                             })
                         }
                     }
-
                 })
-
             }
         })
     })

@@ -16,18 +16,14 @@
               </div>
             </button>
             &nbsp;
+            <!--  Execute function to run code   -->
+            <button class="btn btn-outline-warning" href="javascript:void(0);" title=" Run the code" (click)="executecode()">
+              <i class=" fa fa-play-circle-o " aria-hidden="true"></i></button>
+            &nbsp;
             <!-- Download icon -->
             <button class="btn btn-outline-warning" href="javascript:void(0);" (click)="downloadJsFile()" title="Download JS File">
               <i class="fa fa-download " aria-hidden="true"></i>
             </button>
-            &nbsp;
-            <!--  Execute function to run code   -->
-            <button class="btn btn-outline-warning" href="javascript:void(0);" title="Execute File" (click)="executecode()">
-              <i class=" fa fa-play-circle-o " aria-hidden="true"></i></button>
-            &nbsp;
-          </div>
-          <div id="jsDiv"></div>
-          <div class="leftbutton">
             <!--  button to create the file -->
             &nbsp;
             <button class="btn btn-outline-warning" href="javascript:void(0);" title="Create new file" data-toggle="modal" data-target="#createModalWindow" (click)="isRepoSelected()"><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
@@ -170,7 +166,7 @@
   <!-- Output section -->
   <div class="col-md-5 nopadding output">
     <section id="output">
-      <h3>Output</h3> {{dataObj}}
+      <h3>Output</h3> <pre>{{dataObj}}</pre>
     </section>
   </div>
 </div>

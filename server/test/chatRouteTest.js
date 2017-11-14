@@ -1,72 +1,42 @@
-// let expect = require('chai').expect;
-// let request = require('supertest');
-// let sinon = require('sinon');
-// let app = require('./../app/app');
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+const app = require('./../bin/www');
+const chatModel = require('./../api/login/login.entity');
+const chatMsgModel = require('./../api/chat/chat.entity')
+const expect = require('chai').expect
+const supertest = require('supertest')
+const sinon = require('sinon');
+const chatStub = sinon.stub(chatModel, 'findOne')
+const getChatMsg = sinon.stub(chatMsgModel, 'find')
 
-// let loginModel = require('./../api/login/login.entity');
-// let chatMsgModel = require('./../api/chat/chat.entity');
+describe('test cases for chat---to find if user exists or not', () => {
+    chatStub.yields(null, { "userName": "testUser", "userId": "123", "updatedAt": "10 Nov 2017", "updatedAt": "3 July 2017", "online": "Y", "timestamp": 1, "socketId": "123abc" })
 
-// let checkUserSessionStub = sinon.stub(loginModel.prototype,'')
-// let gettingMessages = sinon.stub(chatMsgModel.prototype,'')
+    it('positive test case', (done) => {
+        supertest(app).post('/api/chat/checkUserSession')
+            .send({ "userName": "testUser", "userId": "123", "updatedAt": "10 Nov 2017", "updatedAt": "3 July 2017", "online": "Y", "timestamp": 1, "socketId": "123abc" })
+            .end((err, res) => {
+                if (err) {
+                    return done(err)
+                } else if (res) {
+                    expect(res.body.status).to.be.equal(200)
+                    console.log(res.body)
+                    done()
+                }
+            })
+    })
 
-// describe('Get /api/chat/userSessionCheck', () => {
-//   before(() => {
-//   	checkUserSessionStub.yields(null, {
-// 			userName: "Pulkit",
-// 			userId: ,
-// 			updatedAt:,
-// 			online: ,
-// 			timestamp:,
-// 			socketId:
-// 		});
-//   })
-//   it('checking user Session',(done) =>{
-//   	request(app)
-//   		.post('/api/chat/userSessionCheck')
-//   		.send({
-// 			userName: "Pulkit",
-// 			userId: ,
-// 			updatedAt:,
-// 			online: ,
-// 			timestamp:,
-// 			socketId:
-// 		})
-//   		.end((err,res)=>{
-//   			if(err) return err;
-//   			else{
-//   				expect(res.body).to.be.equal();
-//   				done();
-//   			}
-//   		})
-//   })
-// })
+    it('negative test case', (done) => {
+        supertest(app).post('/api/chat/checkUserSession')
+            .send({ "userName": "testUser", "userId": "123", "updatedAt": "10 Nov 2017", "updatedAt": "3 July 2017", "online": "Y", "timestamp": 1, "socketId": "123abc" })
+            .end((err, res) => {
+                if (err) {
+                    return done(err)
+                } else if (res) {
+                    expect(res.body.status).not.to.be.equal(201)
+                    console.log(res.body)
+                    done()
+                }
+            })
+    })
 
-// describe('Get /api/chat/getMessages', () => {
-//   before(() => {
-//   	gettingMessages.yields(null, {
-// 			fromUserId:,
-// 			message :'',
-// 			toUserId:,
-// 			fromSocketId:,
-// 			timestamp:
-// 		});
-//   })
-//   it('getting Messages from database',(done) =>{
-//   	request(app)
-//   		.post('/api/chat/getMessages')
-//   		.send({
-// 			fromUserId:,
-// 			message :'',
-// 			toUserId:,
-// 			fromSocketId:,
-// 			timestamp:
-// 		})
-//   		.end((err,res)=>{
-//   			if(err) return err;
-//   			else{
-//   				expect(res.body).to.be.equal();
-//   				done();
-//   			}
-//   		})
-//   })
-// })
+})

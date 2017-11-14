@@ -14,6 +14,10 @@ html {
 }
 
 .formText{
+  cursor: pointer;
+}
+
+.formText{
     font-family:  'Open Sans', sans-serif; 
   font-size: 12px;
 }
@@ -50,11 +54,13 @@ select {
   color: black;
   font-family:  'Open Sans', sans-serif;
   font-size: 12px;
+  cursor: pointer;
 }
 
 option{
   color: black;
   background-color: #D1C4E9;
+  cursor: pointer;
 }
 select .lt { text-align:center; }
 select { text-indent: 5px; }

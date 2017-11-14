@@ -50,7 +50,6 @@ export class ViewForumComponent implements OnInit {
     this.viewQuestionDetail();
 
     this.check=this.authorise.canActivate();
-    console.log(this.check);
   }
 
  
@@ -62,7 +61,6 @@ export class ViewForumComponent implements OnInit {
       .subscribe((res) => {
         this.data = res.data;
         this.solutions = this.data.answers;
-        console.log(this.data);
       })
   }
 

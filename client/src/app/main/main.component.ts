@@ -259,8 +259,6 @@ createNewRepo(form){
 
  this.gitService.createRepos(repoName)
      .subscribe(data => {
-       console.log("data---------------------")
-       console.log(data)
        this.loading=false;
        if (data) {
          this.githubUser.push(data);
