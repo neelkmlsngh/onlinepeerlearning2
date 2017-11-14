@@ -1,3 +1,4 @@
+// import external modules
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 let app = require('./../bin/www');
 const userModel = require('./../api/users/users.entity');
@@ -7,12 +8,14 @@ const sinon = require('sinon');
 const userGetStub = sinon.stub(userModel, 'findOne');
 const userUpdateStub = sinon.stub(userModel, 'update');
 
+// test suite for get method
 describe('test cases for user profile for get method',()=>{
-
+    // stubbing response
     userGetStub.yields(null, {"name": "Shivani-96","userId":"123","updatedAt":"8 Nov 2017","avatarUrl":"https://192.168.252.148:8080/image.jpg","publicRepos":"7"
                             ,"firstName":"Shivani","lastName":"Sah","email":"shivanisah96@gmail.com","company":"NTL","website":"www.onlinepeerlearning.com","gender":"Female"
                             ,"bio":"Mean stack developer","accessToken":"12345678abc90"})
 
+    // positive test case to get user details on login
     it('positive test case---find user on login',function(done){
     supertest(app).get('/api/users/123')
        .expect('Content-Type', /json/)
@@ -38,7 +41,7 @@ describe('test cases for user profile for get method',()=>{
       }
        })
  })
-
+    // negative test case to get user details on login
     it('negative test case---find user on login',function(done){
     supertest(app).get('/api/users/123')
        .expect('Content-Type', /json/)
@@ -67,6 +70,7 @@ describe('test cases for user profile for get method',()=>{
 
 })
 
+// test suite for put method
 describe('testing update method---user profileInfo',()=>{
   beforeEach(()=>{
     userUpdateStub.withArgs({'userId':'123'},{$set:{'name':'SHIVANISAH'}})
@@ -76,7 +80,7 @@ describe('testing update method---user profileInfo',()=>{
       "n": 1
     })
   })
-
+   // positive test case to check response on updating user details
    it('positive test case----testing value of ok field returned in response', (done) => {
         supertest(app)
             .put('/api/users/profileInfo/123')
@@ -92,7 +96,7 @@ describe('testing update method---user profileInfo',()=>{
                 }
             });
 });
-
+// negative test case to check response on updating user details
    it('negative test case----testing value of ok field returned in response', (done) => {
         supertest(app)
             .put('/api/users/profileInfo/123')
@@ -110,7 +114,7 @@ describe('testing update method---user profileInfo',()=>{
 });
 })
 
-
+// test suite for testing token routes
 describe('testing update method----token',()=>{
   beforeEach(()=>{
     userUpdateStub.withArgs({'userId':'123'},{$set:{'accessToken':'ifeugfi42289232vdv'}})
@@ -121,6 +125,7 @@ describe('testing update method----token',()=>{
     })
   })
 
+  // positive test case to response on updating token
   it('positive test case----testing status returned in response',(done)=>{
     supertest(app)
     .put('/api/users/token/123')
@@ -134,7 +139,8 @@ describe('testing update method----token',()=>{
       }
     })
   })
-
+    
+    // negative test case to response on updating token
     it('negative test case----testing status returned in response',(done)=>{
     supertest(app)
     .put('/api/users/token/123')
