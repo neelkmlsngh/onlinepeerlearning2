@@ -116,7 +116,7 @@
               </div>
               <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body accordionBody">
-                  <app-repo-sidebar [githubUser]="githubUser" [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event) [repoNameForFileListUpdate]="repoNameForUpdate"></app-repo-sidebar>
+                  <app-repo-sidebar [githubUser]="githubUser" [mode]="mode" (editorMode)=getMode($event) (content)=getcontent($event) (fileName)=getfilename($event) (repoName)=getreponame($event) [repoNameForFileListUpdate]="repoNameForUpdate" (fileExtension)=getFileExtension($event)></app-repo-sidebar>
                 </div>
               </div>
             </div>
@@ -127,21 +127,11 @@
         <!-- side bar div end here -->
         <!-- editor div start here -->
         <div *ngIf="mode=='javascript'" class="col-md-10">
-          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed" 
-          (repoNameForFileUpdateAtCreate)="getRepoNameForFileUpdate($event)"
-          (repoNameForFileUpdateAtUpdate)="getRepoNameForFileUpdate($event)"
-          (repoNameForFileUpdateAtDelete)="getRepoNameForFileUpdate($event)"
-          ></app-editor>
+          <app-editor [content]="content" [reponame]="reponame" [filenamed]="filenamed" (repoNameForFileUpdateAtCreate)="getRepoNameForFileUpdate($event)" (repoNameForFileUpdateAtUpdate)="getRepoNameForFileUpdate($event)" (repoNameForFileUpdateAtDelete)="getRepoNameForFileUpdate($event)"></app-editor>
         </div>
         <!-- editor  div end here -->
         <div *ngIf="mode=='html'" class="col-md-10">
-          <app-webeditor [content]="content" 
-          [reponame]="reponame" 
-          [filenamed]="filenamed"
-          (repoNameForFileUpdateAtCreate)="getRepoNameForFileUpdate($event)"
-          (repoNameForFileUpdateAtUpdate)="getRepoNameForFileUpdate($event)"
-          (repoNameForFileUpdateAtDelete)="getRepoNameForFileUpdate($event)"
-          ></app-webeditor>
+          <app-webeditor [extension]="extension" [content]="content" [reponame]="reponame" [filenamed]="filenamed" (repoNameForFileUpdateAtCreate)="getRepoNameForFileUpdate($event)" (repoNameForFileUpdateAtUpdate)="getRepoNameForFileUpdate($event)" (repoNameForFileUpdateAtDelete)="getRepoNameForFileUpdate($event)" ></app-webeditor>
         </div>
       </div>
     </div>

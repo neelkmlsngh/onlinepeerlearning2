@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, NgZone, TemplateRef, Output,EventEmitter} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, NgZone, TemplateRef, Output,EventEmitter,OnChanges,SimpleChange} from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { FormsModule } from '@angular/forms'
@@ -17,7 +17,7 @@ import { config } from './../../config/editor.config';
   templateUrl: './webeditor.component.html',
   styleUrls: ['./webeditor.component.css']
 })
-export class WebeditorComponent implements OnInit {
+export class WebeditorComponent implements OnInit , OnChanges{
 
   constructor(private snippet: SnippetService,private authenticationService: AuthenticationService,private gitService: GitService, private zone: NgZone, private modalService: BsModalService) {
     window['angularComponentRef'] = { component: this, zone: zone };
@@ -29,39 +29,39 @@ export class WebeditorComponent implements OnInit {
   @Input() content: any
   @Input() reponame: any;
   @Input() filenamed: any;
-
-
+  @Input() extension:any;
 
   //for html
   @ViewChild('htmleditor') htmleditor;
   @ViewChild('csseditor') csseditor;
   @ViewChild('jseditor') jseditor;
 
-
+  //for closing html modals on button click
   @ViewChild('createClose') createClose: ElementRef;
   @ViewChild('updateClose') updateClose: ElementRef;
   @ViewChild('deleteClose') deleteClose: ElementRef;
 
 
 
-  //for css
+  //for closing css modals on button click
   @ViewChild('cssCreateClose') cssCreateClose: ElementRef;
   @ViewChild('cssUpdateClose') cssUpdateClose: ElementRef;
   @ViewChild('cssDeleteClose') cssDeleteClose: ElementRef;
 
 
-  //for java script
+  //for closing js modals on button click
   @ViewChild('jsCreateClose') jsCreateClose: ElementRef;
   @ViewChild('jsUpdateClose') jsUpdateClose: ElementRef;
   @ViewChild('jsDeleteClose') jsDeleteClose: ElementRef;
 
+  //sending data from child to parent
   @Output() repoNameForFileUpdateAtCreate: EventEmitter<any> = new EventEmitter();
   @Output() repoNameForFileUpdateAtUpdate: EventEmitter<any> = new EventEmitter();
   @Output() repoNameForFileUpdateAtDelete: EventEmitter<any> = new EventEmitter();
 
   latestcommit: any;
   treecommit: any;
-   filesha: any;
+  filesha: any;
   newtree: any;
   newcommit: any;
   basetree: any = {};
@@ -144,6 +144,18 @@ export class WebeditorComponent implements OnInit {
     });
   }
 
+  ngOnChanges(changes: {[property: string]: SimpleChange}) {
+    if(this.extension === "html"){
+      this.htmlValue = this.content;
+    }
+    if (this.extension ==="css") {
+      this.cssValue = this.content;
+    }
+      if (this.extension ==="js") {
+      this.jsValue = this.content;
+    }
+  }
+
   ngOnInit() {
     if(!this.content){
       this.content=this.htmlValue;
@@ -174,8 +186,8 @@ export class WebeditorComponent implements OnInit {
    }
  }
 
-    //method to create a file on git
-  createFile(fileName, createCommitMessage) {
+  //method to create a  HTML file on git
+  createFileHtml(fileName, createCommitMessage) {
     if (this.authenticationService.pacToken == null) {
       swal({
         timer: 7500,
@@ -204,7 +216,7 @@ export class WebeditorComponent implements OnInit {
                   "path": this.fileName,
                   "mode": "100644",
                   "type": "blob",
-                  "content": this.content
+                  "content": this.htmlValue
                 }]
               }
               //hitting the create file api to get sha of the new tree commit
@@ -266,8 +278,194 @@ export class WebeditorComponent implements OnInit {
     }
   }
 
-  //method to get the file and update the content on git
-  updateFile(commitMessage) {
+
+  //method to create a CSS file on git
+  createFileCss(fileName, createCommitMessage) {
+    if (this.authenticationService.pacToken == null) {
+      swal({
+        timer: 7500,
+        title: "You have not generated your token",
+        text: "",
+        type: 'error',
+        showConfirmButton: false,
+      }).catch(swal.noop);
+    } else {
+      this.loading = true;
+      this.fileName = fileName.value['fileName'];
+      this.updateMessage = createCommitMessage.value['createMsg'];
+      this.reponame = this.reponame;
+      
+      //hitting the create file api to get sha of the latest commit
+      this.gitService.createFile(this.reponame)
+        .subscribe(repos => {
+          this.latestcommit = repos.object.sha;
+          //hitting the commit file api to get sha of the tree commit
+          this.gitService.commitfile(this.reponame, this.latestcommit)
+            .subscribe(repos => {
+              this.treecommit = repos.sha;
+              this.basetree = {
+                "base_tree": this.treecommit,
+                "tree": [{
+                  "path": this.fileName,
+                  "mode": "100644",
+                  "type": "blob",
+                  "content": this.cssValue
+                }]
+              }
+              //hitting the create file api to get sha of the new tree commit
+              this.gitService.treecommit(this.reponame, this.basetree)
+                .subscribe(repos => {
+                  this.newtree = repos.sha;
+                  this.newcommitobj = {
+                    "parents": [this.latestcommit],
+                    "tree": this.newtree,
+                    "message": this.updateMessage
+                  }
+                  //hitting the create file api to get sha of the new commit
+                  this.gitService.newcommit(this.reponame, this.newcommitobj)
+                    .subscribe(repos => {
+                      this.newcommit = repos.sha;
+                      this.lastcommit = {
+                        "sha": this.newcommit
+                      }
+                      //hitting final api to create the file
+                      this.gitService.lastcommit(this.reponame, this.lastcommit)
+                        .subscribe(repos => {
+                          this.repoNameForFileUpdateAtCreate.emit({repoName:this.reponame,sha:repos.object.sha})
+
+                          //sweet alert on getting response
+                          if (repos) {
+                            this.loading = false;
+                            swal({
+                              timer: 2200,
+                              title: "file " + this.fileName + " created successfully!",
+                              text: "",
+                              type: 'success',
+                              showConfirmButton: false,
+                            }).catch(swal.noop);
+                          }
+                          //sweet alert on getting error
+                          else {
+                            this.loading = false;
+                            swal({
+                              timer: 2200,
+                              title: "Error occured",
+                              text: "",
+                              type: 'error',
+                              showConfirmButton: false,
+                            }).catch(swal.noop);
+                          }
+                        })
+                    
+                    })
+                })
+            })
+        })
+
+      //to close modal on button click  
+      this.createClose.nativeElement.click();  
+      this.cssCreateClose.nativeElement.click(); 
+      this.jsCreateClose.nativeElement.click(); 
+      fileName.reset();
+      createCommitMessage.reset();
+    }
+  }
+
+
+  //method to create a js file on git
+  createFileJS(fileName, createCommitMessage) {
+    if (this.authenticationService.pacToken == null) {
+      swal({
+        timer: 7500,
+        title: "You have not generated your token",
+        text: "",
+        type: 'error',
+        showConfirmButton: false,
+      }).catch(swal.noop);
+    } else {
+      this.loading = true;
+      this.fileName = fileName.value['fileName'];
+      this.updateMessage = createCommitMessage.value['createMsg'];
+      this.reponame = this.reponame;
+      
+      //hitting the create file api to get sha of the latest commit
+      this.gitService.createFile(this.reponame)
+        .subscribe(repos => {
+          this.latestcommit = repos.object.sha;
+          //hitting the commit file api to get sha of the tree commit
+          this.gitService.commitfile(this.reponame, this.latestcommit)
+            .subscribe(repos => {
+              this.treecommit = repos.sha;
+              this.basetree = {
+                "base_tree": this.treecommit,
+                "tree": [{
+                  "path": this.fileName,
+                  "mode": "100644",
+                  "type": "blob",
+                  "content": this.jsValue
+                }]
+              }
+              //hitting the create file api to get sha of the new tree commit
+              this.gitService.treecommit(this.reponame, this.basetree)
+                .subscribe(repos => {
+                  this.newtree = repos.sha;
+                  this.newcommitobj = {
+                    "parents": [this.latestcommit],
+                    "tree": this.newtree,
+                    "message": this.updateMessage
+                  }
+                  //hitting the create file api to get sha of the new commit
+                  this.gitService.newcommit(this.reponame, this.newcommitobj)
+                    .subscribe(repos => {
+                      this.newcommit = repos.sha;
+                      this.lastcommit = {
+                        "sha": this.newcommit
+                      }
+                      //hitting final api to create the file
+                      this.gitService.lastcommit(this.reponame, this.lastcommit)
+                        .subscribe(repos => {
+                          this.repoNameForFileUpdateAtCreate.emit({repoName:this.reponame,sha:repos.object.sha})
+
+                          //sweet alert on getting response
+                          if (repos) {
+                            this.loading = false;
+                            swal({
+                              timer: 2200,
+                              title: "file " + this.fileName + " created successfully!",
+                              text: "",
+                              type: 'success',
+                              showConfirmButton: false,
+                            }).catch(swal.noop);
+                          }
+                          //sweet alert on getting error
+                          else {
+                            this.loading = false;
+                            swal({
+                              timer: 2200,
+                              title: "Error occured",
+                              text: "",
+                              type: 'error',
+                              showConfirmButton: false,
+                            }).catch(swal.noop);
+                          }
+                        })
+                    
+                    })
+                })
+            })
+        })
+
+      //to close modal on button click  
+      this.createClose.nativeElement.click();  
+      this.cssCreateClose.nativeElement.click(); 
+      this.jsCreateClose.nativeElement.click(); 
+      fileName.reset();
+      createCommitMessage.reset();
+    }
+  }
+
+  //method to get the html file and update the content on git
+  updateHtmlFile(commitMessage) {
     if (this.authenticationService.pacToken == null) {
       swal({
         timer: 7500,
@@ -287,7 +485,67 @@ export class WebeditorComponent implements OnInit {
           this.updatefileobj = {
             "message": this.updateMsg,
             "path": this.filenamed,
-            "content": btoa(this.content),
+            "content": btoa(this.htmlValue),
+            "sha": this.filesha
+          }
+          //hitting the update file api to update the file contents
+          this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
+            .subscribe(repos => {
+              this.repoNameForFileUpdateAtUpdate.emit({repoName:this.reponame,sha:repos.commit.sha})
+              //sweet alert on getting response
+              if (repos) {
+                this.loading = false;
+                swal({
+                  timer: 2200,
+                  title: "file " + this.filenamed + " updated successfully!",
+                  text: "",
+                  type: 'success',
+                  showConfirmButton: false,
+                }).catch(swal.noop);
+              }
+              //sweet alert on getting error
+              else {
+                this.loading = false;
+                swal({
+                  timer: 2200,
+                  title: "Error occured",
+                  text: "",
+                  type: 'error',
+                  showConfirmButton: false,
+                }).catch(swal.noop);
+              }
+            })
+        })
+      //to close modal on button click  
+      this.updateClose.nativeElement.click();   
+      this.cssUpdateClose.nativeElement.click();   
+      this.jsUpdateClose.nativeElement.click();   
+      commitMessage.reset();
+    }
+  }
+
+  //method to get the css file and update the content on git
+  updateCssFile(commitMessage) {
+    if (this.authenticationService.pacToken == null) {
+      swal({
+        timer: 7500,
+        title: "You have not generated your token",
+        text: "",
+        type: 'error',
+        showConfirmButton: false,
+      }).catch(swal.noop);
+    } else {
+      this.loading = true;
+      this.updateMsg = commitMessage.value['updateMsg'];
+
+      //getting the file sha
+      this.gitService.getsha(this.reponame, this.filenamed)
+        .subscribe(repos => {
+          this.filesha = repos.sha;
+          this.updatefileobj = {
+            "message": this.updateMsg,
+            "path": this.filenamed,
+            "content": btoa(this.cssValue),
             "sha": this.filesha
           }
           //hitting the update file api to update the file contents
@@ -327,8 +585,187 @@ export class WebeditorComponent implements OnInit {
   }
 
 
-  //method to get the file and delete the content on git
-  deleteFile(commitMessage) {
+
+//method to get the js file and update the content on git
+  updateJsFile(commitMessage) {
+    if (this.authenticationService.pacToken == null) {
+      swal({
+        timer: 7500,
+        title: "You have not generated your token",
+        text: "",
+        type: 'error',
+        showConfirmButton: false,
+      }).catch(swal.noop);
+    } else {
+      this.loading = true;
+      this.updateMsg = commitMessage.value['updateMsg'];
+
+      //getting the file sha
+      this.gitService.getsha(this.reponame, this.filenamed)
+        .subscribe(repos => {
+          this.filesha = repos.sha;
+          this.updatefileobj = {
+            "message": this.updateMsg,
+            "path": this.filenamed,
+            "content": btoa(this.jsValue),
+            "sha": this.filesha
+          }
+          //hitting the update file api to update the file contents
+          this.gitService.updateFile(this.reponame, this.filenamed, this.updatefileobj)
+            .subscribe(repos => {
+              this.repoNameForFileUpdateAtUpdate.emit({repoName:this.reponame,sha:repos.commit.sha})
+              //sweet alert on getting response
+              if (repos) {
+                this.loading = false;
+                swal({
+                  timer: 2200,
+                  title: "file " + this.filenamed + " updated successfully!",
+                  text: "",
+                  type: 'success',
+                  showConfirmButton: false,
+                }).catch(swal.noop);
+              }
+              //sweet alert on getting error
+              else {
+                this.loading = false;
+                swal({
+                  timer: 2200,
+                  title: "Error occured",
+                  text: "",
+                  type: 'error',
+                  showConfirmButton: false,
+                }).catch(swal.noop);
+              }
+            })
+        })
+      //to close modal on button click  
+      this.updateClose.nativeElement.click();   
+      this.cssUpdateClose.nativeElement.click();   
+      this.jsUpdateClose.nativeElement.click();   
+      commitMessage.reset();
+    }
+  }
+
+
+
+  //method to get the html file and delete the content on git
+  deleteHtmlFile(commitMessage) {
+    if (this.authenticationService.pacToken == null) {
+      swal({
+        timer: 7500,
+        title: "You have not generated your token",
+        text: "",
+        type: 'error',
+        showConfirmButton: false,
+      }).catch(swal.noop);
+    } else {
+      this.loading = true;
+      this.deleteMsg = commitMessage.value['deleteMsg'];
+      //getting the file sha
+      this.gitService.getsha(this.reponame, this.filenamed)
+        .subscribe(repos => {
+          this.filesha = repos.sha;
+          this.deletefileobj = {
+            "message": this.deleteMsg,
+            "path": this.filenamed,
+            "sha": this.filesha
+          }
+          //hitting the delete file api to delete the file
+          this.gitService.deleteFile(this.reponame, this.filenamed, this.deletefileobj)
+            .subscribe(repos => {
+              this.repoNameForFileUpdateAtDelete.emit({repoName:this.reponame,sha:repos.commit.sha})
+              //sweet alert on getting response
+              if (repos) {
+                this.loading = false;
+                swal({
+                  timer: 2200,
+                  title: "file " + this.filenamed + " deleted successfully!",
+                  text: "",
+                  type: 'success',
+                  showConfirmButton: false,
+                }).catch(swal.noop);
+              } else {
+                this.loading = false;
+                //sweet alert on getting error
+                swal({
+                  timer: 2200,
+                  title: "Error occured",
+                  text: "",
+                  type: 'error',
+                  showConfirmButton: false,
+                }).catch(swal.noop);
+              }
+            })
+        })
+
+      //to close modal on button click  
+      this.deleteClose.nativeElement.click();
+      this.cssUpdateClose.nativeElement.click();
+      this.jsUpdateClose.nativeElement.click();
+      commitMessage.reset();
+    }
+  }
+
+  //method to get the css file and delete the content on git
+  deleteCssFile(commitMessage) {
+    if (this.authenticationService.pacToken == null) {
+      swal({
+        timer: 7500,
+        title: "You have not generated your token",
+        text: "",
+        type: 'error',
+        showConfirmButton: false,
+      }).catch(swal.noop);
+    } else {
+      this.loading = true;
+      this.deleteMsg = commitMessage.value['deleteMsg'];
+      //getting the file sha
+      this.gitService.getsha(this.reponame, this.filenamed)
+        .subscribe(repos => {
+          this.filesha = repos.sha;
+          this.deletefileobj = {
+            "message": this.deleteMsg,
+            "path": this.filenamed,
+            "sha": this.filesha
+          }
+          //hitting the delete file api to delete the file
+          this.gitService.deleteFile(this.reponame, this.filenamed, this.deletefileobj)
+            .subscribe(repos => {
+              this.repoNameForFileUpdateAtDelete.emit({repoName:this.reponame,sha:repos.commit.sha})
+              //sweet alert on getting response
+              if (repos) {
+                this.loading = false;
+                swal({
+                  timer: 2200,
+                  title: "file " + this.filenamed + " deleted successfully!",
+                  text: "",
+                  type: 'success',
+                  showConfirmButton: false,
+                }).catch(swal.noop);
+              } else {
+                this.loading = false;
+                //sweet alert on getting error
+                swal({
+                  timer: 2200,
+                  title: "Error occured",
+                  text: "",
+                  type: 'error',
+                  showConfirmButton: false,
+                }).catch(swal.noop);
+              }
+            })
+        })
+
+      //to close modal on button click  
+      this.deleteClose.nativeElement.click();
+      this.cssUpdateClose.nativeElement.click();
+      this.jsUpdateClose.nativeElement.click();
+      commitMessage.reset();
+    }
+  }
+
+  //method to get the delete file and delete the content on git
+  deleteJsFile(commitMessage) {
     if (this.authenticationService.pacToken == null) {
       swal({
         timer: 7500,
@@ -404,7 +841,7 @@ export class WebeditorComponent implements OnInit {
     let css = '';
     let js = '';
     // HTML
-    src = this.base_tpl.replace('</body>', this.content + '</body>');
+    src = this.base_tpl.replace('</body>', this.htmlValue + '</body>');
     // CSS
     css = '<style>' + this.cssValue + '</style>';
     src = src.replace('</head>', css + '</head>');
@@ -499,7 +936,7 @@ export class WebeditorComponent implements OnInit {
   downloadHtmlFile() {
     var downloadLink = document.createElement("a");
 
-    var blob = new Blob([this.content]);
+    var blob = new Blob([this.htmlValue]);
     this.htmlblob = blob;
     var url = URL.createObjectURL(blob);
     downloadLink.href = url;
@@ -545,7 +982,7 @@ export class WebeditorComponent implements OnInit {
   /*download Zip file*/
   downloadZip() {
     var zip = new JSZip();
-    zip.file("index.html", this.content);
+    zip.file("index.html", this.htmlValue);
     zip.file("style.css", this.cssValue);
     zip.file("script.js", this.jsValue);
     zip.generateAsync({ type: "blob" })

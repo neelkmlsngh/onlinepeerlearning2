@@ -47,6 +47,9 @@ export class RepoSidebarComponent implements OnInit, OnChanges {
   @Output() repoName = new EventEmitter < any > ();
   @Output() fileName = new EventEmitter < any > ();
   @Output() editorMode = new EventEmitter < any > ();
+
+  @Output() fileExtension = new EventEmitter <any> ();
+
   constructor(
     private editorService: EditorService, 
     private gitService: GitService,
@@ -212,6 +215,7 @@ export class RepoSidebarComponent implements OnInit, OnChanges {
       this.content.emit(this.text);
       this.repoName.emit(this.reponamed);
       this.fileName.emit(this.filename);
+      this.fileExtension.emit(this.extension);
     })
   }
   //calulate margin based on parent element

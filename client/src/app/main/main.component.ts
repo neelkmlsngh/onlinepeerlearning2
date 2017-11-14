@@ -45,6 +45,7 @@ export class MainComponent implements OnInit {
   personalAccessToken: string;
   repoNameForUpdate:string;
   loading : boolean;
+  extension: any;
 
   constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,
     private authenticationService: AuthenticationService, private router: Router, private profileService: ProfileService) {
@@ -150,6 +151,11 @@ export class MainComponent implements OnInit {
 
   getRepoNameForFileUpdate(repoNameForFileUpdate){
     this.repoNameForUpdate = repoNameForFileUpdate
+  }
+
+  getFileExtension(fileExtension){
+    debugger
+    this.extension = fileExtension
   }
 
   //method for logout

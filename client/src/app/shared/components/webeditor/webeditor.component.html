@@ -66,7 +66,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form #createForm="ngForm" (ngSubmit)="createFile(createForm.form,createForm.form);">
+                        <form #createForm="ngForm" (ngSubmit)="createFileHtml(createForm.form,createForm.form);">
                           <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #htmlCreateField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder={{config.webEditor.ENTERFILENAME}} title={{config.webEditor.FILENAMEREQ}}></textarea>
                           <div *ngIf="htmlCreateField.touched && htmlCreateField.errors">
                             <div class="alert alert-danger" *ngIf="htmlCreateField.errors.required">
@@ -108,7 +108,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form #updateForm="ngForm" (ngSubmit)="updateFile(updateForm.form);">
+                        <form #updateForm="ngForm" (ngSubmit)="updateHtmlFile(updateForm.form);">
                           <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #htmlUpdateField="ngModel" required minlength="5" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
                           <div *ngIf="htmlUpdateField.touched && htmlUpdateField.errors">
                             <div class="alert alert-danger" *ngIf="htmlUpdateField.errors.required">
@@ -141,7 +141,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form #deleteForm="ngForm" (ngSubmit)="deleteFile(deleteForm.form);">
+                        <form #deleteForm="ngForm" (ngSubmit)="deleteHtmlFile(deleteForm.form);">
                           <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #htmlDeleteField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
                           <div *ngIf="htmlDeleteField.touched && htmlDeleteField.errors">
                             <div class="alert alert-danger" *ngIf="htmlDeleteField.errors.required">
@@ -165,7 +165,7 @@
               </form>
             </nav>
             <div id="myHtmlDiv"></div>
-            <ace-editor [(text)]="content" #htmleditor [mode]="'html'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="html"></ace-editor>
+            <ace-editor [(text)]="htmlValue" #htmleditor [mode]="'html'" [theme]="'twilight'" [readOnly]="false" [autoUpdateContent]="true" (textChanged)="onChange($event)" class="code_box" id="html"></ace-editor>
           </section>
         </div>
       </div>
@@ -198,7 +198,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form #cssCreateForm="ngForm" (ngSubmit)="createFile(cssCreateForm.form,cssCreateForm.form);">
+                        <form #cssCreateForm="ngForm" (ngSubmit)="createFileCss(cssCreateForm.form,cssCreateForm.form);">
                           <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #cssCreateField="ngModel" required minlength="5" placeholder={{config.webEditor.ENTERFILENAME}} title={{config.webEditor.FILENAMEREQ}}></textarea>
                           <div *ngIf="cssCreateField.touched && cssCreateField.errors">
                             <div class="alert alert-danger" *ngIf="cssCreateField.errors.required">
@@ -240,7 +240,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form #cssUpdateForm="ngForm" (ngSubmit)="updateFile(cssUpdateForm.form);">
+                        <form #cssUpdateForm="ngForm" (ngSubmit)="updateCssFile(cssUpdateForm.form);">
                           <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #cssUpdateField="ngModel" required minlength="5" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
                           <div *ngIf="cssUpdateField.touched && cssUpdateField.errors">
                             <div class="alert alert-danger" *ngIf="cssUpdateField.errors.required">
@@ -273,7 +273,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form #cssDeleteForm="ngForm" (ngSubmit)="deleteFile(cssDeleteForm.form);">
+                        <form #cssDeleteForm="ngForm" (ngSubmit)="deleteCssFile(cssDeleteForm.form);">
                           <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #cssDeleteField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
                           <div *ngIf="cssDeleteField.touched && cssDeleteField.errors">
                             <div class="alert alert-danger" *ngIf="cssDeleteField.errors.required">
@@ -331,7 +331,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form #jsCreateForm="ngForm" (ngSubmit)="createFile(jsCreateForm.form,jsCreateForm.form);">
+                        <form #jsCreateForm="ngForm" (ngSubmit)="createFileJS(jsCreateForm.form,jsCreateForm.form);">
                           <textarea type="text" class="form-control textAreaWidth" name="fileName" ngModel #jsCreateField="ngModel" required minlength="5" placeholder={{config.webEditor.ENTERFILENAME}} title={{config.webEditor.FILENAMEREQ}}></textarea>
                           <div *ngIf="jsCreateField.touched && jsCreateField.errors">
                             <div class="alert alert-danger" *ngIf="jsCreateField.errors.required">
@@ -373,7 +373,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form #jsUpdateForm="ngForm" (ngSubmit)="updateFile(jsUpdateForm.form);">
+                        <form #jsUpdateForm="ngForm" (ngSubmit)="updateJsFile(jsUpdateForm.form);">
                           <textarea type="text" class="form-control textAreaWidth" name="updateMsg" ngModel #jsUpdateField="ngModel" required minlength="5" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
                           <div *ngIf="jsUpdateField.touched && jsUpdateField.errors">
                             <div class="alert alert-danger" *ngIf="jsUpdateField.errors.required">
@@ -406,7 +406,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form #jsDeleteForm="ngForm" (ngSubmit)="deleteFile(jsDeleteForm.form);">
+                        <form #jsDeleteForm="ngForm" (ngSubmit)="deleteJsFile(jsDeleteForm.form);">
                           <textarea type="text" class="form-control textAreaWidth" name="deleteMsg" ngModel #jsDeleteField="ngModel" required minlength="5" pattern=".*\S+.*" placeholder={{config.webEditor.ENTERCOMMIT}} title={{config.webEditor.FILENAMEREQ}}></textarea>
                           <div *ngIf="jsDeleteField.touched && jsDeleteField.errors">
                             <div class="alert alert-danger" *ngIf="jsDeleteField.errors.required">
