@@ -1,4 +1,4 @@
-// importing external modules
+/*// importing external modules
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const app = require('./../bin/www');
 const chatModel = require('./../api/login/login.entity');
@@ -97,4 +97,4 @@ describe('test cases for chat---to find if user exists or not', () => {
 			})
 	})
 
-})
+})*/
