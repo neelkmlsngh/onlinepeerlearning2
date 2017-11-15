@@ -16,12 +16,9 @@ public pacToken:String;
 
   setUserInfo(obj) {
      this.user=obj;
-
-   
      localStorage.setItem('currentUser', JSON.stringify({ token: this.user.token, userId: this.user.userId,userName:this.user.userName }));
-    if (this.user.token) {
-      this.router.navigate(["/main"]);
-
+     if (this.user.token) {
+       this.router.navigate(['/main'], { queryParams: { mode: 'html'} })
     } else if (!this.user.token) {
       this.router.navigate(["/"])
 

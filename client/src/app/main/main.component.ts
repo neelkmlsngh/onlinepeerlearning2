@@ -6,8 +6,8 @@ import swal from 'sweetalert2';
 import { config } from '../shared/config/config';
 import { GitService } from '../shared/services/git.service'
 import { AuthenticationService } from '../shared/services/authentication.service';
-import { Router, ActivatedRoute } from '@angular/router';
-
+// import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router'
 import { ProfileService } from '../shared/services/profile.service';
 import { mainConfig } from '../shared/config/main.config';
 
@@ -47,8 +47,9 @@ export class MainComponent implements OnInit {
   loading : boolean;
   extension: any;
 
+
   constructor(private gitService: GitService, private zone: NgZone, private modalService: BsModalService,
-    private authenticationService: AuthenticationService, private router: Router, private profileService: ProfileService) {
+    private authenticationService: AuthenticationService, private router: Router, private profileService: ProfileService,private activatedRoute: ActivatedRoute) {
 
     this.methodToExport = this.calledFromOutside;
     window['angularComponentRef'] = { component: this, zone: zone };
@@ -60,34 +61,25 @@ export class MainComponent implements OnInit {
   }
 
   calledFromOutside(url: string) {
-    this.zone.run(() => {
+    this.zone.run(() => { 
       this.link = url;
     });
   }
 
   ngOnInit() {
 
-    
-    var i = 0;
-     
-     $('#dragbar').mousedown(function(e){
-       
-        e.preventDefault();
-        $('#mousestatus').html("mousedown" + i++);
-        $(document).mousemove(function(e){
-          $('#position').html(e.pageX +', '+ e.pageY);
-          $('#sidebar').css("width",e.pageX+2);
-          $('#main').css("left",e.pageX+2);
-       })
-       console.log("leaving mouseDown");
-    });
-   $(document).mouseup(function(e){
-       $('#clickevent').html('in another mouseUp event' + i++);
-       $(document).unbind('mousemove');
-       });
+    this.activatedRoute.queryParams.subscribe(
+      params => {
+        let mode = params['mode'];
+             if(mode) {
+          this.mode=mode;
+        } else {
+        this.mode = "html"
+        }
+        });
 
     this.languages = config.language;
-    this.mode = "html"
+   /* this.mode = "html"*/
     this.gitService.getRepos()
       .subscribe(repos => {
         this.githubUser = repos;
@@ -130,6 +122,7 @@ export class MainComponent implements OnInit {
 
   changeMode() {
     this.mode = this.selectedValue;
+    this.router.navigate([], { queryParams:{ mode:this.mode }});
   }
 
   getcontent(text) {

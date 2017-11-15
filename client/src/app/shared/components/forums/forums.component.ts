@@ -30,7 +30,7 @@ export class ForumsComponent implements OnInit {
   tags:any=[];
   noofanswer: number = 0;
   answerlength: any = [];
-  p: number[] = [];
+  pageNext: number[] = [];
   forumConfig=forumConfig;
 
   constructor(private forum: ForumService, private router: Router) { }
@@ -40,7 +40,6 @@ export class ForumsComponent implements OnInit {
        this.currentUser= JSON.parse(localStorage.getItem('currentUser'));
        this.userName=this.currentUser.userName;
        this.viewPost();
-
   }
 
   //method call posts from service
@@ -51,7 +50,7 @@ export class ForumsComponent implements OnInit {
   }
 
   //method for search 
-getDetails(searchTerm: any) {
+  getDetails(searchTerm: any) {
    if (searchTerm.value !== ""){
    this.forum.searchEntries(searchTerm.value)
      .subscribe(res => {
@@ -96,7 +95,4 @@ getDetails(searchTerm: any) {
        this.viewPost();
       })
   }
-  
- 
-
 }

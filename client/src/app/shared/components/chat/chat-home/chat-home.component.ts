@@ -121,6 +121,9 @@ export class ChatHomeComponent implements OnInit {
 
         //method for recieving messages through socket          
         this.socketService.receiveMessages().subscribe(response => {
+          setTimeout(() => {
+            $('.message-thread')[0].scrollTop = $('.message-thread')[0]['scrollHeight'];
+            }, 30)
           if (this.selectedUserId && this.selectedUserId == response.fromUserId) {
             this.toastrService.success(response.message + ' from ' + this.selectedUserId);
             this.messages.push(response);

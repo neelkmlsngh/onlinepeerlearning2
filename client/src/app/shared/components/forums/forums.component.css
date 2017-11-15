@@ -2,37 +2,44 @@
   width: 79px;
   background-color: #3F51B5;
 }
+
 .problemDescription {
   font-size: 15px;
   color: #757575;
 }
+
 .tags {
   background-color: #757575;
   font-size: 12px;
 }
-#viewQue{
-margin-right: 5px;
-cursor: pointer;
+
+#viewQue {
+  margin-right: 5px;
+  cursor: pointer;
 }
-.postedDate{
+
+.postedDate {
   color: #757575;
 }
+
 .postquestion {
   background-color: #3F51B5;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .questionTitle {
   color: #212121;
-  cursor : pointer;
+  cursor: pointer;
 }
-.like{
+
+.like {
   background-color: #BDBDBD;
   font-size: 12px;
 }
-.dislike{
+
+.dislike {
   background-color: #BDBDBD;
-  font-size:12px;
+  font-size: 12px;
 }
 
 .user {
@@ -47,9 +54,11 @@ cursor: pointer;
 .ans {
   padding-left: 11px;
 }
+
 .navbar {
   background-color: #C5CAE9;
 }
+
 .main {
   margin-top: 4%;
   margin-bottom: 5%;
@@ -62,6 +71,7 @@ hr {
   background-color: #DBDCDD;
   height: 1px;
 }
+
 
 
 /*// Extra small devices (portrait phones, less than 576px)*/
@@ -99,11 +109,9 @@ hr {
   }
 }
 
-
-
 /*// Small devices (landscape phones, 576px and up)*/
-
 @media (min-width: 576px) and (max-width: 767px) {}
+
 
 
 /*// Medium devices (tablets, 768px and up)*/
@@ -136,6 +144,7 @@ hr {
 
 
 
+
 /*// Large devices (desktops, 992px and up)*/
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -158,7 +167,9 @@ hr {
 }
 
 
+
 /*// Extra large devices (large desktops, 1200px and up)*/
+
 @media (min-width: 1200px) {
   .postquestion {
     float: right;
@@ -175,20 +186,27 @@ hr {
 }
 
 .jumbotron-billboard .img {
-    margin-bottom: 0px;
-    opacity: 0.2;
-    color: #fff;
-    background: #000 url("../../../../assets/image/error.png") center center;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    overflow: hidden;
-    position:absolute;
-    top:0;left:0;
-    z-index:1;
+  margin-bottom: 0px;
+  opacity: 0.2;
+  color: #fff;
+  background: #000 url("../../../../assets/image/error.png") center center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
-.jumbotron {position:relative;padding:50px;}
-.jumbotron .container {z-index:2;
- position:relative;
-  z-index:2;
+
+.jumbotron {
+  position: relative;
+  padding: 50px;
+}
+
+.jumbotron .container {
+  z-index: 2;
+  position: relative;
+  z-index: 2;
 }

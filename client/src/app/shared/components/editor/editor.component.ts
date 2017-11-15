@@ -5,6 +5,8 @@ import { AceEditorModule } from 'ng2-ace-editor';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import swal from 'sweetalert2';
+
+import { webEditorConfig } from '../../config/webEditor.config';
 import { EditorService } from '../../services/editor.service';
 import { GitService } from '../../services/git.service';
 import { AuthenticationService } from '../../services/authentication.service';
@@ -89,6 +91,14 @@ export class EditorComponent implements OnInit {
     if (this.showModalBox == false) {
       this.loading=true;
       this.templateRef=template;
+    }else {
+      swal({
+        timer: 2000,
+        title: webEditorConfig.screenShare.TITLE,
+        text: webEditorConfig.screenShare.TEXT,
+        type: webEditorConfig.screenShare.INFO,
+        showConfirmButton: false,
+      }).catch(swal.noop);
     }
     
     /*varialbe to toggle sharing status on/off*/

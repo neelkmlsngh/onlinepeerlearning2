@@ -21,7 +21,7 @@
     <template #template>
       <div *ngIf="showModalBox==true">
         <div class="modal-header">
-          <h4 class="modal-title pull-left">Modal</h4>
+          <h4 class="modal-title pull-left">URL</h4>
           <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -160,7 +160,6 @@
                     </div>
                   </div>
                 </div>
-                <button id="togetherjs-share-button start-togetherjs" type="button" class="togetherjs-button btn btn-outline-warning text-right" onclick="TogetherJS(this); return false" data-end-togetherjs-html="End TogetherJS" title="{{config.webEditor.SCREENSHARE}}" (click)="openModals(template)"> <i class="fa fa-desktop" aria-hidden="true"></i></button>
                 <div id="myDiv"></div>
               </form>
             </nav>
@@ -227,7 +226,7 @@
                   </div>
                 </div>
                 <!-- button to update the file -->
-                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.UPDATEFILE}} data-toggle="modal" data-target="#cssUpdatedModalWindow" (click)="isRepoSelected()" >
+                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.UPDATEFILE}} data-toggle="modal" data-target="#cssUpdatedModalWindow" (click)="isRepoSelected()">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                 <!--  modal window to update the file -->
                 <div *ngIf="ifRepo" class="modal fade" id="cssUpdatedModalWindow" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
@@ -260,7 +259,7 @@
                   </div>
                 </div>
                 <!-- button to delete the file -->
-                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.DELETEFILE}} data-toggle="modal" data-target="#cssDeleteModalWindow" (click)="isRepoSelected()"> 
+                <button class="btn btn-outline-warning" href="javascript:void(0);" title={{config.webEditor.DELETEFILE}} data-toggle="modal" data-target="#cssDeleteModalWindow" (click)="isRepoSelected()">
                   <i class="fa fa-trash-o" aria-hidden="true"></i></button>
                 <!--modal window to delete the file -->
                 <div *ngIf="ifRepo" class="modal fade" id="cssDeleteModalWindow" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
